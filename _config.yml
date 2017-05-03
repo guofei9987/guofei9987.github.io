@@ -1,0 +1,47 @@
+permalink: /:year/:month/:day/:title.html
+paginate: 10
+markdown: redcarpet
+
+# 作者信息
+author:
+  name: Guofei
+  email: me@guofei.site
+  link: http://www.guofei.site
+  weibo: http://weibo.com/griffin9987
+  github: http://github.com/guofei9987
+  linkedin: https://www.linkedin.com/guofei9987
+  facebook: https://www.facebook.com/guofei9987
+
+# 站点信息
+title: 郭飞的博客
+description: My personal blog
+url: http://www.guofei.site
+rss_url: /pages/atom.xml
+
+# gavatar头像及Favicon
+gavatar: /public/img/deer3.png
+favicon: /public/img/deer3.png
+
+# google analytics 设置
+ga:
+  id: UA-98406918-1
+  url: www.guofei.site
+
+# disqus 设置
+disqus:
+  shortname: guofei9987
+
+# 主题设置，自动激活某个标签
+active: 读书
+
+# 首页除了最新文章外显示分类
+cates:
+  - Optimization
+  - LaTeX
+
+# 中文本地化
+locals:
+  tags: 标签
+  about: 关于
+  newest: 最新文章
+  archive: 归档
