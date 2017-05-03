@@ -25,7 +25,7 @@ function nav_click(is_show) {
     /* 修改文字排版 */
     $('.aside3-content')
       .removeClass('col-md-13')
-      .addClass('col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2'); 
+      .addClass('col-md-10 col-lg-8 col-md-offset-1 col-lg-offset-2');
   }  /*col-md-offset-1 col-lg-offset-2*/
 }
 /* 控制文章章节列表按钮 */
@@ -86,9 +86,10 @@ function contentEffects(){
         current.attr("id", "title" + i);
         tag = current.prop('tagName').substr(-1);
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#title" +i + "'>" + current.html() + "</a></div>");
-    }); 
+    });
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     $("pre").addClass("prettyprint");
-    prettyPrint(); 
+    prettyPrint();
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
     $('#content_btn').show();
   }else{
