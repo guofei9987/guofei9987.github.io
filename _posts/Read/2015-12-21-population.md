@@ -1,8 +1,7 @@
 ---
 layout: post
 title: 我对人口问题的一些思考&《大国空巢》读后感.
-categories:
-- Reading
+categories: 读书
 ---
 
 关于人口

@@ -19,14 +19,41 @@ layout: base
             <div class="panel-heading">{{ book.title }}</div>
             <div class="panel-body">
               <div class="row">
+                <!--
                 <div class="col-md-4 col-xs-12 center">
                   <img src="{{ book.cover }}" alt="cover" class="img-thumbnail">
                 </div>
+                -->
                 <div class="col-md-8 col-xs-12">
                   <table class="table table-bordered">
                     <tbody>
-                      <tr><td style="width:80px;">作者</td><td>{{ book.author }}</td></tr>
-                      <tr><td>出版商</td><td>{{ book.publisher }}</td></tr>
+
+                      <tr><td style="width:80px;">书名</td><td>{{ book.title }}</td>
+                      <td style="width:80px;">阅毕时间</td><td>{{ book.status }}</td>
+                      </tr>
+
+                      <tr><td style="width:40px;">作者</td><td>{{ book.author }}</td>
+                      <td style="width:40px;">我的打分</td><td>{{ book.score }}</td>
+                      </tr>
+
+                      <tr><td>出版商</td><td>{{ book.publisher }}</td>
+
+
+
+
+
+                      <td>读书笔记</td><td>
+
+                        {% if book.notes == null %}
+                          <br>
+                        {% else  %}
+                        <a href="{{ book.notes }}" title="{{ book.notes }}">点击查看</a>
+                        {% endif %}
+                      </td>
+                      </tr>
+
+                      <tr><td>简评</td><td colspan = " 3 ">{{ book.description }}</td></tr>
+                     <!--
                       <tr><td>语言</td><td>{{ book.language }}</td></tr>
                       <tr>
                         <td>链接</td><td>
@@ -44,6 +71,7 @@ layout: base
                           {% endif %}
                         </td></tr>
                       <tr><td>评论</td><td>{{ book.description }}</td></tr>
+                    -->
                     </tbody>
                   </table>
                 </div>

@@ -1,8 +1,7 @@
 ---
 layout: post
 title: 《奇点临近》读后感.
-categories:
-- Reading
+categories: 读书
 ---
 
 Author:Guofei

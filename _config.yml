@@ -32,7 +32,7 @@ disqus:
   shortname: guofei9987
 
 # 主题设置，自动激活某个标签
-active: 读书
+active: 书单
 
 # 首页除了最新文章外显示分类
 cates:
