@@ -2,7 +2,7 @@
 layout: post
 title: blog语法示例.
 categories: Geek
-tags: blog等语法速查
+tags: 语法示例
 keywords:
 description:
 ---
