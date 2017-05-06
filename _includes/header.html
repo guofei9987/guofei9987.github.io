@@ -15,6 +15,13 @@
 <link rel="stylesheet" href="/public/css/base.css">
 <link href="/pages/atom.xml" rel="alternate" title="{{site.title}}" type="application/atom+xml">
 
+<!-- LaTeX支持 -->
+<!--
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
   tex2jax: {
@@ -40,5 +47,8 @@
           }
   });
   </script>
-  <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
+
+
+
+  <script src="mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
