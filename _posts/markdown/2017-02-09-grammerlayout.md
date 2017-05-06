@@ -75,13 +75,3 @@ description:
 
 
 使用单引号实现的`引用`
-
-## 高级功能
-
-### Google Analytics
-
-*一个用来统计用户点击的分析网站*
-
-https://analytics.google.com/
-
-使用很简单，一步一步照着做就行了
