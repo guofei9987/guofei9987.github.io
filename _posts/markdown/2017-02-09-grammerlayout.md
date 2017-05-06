@@ -34,7 +34,7 @@ description:
 
 ```
 {% raw %}
-<iframe frameborder="20" border="20" marginwidth="10" marginheight="0" width="298" height="80" src="http://www.guofei.site/public/asset/追梦人.mp3"></iframe>
+<iframe frameborder="20" border="20" marginwidth="10" marginheight="0" width="298" height="80" src="http://www.guofei.site/public/assets/追梦人.mp3"></iframe>
 {% endraw %}
 ```
 
@@ -43,7 +43,7 @@ description:
 
 
 {% raw %}
-<iframe frameborder="20" border="20" marginwidth="10" marginheight="0" width="298" height="80" src="http://www.guofei.site/public/one.mp3"></iframe>
+<iframe frameborder="20" border="20" marginwidth="10" marginheight="0" width="298" height="80" src="http://www.guofei.site/public/assets/追梦人.mp3"></iframe>
 {% endraw %}
 
 
