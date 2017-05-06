@@ -2,7 +2,7 @@
 layout: post
 title: blog语法示例.
 categories: Geek
-tags: 语法示例
+tags: 写作语法示例
 keywords:
 description:
 ---
@@ -10,16 +10,6 @@ description:
 用来记录blog的语法
 
 下面是一些格式举例
-
-## 二级标题h2
-
-
-**加粗的绿色字体**
-
-**『带上中括号别有感觉』**
-
-- list1
-- list2
 
 ## 插入照片并预设照片大小
 ```
