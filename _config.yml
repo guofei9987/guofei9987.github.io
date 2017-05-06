@@ -36,8 +36,8 @@ active: 书单
 
 # 首页除了最新文章外显示分类
 cates:
-  - Optimization
-  - LaTeX
+  - 模型
+  - 算法
 
 # 中文本地化
 locals:
