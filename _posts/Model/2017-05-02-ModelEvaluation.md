@@ -2,7 +2,7 @@
 layout: post
 title: 模型的评价方法
 categories: 模型
-tags: 模型评价
+tags: 统计
 keywords: model evaluation
 description:
 ---
