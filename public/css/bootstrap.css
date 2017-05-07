@@ -1162,7 +1162,7 @@ img {
     padding: 4px;
     line-height: 1.42857143;
     background-color: #fff;
-    border: 0px solid #ddd;         
+    border: 0px solid #ddd;
     border-radius: 4px;
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
@@ -1206,7 +1206,7 @@ hr {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: inherit;
-    font-weight: 500;
+    font-weight: 1000;
     line-height: 1.1;
     color: inherit
 }
@@ -1253,7 +1253,7 @@ h3, .h3 {
 }
 
 h4, .h4 {
-    font-size: 18px
+    font-size: 22px
 }
 
 h5, .h5 {
@@ -5335,7 +5335,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     border-left: 0px;
     border-right: 0px;
     /*border: 0px solid #ddd;*/
-    margin-right: 0px; margin-left: 35px; 
+    margin-right: 0px; margin-left: 35px;
 }
 
 a.list-group-item-lay:hover, a.list-group-item-lay:focus {
@@ -6856,4 +6856,3 @@ button.close {
         display: none !important
     }
 }
-
