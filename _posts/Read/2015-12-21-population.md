@@ -4,11 +4,6 @@ title: 【读后感】《大国空巢》.
 categories: 读书
 ---
 
-关于人口
-
-Author:Guofei
-
-~本文是本人原创内容，如有逻辑、算法或其它错误，请联系[本人邮箱](mailto:guofei@foxmail.com)~
 
 # 我对人口问题的思考
 

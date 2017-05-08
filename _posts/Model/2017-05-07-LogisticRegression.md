@@ -28,7 +28,7 @@ $P(Y=0|x)=\dfrac{1}{1+\exp(wx)}$
 
 ### 策略
 
-求参数的方法，就是经典的MLE方法。
+求参数的方法，就是经典的MLE方法。  
 先求似然函数，  
-$\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$
-取对数后求$argmax L(w)$
+$\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
+取对数后求$argmax L(w)$  
