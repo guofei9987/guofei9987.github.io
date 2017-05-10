@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【随机模拟小试验】有偏分布下的均值、中位数、众数之间的关系.
-categories: Math
+categories: 叨叨
 tags: 统计
 keywords:
 description:

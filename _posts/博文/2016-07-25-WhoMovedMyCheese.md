@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【随笔】 《谁动了我的奶酪》中的粒子群算法.
-categories: Math
+categories: 叨叨
 tags: 算法
 keywords:
 description:
