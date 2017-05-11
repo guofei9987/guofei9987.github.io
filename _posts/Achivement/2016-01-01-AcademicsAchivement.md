@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 学术渣
-categories: 成就
-tags: 
+categories: 橱窗
+tags:
 keywords:
 description:
 ---

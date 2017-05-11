@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【读后感】《奇点临近》.
-categories: 叨叨
+categories: 推文
 ---
 
 
