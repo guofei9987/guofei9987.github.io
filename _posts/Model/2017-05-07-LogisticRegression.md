@@ -24,6 +24,8 @@ $f(x; \mu,s) = \dfrac {e^{-(x-\mu)/s}} {s (1+e^{-(x-\mu)/s})^2}$
 ### 模型
 $P(Y=1|x)=\dfrac{\exp(wx)}{1+\exp(wx)}$
 
+
+  
 $P(Y=0|x)=\dfrac{1}{1+\exp(wx)}$
 
 ### 策略
