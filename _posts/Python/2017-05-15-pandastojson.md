@@ -23,11 +23,15 @@ a=pd.DataFrame({"col1":['str1','str2','str3'],"col2":[1,2,3]},index=["idx1","idx
 ```
 
 out:
-| |col1|	col2|
-|--|--|--|
-idx1	|str1|	1
-idx2	|str2	|2
-idx3	|str3	|3
+
+<table>
+<tr><th></th><th>col1</th><th>col2</th></tr>
+<tr><td>idx1</td><td>str1</td><td>1</td></tr>
+<tr><td>idx2</td><td>str2</td><td>2</td></tr>
+<tr><td>idx3</td><td>str3</td><td>3</td></tr>
+</table>
+
+
 
 ### orient='index'
 ```Python
@@ -61,4 +65,14 @@ a.to_json('a.json',orient='split')
 out:
 ```Json
 {"columns":["col1","col2"],"index":["idx1","idx2","idx3"],"data":[["str1",1],["str2",2],["str3",3]]}
+```
+
+### orient='values'
+```Python
+a.to_json('ax1.json', orient='values')
+```
+
+out:
+```Json
+[["str1",1],["str2",2],["str3",3]]
 ```
