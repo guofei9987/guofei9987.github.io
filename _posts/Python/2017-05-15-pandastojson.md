@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【语法速查】【Python】pandas.to_json.
+title: 【语法速查】【Python】pd.to_json.
 categories: Geek
 tags: 语法速查
 keywords:
@@ -11,7 +11,7 @@ description:
 
 ## to_json
 
-用Python于其他数据交互时，经常要用到json，这里记录to_json的方法
+用Python于其他语言进行数据交互时经常要用到json，这里记录to_json的方法
 
 
 
