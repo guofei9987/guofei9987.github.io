@@ -32,7 +32,7 @@ disqus:
   shortname: guofei9987
 
 # 主题设置，自动激活某个标签
-active: 标签
+active: tag
 
 # 首页除了最新文章外显示分类
 cates:
