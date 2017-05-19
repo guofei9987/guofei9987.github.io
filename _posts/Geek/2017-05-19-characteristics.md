@@ -7,13 +7,14 @@ keywords:
 description:
 ---
 
+### 1
 ```py
 sum([0.1 for i in range(10)])==1
 ```
 
 out:False
 
-
+### 2
 与set/dict相比，list擅长内存使用和迭代，不擅长成员检测$(\Theta (lg n))$   
 list:指定位置修改是$\Theta(1)$   
 链表：指定位置修改$\Theta(n)$,因为需要遍历，平均遍历半个数据量  
