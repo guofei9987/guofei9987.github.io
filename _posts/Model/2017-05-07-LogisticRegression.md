@@ -22,7 +22,7 @@ $f(x; \mu,s) = \dfrac {e^{-(x-\mu)/s}} {s (1+e^{-(x-\mu)/s})^2}$
 ## logistic regression
 
 ### 模型
-$P(Y=1|x)=\dfrac{\exp(wx)}{1+\exp(wx)}$  
+$P(Y=1 \mid x)=\dfrac{\exp(wx)}{1+\exp(wx)}$  
 
 $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$  
 
@@ -32,6 +32,3 @@ $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$
 先求似然函数，  
 $\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
 取对数后求$argmax L(w)$  
-
-
-$y|x$
