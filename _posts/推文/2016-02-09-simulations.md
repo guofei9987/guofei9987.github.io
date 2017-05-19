@@ -2,7 +2,7 @@
 layout: post
 title: 【蒙特卡洛】有偏分布下的均值、中位数、众数之间的关系.
 categories: 推文
-tags: 统计
+tags: 
 keywords:
 description:
 ---
