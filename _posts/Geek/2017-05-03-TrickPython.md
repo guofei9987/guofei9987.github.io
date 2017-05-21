@@ -79,3 +79,27 @@ for i in range(len(seq)-1):
         xx,yy,dd=x,y,d
 xx,yy
 ```
+
+## 4
+题目：对set进行排序  
+```py
+unsorted_set={'a':6,'b':3,'c':9,'d':2}
+```
+解法1：  
+```py
+unsorted_set={'a':6,'b':3,'c':9,'d':2}
+dict1= sorted(a.items(), key=lambda d:d[1], reverse = True)
+```
+
+解法2：
+```py
+unsorted_set={'a':6,'b':3,'c':9,'d':2}
+value_key_pairs=[(value,key) for key,value in unsorted_set.items()]
+value_key_pairs.sort()
+```
+
+
+额外提一句，想要做频率统计，可以从一开始就不用set，而是把raw data放到DataFrame里，然后这样：
+```
+frame['col1'].value_counts
+```

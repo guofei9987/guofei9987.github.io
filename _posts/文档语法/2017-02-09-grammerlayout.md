@@ -42,8 +42,9 @@ description:
 音乐会自动播放
 
 ## 插入视频
-
+{% raw %}
 <div class="embed-responsive embed-responsive-16by9"><iframe height=498 width=510 src="http://player.youku.com/embed/XNTE1NjQ5MzY4" frameborder=0 allowfullscreen></iframe></div>
+{% endraw %}
 
 
 ## 用尖括号>实现的引用
