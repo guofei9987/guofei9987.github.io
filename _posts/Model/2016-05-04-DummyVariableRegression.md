@@ -81,7 +81,7 @@ $$D=\left \{ \begin{array}{ccc}
 dependent Variables是dummy，而independent是quantitative Variables。  
 这实际上是分类模型，有大量的classifier模型可以用，例如决策树模型，SVM等等  
 
-用OLS做这个模型，被称为`Linear probability model`
+用OLS做这个模型，被称为`Linear probability model`  
 Linear probability model有诸多缺点，wikipedia总结的很好：  
 >Some problems are inherent in the LPM model:
 1. The regression line will not be a well-fitted one and hence measures of significance, such as R2, will not be reliable.
@@ -90,7 +90,6 @@ Linear probability model有诸多缺点，wikipedia总结的很好：
 4. The LPM may give predicted values of the dependent variable that are greater than 1 or less than 0. This will be difficult to interpret as the predicted values are intended to be probabilities, which must lie between 0 and 1.
 5. There might exist a non-linear relationship between the variables of the LPM model, in which case, the linear regression will not fit the data accurately.
 
-所以尽量不要用这个模型。  
-为了规避这些缺点，改进为logit regression,见于我的另一篇文章[逻辑回归](http://www.guofei.site/2017/05/07/LogisticRegression.html)
+所以尽量不要用这个模型，为了规避这些缺点，改进为logit regression,见于我的另一篇文章[逻辑回归](http://www.guofei.site/2017/05/07/LogisticRegression.html)
 
 大名鼎鼎的logit regression本质上可以归类为Dummy Variable Regression
