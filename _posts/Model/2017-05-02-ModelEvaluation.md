@@ -11,15 +11,16 @@ description:
 ## 对回归和分类模型的评价
 - accurate
 - stable
-对同一样本同一模型，多次计算出的模型不能差别太大
+模型建好之后，输入一个样本，输出的预测值不能变来变去。
+（对同一组样本同一模型，多次计算出的模型不能差别太大）
 - general
 推广性，对新样本预测作用同样良好。
 - ease of use
-    - generat a fit 做模型快捷（不用管，现在都快捷）
-    - measure accuracy
+    - generat a fit ，建模比较方便（不用管，现在都快捷）
+    - measure accuracy，能否建立一个评价系统
     - prediction
-    - swith algerithm
-    - share results
+    - swith algerithm，
+    - share results，例如决策树的模型结果就可以很容易教给不懂模型的人
 - Feature selection
     - uncorelated predictor
     - corelated predictor
