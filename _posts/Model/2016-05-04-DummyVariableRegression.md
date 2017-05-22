@@ -1,0 +1,70 @@
+---
+layout: post
+title: 虚拟变量回归
+categories: 模型
+tags: 统计模型
+keywords: model evaluation
+description:
+---
+
+虚拟变量回归，又叫做哑变量回归（Dummy Variable Regression Models）  
+
+## 虚拟变量
+
+又叫做哑变量，Dummy Variable  
+指的是取值0或1的变量，用来代表类别  
+一个分类量有k个类别时，需要引入k-1个虚拟变量  
+例如：  
+大学有4个年级这样构造：    
+$Y=a_0+a_1D_1+a_2D_2+a_3D_3+a_4X+\epsilon$
+其中，$D_1$=1是大一，否则为0.  
+$D_2$代表大二，否则为0.  
+$D_3$代表大三，否则为0.  
+
+### 注意1
+为什么必须用0,1变量，而不能用0,1,2,3表示多个类？   
+如果用0,1,2,3 那么就只能以连续变量理解这个变量，既有大小又有刻度  
+
+### 注意2
+为什么一个分类量有k个类别时，引入k-1个Dummy Variables， 而不是k个？  
+如果引入k个Dummy Variables, 将会有完全的多重共线性
+$D_1+D_2+D_3+D_4=1$
+
+## 加法模型
+
+$Y=a_1+a_2D_1+a_3D_2+bX+u$
+
+
+### 模型解释
+例如，Y代表啤酒销售量，X代表收入。  
+$D_1=1$代表夏季，0代表冬季  
+$D_2=1$代表城市，0代表农村  
+
+模型是这样的：  
+![QQ截图20170522095008](http://i.imgur.com/82Ol9E1.png)
+其特点是斜率不变  
+
+### 加法模型的变种
+引入交互作用  
+$Y=a_1+a_2D_1+a_3D_2+a_4D_1D_2+bX+u$  
+
+## 乘法模型
+$Y=a_1+a_2D+b_1X+b_2DX+u$
+
+特点是截距斜率都变化  
+
+![QQ截图20170522100233](http://i.imgur.com/WCIfU6N.png)
+
+### 乘法模型的变种
+$Y=a_1+b_1X+b_2DX+u$
+
+![QQ截图20170522100243](http://i.imgur.com/wYpnflg.png)
+
+## 分段模型
+
+$Y=a_0+b_1X+b_2(X-X^* )D+u$
+其中,  
+$$D=\left \{ \begin{array}{ccc}
+1&X>=X*\\
+0&X<X^*
+\end{array}\right.$$

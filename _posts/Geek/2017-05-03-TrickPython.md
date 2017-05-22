@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【编程技巧】Python
+title: 【编程技巧】【Python】算法篇
 categories: Geek
 tags: Python特性
 keywords:
@@ -101,5 +101,15 @@ value_key_pairs.sort()
 
 额外提一句，想要做频率统计，可以从一开始就不用set，而是把raw data放到DataFrame里，然后这样：
 ```
-frame['col1'].value_counts
+df['col1'].value_counts()#对Series计数
+```
+
+## 5
+问题：原始数据以df=pandas.DataFrame格式存放，5个字段  
+找出5个字段中，任意2个字段满足条件的行  
+
+解答：
+```
+mask=((df.col1>0.5)+(df.col2<0.8)+(df.col3>0.3)+(df.col4>0.3)+(df.col5<0.3)>=2)
+df[mask]
 ```
