@@ -74,6 +74,9 @@ $$D=\left \{ \begin{array}{ccc}
 
 图像是一个折线（两条共点的线段）
 
+![QQ截图20170522110308](http://i.imgur.com/BdxthSu.png)  
+
+
 ## 其它虚拟变量回归模型
 
 ### Dummy Dependent Variables
