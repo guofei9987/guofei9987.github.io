@@ -95,4 +95,11 @@ Linear probability model有诸多缺点，wikipedia总结的很好：
 
 所以尽量不要用这个模型，为了规避这些缺点，改进为logit regression,见于我的另一篇文章[逻辑回归](http://www.guofei.site/2017/05/07/LogisticRegression.html)
 
-大名鼎鼎的logit regression本质上可以归类为Dummy Variable Regression
+大名鼎鼎的`logit regression`本质上可以归类为Dummy Variable Regression
+
+## 模型检验
+
+- 对整个模型的检验（F检验）
+H0:$b_1=b_2=...=0$
+- 对系数的检验（t检验）
+H0:$b_j=0$
