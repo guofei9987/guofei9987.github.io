@@ -51,6 +51,49 @@ description:
 1. 模型输出的是预测结果
 2. 模型输出的是概率，这时用0.5截取
 
+
+<table style="undefined;table-layout: fixed; width: 532px">
+<colgroup>
+<col style="width: 80px">
+<col style="width: 35px">
+<col style="width: 121px">
+<col style="width: 158px">
+<col style="width: 138px">
+</colgroup>
+  <tr>
+    <th colspan="2" rowspan="2">confusion matrix</th>
+    <th colspan="2">Predicted </th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="2">Actual</td>
+    <td>1</td>
+    <td>True Positive</td>
+    <td>False Negative</td>
+    <td>total actual positive</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>False Positive</td>
+    <td>True Negative</td>
+    <td>total actual negative</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>total predicted positive</td>
+    <td>total predicted negative</td>
+    <td>total cases</td>
+  </tr>
+</table>
+
+
+
 <table>
   <tr>
     <th colspan="2">confusion matrix</th>
