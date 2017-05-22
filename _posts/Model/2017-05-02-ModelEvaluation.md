@@ -51,7 +51,7 @@ description:
 1. 模型输出的是预测结果
 2. 模型输出的是概率，这时用0.5截取
 
-
+wikipedia这个table总结的很全，直接搬过来：  
 
 <table class="wikitable" align="center" style="text-align:center; border:none; background:transparent;">
 <tbody><tr>
