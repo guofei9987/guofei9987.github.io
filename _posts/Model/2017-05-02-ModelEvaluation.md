@@ -52,6 +52,58 @@ description:
 2. 模型输出的是概率，这时用0.5截取
 
 
+
+<table class="wikitable" align="center" style="text-align:center; border:none; background:transparent;">
+<tbody><tr>
+<td colspan="2" style="border:none;"></td>
+<td colspan="2" style="background:#eeeebb;"><b>predicted condition</b></td>
+</tr>
+<tr>
+<td style="border:none;"></td>
+<td style="background:#dddddd;"><a href="/wiki/Statistical_population" title="Statistical population">total population</a></td>
+<td style="background:#ffffcc;">prediction positive</td>
+<td style="background:#ddddaa;">prediction negative</td>
+<td style="background:#eeeecc;"><a href="/wiki/Prevalence" title="Prevalence">Prevalence</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ&nbsp;condition positive</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;total population</span></span></span></span></td>
+</tr>
+<tr>
+<td rowspan="2" style="background:#bbeeee;"><b>true<br>
+condition</b></td>
+<td style="background:#ccffff;">condition<br>
+positive</td>
+<td style="background:#ccffcc;"><span style="color:#006600;"><b><a href="/wiki/True_positive" class="mw-redirect" title="True positive">True Positive (TP)</a></b></span></td>
+<td style="background:#eedddd;"><span style="color:#cc0000;"><b><a href="/wiki/False_Negative" class="mw-redirect" title="False Negative">False Negative (FN)</a></b></span><br>
+(<a href="/wiki/Type_II_error" class="mw-redirect" title="Type II error">type II error</a>)</td>
+<td style="background:#eeffcc;"><a href="/wiki/True_Positive_Rate" class="mw-redirect" title="True Positive Rate">True&nbsp;Positive&nbsp;Rate&nbsp;(TPR)</a>, <a href="/wiki/Sensitivity_(tests)" class="mw-redirect" title="Sensitivity (tests)">Sensitivity</a>, <a href="/wiki/Recall_(information_retrieval)" class="mw-redirect" title="Recall (information retrieval)">Recall</a>, Probability&nbsp;of&nbsp;Detection <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ TP</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;condition&nbsp;positive</span></span></span></span></td>
+<td style="background:#ffeecc;"><a href="/wiki/False_Negative_Rate" class="mw-redirect" title="False Negative Rate">False&nbsp;Negative&nbsp;Rate&nbsp;(FNR)</a>, Miss&nbsp;Rate <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ FN</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;condition&nbsp;positive</span></span></span></span></td>
+</tr>
+<tr>
+<td style="background:#aadddd;">condition<br>
+negative</td>
+<td style="background:#ffdddd;"><span style="color:#cc0000;"><b><a href="/wiki/False_Positive" class="mw-redirect" title="False Positive">False&nbsp;Positive&nbsp;(FP)</a></b></span><br>
+(<a href="/wiki/Type_I_error" class="mw-redirect" title="Type I error">Type I error</a>)</td>
+<td style="background:#bbeebb;"><span style="color:#006600;"><b><a href="/wiki/True_negative" class="mw-redirect" title="True negative">True Negative (TN)</a></b></span></td>
+<td style="background:#eeddbb;"><a href="/wiki/False_Positive_Rate" class="mw-redirect" title="False Positive Rate">False&nbsp;Positive&nbsp;Rate&nbsp;(FPR)</a>, <a href="/wiki/Information_retrieval" title="Information retrieval"><span class="nowrap">Fall-out</span></a>, Probability&nbsp;of&nbsp;False&nbsp;Alarm <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ FP</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;condition&nbsp;negative</span></span></span></span></td>
+<td style="background:#ddeebb;"><a href="/wiki/True_Negative_Rate" class="mw-redirect" title="True Negative Rate">True&nbsp;Negative&nbsp;Rate&nbsp;(TNR)</a>, <a href="/wiki/Specificity_(tests)" class="mw-redirect" title="Specificity (tests)">Specificity</a> (SPC) <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ TN</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;condition&nbsp;negative</span></span></span></span></td>
+</tr>
+<tr>
+<td style="border:none;"></td>
+<td rowspan="2" style="background:#cceecc;border-top:solid grey;border-right:solid grey"><a href="/wiki/Accuracy_and_precision" title="Accuracy and precision">Accuracy</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ&nbsp;TP + Σ TN</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;total population</span></span></span></span></td>
+<td style="background:#ccffee;border-top:solid grey;"><a href="/wiki/Positive_Predictive_Value" class="mw-redirect" title="Positive Predictive Value">Positive&nbsp;Predictive&nbsp;Value&nbsp;(PPV)</a>, <a href="/wiki/Precision_(information_retrieval)" class="mw-redirect" title="Precision (information retrieval)">Precision</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ TP</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;prediction&nbsp;positive</span></span></span></span></td>
+<td style="background:#eeddee;border-bottom:solid grey;"><a href="/wiki/False_omission_rate" class="mw-redirect" title="False omission rate">False&nbsp;Omission&nbsp;Rate&nbsp;(FOR)</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ FN</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;prediction&nbsp;negative</span></span></span></span></td>
+<td style="background:#eeeeee;"><a href="/wiki/Positive_likelihood_ratio" class="mw-redirect" title="Positive likelihood ratio">Positive&nbsp;Likelihood&nbsp;Ratio&nbsp;<span class="nowrap">(LR+)</span></a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">TPR</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">FPR</span></span></span></span></td>
+<td rowspan="2" style="background:#dddddd;"><a href="/wiki/Diagnostic_odds_ratio" title="Diagnostic odds ratio">Diagnostic&nbsp;Odds&nbsp;Ratio&nbsp;(DOR)</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">LR+</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">LR−</span></span></span></span></td>
+</tr>
+<tr>
+<td style="border:none;"></td>
+<td style="background:#cceeff;border-top:solid grey;"><a href="/wiki/False_Discovery_Rate" class="mw-redirect" title="False Discovery Rate">False&nbsp;Discovery&nbsp;Rate&nbsp;(FDR)</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ FP</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;prediction&nbsp;positive</span></span></span></span></td>
+<td style="background:#aaddcc;border-bottom:solid grey;"><a href="/wiki/Negative_Predictive_Value" class="mw-redirect" title="Negative Predictive Value">Negative&nbsp;Predictive&nbsp;Value&nbsp;(NPV)</a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">Σ TN</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">Σ&nbsp;prediction&nbsp;negative</span></span></span></span></td>
+<td style="background:#cccccc;"><a href="/wiki/Negative_likelihood_ratio" class="mw-redirect" title="Negative likelihood ratio">Negative&nbsp;Likelihood&nbsp;Ratio&nbsp;<span class="nowrap">(LR−)</span></a> <span style="font-size:118%;white-space:nowrap;">= <span class="texhtml"><span class="sfrac nowrap" style="display:inline-block; vertical-align:-0.5em; font-size:85%; text-align:center;"><span style="display:block; line-height:1em; margin:0 0.1em;">FNR</span><span class="visualhide">/</span><span style="display:block; line-height:1em; margin:0 0.1em; border-top:1px solid;">TNR</span></span></span></span></td>
+</tr>
+</tbody></table>
+
+
+
+---
 <table>
   <tr>
     <th colspan="2" rowspan="2">confusion matrix</th>
@@ -116,7 +168,7 @@ description:
 ### ROC曲线
 值得是不同阈值下曲线，  
 x轴：	FPR=FP/(FP+TN)   
-y轴：	TPR=TP/(TP+FN) 
+y轴：	TPR=TP/(TP+FN)
 
 
 - 观察曲线
