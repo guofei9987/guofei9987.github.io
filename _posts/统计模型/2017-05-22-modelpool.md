@@ -20,7 +20,7 @@ BP神经网络<br>
 
 <td>
 神经网络  <br>
-逻辑回归  <br>
+<a href='/2017/05/07/LogisticRegression.html'>逻辑回归 </a> <br>
 判别分析  <br>
 朴素贝叶斯<br>
 SVM      <br>
