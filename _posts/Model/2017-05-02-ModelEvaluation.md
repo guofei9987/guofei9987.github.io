@@ -86,7 +86,7 @@ description:
 </table>
 
 #### 指标1
-准确分类	Accuracy
+正确率	Accuracy
 : (TP+TN)/total cases
 
 误分类
@@ -94,14 +94,14 @@ description:
 
 #### 指标2
 覆盖率	Recall(True Positive Rate，or Sensitivity)
-: TP/(TP+FN)
+: TPR=TP/(TP+FN)
 
 命中率	Precision(Positive Predicted Value,PV+)
 : TP/(TP+FP)
 
 #### 指标3
 负例的覆盖率	Specificity(True Negative Rate)
-: TN/(FP+TN)
+: TNR=TN/(FP+TN)
 
 负例的命中率	Negative predicted value(PV-)
 : TN/(TP+FP)
@@ -115,8 +115,8 @@ description:
 
 ### ROC曲线
 值得是不同阈值下曲线，  
-x轴：	TP/(TP+FN)  
-y轴：	FP/(FP+TN)  
+x轴：	FPR=FP/(FP+TN)   
+y轴：	TPR=TP/(TP+FN) 
 
 
 - 观察曲线
