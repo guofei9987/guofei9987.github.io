@@ -51,6 +51,43 @@ description:
 1. 模型输出的是预测结果
 2. 模型输出的是概率，这时用0.5截取
 
+<table>
+  <tr>
+    <th colspan="2">confusion matrix</th>
+    <th colspan="2">Predicted </th>
+    <th></th>
+  </tr>
+  <tr>
+    <td>col 1 is<br></td>
+    <td></td>
+    <td>1</td>
+    <td>0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td rowspan="2">Actual</td>
+    <td>1</td>
+    <td>True<br>  Positive</td>
+    <td>False Negative</td>
+    <td>total actual positive</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>False Positive</td>
+    <td>True Negative</td>
+    <td>total actual negative</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>total<br>  predicted positive</td>
+    <td>total predicted negative</td>
+    <td>total cases</td>
+  </tr>
+</table>
+
+
+
 TP，FP，TN，TP
 
 值得注意的是，在不同的场景中，选择的主要指标不同。例如：   
