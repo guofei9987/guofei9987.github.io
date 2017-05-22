@@ -67,7 +67,7 @@ description:
   <tr>
     <td rowspan="2">Actual</td>
     <td>1</td>
-    <td>True<br>  Positive</td>
+    <td>True Positive</td>
     <td>False Negative</td>
     <td>total actual positive</td>
   </tr>
@@ -80,7 +80,7 @@ description:
   <tr>
     <td></td>
     <td></td>
-    <td>total<br>  predicted positive</td>
+    <td>total predicted positive</td>
     <td>total predicted negative</td>
     <td>total cases</td>
   </tr>
