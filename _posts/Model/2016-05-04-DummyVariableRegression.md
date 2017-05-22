@@ -82,9 +82,11 @@ dependent Variables是dummy，而independent是quantitative Variables。
 这实际上是分类模型，有大量的classifier模型可以用，例如决策树模型，SVM等等  
 
 用OLS做这个模型，被称为`Linear probability model`  
-Some problems are inherent in the LPM model:
+>Some problems are inherent in the LPM model:
 1. The regression line will not be a well-fitted one and hence measures of significance, such as R2, will not be reliable.
 2. Models that are analyzed using the LPM approach will have heteroscedastic disturbances.
 3. The error term will have a non-normal distribution.
 4. The LPM may give predicted values of the dependent variable that are greater than 1 or less than 0. This will be difficult to interpret as the predicted values are intended to be probabilities, which must lie between 0 and 1.
-5. There might exist a non-linear relationship between the variables of the LPM model, in which case, the linear regression will not fit the data accurately.[2][9]
+5. There might exist a non-linear relationship between the variables of the LPM model, in which case, the linear regression will not fit the data accurately.
+
+为了规避
