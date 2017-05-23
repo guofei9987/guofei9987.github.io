@@ -2,7 +2,7 @@
 layout: post
 title: 决策树
 categories: 模型
-tags: 统计模型
+tags: 机器学习
 keywords: Decision Tree Classifier
 description:
 ---
@@ -76,7 +76,9 @@ lost function是正则化极大似然函数
 遍历是一个NP完全问题，因此改用启发式方法近似求解   
 
 #### 算法
-step1：生成
+Step1：构建节点
+
+Step2：剪枝
 
 
 
@@ -91,7 +93,7 @@ step1：生成
 
 1. 安装pydotplus：  
 https://github.com/carlos-jenkins/pydotplus
-2. 安装graphviz（好像不必要）
+2. 安装graphviz（好像不必要）    
 conda install graphviz
 
 3. 安装软件graphviz，官网：  
