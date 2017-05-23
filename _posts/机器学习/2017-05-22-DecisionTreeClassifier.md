@@ -6,16 +6,7 @@ tags: 机器学习
 keywords: Decision Tree Classifier
 description:
 ---
-决策树是一种强大的`有监督`数据挖掘技术，它能解决的问题范围非常广，而且产生的模型`具有可解释性`，而且可以用来`筛选变量`。
-
-
-step1，决策树利用一个递归过程将数据切分到越来越小的单元格中，单元格
-中数据逐步得到“净化”，在这个过程中，决策树会选择出对有知道数据挖掘任务最重要的那些变量。由此可知，决策树不仅可以用来构建模型。
-
-step2，决策树利用目标变量来确定如何划分每个输入。最后，
-决策树将数据分解为不同的片段，它们是由每一步的划分规则所定义。将所有片段中对应的规则整合在一起就构成了决策树模型。
-
-决策树算法包括特征选择、决策树生成、决策树剪枝  
+决策树是一种强大的`有监督`数据挖掘技术，它能应用范围非常广，而且产生的模型`具有可解释性`，而且可以用来`筛选变量`。
 
 
 决策树的特点：
@@ -127,7 +118,10 @@ C4.5的特点：
 5. 生成是局部选择，剪枝是全局选择  
 
 
-
+#### CART
+特点：
+- 二叉树，左支代表是，右支代表否
+- 既可以用于分类，也可以用于回归
 
 ---
 
@@ -149,4 +143,40 @@ http://www.graphviz.org/Download.php
 ```py
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+```
+
+### 代码
+```py
+from sklearn.datasets import load_iris
+from sklearn import tree
+iris = load_iris()
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(iris.data, iris.target)
+```
+
+输出
+```py
+tree.export_graphviz(clf,out_file="tree.doc"  )#输出到doc
+```
+
+转化为决策图，输出到pdf
+```py
+import pydotplus
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+dot_data = tree.export_graphviz(clf, out_file=None)
+graph = pydotplus.graph_from_dot_data(dot_data)
+graph.write_pdf("iris.pdf")
+```
+
+把决策图画出来
+```py
+from IPython.display import Image  
+dot_data = tree.export_graphviz(clf, out_file=None,
+                         feature_names=iris.feature_names,  
+                         class_names=iris.target_names,  
+                         filled=True, rounded=True,  
+                         special_characters=True)  
+graph = pydotplus.graph_from_dot_data(dot_data)  
+Image(graph.create_png())  
 ```
