@@ -69,53 +69,59 @@ lost function是正则化极大似然函数
 其二是： 树结构和递归  
 
 关于信息熵，信息益增，见于我写的一篇博客<a href='/2017/05/23/entropy.html'>信息熵</a>
-  
+
 关于树结构，见于我写的另一篇博客<a href='/2017/05/18/algorithm2.html'>Graph&Tree</a>
 
 
 
 ### ID3(算法)
+
+*注：很多材料给出的算法包含很多步，这里把一些不会分开的步放到了一起，看起来比较简洁*
+
 输入：训练数据集D，特征集A，阈值$\epsilon$    
 输出：决策树T   
 
-ID3递归算法：
+ID3递归算法：  
 step1：对于当前要计算的节点，找到`信息益增`最大的Feature，记为$A_g$    
 step2：如果信息益增小于$\epsilon$，生成节点，把实例数最大的类作为这个节点的类，递归结束    
 step3：否则，用$A_g$中的每一个可能值$\alpha_i$构建下多个子节点，递归转到每一个子节点。
 
 ### C4.5
 
-C4.5是ID3的改进
+C4.5是ID3的改进，在ID3的基础上增加一个步骤：剪枝。
 
+#### part1，用信息增益率生成树
 
+算法：
+第一步与ID3算法类似，只有一个区别：  
+用`信息增益率`来选择属性,而不是`信息益增`  
 
+信息益增率定义为$g_R(D,A)=\dfrac{g(D,A)}{H(D)}$
+（详见相关博客）  
 
-#### step1，用信息增益率生成树
+step1：对于当前要计算的节点，找到`信息益增率`最大的Feature，记为$A_g$    
+step2：如果信息益率增小于$\epsilon$，生成节点，把实例数最大的类作为这个节点的类，节点变成叶节点，递归结束    
+step3：否则，用$A_g$中的每一个可能值$\alpha_i$构建下多个子节点，递归转到每一个子节点。    
 
-用`信息增益率`来选择属性,而不是`信息益增`
-
-$g_R(D,A)=\dfrac{g(D,A)}{H(D)}$
-
-其它与ID3递归算法类似
-
-
-#### step2，剪枝(pruning)
+#### part2，剪枝(pruning)
 引入cost function   
 $C_\alpha(T)=\sum\limits_{t=1}^{\mid T \mid} N_t H_t(T)+\alpha \mid T \mid$    
 where,  
 $\mid T\mid$是叶节点个数     
 对于T的第t个叶节点，该叶节点有$N_t$个样本，其中第k类样本个数为$N_{tk}$    
 $\alpha$控制模型复杂度    
+这个cost function等价于正则化的极大似然估计   
 
-这个cost function等价于正则化的极大似然估计（不知道为什么）
+<br>
 
 剪枝算法：    
-输入：step1产生的整个树T，参数$\alpha$
-输出：修建后的子数$T_\alpha$
+输入：step1产生的整个树T，参数$\alpha$      
+输出：修建后的子数$T_\alpha$    
 方法：
 1. 扫描叶节点，$T_A$是修剪后的叶节点，如果$C_\alpha(T_A) \leq C_\alpha(T)$，那么剪枝
 2. $T=T_A$,继续上一步，直到所有节点都不再能修剪为止
 
+<br>
 
 C4.5的特点：
 1. 能够完成对连续属性的离散化处理；
@@ -130,16 +136,41 @@ C4.5的特点：
 - 二叉树，左支代表是，右支代表否
 - 既可以用于分类，也可以用于回归
 
-最小二乘回归树生成算法：  
+#### 最小二乘回归树生成算法  
 这个算法的整体架构与C4.5,ID3类似，不同的是找Feature的方法不一样，并因此导致分类方法也有所调整    
 
 先看一个节点的计算方法。假设找到第j个Feature(无论连续还是离散)，并且找到一个值s作为切分点（splitting Point），那么可以立即切分成两个区域：  
-$R_1(j,s)=\{ x \mid x^{j} \leq s \}$  
-$R_2(j,s)=\{ x \mid x^{j} > s \}$
+$$R_1(j,s)=\{ x \mid x^{j} \leq s \}$$  
+$$R_2(j,s)=\{ x \mid x^{j} > s \}$$
 
 
 求解:  
-$\min\limits_{j,s}[\min\limits_{c_1}\sum\limits_{x_1 \in R_1(j,s)}(y_i-c_1)^2+\min\limits_{c_2}\sum\limits_{x_2 \in R_2(j,s)}(y_i-c_2)^2]$  
+$$\min\limits_{j,s}\bigg[\min\limits_{c_1}\sum\limits_{x_1 \in R_1(j,s)}(y_i-c_1)^2+\min\limits_{c_2}\sum\limits_{x_2 \in R_2(j,s)}(y_i-c_2)^2\bigg]$$  
+
+#### CART生成算法
+引入一个概念，`gini index`  
+$Gini(X)=\sum_{k=1}^K p_k(1-p_k)$   
+这个概念与entropy有很大的相似度，也有类似的一组概念   
+`特征A下，集合D的gini index`定义为：    
+$Gini(D,A)=\dfrac{\mid D_1 \mid}{\mid D\mid}Gini(D_1)+\dfrac{\mid D_2 \mid}{\mid D\mid }Gini(D_2)$（与conditonal entropy相似的概念）    
+where,  
+$D_1,D_2$是被$A=\alpha$分割后的集合
+
+算法流程与前面的ID3,,C4.5基本一致，不同的是，要选择Feature，分割$A=\alpha$，使得Gini 最小（对比ID3的信息益增最大等价于条件信息熵最小）  
+
+方法：  
+step1：对于当前要计算的节点，找到`gini index`最小的Feature和划分$A=\alpha$      
+step2：如果样本数量小于阈值，或者`gini index`小于阈值$\epsilon$，生成节点，把实例数最大的类作为这个节点的类，节点变为叶节点，递归结束    
+step3：否则，构建子节点，递归转到每一个子节点。     
+
+#### CART剪枝算法
+
+与C4.5类似，引入loss function    
+$C_\alpha(T)=C(T)+\alpha\mid T\mid$    
+step1: 改变$\alpha$，例如,排序的$0,\alpha_1,\alpha_2,...,+\infty$可以得到一组子树:$$\{ T_0,T_1,...T_n \}$$。    
+找到这组子树的算法不复杂，这是因为剪掉每个节点损失的函数值可以一次性计算出来$$g(t)=\dfrac{C(t)-C(T_t)}{\mid T_t \mid -1}$$    
+step2: 用交叉比较的方法找到$T_0,T_1,...T_n$中最优的。     
+
 
 
 
