@@ -180,7 +180,11 @@ step2: 用交叉比较的方法找到$T_0,T_1,...T_n$中最优的。
 
 ### 环境准备
 
-用Python的sklearn做模型。为了可视化输出，进行下面的配置：
+用Python的sklearn做模型。    
+sklearn的一个缺点：`pruning not currently supported`。只实现了pre-pruning   
+
+
+为了可视化输出，还需要进行下面的配置：
 
 1. 安装pydotplus：  
 https://github.com/carlos-jenkins/pydotplus

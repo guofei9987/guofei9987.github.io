@@ -14,7 +14,7 @@ description:
 多元线性回归<br>
 多元非线性回归<br>
 广义线性回归<br>
-BP神经网络<br>
+神经网络<br>
 曲线拟合<br>
 </td>
 
@@ -35,6 +35,40 @@ K-means<br>
 模糊C均值聚类<br>
 高斯混合模型<br>
 
+</td>
+
+</tr>
+
+
+
+
+</table>
+
+
+
+## 神经网络是一组模型
+
+<table>
+<tr><th>回归问题</th><th>分类问题</th><th>聚类问题</th></tr>
+<tr>
+
+<td>
+BP<br>
+RBF<br>
+ELMAN<br>
+...<br>
+
+</td>
+
+<td>
+BP <br>
+PNN（概率神经网络） <br>
+... <br>
+
+</td>
+<td>
+SOM(自组织映射)<br>
+...<br>
 </td>
 
 </tr>
