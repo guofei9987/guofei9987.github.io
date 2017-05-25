@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Matlab】机器学习代码速查
+title: 【Matlab工具箱】十几个机器学习代码
 categories: 模型
 tags: Matlab
 keywords:

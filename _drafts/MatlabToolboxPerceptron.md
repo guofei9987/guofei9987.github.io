@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Matlab速查】感知机工具箱
+title: 【Matlab工具箱】感知机
 categories: 模型
 tags: Matlab
 keywords:
