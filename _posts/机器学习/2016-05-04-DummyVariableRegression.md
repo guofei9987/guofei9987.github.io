@@ -93,7 +93,7 @@ Linear probability model有诸多缺点，wikipedia总结的很好：
 4. The LPM may give predicted values of the dependent variable that are greater than 1 or less than 0. This will be difficult to interpret as the predicted values are intended to be probabilities, which must lie between 0 and 1.
 5. There might exist a non-linear relationship between the variables of the LPM model, in which case, the linear regression will not fit the data accurately.
 
-所以尽量不要用这个模型，为了规避这些缺点，改进为logit regression,见于我的另一篇文章[逻辑回归](http://www.guofei.site/2017/05/07/LogisticRegression.html)
+为了规避这些缺点，改进为logit regression,见于我的另一篇文章[逻辑回归](http://www.guofei.site/2017/05/07/LogisticRegression.html)
 
 大名鼎鼎的`logit regression`本质上可以归类为Dummy Variable Regression
 
