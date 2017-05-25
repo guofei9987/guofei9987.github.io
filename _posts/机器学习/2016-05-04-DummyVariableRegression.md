@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 虚拟变量回归
+title: 【虚拟变量回归】理论篇
 categories: 模型
 tags: 机器学习
 keywords: model evaluation

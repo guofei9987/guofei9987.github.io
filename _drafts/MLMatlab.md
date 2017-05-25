@@ -63,15 +63,15 @@ ObjBayes = NaiveBayes.fit(training,group,'Distribution','kernel')
 pre0 = ObjBayes.predict(training);
 ```
 
-```
+```Matlab
 Mdl = fitcnb(X,Y)
 ```
 
-```
+```Matlab
 estimates = Mdl.DistributionParameters
 ```
 完整案例
-```
+```Matlab
 load fisheriris
 X = meas;
 Y = species;
@@ -88,8 +88,18 @@ loss=kfoldLoss(CVMdl)
 
 
 ## 判别分析
-```
+```Matlab
 [class,err,POSTERIOR,logp,coeff] = classify(sample,training,group)
+```
+
+## 回归：
+```
+x=[0:30]';
+y=x.*rand(size(x))*100;
+one1=ones(size(x));
+[b,bint,r,rint,stats]=regress(y,[one1,x]);
+b,bint,stats
+rcoplot(r,rint)
 ```
 
 ## 模型验证方法
@@ -100,7 +110,7 @@ loss=kfoldLoss(CVMdl)
 注4：plotroc不支持subplot等运算，还是手动分解一下比较好    
 
 ### confusion matrix   
-```
+```Matlab
 [c,cm,ind,per] = confusion([y;1-y],[p;1-p])   
 ```
 

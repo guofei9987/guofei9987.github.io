@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 逻辑回归
+title: 【逻辑回归】理论篇
 categories: 模型
 tags: 机器学习
 keywords: model evaluation
