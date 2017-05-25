@@ -40,6 +40,7 @@ while k<30
         e=t(1,i)-y;
         w=w+eta*e*p(:,i)';
         %缺点是eta不递减
+
         plot_point_1=[-(w(1)+w(3))/w(2),1];
         plot_point_2=[-(w(1)-w(3))/w(2),-1];
 
