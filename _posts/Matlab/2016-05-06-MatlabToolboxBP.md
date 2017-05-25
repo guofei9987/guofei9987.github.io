@@ -46,7 +46,4 @@ net.trainparam.goal=1e-5;%要求精度,默认0
 
 [net,tr]=train(net,P,t)
 a=sim(net,P)
-
-
-
 ```
