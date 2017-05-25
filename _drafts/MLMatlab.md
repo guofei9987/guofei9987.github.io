@@ -102,6 +102,30 @@ b,bint,stats
 rcoplot(r,rint)
 ```
 
+## 系统聚类
+
+```
+%系统聚类完整步骤
+clear
+X=rand(100,4)
+Y=pdist(X)%距离向量
+Z=linkage(Y,'average')%从距离向量创建聚类树矩阵
+[H,T]=dendrogram(Z,'colorthreshold','default')%画树形图
+cluster(Z,3)%分3类
+ ```
+
+
+pdist    
+squareform%把pdist生成的距离矩阵转化（或逆转化）成向量形式  
+linkage  
+dendrogram  
+cophenet  
+cluster  
+cluserdata  
+inconsistent  
+
+
+
 ## 模型验证方法
 
 注1：一般情况下，我们把y=1作为class1；然而，matlab 把第一行作为class1，因此，在二分类问题中，需要做这样的变换：[y;1-y],[p;1-p]      
