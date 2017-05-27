@@ -99,11 +99,11 @@ $DX=\sigma^2$
 ### 性质1
 可加性：  
 $X_i \sim N(\mu_i,\sigma_i^2)$，并且相互独立  
-那么$\sum X_i \sim N(\sum\mu,\sum\sigma^2)$  
+那么$\sum X_i \sim N(\sum\mu_i,\sum\sigma_i^2)$  
 
 ### 性质2
 如果同时满足以下两条：  
-$X_i \sim(i.i.d)N(\mu,\sigma_i^2)$ 独立同分布  
+$X_i \sim(i.i.d)N(\mu,\sigma^2)$ 独立同分布  
 $S^2=\dfrac{1}{n-1}\sum(X_i - \bar X)^2$  
 那么，  
 $\bar X \sim N(u,\dfrac{\sigma^2}{n})$  
