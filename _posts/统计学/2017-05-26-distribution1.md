@@ -64,3 +64,19 @@ $DX=\dfrac{a(a+b-1)}{(b-1)^2(b-2)}$
 (b>2)  
 
 ### 性质
+如果，$X \sim Z(n_1/2,n_2/2)$  
+那么，  
+$Y=\dfrac{n_2}{n_1}X \sim F(n_1,n_2)$  
+
+关于F分布，
+$F=\dfrac{\chi^2(n_1)/n_1}{\chi^2(n_2)/n_2}$    
+
+$EF=\dfrac{n_2}{n_2-2}$  
+
+$DF=\dfrac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)(n_2-4)}$  
+(n_2>4)  
+
+## t distribution
+$t=\dfrac{N}{\sqrt{\chi^2/n}}$    
+$Et=0$  
+$Dt=\dfrac{n}{n-2}$  
