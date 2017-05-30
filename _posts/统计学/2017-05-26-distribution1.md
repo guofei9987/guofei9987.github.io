@@ -45,11 +45,14 @@ $DX=2n$
 
 $f=\dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}$  
 
-## 特征
+### 特征
 $EX^k=\dfrac{\Gamma(\alpha+k)\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\alpha+\beta+k)}$
 
 $EX=\dfrac{\alpha}{\alpha+\beta}$  
 $DX=\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$  
+
+### 用途
+在一些机器学习模型中，有时把先验分布定位beta distribution  
 
 ## Fisher Z
 $f=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{x^{a-1}}{(1+x)^{a+b}}$
@@ -80,3 +83,15 @@ $DF=\dfrac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)(n_2-4)}$
 $t=\dfrac{N}{\sqrt{\chi^2/n}}$    
 $Et=0$  
 $Dt=\dfrac{n}{n-2}$  
+
+
+## The exponential family
+
+$P(y;\eta)=b(y)exp(\eta^T T(y)-a(\eta))$  
+
+### 性质
+以下都是exponential family：  
+- Bernoulli distribution
+- Binomial distribution  
+- poisson distribution
+- normal distribution
