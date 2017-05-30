@@ -7,107 +7,141 @@ keywords:
 description:
 ---
 
-## 离散分布
+<h2>离散分布</h2>
+<table>
+<tr><th>名称</th><th>表示</th><th>概率分布</th><th>特征</th><th>性质</th><th>特点</th></tr>
+<tr><th>0-1分布Bernoulli distribution</th></tr>
 
-## 0-1分布Bernoulli distribution
 
-## 二项分布Binomial distribution
+<tr><th>二项分布Binomial distribution</th>
 
-特点：  
-0-1分布是一种特殊的二项分布  
+<td>$X \sim b(n,p)$</td>
 
-二项分布是0个独立同分布的0-1分布的加和  
-
-$X \sim b(n,p)$
-
-### 概率分布
-$P(X=k)=\dbinom{n}{k}p^k(1-p)^{n-k}$
-
-### 特征
-$EX=np$
-$DX=np(1-p)$
-
-### 性质
-可加性：  
+<td>$P(X=k)=\dbinom{n}{k}p^k(1-p)^{n-k}$</td>
+<td>$EX=np$<br>$DX=np(1-p)$</td>
+<td>可加性：
 $b(n_1,p)+b(n_2,p)=b(n_1+n_2,p)$
+</td>
+<td>
+0-1分布是一种特殊的二项分布<br>
+二项分布是0个独立同分布的0-1分布的加和
+</td>
+</tr>
 
-## 负二项分布
-对于一系列独立同分布的实验，每次实验成功概率为p，实验直到r次成功为止，总实验次数的概率分布。  
-$P(X=x,r,p)=\dbinom{x-1}{r-1}p^r(1-p)^{x-r}$
+
+<tr>
+<th>负二项分布
+(帕斯卡分布)
+</th>
+<td></td>
+<td></td>
+<td>
+$P(X=x,r,p)=\dbinom{x-1}{r-1}p^r(1-p)^{x-r}$<br>
 $x \in [r,r+1,r+2,...,\infty]$
-
+</td>
+<td>
 如果r=1，就是几何分布
+</td>
 
-## 泊松分布
+<td>对于一系列独立同分布的实验，每次实验成功概率为p，实验直到r次成功为止，总实验次数的概率分布。</td>
+</tr>
+<tr>
 
-$X\sim \pi(\lambda)$  
-$P(X=k)=\dfrac{\lambda^k e^{-\lambda}}{k!}$
+
+
+
+<tr><th>泊松分布</th>
+
+<td>$X\sim \pi(\lambda)$</td>
+<td>
+$P(X=k)=\dfrac{\lambda^k e^{-\lambda}}{k!}$<br>
 $(k=0,1,2,...)$
+</td>
 
-### 特征
-$EX=\lambda$
+<td>
+$EX=\lambda$<br>
 $DX=\lambda$
+</td>
 
-### 性质
-可加性：  
+<td>
+可加性：
 $\pi(\lambda_1)+\pi(\lambda_2)=\pi(\lambda_1+\lambda_2)$
-
-泊松分布有广泛的应用，  
-- 某一服务设施一定时间内到达的人数
-- 电话交换机接到的呼叫次数
-- 汽车站台的后可人数
-- 机器出现的故障数
-- 自然灾害发生的次数
-- 一块产品上的缺陷数
-- 显微镜下单位分区内的细菌数
-- 某放射性物质单位时间发射的粒子数
-
-
-
-
+</td>
+<td>泊松分布有广泛的应用，  <br>
+某一服务设施一定时间内到达的人数<br>
+电话交换机接到的呼叫次数<br>
+汽车站台的后可人数<br>
+机器出现的故障数<br>
+自然灾害发生的次数<br>
+一块产品上的缺陷数<br>
+显微镜下单位分区内的细菌数<br>
+某放射性物质单位时间发射的粒子数</td></tr>
+<tr>
+<table></table>
 
 
-下面是连续分布
-## 均匀分布Uniform distribution
-$X \sim U(n,p)$
 
-## 指数分布Exponential distribution
+<h2>常用连续分布</h2>
+<table>
+<tr><th>名称</th><th>表示</th><th>概率分布</th><th>特征</th><th>性质</th><th>特点</th></tr>
 
-$$f(x)=\left \{ \begin{array}{ccc}
+<tr><th>均匀分布Uniform distribution</th></tr>
+<tr><td>$X \sim U(n,p)$</td></tr>
+
+
+
+
+
+
+
+<tr><th> 指数分布Exponential distribution</th>
+<td></td>
+<td>
+$f(x)=\left \{ \begin{array}{ccc}
 \lambda e^{-\lambda x}&x>0 \\
 0&o/w
-\end{array}\right.$$
+\end{array}\right.$
+</td>
+<td>
+$EX=1/\lambda$  <br>
+$DX=1/\lambda$
+</td>
 
-$EX=1/\lambda$  
-$DX=1/\lambda$  
+<td>
+无记忆性(Memoryless)<br>
 
-### 性质
-无记忆性(Memoryless)
+$$P(x>s+t \mid x>s )=P(x>t)$$
+$$s,t>=0$$
+</td>
+</tr>
 
-$P(x>s+t \mid x>s )=P(x>t)$  
-$s,t>=0$
+<tr>
+<th>正态分布
+Normal distribution
+Gaussian distribution  </th>
+<td>$X \sim N(\mu,\sigma^2)$</td>
+<td>$f(x)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\dfrac{(x-\mu)^2}{2 \sigma^2}}$</td>
+<td>
+$$EX=\mu$$
+$$DX=\sigma^2$$
+</td>
 
-## 正态分布
-Normal distribution  
-Gaussian distribution  
-$X \sim N(\mu,\sigma^2)$
-$f(x)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\dfrac{(x-\mu)^2}{2 \sigma^2}}$
+<td>
+可加性：  <br>
+$X_i \sim N(\mu_i,\sigma_i^2)$，并且相互独立  <br>
+那么$\sum X_i \sim N(\sum\mu_i,\sum\sigma_i^2)$  <br>
+</td>
 
-$EX=\mu$  
-$DX=\sigma^2$  
-
-### 性质1
-可加性：  
-$X_i \sim N(\mu_i,\sigma_i^2)$，并且相互独立  
-那么$\sum X_i \sim N(\sum\mu_i,\sum\sigma_i^2)$  
-
-### 性质2
-如果同时满足以下两条：  
-$X_i \sim(i.i.d)N(\mu,\sigma^2)$ 独立同分布  
-$S^2=\dfrac{1}{n-1}\sum(X_i - \bar X)^2$  
-那么，  
-$\bar X \sim N(u,\dfrac{\sigma^2}{n})$  
-$\dfrac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$  
-$ES^2=\sigma^2$  
-$\bar X, S^2$相互独立  
-$\dfrac{\bar X-\mu}{S/\sqrt{n}} \sim t(n-1)$  
+<td>
+如果同时满足以下两条：  <br>
+$X_i \sim(i.i.d)N(\mu,\sigma^2)$ 独立同分布  <br>
+$S^2=\dfrac{1}{n-1}\sum(X_i - \bar X)^2$  <br>
+那么，  <br>
+$\bar X \sim N(u,\dfrac{\sigma^2}{n})$  <br>
+$\dfrac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$  <br>
+$ES^2=\sigma^2$  <br>
+$\bar X, S^2$相互独立  <br>
+$\dfrac{\bar X-\mu}{S/\sqrt{n}} \sim t(n-1)$
+</td>
+<tr>
+<table></table>
