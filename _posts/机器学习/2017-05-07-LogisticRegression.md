@@ -1,11 +1,12 @@
 ---
 layout: post
-title: 【逻辑回归】理论篇
+title: 【逻辑回归】理论与实现
 categories: 模型
 tags: 机器学习
 keywords: model evaluation
 description:
 ---
+logistics regression是一种典型的分类模型  
 
  logistic regression, logit regression, logit model这三个模型本质和用法几乎完全相同，因此这里不加区分
 
@@ -32,3 +33,30 @@ $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$
 先求似然函数，  
 $\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
 取对数后求$argmax L(w)$  
+
+
+## Python实现（sklearn）
+
+用到sklearn中的两个模型
+[RandomizedLogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RandomizedLogisticRegression.html)用来筛选变量  
+[LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)用来做逻辑回归  
+
+step1:用RandomizedLogisticRegression筛选有效变量  
+```
+from sklearn.linear_model import LogisticRegression as LR
+from sklearn.linear_model import RandomizedLogisticRegression as RLR
+rlr = RLR() #建立随机逻辑回归模型，用于筛选变量
+rlr.fit(x, y) #训练模型
+rlr.get_support() #获取特征筛选结果，也可以通过.scores_方法获取各个特征的分数
+print('通过随机逻辑回归模型筛选特征结束。')
+print('有效特征为：%s' % ','.join(x.columns[rlr.get_support()]))
+```
+
+step2：用LogisticRegression做逻辑回归
+```
+x_new = x[x.columns[rlr.get_support()]].as_matrix() #筛选好特征
+lr = LR() #建立逻辑回归模型
+lr.fit(x_new, y) #用筛选后的特征数据来训练模型
+print('逻辑回归模型训练结束。')
+print('模型的平均正确率为：%s' % lr.score(x_new, y)) #给出模型的平均正确率，本例为81.4%
+```
