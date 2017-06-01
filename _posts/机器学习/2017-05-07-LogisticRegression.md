@@ -42,7 +42,7 @@ $\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$
 [LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)用来做逻辑回归  
 
 step1:用RandomizedLogisticRegression筛选有效变量  
-```
+```py
 from sklearn.linear_model import LogisticRegression as LR
 from sklearn.linear_model import RandomizedLogisticRegression as RLR
 rlr = RLR() #建立随机逻辑回归模型，用于筛选变量
