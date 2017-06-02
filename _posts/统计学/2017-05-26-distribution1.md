@@ -14,9 +14,9 @@ description:
 $\Gamma(\alpha)=\int_0^{+\infty} x^{\alpha-1}e^{-x}dx$
 
 ### Gamma Function的性质
-$\Gamma(1)=1,\Gamma(0.5)=\sqrt{(\pi)}$
-$\Gamma(\alpha+1)=\alpha\Gamma(\alpha)$
-$\int_0^{-\infty}x^{\alpha-1}e^{-x}=\Gamma(\alpha)/\lambda^\alpha$
+$\Gamma(1)=1,\Gamma(0.5)=\sqrt{(\pi)}$  
+$\Gamma(\alpha+1)=\alpha\Gamma(\alpha)$  
+$\int_0^{-\infty}x^{\alpha-1}e^{-x}=\Gamma(\alpha)/\lambda^\alpha$  
 
 
 
@@ -29,12 +29,12 @@ $$f(x)=\left \{ \begin{array}{ccc}
 ### 特征
 
 $EX=\dfrac{\alpha}{\lambda}$  
-$DX=\dfrac{\alpha}{\lambda^2}$
+$DX=\dfrac{\alpha}{\lambda^2}$  
 
 ### 性质
 
-$Ga(1,\lambda)=exp(\lambda)$
-$Ga(n/2,1/2)=\chi^2(n) \sim f(x)=\dfrac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}(x>0)$  
+$Ga(1,\lambda)=exp(\lambda)$  
+$Ga(n/2,1/2)=\chi^2(n) \sim f(x)=\dfrac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}(x>0)$   
 
 顺便得到卡方分布的特征  
 $E\chi^2=n$  
@@ -46,9 +46,9 @@ $DX=2n$
 $f=\dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}$  
 
 ### 特征
-$EX^k=\dfrac{\Gamma(\alpha+k)\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\alpha+\beta+k)}$
+$EX^k=\dfrac{\Gamma(\alpha+k)\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\alpha+\beta+k)}$  
 
-$EX=\dfrac{\alpha}{\alpha+\beta}$  
+$EX=\dfrac{\alpha}{\alpha+\beta}$   
 $DX=\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$  
 
 ### 用途
