@@ -16,6 +16,6 @@ description:
 <br>
 <a href='http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">假设检验</a>
 <br>
-<a href='http://www.guofei.site/StatisticsBlog/pca.htm' target="pca">主成分分析</a>
+<a href='http://www.guofei.site/StatisticsBlog/pca.htm'  target="pca">主成分分析</a>
 <br>
-<a href='http://www.guofei.site/StatisticsBlog/regression.htm'>回归分析</a>
+<a href='http://www.guofei.site/StatisticsBlog/regression.htm' target="regression">回归分析</a>
