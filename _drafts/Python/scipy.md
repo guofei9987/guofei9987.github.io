@@ -48,60 +48,33 @@ optimize模块还有许多求最值的算法：
 
 http://www.guofei.site/2017/06/06/fmin.html
 
-### fsolve求方程的解
-如果要求解方程：  
-$$\left \{ \begin{array}{ccc}
-f1(u1,u2,u3)=0\\
-f2(u1,u2,u3)=0\\
-f3(u1,u2,u3)=0
-\end{array}\right.$$
+### fsolve解方程
 
-那么func这么定义：  
-```py
-def func(x):
-  u1,u2,u3=x
-  return [f1(u1,u2,u3),f2(u1,u2,u3),f3(u1,u2,u3)]
-```
 
-#### 代码案例1：
+
+## interpolate插值
+interp1d
 
 ```
-import scipy.optimize as opt
 import numpy as np
-def f(x):
-    x0,x1,x2=x
-    return np.array([5*x1+3,4*x0*x0-2*np.sin(x1*x2),x1*x2-1.5])
+from scipy import interpolate
+import pylab as pl
 
-result=opt.fsolve(f,[1,1,1])
-print(result)
-print(f(result))
-```
+x=np.linspace(0,10,11)
+y=np.sin(x)
 
-#### 代码案例2：  
+xnew=np.linspace(0,10,101)
 
-如果给了Jacobian矩阵，那么迭代速度更快  
-Jacobian矩阵的定义是：
-$$\left [ \begin{array}{ccc}
-\frac{\partial f1}{\partial u1}&\frac{\partial f1}{\partial u2}&\frac{\partial f1}{\partial u2}\\ \\
-\frac{\partial f2}{\partial u1}&\frac{\partial f2}{\partial u2}&\frac{\partial f2}{\partial u2}\\ \\
-\frac{\partial f3}{\partial u1}&\frac{\partial f3}{\partial u2}&\frac{\partial f3}{\partial u2}
-\end{array} \right ] $$
+pl.plot(x,y,'ro')
+list1=['linear','nearest']
+list2=[0,1,2,3]
+for kind in list1:
+    print(kind)
+    f=interpolate.interp1d(x,y,kind=kind)
+    #f是一个函数，用这个函数就可以找插值点的函数值了：
+    ynew=f(xnew)
+    pl.plot(xnew,ynew,label=kind)
 
-```
-import scipy.optimize as opt
-import numpy as np
-def obj_func(x):
-    x0,x1,x2=x
-    return [5*x1+3,4*x0*x0-2*np.sin(x1*x2),x1*x2-1.5]
-
-def jacobian(x):
-    x0, x1, x2 = x
-    return [
-        [0,5,0],
-        [8*x0,-2*x2*np.cos(x1*x2),-2*x1*np.cos(x1*x2)],
-        [0,x2,x1]
-    ]
-result=opt.fsolve(obj_func,[1,1,1],fprime=jacobian)
-print(result)
-print(obj_func(result))
+pl.legend(loc='lower right')
+pl.show()
 ```
