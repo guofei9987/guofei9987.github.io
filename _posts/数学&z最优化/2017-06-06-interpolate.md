@@ -96,3 +96,9 @@ plt.show()
 ```
 
 <img src='http://www.guofei.site/public/postimg/univariatespline2.png'>
+
+## 二维插值interp2d()
+```
+interp2d(x,y,z,kind='linear')
+```
+**注意：x, y, z 都是一维数组**
