@@ -105,6 +105,7 @@ interp2d(x,y,z,kind='linear')
 这里有几个注意事项：    
 1. interp2d()中，输入的x,y,z先用ravel()被转成了一维数组  
 2. func()的输入必须是一维的，输出是二维的（有点奇怪，感觉完成度不高）
+3. 插值的源数据必须是等距网格。不然的haul，运行不保存但结果不对。  
 
 step1:生成数据  
 ```py
@@ -119,7 +120,6 @@ step2:插值
 ```py
 from scipy import interpolate
 func=interpolate.interp2d(x,y,z,kind='cubic')
-
 
 xnew=np.linspace(-1,1,100)
 ynew=np.linspace(-1,1,100)
@@ -137,6 +137,7 @@ ax.scatter(x,y,z,c='r',marker='^')
 plt.show()
 ```
 
+<img src='http://www.guofei.site/public/postimg/interp2d.png'>
 
 ## 二维插值Rbf()
 Rbf的优点是，排列可以无序，可以不是等距的网格  
@@ -169,3 +170,4 @@ ax.plot_surface(xnew,ynew,znew)
 ax.scatter(x,y,z,c='r',marker='^')
 plt.show()
 ```
+<img src='http://www.guofei.site/public/postimg/rbf.png'>
