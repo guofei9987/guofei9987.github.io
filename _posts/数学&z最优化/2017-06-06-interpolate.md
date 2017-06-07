@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【插值】scipy.optimize.interpolate.
+title: 【插值】scipy.interpolate.
 categories: Geek
 tags: 数学理论与工具
 keywords:
@@ -101,4 +101,71 @@ plt.show()
 ```
 interp2d(x,y,z,kind='linear')
 ```
-**注意：x, y, z 都是一维数组**
+
+这里有几个注意事项：    
+1. interp2d()中，输入的x,y,z先用ravel()被转成了一维数组  
+2. func()的输入必须是一维的，输出是二维的（有点奇怪，感觉完成度不高）
+
+step1:生成数据  
+```py
+import numpy as np
+def func(x,y):
+    return (x+y)*np.exp(-5*(x**2+y**2))
+x,y=np.mgrid[-1:1:8j,-1:1:8j]
+z=func(x,y)
+```
+
+step2:插值
+```py
+from scipy import interpolate
+func=interpolate.interp2d(x,y,z,kind='cubic')
+
+
+xnew=np.linspace(-1,1,100)
+ynew=np.linspace(-1,1,100)
+znew=func(xnew,ynew)#xnew, ynew是一维的，输出znew是二维的
+xnew,ynew=np.mgrid[-1:1:100j,-1:1:100j]#统一变成二维，便于下一步画图
+```
+
+step3:画图  
+```py
+import mpl_toolkits.mplot3d
+import matplotlib.pyplot as plt
+ax=plt.subplot(111,projection='3d')
+ax.plot_surface(xnew,ynew,znew)
+ax.scatter(x,y,z,c='r',marker='^')
+plt.show()
+```
+
+
+## 二维插值Rbf()
+Rbf的优点是，排列可以无序，可以不是等距的网格  
+
+step1:随机生成点，并计算函数值  
+```py
+import numpy as np
+def func(x,y):
+    return (x+y)*np.exp(-5*(x**2+y**2))
+
+x=np.random.uniform(low=-1,high=1,size=100)
+y=np.random.uniform(low=-1,high=1,size=100)
+z=func(x,y)
+```
+
+step2：插值  
+```py
+from scipy import  interpolate
+func=interpolate.Rbf(x,y,z,function='multiquadric')
+xnew,ynew=np.mgrid[-1:1:100j,-1:1:100j]
+znew=func(xnew,ynew)#输入输出都是二维
+```
+
+step3：画图  
+```py
+import mpl_toolkits.mplot3d
+import matplotlib.pyplot as plt
+ax=plt.subplot(111,projection='3d')
+ax.plot_surface(xnew,ynew,znew)
+ax.scatter(x,y,z,c='r',marker='^')
+plt.show()
+```
