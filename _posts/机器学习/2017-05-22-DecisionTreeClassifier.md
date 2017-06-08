@@ -232,4 +232,38 @@ graph = pydotplus.graph_from_dot_data(dot_data)
 Image(graph.create_png())  
 ```
 
+结果：  
 <img src='http://www.guofei.site/public/postimg/decisiontree1.png'>
+
+## 用CART拟合的例子
+由于使用的是gini idex生成决策树，因此y可以是连续变量，所以可以做拟合。  
+先用模拟法生成数据  
+```py
+import numpy as np
+from sklearn.tree import DecisionTreeRegressor
+
+x=np.linspace(0,10,90)
+x.shape=-1,1
+y=np.sin(x)+np.random.normal(size=x.shape)*0.5
+```
+模型的输入是一维的连续变量  
+<img src='http://www.guofei.site/public/postimg/decisiontree2.png'>
+
+
+下面是拟合并作图
+```py
+clf=DecisionTreeRegressor(max_depth=4)
+clf.fit(x,y)
+ynew=clf.predict(x)
+
+import matplotlib.pyplot as plt
+plt.plot(x,y,'.')
+
+plt.show()
+
+plt.plot(x,y,'.')
+plt.plot(x,ynew)
+plt.show()
+```
+
+<img src='http://www.guofei.site/public/postimg/decisiontree3.png'>
