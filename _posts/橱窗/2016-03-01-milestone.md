@@ -10,9 +10,10 @@ description:
 
 
 ### 》》2017-06-06    
-给scipy发了一个pr，10分钟后被merge到master里。
-发现scipy.interpolate中的有些代码的逻辑不太对，进行了修改并pr。  
+给scipy发了一个pr，10分钟后被merge到master里。  
+起因是发现scipy.interpolate中的有些代码的逻辑不对，进行了修改并pr。  
 这是第一次pr，竟然这么快通过了，颇为激动。  
+地址：https://github.com/scipy/scipy/pull/7468   
 
 ### 》》2016-03-24
 入职中体彩。  

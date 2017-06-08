@@ -168,7 +168,7 @@ step3：否则，构建子节点，递归转到每一个子节点。
 与C4.5类似，引入loss function    
 $C_\alpha(T)=C(T)+\alpha\mid T\mid$    
 step1: 改变$\alpha$，例如,排序的$0,\alpha_1,\alpha_2,...,+\infty$可以得到一组子树:$$\{ T_0,T_1,...T_n \}$$。    
-找到这组子树的算法不复杂，这是因为剪掉每个节点损失的函数值可以一次性计算出来$$g(t)=\dfrac{C(t)-C(T_t)}{\mid T_t \mid -1}$$    
+找到这组子树的算法的复杂度并不高，这是因为剪掉每个节点损失的函数值可以一次性计算出来$$g(t)=\dfrac{C(t)-C(T_t)}{\mid T_t \mid -1}$$    
 step2: 用交叉比较的方法找到$T_0,T_1,...T_n$中最优的。     
 
 
@@ -227,11 +227,9 @@ graph.write_pdf("iris.pdf")
 把决策图画出来
 ```py
 from IPython.display import Image  
-dot_data = tree.export_graphviz(clf, out_file=None,
-                         feature_names=iris.feature_names,  
-                         class_names=iris.target_names,  
-                         filled=True, rounded=True,  
-                         special_characters=True)  
+dot_data = tree.export_graphviz(clf, out_file=None,feature_names=iris.feature_names,  class_names=iris.target_names,filled=True, rounded=True,special_characters=True)  
 graph = pydotplus.graph_from_dot_data(dot_data)  
 Image(graph.create_png())  
 ```
+
+<img src='http://www.guofei.site/public/postimg/decisiontree1.png'>
