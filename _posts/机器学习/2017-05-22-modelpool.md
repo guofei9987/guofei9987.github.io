@@ -15,7 +15,7 @@ description:
 多元非线性回归<br>
 广义线性回归<br>
 神经网络<br>
-曲线拟合<br>
+<a href='/2017/06/06/scipyleastsq.html.html'>曲线拟合</a><br>
 <a href='/2017/05/22/DecisionTreeClassifier.html'>决策树(也可以做回归)</a>  
 </td>
 
