@@ -34,7 +34,7 @@ $$\alpha x_1+(1-\alpha)x_2 \in X$$
 ### 超平面的定义
 
 超平面是这样的点集：   
-$$X=\{ \mid c^Tx=z\}$$
+$$X=\{ x \mid c^Tx=z\}$$
 
 ### 支撑超平面
 
@@ -57,4 +57,5 @@ $f(\alpha x_1+(1-\alpha)x_2) \leq f(\alpha x_1)+ f((1-\alpha)x_2)$
 ### 凸函数的判定
 1. 凸函数的线性组合也是凸函数。  
 如果$f_1,f_2,...f_k$是凸函数，那么$\phi(x)=\sum\limits_{i=1}^k \lambda_i f_i (x)$也是凸函数
-2.
+2. 如果凸集$D \subset R^n$内，$f(x)$二阶可微，则$f(x)$是D内的凸函数的充分必要条件是，$\forall x,y\in D$,  
+$f(y) \geq f(x)+ \$
