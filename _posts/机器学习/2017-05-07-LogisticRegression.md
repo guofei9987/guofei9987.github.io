@@ -29,11 +29,11 @@ $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$
 
 ### 策略
 
-求参数的方法，就是经典的MLE方法。  
+求参数的方法，就是经典的 **MLE** (极大似然估计)方法。  
 先求似然函数，  
 $\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
-取对数后求$argmax L(w)$  
-
+取对数后求$argmax L(w)$   
+这是一个 **凸函数** ，（凸函数的知识参见我的另一篇博文<a href='/2017/06/09/optimization.html'>最优化方法理论篇</a>）
 
 ## Python实现（sklearn）
 
