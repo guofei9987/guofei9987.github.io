@@ -16,6 +16,7 @@ description:
 广义线性回归<br>
 神经网络<br>
 曲线拟合<br>
+<a href='/2017/05/22/DecisionTreeClassifier.html'>决策树(也可以做回归)</a>  
 </td>
 
 <td>
