@@ -66,4 +66,31 @@ $$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
 \dfrac{\partial^2 f}{\partial x_1 x_2}&\dfrac{\partial^2 f}{\partial x_2^2}&...&\dfrac{\partial^2 f}{\partial x_2 \partial x_n}\\
 ...&...&...&...\\
 \dfrac{\partial^2 f}{\partial x_n \partial x_1}&\dfrac{\partial^2 f}{\partial x_n \partial x_2}&...&\dfrac{\partial^2 f}{\partial x_n^2}
-\end{array}\right ]$$
+\end{array}\right ]$$  
+
+
+<br>
+<br>
+列举一些凸函数的例子：  
+- 线性函数和仿射函数
+- 最大值函数
+- 幂函数
+- 对数函数
+- 指数和的对数$f(x)=\log(exp(x_1)+exp(x_2)+...+exp(x_n))$
+- 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^1/n$
+- 范数
+
+## 线性方程组：迭代求解法
+$$Ax=b$$
+线性代数给出的解法是高斯消元法。  
+然而，当矩阵$A$极大时，高斯消元的算法复杂度非常高。  
+迭代法：  
+$$x=Bx+f$$
+任意给出$x_0$,就可以迭代求解。  
+实验发现，收敛速度很快。  
+当然，对于某些系数，也有可能算法不收敛。  
+
+## 梯度下降法
+
+沿着负梯度方向，$f(x)$下降的最快，因此有这么一种迭代求最优的方法
+$x_{k+1}=x_k-\rho \nabla f(x_k) $  

@@ -24,12 +24,12 @@ description:
 判别分析  <br>
 朴素贝叶斯<br>
 SVM      <br>
-决策树    <br>
+<a href='/2017/05/22/DecisionTreeClassifier.html'>决策树</a>    <br>
 组合算法  <br>
 
 </td>
 <td>
-K-means<br>
+<a href='/2017/06/09/cluster.html'>K-means</a><br>
 系统聚类<br>
 神经网络<br>
 模糊C均值聚类<br>
