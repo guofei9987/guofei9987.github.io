@@ -9,10 +9,11 @@ description:
 
 Canonical form（标准型）：  
 $\min z=\sum\limits_{j=1}^n c_j x_j$  
-s.t.$\left \{ \begin{array}{ccc}
+s.t.  
+$$\left \{ \begin{array}{ccc}
 \sum\limits_{j=1}^na_{ij}x_j=b_i,&i=1,2,...m\\
 x_j\leq 0&j=1,2,...n
-\end{array}\right.$
+\end{array}\right.$$
 
 把各种形式转化为标准型的方法：
 1. 若问题是求目标函数的最大值，$\max z$,那么，令$f=-z$转化为最小值
