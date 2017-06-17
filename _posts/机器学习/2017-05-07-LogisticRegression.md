@@ -31,10 +31,22 @@ $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$
 
 求参数的方法，就是经典的 **MLE** (极大似然估计)方法。  
 先求似然函数，  
-$\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
-取对数后求$argmax L(w)$   
+$l(w;x)=\prod \limits_{i=1}^N [P(Y=1|x)]^{y_i} [P(Y=0|x)]^{1-y_i}$  
+取对数后求$argmax \ln l(w)$   
 这是一个 **凸函数** ，（凸函数的知识参见我的另一篇博文<a href='/2017/06/09/optimization.html'>最优化方法理论篇</a>）  
 由于是一个凸函数，可以用导数值为0确定最大值点，还可以用梯度下降法迭代求解最大值点。  
+
+推导似然函数：  
+令$L(w;x)=\ln l(w;x)$
+$L(w;x)=\sum \limits_{i=1}^N (y_i w x_i - \ln (1+e^{wx_i}))$  
+
+w和x都是向量。下面研究向量的第j个分量   
+偏导数为：  
+
+$\dfrac{\partial L(w;x)}{\partial w_j} = \sum \limits_{i=1}^N (y_i x_{ij} - \dfrac{e^{wx_i}x_{ij}}{1+e^{wx_i}}) =  \sum \limits_{i=1}^N (y_i - \dfrac{e^{w x_i}}{1+e^{wx_i}})x_{ij}$  
+
+- 令导数为0，遗憾的是无法求出解析解。
+- 因此用用梯度法可以求解
 
 ## Python实现（sklearn）
 
