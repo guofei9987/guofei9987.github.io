@@ -46,7 +46,63 @@ w和x都是向量。下面研究向量的第j个分量
 $\dfrac{\partial L(w;x)}{\partial w_j} = \sum \limits_{i=1}^N (y_i x_{ij} - \dfrac{e^{wx_i}x_{ij}}{1+e^{wx_i}}) =  \sum \limits_{i=1}^N (y_i - \dfrac{e^{w x_i}}{1+e^{wx_i}})x_{ij}$  
 
 - 令导数为0，遗憾的是无法求出解析解。
-- 因此用用梯度法可以求解
+- 因此用梯度法可以求解
+
+## Python实现（自己编程）
+用梯度法求解  
+
+首先生成模拟数据  
+```py
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+data = np.random.uniform(low=-5, high=5, size=(100, 2))
+data=pd.DataFrame(data)
+mask = (data.iloc[:, 0] + 0.5* data.iloc[:, 1])<0
+data['y']=mask*1
+
+data1 = data[data.iloc[:, 2] == 1]#为了画图，两类不同颜色
+data2 = data[data.iloc[:, 2] == 0]
+plt.plot(data1.iloc[:, 0], data1.iloc[:, 1], '.')
+plt.plot(data2.iloc[:, 0], data2.iloc[:, 1], '.')
+# plt.show()
+```
+
+<img src='/public/postimg/logisticregression1.png'>
+
+迭代求解：  
+```py
+alpha = 0.001
+step = 500
+m, n = data.shape
+weights = np.ones((n, 1))
+
+data_x = np.concatenate((np.ones((m, 1)), np.array(data.iloc[:, :2])), axis=1)  # 去掉y列，并添加全1的第一列
+target = np.array(data.iloc[:, 2])
+target.shape = -1, 1
+
+
+def logistic(wTx):
+    return 1 / (1 + np.exp(-wTx))
+
+
+for i in range(step):
+    gradient = np.dot(data_x, weights)
+    output = logistic(gradient)
+    errors = target - output
+    weights = weights + alpha * np.dot(data_x.T, errors)
+
+X = np.linspace(-5, 5, 100)
+Y = -(weights[0] + X * weights[1]) / weights[2]
+
+plt.plot(X, Y)
+plt.show()
+
+```
+
+<img src='/public/postimg/logisticregression2.png'>
+
+
 
 ## Python实现（sklearn）
 
