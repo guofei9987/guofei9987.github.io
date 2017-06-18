@@ -65,7 +65,7 @@ data1 = data[data.iloc[:, 2] == 1]#为了画图，两类不同颜色
 data2 = data[data.iloc[:, 2] == 0]
 plt.plot(data1.iloc[:, 0], data1.iloc[:, 1], '.')
 plt.plot(data2.iloc[:, 0], data2.iloc[:, 1], '.')
-# plt.show()
+plt.show()
 ```
 
 <img src='/public/postimg/logisticregression1.png'>
@@ -87,15 +87,18 @@ def logistic(wTx):
 
 
 for i in range(step):
-    gradient = np.dot(data_x, weights)
-    output = logistic(gradient)
+    wTx = np.dot(data_x, weights)
+    output = logistic(wTx)
     errors = target - output
     weights = weights + alpha * np.dot(data_x.T, errors)
 
 X = np.linspace(-5, 5, 100)
 Y = -(weights[0] + X * weights[1]) / weights[2]
 
+
 plt.plot(X, Y)
+plt.plot(data1.iloc[:, 0], data1.iloc[:, 1], '.')
+plt.plot(data2.iloc[:, 0], data2.iloc[:, 1], '.')
 plt.show()
 
 ```
