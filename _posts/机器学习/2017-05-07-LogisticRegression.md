@@ -49,7 +49,8 @@ $\dfrac{\partial L(w;x)}{\partial w_j} = \sum \limits_{i=1}^N (y_i x_{ij} - \dfr
 - 因此用梯度法可以求解
 
 ## Python实现（自己编程）
-用梯度法求解  
+
+### 梯度法  
 
 首先生成模拟数据  
 ```py
@@ -68,12 +69,12 @@ plt.plot(data2.iloc[:, 0], data2.iloc[:, 1], '.')
 plt.show()
 ```
 
-<img src='/public/postimg/logisticregression1.png'>
+<img src='http://www.guofei.site/public/postimg/logisticregression1.png'>
 
 迭代求解：  
 ```py
-alpha = 0.001
-step = 500
+alpha = 0.001# 步长
+step = 500   # 总共的迭代次数
 m, n = data.shape
 weights = np.ones((n, 1))
 
@@ -103,8 +104,19 @@ plt.show()
 
 ```
 
-<img src='/public/postimg/logisticregression2.png'>
+<img src='http://www.guofei.site/public/postimg/logisticregression2.png'>
 
+### 随机梯度下降法
+随机梯度下降法并没有引入新理论，解决的主要问题是步长alpha的问题。  
+alpha太大，容易越过极值点，导致震荡不收敛。  
+alpha太小，收敛速度会降低。  
+算法的伪代码是这样的：  
+```
+for 第i次迭代
+    for 第j次收取
+        alpha=2/(1+i+j)+0.001
+        从全部样本中随机抽取样本，梯度下降，步长为alpha
+```
 
 
 ## Python实现（sklearn）
