@@ -2,7 +2,7 @@
 layout: post
 title: 【最优化】scipy.optimize.fmin.
 categories: Geek
-tags: 数学理论与工具
+tags: 数学理论
 keywords:
 description:
 ---

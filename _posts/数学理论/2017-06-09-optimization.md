@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 最优化方法理论篇.
-categories: 模型
-tags: 数学理论与工具
+categories: 数学
+tags: 数学理论
 keywords:
 description:
 ---

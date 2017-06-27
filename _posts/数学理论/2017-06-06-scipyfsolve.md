@@ -2,7 +2,7 @@
 layout: post
 title: 【解方程】scipy.optimize.solve.
 categories: Geek
-tags: 数学理论与工具
+tags: 数学理论
 keywords:
 description:
 ---

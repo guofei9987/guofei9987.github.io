@@ -2,7 +2,7 @@
 layout: post
 title: 【线性规划】理论篇.
 categories: Geek
-tags: 数学理论与工具
+tags: 数学理论
 keywords:
 description:
 ---

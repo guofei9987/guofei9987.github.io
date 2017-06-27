@@ -2,7 +2,7 @@
 layout: post
 title: 【最小二乘估计】scipy.optimize.leastsq.
 categories: Geek
-tags: 数学理论与工具
+tags: 数学理论
 keywords:
 description:
 ---
