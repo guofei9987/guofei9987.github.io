@@ -1,15 +1,15 @@
 ---
 layout: post
-title: 【Matlab工具箱】十几个机器学习代码
+title: 【Matlab】table运行效率研究
 categories: Geek
 tags: Matlab
 keywords:
 description:
 ---
 
-Matlab新增了一个table对象，可以让我们非常直观地管理数据。然而，对于大量数据处理的场景来说，效率仍然是第一位要考虑的。
-本文的目的是测试table的效率
-老规矩，先上代码
+Matlab新增了一个table对象，可以让我们非常直观地管理数据。然而，对于大量数据处理的场景来说，效率仍然是第一位要考虑的。  
+本文的目的是测试table的效率  
+老规矩，先上代码：  
 ```
 %table
 function test_tic_toc()
