@@ -54,16 +54,16 @@ end
 ```
 计时刨除了赋值环节，只关注列合并运算  
 T.y=y;的情况:  
->Elapsed time is 2.597898 seconds.
-Elapsed time is 0.031021 seconds.
-Elapsed time is 0.052530 seconds.
+>Elapsed time is 2.597898 seconds.  
+Elapsed time is 0.031021 seconds.  
+Elapsed time is 0.052530 seconds.  
 
 如此慢的原因可能是因为有赋值环节
 
 [T,y];的情况:  
->Elapsed time is 1.218450 seconds.
-Elapsed time is 0.034376 seconds.
-Elapsed time is 0.067499 seconds.
+>Elapsed time is 1.218450 seconds.  
+Elapsed time is 0.034376 seconds.  
+Elapsed time is 0.067499 seconds.  
 
 快了一倍，但比起mat和cell，还是效率低下
 
