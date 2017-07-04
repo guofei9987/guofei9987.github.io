@@ -1,4 +1,11 @@
-
+---
+layout: post
+title: 【Python】【pandas】合并数据.
+categories: Geek
+tags: 语法速查
+keywords:
+description:
+---
 
 
 
@@ -46,12 +53,19 @@ result=pd.concat([df1,df2,df3])
 <img src='http://www.guofei.site/public/postimg2/concat.jpg'>
 
 
-要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数
+### keys分组键
+
+要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数  
+
 ```py
 result = pd.concat(frames, keys=['x', 'y', 'z'])
+#result=pd.concat({'x':df1,'y':df2,'z':df3})
+#也可以
 ```
+
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat2.jpg'>
+
 
 ### ignore_index
 如果两个表的index没什么实际含义，用ignore_index=True，使两个表对齐整理出一个新的index  
