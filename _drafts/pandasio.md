@@ -62,16 +62,19 @@ result=pd.concat([df1,df2,df3])
 result = pd.concat(frames, keys=['x', 'y', 'z'])
 ```
 效果如下：  
-<img src='http://www.guofei.site/public/postimg2/conca2.jpg'>
+<img src='http://www.guofei.site/public/postimg2/concat2.jpg'>
 
 
 
 ### 横向对齐
-```
+```py
 result = pd.concat([df1, df4], axis=1)
 ```
+效果如下：  
+<img src='http://www.guofei.site/public/postimg2/concat3.jpg'>
 
 
+### join
 
 
 
