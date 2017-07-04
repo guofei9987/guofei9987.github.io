@@ -53,7 +53,15 @@ result = pd.concat(frames, keys=['x', 'y', 'z'])
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat2.jpg'>
 
+### ignore_index
+如果两个表的index没什么实际含义，用ignore_index=True，使两个表对齐整理出一个新的index  
 
+```py
+result=pd.concat([df1,df4],ignore_index=True)
+```
+
+效果如下：  
+<img src='http://www.guofei.site/public/postimg2/concat5.jpg'>
 
 ## 横向对齐
 ```py
