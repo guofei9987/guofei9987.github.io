@@ -53,11 +53,26 @@ df3=DataFrame({'A':['A8','A9','A10','A11'],
 result=pd.concat([df1,df2,df3])
 ```
 
-
+效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat.jpg'>
 
 
-![结果展示](http://img.blog.csdn.net/20160913192849769)
+要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数
+```py
+result = pd.concat(frames, keys=['x', 'y', 'z'])
+```
+效果如下：  
+<img src='http://www.guofei.site/public/postimg2/conca2.jpg'>
+
+
+
+### 横向对齐
+```
+result = pd.concat([df1, df4], axis=1)
+```
+
+
+
 
 
 ## 数据切片、筛选
