@@ -99,6 +99,7 @@ result = pd.concat([df1, df4], axis=1, join='inner')
 除了简单合并外，有时需要匹配合并（类似SQL中的join命令）  
 数据准备  
 ```py
+import pandas as pd
 left = pd.DataFrame({'key1': ['K0', 'K0', 'K1', 'K2'],
                     'key2': ['K0', 'K1', 'K0', 'K1'],
                     'A': ['A0', 'A1', 'A2', 'A3'],
@@ -140,3 +141,12 @@ result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge4.jpg'>
+
+### suffix
+两个表的列名相同，但是意义不同。合并的时候想自动让他们重命名，然后保留下来。  
+
+```
+result = pd.merge(left, right, on='k', suffixes=['_l', '_r'])
+```
+
+<img src='http://www.guofei.site/public/postimg2/merge5.jpg'>
