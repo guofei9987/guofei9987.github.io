@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【pandas】合并数据.
+title: 【Python】【pandas】合并数据表.
 categories: Geek
 tags: 语法速查
 keywords:
@@ -9,7 +9,9 @@ description:
 
 本博客取材于pandas作者Wes McKinney 在【PYTHON FOR DATA ANALYSIS】中对pandas的一个权威简明的入门级的介绍，图片来自网络，本人进行了归纳整理。    
 
-## 数据准备
+涉及到两个函数：concat，merge
+
+## 0数据准备
 案例的数据准备：生成要用到的几个表：  
 ```py
 import pandas as pd
@@ -37,7 +39,7 @@ df4=pd.DataFrame({'B':['A8','A9','A10','A11'],
 ```
 
 
-## 纵向合并  
+## 1纵向合并  
 特点：匹配columns，匹配不到的的填入nan
 ```python
 result=pd.concat([df1,df2,df3])
@@ -52,7 +54,7 @@ result=pd.concat([df1,df2,df3])
 <img src='http://www.guofei.site/public/postimg2/concat.jpg'>
 
 
-### keys分组键
+### 1.1keys分组键
 
 要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数  
 
@@ -66,7 +68,7 @@ result = pd.concat([df1,df2,df3], keys=['x', 'y', 'z'])
 <img src='http://www.guofei.site/public/postimg2/concat2.jpg'>
 
 
-### ignore_index
+### 1.2ignore_index
 如果两个表的index没什么实际含义，用ignore_index=True，使两个表对齐整理出一个新的index  
 
 ```py
@@ -76,7 +78,7 @@ result=pd.concat([df1,df4],ignore_index=True)
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat5.jpg'>
 
-## 横向对齐
+## 2横向对齐
 ```py
 result = pd.concat([df1, df4], axis=1)
 ```
@@ -84,7 +86,7 @@ result = pd.concat([df1, df4], axis=1)
 <img src='http://www.guofei.site/public/postimg2/concat3.jpg'>
 
 
-### join
+### 2.1join
 join='outer'(默认),把所有未匹配到的也列出来，（上面这个案例）  
 join='inner'，只列出左右两列都有的
 
@@ -95,7 +97,7 @@ result = pd.concat([df1, df4], axis=1, join='inner')
 <img src='http://www.guofei.site/public/postimg2/concat4.jpg'>
 
 
-## merge
+## 3merge
 除了简单合并外，有时需要匹配合并（类似SQL中的join命令）  
 数据准备  
 ```py
@@ -112,14 +114,15 @@ right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
                      'D': ['D0', 'D1', 'D2', 'D3']})
 ```
 
-### 连接
+### 3.1连接
 ```
 result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge1.jpg'>
 
-### how
-how='inner'(默认,上面的案例)
+### 3.2how
+
+how='inner'(默认,上面的案例)  
 how='left'  
 how='right'  
 how='outer'  
@@ -144,7 +147,7 @@ result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 
 ### on
 
-有的时候，在左右表中是，待匹配的列名不相同，这时分别指定左右表的列名就行了。    
+有的时候，在左右表中，待匹配的列名不相同，分别指定左右表的列名就行了。    
 
 ```python
 import pandas as pd

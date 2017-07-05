@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【语法速查】【Python】pd.to_json.
+title: 【语法速查】【Python】【pandas】to_json.
 categories: Geek
 tags: 语法速查
 keywords:
