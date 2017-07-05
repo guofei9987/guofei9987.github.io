@@ -142,6 +142,20 @@ result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge4.jpg'>
 
+### on
+
+有的时候，在左右表中是，待匹配的列名不相同，这时分别指定左右表的列名就行了。    
+
+```python
+import pandas as pd
+left = pd.DataFrame({'group': ['a', 'a', 'a', 'b','b', 'b', 'c', 'c','c'],'ounces': [4, 3, 12, 6, 7.5, 8, 3, 5, 6]})
+right = pd.DataFrame({'label':['a','b','c'],'value':['alpha','beta','charlie']})
+inner_joined = pd.merge(left, right, how='inner', left_on='group', right_on='label')
+```                  
+
+
+
+
 ### suffix
 两个表的列名相同，但是意义不同。合并的时候想自动让他们重命名，然后保留下来。  
 
