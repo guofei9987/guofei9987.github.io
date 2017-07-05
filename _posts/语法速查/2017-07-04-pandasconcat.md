@@ -7,11 +7,10 @@ keywords:
 description:
 ---
 
+本博客取材于pandas作者Wes McKinney 在【PYTHON FOR DATA ANALYSIS】中对pandas的一个权威简明的入门级的介绍，图片来自网络，本人进行了归纳整理。    
 
-
-
-
-案例的数据准备
+## 数据准备
+案例的数据准备：生成要用到的几个表：  
 ```py
 import pandas as pd
 df1=pd.DataFrame({'A':['A0','A1','A2','A3'],
@@ -58,9 +57,9 @@ result=pd.concat([df1,df2,df3])
 要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数  
 
 ```py
-result = pd.concat(frames, keys=['x', 'y', 'z'])
+result = pd.concat([df1,df2,df3], keys=['x', 'y', 'z'])
 #result=pd.concat({'x':df1,'y':df2,'z':df3})
-#也可以
+#也可以用dict来做
 ```
 
 效果如下：  
@@ -94,3 +93,26 @@ result = pd.concat([df1, df4], axis=1, join='inner')
 ```
 效果如下：  
 <img src='http://www.guofei.site/public/postimg2/concat4.jpg'>
+
+
+## merge
+除了简单合并外，有时需要匹配合并（类似SQL中的join命令）  
+数据准备  
+```py
+left = pd.DataFrame({'key1': ['K0', 'K0', 'K1', 'K2'],
+                    'key2': ['K0', 'K1', 'K0', 'K1'],
+                    'A': ['A0', 'A1', 'A2', 'A3'],
+                    'B': ['B0', 'B1', 'B2', 'B3']})
+
+
+right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
+                     'key2': ['K0', 'K0', 'K0', 'K0'],
+                     'C': ['C0', 'C1', 'C2', 'C3'],
+                     'D': ['D0', 'D1', 'D2', 'D3']})
+```
+
+### 连接
+```
+result = pd.merge(left, right, on=['key1', 'key2'])
+```
+<img src='http://www.guofei.site/public/postimg2/merge1.jpg'>
