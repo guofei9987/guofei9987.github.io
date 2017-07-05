@@ -120,11 +120,13 @@ result = pd.merge(left, right, on=['key1', 'key2'])
 ### how
 how='inner'(默认,上面的案例)
 how='left'  
-how='right'
+how='right'  
+how='outer'  
 
 ```
 result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 ```
+
 <img src='http://www.guofei.site/public/postimg2/merge2.jpg'>
 
 
@@ -132,3 +134,9 @@ result = pd.merge(left, right, how='left', on=['key1', 'key2'])
 result = pd.merge(left, right, how='right', on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge3.jpg'>
+
+
+```
+result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
+```
+<img src='http://www.guofei.site/public/postimg2/merge4.jpg'>
