@@ -116,3 +116,19 @@ right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
 result = pd.merge(left, right, on=['key1', 'key2'])
 ```
 <img src='http://www.guofei.site/public/postimg2/merge1.jpg'>
+
+### how
+how='inner'(默认,上面的案例)
+how='left'  
+how='right'
+
+```
+result = pd.merge(left, right, how='left', on=['key1', 'key2'])
+```
+<img src='http://www.guofei.site/public/postimg2/merge2.jpg'>
+
+
+```
+result = pd.merge(left, right, how='right', on=['key1', 'key2'])
+```
+<img src='http://www.guofei.site/public/postimg2/merge3.jpg'>
