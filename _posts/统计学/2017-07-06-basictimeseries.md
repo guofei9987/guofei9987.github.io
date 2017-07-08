@@ -95,4 +95,30 @@ $argmin\sum (y_i-\hat y)^2$
 $\hat Y_{t+1}= \sum\limits_{i=1}^T Y_i / T $  
 #### 简单移动平均法
 在简单平均法中，当T比较大时，早期的数据作用已经不大。  
-$\hat Y{t+1}=\sum\limits_{i=t-T}^t Y_i / T $  
+因此用固定的平均期数。    
+$\hat Y_{t+1}=\sum\limits_{i=t-T+1}^t Y_i / T $  
+
+等价于：  
+$\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-Y_{t-N})$
+#### 加权移动平均法
+$$\hat Y{t+1}= \dfrac{\sum\limits_{i=1}^T \alpha_i Y_i}{\sum\limits_{i=1}^T \alpha_i}$$  
+
+### 指数平滑法
+
+#### 一次指数平滑法
+
+$\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-\hat Y_t)$  
+
+**分析1** ：  
+$\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-\hat Y_t) =\alpha Y_t +(1-\alpha)\hat Y_t,0<\alpha<1$  
+当$\alpha$接近0时，过去的值占较大的比重  
+当$\alpha$接近1时，过去的值占较小的比重  
+
+**分析2** ：  
+当序列变化平缓时，$\alpha$可以较小  
+当序列变化剧烈时，$\alpha$可以较大  
+
+**分析3**：  
+$Y_t-\hat Y_t$是误差  
+
+#### 二次指数平滑法
