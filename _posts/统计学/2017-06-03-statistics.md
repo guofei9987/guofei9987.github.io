@@ -13,6 +13,13 @@ description:
 
 
 
+## 基本统计学
+- <a href='http://www.guofei.site/StatisticsBlog/describe.htm' target="describe">描述性统计</a>
+    - 数据类型
+    - 数据探索
+    - 描述性统计绘图
+    - 标准化
+    - 相关分析
 
 
 
