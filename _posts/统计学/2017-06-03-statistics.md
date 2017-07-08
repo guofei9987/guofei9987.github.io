@@ -12,8 +12,7 @@ description:
 **在理性的世界里，所有判断皆为统计**  
 
 
-统计学的一系列知识，  
-试过很多展示方式，最终敲定用Excel网页形式，  
+
 
 
 
@@ -31,3 +30,16 @@ description:
 <a href='http://www.guofei.site/StatisticsBlog/pca.htm'  target="pca">主成分分析</a>
 <br>
 <a href='http://www.guofei.site/StatisticsBlog/regression.htm' target="regression">回归分析</a>
+
+## 时间序列
+
+- 基本时间序列分析
+    - [指数平滑法](http://www.guofei.site/2017/07/08/exponentialsmoothing.html)
+        - 一次指数平滑法
+        - 二次指数平滑法
+            - Brown单一参数线性指数平滑
+            - Holt-Winter no seasonal
+        - 三次指数平滑法
+            - Brown三次指数平滑
+            - Holter-Winter季节乘积模型
+            - Holter-Winter季节加法模型
