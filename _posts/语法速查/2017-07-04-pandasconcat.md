@@ -9,7 +9,7 @@ description:
 
 本博客取材于pandas作者Wes McKinney 在【PYTHON FOR DATA ANALYSIS】中对pandas的一个权威简明的入门级的介绍，图片来自网络，本人进行了归纳整理。    
 
-涉及到两个函数：concat，merge
+涉及到3个函数：concat，merge，加减乘除
 
 ## 0数据准备
 案例的数据准备：生成要用到的几个表：  
@@ -167,3 +167,21 @@ result = pd.merge(left, right, on='k', suffixes=['_l', '_r'])
 ```
 
 <img src='http://www.guofei.site/public/postimg2/merge5.jpg'>
+
+
+## +
+
+```py
+df1+df2  
+#+-*/
+#//求商  %求余
+```
+不是合并。对应项相加减乘除。遇到index和column无法匹配的，填入NaN    
+
+用函数功能更多
+```py
+df1.add(df2,fill_value=0)
+#不再填入NaN，而是填入0
+```
+
+add,sub,div,mul  
