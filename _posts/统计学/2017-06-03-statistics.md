@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 统计学知识汇总.
+title: 【汇总】统计学知识汇总.
 categories: 数学
 tags: 统计学
 keywords:
