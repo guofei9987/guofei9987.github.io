@@ -14,14 +14,17 @@ description:
 
 ## 一次指数平滑法
 
-$\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-\hat Y_t)$  
+$\hat Y_{t+1}=\alpha Y_t +(1-\alpha)\hat Y_t,0<\alpha<1$  
 
-**分析1** ：  
+
+
+**分析1** （推导）：  
 $\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-\hat Y_t) =\alpha Y_t +(1-\alpha)\hat Y_t,0<\alpha<1$  
 当$\alpha$接近0时，过去的值占较大的比重  
 当$\alpha$接近1时，过去的值占较小的比重  
 
 **分析2** ：  
+$\alpha$是主观定的  
 当序列变化平缓时，$\alpha$可以较小  
 当序列变化剧烈时，$\alpha$可以较大  
 
@@ -31,14 +34,14 @@ $Y_t-\hat Y_t$是误差
 ## 二次指数平滑法
 
 ### Brown单一参数线性指数平滑
-step1：计算指数平滑值  
+**step1** ：计算指数平滑值  
 $S_t^{(1)}=\alpha Y_t+(1-\alpha)S_{t-1}^{(1)}$  
 $S_t^{(2)}=\alpha S_t^{(1)}+(1-\alpha)S_{t-1}^{(2)}$   
 
-step2：估计参数  
+**step2** ：估计参数  
 $a_t=2S_t^{(1)}-S_t^{(2)}$  
 $b_t=\dfrac{\alpha}{1-\alpha}[S_t^{(1)}-S_t^{(2)}]$  
-step3:进行预测  
+**step3** :进行预测  
 $F_{t+m}=a_t+b_t m$  
 $m>0$为预测超前期数
 
