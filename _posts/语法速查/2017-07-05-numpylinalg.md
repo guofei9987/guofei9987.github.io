@@ -9,6 +9,7 @@ description:
 
 
 ## 总结
+
 |函数|说明|
 |--|--|
 |diag|(输入是2维时)对角线(第k个)转一维阵|
@@ -20,7 +21,9 @@ description:
 |inv|矩阵的逆|
 |pinv|矩阵的Moore-Pwnrose伪逆|
 |qr|QR分解|
-|svd|SVD分解|
+|svd|SVD分解|  
+
+
 
 ## 行列式
 ```
