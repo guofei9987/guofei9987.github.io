@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【数值积分】scipy.integrate.
-categories: Geek
-tags: 数学理论
+categories: 算法
+tags: 最优化
 keywords:
 description:
 ---
