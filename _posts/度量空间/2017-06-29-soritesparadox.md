@@ -2,7 +2,7 @@
 layout: post
 title: 【逻辑学】连锁悖论、真值度、超赋值理论与认知主义.
 categories: 数学
-tags: 数学理论
+tags: 实分析
 keywords:
 description:
 ---

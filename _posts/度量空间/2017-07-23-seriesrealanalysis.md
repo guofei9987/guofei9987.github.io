@@ -22,16 +22,16 @@ lp空间
 Def: 级数  
 $$\{\sum\limits_{j=1}^\infty x_j\}$$  
 
-`positive series`正项级数：$\forall j ,x_j>0$
-`negetive series`负项级数：$\forall j,x_j<0$
-`alternating series`交错级数
+`positive series`正项级数：$\forall j ,x_j>0$  
+`negetive series`负项级数：$\forall j,x_j<0$  
+`alternating series`交错级数  
 
 `deverge series`发散级数：$\sum\limits_{j=1}^\infty x_j$不收敛  
 `converge absolutely`绝对收敛：$\sum\limits_{j=1}^\infty \mid x_j \mid$收敛  
 `converge conditionally`条件收敛：$\sum\limits_{j=1}^\infty \mid x_j \mid$不收敛，而$\sum\limits_{j=1}^\infty x_j $收敛  
 
 
-Th： 级数绝对收敛，那么收敛  
+Th： 级数绝对收敛，那么级数收敛  
 Th： 收敛级数的和也是收敛级数  
 
 Th： 两个级数绝对收敛，和也绝对收敛  
