@@ -58,3 +58,9 @@ $Var[X \mid Y]=\sum\limits_i (x_i - E[X \mid Y])^2 f(x_i \mid Y)$
 
 
 ## 总结
+$f(x\mid y)=f(x,y)/f_Y(y)$  
+$Var X =EX^2-(EX)^2$  
+$E(X\mid Y)=\sum_X f(x \mid y)$  
+$Var(X\mid Y)=\sum\limits_{X=x}(x-u_{x\mid y})^2f(x\mid y)$  
+$EX=E(E(x\mid y))$  
+$VarX=E(Var(X\mid Y))+Var(E(X\mid Y))$  
