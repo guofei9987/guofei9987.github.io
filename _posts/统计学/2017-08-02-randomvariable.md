@@ -8,18 +8,19 @@ description:
 ---
 
 本文介绍的概念：  
-样本，样本空间
+样本，样本空间  
 事件  
 全集  
 概率测度  
-概率空间
+概率空间  
 完备的概率空间  
 
 
 ## 样本，事件
 
 **样本空间**(sample space)  
-这里暂时不给出精确定义，样本空间是所有样本点的集合
+这里暂时不给出精确定义，而是给出描述：  
+样本空间是所有样本点的集合
 
 **事件**(event)  
 是样本空间的一个子集  
@@ -27,8 +28,8 @@ description:
 ## 全集
 
 
-**全集**  
-(complete collection)给定样本空间S，一个事件的集合$$\epsilon=\{A\mid A \subset S\}$$称为`全集`，如果：  
+**全集**  (complete collection)  
+给定样本空间S，一个事件的集合$$\epsilon=\{A\mid A \subset S\}$$称为`全集`，如果：  
 1. $\emptyset ,S \subset \epsilon$
 2. $\forall A \in S,\bar A \in \epsilon$
 3. $A_j \in \epsilon ,\Longrightarrow \bigcup_j A_j \in S$  
@@ -42,7 +43,8 @@ description:
 
 
 ## 概率测度
-给定一个`样本空间`S，一个事件的`全集`$$\epsilon=\{A\mid A \subset S\}$$,**概率测度** (probability measure)是这样一种映射$Pr:\epsilon \to [0,1]$,并且满足以下特征  
+给定一个`样本空间`S，一个事件的`全集`$$\epsilon=\{A\mid A \subset S\}$$,  
+**概率测度** (probability measure)是这样一种映射$Pr:\epsilon \to [0,1]$,并且满足以下特征  
 1. $Pr(S)=1$
 2. 如果$A\in \epsilon$,那么$Pr(A) \geq 0,Pr(\bar A)=1-Pr(A)$
 3. 如果对于$j=1,2,3,..., A_j\in \epsilon$是`互斥事件`(mutually exclusive events)，即$\forall j \neq k,A_j \cap A_k =\emptyset$ , 那么$Pr(\bigcup_j A_j)=\sum Pr(A_j)$   
