@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 经典数据集
-categories: 模型
+categories: 算法
 tags: 机器学习
 keywords: model evaluation
 description:
