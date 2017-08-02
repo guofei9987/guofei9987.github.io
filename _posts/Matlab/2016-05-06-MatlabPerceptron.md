@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Matlab】自编代码实现感知机
-categories: 模型
+categories:
 tags: Matlab
 keywords:
 description:

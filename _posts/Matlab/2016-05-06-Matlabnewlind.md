@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Matlab工具箱】线性神经网络
-categories: 模型
+categories:
 tags: Matlab
 keywords:
 description:

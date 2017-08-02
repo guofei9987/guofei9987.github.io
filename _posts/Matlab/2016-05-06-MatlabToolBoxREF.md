@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Matlab工具箱】REF径向基网络
-categories: 模型
+categories:
 tags: Matlab
 keywords:
 description:

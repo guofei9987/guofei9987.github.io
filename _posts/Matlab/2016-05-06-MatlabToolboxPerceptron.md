@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Matlab工具箱】感知机
-categories: 模型
+categories:
 tags: Matlab
 keywords:
 description:
