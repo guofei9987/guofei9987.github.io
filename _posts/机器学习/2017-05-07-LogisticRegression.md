@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Probit】理论简介
+title: 【logit】理论简介
 categories: 算法
 tags: 机器学习
 keywords: model evaluation
@@ -9,7 +9,7 @@ description:
 
 logistics regression是一种典型的分类模型  
 
-logistic regression, logit regression, logit model这三个模型本质和用法几乎完全相同，因此这里不加区分
+logistic regression, logit regression, logit model这三个模型本质和用法非常相似，因此这里不加区分
 
 ## logistic distribution
 
