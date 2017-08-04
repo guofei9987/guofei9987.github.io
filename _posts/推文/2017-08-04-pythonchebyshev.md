@@ -6,6 +6,7 @@ tags:
 keywords:
 description:
 ---
+
 About the theory of Chebyshev inequality, see [law of large numbers](http://www.guofei.site/2017/08/04/chebyshev.html)  
 
 
@@ -17,15 +18,14 @@ This blog gives 2 examples of Chebyshev inequality: standard norm distribution, 
 Here are two forms of Chebyshev inequality:  
 ### chebyshev1  
 $Pr[\mid X-u \mid \geq s] \leq \dfrac{\sigma^2}{s^2}$  
-If the p.d.f is an even function is symmetric with respect to the y-axis(norm distribution and t-distribution),   
+If the p.d.f is an even function ( meaning u=0 ),   
 $Pr[ X-u  \geq s] \leq \dfrac{\sigma^2}{2s^2}$  
-$(u=0)$  
 
 ### chebyshev2  
 (also known as Cantelli's inequality)  
 $Pr[ X-u  \geq s] \leq \dfrac{\sigma^2}{s^2+\sigma^2}$  
 
-
+let $u=0,\sigma^2=1$
 
 ```py
 def chebyshev1(u,sigma,s):
@@ -60,6 +60,7 @@ plt.plot(xlist,tlist)
 plt.legend(['chebyshev inequality 1','chebyshev inequality 2','norm distribution equality','t-distribution equality'])
 plt.show()
 ```
+output:  
 
 <img src='http://www.guofei.site/public/postimg/chebyshev.png'>
 
