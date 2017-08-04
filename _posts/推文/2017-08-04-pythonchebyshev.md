@@ -11,11 +11,10 @@ About the theory of Chebyshev inequality, see [law of large numbers](http://www.
 
 
 
-### 2 examples this blog is about
+### 2 examples
 This blog gives 2 examples of Chebyshev inequality: standard norm distribution, student's t-distribution.  
 
 Here are two forms of Chebyshev inequality:  
-
 ### chebyshev1  
 $Pr[\mid X-u \mid \geq s] \leq \dfrac{\sigma^2}{s^2}$  
 If the p.d.f is an even function is symmetric with respect to the y-axis(norm distribution and t-distribution),   
@@ -58,7 +57,7 @@ plt.plot(xlist,chebylist1)
 plt.plot(xlist,chebylist2)
 plt.plot(xlist,normlist)
 plt.plot(xlist,tlist)
-plt.legend(['chebyshev1 inequality','chebyshev2 inequality','norm distribution equality','t-distribution equality'])
+plt.legend(['chebyshev inequality 1','chebyshev inequality 2','norm distribution equality','t-distribution equality'])
 plt.show()
 ```
 
