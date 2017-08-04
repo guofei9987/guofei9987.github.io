@@ -61,4 +61,7 @@ plt.plot(xlist,tlist)
 plt.legend(['chebyshev1 inequality','chebyshev2 inequality','norm distribution equality','t-distribution equality'])
 plt.show()
 ```
-<img src=>
+
+<img src='http://www.guofei.site/public/postimg/chebyshev.png'>
+
+The graph tells us the gap between Chebyshev inequality and the
