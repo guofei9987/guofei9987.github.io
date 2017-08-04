@@ -14,7 +14,7 @@ About the theory of Chebyshev inequality, see [law of large numbers](http://www.
 
 ### 2 examples
 This blog gives 2 examples of Chebyshev inequality: standard norm distribution, student's t-distribution.  
-
+## chebyshev
 Here are two forms of Chebyshev inequality:  
 ### chebyshev1  
 $Pr[\mid X-u \mid \geq s] \leq \dfrac{\sigma^2}{s^2}$  
