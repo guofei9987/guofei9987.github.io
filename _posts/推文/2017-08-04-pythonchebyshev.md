@@ -64,4 +64,4 @@ plt.show()
 
 <img src='http://www.guofei.site/public/postimg/chebyshev.png'>
 
-The graph tells us the gap between Chebyshev inequality and the
+The graph tells us the accuracy of the Chebysheve inequality.  
