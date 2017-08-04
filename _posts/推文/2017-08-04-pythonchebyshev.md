@@ -7,7 +7,7 @@ keywords:
 description:
 ---
 
-About the theory of Chebyshev inequality, see [law of large numbers](http://www.guofei.site/2017/08/04/chebyshev.html)  
+About the theory of Chebyshev inequality, see [law of large numbers](http://www.guofei.site/2017/08/04/chebyshev.html).  
 
 
 
