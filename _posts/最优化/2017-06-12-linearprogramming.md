@@ -14,7 +14,7 @@ $\min z=\sum\limits_{j=1}^n c_j x_j$
 s.t.  
 $$\left \{ \begin{array}{ccc}
 \sum\limits_{j=1}^na_{ij}x_j=b_i,&i=1,2,...m\\
-x_j\leq 0&j=1,2,...n
+x_j\geq 0&j=1,2,...n
 \end{array}\right.$$
 
 把各种形式转化为标准型的方法：
