@@ -23,7 +23,7 @@ description:
 $P(A)=0.3,P(B)=0.4,P(B \mid A)=1$  
 
 
-$P(A|B)=P(A) * P(B|A)/P(B)=0.3*1/0.4=0.75$
+$P(A\mid B)=P(A) * P(B \mid A) / P(B)=0.3 * 1/0.4=0.75$
 
 
 ## 程序模拟
