@@ -34,7 +34,7 @@ p.d.f是$f(x,y)$
 $E[g(x_1,x_2)]=\sum\limits_{(x_1,x_2)}g(x_1,x_2)f(x_1,x_2)$  
 
 **条件期望** 定义为：  
-$E[g(X_1) \mid X_2=x_2]=\sum\limits_x g(x_1) f(x_1 \mid x_2)$  
+$E[g(X_1) \mid X_2=x_2]=\sum\limits_{x_1} g(x_1) f(x_1 \mid x_2)$  
 记为$E(g(X_1)\mid X_2)$  
 
 注意:  
@@ -42,7 +42,7 @@ $E[g(X_1) \mid X_2=x_2]=\sum\limits_x g(x_1) f(x_1 \mid x_2)$
 $E(g(X_1)\mid X_2)$本身是一个随机变量。  
 
 定理：**全期望定理**(law of total expactation)  
-$E_{X_2}[E_{X_1\mid X_2}[g(X_1) \mid X_2]]=\sum_{x_1}g(x_1)f(x_1)$  
+$E_{X_2}[E_{X_1\mid X_2}[g(X_1) \mid X_2]]=\sum\limits_{x_1}g(x_1)f(x_1)$  
 也就是说，  
 $E[X]=E[E[X \mid Y]]$  
 
@@ -60,7 +60,7 @@ $Var[X \mid Y]=\sum\limits_i (x_i - E[X \mid Y])^2 f(x_i \mid Y)$
 ## 总结
 $f(x\mid y)=f(x,y)/f_Y(y)$  
 $Var X =EX^2-(EX)^2$  
-$E(X\mid Y)=\sum_X f(x \mid y)$  
-$Var(X\mid Y)=\sum\limits_{X=x}(x-u_{x\mid y})^2f(x\mid y)$  
+$E(X\mid Y)=\sum\limits_x f(x \mid y)$  
+$Var(X\mid Y)=\sum\limits_x(x-u_{x\mid y})^2f(x\mid y)$  
 $EX=E(E(x\mid y))$  
 $VarX=E(Var(X\mid Y))+Var(E(X\mid Y))$  
