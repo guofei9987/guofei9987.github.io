@@ -29,8 +29,11 @@ $Pr[\mid X-u \mid \geq t]\leq \dfrac{u_{\mid n\mid}}{t^n}$
 X的均值是u,方差是$\sigma^2$,那么，$\forall s>0,Pr[ X-u  \geq s] \leq \dfrac{\sigma^2}{s^2+\sigma^2}$  
 
 
-## 弱大数定律
+## 大数定律
 
+### 弱大数定律
 
+如果$X_i$独立同分布，$u=EX,\bar X=1/n \sum X_i $,  
+$\forall \epsilon >0,n\to \infty ,Pr[\mid \bar X-u \mid >\epsilon] \to 0$
 
-[未完待续]
+## 中心极限定理
