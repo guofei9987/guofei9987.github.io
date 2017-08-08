@@ -18,7 +18,7 @@ description:
 给定事件$B\in \varepsilon,Pr(B)>0$,  
 那么，对于$A \in \varepsilon$，定义 **条件概率** 为$Pr(A \mid B)=\dfrac{P(A \cap B)}{P(B)}$  
 
-这种定义的好处是，$Pr(\star \mid B)$符合概率测度的定义  
+这种定义的好处是，$Pr(\star \mid B)$符合[概率测度的定义](http://www.guofei.site/2017/08/02/randomvariable.html)  
 
 ### 条件PDF
 

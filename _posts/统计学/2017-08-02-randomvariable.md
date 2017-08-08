@@ -31,7 +31,7 @@ description:
 给定样本空间S，一个事件的集合$$\epsilon=\{A\mid A \subset S\}$$称为`全集`，如果：  
 1. $\emptyset ,S \subset \epsilon$
 2. $\forall A \in S,\bar A \in \epsilon$
-3. $A_j \in \epsilon ,\Longrightarrow \bigcup_j A_j \in S$  
+3. $A_j \in \epsilon \Longrightarrow \bigcup_j A_j \in S$  
 
 
 举例来说，一枚硬币抛10次，  
