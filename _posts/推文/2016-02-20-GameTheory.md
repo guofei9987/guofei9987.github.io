@@ -2,7 +2,7 @@
 layout: post
 title: 【随机模拟试验】枪手博弈问题（一）.
 categories: 推文
-tags: 
+tags: 趣味小题
 keywords: Game Theory
 description:
 ---

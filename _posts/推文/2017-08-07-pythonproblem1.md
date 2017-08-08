@@ -2,7 +2,7 @@
 layout: post
 title: 逻辑教授三学生问题的Python求解
 categories: 推文
-tags: 案例
+tags: 趣味小题
 keywords:
 description:
 ---
