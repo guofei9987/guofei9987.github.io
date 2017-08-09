@@ -117,7 +117,6 @@ $\hat Y_{t+1}=\sum\limits_{i=t-T+1}^t Y_i / T $
 $\hat Y_{t+1}=\hat Y_t +\dfrac{1}{T}(Y_t-Y_{t-N})$
 
 #### 加权移动平均法
-
 $$\hat Y{t+1}= \dfrac{\sum\limits_{i=1}^T \alpha_i Y_i}{\sum\limits_{i=1}^T \alpha_i}$$  
 
 
