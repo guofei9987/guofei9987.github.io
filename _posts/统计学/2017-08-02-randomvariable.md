@@ -53,3 +53,7 @@ $(S,\epsilon,Pr)$叫做 **概率空间** （probability space）
 **零事件**  如果$Pr(A)=0$,那么事件$A \in \epsilon$在Pr下是一个 **零事件** (null event)  
 
 **完备的测度空间** 如果A是一个`零事件`，且$\forall A' \subset A \ni A' \in \varepsilon$,那么$(S,\varepsilon,Pr)$称为`完备概率空间`
+
+
+**随机变量**：
+随机变量是一种函数$X:S\to R$
