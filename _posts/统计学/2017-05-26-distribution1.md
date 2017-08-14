@@ -33,7 +33,12 @@ $DX=\dfrac{\alpha}{\lambda^2}$
 
 ### 性质
 
+#### 指数分布
+
 $Ga(1,\lambda)=exp(\lambda)$  
+
+#### 卡方分布
+
 $Ga(n/2,1/2)=\chi^2(n) \sim f(x)=\dfrac{1}{2^{n/2}\Gamma(n/2)}x^{n/2-1}e^{-x/2}(x>0)$   
 
 顺便得到卡方分布的特征  
@@ -67,6 +72,8 @@ $DX=\dfrac{a(a+b-1)}{(b-1)^2(b-2)}$
 (b>2)  
 
 ### 性质
+
+#### F分布
 如果，$X \sim Z(n_1/2,n_2/2)$  
 那么，  
 $Y=\dfrac{n_2}{n_1}X \sim F(n_1,n_2)$  
