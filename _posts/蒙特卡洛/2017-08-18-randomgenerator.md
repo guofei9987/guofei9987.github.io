@@ -29,7 +29,7 @@ description:
 
 ## 线性同余发生器
 
-$X_i=(aX_{i-1}+c)\mod  m$
+$X_i=(aX_{i-1}+c)\mod  m$  
 
 - $m$:模数  
 - $a\in [0,m-1]$:乘子  
@@ -82,3 +82,9 @@ plt.show()
 
 fmin:  
 <img src='http://www.guofei.site/public/postimg/randomgenerator1.png'>
+
+### 乘性同余发生器
+
+当$c=0$时，叫做 **乘性同余发生器**  
+
+$X_i=(aX_{i-1}+c)\mod  m$  
