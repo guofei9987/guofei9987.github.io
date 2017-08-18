@@ -132,11 +132,14 @@ plt.plot(x,y,'.')
 plt.show()
 ```
 
+<img src='http://www.guofei.site/public/postimg/randomgenerator2.png'>
+
+横、纵坐标分别是$x_{t-1},x_t$  
+
+### 统计检验
+
 算法生成了一组随机数$R_i$,如何确定这个算法
 
-<img src='http://www.guofei.site/public/postimg/randomgenerator1.png'>
+#### 卡方检验
 
-
-### 卡方检验
-
-假设：
+假设：$$
