@@ -7,6 +7,8 @@ keywords:
 description:
 ---
 
+## 算法流程
+
 用递归生成树结构的一般方法：（我总结的）  
 （Matlab）  
 ```matlab
@@ -21,3 +23,151 @@ function myfun(i,A)
     end
 end
 ```
+
+改进：
+
+```matlab
+function myfun(i,A)
+    if iscorrect(i,A)
+        for i=ii
+            myfun(i,A)
+    elseif 到了树终点
+        statement
+    else
+        donothing
+    end
+end
+```
+例子：
+
+## 四皇后问题
+问题描述：  
+如何在N×N的棋盘上放N个皇后，使得：  
+1. 不能有两个皇后出现在一条横线上
+2. 不能有两个皇后出现在一条竖线上
+3. 不能有连个皇后出现在一条斜线上
+
+
+(下面的代码还有改进的空间)
+```py
+import numpy as np
+
+
+def iscorrect(i, j, M):
+    m, n = M.shape
+    if any(M[i, :]): return False
+    if any(M[:, j]): return False
+    if any(np.diag(M, j - i)): return False
+    if any(np.diag(np.fliplr(M), n - 1 - j - i)): return False
+    return True
+
+
+m = 4
+n = 4
+M = np.zeros(shape=(m, n))
+
+
+def queen(k, m, M):
+    for l in range(k+1,m*m):
+        i=l%m
+        j=l//m
+        if iscorrect(i,j,M):
+            M[i,j]=1
+            queen(l,m,M)
+            M[i,j]=0
+    if M.sum()==4:
+        print(M)
+
+
+queen(-1,m, M)
+
+```
+
+
+
+[逻辑教授三学生问题](http://www.guofei.site/2017/08/07/intersting2.html)  
+
+
+## 整数划分问题
+
+定义整数的一个 **划分** :  
+$n=n_1+n_2+...+n_k, (n_1 \geq n_2 \geq n_3...  \geq n_k \geq  1)$  
+例如，6=2+1+1+1+1是一个划分。  
+
+**问题** 写一段程序，输入任意正整数，输出这个正整数有多少划分。  
+
+**分析**   
+设$P(n,m)$表示正整数m的所有的划分中，不大于m的划分个数。  
+例如，$P(6,1)=1$，因为6=1+1+1+1+1+1  
+
+可以建立以下的递推关系：  
+
+
+1. $P(n,1)=1$
+2. $P(n,m)=P(n,n), m> n$
+3. $P(n,n)=P(n,n-1)+1$
+4. $P(n,m)=P(n,m-1)+P(n-m,m)$
+
+
+下面很容易了：
+
+```py
+def P(n,m):
+    if m==1:return 1
+    elif m>n:return P(n,n)
+    elif m==n:return P(n,n-1)+1
+    elif m<n:return P(n,m-1)+P(n-m,m)
+
+print(P(6,6))
+```
+
+## 上楼梯问题
+已知楼梯有20阶台阶，上楼可以一步1阶，也可以一步2阶，计算有多少种上楼的方法
+
+```py
+c = [0]
+
+
+def stepproblem(step, totalstep):
+    totalstep = totalstep + step  # 这一个节点所要做的操作
+    if totalstep > 20:  # 不符合要求的叶
+        return 0
+    if totalstep == 20:  # 符合要求的叶
+        c[0] = c[0] + 1  # 利用list共享内存的特性
+        return 1
+    if totalstep < 20:  # 节点
+        stepproblem(1, totalstep)
+        stepproblem(2, totalstep)
+
+
+stepproblem(0, 0)
+print(c)
+```
+
+## 全排列问题
+A是一个list，生成A的所有排列
+
+```py
+n = 5
+A = list(range(n))
+
+
+def makelist(A, B):  # B是选出来的序列，A是还没用到的数
+
+    if len(A) == 0:  # 叶
+        print(B)
+    else:  # 结
+        for i in A:
+            A_copy = A.copy()
+            B_copy = B.copy()
+            A_copy.remove(i)
+            B_copy.append(i)
+            makelist(A_copy, B_copy)
+
+
+B = []
+makelist(A, B)
+
+```
+### 幻方问题
+幻方是这样一种方阵，每一行、每一列以及两个对角线之和均相等
