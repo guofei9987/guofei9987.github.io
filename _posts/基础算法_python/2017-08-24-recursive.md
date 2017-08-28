@@ -222,3 +222,46 @@ n = 9
 A = list(range(1, n + 1))
 makelist(A, B)
 ```
+
+## 递归法求幂
+
+计算$m^n$时，把m连乘n次，这种算法效率是很低的，注意到以下迭代关系：  
+
+$$m^n= \left \{ \begin{array}{ccc}
+1&n=0\\
+m&n=1\\
+m^k * m^k&n=2k\\
+m*m^k&n=2k+1
+\end{array}\right.$$  
+
+立即得出结果：  
+```py
+def power_func(m, n):
+    if n == 0:
+        return 1
+    elif n == 1:
+        return m
+    elif n % 2 == 0:
+        return power_func(m, n / 2) * 2
+    elif n % 2 == 1:
+        return m * power_func(m, n - 1)
+```
+
+## 汉诺塔问题
+
+经典问题，不描述。  
+
+首先，确定这是一个递归问题，（要思考一番）  
+其次，确定这个递归问题如何表示（要思考更长）  
+
+```py
+def move(n, x, y, z):  # 将n个盘子从x移动到z
+    if n == 1:
+        print('{} to {}'.format(x, z))
+    else:
+        move(n - 1, x, z, y)
+        print('{} to {}'.format(x, z))
+        move(n-1,y,x,z)
+
+move(3,'A','B','C')
+```
