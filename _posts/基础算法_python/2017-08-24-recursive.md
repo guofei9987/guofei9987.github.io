@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 算法1：复杂度.
+title: 递归.
 categories: 算法
 tags: 经典算法
 keywords:
@@ -170,4 +170,55 @@ makelist(A, B)
 
 ```
 ### 幻方问题
-幻方是这样一种方阵，每一行、每一列以及两个对角线之和均相等
+幻方是这样一种方阵，每一行、每一列以及两个对角线之和均相等  
+用全排列问题给出的方法进行全排列，然后给出幻方  
+
+```py
+import numpy as np
+
+
+def ismagic(M):
+    M = np.array(M)
+    m, n = M.shape
+    temp_sum = M[0].sum()
+    for i in range(1, m):  # 列
+        if not M[i].sum() == temp_sum:
+            return False
+    for i in range(n):
+        if not M[:, i].sum() == temp_sum:
+            return False
+    if not np.trace(M) == temp_sum:
+        return False
+    M_c = np.fliplr(M)
+    if not np.trace(M_c) == temp_sum:
+        return False
+    return True
+
+
+def list2sqrt(M):
+    M = np.array(M)
+    m, = M.shape
+    M.shape = m ** 0.5, m ** 0.5
+    return M
+
+
+def makelist(A, B):  # B是选出来的序列，A是还没用到的数
+
+    if len(A) == 0:  # 叶
+        M = list2sqrt(B)
+        if ismagic(M):
+            print(M)
+    else:  # 结
+        for i in A:
+            A_copy = A.copy()
+            B_copy = B.copy()
+            A_copy.remove(i)
+            B_copy.append(i)
+            makelist(A_copy, B_copy)
+
+
+B = []
+n = 9
+A = list(range(1, n + 1))
+makelist(A, B)
+```
