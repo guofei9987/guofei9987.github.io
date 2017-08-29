@@ -95,5 +95,5 @@ plt.plot(x_list, y_list, '.')
 plt.show()
 ```
 
-fmin:  
+画图如下：  
 <img src='http://www.guofei.site/public/postimg/numericalcalculation1.png'>
