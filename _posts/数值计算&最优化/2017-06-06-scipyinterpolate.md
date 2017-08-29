@@ -2,7 +2,7 @@
 layout: post
 title: 【插值】scipy.interpolate.
 categories: 算法
-tags: 最优化
+tags: 数值计算&最优化方法
 keywords:
 description:
 ---
