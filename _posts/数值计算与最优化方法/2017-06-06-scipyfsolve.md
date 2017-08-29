@@ -2,7 +2,7 @@
 layout: post
 title: 【解方程】scipy.optimize.solve.
 categories: 算法
-tags: 数值计算&最优化方法
+tags: 数值计算与最优化方法
 keywords:
 description:
 ---

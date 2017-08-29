@@ -2,7 +2,7 @@
 layout: post
 title: 最优化方法理论篇.
 categories: 算法
-tags: 数值计算&最优化方法
+tags: 数值计算与最优化方法
 keywords:
 description:
 ---
