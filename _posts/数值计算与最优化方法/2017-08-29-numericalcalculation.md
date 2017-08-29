@@ -97,3 +97,13 @@ plt.show()
 
 画图如下：  
 <img src='http://www.guofei.site/public/postimg/numericalcalculation1.png'>
+
+
+## 雅克比迭代法求线性方程组
+
+对于方程组：$\sum\limits_{j=1}^n a_{ij}x_j=b_i , (i=1,2,...,n)$  
+提取一个未知数，$x_i=\dfrac{1}{a_{ii}}(b_i-\sum\limits_{j=1,j \neq i}^n a_{ij} x_j)$  
+迭代公式可以这样：  
+$x_i(n+1)=\dfrac{1}{a_{ii}}(b_i-\sum\limits_{j=1,j \neq i}^n a_{ij} x_j(n))$  
+
+当然，这种迭代法有可能不收敛，如果不收敛就不能用这种方法了。  
