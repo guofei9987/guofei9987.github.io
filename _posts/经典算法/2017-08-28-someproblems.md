@@ -249,3 +249,16 @@ while 1:
         print(k)
         break
 ```
+
+## 一个字节中有多少个1
+
+问题：给定一个变量a，计算对应的字节中有多少个1  
+
+```py
+a = 7
+count = 0
+for i in range(32):
+    if a & (2 ** i):
+        count += 1
+count
+```
