@@ -107,7 +107,7 @@ plt.show()
 ```
 
 结果：  
-<img src='http://www.guofei.site/public/postimg/fmin.png'>
+<img src='http://www.guofei.site/public/postimg/minimumspanningtree1.png'>
 
 
 
