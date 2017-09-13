@@ -1,5 +1,5 @@
 
-
+### 包
 两个函数：  
 V2E是给定顶点坐标，求欧氏距离  
 plot_G是给定顶点坐标，画图  
@@ -57,7 +57,7 @@ if __name__ == '__main__':
 ```
 
 
-## 调用
+### 调用
 ```py
 import graph_plotter
 
@@ -72,4 +72,32 @@ print(E_noweight)
 print(graph_plotter.V2E(V, E_noweight))
 graph_plotter.plot_G(V, E_noweight)
 
+```
+
+## dict表示法下，无权图转加权图
+
+### 源数据
+```py
+a, b, c, d, e, f, g, h = range(8)
+G = {
+    a: {b, c, d, e, f},
+    b: {c, e},
+    c: {d},
+    d: {e},
+    e: {f},
+    f: {c, g, h},
+    g: {f, h},
+    h: {f, g}
+}
+from scipy.stats import uniform
+
+rv = uniform(loc=0, scale=1)
+V = {i: rv.rvs(size=2) for i in range(8)}
+```
+
+
+### 做法
+```py
+import numpy as np
+{u:{v:np.linalg.norm(V[u]-V[v],ord=2) for v in G[u]} for u in G}
 ```
