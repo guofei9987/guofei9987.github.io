@@ -63,6 +63,7 @@ V = {i: rv.rvs(size=2) for i in range(8)}
 ```
 
 ### step3：处理源数据
+根据顶点位置，计算每个边的长度
 ```py
 import numpy as np
 
@@ -83,7 +84,7 @@ G = {u: {v: np.linalg.norm(V[u] - V[v], ord=2) for v in G[u]} for u in G}
  6: {5: 0.99210311952923735, 7: 0.22362975308802449},
  7: {5: 0.82003926434628127, 6: 0.22362975308802449}}
 ```
-
+(用dict嵌套dict来)
 ### 调用Kruskal算法并作图
 
 ```py
@@ -106,14 +107,98 @@ for i in k:
 plt.show()
 ```
 
-结果：  
+
+结果：（点是随机生成的，所以每次运行图未必一样）  
 <img src='http://www.guofei.site/public/postimg/minimumspanningtree1.png'>
 
 
+## Python实现：Kruskal算法改进版
+
+```py
+def find(C, u):
+    if C[u] != u:
+        C[u] = find(C, C[u])
+    return C[u]
 
 
+def union(C, R, u, v):
+    u, v = find(C, u), find(C, v)
+    if R[u] > R[v]:
+        C[v] = u
+    else:
+        C[u] = v
+    if R[u] == R[v]:
+        R[v] += 1
 
 
+def kruskal(G):
+    E = [(G[u][v], u, v) for u in G for v in G[u]]
+    T = set()
+    C, R = {u: u for u in G}, {u: 0 for u in G}
+    for _, u, v in sorted(E):
+        if find(C, u) != find(C, v):
+            T.add((u, v))
+            union(C, R, u, v)
+    return T
+
+
+a, b, c, d, e, f, g, h = range(8)
+G = {
+    a: {b, c, d, e, f},
+    b: {c, e},
+    c: {d},
+    d: {e},
+    e: {f},
+    f: {c, g, h},
+    g: {f, h},
+    h: {f, g}
+}
+from scipy.stats import uniform
+
+rv = uniform(loc=0, scale=1)
+V = {i: rv.rvs(size=2) for i in range(8)}
+
+import numpy as np
+
+G = {u: {v: np.linalg.norm(V[u] - V[v], ord=2) for v in G[u]} for u in G}
+
+k = kruskal(G)
+
+from scipy.stats import uniform
+
+import matplotlib.pyplot as plt
+
+for i in V:
+    plt.plot(V[i][0], V[i][1], 'o')
+for i in G:
+    for j in G[i]:
+        temp = list(zip(V[i], V[j]))
+        plt.plot(temp[0], temp[1], 'k')
+
+for i in k:
+    temp = list(zip(V[i[0]], V[i[1]]))
+    plt.plot(temp[0], temp[1], 'r', lw=8, alpha=0.6)
+plt.show()
+
+```
+
+
+## Python实现prim算法
+```py
+from heapq import heappop, heappush
+
+
+def prim(G, s):
+    P, Q = {}, [(0, None, s)]
+    while Q:
+        _, p, u = heappop(Q)
+        if u in P: continue
+        P[u] = p
+        for v, w in G[u].items():
+            heappush(Q, (w, u, v))
+        return P
+
+```
 
 
 
@@ -121,3 +206,4 @@ plt.show()
 参考资料：  
 http://www.cnblogs.com/biyeymyhjob/archive/2012/07/30/2615542.html（原文的图表很详细）  
 Python算法教程  
+《Python算法教程》[挪威]Magnus Lie Hetland
