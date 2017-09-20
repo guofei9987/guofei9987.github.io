@@ -1,13 +1,13 @@
 ---
 layout: post
-title: 【语法速查】【Python】matplotlib
+title: 【语法速查】【Python】matplotlib面向对象方式绘图
 categories: Geek
 tags: 语法速查
 keywords:
 description:
 ---
 
-## 示例
+## 不用面向对象方式的示例
 
 ```py
 import matplotlib.pyplot as plt
@@ -42,11 +42,25 @@ plt.show()
 
 plt.figure()
 
-先生成一个figure，在figure上生成一个Axes，在Axes上面plot
+先生成一个figure，在figure上生成一个Axes，在Axes上面plot  
 
+它们之间的关系参照这段代码:  
+```py
+f.axes[0].lines[0]
+```
+
+
+获取的方法1
 ```py
 f=plt.gcf()#get current figure
 a=plt.gca()#get current axes
+```
+
+获取的方法2
+```py
+f=plt.gcf()
+a=plt.getp(f,'axes')[0]
+l=plt.getp(f,'lines')[0]
 ```
 
 ### figure
@@ -94,6 +108,12 @@ zorder = 0
 
 
 ### Axes
+
+对象信息：
+```py
+<matplotlib.axes._subplots.AxesSubplot at 0x263c9ba9320>
+```
+
 可以有两种方法获取
 
 ```py
@@ -117,7 +137,7 @@ axes = Axes(0.125,0.125;0.775x0.755)
 axes_locator = None
 axis_bgcolor = (1.0, 1.0, 1.0, 1)
 axisbelow = line
-children = [<matplotlib.lines.Line2D
+children = [<matplotlib.lines.Line2D>]
 clip_box = None
 clip_on = True
 clip_path = None
@@ -192,8 +212,20 @@ zorder = 0
 |xlim, ylim|X, Y轴的范围|
 |legend|显示图示|
 
-## line对象的属性
+### line
 
+```py
+<matplotlib.lines.Line2D at 0x263c9fc0a20>
+```
+
+获取方法类似
+
+```py
+l=plt.getp(a,'lines')#是一个list
+l=plt.plot(...)#这个可以注意一下
+```
+
+获取line属性的方法
 ```py
 line=plt.plot(x,y)
 plt.getp(line[0],'color')
@@ -209,14 +241,14 @@ animated = False
 antialiased or aa = True
 axes = Axes(0.125,0.125;0.775x0.755)
 children = []
-clip_box = TransformedBbox(Bbox([[0.0, 0.0], [1.0, 1.0]]), Co...
+clip_box = TransformedBbox(Bbox([[0.0, 0.0], [1.0, 1.0]]), Co...)
 clip_on = True
 clip_path = None
 color or c = #1f77b4
 contains = None
 dash_capstyle = butt
 dash_joinstyle = round
-data = (array([ 0.        ,  0.66666667,  1.33333333,  2....
+data = (array([ 0.        ,  0.66666667,  1.33333333,  2....]))
 drawstyle = default
 figure = Figure(432x288)
 fillstyle = full
@@ -231,7 +263,7 @@ markerfacecolor or mfc = #1f77b4
 markerfacecoloralt or mfcalt = none
 markersize or ms = 6.0
 markevery = None
-path = Path(array([[ 0.        , -0.        ],        [ 0...
+path = Path(array([[ 0., -0.],[ 0...]]))
 path_effects = []
 picker = None
 pickradius = 5
@@ -240,19 +272,19 @@ sketch_params = None
 snap = None
 solid_capstyle = projecting
 solid_joinstyle = round
-transform = CompositeGenericTransform(TransformWrapper(Blended...
+transform = CompositeGenericTransform(TransformWrapper(Blended...))
 transformed_clip_path_and_affine = (None, None)
 url = None
 visible = True
-xdata = [ 0.          0.66666667  1.33333333  2.          ...
-xydata = [[ 0.         -0.        ]  [ 0.66666667 -0.618369...
-ydata = [-0.         -0.6183698  -0.9719379  -0.90929743 -...
+xdata = [ 0.          0.66666667  1.33333333  2.          ]
+xydata = [[ 0.         -0.        ]  [ 0.66666667 -0.618369.]]
+ydata = [-0.         -0.6183698  -0.9719379  -0.90929743 -...]
 zorder = 2
 ```
 
 
 
-## plot
+#### plot
 
 示例：  
 ```py
@@ -268,7 +300,7 @@ plot的参数一览：
 |linewidth|曲线宽度，可以不是整数|
 
 
-### line style or marker
+#### line style or marker
 
 
 |character           |description|
@@ -304,7 +336,7 @@ plot的参数一览：
 *上面的点和线可以搭配使用，例如'.-'，例如'+--'*
 
 
-### color
+#### color
 
 ==========  ========
 character   color
@@ -319,8 +351,8 @@ character   color
 'w'         white
 ==========  ========
 
-## plot的其它参数
-agg_filter: unknown
+#### plot的其它参数
+
 alpha: float (0.0 transparent through 1.0 opaque)
 animated: [True | False]
 antialiased or aa: [True | False]
