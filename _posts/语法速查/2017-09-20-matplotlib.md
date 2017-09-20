@@ -73,16 +73,15 @@ plot的参数一览：
 ### line style or marker
 
 
-character           |description|
+|character           |description|
 |-------------------|-----------|
 |``'-'``            | solid line style
 |``'--'``           | dashed line style
 |``'-.'``           | dash-dot line style
-|.-||
 |``':'``            | dotted line style
-|``'.'``            | point marker
-|``','``            | pixel marker
-|``'o'``            | circle marker
+|``'.'``            | point marker点
+|``','``            | pixel marker一个像素点
+|``'o'``            | circle marker实心圆
 |``'v'``            | triangle_down marker
 |``'^'``            | triangle_up marker
 |``'<'``            | triangle_left marker
@@ -91,17 +90,20 @@ character           |description|
 |``'2'``            | tri_up marker
 |``'3'``            | tri_left marker
 |``'4'``            | tri_right marker
-|``'s'``            | square marker
-|``'p'``            | pentagon marker
-|``'*'``            | star marker
-|``'h'``            | hexagon1 marker
-|``'H'``            | hexagon2 marker
+|``'s'``            | square marker方块
+|``'p'``            | pentagon marker五边形
+|``'*'``            | star marker五角星
+|``'h'``            | hexagon1 marker六边形
+|``'H'``            | hexagon2 marker横六边形
 |``'+'``            | plus marker
 |``'x'``            | x marker
-|``'D'``            | diamond marker
-|``'d'``            | thin_diamond marker
-|``'|'``            | vline marker
-|``'_'``            | hline marker
+|``'D'``            | diamond marker菱形
+|``'d'``            | thin_diamond marker瘦菱形
+|``'|'``            | vline marker竖线
+|``'_'``            | hline marker横线
+
+
+*上面的点和线可以搭配使用，例如'.-'，例如'+--'*
 
 
 ### color
@@ -166,6 +168,86 @@ kwargs *scalex* and *scaley*, if defined, are passed on to
 :meth:`~matplotlib.axes.Axes.autoscale_view` to determine
 whether the *x* and *y* axes are autoscaled; the default is
 *True*.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## 保存
 
