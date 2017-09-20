@@ -53,20 +53,21 @@ a=plt.gca()#get current axes
 
 ```py
 f=plt.gcf()
-plt.getp(f)
 ```
+
+figure下的属性（用plt.getp(f)获取）
 
 ```py
 agg_filter = None
 alpha = None
 animated = False
-axes = [<matplotlib.axes._subplots.AxesSubplot
-children = [<matplotlib.patches.Rectangle
+axes = [<matplotlib.axes._subplots.AxesSubplot>]
+children = [<matplotlib.patches.Rectangle>]
 clip_box = None
 clip_on = True
 clip_path = None
 contains = None
-default_bbox_extra_artists = [<matplotlib.axes._subplots.AxesSubplot
+default_bbox_extra_artists = [<matplotlib.axes._subplots.AxesSubplot>]
 dpi = 72.0
 edgecolor = (1.0, 1.0, 1.0, 0.0)
 facecolor = (1.0, 1.0, 1.0, 0.0)
@@ -87,11 +88,101 @@ transform = IdentityTransform()
 transformed_clip_path_and_affine = (None, None)
 url = None
 visible = True
-window_extent = TransformedBbox(Bbox([[0.0, 0.0], [6.0, 4.0]]), Af...
+window_extent = TransformedBbox(Bbox([[0.0, 0.0], [6.0, 4.0]]))
 zorder = 0
 ```
 
-## Axes对象的属性
+
+### Axes
+可以有两种方法获取
+
+```py
+a1=plt.getp(f,'axes')#生成的是一个list
+a2=plt.gca()#当前激活的axes
+#a1[0]==a2
+```
+
+axes对象的属性：(用plt.getp(a2)获取)
+```py
+adjustable = box
+agg_filter = None
+alpha = None
+anchor = C
+animated = False
+aspect = auto
+autoscale_on = False
+autoscalex_on = True
+autoscaley_on = False
+axes = Axes(0.125,0.125;0.775x0.755)
+axes_locator = None
+axis_bgcolor = (1.0, 1.0, 1.0, 1)
+axisbelow = line
+children = [<matplotlib.lines.Line2D
+clip_box = None
+clip_on = True
+clip_path = None
+contains = None
+cursor_props = (1, (0.0, 0.0, 0.0, 1))
+data_ratio = 0.36363636363636365
+default_bbox_extra_artists = [<matplotlib.lines.Line2D>]
+facecolor = (1.0, 1.0, 1.0, 1)
+fc = (1.0, 1.0, 1.0, 1)
+figure = Figure(432x288)
+frame_on = True
+geometry = (1, 1, 1)
+gid = None
+images = <a list of 0 AxesImage objects>
+label =
+legend = None
+legend_handles_labels = ([], [])
+lines = <a list of 34 Line2D objects>
+navigate = True
+navigate_mode = None
+path_effects = []
+picker = None
+position = Bbox(x0=0.125, y0=0.125, x1=0.9, y1=0.88)
+rasterization_zorder = None
+rasterized = None
+renderer_cache = None
+shared_x_axes = <matplotlib.cbook.Grouper
+shared_y_axes = <matplotlib.cbook.Grouper
+sketch_params = None
+snap = None
+subplotspec = <matplotlib.gridspec.SubplotSpec
+title = Pyplot
+transform = IdentityTransform()
+transformed_clip_path_and_affine = (None, None)
+url = None
+visible = True
+window_extent = Bbox(x0=50.5, y0=32.5, x1=392.3, y1=256.94)
+xaxis = XAxis(54.000000,36.000000)
+xaxis_transform = BlendedGenericTransform(CompositeGenericTransform(...))
+xbound = (-0.30000000000000004, 6.2999999999999998)
+xgridlines = <a list of 9 Line2D xgridline objects>
+xlabel = Time(s)
+xlim = (-0.30000000000000004, 6.2999999999999998)
+xmajorticklabels = <a list of 9 Text xticklabel objects>
+xminorticklabels = <a list of 0 Text xticklabel objects>
+xscale = linear
+xticklabels = <a list of 9 Text xticklabel objects>
+xticklines = <a list of 18 Text xtickline objects>
+xticks = [-1.  0.  1.  2.  3.  4.]...
+yaxis = YAxis(54.000000,36.000000)
+yaxis_transform = BlendedGenericTransform(BboxTransformTo(Transforme...))
+ybound = (-1.2, 1.2)
+ygridlines = <a list of 7 Line2D ygridline objects>
+ylabel = Volt
+ylim = (-1.2, 1.2)
+ymajorticklabels = <a list of 7 Text yticklabel objects>
+yminorticklabels = <a list of 0 Text yticklabel objects>
+yscale = linear
+yticklabels = <a list of 7 Text yticklabel objects>
+yticklines = <a list of 14 Line2D ytickline objects>
+yticks = [-1.5 -1.  -0.5  0.   0.5  1. ]...
+zorder = 0
+```
+
+
 
 
 |参数|意义|
