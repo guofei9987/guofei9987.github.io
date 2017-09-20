@@ -38,11 +38,58 @@ plt.show()
 |savefig.directory|点击工具栏里save进行保存时的默认目录|
 
 
-## 对象的关系
+## 各个对象
 
 plt.figure()
 
 先生成一个figure，在figure上生成一个Axes，在Axes上面plot
+
+```py
+f=plt.gcf()#get current figure
+a=plt.gca()#get current axes
+```
+
+### figure
+
+```py
+f=plt.gcf()
+plt.getp(f)
+```
+
+```py
+agg_filter = None
+alpha = None
+animated = False
+axes = [<matplotlib.axes._subplots.AxesSubplot
+children = [<matplotlib.patches.Rectangle
+clip_box = None
+clip_on = True
+clip_path = None
+contains = None
+default_bbox_extra_artists = [<matplotlib.axes._subplots.AxesSubplot
+dpi = 72.0
+edgecolor = (1.0, 1.0, 1.0, 0.0)
+facecolor = (1.0, 1.0, 1.0, 0.0)
+figheight = 4.0
+figure = None
+figwidth = 6.0
+frameon = True
+gid = None
+label =
+path_effects = []
+picker = None
+rasterized = None
+size_inches = [ 6.  4.]
+sketch_params = None
+snap = None
+tight_layout = False
+transform = IdentityTransform()
+transformed_clip_path_and_affine = (None, None)
+url = None
+visible = True
+window_extent = TransformedBbox(Bbox([[0.0, 0.0], [6.0, 4.0]]), Af...
+zorder = 0
+```
 
 ## Axes对象的属性
 
@@ -53,6 +100,66 @@ plt.figure()
 |title|标题|
 |xlim, ylim|X, Y轴的范围|
 |legend|显示图示|
+
+## line对象的属性
+
+```py
+line=plt.plot(x,y)
+plt.getp(line[0],'color')
+plt.setp(line[0],'color','r')
+plt.setp(line,'color','r')#setp可以对一组对象进行操作，getp只能操作一个
+```
+
+line有这些属性：  
+```py
+agg_filter = None
+alpha = None
+animated = False
+antialiased or aa = True
+axes = Axes(0.125,0.125;0.775x0.755)
+children = []
+clip_box = TransformedBbox(Bbox([[0.0, 0.0], [1.0, 1.0]]), Co...
+clip_on = True
+clip_path = None
+color or c = #1f77b4
+contains = None
+dash_capstyle = butt
+dash_joinstyle = round
+data = (array([ 0.        ,  0.66666667,  1.33333333,  2....
+drawstyle = default
+figure = Figure(432x288)
+fillstyle = full
+gid = None
+label = $cos(x^2)$
+linestyle or ls = -
+linewidth or lw = 1.5
+marker = +
+markeredgecolor or mec = #1f77b4
+markeredgewidth or mew = 1.0
+markerfacecolor or mfc = #1f77b4
+markerfacecoloralt or mfcalt = none
+markersize or ms = 6.0
+markevery = None
+path = Path(array([[ 0.        , -0.        ],        [ 0...
+path_effects = []
+picker = None
+pickradius = 5
+rasterized = None
+sketch_params = None
+snap = None
+solid_capstyle = projecting
+solid_joinstyle = round
+transform = CompositeGenericTransform(TransformWrapper(Blended...
+transformed_clip_path_and_affine = (None, None)
+url = None
+visible = True
+xdata = [ 0.          0.66666667  1.33333333  2.          ...
+xydata = [[ 0.         -0.        ]  [ 0.66666667 -0.618369...
+ydata = [-0.         -0.6183698  -0.9719379  -0.90929743 -...
+zorder = 2
+```
+
+
 
 ## plot
 
