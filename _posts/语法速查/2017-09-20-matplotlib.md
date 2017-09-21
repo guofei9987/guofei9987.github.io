@@ -7,7 +7,13 @@ keywords:
 description:
 ---
 
+
+不用面向对象方式画图，优点在于代码简单，缺点在于画多图和多子图附带各种标注时，代码很乱。  
+当然，更复杂和标注清晰的图，大部分需求场景是成熟的可视化展示，这种情况下用echart更好。  
+
+
 ## 不用面向对象方式画图的示例
+
 
 ```py
 import matplotlib.pyplot as plt
@@ -159,6 +165,7 @@ a2=plt.gca()#当前激活的axes
 ```
 
 axes对象的属性：(用plt.getp(a2)获取)
+
 ```py
 adjustable = box
 agg_filter = None
@@ -247,6 +254,25 @@ zorder = 0
 |title|标题|
 |xlim, ylim|X, Y轴的范围|
 |legend|显示图示|
+
+显示legend：ax1.legend()  
+自动调整横纵坐标：ax.autoscale_view()  
+
+#### axes对象可以包含的对象
+
+|Axes方法|所创建的对象|添加进的列表|
+|--|--|--|
+|annotate|Annotate|texts|
+|bars|Rectangle|patches|
+|errorbar|Line2D,Rectangle|lines,patches|
+|fill|Polygon|patches|
+|hist|Rectangle|patches|
+|imshow|AxesImage|images|
+|legend|Legend|legends|
+|plot|Line2D|lines|
+|scatter|PolygonCollection|Collections|
+|text|Text|texts|
+
 
 ### line
 对象信息：
@@ -440,6 +466,19 @@ n,bins,rects=ax.hist(...)
 - 这里的rects是<a list of 10 Patch objects>  
 - rects[0]是<matplotlib.patches.Rectangle at 0x1b592e47be0>  
 - ax.patches是一个list，list中的元素是<matplotlib.patches.Rectangle>
+
+示例：
+
+```py
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+f1 = plt.figure(1)
+ax = plt.subplot(111)
+n, bins, rects = ax.hist(norm.rvs(loc=0, scale=1, size=100))
+rects
+```
+
 
 
 ## 多图表&多子图
