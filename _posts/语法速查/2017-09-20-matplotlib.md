@@ -45,7 +45,7 @@ plt.show()
 
 plt.figure()
 
-先生成一个figure，在figure上生成一个Axes，在Axes上面plot  
+先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
 
 它们之间的关系参照这段代码:  
 ```py
@@ -66,10 +66,34 @@ a=plt.getp(f,'axes')[0]
 l=plt.getp(f,'lines')[0]
 ```
 
+这些对象共有的一些属性：  
+
+|关键字|解释|
+|--|--|
+|alpha|透明度|
+|animated|布尔值，用于绘制动画效果|
+|axes|所在的axes|
+|clip_box|对象的裁剪框|
+|clip_on|是否裁剪|
+|clip_path|裁剪的路径|
+|contains|判断指定点是否在对象上的函数|
+|figure|对象所在的figure|
+|label|文本标签|
+|picker|用来控制对象的选取|
+|transform|控制偏移、旋转、缩放等|
+|visible|是否可见|
+|zorder|控制绘图顺序|
+
 ### figure
 
 ```py
 f=plt.gcf()
+f=plt.figure(1)
+```
+
+figure的类型是：
+```py
+<class 'matplotlib.figure.Figure'>
 ```
 
 figure下的属性（用plt.getp(f)获取）
@@ -109,6 +133,15 @@ window_extent = TransformedBbox(Bbox([[0.0, 0.0], [6.0, 4.0]]))
 zorder = 0
 ```
 
+一些解释：  
+|属性|意义|
+|--|--|
+|axes|Axes对象列表|
+|patch|作为背景的Rectangle对象|
+|images|FigureImage对象列表，用于显示图像|
+|lines|Line2D对象列表|
+|patches|Patch对象列表|
+|text|Text对象列表，用于显示文字|
 
 ### Axes
 
@@ -122,7 +155,7 @@ zorder = 0
 ```py
 a1=plt.getp(f,'axes')#生成的是一个list
 a2=plt.gca()#当前激活的axes
-#a1[0]==a2
+
 ```
 
 axes对象的属性：(用plt.getp(a2)获取)
@@ -395,7 +428,18 @@ xdata: 1D array
 ydata: 1D array
 zorder: any number
 
+### patch
 
+bar()和hist()都是创建Patch对象列表  
+每个Patch列表中
+
+```py
+n,bins,rects=ax.hist(...)
+```
+
+- 这里的rects是<a list of 10 Patch objects>  
+- rects[0]是<matplotlib.patches.Rectangle at 0x1b592e47be0>  
+- ax.patches是一个list，list中的元素是<matplotlib.patches.Rectangle>
 
 
 ## 多图表&多子图
