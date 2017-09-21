@@ -7,7 +7,7 @@ keywords:
 description:
 ---
 
-## 不用面向对象方式的示例
+## 不用面向对象方式画图的示例
 
 ```py
 import matplotlib.pyplot as plt
@@ -27,6 +27,9 @@ plt.legend()
 
 plt.show()
 ```
+
+*linestyle&marker可以搭配使用，例如'.-'，例如'+--'*
+
 
 ## matplotlib.rcParams
 *<class 'matplotlib.RcParams'> ， 可以按照dict理解*  
@@ -213,7 +216,7 @@ zorder = 0
 |legend|显示图示|
 
 ### line
-
+对象信息：
 ```py
 <matplotlib.lines.Line2D at 0x263c9fc0a20>
 ```
@@ -223,6 +226,7 @@ zorder = 0
 ```py
 l=plt.getp(a,'lines')#是一个list
 l=plt.plot(...)#这个可以注意一下
+l=plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2)#可以直接在plot中配置参数
 ```
 
 获取line属性的方法
@@ -284,23 +288,15 @@ zorder = 2
 
 
 
-#### plot
 
-示例：  
-```py
-plt.plot(x,y,label="$sin(x)$",color='red',linewidth=2)
-```
-
-plot的参数一览：  
-
-|||
+|属性|解释|
 |--|--|
 |label|给plot的曲线一个标签名字，可以使用LaTeX|
 |color|给曲线指定颜色，可以是英文单词'red'等，也可以是16进制数'##ff0000',也可以用0~1tuple(1.0,0,0)|
 |linewidth|曲线宽度，可以不是整数|
 
 
-#### line style or marker
+#### linestyle
 
 
 |character           |description|
@@ -309,6 +305,11 @@ plot的参数一览：
 |``'--'``           | dashed line style
 |``'-.'``           | dash-dot line style
 |``':'``            | dotted line style
+
+#### marker
+
+|character           |description|
+|-------------------|-----------|
 |``'.'``            | point marker点
 |``','``            | pixel marker一个像素点
 |``'o'``            | circle marker实心圆
@@ -333,25 +334,25 @@ plot的参数一览：
 |``'_'``            | hline marker横线
 
 
-*上面的点和线可以搭配使用，例如'.-'，例如'+--'*
+
 
 
 #### color
 
-==========  ========
-character   color
-==========  ========
-'b'         blue
-'g'         green
-'r'         red
-'c'         cyan
-'m'         magenta
-'y'         yellow
-'k'         black
-'w'         white
-==========  ========
 
-#### plot的其它参数
+|character|   color|
+|--|--|
+|'b'         |blue
+|'g'         |green
+|'r'         |red
+|'c'         |cyan
+|'m'         |magenta
+|'y'         |yellow
+|'k'         |black
+|'w'         |white
+
+
+#### line的其他参数
 
 alpha: float (0.0 transparent through 1.0 opaque)
 animated: [True | False]
@@ -370,7 +371,7 @@ figure: a :class:`matplotlib.figure.Figure` instance
 fillstyle: ['full' | 'left' | 'right' | 'bottom' | 'top' | 'none']
 gid: an id string
 label: string or anything printable with '%s' conversion.
-linestyle or ls: ['solid' | 'dashed', 'dashdot', 'dotted' | (offset, on-off-dash-seq) | ``'-'`` | ``'--'`` | ``'-.'`` | ``':'`` | ``'None'`` | ``' '`` | ``''``]
+linestyle
 linewidth or lw: float value in points
 marker: :mod:`A valid marker style <matplotlib.markers>`
 markeredgecolor or mec: any matplotlib color
@@ -394,15 +395,46 @@ xdata: 1D array
 ydata: 1D array
 zorder: any number
 
-kwargs *scalex* and *scaley*, if defined, are passed on to
-:meth:`~matplotlib.axes.Axes.autoscale_view` to determine
-whether the *x* and *y* axes are autoscaled; the default is
-*True*.
 
 
 
+## 多图表&多子图
+
+- plt.figure(1)可以转换当前的画布
+- plt.sca(ax1)转换到指定的axes
 
 
+```py
+# 一个案例
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 10)
+
+plt.figure(1)
+ax1_211 = plt.subplot(221)
+ax1_212 = plt.subplot(223)
+ax1_122 = plt.subplot(122)
+
+plt.figure(2)
+ax2_211 = plt.subplot(211)
+ax2_212 = plt.subplot(212)
+
+plt.sca(ax1_211)
+plt.plot(x, np.sin(x))
+plt.sca(ax1_212)
+plt.plot(x, np.cos(x))
+plt.sca(ax1_122)
+plt.plot(x, x)
+
+plt.sca(ax2_211)
+plt.plot(x, x)
+plt.plot(x, -x)
+plt.sca(ax2_212)
+plt.plot(x, np.sin(x))
+
+plt.show()
+```
 
 
 
