@@ -34,11 +34,11 @@ plt.legend()
 plt.show()
 ```
 
-*linestyle&marker可以搭配使用，例如'.-'，例如'+--'*
+*linestyle&marker可以搭配使用，例如'.-'，例如'+--'*  
 
 
 ## matplotlib.rcParams
-*<class 'matplotlib.RcParams'> ， 可以按照dict理解*  
+*<class 'matplotlib.RcParams'> ， 可以按照dict理解*   
 存放了基本配置，这里拣选一部分进行说明：  
 
 |变量|意义|
@@ -49,7 +49,7 @@ plt.show()
 
 ## 各个对象
 
-plt.figure()
+plt.figure()  
 
 先生成一个figure，在figure上生成一个Axes，在Axes上面生成line（plot）,或者生成patch(bar&hist)  
 
@@ -140,6 +140,7 @@ zorder = 0
 ```
 
 一些解释：  
+
 |属性|意义|
 |--|--|
 |axes|Axes对象列表|
@@ -479,6 +480,15 @@ n, bins, rects = ax.hist(norm.rvs(loc=0, scale=1, size=100))
 rects
 ```
 
+### Axis
+
+```py
+fig = plt.figure(1)
+ax = fig.add_subplot(111)
+line=ax.plot([1,2,3,4,5])
+xaxis=ax.xaxis
+plt.getp(xaxis)
+```
 
 
 ## 多图表&多子图
