@@ -164,7 +164,7 @@ plt.plot(x, np.sin(x))
 
 plt.show()
 ```
-
+<img src='http://www.guofei.site/public/postimg2/matplotlib1.png'>
 
 
 
