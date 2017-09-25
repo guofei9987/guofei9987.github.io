@@ -222,8 +222,10 @@ zorder = 0
 |xlim, ylim|X, Y轴的范围|
 |legend|显示图示|
 
+### Axes的方法
 显示legend：ax1.legend()  
 自动调整横纵坐标：ax.autoscale_view()  
+不显示坐标轴：ax.set_axis_off()
 
 ### axes对象可以包含的对象
 
