@@ -549,4 +549,5 @@ fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transD
 fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#数据坐标
 ```
 
-transform=ax.transAxes与transform=ax.transData的意义参见annotate
+- transform=ax.transAxes与transform=ax.transData的意义参见annotate
+- fontname：字体，参见[这里](http://www.guofei.site/2017/09/20/matplotlib.html#title4)

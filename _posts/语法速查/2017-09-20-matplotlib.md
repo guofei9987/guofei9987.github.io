@@ -179,7 +179,7 @@ from matplotlib.font_manager import fontManager
 fontManager.ttflist
 ```
 
-2. 系统自带字体的展示
+2. 系统自带字体的展示  
 ```py
 import os
 from os import path
@@ -205,7 +205,7 @@ for font in fonts:
 plt.show()
 ```
 
-
+<img src='http://www.guofei.site/public/postimg2/matplotlib.png'>
 
 
 
