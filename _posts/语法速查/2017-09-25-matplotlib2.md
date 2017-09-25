@@ -38,3 +38,22 @@ plt.show()
 ```
 
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_1.png'>
+
+## 极坐标绘图
+
+仅需要这样：
+```py
+plt.subplot(111,polar=True)
+```
+
+程序示例：
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+theta=np.linspace(0,2*np.pi,100)
+rho=1-np.sin(theta)
+plt.subplot(111,polar=True)
+plt.plot(theta,rho)
+plt.show()
+```
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_2.png'>
