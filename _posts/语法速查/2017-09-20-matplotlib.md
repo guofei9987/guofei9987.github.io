@@ -180,7 +180,6 @@ fontManager.ttflist
 ```
 
 2. 系统自带字体的展示  
-
 ```py
 import os
 from os import path
