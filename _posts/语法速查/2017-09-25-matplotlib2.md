@@ -36,3 +36,5 @@ plt.loglog(x,y)
 
 plt.show()
 ```
+
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_1.png'>
