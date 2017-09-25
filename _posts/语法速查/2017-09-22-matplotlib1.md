@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【语法速查】【Python】matplotlib面向对象方式绘图
+title: 【Python】【matplotlib】面向对象方式绘图
 categories: Geek
 tags: 语法速查
 keywords:

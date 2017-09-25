@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【语法速查】【Python】matplotlib绘图
+title: 【Python】【matplotlib】绘图
 categories: Geek
 tags: 语法速查
 keywords:
@@ -11,7 +11,7 @@ description:
 
 
 
-## 不用面向对象方式画图的示例
+## 示例
 
 
 ```py
