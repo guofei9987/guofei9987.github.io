@@ -37,11 +37,12 @@ a=plt.getp(f,'axes')[0]
 l=plt.getp(f,'lines')[0]
 ```
 
+### 共有属性
 这些对象共有的一些属性：  
 
 |关键字|解释|
 |--|--|
-|alpha|透明度|
+|alpha|透明度，0~1|
 |animated|布尔值，用于绘制动画效果|
 |axes|所在的axes|
 |clip_box|对象的裁剪框|
@@ -53,9 +54,9 @@ l=plt.getp(f,'lines')[0]
 |picker|用来控制对象的选取|
 |transform|控制偏移、旋转、缩放等|
 |visible|是否可见|
-|zorder|控制绘图顺序|
+|zorder|控制绘图顺序,any number|
 
-### figure
+## figure
 
 ```py
 f=plt.gcf()
@@ -115,7 +116,7 @@ zorder = 0
 |patches|Patch对象列表|
 |text|Text对象列表，用于显示文字|
 
-### Axes
+## Axes
 
 对象信息：
 ```py
@@ -224,7 +225,7 @@ zorder = 0
 显示legend：ax1.legend()  
 自动调整横纵坐标：ax.autoscale_view()  
 
-#### axes对象可以包含的对象
+### axes对象可以包含的对象
 
 |Axes方法|所创建的对象|添加进的列表|
 |--|--|--|
@@ -240,7 +241,7 @@ zorder = 0
 |text|Text|texts|
 
 
-### line
+## line
 对象信息：
 ```py
 <matplotlib.lines.Line2D at 0x263c9fc0a20>
@@ -321,7 +322,7 @@ zorder = 2
 |linewidth|曲线宽度，可以不是整数|
 
 
-#### linestyle
+### linestyle
 
 
 |character           |description|
@@ -331,7 +332,7 @@ zorder = 2
 |``'-.'``           | dash-dot line style
 |``':'``            | dotted line style
 
-#### marker
+### marker
 
 |character           |description|
 |-------------------|-----------|
@@ -362,7 +363,7 @@ zorder = 2
 
 
 
-#### color
+### color
 
 
 |character|   color|
@@ -377,16 +378,14 @@ zorder = 2
 |'w'         |white
 
 
-#### line的其他参数
+### line的其他参数
 
-alpha: float (0.0 transparent through 1.0 opaque)
-animated: [True | False]
+```py
 antialiased or aa: [True | False]
 axes: an :class:`~matplotlib.axes.Axes` instance
 clip_box: a :class:`matplotlib.transforms.Bbox` instance
 clip_on: [True | False]
 clip_path: [ (:class:`~matplotlib.path.Path`, :class:`~matplotlib.transforms.Transform`) | :class:`~matplotlib.patches.Patch` | None ]
-color or c: any matplotlib color
 contains: a callable function
 dash_capstyle: ['butt' | 'round' | 'projecting']
 dash_joinstyle: ['miter' | 'round' | 'bevel']
@@ -397,8 +396,6 @@ fillstyle: ['full' | 'left' | 'right' | 'bottom' | 'top' | 'none']
 gid: an id string
 label: string or anything printable with '%s' conversion.
 linestyle
-linewidth or lw: float value in points
-marker: :mod:`A valid marker style <matplotlib.markers>`
 markeredgecolor or mec: any matplotlib color
 markeredgewidth or mew: float value in points
 markerfacecolor or mfc: any matplotlib color
@@ -415,12 +412,11 @@ solid_capstyle: ['butt' | 'round' |  'projecting']
 solid_joinstyle: ['miter' | 'round' | 'bevel']
 transform: a :class:`matplotlib.transforms.Transform` instance
 url: a url string
-visible: [True | False]
 xdata: 1D array
 ydata: 1D array
-zorder: any number
+```
 
-### patch
+## patch
 
 bar()和hist()都是创建Patch对象列表  
 每个Patch列表中
@@ -445,7 +441,7 @@ n, bins, rects = ax.hist(norm.rvs(loc=0, scale=1, size=100))
 rects
 ```
 
-### Axis
+## Axis
 
 ```py
 fig = plt.figure(1)
