@@ -125,7 +125,13 @@ o = ax.annotate("intersection area",
 plt.show()
 ```
 
+<img src='http://www.guofei.site/public/postimg2/matplotlib1.png'>
 
+
+涉及知识点：  
+1. ax.annotate()，详解见于[这里](http://www.guofei.site/2017/09/22/matplotlib1.html#title12)
+2. fill_between()，看代码容易理解
+3. trans
 
 ## 多图表&多子图
 
@@ -164,8 +170,6 @@ plt.plot(x, np.sin(x))
 
 plt.show()
 ```
-<img src='http://www.guofei.site/public/postimg2/matplotlib1.png'>
-
 
 
 

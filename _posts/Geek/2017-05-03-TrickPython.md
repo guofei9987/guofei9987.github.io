@@ -113,3 +113,31 @@ df['col1'].value_counts()#对Series计数
 mask=((df.col1>0.5)+(df.col2<0.8)+(df.col3>0.3)+(df.col4>0.3)+(df.col5<0.3)>=2)
 df[mask]
 ```
+
+## 6
+
+问题：两个连续函数func1, func2有若干交点，求交点的近似位置  
+
+解答：也就是两函数差的零点，连续两点变号，再用直线近似  
+
+```py
+import numpy as np
+
+def func1(x):
+    return 0.6 * x + 0.3
+
+
+def func2(x):
+    return 0.4 * x * x + 0.1 * x + 0.2
+
+x=np.linspace(-3,3,10000)
+f1=func1(x)
+f2=func2(x)
+
+d=f1-f2
+idx=np.where(d[:-1]*d[1:]<=0)[0]
+x1,x2=x[idx],x[idx+1]
+d1,d2=d[idx],d[idx+1]
+
+-y1*(x2-x1)/(d2-d1)+x1
+```

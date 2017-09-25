@@ -528,12 +528,12 @@ annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
 
 |属性值|解释|
 |--|--|
-|figure_points||
-|figure_pixels||
-|figure_fraction||
-|axes_points||
-|axes_pixels||
-|axes_fraction||
-|data||
-|offset_points||
-|polar||
+|figure_points|以点为单位，相对于图表左下角的坐标|
+|figure_pixels|以像素为单位，相对于图表左下角的坐标|
+|figure_fraction|图表坐标系中的坐标|
+|axes_points|以点为单位，相对于子图左下角的坐标|
+|axes_pixels|以像素为单位，相对于子图左下角的坐标|
+|axes_fraction|子图坐标系中的坐标|
+|data|数据坐标系中的坐标|
+|offset_points|以点为单位，相对于点xy的坐标|
+|polar|数据坐标系中的极坐标|
