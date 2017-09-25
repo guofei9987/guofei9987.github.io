@@ -57,3 +57,41 @@ plt.plot(theta,rho)
 plt.show()
 ```
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_2.png'>
+
+## bar
+
+就是bar啦！
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([1, 2, 3, 4, 5])
+y1 = x
+y2 = x ** 1.5
+
+width = 0.2
+plt.bar(x, y1, width)
+plt.bar(x + width, y2, width)
+plt.show()
+```
+
+这里做了个小技巧，用width作为偏移，画出多个bar
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_3.png'>
+
+## scatter
+
+scatter与plot的不同是，scatter可以分别指定每个点的`大小`和`颜色`
+```py
+import matplotlib.pyplot as plt
+from scipy.stats import uniform
+
+rv=uniform(loc=0,scale=1)
+
+x=rv.rvs(size=100)
+y=rv.rvs(size=100)
+
+plt.scatter(x,y,s=x*1000,c=y,marker=(5,1))
+plt.show()
+```
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_4.png'>
