@@ -95,3 +95,12 @@ plt.scatter(x,y,s=x*1000,c=y,marker=(5,1))
 plt.show()
 ```
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_4.png'>
+
+按照输入顺序，scatter的输入值分别代表：
+1. 每个点的X坐标
+2. 每个点的Y坐标
+3. s参数指定点的大小（值和点的面积成正比）
+4. c参数指定点的颜色，可以是数值或数据。
+    - 如果是数值则自动调用颜色映射表
+    - 如果是(N,3)或(N,4)数组，则代表RGB颜色
+5. marker
