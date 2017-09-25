@@ -524,6 +524,8 @@ annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
 - xy:箭头处的坐标
 - xytext:注释文本的坐标
 - xycoords&textcoords都是字符串
+
+
 |属性值|解释|
 |--|--|
 |figure_points||
