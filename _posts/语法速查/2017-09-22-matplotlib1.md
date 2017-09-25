@@ -511,3 +511,27 @@ zorder = 0
 |--|--|
 |ticklocs|刻度位置|
 |ticklabels|刻度对应的文字|
+
+## annotate
+
+用来绘制带箭头的注释文字  
+
+```py
+annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
+```
+
+- s:注释文本
+- xy:箭头处的坐标
+- xytext:注释文本的坐标
+- xycoords&textcoords都是字符串
+|属性值|解释|
+|--|--|
+|figure_points||
+|figure_pixels||
+|figure_fraction||
+|axes_points||
+|axes_pixels||
+|axes_fraction||
+|data||
+|offset_points||
+|polar||
