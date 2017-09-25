@@ -523,17 +523,30 @@ annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
 - s:注释文本
 - xy:箭头处的坐标
 - xytext:注释文本的坐标
-- xycoords&textcoords都是字符串
+- xycoords&textcoords都是字符串, 解释在下表
 
 
 |属性值|解释|
 |--|--|
-|figure_points|以点为单位，相对于图表左下角的坐标|
-|figure_pixels|以像素为单位，相对于图表左下角的坐标|
-|figure_fraction|图表坐标系中的坐标|
-|axes_points|以点为单位，相对于子图左下角的坐标|
-|axes_pixels|以像素为单位，相对于子图左下角的坐标|
-|axes_fraction|子图坐标系中的坐标|
+|figure points|以点为单位的坐标，图表左下角的坐标(0,0)|
+|figure pixels|以像素为单位的坐标，图表左下角为(0,0)|
+|figure fraction|图表坐标系中的坐标，左下角是(0,0)，右上角是(1,1)|
+|axes points|以点为单位的坐标，子图左下角的坐标(0,0)|
+|axes pixels|以像素为单位的坐标，子图左下角的坐标(0,0)|
+|axes fraction|子图坐标系中的坐标,左下角是(0,0),右上角是(1,1)|
 |data|数据坐标系中的坐标|
-|offset_points|以点为单位，相对于点xy的坐标|
+|offset points|以点为单位，相对于点xy的坐标|
 |polar|数据坐标系中的极坐标|
+
+## test
+
+用来绘制文字
+
+```py
+ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
+ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#数据坐标
+fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
+fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#数据坐标
+```
+
+transform=ax.transAxes与transform=ax.transData的意义参见annotate
