@@ -76,7 +76,7 @@ plt.show()
 
 这里有两个点：
 1. fig.canvas.draw_idle()重新绘制整个图表
-2. fig.canvas.mpl_disconnect()取消已经注册的响应函数
+2. fig.canvas.mpl_disconnect()取消已经注册的响应函数。这里是为了取消默认快捷键
 
 ### 程序示例
 
