@@ -181,3 +181,44 @@ plt.show()
 ```
 
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_6.png'>
+
+
+需要注意的是，由于源数据是离散值，所以等高图在某些区域是离散的片段，但实际上应当是连续值。  
+
+## 箭头图
+
+```py
+quiver(X,Y,U,V,C)
+```
+- X, Y代表箭头起点的坐标
+- U, V代表箭头对应的向量
+- C代表颜色
+
+
+### 示例
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def f(x, y):
+    return x * np.exp(-x ** 2 - y ** 2)
+
+
+def dev_f(f, x, y, dx=1e-6, dy=1e-6):
+    v = f(x, y)
+    vx = (f(x + dx, y) - v) / dx
+    vy = (f(x, y + dy) - v) / dy
+    return vx, vy
+
+
+X, Y = np.meshgrid(np.linspace(-2, 2, 20), np.linspace(-2, 2, 20))
+U, V = dev_f(f, X, Y)
+C = f(X, Y)
+
+plt.quiver(X, Y, U, V, C)
+plt.colorbar()
+plt.show()
+```
+
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_7.png'>
