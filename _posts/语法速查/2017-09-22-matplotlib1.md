@@ -546,9 +546,9 @@ annotate(s,xy,xytext,xycoords='data',textcoords='data',arrowprops=None)
 
 ```py
 ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
-ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#数据坐标
+ax.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#Axes内坐标，左下是(0,0)，右上是(1,1)
 fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transData)#数据坐标
-fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#数据坐标
+fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes)#Figure内坐标，左下是(0,0)，右上是(1,1)
 ```
 
 - transform=ax.transAxes与transform=ax.transData的意义参见annotate
