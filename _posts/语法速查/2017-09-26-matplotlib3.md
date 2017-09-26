@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【matplotlib】鼠标响应事件
+title: 【Python】【matplotlib】键鼠响应事件
 categories: Geek
 tags: 语法速查
 keywords:
@@ -24,7 +24,8 @@ plt.show()
 这段程序的功能是响应键盘按键，print按键的值  
 
 
-mpl_connect的参数：
+mpl_connect的参数：  
+
 |参数|意义|
 |--|--|
 |'button_press_event'|按下鼠标|
