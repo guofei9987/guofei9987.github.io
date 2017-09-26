@@ -18,7 +18,8 @@ semilogy()
 loglog()
 ```
 
-程序示例：
+### 示例
+
 ```py
 import numpy as np
 import matplotlib.pyplot as plt
@@ -46,7 +47,7 @@ plt.show()
 plt.subplot(111,polar=True)
 ```
 
-程序示例：
+### 示例
 ```py
 import numpy as np
 import matplotlib.pyplot as plt
@@ -133,7 +134,8 @@ contour()#等高线
 contourf()#带填充效果的等高线
 ```
 
-示例：  
+### 示例1
+
 ```py
 import matplotlib.pyplot as plt
 import numpy as np
@@ -156,3 +158,26 @@ plt.show()
 
 ```
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_5.png'>
+
+
+### 示例2：隐函数的解
+
+加入levels这个参数，可以画出对应的等高图，依次来画出隐函数的解，  
+下面的代码是画出$f=(X^2 + Y^2) ** 4 - (X^2 - Y^2) ^2$, 在$f=0,f=0.5$处的解。   
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(-1.5, 1.5, 100)
+y = np.linspace(-1.5, 1.5, 80)
+X, Y = np.meshgrid(x, y)
+Z = (X ** 2 + Y ** 2) ** 4 - (X ** 2 - Y ** 2) ** 2
+
+ax = plt.subplot(111)
+cs = ax.contour(X, Y, Z, 10, levels=[0, 1], colors=['b', 'r'], linestyles=['-', ':'], linewidths=[2, 2])
+
+plt.clabel(cs)
+plt.show()
+```
+
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_6.png'>
