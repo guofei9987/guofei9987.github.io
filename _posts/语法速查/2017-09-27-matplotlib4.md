@@ -115,6 +115,7 @@ step3: 保存
 ```py
 ani.save('test.mp4',fps=25)
 ```
-效果
+
+效果:  
 <video src="http://www.guofei.site/public/postimg2/matplotlib4_1.mp4" controls="controls">
 </video>
