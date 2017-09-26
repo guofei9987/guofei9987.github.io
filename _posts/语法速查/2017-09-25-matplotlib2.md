@@ -126,3 +126,33 @@ img=plt.imread('unicorn.png')
 - C=3&4是颜色通道
 对于灰度图像，返回的array，大小是(M,N)  
 img取值范围是0~1
+
+## 等高图
+```py
+contour()#等高线
+contourf()#带填充效果的等高线
+```
+
+示例：  
+```py
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import cm
+
+x = np.linspace(-3.0, 3.0, 100)
+y = np.linspace(-2.0, 2.0, 80)
+X, Y = np.meshgrid(x, y)
+Z = X * np.exp(-X ** 2 - Y ** 2)
+
+fig = plt.figure(1)
+ax1 = plt.subplot(121)
+ax2 = plt.subplot(122)
+cs1 = ax1.contour(X, Y, Z, 10)
+cs2 = ax2.contourf(X, Y, Z, 10, cmap=cm.PuBu_r)
+
+cbar = fig.colorbar(cs2)  # 在figure上添加cs2对应的颜色条
+plt.clabel(cs1)  # 在cs1的等高线上添加数字
+plt.show()
+
+```
+<img src='http://www.guofei.site/public/postimg2/matplotlib3_5.png'>
