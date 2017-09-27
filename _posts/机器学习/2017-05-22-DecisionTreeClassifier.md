@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【决策树】理论与实现
+title: 【Decision Tree】理论与实现
 categories: 算法
 tags: 机器学习
 keywords: Decision Tree Classifier

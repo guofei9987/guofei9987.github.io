@@ -122,7 +122,8 @@ for 第i次迭代
 
 ## Python实现（sklearn）
 
-用到sklearn中的两个模型
+用到sklearn中的两个模型  
+
 [RandomizedLogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RandomizedLogisticRegression.html)用来筛选变量  
 [LogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)用来做逻辑回归  
 
