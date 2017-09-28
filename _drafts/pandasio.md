@@ -45,7 +45,7 @@ a=df[0:3]#a是DataFrame，含头不含尾
 ```
 
 - 选取行列：loc
-
+loc的输入是index名和columns名
 ```python
 df.loc['a':'b']#选取ab两行数据，返回DataFrame
 df.loc['a':'b','one']#选取one列的数据，返回Series
