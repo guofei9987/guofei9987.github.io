@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【matplotlib】动画
 categories: Geek
-tags: 语法速查
+tags: 可视化
 keywords:
 description:
 ---
