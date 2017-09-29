@@ -1456,11 +1456,11 @@ dt {
     font-style: italic
 }
 
-dd {
+dt {
     margin-left: 0
 }
 
-dt {
+dd {
     margin-left: 5em
 }
 
