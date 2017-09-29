@@ -1461,7 +1461,7 @@ dd {
 }
 
 dt {
-    margin-left: 5
+    margin-left: 5px
 }
 
 @media (min-width:768px){.dl-horizontal dt {
