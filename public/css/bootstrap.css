@@ -1452,7 +1452,8 @@ dt, dd {
 }
 
 dt {
-    font-weight: bold
+    font-weight: bold;
+    font-style: italic
 }
 
 dd {
