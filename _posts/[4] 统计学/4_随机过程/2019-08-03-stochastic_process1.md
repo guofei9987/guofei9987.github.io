@@ -99,3 +99,27 @@ properties：
 
 
 week 1.8 week 1.9 有几个漂亮的定理，可以再复习一下
+
+
+--------------------
+
+另一个：
+
+
+## 教材板块
+
+1. Poisson Processes
+2. Finite-state Markov Chains
+3. Renewal Processes
+4. Countable-state Markov Chains
+5. Markov Processes with countable state spaces
+6. Random Walks
+
+
+## coursra
+
+https://www.coursera.org/learn/stochasticprocesses
+
+这个课一直在堆公式
+
+## 交大课程
