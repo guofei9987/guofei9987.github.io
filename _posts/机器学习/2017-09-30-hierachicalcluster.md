@@ -24,3 +24,53 @@ step4：根据需要，或根据距离临界值（阈值）确定分类数和分
 
 ## 特点
 计算量巨大，例如，100个样本点，第一轮要计算$C_{100}^2$次，第二轮$C_{99}^2$次（如果第1轮的没出现2个相等的最小距离）
+
+```py
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+centers = [[0, 0, 0, 8], [8, 0, 8, 0], [0, 8, 0, 0]]
+columns_name = ['x1', 'x2', 'x3', 'x4']
+data = pd.DataFrame()
+for center in centers:
+    data_temp = pd.DataFrame()
+    for idx, j in enumerate(center):
+        data_temp = pd.concat([data_temp, pd.DataFrame({columns_name[idx]: np.random.normal(j, size=50)})], axis=1)
+    data = pd.concat([data, data_temp], ignore_index=True)
+
+m, n = data.shape
+k = 3  # 要聚成这么多类
+
+# from sklearn.cluster import KMeans
+#
+# kmeans = KMeans(n_clusters=k)
+# kmeans.fit(data)
+from sklearn.cluster import AgglomerativeClustering #导入sklearn的层次聚类函数
+model = AgglomerativeClustering(n_clusters = k, linkage = 'ward')
+model.fit(data) #训练模型
+
+labels = model.labels_  # 原样本所在的类
+
+import seaborn as sns
+
+fig, ax = plt.subplots(k, n, sharex=True)  # 共享x坐标的范围
+for i in range(k):
+    for j in range(n):
+        sns.distplot(data.loc[labels == i, data.columns[j]], hist=False, ax=ax[i, j])
+
+fig2, ax2 = plt.subplots(k, 1, sharex=True,sharey=True)
+for i in range(k):
+    data_temp = data.loc[labels == i, :]
+    m_temp, n_temp = data_temp.shape
+    for j in range(m_temp):
+        ax2[i].plot(list(data_temp.iloc[j, :]), color='r')
+        plt.xticks(range(n_temp), data_temp.columns)
+plt.show()
+```
+
+图与kmeans很像了  
+
+<img src='http://www.guofei.site/public/postimg/kmeans5.png'>  
+
+<img src='http://www.guofei.site/public/postimg/kmeans6.png'>  
