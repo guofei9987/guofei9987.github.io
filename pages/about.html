@@ -32,7 +32,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
 </ol>
 </p>
 
-<div id="main" style="width: 600px;height:400px;"></div>
+<div id="main" style="width: 900px;height:600px;"></div>
  <script type="text/javascript">
      var myChart = echarts.init(document.getElementById('main'));
      option = {
@@ -183,6 +183,27 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                                  color: 'red'
                              }
                          }
+                     },
+                     {
+                         name: 'SPG审稿员',
+                         des: 'SPG旗下Journal of Finance and Accounting学术杂志的审稿员<br/>',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }
+                     ,
+                     {
+                         name: '金融论文3篇',
+                         des: '其中2篇外刊，ISTP检索<br/>',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
                      }
                  ],
                  links: [
@@ -228,13 +249,13 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                          target: '智能算法',
                          name: "会手写"
                      }, {
-                         source: '祁同伟',
-                         target: '陈海',
-                         name: "师哥"
+                         source: '我',
+                         target: 'SPG审稿员',
+                         name: "学术刊物审稿员"
                      }, {
-                         source: '祁同伟',
-                         target: '侯亮平',
-                         name: "师哥"
+                         source: '我',
+                         target: '金融论文3篇',
+                         name: "全是一作"
                      }, {
                          source: '侯亮平',
                          target: '陈海',
