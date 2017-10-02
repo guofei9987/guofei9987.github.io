@@ -28,15 +28,15 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
 <h3>点亮技能</h3>
 <p >
 <ol>
-<li style='font-size:18px'></li>
+
 </ol>
 </p>
 
-<div id="main" style="width: 900px;height:600px;"></div>
+<div id="main" style="width: 1200px;height:800px;"></div>
  <script type="text/javascript">
      var myChart = echarts.init(document.getElementById('main'));
      option = {
-         title: { text: '我是谁' },
+         title: { text: '' },
          tooltip: {
              formatter: function (x) {
                  return x.data.des;
@@ -103,7 +103,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: '数学建模',
                          des: '2007年全国数学建模竞赛上海赛区一等奖<br/>',
-                         symbolSize: 100,
+                         symbolSize: 90,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -112,6 +112,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      }, {
                          name: 'Python',
                          des: 'scipy 1.0.0 的作者之一<br/>十万行代码',
+                         symbolSize: 100,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -205,6 +206,28 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                              }
                          }
                      }
+                     ,
+                     {
+                         name: '中国精算师',
+                         des: '已通过4门<br/>',
+                         symbolSize: 70,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }
+                     ,
+                     {
+                         name: 'scipy作者之一',
+                         des: '修改过scipy的一个插值函数<br/>',
+                         symbolSize: 120,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }
                  ],
                  links: [
                      {
@@ -213,7 +236,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                          name: '深入',
                          des: '两个领域'
                      }, {
-                         source: '我',
+                         source: '数学',
                          target: '数学建模',
                          name: '精通'
                      }, {
@@ -223,7 +246,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      }, {
                          source: '我',
                          target: 'Python',
-                         name: "Python"
+                         name: "精通"
                      }, {
                          source: '我',
                          target: 'Matlab',
@@ -241,13 +264,13 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                          target: '会计',
                          name: "从业证"
                      }, {
-                         source: '我',
+                         source: '金融',
                          target: '中级经济师',
                          name: "中级职称"
                      }, {
                          source: '我',
                          target: '智能算法',
-                         name: "会手写"
+                         name: "会手写多种"
                      }, {
                          source: '我',
                          target: 'SPG审稿员',
@@ -257,17 +280,17 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                          target: '金融论文3篇',
                          name: "全是一作"
                      }, {
-                         source: '侯亮平',
-                         target: '陈海',
-                         name: "同学，生死朋友"
+                         source: '金融',
+                         target: '中国精算师',
+                         name: "通过一半"
                      }, {
-                         source: '高育良',
-                         target: '吴惠芬',
-                         name: "夫妻"
+                         source: '数学',
+                         target: '中国精算师',
+                         name: "通过一半"
                      }, {
-                         source: '陈海',
-                         target: '赵东来',
-                         name: "朋友"
+                         source: 'Python',
+                         target: 'scipy作者之一',
+                         name: "scipy作者"
                      }, {
                          source: '高小琴',
                          target: '高小凤',
