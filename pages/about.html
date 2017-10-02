@@ -32,6 +32,349 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
 </ol>
 </p>
 
+<div id="main" style="width: 1200px;height:800px;"></div>
+ <script type="text/javascript">
+     var myChart = echarts.init(document.getElementById('main'));
+     option = {
+         title: { text: '我是谁' },
+         tooltip: {
+             formatter: function (x) {
+                 return x.data.des;
+             }
+         },
+         series: [
+             {
+                 type: 'graph',
+                 layout: 'force',
+                 symbolSize: 80,
+                 roam: true,
+                 edgeSymbol: ['circle', 'arrow'],
+                 edgeSymbolSize: [4, 10],
+                 edgeLabel: {
+                     normal: {
+                         textStyle: {
+                             fontSize: 20
+                         }
+                     }
+                 },
+                 force: {
+                     repulsion: 2500,
+                     edgeLength: [10, 50]
+                 },
+                 draggable: true,
+                 itemStyle: {
+                     normal: {
+                         color: '#4b565b'
+                     }
+                 },
+                 lineStyle: {
+                     normal: {
+                         width: 2,
+                         color: '#4b565b'
+
+                     }
+                 },
+                 edgeLabel: {
+                     normal: {
+                         show: true,
+                         formatter: function (x) {
+                             return x.data.name;
+                         }
+                     }
+                 },
+                 label: {
+                     normal: {
+                         show: true,
+                         textStyle: {
+                         }
+                     }
+                 },
+                 data: [
+                   {
+                       name: '我',
+                       des: '邮箱联系我me@guofei.site<br/>',
+                       symbolSize: 120,
+                       itemStyle: {
+                           normal: {
+                               color: 'b'
+                           }
+                       }
+                   },
+                     {
+                         name: '数学建模',
+                         des: '2007年全国数学建模竞赛上海赛区一等奖<br/>',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }, {
+                         name: 'Python',
+                         des: 'scipy 1.0.0 的作者之一<br/>十万行代码',
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }, {
+                         name: 'Matlab',
+                         des: '读研期间，以自由业者的身份做过100多个Matlab项目<br/>40万行代码',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+
+                     }, {
+                         name: '数学',
+                         des: '上海大学数学系毕业，<br/>多次获得奖学金',
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }, {
+                         name: '机器学习',
+                         des: '大型国企从事机器学习算法两年',
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     },
+                     {
+                         name: '金融',
+                         des: '有证券期货全部8张从业证<br/>',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     },
+                     {
+                         name: '会计',
+                         des: '会计从业证<br/>',
+                         symbolSize: 50,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     },
+                     {
+                         name: '中级经济师',
+                         des: '中级职称<br/>',
+                         symbolSize: 80,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     },
+                     {
+                         name: '智能算法',
+                         des: '会手写遗传算法，蚁群算法等等<br/>',
+                         symbolSize: 100,
+                         itemStyle: {
+                             normal: {
+                                 color: 'red'
+                             }
+                         }
+                     }
+                 ],
+                 links: [
+                     {
+                         source: '数学建模',
+                         target: '机器学习',
+                         name: '深入',
+                         des: '两个领域'
+                     }, {
+                         source: '我',
+                         target: '数学建模',
+                         name: '精通'
+                     }, {
+                         source: '我',
+                         target: '机器学习',
+                         name: "精通"
+                     }, {
+                         source: '我',
+                         target: 'Python',
+                         name: "Python"
+                     }, {
+                         source: '我',
+                         target: 'Matlab',
+                         name: "精通"
+                     }, {
+                         source: '我',
+                         target: '数学',
+                         name: "科班出身"
+                     }, {
+                         source: '我',
+                         target: '金融',
+                         name: "科班出身"
+                     }, {
+                         source: '我',
+                         target: '会计',
+                         name: "从业证"
+                     }, {
+                         source: '我',
+                         target: '中级经济师',
+                         name: "中级职称"
+                     }, {
+                         source: '我',
+                         target: '智能算法',
+                         name: "会手写"
+                     }, {
+                         source: '祁同伟',
+                         target: '陈海',
+                         name: "师哥"
+                     }, {
+                         source: '祁同伟',
+                         target: '侯亮平',
+                         name: "师哥"
+                     }, {
+                         source: '侯亮平',
+                         target: '陈海',
+                         name: "同学，生死朋友"
+                     }, {
+                         source: '高育良',
+                         target: '吴惠芬',
+                         name: "夫妻"
+                     }, {
+                         source: '陈海',
+                         target: '赵东来',
+                         name: "朋友"
+                     }, {
+                         source: '高小琴',
+                         target: '高小凤',
+                         name: "双胞胎",
+                         symbolSize: '1'
+                     }, {
+                         source: '赵东来',
+                         target: '陆亦可',
+                         name: "爱慕"
+                     }, {
+                         source: '祁同伟',
+                         target: '程度',
+                         name: "领导"
+                     }, {
+                         source: '高育良',
+                         target: '高小凤',
+                         name: "情人"
+                     }, {
+                         source: '赵瑞龙',
+                         target: '祁同伟',
+                         name: "勾结",
+                         symbolSize: '1',
+                     }, {
+                         source: '李达康',
+                         target: '赵东来',
+                         name: "领导"
+                     }, {
+                         source: '赵瑞龙',
+                         target: '程度',
+                         name: "领导"
+                     }, {
+                         source: '沙瑞金',
+                         target: '李达康',
+                         name: "领导"
+                     }, {
+                         source: '沙瑞金',
+                         target: '高育良',
+                         name: "领导"
+                     }, {
+                         source: '祁同伟',
+                         target: '梁璐',
+                         name: "夫妻"
+                     }, {
+                         source: '吴惠芬',
+                         target: '梁璐',
+                         name: "朋友"
+                     }, {
+                         source: '李达康',
+                         target: '欧阳菁',
+                         name: "夫妻"
+                     }, {
+                         source: '赵瑞龙',
+                         target: '刘新建',
+                         name: "洗钱工具"
+                     }, {
+                         source: '赵瑞龙',
+                         target: '高小琴',
+                         name: "勾结，腐化",
+                         symbolSize: '1'
+                     }, {
+                         source: '赵瑞龙',
+                         target: '高小凤',
+                         name: "腐化"
+                     }, {
+                         source: '吴心怡',
+                         target: '陆亦可',
+                         name: "母女"
+                     }, {
+                         source: '吴心怡',
+                         target: '吴惠芬',
+                         name: "姐妹"
+                     }, {
+                         source: '蔡成功',
+                         target: '侯亮平',
+                         name: "发小"
+                     }, {
+                         source: '蔡成功',
+                         target: '欧阳菁',
+                         name: "举报",
+                         lineStyle: {
+                             normal: {
+                                 type: 'dotted',
+                                 color: '#000'
+                             }
+                         }
+                     }, {
+                         source: '欧阳菁',
+                         target: '刘新建',
+                         name: "举报",
+                         lineStyle: {
+                             normal: {
+                                 type: 'dotted',
+                                 color: '#000'
+                             }
+                         }
+                     }, {
+                         source: '刘新建',
+                         target: '赵瑞龙',
+                         name: "举报",
+                         lineStyle: {
+                             normal: {
+                                 type: 'dotted',
+                                 color: '#000'
+                             }
+                         }
+                     }, {
+                         source: '李达康',
+                         target: '丁义珍',
+                         name: "领导"
+                     }, {
+                         source: '高小琴',
+                         target: '丁义珍',
+                         name: "策划出逃"
+                     }, {
+                         source: '祁同伟',
+                         target: '丁义珍',
+                         name: "勾结"
+                     }, {
+                         source: '赵瑞龙',
+                         target: '丁义珍',
+                         name: "勾结"
+                     }]
+             }
+         ]
+     };
+     myChart.setOption(option);
+ </script>
+
 
 <h3>然后就是一些我的联系方式...</h3>
 
