@@ -235,6 +235,12 @@ Image(graph.create_png())
 结果：  
 <img src='http://www.guofei.site/public/postimg/decisiontree1.png'>
 
+预测  
+```py
+clf.predict(train_data)
+clf.predict_proba(train_data)
+```
+
 ## 用CART拟合的例子
 由于使用的是gini idex生成决策树，因此y可以是连续变量，所以可以做拟合。  
 先用模拟法生成数据  

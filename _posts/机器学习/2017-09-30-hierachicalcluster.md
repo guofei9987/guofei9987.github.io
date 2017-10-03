@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 层次聚类理论偏.
+title: 【层次聚类】理论与实现.
 categories: 算法
 tags: 机器学习
 keywords:
