@@ -166,12 +166,16 @@ $BS=\dfrac{1}{N} \sum(\hat p-y)^2$
 
 ## Python实现
 
-### 计算主要指标
+### 主要指标
 ```py
 print(metrics.classification_report(test_target, test_est))#计算评估指标
 ```
 功能：  
 打印这四个指标：precision    recall  f1-score   support
+
+### 混淆矩阵
+
+参见[SVM](http://www.guofei.site/2017/09/28/svm.html#title8)
 
 ### ROC
 ```py
@@ -189,3 +193,7 @@ plt.title('ROC curve')
 ### 其他评价1
 
 见于[kmeans方法](http://www.guofei.site/2017/06/09/kmeans.html#title8)
+
+## 模型保存与载入
+
+参见[SVM](http://www.guofei.site/2017/09/28/svm.html#title8)

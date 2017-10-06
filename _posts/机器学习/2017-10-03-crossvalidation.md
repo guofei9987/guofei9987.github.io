@@ -56,8 +56,50 @@ step2：选定模型后，在5个模型中选一个误差最小的
 
 ## 代码实现
 
+### 划分训练集和测试集
+
 ```py
 train_data,test_data,train_target,test_target=cross_validation.train_test_split(data,target,test_size=0.4,train_size=0.6,random_state=12345)#划分训练集和测试集
 ```
 
 (下个版本会删掉这个方法,用sklearn.model_selection 代替)
+
+### 交叉验证
+```py
+lr = linear_model.LogisticRegression()
+lr_scores = cross_validation.cross_val_score(lr, train_data, train_target, cv=5)#cv=5:5倍交叉验证
+print("logistic regression accuracy:")
+print(lr_scores)
+
+clf = tree.DecisionTreeClassifier(criterion='entropy', max_depth=8, min_samples_split=5)
+clf_scores = cross_validation.cross_val_score(clf, train_data, train_target, cv=5)
+print("decision tree accuracy:")
+print(clf_scores)
+
+svc_scores = cross_validation.cross_val_score(svc, train_data, train_target, cv=5)
+print("svm classifier accuracy:")
+print(svc_scores)
+
+abc_scores = cross_validation.cross_val_score(abc, train_data, train_target, cv=5)
+print("abc classifier accuracy:")
+print(abc_scores)
+
+rfc_scores = cross_validation.cross_val_score(rfc, train_data, train_target, cv=5)
+print("random forest accuracy:")
+print(rfc_scores)
+```
+
+输出：  
+
+```
+logistic regression accuracy:
+[ 0.67142857  0.66607143  0.6625      0.65357143  0.65119048]
+decision tree accuracy:
+[ 0.73809524  0.75654762  0.74047619  0.73214286  0.7375    ]
+svm classifier accuracy:
+[ 0.50297619  0.50595238  0.50654762  0.50297619  0.50297619]
+abc classifier accuracy:
+[ 0.76190476  0.76488095  0.76785714  0.75238095  0.75      ]
+random forest accuracy:
+[ 0.7202381   0.73035714  0.70714286  0.71488095  0.70416667]
+```
