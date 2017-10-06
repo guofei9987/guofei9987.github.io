@@ -73,12 +73,45 @@ $E=\sum\limits_{i=13}^{25} C_25^i e^i (1-e)^{25-i}=0.06$
 
 
 ## bagging
+**bagging** ，又叫 **bootstrap aggregating**  
+
 
 有n个样本，每个基分类器需要m个数据，bagging方法如下：  
 
-从n个样本中有放回的抽m个数据  
+setp1：从n个样本中 **有放回** 的抽m个数据,做一次基分类器  
+step2：重复step1, 重复k次，得到k个基分类器  
+step3：这k个基分类器投票得到最终的结果  
+
+### 评价
+
+装袋增强了目标函数的表达功能，通过减低基分类器方差改善了泛化误差，装袋的性能依赖于基分类器的稳定性。  
+
+- 如果基分类器不稳定，装袋有助于减少训练数据的随机波动导致的误差；
+- 如果基分类器稳定，即对训练数据中的微小变化是鲁棒的，则组合分类器的误差主要有基分类器的偏倚所引起。这种情况下，装袋可能不会对基分类器的性能有显著改善，甚至可能 **降低** 分类器的性能，因为每个训练集的有效容量比原数据集大约小37%。（$(1-1/n)^n$）  
+
+装袋用于噪声数据，不太受过分拟合的影响。
 
 
 ## boosting
 
 在bagging的基础上，逐渐放大上次预测错误的样本
+
+
+
+
+
+## Python实现
+
+```py
+abc = ensemble. AdaBoostClassifier(n_estimators=100)#100个树
+abc.fit(train_data, train_target)
+test_est_abc = logistic_model.predict(test_data)
+test_est_p_abc = logistic_model.predict_proba(test_data)[:,1]
+fpr_test_abc, tpr_test_abc, th_test_abc = metrics.roc_curve(test_target, test_est_p_abc)
+
+rfc = ensemble.RandomForestClassifier(criterion='entropy', n_estimators=3, max_features=0.5, min_samples_split=5)
+rfc.fit(train_data, train_target)
+test_est_rfc = logistic_model.predict(test_data)
+test_est_p_rfc = logistic_model.predict_proba(test_data)[:,1]
+fpr_test_rfc, tpr_test_rfc, th_test_rfc = metrics.roc_curve(test_target, test_est_p_rfc)
+```
