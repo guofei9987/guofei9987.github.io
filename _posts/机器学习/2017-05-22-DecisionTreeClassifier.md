@@ -237,8 +237,10 @@ Image(graph.create_png())
 
 预测  
 ```py
-clf.predict(train_data)
-clf.predict_proba(train_data)
+clf.predict(train_data)#判断数据属于哪个类别
+clf.predict_proba(train_data)#判断属于各个类别的概率
+clf.feature_importances_#变量重要性指标
+#例如，print(pd.DataFrame(list(zip(data.columns,clf.feature_importances_))))
 ```
 
 ## 用CART拟合的例子

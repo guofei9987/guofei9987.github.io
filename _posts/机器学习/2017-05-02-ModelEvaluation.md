@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 模型的评价方法
+title: 【模型评价】理论与实现
 categories: 算法
 tags: 机器学习
 keywords: model evaluation
@@ -161,3 +161,31 @@ $BS=\dfrac{1}{N} \sum(\hat p-y)^2$
 有效性分析：误差分析，参数敏感性分析，模型对比检验
 有用性分析：关键数据求解，极值点，拐点，变化趋势分析，用数据验证动态模拟。
 高效性分析：时空复杂度分析与现有进行比较
+
+
+
+## Python实现
+
+### 计算主要指标
+```py
+print(metrics.classification_report(test_target, test_est))#计算评估指标
+```
+功能：  
+打印这四个指标：precision    recall  f1-score   support
+
+### ROC
+```py
+fpr_test, tpr_test, th_test = metrics.roc_curve(test_target, test_est_p)
+fpr_train, tpr_train, th_train = metrics.roc_curve(train_target, train_est_p)
+plt.figure(figsize=[6,6])
+plt.plot(fpr_test, tpr_test, color=blue)
+plt.plot(fpr_train, tpr_train, color=red)
+plt.title('ROC curve')
+```
+
+功能：画出test set 和train set 的ROC图
+
+
+### 其他评价1
+
+见于[kmeans方法](http://www.guofei.site/2017/06/09/kmeans.html#title8)
