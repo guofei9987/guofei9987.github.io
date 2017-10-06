@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【AdaBoost】理论与实现
+title: 【Bagging&B oosting】理论与实现
 categories: 算法
 tags: 机器学习
 keywords: model evaluation
@@ -28,6 +28,8 @@ $E=\sum\limits_{i=13}^{25} C_25^i e^i (1-e)^{25-i}=0.06$
 上面这个例子说明，当满足以下条件时，组合分类器优于单个分类器
 1. 基分类器之间 **相互独立**
 2. 基分类器 **好于随机猜测分类器**  
+
+<img src='http://www.guofei.site/public/postimg/baggingboosting.gif'>
 
 ## 组合算法的分类
 
@@ -67,3 +69,16 @@ $E=\sum\limits_{i=13}^{25} C_25^i e^i (1-e)^{25-i}=0.06$
 
 
 **前三种属于一般性方法，适用于任何分类器，第四种方法依赖于使用的分类器类型。**  
+
+
+
+## bagging
+
+有n个样本，每个基分类器需要m个数据，bagging方法如下：  
+
+从n个样本中有放回的抽m个数据  
+
+
+## boosting
+
+在bagging的基础上，逐渐放大上次预测错误的样本
