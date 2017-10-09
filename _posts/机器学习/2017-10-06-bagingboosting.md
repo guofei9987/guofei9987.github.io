@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Bagging&B oosting】理论与实现
+title: 【Bagging&Boosting】理论与实现
 categories: 算法
 tags: 机器学习
 keywords: model evaluation
