@@ -1,13 +1,4 @@
 
-
-
-原因：防止过拟合
-原理：用train set来训练模型，用test set来验证训练的模型是否能够预测新问题。如果test set预测能力优秀，那么有理由相信模型对未来的数据预测能力也会优秀。  
-
-假设：
-1. 未知数据的内部特征，与train set，test set相似。  
-2. test set的特征与train set特征相似  
-
 train set  80%  
 test set  20%  
 
