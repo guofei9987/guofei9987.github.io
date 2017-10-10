@@ -34,9 +34,7 @@ Province.country
 obj.country#静态字段也可以通过对象来访问
 ```
 
-![a8598a63dc053a4ac4c73091a5e73916](/assets/a8598a63dc053a4ac4c73091a5e73916.jpg)  
-
-<img src='http://www.guofei.site/public/postimg2/pythonoop1.png'>  
+<img src='http://www.guofei.site/public/postimg2/pythonoop1.jpg'>  
 
 - 静态字段在内存中只保存一份
 - 普通字段在每个对象中都要保存一份

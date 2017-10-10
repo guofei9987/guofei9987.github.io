@@ -107,4 +107,4 @@ Func(s2_obj) # 在Func函数中传入Ss类的对象 ss_obj，执行 Ss 的show�
 参考文献：
 http://python.jobbole.com/82023/  
 
-http://python.jobbole.com/83747/
+http://python.jobbole.com/83747/  
