@@ -37,7 +37,7 @@ test set  20%
 
 1. train set效果良好，test set 效果良好  
 这是我们追求的
-2. train set 效果良好，test set 效果良好  
+2. train set 效果良好，test set 效果不好  
 有可能过拟合了
 3. train set 效果不好，test set 效果良好  
 这种情况不常见。要具体分析。  
