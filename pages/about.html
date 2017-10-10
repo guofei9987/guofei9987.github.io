@@ -32,7 +32,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
 </ol>
 </p>
 
-<div id="main" style="width: 1200px;height:800px;"></div>
+<div id="main" style="width: 1200px;height:1600px;"></div>
  <script type="text/javascript">
      var myChart = echarts.init(document.getElementById('main'));
      option = {
@@ -93,7 +93,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                    {
                        name: '我',
                        des: '邮箱联系我me@guofei.site<br/>',
-                       symbolSize: 120,
+                       symbolSize: 80,
                        itemStyle: {
                            normal: {
                                color: 'b'
@@ -103,7 +103,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: '数学建模',
                          des: '2007年全国数学建模竞赛上海赛区一等奖<br/>',
-                         symbolSize: 90,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -112,7 +112,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      }, {
                          name: 'Python',
                          des: 'scipy 1.0.0 的作者之一<br/>十万行代码',
-                         symbolSize: 100,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -121,7 +121,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      }, {
                          name: 'Matlab',
                          des: '读研期间，以自由业者的身份做过100多个Matlab项目<br/>40万行代码',
-                         symbolSize: 100,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -130,7 +130,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
 
                      }, {
                          name: '数学',
-                         des: '上海大学数学系毕业，<br/>多次获得奖学金',
+                         des: '上海大学数学系学士',
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -148,7 +148,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: '金融',
                          des: '金融硕(学硕)<br/>',
-                         symbolSize: 100,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -178,7 +178,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: '智能算法',
                          des: '会手写遗传算法，蚁群算法等等<br/>',
-                         symbolSize: 100,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -188,7 +188,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: 'SPG审稿员',
                          des: 'SPG旗下Journal of Finance and Accounting学术杂志的审稿员<br/>',
-                         symbolSize: 100,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -199,7 +199,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: '金融论文3篇',
                          des: '其中2篇外刊，ISTP检索<br/>',
-                         symbolSize: 100,
+                         symbolSize: 90,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -221,7 +221,7 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      {
                          name: 'scipy作者之一',
                          des: '修改过scipy的一个插值函数<br/>',
-                         symbolSize: 120,
+                         symbolSize: 80,
                          itemStyle: {
                              normal: {
                                  color: 'red'
@@ -230,19 +230,15 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                      }
                  ],
                  links: [
-                     {
-                         source: '数学建模',
-                         target: '机器学习',
-                         name: '深入',
-                         des: '两个领域'
-                     }, {
+                        {
                          source: '数学',
                          target: '数学建模',
-                         name: '精通'
+                         name: '精通',
+                         des: '获奖'
                      }, {
-                         source: '我',
+                         source: '数学',
                          target: '机器学习',
-                         name: "精通"
+                         name: '精通'
                      }, {
                          source: '我',
                          target: 'Python',
@@ -268,8 +264,12 @@ Hola, 我是 <strong>Guofei</strong>. 我的人生理想啊... 远目, 那就是
                          target: '中级经济师',
                          name: "中级职称"
                      }, {
-                         source: '我',
+                         source: 'Matlab',
                          target: '智能算法',
+                         name: "会手写多种"
+                     }, {
+                         source: 'Matlab',
+                         target: '机器学习',
                          name: "会手写多种"
                      }, {
                          source: '金融',
