@@ -130,7 +130,7 @@ $$R_p^n=\{x\in R^n\mid \space \exists \{x_j\} \in Q^n,\ni\mid\mid x-x_j\mid\mid_
 Th:$\forall p \geq 1,R^n_p=R^n$    
 也就是说，有理数集生成的完备集合，就是$R^n$  
 
-<img src='http://www.guofei.site/public/postimg/seriesrealanalysis.tif'>
+<img src='http://www.guofei.site/public/postimg/seriesrealanalysis.jpg'>
 
 ## 希尔伯特空间
 
