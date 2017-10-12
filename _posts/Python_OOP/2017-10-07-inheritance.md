@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【面向对象】继承&多态.
 categories: Geek
-tags: Python特性
+tags: 面向对象Python
 keywords:
 description:
 ---

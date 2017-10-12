@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【编程技巧】【Python】算法篇
+title: 【Python】【算法小题集】1
 categories: Geek
-tags: Python特性
+tags: 趣味小题
 keywords:
 description:
 ---
@@ -141,25 +141,3 @@ d1,d2=d[idx],d[idx+1]
 
 -y1*(x2-x1)/(d2-d1)+x1
 ```
-
-## 7递归引用
-
-```py
-p = [1, 2, 3]  
-p.append(p)
-p in p
-```
-
-结果是 True
-
-## 8循环引用
-
-```
-a = [1, 2]
-b = [3, 4]  
-a.append(b)  
-b.append(a)  
-a in b,b in a
-```
-
-结果是(True, True)
