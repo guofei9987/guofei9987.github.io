@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【语法速查】【Python】【pandas】to_json.
+title: 【Python】【pandas】to_json.
 categories: Geek
-tags: 语法速查
+tags: 数据清洗
 keywords:
 description:
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【pandas】合并数据表.
 categories: Geek
-tags: 语法速查
+tags: 数据清洗
 keywords:
 description:
 ---
