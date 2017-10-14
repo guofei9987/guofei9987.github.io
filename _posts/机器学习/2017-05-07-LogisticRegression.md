@@ -133,14 +133,15 @@ from sklearn.linear_model import LogisticRegression as LR
 from sklearn.linear_model import RandomizedLogisticRegression as RLR
 rlr = RLR() #建立随机逻辑回归模型，用于筛选变量
 rlr.fit(x, y) #训练模型
-rlr.get_support() #获取特征筛选结果，也可以通过.scores_方法获取各个特征的分数
+rlr.get_support() #获取特征筛选结果,是一个boll类型的array
+rlr.scores_#各个特征的分数，是1darray
 print('通过随机逻辑回归模型筛选特征结束。')
 print('有效特征为：%s' % ','.join(x.columns[rlr.get_support()]))
 ```
 
 step2：用LogisticRegression做逻辑回归
-```
-x_new = x[x.columns[rlr.get_support()]].as_matrix() #筛选好特征
+```py
+x_new = x[x.columns[rlr.get_support()]] #筛选好特征
 lr = LR() #建立逻辑回归模型
 lr.fit(x_new, y) #用筛选后的特征数据来训练模型
 print('逻辑回归模型训练结束。')

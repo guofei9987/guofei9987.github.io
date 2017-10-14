@@ -9,7 +9,7 @@ description:
 
 ## 说明
 
-层次聚类，**hierarchical clustering** (also called **hierarchical cluster analysis** or **HCA** )
+层次聚类，**hierarchical clustering** (also called **hierarchical cluster analysis** or **HCA** )  
 
 层次聚类可以划分为两类：  
 1. agglomerative Hierarchical clustering(AHC)自底向上，这里主要写的是这种方法  
