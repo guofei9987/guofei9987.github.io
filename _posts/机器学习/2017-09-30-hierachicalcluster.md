@@ -16,7 +16,7 @@ description:
 2. divisive Hierarchical clustering 自顶向下，一开始所有数据为一类，每次把一个类分开，因为把类分开算法较为复杂，所以这种方法关注度不高，
 
 
-## AHC基本思想
+## HCA基本思想
 step1：先让各个样本各自成一类，  
 step2：距离最近的两类合并成一个新类  
 step3：反复执行step2  

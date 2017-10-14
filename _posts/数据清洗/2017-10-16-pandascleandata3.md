@@ -139,7 +139,12 @@ df.groupby((df['key1'],df['key2'])).sum()
 ```
 groupby后面可以接的方法：
 ```
-sum mean median
+sum mean median max min
 count
 size
+```
+
+例如：  
+```py
+df.groupby('industryName1').agg(['mean','median','max','min'])
 ```

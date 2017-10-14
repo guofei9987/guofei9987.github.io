@@ -31,7 +31,7 @@ description:
 </td>
 <td>
 <a href='/2017/06/09/cluster.html'>K-means</a><br>
-系统聚类<br>
+<a href='/2017/09/30/hierachicalcluster.html'>系统聚类</a><br>
 神经网络<br>
 模糊C均值聚类<br>
 高斯混合模型<br>

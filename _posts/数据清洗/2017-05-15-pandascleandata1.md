@@ -32,6 +32,8 @@ df.index.name='index'
 ## to_dict
 ```python
 df.to_dict(orient='Series')
+df.to_dict(orient='records')
+...
 ```
 返回一个Series组成的dict
 

@@ -19,7 +19,7 @@ description:
     - generat a fit ，建模比较方便（不用管，现在都快捷）
     - measure accuracy，能否建立一个评价系统
     - prediction
-    - swith algerithm，
+    - swith algerithm，例如，神经网络有很多变种。
     - share results，例如决策树的模型结果就可以很容易教给不懂模型的人
 - Feature selection
     - uncorelated predictor
@@ -176,6 +176,11 @@ print(metrics.classification_report(test_target, test_est))#计算评估指标
 ### 混淆矩阵
 
 参见[SVM](http://www.guofei.site/2017/09/28/svm.html#title8)
+
+```py
+from sklearn import metrics
+cm = metrics.confusion_matrix(y, y_predict)  # 训练样本的混淆矩阵
+```
 
 ### ROC
 ```py

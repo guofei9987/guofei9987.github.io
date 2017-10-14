@@ -63,7 +63,7 @@ df[(df.one >=1 ) & (df.one < 3) ]#多个逻辑条件组合
 - df.one是一个Series
 - df.one>1是一个Series，里面存的是bool
 - 多个逻辑条件组合，不能用and，而要用&
-- bool*1可以变成数字，可以玩一些花招(df.one*1+df.two*1=1)
+- bool*1可以变成数字，可以玩一些花招(df.one * 1+df.two * 1=1)
 - df>2是一个DataFrame
 
 ### 其它bool生成方式
