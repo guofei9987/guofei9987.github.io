@@ -7,7 +7,7 @@ keywords: model evaluation
 description:
 ---
 <table>
-<tr><th>回归问题</th><th>分类问题</th><th>聚类问题</th></tr>
+<tr><th>回归问题</th><th>分类问题</th><th><a href='/2017/09/29/cluster.html'>聚类问题</a></th></tr>
 <tr>
 
 <td>
@@ -15,7 +15,7 @@ description:
 多元非线性回归<br>
 广义线性回归<br>
 神经网络<br>
-<a href='/2017/06/06/scipyleastsq.html.html'>曲线拟合</a><br>
+<a href='/2017/06/06/scipyleastsq.html'>曲线拟合</a><br>
 <a href='/2017/05/22/DecisionTreeClassifier.html'>决策树(也可以做回归)</a>  
 </td>
 
@@ -24,9 +24,9 @@ description:
 <a href='/2017/05/07/LogisticRegression.html'>逻辑回归 </a> <br>
 判别分析  <br>
 朴素贝叶斯<br>
-SVM      <br>
+<a href='/2017/09/28/svm.html'>SVM </a>     <br>
 <a href='/2017/05/22/DecisionTreeClassifier.html'>决策树</a>    <br>
-组合算法  <br>
+<a href='/2017/10/06/bagingboosting.html'>组合算法</a>  <br>
 
 </td>
 <td>
