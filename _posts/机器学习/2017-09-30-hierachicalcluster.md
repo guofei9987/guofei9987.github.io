@@ -42,10 +42,6 @@ for center in centers:
 m, n = data.shape
 k = 3  # 要聚成这么多类
 
-# from sklearn.cluster import KMeans
-#
-# kmeans = KMeans(n_clusters=k)
-# kmeans.fit(data)
 from sklearn.cluster import AgglomerativeClustering #导入sklearn的层次聚类函数
 model = AgglomerativeClustering(n_clusters = k, linkage = 'ward')
 model.fit(data) #训练模型
