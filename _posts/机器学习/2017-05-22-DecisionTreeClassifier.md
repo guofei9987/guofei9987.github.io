@@ -20,10 +20,13 @@ description:
 - 易于理解和解释，人们都有能力理解决策树所表达的意义  
 例如，收集专家的历史数据，用决策树可以总结出他的经验。  
 例如，拿到别人的交易清单，可以模拟出这个交易员  
-- 和其它模型相比，数据的预处理往往是不必要的。例如，不需要归一化
+- 和其它模型相比，数据的预处理往往是不必要的。例如，不需要归一化，也不用填充空值
 - 可以同时处理分类变量和连续变量。其它模型很多要求数据类型单一
 - 白盒模型，可以轻松推出逻辑表达式
 - 计算量少，大量数据可也以快速得出良好结果  
+- 可以对有许多属性的数据集构造决策树。（有变量筛选功能）
+- 决策树可很好地扩展到大型数据库中，同时它的大小独立于数据库的大小。
+
 
 缺点：  
 - 样本各类别数量不同时，结果更偏向于类别多的。
@@ -201,6 +204,8 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 ```
 
 ### 代码
+
+#### step1：做出模型
 ```py
 from sklearn.datasets import load_iris
 from sklearn import tree
@@ -209,12 +214,26 @@ clf = tree.DecisionTreeClassifier()
 clf = clf.fit(iris.data, iris.target)
 ```
 
-输出
+#### step2：把规则输出
+
 ```py
 tree.export_graphviz(clf,out_file="tree.doc"  )#输出到doc
 ```
 
-转化为决策图，输出到pdf
+#### step3：规则可视化
+
+```py
+import graphviz
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+dot_data = tree.export_graphviz(clf, out_file=None)
+graph = graphviz.Source(dot_data)
+graph.view('hehe.pdf')
+graph.save('abc.pdf')
+```
+
+
+备用方法1：转化为决策图，输出到pdf
 ```py
 import pydotplus
 import os
@@ -222,10 +241,9 @@ os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 dot_data = tree.export_graphviz(clf, out_file=None)
 graph = pydotplus.graph_from_dot_data(dot_data)
 graph.write_pdf("iris.pdf")
-graph.view()#画图
 ```
 
-把决策图画出来1：  
+备用方法2  
 ```py
 from IPython.display import Image  
 dot_data = tree.export_graphviz(clf, out_file=None,feature_names=iris.feature_names,  class_names=iris.target_names,filled=True, rounded=True,special_characters=True)  
@@ -233,14 +251,6 @@ graph = pydotplus.graph_from_dot_data(dot_data)
 Image(graph.create_png())  
 ```
 
-决策图画出来2：
-
-```py
-import graphviz
-graph = graphviz.Source(dot_data)
-graph.view('hehe.pdf')
-graph.save('abc.pdf')
-```
 
 结果：  
 <img src='http://www.guofei.site/public/postimg/decisiontree1.png'>
@@ -249,7 +259,7 @@ graph.save('abc.pdf')
 ```py
 clf.predict(train_data)#判断数据属于哪个类别
 clf.predict_proba(train_data)#判断属于各个类别的概率
-clf.feature_importances_#变量重要性指标
+clf.feature_importances_#变量重要性指标，各个属性的gini系数归一化后的值
 #例如，print(pd.DataFrame(list(zip(data.columns,clf.feature_importances_))))
 ```
 
