@@ -79,20 +79,6 @@ df['index'].str.contains('a')#字符中是否包含a，bool
 ```
 
 
-
-## 描述统计
-
-```python
-df.describe()
-df.describe(include='all')
-```
-返回的是DataFrame格式的描述性统计数据
-
-```py
-data.info()#DataFrame的简要情况
-df.shape
-```
-
 ## sort
 - sort_values按值排序
 - sort_index按index排序
