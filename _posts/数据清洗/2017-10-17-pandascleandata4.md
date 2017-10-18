@@ -80,6 +80,7 @@ index.levels
 FrozenList([['A', 'B'], ['x', 'y']])
 ```
 
+
 ### 每个层次分别的归属
 
 ```py
@@ -90,7 +91,8 @@ index.labels
 FrozenList([[0, 0, 1, 1], [0, 1, 0, 1]])
 ```
 
-### 每一个
+
+### 每一个index
 ```py
 index[0]
 ```
@@ -98,6 +100,8 @@ index[0]
 ```py
 ('A', 'x')
 ```
+
+
 ## index&columns名称修改
 
 ### 取index&columns
