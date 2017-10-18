@@ -19,3 +19,16 @@ df.describe(include='all')
 data.info()#DataFrame的简要情况
 df.shape
 ```
+
+## 运算函数
+
+max,min,min,std  
+能返回每一列统计量  
+- axis,指定运算轴
+- level,指定对应的索引
+- skipna,运算是否跳过NaN
+
+
+
+add, sub,mul,div,mod  
+可以通过axis,level,fill_value等参数控制其运算行为。  

@@ -79,6 +79,53 @@ df['index'].str.contains('a')#字符中是否包含a，bool
 ```
 
 
+### 字符串加减
+```PY
+df=pd.DataFrame(['北京','北京市','北京地区'])
+df_abc=pd.DataFrame(list('abc'))
+df+df_abc*2
+```
+
+### 字符串的分裂合并
+**只对Series有用**
+
+#### 分裂
+
+```
+s=pd.Series(['a|b|cc','x|yy|z'])
+s_list=s.str.split('|')
+```
+- output
+```
+0    [a, b, cc]
+1    [x, yy, z]
+```
+
+#### 获取元素
+```py
+s_list.str[1]
+```
+- output
+```py
+0     b
+1    yy
+```
+
+#### 用其它字符填充
+```py
+s_comma=s_list.str.join(',')
+```
+- output
+```py
+0    a,b,cc
+1    x,yy,z
+```
+
+#### 正则表达式
+```py
+s.str.extract('正则表达式')
+```
+
 ## sort
 - sort_values按值排序
 - sort_index按index排序
