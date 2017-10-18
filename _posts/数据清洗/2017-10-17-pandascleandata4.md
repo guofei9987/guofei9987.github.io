@@ -75,7 +75,7 @@ df
 ```py
 index.levels
 ```
-output
+- output
 ```py
 FrozenList([['A', 'B'], ['x', 'y']])
 ```
@@ -84,7 +84,7 @@ FrozenList([['A', 'B'], ['x', 'y']])
 ```py
 index.labels
 ```
-output
+- output
 ```py
 FrozenList([[0, 0, 1, 1], [0, 1, 0, 1]])
 ```
@@ -92,7 +92,7 @@ FrozenList([[0, 0, 1, 1], [0, 1, 0, 1]])
 ```py
 index[0]
 ```
-output
+- output
 ```py
 ('A', 'x')
 ```
