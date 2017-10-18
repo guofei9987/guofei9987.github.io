@@ -7,6 +7,95 @@ keywords:
 description:
 ---
 
+## MultiIndex
+
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.random.rand(16).reshape(4,-1))
+index=pd.Index([('A','x'),('A','y'),('B','x'),('B','y')],name=['class1','class2'])
+df.index=index
+df
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+    <tr>
+      <th>class1</th>
+      <th>class2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">A</th>
+      <th>x</th>
+      <td>0.066857</td>
+      <td>0.245256</td>
+      <td>0.042875</td>
+      <td>0.725917</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>0.450916</td>
+      <td>0.776887</td>
+      <td>0.369172</td>
+      <td>0.655803</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">B</th>
+      <th>x</th>
+      <td>0.642242</td>
+      <td>0.119586</td>
+      <td>0.084696</td>
+      <td>0.377162</td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td>0.080035</td>
+      <td>0.653582</td>
+      <td>0.825833</td>
+      <td>0.420380</td>
+    </tr>
+  </tbody>
+</table>
+
+### 每个层次的名字
+```py
+index.levels
+```
+output
+```py
+FrozenList([['A', 'B'], ['x', 'y']])
+```
+### 每个层次分别的归属
+
+```py
+index.labels
+```
+output
+```py
+FrozenList([[0, 0, 1, 1], [0, 1, 0, 1]])
+```
+### 每一个
+```py
+index[0]
+```
+output
+```py
+('A', 'x')
+```
 ## index&columns名称修改
 
 ### 取index&columns
@@ -20,6 +109,8 @@ df.index.name='idx'#设置index的名称
 ```
 
 ### 赋值修改index&columns
+
+index是不可修改对象，要修改就只能整体换掉。
 
 - data.index可以直接赋值为Series或list
 - data.columns可以直接赋值为Series或list
@@ -40,7 +131,29 @@ df.rename(index={'a':'aa','e':'ee'},columns={'g':'gg'},inplace=True)
 df.rename(index={'a':'aa','e':'ee'},columns={'g':'gg'},inplace=True)
 ```
 
-### 用reindex修改index
+
+
+### set_index
+把one这一列变成index，并删除one这一列，结果保存在a中。
+
+```python
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+```
+
+### reset_index
+
+把index变成普通的列。  
+然后index填充为0,1,2,3...  
+
+```python
+df.reset_index(inplace=True)
+```
+
+
+
+### 用reindex填充index
 
 - 前提：原index是某种连续的值
 - 没有inplace，不修改原df，而是返回一个DataFrame
@@ -67,35 +180,13 @@ df.reindex(list('abcde'),fill_value=0)
 |limit|向前或向后填充时，最大填充量|
 |copy|默认为True，否则不复制|
 
-### set_index
-把one这一列变成index，并删除one这一列，结果保存在a中。
-
-```python
-import pandas as pd
-import numpy as np
-df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
-```
-
-### reset_index
-
-把index变成普通的列。  
-然后index填充为0,1,2,3...  
-
-```python
-df.reset_index(inplace=True)
-```
 
 
 
 
 
 
-
-
-
-
-
-### 下面是时间序列中，填充index
+#### 案例：时间序列中填充index
 ```python
 idx = pd.date_range('09-01-2013', '09-30-2013')
 
@@ -112,7 +203,7 @@ s = s.reindex(idx,fill_value=np.nan)
 ```
 ？？column能不能这么转
 
-### 插一句，还有一种类型转换astype
+### 类型转换astype
 ```python
  data["medal"].astype("category")#这样，就把字符型，转换为category型了
 ```
