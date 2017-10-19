@@ -159,7 +159,6 @@ import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
 df.set_index(['w','x'],inplace=True,append=True)#保留原来的index，设置多级目录
 ```
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -235,29 +234,244 @@ import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
 df.unstack()
 ```
-    - output
-```
-    w  a     0
-       b     4
-       c     8
-       d    12
-    x  a     1
-       b     5
-       c     9
-       d    13
-    y  a     2
-       b     6
-       c    10
-       d    14
-    z  a     3
-       b     7
-       c    11
-       d    15
-    dtype: int32
-```
+    - output:
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">w</th>
+      <th>a</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">x</th>
+      <th>a</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">y</th>
+      <th>a</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">z</th>
+      <th>a</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
 
 
 注意：stack与unstack **不是** 逆操作。  
+
+
+### pivot透视表
+选取三列，分别作为行索引，列索引，元素值，将其转成二维表格  
+
+数据准备：  
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,0,1,1]
+df.loc[:,'x']=[3,4,3,4]
+```
+
+### 交换index
+
+swaplevel()  
+这里先交换再排序：  
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+df.set_index(['w'],append=True,inplace=True)
+df.swaplevel().sort_index()
+```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>4</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>4</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+
+```py
+df.pivot(index='w',columns='x',values='y')
+```
+
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>x</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+    <tr>
+      <th>w</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+
+
+注意：index， columns， values 这三列都只能接受一个值。  
+
+
+如果不指定values，会把所有数据变成values，并生成多列数据
+
+```
+df.pivot(index='w',columns='x')
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>x</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+    <tr>
+      <th>w</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### 用reindex填充index
 
