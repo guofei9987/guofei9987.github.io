@@ -331,59 +331,6 @@ df.loc[:,'w']=[0,0,1,1]
 df.loc[:,'x']=[3,4,3,4]
 ```
 
-### 交换index
-
-swaplevel()  
-这里先交换再排序：  
-```py
-import pandas as pd
-import numpy as np
-df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
-df.set_index(['w'],append=True,inplace=True)
-df.swaplevel().sort_index()
-```
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>w</th>
-      <th>x</th>
-      <th>y</th>
-      <th>z</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>3</td>
-      <td>2</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>4</td>
-      <td>6</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>3</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>4</td>
-      <td>14</td>
-      <td>15</td>
-    </tr>
-  </tbody>
-</table>
-
 ```py
 df.pivot(index='w',columns='x',values='y')
 ```
@@ -455,20 +402,58 @@ df.pivot(index='w',columns='x')
 
 
 
+### 交换index
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+swaplevel()  
+这里先交换再排序：  
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+df.set_index(['w'],append=True,inplace=True)
+df.swaplevel().sort_index()
+```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>4</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>4</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
