@@ -218,6 +218,11 @@ s = s.reindex(idx,fill_value=np.nan)
 【未完待续】自己查
 
 
+## 时间序列
+
+
+Timestamp对象继承自datetime类
+
 ## 其它
 
 ### 用map修改index&columns
