@@ -148,9 +148,16 @@ import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
 ```
 
-- 把某一列变成index：
+- 把某1列/多列变成index：
 ```py
-df.set_index(['w','x'],inplace=True)
+df.set_index(['w','x'],inplace=True)#多列变成index, 多级目录
+```
+- append=True
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+df.set_index('w',inplace=True,append=True)#保留原来的index，设置多级目录
 ```
 
 
@@ -164,7 +171,24 @@ df.set_index(['w','x'],inplace=True)
 df.reset_index(inplace=True)
 ```
 
+### stack/unstack
 
+- stack:变成Series。index变成一级index，columns变成二级index
+```
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+df.stack()
+```
+- unstack:变成Series。columns变成一级index，index变成二级index
+```
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
+df.stack()
+```
+
+注意：stack与unstack **不是** 逆操作。  
 
 ### 用reindex填充index
 
