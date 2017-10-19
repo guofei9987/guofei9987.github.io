@@ -157,9 +157,57 @@ df.set_index(['w','x'],inplace=True)#多列变成index, 多级目录
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
-df.set_index('w',inplace=True,append=True)#保留原来的index，设置多级目录
+df.set_index(['w','x'],inplace=True,append=True)#保留原来的index，设置多级目录
 ```
 
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>a</th>
+      <th>0</th>
+      <th>1</th>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>b</th>
+      <th>4</th>
+      <th>5</th>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>c</th>
+      <th>8</th>
+      <th>9</th>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>d</th>
+      <th>12</th>
+      <th>13</th>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
 
 
 ### reset_index
@@ -185,8 +233,29 @@ df.stack()
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
-df.stack()
+df.unstack()
 ```
+    - output
+```
+    w  a     0
+       b     4
+       c     8
+       d    12
+    x  a     1
+       b     5
+       c     9
+       d    13
+    y  a     2
+       b     6
+       c    10
+       d    14
+    z  a     3
+       b     7
+       c    11
+       d    15
+    dtype: int32
+```
+
 
 注意：stack与unstack **不是** 逆操作。  
 
