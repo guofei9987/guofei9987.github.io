@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】index&colums修改.
-categories: 
+categories:
 tags: 数据清洗
 keywords:
 description:
@@ -140,13 +140,20 @@ df.rename(index={'a':'aa','e':'ee'},columns={'g':'gg'},inplace=True)
 
 
 ### set_index
-把one这一列变成index，并删除one这一列，结果保存在a中。
+
 
 ```python
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
 ```
+
+- 把某一列变成index：
+```py
+df.set_index(['w','x'],inplace=True)
+```
+
+
 
 ### reset_index
 

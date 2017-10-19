@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】简单的统计.
-categories: 
+categories:
 tags: 数据清洗
 keywords:
 description:
@@ -32,3 +32,19 @@ max,min,min,std
 
 add, sub,mul,div,mod  
 可以通过axis,level,fill_value等参数控制其运算行为。  
+
+
+## count
+
+```py
+df.count()
+```
+返回每列的非NaN的个数
+
+## value_counts
+
+value_counts只能针对Series
+
+```py
+df.loc[:,'x'].value_counts()
+```

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】数据筛选.
-categories: 
+categories:
 tags: 数据清洗
 keywords:
 description:
@@ -82,8 +82,12 @@ df2['E'].isin(['two','four'])#返回的是bool类型的Series，因此可以做b
 df2[df2.ix[:,'E'].str.contains('tw|ou')]#又是一个特殊用法contains，注意参数，有点特殊
 ```
 #### 4. isnull
-```
+
+选出NaN
+```py
 df.isnull
+df.notnull
+~df.isnull
 ```
 
 

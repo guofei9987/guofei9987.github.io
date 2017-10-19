@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 【pandas】数据去重、填充、替换.
-categories: 
+title: 【pandas】数据去重、替换、分组.
+categories:
 tags: 数据清洗
 keywords:
 description:
@@ -23,11 +23,13 @@ data.duplicated()#返回Series，bool类型，存放是否是重复行/列
 ```
 
 ## 删除整行&整列
-删除一列
-有inplace项
+
 ```python
 data.drop('animal2', axis='columns', inplace=True)
 ```
+
+参数可以是list，以删除多行/多列
+
 
 ## 替换数据
 ```python
@@ -36,15 +38,33 @@ data.replace([4,5],np.nan,inplace=True)
 
 ## 填充空数据
 
+可以向上填充/向下填充
 ```python
-a=data.fillna(method='bfill',inplace=True)#bfill,ffill,
+a=data.fillna(method='bfill',inplace=True)
+#method :bfill,ffill,
 ```
 
+也可以用值填充
 ```python
 a=data.fillna(data.mean(),inplace=True)
 ```
 
+值填充时，可以每列不一样
+```py
+df.fillna({'a':999,'b':888,'c':777,'d':666})
+```
 
+线性插值填充
+
+```
+df1.interpolate()
+```
+
+线性插值填充：把index作为间隔
+
+```
+df1.interpolate(method='index')
+```
 
 ## 计算新列
 
@@ -61,14 +81,6 @@ df.loc[:,'ww']=df.loc[:,'w']*2+df.loc[:,'x']
 
 ```python
 df.loc[:,['ww']].astype('float')#int
-```
-
-## 计算Series每个值的频率
-
-value_counts只能针对Series
-
-```
-df.loc[:,'x'].value_counts()
 ```
 
 ## 字符串方法
