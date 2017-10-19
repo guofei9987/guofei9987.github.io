@@ -7,7 +7,7 @@ titlename: 首页
 <center><h3><font color="#000080">结</font><font color="#FFA500">硬</font><font color="#2E8B57">寨</font><font color="#F08080">，</font><font color="#00CED1">打</font><font color="red">呆</font><font color="#BA55D3">仗 </font>
 
   <!--<font color="#601986">进</font><font color="#556fb5">一</font><font color="#fa1089">寸</font><font color="#638c0b">有</font><font color="#e00089">一</font><font color="#0a1089">寸</font><font color="#f0c089">的</font><font color="#00c380">欢</font><font color="#cc1089">喜</font>--></h3></center>
-
+<!--之前的首页，展示近期文章-机器学习-智能算法，有点丑，换成模版中的archive.html
 <div class="row">
   <div class="col-md-12">
     <div class="panel panel-primary">
@@ -38,3 +38,36 @@ titlename: 首页
     </div>
   {% endfor %}
 </div>
+-->
+
+
+{% for post in site.posts  %}
+    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% capture this_month %}{{ post.date | date: "%m" }}{% endcapture %}
+    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+    {% capture next_month %}{{ post.previous.date | date: "%m" }}{% endcapture %}
+
+    {% if forloop.first %}
+      <legend id="{{this_year}}-{{this_month}}">{{this_year}}年-{{this_month}}月</legend>
+      <ul>
+    {% endif %}
+    <li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
+      <a class="pjaxlink" href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+
+    {% if forloop.last %}
+      </ul>
+    {% else %}
+      {% if this_year != next_year %}
+        </ul>
+        <legend id="{{next_year}}-{{next_month}}">{{next_year}}年-{{next_month}}月</legend>
+        <ul>
+      {% else %}
+        {% if this_month != next_month %}
+        </ul>
+        <legend id="{{next_year}}-{{next_month}}">{{next_year}}年-{{next_month}}月</legend>
+        <ul>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+{% endfor %}
