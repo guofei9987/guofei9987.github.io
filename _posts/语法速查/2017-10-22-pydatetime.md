@@ -83,6 +83,7 @@ ddt=tz.localize(ddt)
 
 
 #### 平均日出时间时区
+
 ```py
 ddt1 = datetime.datetime(2014, 8, 20, 10, 0, 0, 0, pytz.timezone('Asia/Shanghai'))
 ```
@@ -92,5 +93,16 @@ ddt1 = datetime.datetime(2014, 8, 20, 10, 0, 0, 0, pytz.timezone('Asia/Shanghai'
 ### 3 时区换算
 
 ```py
-ddt1=ddt.astimezone(pytz.timezone('Europe/London'))
+ddt2=ddt1.astimezone(pytz.timezone('Europe/London'))
+```
+
+### 小的注意
+
+```
+ddt1==ddt2
+```
+
+- output：
+```
+True
 ```

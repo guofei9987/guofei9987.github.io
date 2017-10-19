@@ -221,7 +221,7 @@ s = s.reindex(idx,fill_value=np.nan)
 ## 时间序列
 
 
-Timestamp对象继承自datetime类
+Timestamp对象继承自datetime类,参见我写的[另一篇博客](http://www.guofei.site/2017/10/22/pydatetime.html)
 
 ## 其它
 
