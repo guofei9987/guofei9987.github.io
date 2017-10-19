@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【汇总】统计学知识汇总.
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:

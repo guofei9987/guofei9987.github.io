@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 简单的算法题小试.
-categories: 算法
+categories: 
 tags: 经典算法
 keywords:
 description:

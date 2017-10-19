@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【虚拟变量回归】理论篇
-categories: 算法
+categories: 
 tags: 机器学习
 keywords: model evaluation
 description:

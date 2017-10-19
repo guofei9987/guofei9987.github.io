@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【随机森林】理论介绍
-categories: 算法
+categories: 
 tags: 机器学习
 keywords: model evaluation
 description:

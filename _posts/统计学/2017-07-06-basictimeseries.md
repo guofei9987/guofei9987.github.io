@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基本时间序列分析.
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:

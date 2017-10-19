@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 机器学习模型汇总
-categories: 算法
+categories: 
 tags: 机器学习
 keywords: model evaluation
 description:

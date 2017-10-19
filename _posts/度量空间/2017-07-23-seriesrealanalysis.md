@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Real analysis(4)】级数，巴拿赫空间与希尔伯特空间
-categories: 数学
+categories: 
 tags: 实分析
 keywords:
 description:

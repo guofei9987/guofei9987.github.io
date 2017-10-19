@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Decision Tree】理论与实现
-categories: 算法
+categories: 
 tags: 机器学习
 keywords: Decision Tree Classifier
 description:

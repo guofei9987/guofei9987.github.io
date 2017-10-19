@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【层次聚类】理论与实现.
-categories: 算法
+categories: 
 tags: 机器学习
 keywords:
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 概率测度简介
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:

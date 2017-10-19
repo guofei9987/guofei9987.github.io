@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 数据分析的主要流程.
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【logistics】理论与实现
-categories: 算法
+categories: 
 tags: 机器学习
 keywords: model evaluation
 description:

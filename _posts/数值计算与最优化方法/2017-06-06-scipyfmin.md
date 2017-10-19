@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【最优化】scipy.optimize.fmin.
-categories: 算法
+categories: 
 tags: 数值计算与最优化方法
 keywords:
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: law of large numbers
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:

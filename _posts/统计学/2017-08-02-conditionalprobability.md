@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 条件概率,条件期望,条件方差
-categories: 数学
+categories: 
 tags: 统计学
 keywords:
 description:
