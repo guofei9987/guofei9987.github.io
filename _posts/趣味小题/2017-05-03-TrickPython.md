@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【算法小题集】1
-categories: Geek
+categories: 
 tags: 趣味小题
 keywords:
 description:

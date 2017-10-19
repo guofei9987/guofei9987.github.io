@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【datetime】时间的介绍.
-categories: Geek
+categories: 
 tags: 语法速查
 keywords:
 description:

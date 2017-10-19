@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【趣味小题】随机漫步.
-categories: Geek
+categories: 
 tags: 趣味小题
 keywords:
 description:

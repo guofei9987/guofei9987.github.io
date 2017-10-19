@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【numpy】random随机数生成.
-categories: Geek
+categories: 
 tags: 蒙特卡洛方法
 keywords:
 description:

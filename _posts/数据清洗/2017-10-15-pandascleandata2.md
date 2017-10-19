@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】数据筛选.
-categories: Geek
+categories: 
 tags: 数据清洗
 keywords:
 description:

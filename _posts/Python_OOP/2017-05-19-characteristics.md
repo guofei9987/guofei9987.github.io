@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python特性研究.
-categories: Geek
+categories: 
 tags: 面向对象Python
 keywords:
 description:

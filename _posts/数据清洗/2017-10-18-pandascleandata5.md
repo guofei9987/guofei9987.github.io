@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】简单的统计.
-categories: Geek
+categories: 
 tags: 数据清洗
 keywords:
 description:

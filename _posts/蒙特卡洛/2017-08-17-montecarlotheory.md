@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Mento Carlo 1】 背后的数学理论.
-categories: Geek
+categories: 
 tags: 蒙特卡洛方法
 keywords:
 description:

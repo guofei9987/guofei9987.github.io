@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【matplotlib】绘图函数
-categories: Geek
+categories: 
 tags: 可视化
 keywords:
 description:

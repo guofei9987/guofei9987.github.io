@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】合并数据表.
-categories: Geek
+categories: 
 tags: 数据清洗
 keywords:
 description:

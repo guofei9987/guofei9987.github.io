@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Mento Carlo 3】生成指定分布随机数的方法.
-categories: Geek
+categories: 
 tags: 蒙特卡洛方法
 keywords:
 description:

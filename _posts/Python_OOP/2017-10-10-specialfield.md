@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【面向对象】类的特殊成员.
-categories: Geek
+categories: 
 tags: 面向对象Python
 keywords:
 description:

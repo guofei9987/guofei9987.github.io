@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【算法小题】马踏棋盘问题.
-categories: Geek
+categories: 
 tags: 趣味小题
 keywords:
 description:

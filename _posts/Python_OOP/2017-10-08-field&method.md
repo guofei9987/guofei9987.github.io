@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【面向对象】字段&方法.
-categories: Geek
+categories: 
 tags: 面向对象Python
 keywords:
 description:

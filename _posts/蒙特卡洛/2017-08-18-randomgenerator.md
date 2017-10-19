@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Mento Carlo 2】随机数发生器.
-categories: Geek
+categories: 
 tags: 蒙特卡洛方法
 keywords:
 description:

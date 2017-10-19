@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【趣味小题】酒鬼90%几率去酒吧.
-categories: Geek
+categories: 
 tags: 趣味小题
 keywords:
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】读入与读出.
-categories: Geek
+categories: 
 tags: 数据清洗
 keywords:
 description:

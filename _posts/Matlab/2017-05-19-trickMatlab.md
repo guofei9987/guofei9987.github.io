@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【编程技巧】Matlab
-categories: Geek
+categories: 
 tags: Matlab
 keywords:
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【pandas】数据去重、填充、替换.
-categories: Geek
+categories: 
 tags: 数据清洗
 keywords:
 description:
