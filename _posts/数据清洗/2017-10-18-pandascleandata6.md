@@ -205,5 +205,11 @@ df.groupby('w').transform(lambda s:(s-s.mean())/s.std())
 func接收每个group的DataFrame，返回True/False。  
 filter根据返回的True/False决定是否保留这一个group
 
+下面这段代码剔除了最大值大于0.6的组  
+```py
+df.groupby('w').filter(lambda s:s.x.max()<0.6)
+```
 
-apply()
+
+### apply()
+apply用法十分灵活，可以完成上面的agg，transfrom，filter等。  
