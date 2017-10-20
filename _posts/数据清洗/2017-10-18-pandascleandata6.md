@@ -170,18 +170,40 @@ for key,df_group in df.groupby(['w','x'])['z','y']:
 
 ## groupby运算
 
-## agg()
+### agg()
 
 ```py
 df.groupby('w').agg(func)
 ```
 
-func是一个函数，接收每个group每列的Series对象，
+func是一个函数，接收每个group每列的Series对象,输出一个数，  
+
+```py
+df.groupby('w')[['z','y']].agg([np.sum,np.mean,np.min,np.max])
+```
+
+func不能接受Series时，会尝试接受分组DataFrame，并输出一个数
+示例：
+```py
+df.
+df.groupby('w').agg(lambda dd: dd.loc[(dd.z+dd.y).idxmax()])
+```
 
 
+### transfrom()
 
-transfrom()
+同agg(),func接受每个group的Series，如果不能接受接受Series时，会尝试接受分组DataFrame，
 
-filter()
+例如，下面用一行代码做到了分组标准化
+
+```py
+df.groupby('w').transform(lambda s:(s-s.mean())/s.std())
+```
+
+### filter()
+
+func接收每个group的DataFrame，返回True/False。  
+filter根据返回的True/False决定是否保留这一个group
+
 
 apply()
