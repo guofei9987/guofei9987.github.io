@@ -218,17 +218,20 @@ df.set_index(['w','x'],inplace=True,append=True)#保留原来的index，设置�
 df.reset_index(inplace=True)
 ```
 
+
+## 用index变换整个DataFrame
+
 ### stack/unstack
 
 - stack:变成Series。index变成一级index，columns变成二级index
-```
+```py
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
 df.stack()
 ```
 - unstack:变成Series。columns变成一级index，index变成二级index
-```
+```py
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
@@ -457,6 +460,7 @@ df.swaplevel().sort_index()
 
 
 
+## 填充
 
 ### 用reindex填充index
 

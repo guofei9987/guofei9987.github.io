@@ -10,8 +10,6 @@ description:
 
 ## 去重
 
-删除重复
-有inplace项
 ```python
 data.drop_duplicates(inplace=True)
 data.drop_duplicates(subset='column1')#找第一列重复者

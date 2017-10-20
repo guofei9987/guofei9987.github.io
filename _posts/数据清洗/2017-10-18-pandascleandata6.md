@@ -1,0 +1,187 @@
+---
+layout: post
+title: 【pandas】groupby
+categories:
+tags: 数据清洗
+keywords:
+description:
+---
+
+## 创建groupby
+
+数据准备
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,0,1,1]
+df.loc[:,'x']=[3,4,3,4]
+```
+
+
+### 1. groupby字段
+可以groupby一个字段
+```py
+df.groupby('w')
+
+```
+可以groupby多个字段
+```py
+df.groupby(['w','x'])
+```
+### 2. groupby
+一个1darray
+```py
+random_values=np.random.randint(0,5,df.shape[0])
+df.groupby(random_values)
+```
+一个Series
+```py
+df.groupby(df.loc[:,'w'])
+```
+### 3. lambda表达式
+```
+df.groupby(lambda n:n%3)
+```
+
+### 4. 在一个list中混用
+
+```
+df.groupby(['w',random_values,lambda n:n%3])
+```
+
+## groupby取数
+
+### 1. len
+
+返回一个数字，分了多少组
+
+```py
+len(df.groupby('w'))
+```
+
+### 2. key, df
+
+```py
+for key,df_group in df.groupby('w'):
+    print(key)#从0开始的编号
+    print(df_group)#每个group的DataFrame
+```
+
+支持多种迭代接口
+
+```py
+(key1,df1),(key2,df2)=df.groupby('w')
+```
+
+### 3. get_group
+
+获取指定分组键对应的数据  
+
+数据准备：
+
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,0,1,1]
+df.loc[:,'x']=list('abab')
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>a</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>b</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>a</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>b</td>
+      <td>14</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+
+```py
+df.groupby(['w','x']).get_group((1,'a'))
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>a</td>
+      <td>10</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+
+### 4. 取新列
+
+```py
+df.groupby(['w','x'])['y']
+```
+也是一个groupby对象，只不过数据只有y这一列，用法与groupby完全相同：
+```py
+for key,df_group in df.groupby(['w','x'])['z','y']:
+    print(key)#从0开始的编号
+    print(df_group)#每个group的DataFrame
+```
+
+
+## groupby运算
+
+## agg()
+
+```py
+df.groupby('w').agg(func)
+```
+
+func是一个函数，接收每个group每列的Series对象，
+
+
+
+transfrom()
+
+filter()
+
+apply()

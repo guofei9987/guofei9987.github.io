@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【算法小题】破碎的砝码.
-categories: 
+categories:
 tags: 趣味小题
 keywords:
 description:
@@ -48,5 +48,10 @@ for a in range(1, 38):
                 if weightall(a,b,c,d):
                     print(a,b,c,d)
 ```
+output：
 
-好像for循环有点多，你有没有更好的方法呢？  
+```
+1 3 9 27
+```
+Wall time: 36.1 ms  
+算法效率很高，但for循环有点多，你有没有更好的方法呢？  

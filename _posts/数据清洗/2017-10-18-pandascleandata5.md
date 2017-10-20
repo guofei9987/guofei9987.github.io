@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】简单的统计.
+title: 【pandas】描述统计&简单作图.
 categories:
 tags: 数据清洗
 keywords:
