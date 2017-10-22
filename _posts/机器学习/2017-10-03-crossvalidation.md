@@ -150,4 +150,4 @@ random forest accuracy:
 
 ## 参考文献：
 
-[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  
+[王小川授课内容](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  
