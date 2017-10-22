@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Bagging&Boosting】理论与实现
-categories: 
+categories:
 tags: 机器学习
 keywords: model evaluation
 description:
@@ -114,3 +114,8 @@ test_est_rfc = logistic_model.predict(test_data)
 test_est_p_rfc = logistic_model.predict_proba(test_data)[:,1]
 fpr_test_rfc, tpr_test_rfc, th_test_rfc = metrics.roc_curve(test_target, test_est_p_rfc)
 ```
+
+
+## 参考文献：
+
+[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  

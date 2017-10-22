@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【交叉验证】介绍
-categories: 
+categories:
 tags: 机器学习
 keywords: model evaluation
 description:
@@ -146,3 +146,8 @@ abc classifier accuracy:
 random forest accuracy:
 [ 0.7202381   0.73035714  0.70714286  0.71488095  0.70416667]
 ```
+
+
+## 参考文献：
+
+[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  

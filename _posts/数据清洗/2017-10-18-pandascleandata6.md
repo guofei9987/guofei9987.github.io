@@ -189,6 +189,9 @@ df.
 df.groupby('w').agg(lambda dd: dd.loc[(dd.z+dd.y).idxmax()])
 ```
 
+- np.max, np.min, np.sum
+- np.mean, np.std
+- 'count'
 
 ### transfrom()
 

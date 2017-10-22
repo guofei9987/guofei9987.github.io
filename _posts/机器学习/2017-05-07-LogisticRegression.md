@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【logistics】理论与实现
-categories: 
+categories:
 tags: 机器学习
 keywords: model evaluation
 description:
@@ -172,3 +172,7 @@ lr.fit(x_new, y) #用筛选后的特征数据来训练模型
 print('逻辑回归模型训练结束。')
 print('模型的平均正确率为：%s' % lr.score(x_new, y)) #给出模型的平均正确率，本例为81.4%
 ```
+
+## 参考文献
+
+[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)

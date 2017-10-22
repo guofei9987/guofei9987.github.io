@@ -81,5 +81,9 @@ clf.predict(dataset.data)#判断数据属于哪个类别
 clf.score(dataset.data,dataset.target)#准确率
 ```
 
-参考文献：  
+
+## 参考文献：
+
+[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  
+
 http://www.cnblogs.com/hqqxyy/articles/3753026.html

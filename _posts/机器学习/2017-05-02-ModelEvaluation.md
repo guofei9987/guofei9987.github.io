@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【模型评价】理论与实现
-categories: 
+categories:
 tags: 机器学习
 keywords: model evaluation
 description:
@@ -137,7 +137,7 @@ negative</td>
 在医疗诊断时，错把患病诊断为未患病，其后果远比错发患病诊断为未患病严重的多。   
 
 ### ROC曲线
-值得是不同阈值下曲线，  
+指的是不同阈值下曲线，  
 x轴：	FPR=FP/(FP+TN)   
 y轴：	TPR=TP/(TP+FN)
 
@@ -206,3 +206,11 @@ plt.title('ROC curve')
 ## 模型保存与载入
 
 参见[SVM](http://www.guofei.site/2017/09/28/svm.html#title8)
+
+
+## 参考文献
+
+
+[王小川](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)    
+
+Wikipedia
