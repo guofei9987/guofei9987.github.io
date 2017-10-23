@@ -145,6 +145,111 @@ df.sort_values(by=['w','z'],ascending=[False,True],inplace=True)
 df.sort_index(ascending=True,inplace=True)
 ```
 
+## rank
+
+返回排序的序号
+```
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.random.rand(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,1,1,2]
+df
+```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.098404</td>
+      <td>0.099138</td>
+      <td>0.381158</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.776177</td>
+      <td>0.478243</td>
+      <td>0.523116</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0.397995</td>
+      <td>0.040227</td>
+      <td>0.362902</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>0.997362</td>
+      <td>0.072824</td>
+      <td>0.709957</td>
+    </tr>
+  </tbody>
+</table>
+
+
+```py
+df.rank(ascending=True,method='average')
+```
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>w</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.5</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+
+method说明：
+- 'average'(default): 相等分组中，按平均值
+- 'min': 取最小排名
+- 'max': 取最大排名
+- 'first': 按照原始数据中出现的顺序分配排名
+
+
 ## 列变化
 
 ### 方法1：map
@@ -168,26 +273,4 @@ func1的规则：
 def func1(series):
     #series的类型是Series，其内容是DataFrame的一行，
     #return内容就是data.apply这个series中的元素
-```
-
-
-## groupby
-```python
-df.groupby('key1').max()#生成一个DataFrame，存入分组后每一列的最大值
-```
-
-分组求和
-```python
-df.groupby((df['key1'],df['key2'])).sum()
-```
-groupby后面可以接的方法：
-```
-sum mean median max min
-count
-size
-```
-
-例如：  
-```py
-df.groupby('industryName1').agg(['mean','median','max','min'])
 ```

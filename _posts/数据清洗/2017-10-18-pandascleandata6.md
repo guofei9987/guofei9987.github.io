@@ -172,26 +172,36 @@ for key,df_group in df.groupby(['w','x'])['z','y']:
 
 ### agg()
 
+数据准备  
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,0,1,1]
+df.groupby('w').agg(np.count)
+```
+
+后接自定函数
 ```py
 df.groupby('w').agg(func)
 ```
-
 func是一个函数，接收每个group每列的Series对象,输出一个数，  
 
+后接函数  
 ```py
 df.groupby('w')[['z','y']].agg([np.sum,np.mean,np.min,np.max])
 ```
 
 func不能接受Series时，会尝试接受分组DataFrame，并输出一个数
-示例：
+示例：  
 ```py
 df.
 df.groupby('w').agg(lambda dd: dd.loc[(dd.z+dd.y).idxmax()])
 ```
 
 - np.max, np.min, np.sum
-- np.mean, np.std
-- 'count'
+- np.mean, np.std, np.median
+- 'count', np.size
 
 ### transfrom()
 

@@ -7,6 +7,27 @@ keywords:
 description:
 ---
 
+|方法|说明|
+|--|--|
+|count|非NaN值得数量|
+|describe|描述统计|
+|min, max|最值|
+|idxmin, idxmax|最值所在位置(loc)|
+|quantile|分位数|
+|sum||
+|mean||
+|median|中位数|
+|mad|平均绝对离差|
+|var||
+|std||
+|skew|偏度(三阶矩)|
+|kurt|峰度(四阶距)|
+|cumsum||
+|cumprod||
+|cummin, cummax|累计最值|
+|diff||
+|pct_change|百分数变化|
+
 ## 描述统计
 
 ```python
@@ -22,16 +43,36 @@ df.shape
 
 ## 运算函数
 
-max,min,min,std  
+### 汇总
+
+
+max, min, min, std, sum  
 能返回每一列统计量  
 - axis,指定运算轴
-- level,指定对应的索引
+- level, 如果是MultiIndex, 指定对应的索引
 - skipna,运算是否跳过NaN
 
 
 
+
+#### 最值所在位置
+
+
+```
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.random.rand(16).reshape(-1,4),columns=list('wxyz'))
+df.idxmax()
+```
+
+### 计算
+
 add, sub,mul,div,mod  
 可以通过axis,level,fill_value等参数控制其运算行为。  
+
+### 统计
+
+
 
 
 ## count
