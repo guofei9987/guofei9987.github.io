@@ -60,11 +60,11 @@ input space&output space
 : 输入与输出所有可能取值的集合
 
 
-instace
+instance
 : 每个具体的输入
 
 feature vector
-: 每个示例的表示
+: 每个instance的表示
 
 
 sample
