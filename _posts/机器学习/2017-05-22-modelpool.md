@@ -102,7 +102,10 @@ loss function 又叫做 cost function， 一般形式是$L(Y,f(X))$
 
 
 quadratic loss function
+: $$L(Y,f(X))=(Y-f(X))^2$$
 
+absolute loss function
+: $$L(Y,f(X))=\mid Y-f(X) \mid$$
 
 ### 神经网络的缺点：  
 网络结构选择、过学习、欠学习以及局部最小值问题
