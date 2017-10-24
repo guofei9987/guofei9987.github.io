@@ -96,16 +96,45 @@ loss function 又叫做 cost function， 一般形式是$L(Y,f(X))$
 
 
 0-1 loss function
-: $$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)
+: 定义为$$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)\\
 0,&Y=f(X)
 \end{array}\right.$$
 
 
 quadratic loss function
-: $$L(Y,f(X))=(Y-f(X))^2$$
+: 定义为$$L(Y,f(X))=(Y-f(X))^2$$  
 
 absolute loss function
-: $$L(Y,f(X))=\mid Y-f(X) \mid$$
+: 定义为$$L(Y,f(X))=\mid Y-f(X) \mid$$
+
+logarithmic loss function
+: 定义为$$L(Y,P(Y \mid X))=-\log P(Y \mid X)$$  
+
+
+我们希望loss function的期望越小越好
+
+$R(f)=E(L(Y,f(X)))=\int_{\mathscr{X \times Y}} L(y,f(x))P(x,y)dx dy$  
+称为 **risk function**， 或者 **expected loss**  
+
+当然，$R(f)$不能直接计算，我们使用数据来估计：  
+$R_{emp}=1/N \sum L(y_i,f(x_i))$  
+称为 **empirical risk** , 或者 **empirical loss**  
+
+MLE(maximum likelihood estimation)就是经验风险最小化的一个例子。  
+
+
+#### 2.2 结构风险最小化
+
+结构风险最小化(structural risk minimization,SRM)是为了防止过拟合而提出的策略  
+
+$R_{SRM}=1/N \sum L(y_i,f(x_i))+\lambda J(f)$  
+
+其中$J(f)$是模型的复杂度。  
+
+### 算法
+
+为了得到上面的最小化，用不同的算法找出最优。  
+需要考虑算法效率等，有时也会根据需要，发展处独自的最优化算法。  
 
 ### 神经网络的缺点：  
 网络结构选择、过学习、欠学习以及局部最小值问题
