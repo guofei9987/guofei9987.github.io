@@ -111,6 +111,8 @@ logarithmic loss function
 : 定义为$$L(Y,P(Y \mid X))=-\log P(Y \mid X)$$  
 
 
+
+
 我们希望loss function的期望越小越好
 
 $R(f)=E(L(Y,f(X)))=\int_{\mathscr{X \times Y}} L(y,f(x))P(x,y)dx dy$  
@@ -120,12 +122,18 @@ $R(f)=E(L(Y,f(X)))=\int_{\mathscr{X \times Y}} L(y,f(x))P(x,y)dx dy$
 $R_{emp}=1/N \sum L(y_i,f(x_i))$  
 称为 **empirical risk** , 或者 **empirical loss**  
 
+
+
 MLE(maximum likelihood estimation)就是经验风险最小化的一个例子。  
+
 
 
 #### 2.2 结构风险最小化
 
-结构风险最小化(structural risk minimization,SRM)是为了防止过拟合而提出的策略  
+
+**结构风险最小化(structural risk minimization,SRM)**  
+
+是为了防止过拟合而提出的策略  
 
 $R_{SRM}=1/N \sum L(y_i,f(x_i))+\lambda J(f)$  
 
