@@ -1,11 +1,16 @@
 ---
 layout: post
 title: 机器学习模型汇总
-categories: 
+categories:
 tags: 机器学习
 keywords: model evaluation
 description:
 ---
+
+## 分类
+
+### 按照被解释变量分类
+
 <table>
 <tr><th>回归问题</th><th>分类问题</th><th><a href='/2017/09/29/cluster.html'>聚类问题</a></th></tr>
 <tr>
@@ -40,12 +45,63 @@ description:
 
 </tr>
 
-
-
-
 </table>
 
+### 按照问题分类
 
+- 有监督学习supervised learning
+- 无监督学习unsupervised learning
+- 半监督学习semi-supervised learning
+- 强化学习reinforcement
+
+#### 有监督学习
+
+input space&output space
+: 输入与输出所有可能取值的集合
+
+
+instace
+: 每个具体的输入
+
+feature vector
+: 每个示例的表示
+
+
+sample
+: 输入输出对
+
+
+## 三要素
+
+模型+策略+方法  
+
+### 1. 模型
+
+假设空间通常可以定义为: $$\mathscr{F}=\{ f \mid Y=f(X) \}$$  
+通常可以写为$$\mathscr{F}=\{ f \mid Y=f_\theta(X) ,\theta \in R^n\}$$  
+
+
+假设空间也可以定义为: $$\mathscr{F}=\{ P \mid P(Y\mid X) \}$$  
+通常可以写为$$\mathscr{F}=\{ P \mid P_\theta(Y\mid X) , \theta \in R^n \}$$  
+
+### 2. 策略
+
+有了模型的假设空间，这一步需要考虑按什么样的准则学习或选择最优模型。  
+
+#### 2.1 loss function
+
+loss function 又叫做 cost function， 一般形式是$L(Y,f(X))$  
+
+通常有以下几种：  
+
+
+0-1 loss function
+: $$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)
+0,&Y=f(X)
+\end{array}\right.$$
+
+
+quadratic loss function
 
 
 ### 神经网络的缺点：  

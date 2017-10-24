@@ -26,7 +26,7 @@ data.duplicated()#返回Series，bool类型，存放是否是重复行/列
 data.drop('animal2', axis='columns', inplace=True)
 ```
 
-参数可以是list，以删除多行/多列
+参数可以是list，以删除多行/多列  
 
 
 ## 替换数据
@@ -268,7 +268,8 @@ data.apply(func1,axis='columns')#返回Series
 ```
 
 func1的规则：
-输入是一行
+- axis=0，输入一列
+- axis=1，输入一行
 ```python
 def func1(series):
     #series的类型是Series，其内容是DataFrame的一行，

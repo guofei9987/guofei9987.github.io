@@ -208,6 +208,8 @@ df.set_index(['w','x'],inplace=True,append=True)#保留原来的index，设置�
   </tbody>
 </table>
 
+- drop=False  
+不把这些列移除。  
 
 ### reset_index
 

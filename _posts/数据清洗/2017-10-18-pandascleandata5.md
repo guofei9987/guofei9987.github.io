@@ -26,7 +26,8 @@ description:
 |cumprod||
 |cummin, cummax|累计最值|
 |diff||
-|pct_change|百分数变化|
+|pct_change|变化率（与上一列相比）|
+|corr|相关系数矩阵df.corr(),se1.corr(se2),df.corr(se1)|
 
 ## 描述统计
 
