@@ -9,7 +9,7 @@ description:
 
 
 
-## 简介[^lihang]
+## 简介
 
 *Naive Bayes Classifier与Bayesian estimation是不同的概念*
 
@@ -28,12 +28,13 @@ description:
 
 ## 推导
 
+模型推导过程如下[^lihang]
+
 ### 变量
 feature vector: $x\in \mathcal X$  
 也写成: $(x^{(1)},x^{(2)},..., x^{(n)}) \in (\mathcal {X^{(1)},X^{(2)},...,X^{(n)}})$  
 target: $$y\in  \mathcal Y = \{ c_1, c_2,... , c_K\}$$  
 
-### 模型推导
 
 #### 模型
 选择0-1损失函数$$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)\\
@@ -69,9 +70,9 @@ $P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)=P(Y=c_k)\prod\limits_{i=1}^n P(
 $k = \arg \max\limits_{k} P(Y=c_k) \prod\limits_{i=1}^n P(X_i=x_i \mid Y=c_k)$  
 k就是预测新样本所在的类。  
 
-## Python实现[^wangxiaochuan]
+## Python实现
 
-载入数据
+载入数据[^wangxiaochuan]
 ```py
 from sklearn import datasets
 dataset = datasets.load_iris()

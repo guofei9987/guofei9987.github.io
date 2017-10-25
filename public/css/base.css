@@ -110,7 +110,10 @@ body, html {
 }
 #content td, th{
   border:1px solid #1ABC9C;
-  }
+}
+#content p{
+  padding-top: 1em;
+}
 blockquote p {
   font-size: 20px;
 }
