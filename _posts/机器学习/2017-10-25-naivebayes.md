@@ -9,7 +9,7 @@ description:
 
 
 
-## 简介[^wangxiaochuan]
+## 简介[^lihang]
 
 *Naive Bayes Classifier与Bayesian estimation是不同的概念*
 
@@ -48,7 +48,7 @@ $=\arg\min\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K P(y \neq c_k \mid X=x)$
 $=\arg\min\limits_{y \in \mathcal Y} 1- \sum\limits_{k-1}^K P(y=c_k \mid X=x)$  
 $=\arg\max\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K P(y=c_k \mid X=x)$  
 
-也就是说，风险函数最小等价于后验概率最大。  
+也就是说， **风险函数最小等价于后验概率最大** 。  
 
 #### 算法  
 
@@ -69,6 +69,30 @@ $P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)=P(Y=c_k)\prod\limits_{i=1}^n P(
 $k = \arg \max\limits_{k} P(Y=c_k) \prod\limits_{i=1}^n P(X_i=x_i \mid Y=c_k)$  
 k就是预测新样本所在的类。  
 
+## Python实现[^wangxiaochuan]
+
+载入数据
+```py
+from sklearn import datasets
+dataset = datasets.load_iris()
+```
+
+模型训练
+```py
+from sklearn.naive_bayes import GaussianNB
+gnb = GaussianNB(priors=[0.1, 0.5, 0.4])
+gnb.fit(dataset.data, dataset.target)
+```
+只有一个输入参数priors,表示先验概率，也可以省略。  
+
+
+```py
+gnb.score(dataset.data,dataset.target)
+gnb.priors
+gnb.predict(dataset.data)
+gnb.predict_proba(dataset.data)
+```
+
 ## 参考资料
-[^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)
+[^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
