@@ -26,20 +26,37 @@ description:
 2. 需要知道先验概率。
 3. 分类决策存在错误率
 
-## 模型
+## 推导
 
-### 变量说明
+### 变量
 feature vector: $x\in \mathcal X$  
 也写成: $(x^{(1)},x^{(2)},..., x^{(n)}) \in (\mathcal {X^{(1)},X^{(2)},...,X^{(n)}})$  
 target: $$y\in  \mathcal Y = \{ c_1, c_2,... , c_K\}$$  
 
 ### 模型推导
 
-$P(Y=c_k \mid X=x)=\dfrac{P(X=x\mid Y=c_k)}{P(X=x)}=\dfrac{P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)}{P(X=x)}$  
+#### 模型
+选择0-1损失函数$$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)\\
+0,&Y=f(X)
+\end{array}\right.$$  
+
+风险函数为$R(f)=E(L(Y,f(X)))=\sum\limits_{k-1}^K L(c_k,y)P(c_k \mid X=x)$  
+
+风险函数最小：
+$\arg\min\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K L(c_k,y)P(c_k \mid X=x)$  
+$=\arg\min\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K P(y \neq c_k \mid X=x)$  
+$=\arg\min\limits_{y \in \mathcal Y} 1- \sum\limits_{k-1}^K P(y=c_k \mid X=x)$  
+$=\arg\max\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K P(y=c_k \mid X=x)$  
+
+也就是说，风险函数最小等价于后验概率最大。  
+
+#### 算法  
+
+$P(Y=c_k \mid X=x)=\dfrac{P(X=x\mid Y=c_k)P(Y=c_k)}{P(X=x)}=\dfrac{P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)}{P(X=x)}$  
 
 
 k取不同的值的时候，找到上式取最大时的k，可以判断为新样本所属的第k类  
-分母不变，所以只计算比较分子$P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)$  
+分母不变，所以只计算比较分子$P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)$  
 
 
 如果Y可能取值是K个，$x^{(i)}$可能取值有$S^{(i)}$个，那么参数个数为$K\prod S^{(i)}$  
@@ -47,9 +64,10 @@ k取不同的值的时候，找到上式取最大时的k，可以判断为新样
 参数个数变成$K\sum S^{(i)}$  
 
 附加独立性假设后，分子简化为：  
-$P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)=\prod P(X_i=x_i \mid Y=c_k)$  
+$P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)=P(Y=c_k)\prod\limits_{i=1}^n P(X_i=x_i \mid Y=c_k)$  
 
-
+$k = \arg \max\limits_{k} P(Y=c_k) \prod\limits_{i=1}^n P(X_i=x_i \mid Y=c_k)$  
+k就是预测新样本所在的类。  
 
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)
