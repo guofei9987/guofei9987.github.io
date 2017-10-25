@@ -40,67 +40,75 @@ description:
 
 ```py
 def round11(x, y, z):
-    prob_n=2#多少种可能性
-    if y==z:
-        prob_n=1
-    return prob_n
+    prob_count = 2  # 这一次能猜出多少种可能性
+    if y == z:
+        prob_count = 1
+    return prob_count
 
-def round12(x,y,z):
-    prob_n=2
-    if x==z:
-        prob_n=1
-    elif round11(x,abs(x-z),z)==1:
-        prob_n=1#这种情况下，上一个人能猜出来，不符合要求
-    elif round11(x,x+z,z)==1:
-        prob_n=1
-    return prob_n
 
-def round13(x,y,z):
-    prob_n=2
-    if x==y:
-        prob_n=1
-    elif round12(x,y,abs(x-y))==1:
-        prob_n=1#这种情况下，上一个人能猜出来，不符合要求
-    elif round12(x,y,x+y)==1:
-        prob_n=1
-    return prob_n
+def round12(x, y, z):
+    prob_count = 2
+    if x == z:
+        prob_count = 1  # 能猜出来
+    elif round11(x, abs(x - z), z) == 1:  # 上一个人能猜出来
+        prob_count = 1  # 这个人当然也能猜出来
+    elif round11(x, x + z, z) == 1:
+        prob_count = 1
+    return prob_count
 
-def round21(x,y,z):
-    prob_n=2
-    if y==z:
-        prob_n=1
-    elif round13(abs(y-z),y,z)==1:
-        prob_n=1#这种情况下，上一个人能猜出来，不符合要求
-    elif round13(y+z,y,z)==1:
-        prob_n=1
-    return prob_n
 
-def round22(x,y,z):
-    prob_n=2
-    if x==z:
-        prob_n=1
-    elif round21(x,abs(x-z),z)==1:
-        prob_n=1#这种情况下，上一个人能猜出来，不符合要求
-    elif round21(x,x+z,z)==1:
-        prob_n=1
-    return prob_n
+def round13(x, y, z):
+    prob_count = 2
+    if x == y:
+        prob_count = 1
+    elif round12(x, y, abs(x - y)) == 1:
+        prob_count = 1
+    elif round12(x, y, x + y) == 1:
+        prob_count = 1
+    return prob_count
 
-def round23(x,y,z):
-    prob_n=2
-    if x==y:
-        prob_n=1
-    elif round22(x,y,abs(x-y))==1:
-        prob_n=1#这种情况下，上一个人能猜出来，不符合要求
-    elif round22(x,y,x+y)==1:
-        prob_n=1
-    return prob_n
+
+def round21(x, y, z):
+    prob_count = 2
+    if y == z:
+        prob_count = 1
+    elif round13(abs(y - z), y, z) == 1:
+        prob_count = 1
+    elif round13(y + z, y, z) == 1:
+        prob_count = 1
+    return prob_count
+
+
+def round22(x, y, z):
+    prob_count = 2
+    if x == z:
+        prob_count = 1
+    elif round21(x, abs(x - z), z) == 1:
+        prob_count = 1
+    elif round21(x, x + z, z) == 1:
+        prob_count = 1
+    return prob_count
+
+
+def round23(x, y, z):
+    prob_count = 2
+    if x == y:
+        prob_count = 1
+    elif round22(x, y, abs(x - y)) == 1:
+        prob_count = 1
+    elif round22(x, y, x + y) == 1:
+        prob_count = 1
+    return prob_count
+
 
 import numpy as np
-for i in np.arange(1,144):
-    #按照这种方式遍历：x=i,y=144-i,z=144
-    if round23(i,144-i,144)==1:
-        if round22(i,144-i,144)==2:
+
+for i in np.arange(1, 144):
+    # 按照这种方式遍历：x=i,y=144-i,z=144
+    if round23(i, 144 - i, 144) == 1:
+        if round22(i, 144 - i, 144) == 2:
             print(i)
+
 ```
 
 output:
