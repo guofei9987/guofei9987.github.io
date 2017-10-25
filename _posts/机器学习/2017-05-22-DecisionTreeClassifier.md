@@ -6,6 +6,9 @@ tags: 机器学习
 keywords: Decision Tree Classifier
 description:
 ---
+
+
+## 简介[^wangxiaochuan]
 决策树是一种强大的`有监督`数据挖掘技术，它能应用范围非常广，而且产生的模型`具有可解释性`，而且可以用来`筛选变量`。
 
 
@@ -65,7 +68,9 @@ Breiman在1984年提出CART算法
 $x_i=(x_i^{(1)},x_i^{(2)},...,x_i^{(n)})$是一个样本,有n个维度  
 $y_i \in \{ 1,2,...K \} $类标记  
 N是样本容量  
-### 模型
+
+### 模型[^lihang]
+
 问题是找出$P(Y \mid X)$，X是表示特征的随机变量，Y是表示类的随机变量     
 lost function是正则化极大似然函数     
 遍历是一个NP完全问题，因此改用启发式方法近似求解   
@@ -469,6 +474,5 @@ Image(graph.create_png())
 
 ## 参考文献
 
-[王小川授课内容](http://weibo.com/hgsz2003?refer_flag=1001030001_&nick=%E7%8E%8B%E5%B0%8F%E5%B7%9D_MATLAB&is_hot=1)  
-
-《统计学习方法》
+[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
+[^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)
