@@ -123,7 +123,7 @@ $v_k=a_k+0.618* (b_k - a_k)$
 ## 梯度下降法
 
 沿着负梯度方向，$f(x)$下降的最快，因此有这么一种迭代求最优的方法
-$x_{k+1}=x_k-\rho_k \nabla f(x_k) $  
+$x_{k+1}=x_k-\rho_k \nabla f(x_k)$  
 
 ### 最速下降法
 梯度下降法(gradient)或最速下降法(steepest descent)  
