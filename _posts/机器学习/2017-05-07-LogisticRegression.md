@@ -28,7 +28,7 @@ $P(Y=1 \mid x)=\dfrac{\exp(wx)}{1+\exp(wx)}$
 
 $P(Y=0 \mid x)=\dfrac{1}{1+\exp(wx)}$  
 
-### 策略
+### 算法
 
 求参数的方法，就是经典的 **MLE** (极大似然估计)方法。  
 先求似然函数，  
@@ -48,6 +48,7 @@ $\dfrac{\partial L(w;x)}{\partial w_j} = \sum \limits_{i=1}^N (y_i x_{ij} - \dfr
 
 - 令导数为0，遗憾的是无法求出解析解。
 - 因此用梯度法可以求解
+
 
 ## Python实现（自己编程）
 
