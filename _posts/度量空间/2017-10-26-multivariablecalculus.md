@@ -54,20 +54,20 @@ TH2：
 
 ### 曲线的切向量与切线
 
-- $\left \{ \begin{array}{ccc}
+- $$\left \{ \begin{array}{ccc}
 x=x(t)\\y=y(t)\\z=z(t)
-\end{array}\right.$的切向量是$(x',y',z')$
+\end{array}\right.$$的切向量是$(x',y',z')$
 
 
-- $\left \{ \begin{array}{ccc}
+- $$\left \{ \begin{array}{ccc}
 y=y(x)\\z=z(x)
-\end{array}\right.$可以转化为参数形式
+\end{array}\right.$$可以转化为参数形式
 
 
 - 隐式
-$\left \{ \begin{array}{ccc}
+$$\left \{ \begin{array}{ccc}
 F(x,y,z)=0\\G(x,y,z)=0
-\end{array}\right.$
+\end{array}\right.$$
 
 Def:奈不拉算子
 $\bigtriangledown =\vec i \dfrac{\partial}{\partial x}
@@ -75,15 +75,13 @@ $\bigtriangledown =\vec i \dfrac{\partial}{\partial x}
 +\vec i \dfrac{\partial}{\partial x}$
 
 把参数形式代入隐式中，得到：
-$\left \{ \begin{array}{ccc}
+$$\left \{ \begin{array}{ccc}
 \bigtriangledown F_{P_0} \centerdot \vec r=0
 \\\bigtriangledown G_{P_0} \centerdot \vec r=0
-\end{array}\right.$
+\end{array}\right.$$
 
-求出$\vec r$的平行线了：
-
+求出$\vec r$的平行线了：  
 $\vec r(t) // \bigtriangledown F_{P_0} \times \bigtriangledown G_{P_0}$
-
 这就是隐函数的切向量
 
 ### 曲面的切平面与法线
