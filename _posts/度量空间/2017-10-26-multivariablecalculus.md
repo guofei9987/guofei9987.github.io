@@ -70,18 +70,18 @@ F(x,y,z)=0\\G(x,y,z)=0
 \end{array}\right.$$
 
 Def:奈不拉算子
-$\bigtriangledown =\vec i \dfrac{\partial}{\partial x}
-+\vec i \dfrac{\partial}{\partial x}
-+\vec i \dfrac{\partial}{\partial x}$
+$\nabla =\vec i \dfrac{\partial}{\partial x}
++\vec j \dfrac{\partial}{\partial y}
++\vec k \dfrac{\partial}{\partial z}$
 
 把参数形式代入隐式中，得到：
 $$\left \{ \begin{array}{ccc}
-\bigtriangledown F_{P_0} \centerdot \vec r=0
-\\\bigtriangledown G_{P_0} \centerdot \vec r=0
+\nabla F_{P_0} \centerdot \vec r=0\\
+\nabla G_{P_0} \centerdot \vec r=0
 \end{array}\right.$$
 
 求出$\vec r$的平行线了：  
-$\vec r(t) // \bigtriangledown F_{P_0} \times \bigtriangledown G_{P_0}$
+$\vec r(t) // \nabla F_{P_0} \times \nabla G_{P_0}$
 这就是隐函数的切向量
 
 ### 曲面的切平面与法线
