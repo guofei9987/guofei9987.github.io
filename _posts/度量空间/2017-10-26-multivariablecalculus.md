@@ -8,7 +8,7 @@ description:
 ---
 
 
-## 性质1
+## 可微的性质
 TH1：
 若$\dfrac{\partial^2 Z}{\partial x \partial y}$和$\dfrac{\partial^2Z}{\partial y \partial x}$都连续，那么$\dfrac{\partial^2 Z}{\partial x \partial y}=\dfrac{\partial^2Z}{\partial y \partial x}$
 
