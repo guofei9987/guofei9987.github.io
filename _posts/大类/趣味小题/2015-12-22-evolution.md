@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【读后感】《进化论与生活》（戴维.斯隆.威尔逊）.
-categories: 推文
+categories: 趣文
 ---
 
 

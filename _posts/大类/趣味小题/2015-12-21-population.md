@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【读后感】《大国空巢》.
-categories: 推文
+categories: 趣文
 ---
 
 

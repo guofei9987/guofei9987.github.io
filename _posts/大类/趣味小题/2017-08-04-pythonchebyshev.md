@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Python】2 examples of Chebyshev inequality.
-categories: 推文
-tags: 趣味小题
+categories: 趣文
+tags: 
 keywords:
 description:
 ---
