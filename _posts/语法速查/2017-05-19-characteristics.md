@@ -2,7 +2,7 @@
 layout: post
 title: Python特性研究.
 categories: 
-tags: 面向对象Python
+tags: Python语法
 keywords:
 description:
 ---

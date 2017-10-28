@@ -2,7 +2,7 @@
 layout: post
 title: 【数值积分】scipy.integrate.
 categories: 
-tags: 数值计算与最优化方法
+tags: 数值计算与最优化
 keywords:
 description:
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【面向对象】类的特殊成员.
 categories: 
-tags: 面向对象Python
+tags: Python语法
 keywords:
 description:
 ---

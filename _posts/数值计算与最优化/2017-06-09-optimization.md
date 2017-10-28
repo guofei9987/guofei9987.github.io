@@ -2,7 +2,7 @@
 layout: post
 title: 【最优化】理论篇.
 categories:
-tags: 数值计算与最优化方法
+tags: 数值计算与最优化
 keywords:
 description:
 ---

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Python】【numpy】linalg线性代数.
-categories: 
-tags: 语法速查
+categories:
+tags: Python语法
 keywords:
 description:
 ---

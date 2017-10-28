@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【datetime】时间的介绍.
 categories: 
-tags: 语法速查
+tags: Python语法
 keywords:
 description:
 ---
