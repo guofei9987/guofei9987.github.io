@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【小实验】有偏分布下的均值、中位数、众数之间的关系.
-categories: 推文
-tags: 趣味小题
+categories: 趣文
+tags: 
 keywords:
 description:
 ---

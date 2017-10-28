@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【趣味小题】逻辑教授三学生问题
-categories: 推文
-tags: 趣味小题
+categories: 趣文
+tags:
 keywords:
 description:
 ---

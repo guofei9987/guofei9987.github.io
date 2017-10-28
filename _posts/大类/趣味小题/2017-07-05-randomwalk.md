@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【趣味小题】随机漫步.
-categories: 
-tags: 趣味小题
+categories: 趣文
+tags:
 keywords:
 description:
 ---

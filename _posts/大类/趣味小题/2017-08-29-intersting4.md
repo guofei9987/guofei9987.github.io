@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【算法小题】24点问题.
-categories: 
-tags: 趣味小题
+categories: 趣文
+tags:
 keywords:
 description:
 ---

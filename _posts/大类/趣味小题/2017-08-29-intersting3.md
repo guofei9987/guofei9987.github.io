@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【算法小题】破碎的砝码.
-categories:
-tags: 趣味小题
+categories: 趣文
+tags:
 keywords:
 description:
 ---
