@@ -25,11 +25,15 @@ Def1：
 - 全增量$\Delta z=f(x+\Delta x,y+\Delta y)-f(x,y)$
 - 全微分$d z=A\Delta x+B\Delta y$
 
-TH:(极值)
+## 极值
+
+### 性质1
 如果：
 - 有连续的二阶偏导
 - $z=f(x,y)$连续
-- $f_x(x_0,y_0)=f_y(x_0,y_0)=0$
+- $f_x(x_0,y_0)=f_y(x_0,y_0)=0$  
+
+
 那么：
 - 如果$B^2<AC$，那么有极值
     - $A>0$有极小值
@@ -37,22 +41,33 @@ TH:(极值)
 - 如果$B^2=AC$，那么无法判断是否有极值
 - 如果$B^2>AC$，那么无极值
 
+### 性质2
+
+如果：
+- 偏导数存在
+- 有极值点$(x_0,y_0)$
+
+
+那么：  
+$f_x(x_0,y_0)=f_y(x_0,y_0)=0$
 
 
 ## 向量函数
-Def1：
+### 定义
+
 $\vec r=f_1 \vec i +f_2 \vec j +f_3 \vec k $
-TH1:
+
+
 - $\vec r$有极限$\Leftrightarrow f_1,f_2,f_3$有极限
 - $\vec r$连续$\Leftrightarrow f_1,f_2,f_3$连续
 - $\vec r$可导$\Leftrightarrow f_1,f_2,f_3$可导
 
-TH2：
+### 性质
 - $[\vec u(t) \vec v(t)]'=\vec u' \vec v+\vec u \vec v'$
 - $(\vec u \times \vec v)'=\vec u' \times \vec v+\vec u \times \vec v'$
 - $[\vec u (\phi(t))]'=\vec u' \phi$
 
-### 曲线的切向量与切线
+### 曲线的切向量
 
 - $$\left \{ \begin{array}{ccc}
 x=x(t)\\y=y(t)\\z=z(t)
