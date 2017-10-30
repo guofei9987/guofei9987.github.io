@@ -76,6 +76,11 @@ $f(a+h)-f(a)=0.5(h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\part
 事实上，可以定义 **Hasse矩阵** ：  
 $H_f(a)=(\dfrac{\partial^2 f}{\partial x_i \partial x_j}(a))_ {m \times m}$  
 
+综上，
+f在a点所有的一阶偏导数为0，那么：  
+- 如果Hasse矩阵正定，那么在a点取严格极大值。  
+- 如果Hasse矩阵负定，那么在a点取严格极小值。  
+
 ### 几个算子
 
 #### 拉普拉斯算子
