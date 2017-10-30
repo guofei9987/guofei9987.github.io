@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 多元微积分
+title: 多元微积分要点提要
 categories:
 tags: 实分析
 keywords:

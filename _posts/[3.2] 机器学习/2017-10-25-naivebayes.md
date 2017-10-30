@@ -13,7 +13,7 @@ description:
 
 *Naive Bayes Classifier与Bayesian estimation是不同的概念*
 
-朴素贝叶斯分类器(Naive Bayes Classifier,或 NBC)发源于古典数学理论，有着坚实的数学基础，以及稳定的分类效率。同时，NBC模型所需估计的参数很少，对缺失数据不太敏感，算法也比较简单。理论上，NBC模型与其他分类方法相比具有最小的误差率。但是实际上并非总是如此，这是因为NBC模型 **假设属性之间相互独立** ，这个假设在实际应用中往往是不成立的，这给NBC模型的正确分类带来了一定影响。
+朴素贝叶斯分类器(Naive Bayes Classifier,或 NBC)发源于古典数学理论，有着坚实的数学基础，以及稳定的分类效率。同时，NBC模型所需估计的参数很少，对缺失数据不太敏感，算法也比较简单。理论上，NBC模型与其他分类方法相比具有最小的误差率。但是实际上并非总是如此，这是因为NBC模型 **假设属性之间相互独立** ，这个假设在实际应用中往往是不成立的，这给NBC模型的正确分类带来了一定影响[^wangxiaochuan]。
 
 ### 优点
 
@@ -72,7 +72,7 @@ k就是预测新样本所在的类。
 
 ## Python实现
 
-载入数据[^wangxiaochuan]
+载入数据
 ```py
 from sklearn import datasets
 dataset = datasets.load_iris()
