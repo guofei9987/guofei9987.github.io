@@ -72,6 +72,10 @@ $f(a+h)-f(a)=0.5(h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\part
 =$0.5\sum\limits_{i,j=1}^m A_{ij}h_i h_j+o(\mid\mid h\mid \mid^2)$  
 (其中$A_{ij}=\dfrac{\partial^2 f}{\partial x_i \partial y_j}(a)$)  
 
+上式是一个二次型(二次型正定的充分必要条件时系数方阵上所有的顺序主子式都大于0)  
+事实上，可以定义 **Hasse矩阵** ：  
+$H_f(a)=(\dfrac{\partial^2 f}{\partial x_i \partial x_j}(a))_ {m \times m}$  
+
 ### 几个算子
 
 #### 拉普拉斯算子
