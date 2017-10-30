@@ -85,12 +85,23 @@ $\Delta =\dfrac{\partial^2 }{\partial x^2}+\dfrac{\partial^2 }{\partial y^2}+\df
 
 答案：0
 
-#### 1
+#### 泰勒公式
 
 $\phi(t) = f(x+th,y+tk)$  
-$\phi^{(n)}(t)=(h \dfrac{\partial}{\partial x}+k\dfrac{\partial}{\partial x})^n f(x+th,y+tk)$  
+那么：$\phi^{(n)}(t)=(h \dfrac{\partial}{\partial x}+k\dfrac{\partial}{\partial x})^n f(x+th,y+tk)$  
 
+推广：  
+$\phi(t)=f(x+th)=f(x_1+th_1,x_2+th_2,...,x_m+th_m)$  
+那么：$\phi^{(n)}(t)=(h_1\dfrac{\partial}{\partial x}+h_2\dfrac{\partial}{\partial x}+....+h_m\dfrac{\partial}{\partial x})^n f(x+th)$
 
+多元泰勒公式：  
+
+f是n+1阶连续可微的函数，如果  
+$f(a+h)=\sum_{p=0}^n \dfrac{1}{p!}(h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\partial x_m})^p f(a)+R_{n+1}$  
+
+拉格朗日余项$R_{n+1}=\dfrac{1}{(n+1)!} (h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\partial x_m})^{(n+1)}f(a+\theta h) \space (0<\theta<1)$  
+积分余项$R_{n+1}=\dfrac{1}{n!}\int_0^1(1-t)^n (h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\partial x_m})^{(n+1)}f(a+th) d t$  
+皮亚诺余项$R_{n+1}=o(\mid\mid h\mid\mid^n)$  
 
 
 
