@@ -43,7 +43,7 @@ g_p(x)=g_p(x_1,x_2,...x_{m+p})\\
 
 当然要求$$rank \left [ \begin{array}{ccc}
 \dfrac{\partial g_1}{\partial x_1}&...&\dfrac{\partial g_1}{\partial x_{m+p}}\\
-...\\
+...........\\
 \dfrac{\partial g_p}{\partial x_1}&...&\dfrac{\partial g_p}{\partial x_{m+p}}\\
 \end{array}\right]=p$$  
 
