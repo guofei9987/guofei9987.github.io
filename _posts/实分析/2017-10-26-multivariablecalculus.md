@@ -60,15 +60,35 @@ $\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$
 
 ### 性质2推广
 
+（连续可微：各偏导数连续，所以可微，叫做连续可微）  
 多元函数$f(x)$在a点二阶连续可微，$\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$  
 
 
 
 
 
+### 几个算子
+
+#### 拉普拉斯算子
+二维拉普拉斯算子定义：  
+$\Delta =\dfrac{\partial^2 }{\partial x^2}+\dfrac{\partial^2 }{\partial y^2}$  
+
+对$u=ln 1/r $计算$\Delta u$, 这里$r=\sqrt{x^2+y^2}$  
+
+答案：0
+
+三维拉普拉斯算子定义:
+$\Delta =\dfrac{\partial^2 }{\partial x^2}+\dfrac{\partial^2 }{\partial y^2}+\dfrac{\partial^2 }{\partial z^2}$  
+
+对$u=1/r $计算$\Delta u$, 这里$r=\sqrt{x^2+y^2+z^2}$  
 
 
+答案：0
 
+#### 1
+
+$\phi(t) = f(x+th,y+tk)$  
+$\phi^{(n)}(t)=(h \dfrac{\partial}{\partial x}+k\dfrac{\partial}{\partial x})^n f(x+th,y+tk)$  
 
 
 
