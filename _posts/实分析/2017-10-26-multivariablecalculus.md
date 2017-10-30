@@ -61,11 +61,16 @@ $\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$
 ### 性质2推广
 
 （连续可微：各偏导数连续，所以可微，叫做连续可微）  
-多元函数$f(x)$在a点二阶连续可微，$\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$  
+多元函数$f(x)$在a点二阶连续可微，如果在a点取极值，那么：  
 
 
+$\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$(用泰勒公式的一阶展开)  
 
 
+然后用泰勒公式的二阶展开，并且使一阶项为0：  
+$f(a+h)-f(a)=0.5(h_1\dfrac{\partial}{\partial x_1}+...+h_m\dfrac{\partial}{\partial x_m})^2 f(a) +o(\mid\mid h\mid \mid^2)$  
+=$0.5\sum\limits_{i,j=1}^m A_{ij}h_i h_j+o(\mid\mid h\mid \mid^2)$  
+(其中$A_{ij}=\dfrac{\partial^2 f}{\partial x_i \partial y_j}(a)$)  
 
 ### 几个算子
 
