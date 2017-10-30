@@ -44,13 +44,17 @@ Def1：
 ### 性质2
 
 如果：
-- 偏导数存在
-- 有极值点$(x_0,y_0)$
+- 点a附近有定义，且在点a可微
+- 在a点取极值
 
 
 那么：  
-$f_x(x_0,y_0)=f_y(x_0,y_0)=0$
+$\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$    
 
+
+证明提示：  
+1. $f(a+h)-f(a)=\sum A_i h_i +o(\mid\mid h\mid\mid)$  
+2. $h_i=A_i \varepsilon$
 
 ## 向量函数
 ### 定义
