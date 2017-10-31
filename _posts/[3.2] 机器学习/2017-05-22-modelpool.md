@@ -47,6 +47,8 @@ description:
 
 </table>
 
+*调整ANN输出层的输出个数，可以达到升维和降维*  
+
 ### 按照问题分类
 
 - 有监督学习supervised learning
