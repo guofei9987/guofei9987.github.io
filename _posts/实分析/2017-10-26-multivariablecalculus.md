@@ -204,7 +204,20 @@ $\vec A$是一个场，$\vec n$是曲面$\sum$的法向量
 
 散度
 : 规定曲面封闭，曲面缩小成一个点，就可以定义这个点的强度  
-$div \vec A (M)=\lim\limits_{\Omega \to M}\dfrac{1}{V} \oiint$
+$div \vec A (M)=\lim\limits_{\Omega \to M}\dfrac{1}{V} \iint_\sum \vec A \vec n dS$(要加个圈表示闭曲面上的积分)  
+
+
+散度为正，表示向外膨胀（如辐射粒子）。  
+散度为负，表示向内搜索（如黑洞）  
+
+## 环流和旋度
+环流
+: $\oint_\Gamma \vec A \vec \tau dl$  
+$\vec \tau$是曲线l的切线方向。  
+
+旋度
+: $\lim\limits_{\sum \to M}\dfrac{1}{S} \oint_\Gamma \vec A \vec \tau dl$  
+$\sum$是封闭曲面$\Gamma$围成的区域，S是$\sum$的面积
 
 ## 曲线积分
 
