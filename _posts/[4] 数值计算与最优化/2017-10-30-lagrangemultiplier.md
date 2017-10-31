@@ -105,3 +105,4 @@ $\dfrac{\partial f}{\partial x_i}+\sum\limits_{r=1}^p \lambda_r \dfrac{\partial 
 (1-3)与(1-4)就是拉格朗日条件。  
 
 #### (充分条件)
+$a+h,a$在可行域上M，$g(a+h)-g(a)=0$二阶展开，带入$f(a+h)-f(a)$后，可以找到取极值的条件。  

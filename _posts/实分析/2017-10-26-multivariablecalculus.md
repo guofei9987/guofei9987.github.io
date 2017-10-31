@@ -28,7 +28,7 @@ Def1：
 ## 极值
 
 
-### 性质1
+### 极值的必要条件
 
 如果：
 - 点a附近有定义，且在点a可微
@@ -44,7 +44,7 @@ $\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$
 2. $h_i=A_i \varepsilon$
 
 
-### 性质2
+### 极值的充分条件
 如果：
 - 有连续的二阶偏导
 - $z=f(x,y)$连续
@@ -58,7 +58,7 @@ $\dfrac{\partial f}{\partial x_i}=0, \space i=1,2,...m$
 - 如果$B^2=AC$，那么无法判断是否有极值
 - 如果$B^2>AC$，那么无极值
 
-### 性质2推广
+### 充分条件的推广
 
 （连续可微：各偏导数连续，所以可微，叫做连续可微）  
 多元函数$f(x)$在a点二阶连续可微，如果在a点取极值，那么：  
@@ -81,9 +81,7 @@ f在a点所有的一阶偏导数为0，那么：
 - 如果Hasse矩阵正定，那么在a点取严格极小值。  
 - 如果Hasse矩阵负定，那么在a点取严格极大值。  
 
-### 几个算子
-
-#### 拉普拉斯算子
+### 拉普拉斯算子
 二维拉普拉斯算子定义：  
 $\Delta =\dfrac{\partial^2 }{\partial x^2}+\dfrac{\partial^2 }{\partial y^2}$  
 
@@ -99,7 +97,7 @@ $\Delta =\dfrac{\partial^2 }{\partial x^2}+\dfrac{\partial^2 }{\partial y^2}+\df
 
 答案：0
 
-#### 泰勒公式
+## 泰勒公式
 
 $\phi(t) = f(x+th,y+tk)$  
 那么：$\phi^{(n)}(t)=(h \dfrac{\partial}{\partial x}+k\dfrac{\partial}{\partial x})^n f(x+th,y+tk)$  
@@ -193,6 +191,20 @@ $\vec r(t) // \nabla F_{P_0} \times \nabla G_{P_0}$
 
 
 - 相互关系: $\dfrac{\partial f}{\partial l}=grad(f) \vec{e}_l$
+
+
+
+## 通量和散度
+
+通量
+: 单位时间通过某个曲面的量  
+$\iint\limits_\sum \vec A \vec n d S$
+$\vec A$是一个场，$\vec n$是曲面$\sum$的法向量  
+
+
+散度
+: 规定曲面封闭，曲面缩小成一个点，就可以定义这个点的强度  
+$div \vec A (M)=\lim\limits_{\Omega \to M}\dfrac{1}{V} \oiint$
 
 ## 曲线积分
 
