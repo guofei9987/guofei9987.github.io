@@ -7,8 +7,10 @@ keywords:
 description:
 ---
 
+大图见于<a href='http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
+
 
 <iframe src="http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm" width="100%" height="1600em" marginwidth="10%"></iframe>
 
 
-大图见于[这里](http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm)
+大图见于<a href='http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
