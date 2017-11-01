@@ -8,7 +8,7 @@ description:
 ---
 
 
-<iframe src="http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm" width="100%" height="100%" marginwidth="10%"></iframe>
+<iframe src="http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm" width="100%" height=1600em marginwidth="10%"></iframe>
 
 
 以上
