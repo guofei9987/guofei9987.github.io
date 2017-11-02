@@ -193,6 +193,44 @@ kind='scatter'
 kind='reg'  
 <img src='http://www.guofei.site/public/postimg/jointplot_reg.png'>  
 
+### PairGrid
+
+[去seaborn官网查看](http://seaborn.pydata.org/tutorial/axis_grids.html#plotting-pairwise-relationships-in-a-dataset)  
+
+
+<img src='http://seaborn.pydata.org/_images/axis_grids_50_0.png'>
+
+### clustermap
+[去seaborn官网查看](http://seaborn.pydata.org/examples/structured_heatmap.html)
+
+
+
+```py
+import pandas as pd
+import scipy.stats as stats
+df = pd.DataFrame(stats.uniform(loc=0, scale=2).rvs(size=1000).reshape(-1, 5))
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.clustermap(df)
+plt.show()
+```
+<img src='http://www.guofei.site/public/postimg/clustermap1.png'>
+
+
+对应的参数：  
+```py
+col_cluster=False
+row_cluster=False
+```
+
+还有第二种图：
+```py
+sns.clustermap(df.corr())
+plt.show()
+```
+<img src='http://www.guofei.site/public/postimg/clustermap2.png'>   
 
 
 ## 参考文献
