@@ -59,7 +59,9 @@ plt.show()
 ```
 <img src='http://www.guofei.site/public/postimg2/matplotlib3_2.png'>
 
-## bar
+## 统计绘图
+
+### bar
 
 就是bar啦！
 

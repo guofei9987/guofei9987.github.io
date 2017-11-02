@@ -18,13 +18,18 @@ sns.distplot
 <img src='http://www.guofei.site/public/postimg2/seaborn1_1.png'>
 
 ### box图
-<a href='http://www.guofei.site/2017/09/25/matplotlib2.html#title7' target="title7">看这里</a>
+
+plt.boxplot
+
+<a href='http://www.guofei.site/2017/09/25/matplotlib2.html#title6' target="title7">看这里</a>
 
 <img src='http://www.guofei.site/public/postimg/boxplot.png'>
 
 ### 小提琴图
 
-*基于seaborn*  
+*基于seaborn[^violinplot]*  
+<a href='http://seaborn.pydata.org/generated/seaborn.violinplot.html' target="violinplot">看这里</a>  
+
 
 ```py
 import pandas as pd
@@ -129,7 +134,7 @@ plt.show()
 
 ### qq图
 
-看看是否服从特定分布[^qqplot]
+用来看看是否服从特定分布[^qqplot]
 
 *(所用库：statsmodels)*
 
@@ -149,5 +154,6 @@ plt.show()
 
 
 ## 参考文献
+[^violinplot]:  http://seaborn.pydata.org/generated/seaborn.violinplot.html  
 
-[^qqplot] :http://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html
+[^qqplot]:  http://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html
