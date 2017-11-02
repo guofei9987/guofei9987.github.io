@@ -151,6 +151,36 @@ plt.show()
 <img src='http://www.guofei.site/public/postimg/datavisualization1.png'>
 
 
+## 多变量
+
+散点图
+
+### jointplot
+数据准备
+```py
+import pandas as pd
+import scipy.stats as stats
+
+df=pd.DataFrame({'a':stats.norm(loc=0,scale=1).rvs(size=200),'b':stats.uniform(loc=3,scale=4).rvs(size=200)})
+```
+
+画图有2种方法
+
+```py
+import pandas as pd
+import scipy.stats as stats
+df = pd.DataFrame({'a': stats.norm(loc=0, scale=1).rvs(size=200), 'b': stats.uniform(loc=3, scale=4).rvs(size=200)})
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.jointplot(x='a', y='b', data=df, kind="kde", size=5, space=0)# 方法1
+# sns.jointplot(x=df.a, y=df.b, kind="kde", size=5, space=0)# 方法2
+plt.show()
+```
+
+
+
+
 
 
 ## 参考文献
