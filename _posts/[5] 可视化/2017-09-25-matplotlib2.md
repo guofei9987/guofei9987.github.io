@@ -126,7 +126,15 @@ ax.boxplot(df.values)
 plt.show()
 ```
 
-<img src='http://www.guofei.site/public/postimg2/boxplot.png'>
+<img src='http://www.guofei.site/public/postimg/boxplot.png'>
+
+|参数|意义|
+|--|--|
+|notch=True|形状变成扁的|
+|flierprops={'markerfacecolor':'g', 'marker':'D'}|离群点的样式|
+|showfliers=False|是否显示离群点|
+|vert=False|变成横的box图|
+
 
 
 ## image

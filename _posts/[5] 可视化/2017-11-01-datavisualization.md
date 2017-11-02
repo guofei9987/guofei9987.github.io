@@ -18,6 +18,9 @@ sns.distplot
 <img src='http://www.guofei.site/public/postimg2/seaborn1_1.png'>
 
 ### box图
+<a href='http://www.guofei.site/2017/09/25/matplotlib2.html#title7' target="title7">看这里</a>
+
+<img src='http://www.guofei.site/public/postimg/boxplot.png'>
 
 ### 小提琴图
 
