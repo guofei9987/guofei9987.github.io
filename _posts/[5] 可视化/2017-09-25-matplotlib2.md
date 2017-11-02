@@ -126,7 +126,7 @@ ax.boxplot(df.values)
 plt.show()
 ```
 
-
+<img src='http://www.guofei.site/public/postimg2/boxplot.png'>
 
 
 ## image
