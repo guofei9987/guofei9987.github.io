@@ -94,6 +94,17 @@ gnb.predict(dataset.data)
 gnb.predict_proba(dataset.data)
 ```
 
+
+
+另一种贝叶斯
+```py
+from sklearn.naive_bayes import BernoulliNB
+bnb=BernoulliNB(alpha=1)
+bnb.fit(dataset.data, dataset.target)
+```
+
+
+
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  

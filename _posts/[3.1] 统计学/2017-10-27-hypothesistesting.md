@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【假设检验】理论与实现.
+title: 【假设检验】理论篇.
 categories:
 tags: 统计学
 keywords:
