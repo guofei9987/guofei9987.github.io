@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【matplotlib】绘图函数
-categories: 
+categories:
 tags: 可视化
 keywords:
 description:
@@ -111,6 +111,23 @@ plt.show()
         - 1星形
         - 2放射形
         - 3圆形（忽略边数）
+
+
+
+### boxplot
+```py
+import pandas as pd
+import scipy.stats as stats
+df = pd.DataFrame({'a': stats.uniform(0, 1).rvs(size=20), 'b': stats.norm(1, 1).rvs(size=20)})
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.boxplot(df.values)
+plt.show()
+```
+
+
+
 
 ## image
 
