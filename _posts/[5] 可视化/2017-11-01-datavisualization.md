@@ -164,7 +164,7 @@ import scipy.stats as stats
 df=pd.DataFrame({'a':stats.norm(loc=0,scale=1).rvs(size=200),'b':stats.uniform(loc=3,scale=4).rvs(size=200)})
 ```
 
-画图有2种方法
+画图有2种方法[^jointplot]
 
 ```py
 import pandas as pd
@@ -178,8 +178,20 @@ sns.jointplot(x='a', y='b', data=df, kind="kde", size=5, space=0)# 方法1
 plt.show()
 ```
 
+kind='kde':  
+<img src='http://www.guofei.site/public/postimg/jointplot_kde.png'>  
 
 
+kind='hex'  
+<img src='http://www.guofei.site/public/postimg/jointplot_hex.png'>  
+
+
+kind='scatter'  
+<img src='http://www.guofei.site/public/postimg/jointplot_scatter.png'>  
+
+
+kind='reg'  
+<img src='http://www.guofei.site/public/postimg/jointplot_reg.png'>  
 
 
 
@@ -187,3 +199,4 @@ plt.show()
 [^violinplot]:  http://seaborn.pydata.org/generated/seaborn.violinplot.html  
 
 [^qqplot]:  http://www.statsmodels.org/stable/generated/statsmodels.graphics.gofplots.qqplot.html
+[^jointplot]: http://seaborn.pydata.org/generated/seaborn.jointplot.html
