@@ -23,7 +23,21 @@ sns.distplot
 <img src='http://www.guofei.site/public/postimg/boxplot.png'>
 
 ### 小提琴图
+```py
+import pandas as pd
+import scipy.stats as stats
+df = pd.DataFrame(
+    {'a': stats.uniform(0, 1).rvs(size=20), 'b': stats.norm(1, 1).rvs(size=20), 'c': stats.norm(1, 1).rvs(size=20)})
 
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots(figsize=(11, 6))
+sns.violinplot(data=df, palette="Set3", bw=.2, cut=3, linewidth=1)
+plt.show()
+```
+
+<img src='http://www.guofei.site/public/postimg/violinplot.png'>
 ### qq图
 
 看看是否服从特定分布[^qqplot]
