@@ -139,6 +139,7 @@ count
 
 
 ### format()方法
+
 ```python
 x="{1}{2}:计算机的CPU占用了{0}%。"
 print(x.format(10,"2016-12-31","python"))
