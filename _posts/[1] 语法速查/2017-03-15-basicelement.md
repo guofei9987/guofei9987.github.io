@@ -130,7 +130,8 @@ str()  返回数字对应的字符串
 ```
 
 其它操作
-```
+
+```py
 endswith
 capitalize
 count
