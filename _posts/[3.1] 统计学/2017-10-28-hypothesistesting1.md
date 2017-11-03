@@ -63,10 +63,10 @@ leveneTestRes = stats.levene(df1, df2, center='median')
 print('w-value=%6.4f, p-value=%6.4f' %leveneTestRes)
 ```
 
-
+如果p-value比较大，无法拒绝原假设。认为方差是齐性的  
 
 step2：ttest
 ```py
-stats.stats.ttest_ind(df1, df2, equal_var=True)
+stats.stats.ttest_ind(df1, df2, equal_var=True)#equal_var表示方差齐次
 # Or Try: sm.stats.ttest_ind(df1, df2, usevar='pooled')
 ```
