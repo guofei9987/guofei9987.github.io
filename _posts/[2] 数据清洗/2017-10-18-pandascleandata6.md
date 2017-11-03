@@ -226,3 +226,10 @@ df.groupby('w').filter(lambda s:s.x.max()<0.6)
 
 ### apply()
 apply用法十分灵活，可以完成上面的agg，transfrom，filter等。  
+
+
+## 其它用法
+
+```py
+creditcard_exp.groupby('gender')['avg_exp'].describe()
+```
