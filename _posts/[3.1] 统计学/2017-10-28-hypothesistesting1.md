@@ -38,16 +38,18 @@ output:
 
 ## 均值检验
 
+p-value指的是H0为真的概率。  
+
 ### 方差未知
 
 t检验  
 
 ```py
-ds.ttest_mean(0.1)
+ds.ttest_mean(value=0.1)
 ```
 
 输出的3个量分别是t-statistic, p-value, df  
-p-value<0.05，表示通过检验，均值确实是0.1  
+p-value<0.05，拒绝原假设，均值不是0.1  
 
 
 
@@ -55,16 +57,16 @@ p-value<0.05，表示通过检验，均值确实是0.1
 
 step1：方差齐次性检验
 
-```
+```py
 (_,df1),(_,df2)=df.groupby('c')['a']
 leveneTestRes = stats.levene(df1, df2, center='median')
 print('w-value=%6.4f, p-value=%6.4f' %leveneTestRes)
 ```
 
-？？？这里没搞清楚p-value的意义，我用同分布随机数，p-value>0.05的
+
 
 step2：ttest
-```
+```py
 stats.stats.ttest_ind(df1, df2, equal_var=True)
 # Or Try: sm.stats.ttest_ind(df1, df2, usevar='pooled')
 ```
