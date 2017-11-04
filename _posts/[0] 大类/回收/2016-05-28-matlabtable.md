@@ -1,11 +1,17 @@
 ---
 layout: post
 title: 【Matlab】table运行效率研究
-categories: 
-tags: Matlab
+categories: 回收
+tags:
 keywords:
 description:
 ---
+
+**此部分内容已过时，因为用table做数据清洗，无论如何也比不上Python来的有效率**
+
+
+
+
 
 Matlab新增了一个table对象，可以让我们非常直观地管理数据。然而，对于大量数据处理的场景来说，效率仍然是第一位要考虑的。  
 本文的目的是测试table的效率  
