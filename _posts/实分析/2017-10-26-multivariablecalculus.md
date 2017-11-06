@@ -156,8 +156,8 @@ $\nabla =\vec i \dfrac{\partial}{\partial x}
 
 把参数形式代入隐式中，得到：
 $$\left \{ \begin{array}{ccc}
-\nabla F_{P_0} \centerdot \vec r=0\\
-\nabla G_{P_0} \centerdot \vec r=0
+\nabla F_{P_0} \cdot \vec r=0\\
+\nabla G_{P_0} \cdot \vec r=0
 \end{array}\right.$$
 
 求出$\vec r$的平行线了：  
@@ -178,9 +178,9 @@ $\vec r(t) // \nabla F_{P_0} \times \nabla G_{P_0}$
 
 
 
+## 场论
 
-
-## 方向导数和梯度
+### 方向导数和梯度
 
 方向导数
 : $\dfrac{\partial f}{\partial l}=\lim \limits_{t \rightarrow 0^+} \dfrac{f(x_0+tcos \alpha ,y_0+tcos \beta) -f(x_0,y_0)}{t}=f_x cos \alpha +f_y cos \beta$
@@ -194,7 +194,7 @@ $\vec r(t) // \nabla F_{P_0} \times \nabla G_{P_0}$
 
 
 
-## 通量和散度
+### 通量和散度
 
 通量
 : 单位时间通过某个曲面的量  
@@ -209,8 +209,10 @@ $div \vec A (M)=\lim\limits_{\Omega \to M}\dfrac{1}{V} \iint_\sum \vec A \vec n 
 
 散度为正，表示向外膨胀（如辐射粒子）。  
 散度为负，表示向内搜索（如黑洞）  
+散度还有个等价定义$div F=\nabla \cdot F = \dfrac{\partial F_x}{\partial x}+\dfrac{\partial F_y}{\partial y}+\dfrac{\partial F_z}{\partial z}$
 
-## 环流和旋度
+
+### 环流和旋度
 环流
 : $\oint_\Gamma \vec A \vec \tau dl$  
 $\vec \tau$是曲线l的切线方向。  
@@ -219,6 +221,18 @@ $\vec \tau$是曲线l的切线方向。
 : $\lim\limits_{\sum \to M}\dfrac{1}{S} \oint_\Gamma \vec A \vec \tau dl$  
 $\sum$是封闭曲面$\Gamma$围成的区域，S是$\sum$的面积
 
+### 计算方法
+用nabla算子可以统一表示场论里的某些运算[^nabla]
+
+梯度
+: $grad f =\nabla f$
+
+散度
+: $div \vec F = \nabla \cdot \vec F$
+
+
+旋度
+: $curl \vec F = \nabla \times \vec F$
 ## 曲线积分
 
 ### 定义
@@ -270,3 +284,6 @@ $\int_{\phi(E)}f(x,y)d(x,y)=\iint_E f(x(u,v),y(u,v)) \mid \dfrac{\partial (x,y)}
 举个例子(2),  
 因为$\dfrac{\partial(x,y)}{\partial(r,\theta)}$,所以，  
 $\iint_D f(x,y)d(x,y)=\int_0^{2\pi} \int_a^b f(rcos\theta,rsin\theta)rdr$  
+
+## 参考文献
+[^nabla]: https://baike.baidu.com/item/Nabla%20%E7%AE%97%E5%AD%90/20177377
