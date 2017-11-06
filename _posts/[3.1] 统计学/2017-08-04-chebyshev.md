@@ -1,7 +1,7 @@
 ---
 layout: post
 title: law of large numbers
-categories: 
+categories:
 tags: 统计学
 keywords:
 description:
@@ -36,4 +36,16 @@ X的均值是u,方差是$\sigma^2$,那么，$\forall s>0,Pr[ X-u  \geq s] \leq \
 如果$X_i$独立同分布，$u=EX,\bar X=1/n \sum X_i $,  
 $\forall \epsilon >0,n\to \infty ,Pr[\mid \bar X-u \mid >\epsilon] \to 0$
 
+
+### 辛钦大数定律
+辛钦大数定律：$$\lim\limits_{n\to \infty} P\{ \mid \dfrac{1}{n} \sum\limits_{k=1}^n X_k -u\mid < \varepsilon \}$$  
+
+### 伯努利大数定理
+
+伯努利大数定律：$$\lim\limits_{n\to \infty} P\{ \mid \dfrac{f_A}{n} -p\mid < \varepsilon \}$$  
+
 ## 中心极限定理
+
+中心极限定理：$$\lim\limits_{n\to \infty} P\{ \dfrac{\sum\limits_{i=1}^n X_i -n \mu}{\sqrt n \sigma} \leq x\} =\Phi(x)$$  
+
+也就是说，独立同分布的均值，服从$N(\mu,\sigma^2)$  

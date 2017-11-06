@@ -223,17 +223,17 @@ $\sum$是封闭曲面$\Gamma$围成的区域，S是$\sum$的面积
 
 ### 定义
 
-假设曲线是$\phi (t),\psi(t) t \in(\alpha,\beta)$
+假设曲线是$\phi (t),\psi(t) ,\space t \in(\alpha,\beta)$
 
 第一类曲线积分
 : $\int_l f(x,y)ds = \int_\alpha^\beta f(\phi(t),\psi(t)) \sqrt{\phi'{}^2(t)+\psi'{}^2(t)}dt$
 
 第二类曲线积分
-: $\int_l f(x,y)=\int_\alpha^\beta f(\phi(t),\psi(t))d\phi(t)$
+: $\int_l f(x,y)dx=\int_\alpha^\beta f(\phi(t),\psi(t))d\phi(t)$
 
 ### 关系
 - $\int_l Pdx+Qdy=\int_l(Pcos\alpha+Qcos\beta)ds$
-其中，$\alpha(x,y),\beta(x,y)$是方向角
+其中，$\alpha(x,y),\beta(x,y)$是L切线的方向角
 
 
 - $\iint\limits_D (\dfrac{\partial Q}{\partial x } - \dfrac{\partial P}{\partial y})dxdy=\oint_l Pdx+Qdy$
