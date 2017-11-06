@@ -245,3 +245,28 @@ $\sum$是封闭曲面$\Gamma$围成的区域，S是$\sum$的面积
 
 
 - $Pdx+Qdy$是微分$\Longleftrightarrow  \dfrac{\partial Q}{\partial x}\equiv\dfrac{\partial P}{\partial y}$
+
+## 变元法
+
+### 定理
+如果：  
+$\Omega \subset R^m$是一个开集  
+$\phi:\Omega \to R^m$是一个连续可微映射  
+$E\subset \Omega$是一个闭约当可测集  
+$\det D\phi(t) \neq 0, \forall t \in int E$  
+$\phi(E)$在$intE$中是单一的  
+
+
+那么：  
+$\phi(E)$是一个闭若当可测集  
+对于任意$\phi(E)$上的连续函数$f(x)$，$\int_{\phi(E)}f(x)dx=\int_E f(\phi(t)) \mid \det D\phi(t) \mid dt$  
+
+
+
+举个例子(1)，  
+$\int_{\phi(E)}f(x,y)d(x,y)=\iint_E f(x(u,v),y(u,v)) \mid \dfrac{\partial (x,y)}{\partial(u,v)} \mid d(u,v)$  
+
+
+举个例子(2),  
+因为$\dfrac{\partial(x,y)}{\partial(r,\theta)}$,所以，  
+$\iint_D f(x,y)d(x,y)=\int_0^{2\pi} \int_a^b f(rcos\theta,rsin\theta)rdr$  
