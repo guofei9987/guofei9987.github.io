@@ -167,9 +167,39 @@ step5: k=k+1，转到3
 
 
 二阶可微函数，局部近似视为二次函数，搜索方向和大小可以立即用解析式确定。  
-反复迭代。
+反复迭代。  
+
+
+考虑无约束最优化问题$\min\limits_{x\in E_n} f(x)$  
+梯度为$g_k(x)$, Hesse矩阵为$H(x)=[\dfrac{\partial^2 f}{\partial x_i \partial x_j}]_ {n \times n}$  
+
+
+二阶泰勒展开：$f(x)=f(x_k)+g^T(x_k)(x-x_k)+1/2 (x-x_k)^T H(x_k)(x-x_k)$  
+
+
+利用极小值的必要条件$\nabla f(x)=0$，推出  
+$x=x_k-H^{-1}(x_k)g(x_k)$  
+
+
+所以，迭代方法为$x_{k+1}=x_k-H^{-1}(x_k)g(x_k)$  
+
+
+算法流程：  
+输入：$f(x), g(x)=\nabla f(x), H(x)$，精度要求$\varepsilon$  
+step1: 取初始点$x_0, k=0$  
+step2: 计算$g_k=g(x_k)$，if $\mid \mid g_k \mid \mid<\varepsilon$:$x^* =x_k$,停止运算
+step3：计算$H_k=H(x_k)$，求$p_k$，使得$H_kp_k=-g_k$  
+step4: $x_{k+1}=x_k+p_k$  
+step5: $k=k+1$转到2
+
+
+### 拟牛顿法
+
+牛顿法中，需要计算Hesse矩阵的逆矩阵，这一计算较为复杂
+所以考虑用$G$去逼近$H^{-1}$  
+包括DFP算法  
+BFGS算法
+Broyden算法
 
 ### 修正牛顿法
 如果二阶梯度不正定，牛顿法可能不收敛，为解决这个问题，引入修正牛顿法。  
-
-### 拟牛顿法
