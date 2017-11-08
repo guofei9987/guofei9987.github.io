@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Matlab】恶俗古风诗歌自动生成器.
-categories: 案例
+categories: 趣文
 tags:
 keywords:
 description:

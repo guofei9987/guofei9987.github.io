@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 【线性规划】理论篇.
-categories: 
+title: 【线性最优化】理论篇.
+categories:
 tags: 数值计算与最优化
 keywords:
 description:
