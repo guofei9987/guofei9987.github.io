@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 【数值计算】数值计算问题的简易讲解.
-categories: 
+title: 【数值计算】若干简介.
+categories:
 tags: 数值计算与最优化
 keywords:
 description:

@@ -277,7 +277,7 @@ $\phi(E)$是一个闭若当可测集
 
 
 
-举个例子(1)，  
+举个例子(1)[^hi]，  
 $\int_{\phi(E)}f(x,y)d(x,y)=\iint_E f(x(u,v),y(u,v)) \mid \dfrac{\partial (x,y)}{\partial(u,v)} \mid d(u,v)$  
 
 
@@ -287,3 +287,4 @@ $\iint_D f(x,y)d(x,y)=\int_0^{2\pi} \int_a^b f(rcos\theta,rsin\theta)rdr$
 
 ## 参考文献
 [^nabla]: https://baike.baidu.com/item/Nabla%20%E7%AE%97%E5%AD%90/20177377
+[^hi]: http://www.doc88.com/p-8179991133177.html
