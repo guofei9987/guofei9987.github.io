@@ -94,15 +94,23 @@ bagging增强了目标函数的表达功能，通过减低基分类器方差改�
 ## boosting
 
 在bagging的基础上，逐渐放大上次预测错误的样本抽中的概率
-关于boosting的研究很多，有很多算法，最有代表性的是AdaBoost算法(AdaBoost algorithm)
+关于boosting的研究很多，有很多算法，最有代表性的是AdaBoost算法(AdaBoost algorithm)[^lihang]
 
 
 ### 算法(AdaBoost)
 输入：训练集$$T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}$$,其中$x_i\in \mathcal X \subset R^n, y\in \mathcal Y = {-1,+1}$;弱分类器；  
 输出：分类器$G(x)$  
 
-step1: 初始化迭代次数$m=1$, 初始化数据权值分布$D_m=(w_{m1},...,w_{mi},...w_{mN}), \space w_{mi}=1/n, i=1,2,...N$  
-step2:
+**step1** : 初始化迭代次数$m=1$, 初始化数据权值分布$D_m=(w_{m1},...,w_{mi},...w_{mN}), \space w_{mi}=1/N, i=1,2,...N$  
+**step2** : 学习第m个分类器$G_m$,使用$D_m \times T$来训练，得到$$G_m(x):\mathcal X \to \{-1,+1\}$$  
+**step3** : 计算$G_m(x)$的分类误差率$e_m=P(G_m(x_i)\neq y_i)=\sum\limits_{i=1}^N w_{mi} I(G_m(x_i)\neq y_i)$  
+**step4** : 计算$G_m(x)$的权重$\alpha_m=1/2\ln \dfrac{1-e_m}{e_m}$  
+**step5** : 更新权值分布$D_{m+1}$，  
+其中$w_{m+1,i}=\dfrac{w_{mi}}{Z_m}\exp(-\alpha y_i G_m(x_i)), i=1,2,...N$  
+$Z_m=\sum\limits_{i=1}^Nw_{mi}\exp(-\alpha_m y_i G_m(x_i))$是为了使权值之和为1  
+**step6**： m=m+1，如果$m<=M$, 转到 **step2**  
+**step7**： 得到最终的分类器为$G(x)=sign(\sum\limits_{m=1}^M \alpha_mG_m(x))$  
+
 
 ## Python实现
 
@@ -123,3 +131,4 @@ fpr_test_rfc, tpr_test_rfc, th_test_rfc = metrics.roc_curve(test_target, test_es
 
 ## 参考文献：
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
+[^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
