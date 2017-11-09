@@ -16,7 +16,7 @@ description:
 
 ### 打个比方
 
-考虑25个分类器的组合，其中每个分类器的误差均为0.35，并且 **相互独立** 。  
+考虑25个分类器的组合，其中每个分类器的误差均为0.35，并且 **相互独立**[^wangxiaochuan] 。  
 
 那么组合算法的误差是：  
 
@@ -94,10 +94,15 @@ bagging增强了目标函数的表达功能，通过减低基分类器方差改�
 ## boosting
 
 在bagging的基础上，逐渐放大上次预测错误的样本抽中的概率
+关于boosting的研究很多，有很多算法，最有代表性的是AdaBoost算法(AdaBoost algorithm)
 
 
+### 算法(AdaBoost)
+输入：训练集$$T=\{(x_1,y_1),(x_2,y_2),...,(x_N,y_N)\}$$,其中$x_i\in \mathcal X \subset R^n, y\in \mathcal Y = {-1,+1}$;弱分类器；  
+输出：分类器$G(x)$  
 
-
+step1: 初始化迭代次数$m=1$, 初始化数据权值分布$D_m=(w_{m1},...,w_{mi},...w_{mN}), \space w_{mi}=1/n, i=1,2,...N$  
+step2:
 
 ## Python实现
 
@@ -117,5 +122,4 @@ fpr_test_rfc, tpr_test_rfc, th_test_rfc = metrics.roc_curve(test_target, test_es
 
 
 ## 参考文献：
-
-[王小川授课内容](https://weibo.com/hgsz2003)  
+[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
