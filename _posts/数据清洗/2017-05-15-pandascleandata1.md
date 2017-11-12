@@ -1,11 +1,68 @@
 ---
 layout: post
-title: 【Python】【pandas】to_json.
+title: 【pandas】读入与读出.
 categories: Geek
 tags: 数据清洗
 keywords:
 description:
 ---
+
+## 创建
+### 用Series组成的dict创建
+```python
+import pandas as pd
+d = {'one' : pd.Series([1., 2., 3.], index=['a', 'b', 'c']),'two' : pd.Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+```
+
+### 用list组成的dict创建
+```python
+import pandas as pd
+df = pd.DataFrame({'key': ['b', 'b', 'a', 'c', 'a', 'a', 'b'], 'data1': range(7)})
+df.head(5)
+```
+
+### 用dict组成的list创建
+```python
+d = [{'one' : 1,'two':1},{'one' : 2,'two' : 2},{'one' : 3,'two' : 3},{'two' : 4}]
+df = pd.DataFrame(d,index=['a','b','c','d'],columns=['one','two'])
+df.index.name='index'
+```
+
+## DataFrame转dict
+```python
+df.to_dict(orient='Series')
+```
+返回一个Series组成的dict
+
+## Excel读写
+- 从EXCEL读入DataFrame：
+
+```python
+bonus = pd.read_excel('bonus_schedule.xls')
+bonus.head(3)
+```
+
+- 将DataFrame写入EXCEL：
+```python
+bonus.to_excel('foo1.xlsx', sheet_name='sheet1')
+```
+
+## CSV读写
+- read_csv
+```python
+macrodata = pd.read_csv('macrodata.csv')
+macrodata.head(1)
+```
+
+- to_csv
+```py
+macrodata.to_csv('d:/foo.csv')
+```
+
+
+
+
 
 
 
@@ -75,4 +132,21 @@ a.to_json('ax1.json', orient='values')
 out:
 ```Json
 [["str1",1],["str2",2],["str3",3]]
+```
+
+
+## 其它to
+```py
+df.to_clipboard到剪切板上
+to_dict
+to_panel
+to_period# 把时间序列数据，变成频率数据
+to_excel
+to_csv
+to_latex
+to_html
+to_json
+to_string
+to_pickle# 存到内存中
+to_sql
 ```

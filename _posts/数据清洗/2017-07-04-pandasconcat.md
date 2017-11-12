@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【pandas】合并数据表.
+title: 【pandas】合并数据表.
 categories: Geek
 tags: 数据清洗
 keywords:
