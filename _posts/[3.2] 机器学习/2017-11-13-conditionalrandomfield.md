@@ -15,7 +15,9 @@ description:
 ### 与其他模型的关系
 每一个HMM模型都等价于某个CRF[^1]  
 
-![1d3f9cefc0de33cfebe71bbc237ccc6b_r](https://i.imgur.com/VBinUny.jpg)
+![1d3f9cefc0de33cfebe71bbc237ccc6b_r](https://i.imgur.com/VBinUny.jpg)  
+
+
 概率图分为两类：  
 1. 有向图。（贝叶斯网络，信念网络）[^2]
 2. 无向图。（马尔科夫随机场，马尔科夫网络）  
