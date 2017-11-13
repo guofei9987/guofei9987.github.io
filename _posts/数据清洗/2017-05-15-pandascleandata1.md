@@ -29,13 +29,13 @@ df = pd.DataFrame(d,index=['a','b','c','d'],columns=['one','two'])
 df.index.name='index'
 ```
 
-## DataFrame转dict
+## to_dict
 ```python
 df.to_dict(orient='Series')
 ```
 返回一个Series组成的dict
 
-## Excel读写
+## to_excel&read_excel
 - 从EXCEL读入DataFrame：
 ```python
 bonus = pd.read_excel('bonus_schedule.xls')
@@ -47,7 +47,7 @@ bonus.head(3)
 bonus.to_excel('foo1.xlsx', sheet_name='sheet1')
 ```
 
-## CSV读写
+## to_csv&read_csv
 - read_csv
 ```python
 macrodata = pd.read_csv('macrodata.csv')
@@ -89,7 +89,7 @@ out:
 
 
 
-### orient='index'
+- orient='index'
 ```Python
 a.to_json('a.json',orient='index')
 ```
@@ -98,23 +98,23 @@ out:
 {"idx1":{"col1":"str1","col2":1},"idx2":{"col1":"str2","col2":2},"idx3":{"col1":"str3","col2":3}}
 ```
 
-### orient='columns'
+- orient='columns'
 ```Python
 a.to_json('a.json',orient='columns')
 ```
-out:
+out:  
 ```Json
 {"col1":{"idx1":"str1","idx2":"str2","idx3":"str3"},"col2":{"idx1":1,"idx2":2,"idx3":3}}
 ```
-### orient='records'
+- orient='records'
 ```Python
 a.to_json('a.json',orient='records')
 ```
-out:
+out:  
 ```Json
 [{"col1":"str1","col2":1},{"col1":"str2","col2":2},{"col1":"str3","col2":3}]
 ```
-### orient='split'
+- orient='split'
 ```Python
 a.to_json('a.json',orient='split')
 ```
@@ -123,11 +123,10 @@ out:
 {"columns":["col1","col2"],"index":["idx1","idx2","idx3"],"data":[["str1",1],["str2",2],["str3",3]]}
 ```
 
-### orient='values'
+- orient='values'
 ```Python
 a.to_json('ax1.json', orient='values')
 ```
-
 out:
 ```Json
 [["str1",1],["str2",2],["str3",3]]
@@ -137,14 +136,10 @@ out:
 ## 其它to
 ```py
 df.to_clipboard到剪切板上
-to_dict
 to_panel
 to_period# 把时间序列数据，变成频率数据
-to_excel
-to_csv
 to_latex
 to_html
-to_json
 to_string
 to_pickle# 存到内存中
 to_sql

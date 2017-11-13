@@ -7,10 +7,22 @@ keywords:
 description:
 ---
 
+## index&columns名称修改
+
+### 取index&columns
+
+```py
+df.index
+df.columns
+df.index.values
+df.columns.values
+df.index.name='idx'#设置index的名称
+```
+
 ## 1. 用赋值法修改
 
-data.index可以直接赋值为Series或list
-data.columns可以直接赋值为Series或list
+- data.index可以直接赋值为Series或list
+- data.columns可以直接赋值为Series或list
 
 index有map()方法，但没有apply方法，案例：
 ```python
@@ -29,6 +41,50 @@ data.rename(index={'Ohio': 'INDIANA'},columns={'three': 'peekaboo'},inplace=True
 ```python
 data.rename(index=str.title, columns=str.upper, inplace=True)
 ```
+
+
+### 列变index
+```python
+a=df.set_index('one')
+```
+效果：
+- 把one这一列变成index，并删除one这一列，结果保存在a中。
+- 不改变df
+- 不共享内存
+
+### index变列
+
+```python
+df.reset_index(inplace=True)
+```
+使得索引变成一列，0,1,2,3...变成索引
+
+### 自定义索引
+reindex
+```py
+import pandas as pd
+df=pd.DataFrame({'one':[1,2,3],'two':[7,6,5]},index=['a','b','c'])
+
+
+df.reindex(list('abcde'),method='ffill')
+#index太多，默认填值为nan，可以ffill，bfill填充
+
+df.reindex(list('abcde'),fill_value=0)
+#用指定的数填充
+```
+|参数|说明|
+|--|--|
+|index||
+|method|ffill,bfill|
+|fiil_value||
+|limit|向前或向后填充时，最大填充量|
+|copy|默认为True，否则不复制|
+
+## 重命名列
+```python
+df.rename(columns={u'one':'1'}, inplace=True)#字典中可以放多个组
+```
+
 
 
 ## index操作
