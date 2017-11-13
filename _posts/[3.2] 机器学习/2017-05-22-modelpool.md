@@ -27,12 +27,19 @@ description:
 <td>
 神经网络  <br>
 <a href='/2017/05/07/LogisticRegression.html'>逻辑回归 </a> <br>
+<a href='/2017/10/23/perceptron.html'>感知机 </a> <br>
+<a href='/2017/07/18/probit.html'>probit模型 </a> <br>
+<a href='/2017/10/24/knn.html'>KNN</a> <br>
 判别分析  <br>
-朴素贝叶斯<br>
+<a href='/2017/10/25/naivebayes.html'>朴素贝叶斯</a> <br>
 <a href='/2017/09/28/svm.html'>SVM </a>     <br>
 <a href='/2017/05/22/DecisionTreeClassifier.html'>决策树</a>    <br>
-<a href='/2017/10/06/bagingboosting.html'>组合算法</a>  <br>
-
+<a href='/2017/10/06/bagingboosting.html'>bagging</a>  <br>
+<a href='/2017/10/06/bagingboosting.html'>boosting</a>  <br>
+<a href='/2017/10/20/randomforest.html'>随机森林 </a> <br>
+<a href='/2017/11/10/gmm.html'>高斯混合模型 </a> <br>
+<a href='/2017/11/11/hiddenmarkov.html'>隐马尔科夫模型 </a> <br>
+<a href='/2017/11/13/conditionalrandomfield.html'>条件随机场 </a> <br>
 </td>
 <td>
 <a href='/2017/06/09/cluster.html'>K-means</a><br>
