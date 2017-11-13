@@ -44,6 +44,29 @@ data.rename(index={'Ohio': 'INDIANA'},columns={'three': 'peekaboo'},inplace=True
 data.rename(index=str.title, columns=str.upper, inplace=True)
 ```
 
+### 用reindex修改index
+reindex
+```py
+import pandas as pd
+df=pd.DataFrame({'one':[1,2,3],'two':[7,6,5]},index=['a','b','c'])
+
+
+df.reindex(list('abcde'),method='ffill')
+#index太多，默认填值为nan，可以ffill，bfill填充
+
+df.reindex(list('abcde'),fill_value=0)
+#用指定的数填充
+```
+
+  
+
+|参数|说明|
+|--|--|
+|index||
+|method|ffill,bfill|
+|fiil_value||
+|limit|向前或向后填充时，最大填充量|
+|copy|默认为True，否则不复制|
 
 ### set_index
 ```python
@@ -61,43 +84,13 @@ df.reset_index(inplace=True)
 ```
 使得索引变成一列，0,1,2,3...变成索引
 
-### 自定义索引
-reindex
-```py
-import pandas as pd
-df=pd.DataFrame({'one':[1,2,3],'two':[7,6,5]},index=['a','b','c'])
-
-
-df.reindex(list('abcde'),method='ffill')
-#index太多，默认填值为nan，可以ffill，bfill填充
-
-df.reindex(list('abcde'),fill_value=0)
-#用指定的数填充
-```
-|参数|说明|
-|--|--|
-|index||
-|method|ffill,bfill|
-|fiil_value||
-|limit|向前或向后填充时，最大填充量|
-|copy|默认为True，否则不复制|
-
-## 重命名列
-```python
-df.rename(columns={u'one':'1'}, inplace=True)#字典中可以放多个组
-```
 
 
 
-## index操作
 
 
 
-### 互转
-```
-reset_index
-set_index
-```
+
 
 
 ### 下面是时间序列中，填充index
