@@ -19,10 +19,12 @@ df.columns.values
 df.index.name='idx'#设置index的名称
 ```
 
-## 1. 用赋值法修改
+### 赋值修改index&columns
 
 - data.index可以直接赋值为Series或list
 - data.columns可以直接赋值为Series或list
+
+### 用map修改index&columns
 
 index有map()方法，但没有apply方法，案例：
 ```python
@@ -31,7 +33,7 @@ data = pd.DataFrame(np.arange(12).reshape((3, 4)),index=['Ohio', 'Colorado', 'Ne
 data.index=data.index.map(str.upper)
 ```
 
-## 2.用rename修改index和Seris
+### 用rename修改index和Seris
 需要知道修改前的字段和修改后的字段
 ```python
 data.rename(index={'Ohio': 'INDIANA'},columns={'three': 'peekaboo'},inplace=True)
@@ -43,7 +45,7 @@ data.rename(index=str.title, columns=str.upper, inplace=True)
 ```
 
 
-### 列变index
+### set_index
 ```python
 a=df.set_index('one')
 ```
@@ -52,7 +54,7 @@ a=df.set_index('one')
 - 不改变df
 - 不共享内存
 
-### index变列
+### reset_index
 
 ```python
 df.reset_index(inplace=True)
