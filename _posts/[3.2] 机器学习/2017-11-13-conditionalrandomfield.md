@@ -11,19 +11,19 @@ description:
 *阅读本文前，请先保证已经了解[马尔科夫过程](http://www.guofei.site/2017/07/09/markov.html)、[graph](http://www.guofei.site/2017/05/18/algorithm2.html)*  
 
 ## 模型介绍
-条件随机场(conditional random field， CRF)  
+条件随机场(conditional random field， CRF)[^zhihu]  
 ### 与其他模型的关系
-每一个HMM模型都等价于某个CRF  
+每一个HMM模型都等价于某个CRF[^1]  
 
 ![1d3f9cefc0de33cfebe71bbc237ccc6b_r](https://i.imgur.com/VBinUny.jpg)
 概率图分为两类：  
-1. 有向图。（贝叶斯网络，信念网络）
+1. 有向图。（贝叶斯网络，信念网络）[^2]
 2. 无向图。（马尔科夫随机场，马尔科夫网络）  
 
 
 ### 基础定义
 
-概率图模型(probabilistic graphical model)用graph表示概率分布。  
+概率图模型(probabilistic graphical model)用graph表示概率分布。[^lihang]  
 在无向图$G=(V,E)$上，每个节点$v\in V$对应一个随机变量$Y_v$，每个边$e\in E$对应随机变量之间的关系。  
 
 
@@ -72,6 +72,6 @@ Hammersley-Clifford定理：对于任意概率无向图，都可以做上述因�
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
 [^EM]: 我的另一篇博客[EM算法理论篇](http://www.guofei.site/2017/11/09/em.html)
-
-http://blog.csdn.net/a819825294/article/details/53893231
-http://www.jianshu.com/p/55755fc649b1
+[^zhihu]: https://www.zhihu.com/question/35866596
+[^1]: http://blog.csdn.net/a819825294/article/details/53893231
+[^2]: http://www.jianshu.com/p/55755fc649b1
