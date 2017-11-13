@@ -85,3 +85,15 @@ df2[df2.ix[:,'E'].str.contains('tw|ou')]#又是一个特殊用法contains，注�
 ```
 df.isnull
 ```
+
+
+### 举例
+
+
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(4,-1),index=list('abcd'),columns=list('gfjk'))
+
+df[df>6]=0
+```
