@@ -11,9 +11,14 @@ description:
 *阅读本文前，请先保证已经了解[马尔科夫过程](http://www.guofei.site/2017/07/09/markov.html)、[graph](http://www.guofei.site/2017/05/18/algorithm2.html)*  
 
 ## 模型介绍
-
-
 条件随机场(conditional random field， CRF)  
+### 与其他模型的关系
+每一个HMM模型都等价于某个CRF  
+
+![1d3f9cefc0de33cfebe71bbc237ccc6b_r](https://i.imgur.com/VBinUny.jpg)
+概率图分为两类：  
+1. 有向图。（贝叶斯网络，信念网络）
+2. 无向图。（马尔科夫随机场，马尔科夫网络）  
 
 
 ### 基础定义
@@ -67,3 +72,6 @@ Hammersley-Clifford定理：对于任意概率无向图，都可以做上述因�
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
 [^EM]: 我的另一篇博客[EM算法理论篇](http://www.guofei.site/2017/11/09/em.html)
+
+http://blog.csdn.net/a819825294/article/details/53893231
+http://www.jianshu.com/p/55755fc649b1
