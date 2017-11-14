@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【最优化】scipy.optimize.fmin.
-categories: 
+categories:
 tags: 数值计算与最优化
 keywords:
 description:
@@ -22,7 +22,7 @@ def obj_func(p):
     points.append((x,y,z))
     return z
 
-#偏导数，有些优化方法用得到，有些用不到
+#雅克比矩阵，也就是偏导数矩阵，有些优化方法用得到，有些用不到
 def fprime(p):
     x,y=p
     dx=-2+2*x-400*x*(y-x**2)
