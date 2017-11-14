@@ -2,7 +2,7 @@
 layout: post
 title: 【感知机】理论简介.
 categories:
-tags: 机器学习
+tags: 有监督学习
 keywords:
 description:
 ---

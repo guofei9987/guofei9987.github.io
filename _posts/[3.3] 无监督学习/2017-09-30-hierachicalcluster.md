@@ -2,7 +2,7 @@
 layout: post
 title: 【层次聚类】理论与实现.
 categories:
-tags: 机器学习
+tags: 无监督学习
 keywords:
 description:
 ---

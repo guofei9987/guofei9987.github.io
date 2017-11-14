@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【虚拟变量回归】理论篇
-categories: 
-tags: 机器学习
+categories:
+tags: 有监督学习
 keywords: model evaluation
 description:
 ---
