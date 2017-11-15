@@ -191,7 +191,7 @@ sklearn的一个缺点：`pruning not currently supported`。只实现了pre-pru
 
 1. 安装pydotplus：  
 https://github.com/carlos-jenkins/pydotplus
-2. 安装graphviz（好像不必要）    
+2. 安装graphviz   
 conda install graphviz
 
 3. 安装软件graphviz，官网：  
@@ -230,27 +230,8 @@ dot_data = tree.export_graphviz(clf, out_file=None)
 graph = graphviz.Source(dot_data)
 graph.view('hehe.pdf')
 graph.save('abc.pdf')
+graph#在jupyter中有用
 ```
-
-
-备用方法1：转化为决策图，输出到pdf
-```py
-import pydotplus
-import os
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-dot_data = tree.export_graphviz(clf, out_file=None)
-graph = pydotplus.graph_from_dot_data(dot_data)
-graph.write_pdf("iris.pdf")
-```
-
-备用方法2  
-```py
-from IPython.display import Image  
-dot_data = tree.export_graphviz(clf, out_file=None,feature_names=iris.feature_names,  class_names=iris.target_names,filled=True, rounded=True,special_characters=True)  
-graph = pydotplus.graph_from_dot_data(dot_data)  
-Image(graph.create_png())  
-```
-
 
 结果：  
 <img src='http://www.guofei.site/public/postimg/decisiontree1.png'>
@@ -295,3 +276,25 @@ plt.show()
 ```
 
 <img src='http://www.guofei.site/public/postimg/decisiontree3.png'>
+
+
+
+## 后注
+
+备用方法1：转化为决策图，输出到pdf
+```py
+import pydotplus
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+dot_data = tree.export_graphviz(clf, out_file=None)
+graph = pydotplus.graph_from_dot_data(dot_data)
+graph.write_pdf("iris.pdf")
+```
+
+备用方法2  
+```py
+from IPython.display import Image  
+dot_data = tree.export_graphviz(clf, out_file=None,feature_names=iris.feature_names,  class_names=iris.target_names,filled=True, rounded=True,special_characters=True)  
+graph = pydotplus.graph_from_dot_data(dot_data)  
+Image(graph.create_png())  
+```
