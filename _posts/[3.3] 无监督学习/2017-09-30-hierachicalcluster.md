@@ -110,6 +110,12 @@ m, n = data.shape
 
 
 ### 2. 建模画图
+
+
+scipy可以画谱系图，sklearn没有找到方法  
+seaborn也可以画谱系图  
+注意，不要用大量数据画谱系图，如果是大量数据，请先抽样。  
+
 ```py
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import linkage,dendrogram
