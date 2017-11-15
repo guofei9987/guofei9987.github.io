@@ -70,21 +70,46 @@ $P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)=P(Y=c_k)\prod\limits_{i=1}^n P(
 $k = \arg \max\limits_{k} P(Y=c_k) \prod\limits_{i=1}^n P(X_i=x_i \mid Y=c_k)$  
 k就是预测新样本所在的类。  
 
+
 ## Python实现
 
-载入数据
+
+朴素贝叶斯的三个常用模型：高斯、多项式、伯努利[^2]  
+
+
+### 载入数据
 ```py
 from sklearn import datasets
 dataset = datasets.load_iris()
 ```
 
-模型训练
+### 模型训练
+
+#### 1. 高斯
 ```py
 from sklearn.naive_bayes import GaussianNB
 gnb = GaussianNB(priors=[0.1, 0.5, 0.4])
 gnb.fit(dataset.data, dataset.target)
 ```
 只有一个输入参数priors,表示先验概率，也可以省略。  
+
+#### 2. 多项式
+
+```
+MultinomialNB()
+```
+
+#### 3. 伯努利
+
+
+```py
+from sklearn.naive_bayes import BernoulliNB
+bnb=BernoulliNB(alpha=1)
+bnb.fit(dataset.data, dataset.target)
+```
+
+
+### 模型
 
 
 ```py
@@ -96,15 +121,10 @@ gnb.predict_proba(dataset.data)
 
 
 
-另一种贝叶斯
-```py
-from sklearn.naive_bayes import BernoulliNB
-bnb=BernoulliNB(alpha=1)
-bnb.fit(dataset.data, dataset.target)
-```
 
 
 
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
+[^2]: http://blog.csdn.net/abcd1f2/article/details/51249702
