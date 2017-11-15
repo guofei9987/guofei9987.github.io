@@ -187,21 +187,11 @@ step2: 用交叉比较的方法找到$T_0,T_1,...T_n$中最优的。
 sklearn的一个缺点：`pruning not currently supported`。只实现了pre-pruning   
 
 
-为了可视化输出，还需要进行下面的配置：
-
-1. 安装pydotplus：  
-https://github.com/carlos-jenkins/pydotplus
-2. 安装graphviz   
+1. 安装graphviz   
 conda install graphviz
 
-3. 安装软件graphviz，官网：  
+2. 安装软件graphviz，官网：  
 http://www.graphviz.org/Download.php
-
-4. 加入环境变量：
-```py
-import os
-os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-```
 
 ### 代码
 
@@ -279,7 +269,24 @@ plt.show()
 
 
 
-## 后注
+## 后注（备用）
+
+### 可视化输入方法（备用）
+为了可视化输出，还需要进行下面的配置：
+
+1. 安装pydotplus：  
+https://github.com/carlos-jenkins/pydotplus
+2. 安装graphviz   
+conda install graphviz
+
+3. 安装软件graphviz，官网：  
+http://www.graphviz.org/Download.php
+
+4. 加入环境变量：
+```py
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
+```
 
 备用方法1：转化为决策图，输出到pdf
 ```py
