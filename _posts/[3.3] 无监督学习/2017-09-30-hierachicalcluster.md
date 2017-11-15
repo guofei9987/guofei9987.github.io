@@ -104,8 +104,6 @@ for center in centers:
     for idx, j in enumerate(center):
         data_temp = pd.concat([data_temp, pd.DataFrame({columns_name[idx]: np.random.normal(j, size=50)})], axis=1)
     data = pd.concat([data, data_temp], ignore_index=True)
-
-m, n = data.shape
 ```
 
 
