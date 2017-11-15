@@ -1,4 +1,4 @@
-permalink: /:year/:month/:day/:title.html
+﻿permalink: /:year/:month/:day/:title.html
 paginate: 10
 markdown: kramdown
 
@@ -43,3 +43,9 @@ cates:
 locals:
   tags: 模型
   about: 我
+  trythis: 数据清洗
+
+# 试试tag次序化
+order:
+  first: 数据清洗
+  second: 可视化
