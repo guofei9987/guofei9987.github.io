@@ -86,6 +86,7 @@ dataset = datasets.load_iris()
 ### 模型训练
 
 #### 1. 高斯
+有些特征可能是连续型变量，直接转化为离散变量不够细腻。高斯模型假设这些一个特征的所有属于某个类别的观测值符合高斯分布  
 ```py
 from sklearn.naive_bayes import GaussianNB
 gnb = GaussianNB(priors=[0.1, 0.5, 0.4])
@@ -94,8 +95,8 @@ gnb.fit(dataset.data, dataset.target)
 只有一个输入参数priors,表示先验概率，也可以省略。  
 
 #### 2. 多项式
-
-```
+该模型常用于文本分类，特征是单词，值是单词的出现次数
+```py
 MultinomialNB()
 ```
 
@@ -107,7 +108,7 @@ from sklearn.naive_bayes import BernoulliNB
 bnb=BernoulliNB(alpha=1)
 bnb.fit(dataset.data, dataset.target)
 ```
-
+>BernoulliNB(alpha=1.0, binarize=0.0, class_prior=None, fit_prior=True)
 
 ### 模型
 
