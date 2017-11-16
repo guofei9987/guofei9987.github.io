@@ -197,11 +197,12 @@ http://www.graphviz.org/Download.php
 
 #### step1：做出模型
 ```py
-from sklearn.datasets import load_iris
+from sklearn import datasets
+dataset=datasets.load_iris()
+
 from sklearn import tree
-iris = load_iris()
-clf = tree.DecisionTreeClassifier()
-clf = clf.fit(iris.data, iris.target)
+clf=tree.DecisionTreeClassifier()
+clf=clf.fit(dataset.data,dataset.target)
 ```
 
 #### step2：把规则输出
@@ -216,7 +217,7 @@ tree.export_graphviz(clf,out_file="tree.doc"  )#输出到doc
 import graphviz
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
-dot_data = tree.export_graphviz(clf, out_file=None)
+dot_data = tree.export_graphviz(clf, out_file=None,feature_names=dataset.feature_names,  class_names=dataset.target_names,filled=True, rounded=True,special_characters=True)#参数是配置颜色等
 graph = graphviz.Source(dot_data)
 graph.view('hehe.pdf')
 graph.save('abc.pdf')

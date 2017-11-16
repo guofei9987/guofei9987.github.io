@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【logit】理论与实现
+title: 【logistics】理论与实现
 categories: 算法
 tags: 机器学习
 keywords: model evaluation
@@ -122,6 +122,31 @@ for 第i次迭代
 
 ## Python实现（sklearn）
 
+step1:建立模型  
+```py
+from sklearn.datasets import load_iris
+dataset=load_iris()
+
+from sklearn import linear_model
+clf=linear_model.LogisticRegression()
+clf.fit(dataset.data,dataset.target)
+```
+
+step2：模型使用  
+```py
+clf.predict(dataset.data)#判断数据属于哪个类别
+clf.predict_proba(dataset.data)#判断属于各个类别的概率
+clf.score(dataset.data,dataset.target)#准确率
+
+
+clf.coef_#系数
+clf.intercept_#截距
+clf.n_iter_#迭代次数
+```
+
+## 备注
+
+### 筛选+回归
 用到sklearn中的两个模型  
 
 [RandomizedLogisticRegression](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.RandomizedLogisticRegression.html)用来筛选变量  
