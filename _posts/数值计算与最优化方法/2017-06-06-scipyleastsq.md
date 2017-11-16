@@ -6,6 +6,39 @@ tags: 数值计算与最优化方法
 keywords:
 description:
 ---
+
+## 常见的曲线拟合
+
+
+[趋势模型](http://www.guofei.site/2017/07/06/basictimeseries.html#title2)里写了趋势模型中常用的10种曲线  
+
+
+这里是曲线拟合种常用的曲线
+1. Polynomial Models  
+$y=\sum\limits_{i=1}^{n} p_i x_i$
+2. Exponential Models  
+$y=ae^{bx},y=ae^{bx}+ce^{dx}$  
+3. Fourier Series
+$y=a+\sum\limits_{i=1}^na_i \cos(nwx)+b_i \sin(nwx)$  
+4. Gaussian Models  
+$y=\sum\limits_{i=1}^n a_i \exp(-(\dfrac{x-b_i}{c_i})^2)$  
+5. Power Series  
+$y=ax^b,y=a+bx^c$  
+6. Rational Polynomials  
+$y=\dfrac{\sum\limits_{i=1}^{n} p_i x_i}{\sum\limits_{i=1}^{n} q_i x_i}$  
+7. Sum of Sines Models
+$y=a+\sum\limits_{i=1}^na_i \sin(nwx)$
+8. Weibull Distributions
+$y=abx^{b-1}e^{-ax^b}$  
+widely used in reliability and life (failure rate) data analysis
+
+
+
+
+
+
+
+
 ### leastsq
 最小二乘估计  
 
