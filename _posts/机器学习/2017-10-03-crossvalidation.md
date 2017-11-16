@@ -99,7 +99,9 @@ step2：选定模型后，在5个模型中选一个误差最小的
 ### 划分训练集和测试集
 
 ```py
-train_data,test_data,train_target,test_target=cross_validation.train_test_split(data,target,test_size=0.4,train_size=0.6,random_state=12345)#划分训练集和测试集
+from sklearn import model_selection
+train_data,test_data,train_target,test_target=model_selection.train_test_split(
+    data,target,test_size=0.4,train_size=0.6,random_state=12345)#划分训练集和测试集
 ```
 
 (下个版本会删掉这个方法,用sklearn.model_selection 代替)
