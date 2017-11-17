@@ -96,13 +96,15 @@ step2：选定模型后，在5个模型中选一个误差最小的
 
 ## 代码实现
 
-### 划分训练集和测试集
+### 80/20法
 
 ```py
 from sklearn import model_selection
 train_data,test_data,train_target,test_target=model_selection.train_test_split(
-    data,target,test_size=0.4,train_size=0.6,random_state=12345)#划分训练集和测试集
+    data,target,test_size=0.2,train_size=0.8,random_state=12345)#划分训练集和测试集
 ```
+
+### 留1法
 
 
 ### 交叉验证
