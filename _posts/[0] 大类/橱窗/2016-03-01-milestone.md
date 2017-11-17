@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: 小事记
 categories: 橱窗
@@ -13,7 +13,6 @@ description:
 给scipy发了一个pr，10分钟后被merge到master里。  
 起因是发现scipy.interpolate中的有些代码的逻辑不对，进行了修改并pr。  
 这是第一次pr，竟然这么快通过了，颇为激动。  
-地址：https://github.com/scipy/scipy/pull/7468   
 
 scipy 1.0发布了！我成了121名Author之一！[release note](https://mail.python.org/pipermail/scipy-user/2017-October/037357.html)  
 
