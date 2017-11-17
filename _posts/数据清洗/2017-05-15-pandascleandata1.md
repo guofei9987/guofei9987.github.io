@@ -61,11 +61,19 @@ macrodata.head(1)
 macrodata.to_csv('d:/foo.csv')
 ```
 
+### read_csv中的参数
 
+在数据分析中，read_csv是最常用的函数之一，所以有必要详细解释参数。  
 
-
-
-
+- header： 选择哪一行作为columns name，读入的数据从header的下一行开始
+    - int：这一行作为columns name
+    - list of ints：几行合起来作为columns name
+    - None：不用数据作为columns name，而是用自然数
+- names： 自定义columns name
+- index_col：  选择那一列作为index name
+    - int：选择第几列作为index name
+    - list：选择多列作为多层index name(**非常强大！**)
+    - None：不用数据做index name，而是用自然数
 
 ## to_json
 
