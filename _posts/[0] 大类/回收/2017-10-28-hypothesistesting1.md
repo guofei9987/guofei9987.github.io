@@ -1,11 +1,15 @@
 ---
 layout: post
 title: 【假设检验】Python实现.
-categories:
-tags: 统计学
+categories: 回收
+tags:
 keywords:
 description:
 ---
+
+
+*回收原因：发现了用ipython notebook直接嵌入网页的方法，阅读更加清晰，见于[这里](http://www.guofei.site/2017/10/27/hypothesistesting.html#title1)*  
+
 
 参见[【假设检验】理论篇](http://www.guofei.site/2017/10/27/hypothesistesting.html)  
 
