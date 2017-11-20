@@ -123,7 +123,7 @@ for 第i次迭代
 
 ## Python实现（sklearn）
 
-step1:建立模型  
+step1:建立模型[^wangxiaochuan]  
 ```py
 from sklearn.datasets import load_iris
 dataset=load_iris()
@@ -132,7 +132,7 @@ from sklearn import linear_model
 clf=linear_model.LogisticRegression()
 clf.fit(dataset.data,dataset.target)
 ```
-
+关于参数的选择，一定要看[sklearn官网](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)[^sklearnLR]  
 step2：模型使用  
 ```py
 clf.predict(dataset.data)#判断数据属于哪个类别
@@ -176,4 +176,5 @@ print('模型的平均正确率为：%s' % lr.score(x_new, y)) #给出模型的�
 
 ## 参考文献
 
-[王小川授课内容](https://weibo.com/hgsz2003)
+[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)
+[^sklearnLR]: [sklearn官网](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)  
