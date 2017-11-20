@@ -7,6 +7,11 @@ keywords:
 description:
 ---
 
+
+理论篇大图见于<a href='http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
+jupyter原文见于<a href='http://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%AE%A1%E6%8E%A8%E6%96%AD%E5%9F%BA%E7%A1%80.html' target="HypothesisTesting">这里</a>  
+
+
 ## 理论篇
 大图见于<a href='http://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
 
