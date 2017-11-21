@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【汇总】统计学知识汇总.
-categories: 
+categories:
 tags: 统计学
 keywords:
 description:
@@ -33,6 +33,8 @@ description:
         - 卡方拟合检验
         - Jarque-Beran
         - KStest
+- <a href='http://www.guofei.site/2017/11/21/corr.html' target="hh">相关分析</a>
+
 - <a href='http://www.guofei.site/StatisticsBlog/pca.htm'  target="pca">主成分分析</a>
 - <a href='http://www.guofei.site/StatisticsBlog/regression.htm' target="regression">回归分析</a>
     - 一元回归
