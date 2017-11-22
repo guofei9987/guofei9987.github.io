@@ -23,7 +23,7 @@ data.duplicated()#返回Series，bool类型，存放是否是重复行/列
 ## 删除空数据
 
 ```py
-dropna(how='any')
+dropna(how='any')#how='all'
 ```
 
 ## 删除整行&整列

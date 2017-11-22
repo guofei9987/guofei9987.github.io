@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【回归分析】理论篇.
+title: 【回归分析】理论与实现.
 categories:
 tags: 统计学
 keywords:
@@ -27,6 +27,18 @@ order: 4
 - 岭回归
 - lasso
 - 弹性网络
+
+## Python实现
+
+
+大图见于<a href='http://www.guofei.site/StatisticsBlog/回归分析.html' target="HypothesisTesting">这里</a>  
+
+
+<iframe src="http://www.guofei.site/StatisticsBlog/回归分析.html" width="100%" height="3600em" marginwidth="10%"></iframe>
+
+大图见于<a href='http://www.guofei.site/StatisticsBlog/回归分析.html' target="HypothesisTesting">这里</a>  
+
+
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
 [^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  

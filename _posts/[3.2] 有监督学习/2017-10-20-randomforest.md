@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【随机森林】理论介绍
+title: 【随机森林】理论与实现
 categories:
 tags: 有监督学习
 keywords: model evaluation
