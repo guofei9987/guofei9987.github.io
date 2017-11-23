@@ -2,7 +2,7 @@
 layout: post
 title: 【模型评价】Python实现
 categories:
-tags: 有监督学习
+tags: 2有监督学习
 keywords: model evaluation
 description:
 ---

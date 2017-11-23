@@ -2,7 +2,7 @@
 layout: post
 title: 【Decision Tree】理论与实现
 categories:
-tags: 有监督学习
+tags: 2有监督学习
 keywords: Decision Tree Classifier
 description:
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: 【HMM】理论篇.
 categories:
-tags: 有监督学习
+tags: 2有监督学习
 keywords:
 description:
 ---

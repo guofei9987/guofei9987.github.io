@@ -2,7 +2,7 @@
 layout: post
 title: 机器学习模型汇总
 categories:
-tags: 有监督学习
+tags: 2有监督学习
 keywords: model evaluation
 description:
 ---
