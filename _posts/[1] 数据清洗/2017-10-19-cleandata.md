@@ -5,6 +5,7 @@ categories:
 tags: 1数据清洗
 keywords:
 description:
+order: 100
 ---
 
 ## 异常值
