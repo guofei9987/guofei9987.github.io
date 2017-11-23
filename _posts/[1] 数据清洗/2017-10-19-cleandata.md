@@ -2,7 +2,7 @@
 layout: post
 title: 数据清洗方法.
 categories:
-tags: 数据清洗
+tags: 1数据清洗
 keywords:
 description:
 ---

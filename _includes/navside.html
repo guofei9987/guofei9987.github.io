@@ -42,7 +42,11 @@
           <div class="tab-pane" id="tags">
             <div class="panel-group" id="accordion">
               <!--<h2 class="center">{{ site.locals.tags }}</h2>-->
-              {% for tag in site.tags %}
+
+
+              {% assign sorted_tags = site.tags | sort %}
+              {% for tag in sorted_tags %}
+
                 <div class="panel panel-info">
                   <div class="panel-heading">
                     <h4 class="panel-title">
@@ -51,7 +55,8 @@
                     </h4>
                   </div>
                   <div id="{{ tag[0] }}" class="panel-collapse collapse">
-                    {% for post in tag[1] %}
+                    {% assign sorted_tag = tag[1] | sort:"order" %}
+                    {% for post in sorted_tag %}
                       <a  href='{{ post.url }}' class="list-group-item pjaxlink">
                         {{post.title}}
                       </a>

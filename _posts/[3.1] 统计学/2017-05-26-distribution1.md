@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 常见统计分布(2).
-categories: 
+categories:
 tags: 统计学
 keywords:
 description:

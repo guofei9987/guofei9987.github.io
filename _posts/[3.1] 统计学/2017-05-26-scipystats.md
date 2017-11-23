@@ -1,7 +1,7 @@
 ---
 layout: post
 title: scipy的stats库.
-categories: 
+categories:
 tags: 统计学
 keywords:
 description:
