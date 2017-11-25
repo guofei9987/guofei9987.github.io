@@ -81,6 +81,9 @@ setp1：从n个样本中 **有放回** 的抽m个数据,做一次基分类器
 step2：重复step1, 重复k次，得到k个基分类器  
 step3：这k个基分类器投票得到最终的结果  
 
+
+bagging的基分类器是decision tree的话，又叫random forest  
+
 ### 评价
 
 bagging增强了目标函数的表达功能，通过减低基分类器方差改善了泛化误差，bagging的性能依赖于基分类器的稳定性。  
@@ -111,6 +114,15 @@ $Z_m=\sum\limits_{i=1}^Nw_{mi}\exp(-\alpha_m y_i G_m(x_i))$是为了使权值之
 **step6**： m=m+1，如果$m<=M$, 转到 **step2**  
 **step7**： 得到最终的分类器为$G(x)=sign(\sum\limits_{m=1}^M \alpha_mG_m(x))$  
 
+
+### 提升树
+第i+1个树的target，是$y-y_i$
+### 梯度提升树
+残差方向是沿着损失函数的负梯度方向。  
+
+
+bagging的基分类器偏差小，方差大，效果好，因此random forest要完全生长  
+boosting的基分类器适合方差小，偏差大，因此提升树不能完全生长
 
 ## Python实现
 
