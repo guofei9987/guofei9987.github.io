@@ -7,16 +7,6 @@ keywords:
 description:
 ---
 
-
-
-- 数字类型，字符串类型
-- 元组类型，列表类型
-- 字典类型，文件类型
-
-
-
-
-
 ## 数字类型  
 - int
 - long
@@ -111,32 +101,33 @@ x[::-2]
 ### +与*
 - 加法操作连接字符串
 - 乘法操作重复连接字符串
-### 字符串的操作
+
+
+### 字符串方法
 
 ```python
-string.upper()  #字符串中的字母大写  
-string.lower()  #字符串中的字母小写  
-string.strip()   #去两边的空格及去指定字符  
-string.split()  #分割字符串为数组  
-string[:]       #取值  
-string.join()   #连接两个字符串
-string.find()   #搜索字符串
-string.replace()#替换字符串
+len('abc')
+
+'aaabc'.count('aa')
+'aaabc'.endswith('bc'),'aaabc'.startswith('bc')  #bool类型,是否以指定字符串开头/结尾
+'aaabc'.index('bc')  #找到则返回序号，找不到则引发ValueError
+'aaabc'.find('bc')  #找到则返回序号，找不到则返回-1
+'aaabc'.replace('bc','x')  #替换指定字符
+'aaabc'.upper(),'aaabC'.lower()  #转大写/转小写
+'aaabc'.capitalize()  #首字母大写
+
+','.join(list('abc'))
+'a,b,c'.split(',')
+'  \n a,b, c '.strip()   #去两边的空格与换行,strip,lstrip,rstrip
+'abc'.ljust(5) , 'abc'.rjust(5)#填充空格
+
+
 for <var> in <string>
 
 len()  返回字符串的长度
 str()  返回数字对应的字符串
 
 ```
-
-其它操作
-
-```py
-endswith
-capitalize
-count
-```
-
 
 ### format()方法
 
