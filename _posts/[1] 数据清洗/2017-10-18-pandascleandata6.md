@@ -40,11 +40,11 @@ df.groupby(random_values)
 ```py
 df.groupby(df.loc[:,'w'])
 ```
-### 3. lambda表达式
+### 3. 函数/lambda
 ```py
 df.groupby(lambda n:n%3)
 ```
-
+n是index，每次调用函数是输入1个
 ### 4. 在一个list中混用
 
 ```py
