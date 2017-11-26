@@ -25,7 +25,8 @@ description:
 </td>
 
 <td>
-神经网络  <br>
+
+<a href='/2017/10/21/mlp.html'>神经网络 </a> <br>
 <a href='/2017/05/07/LogisticRegression.html'>逻辑回归 </a> <br>
 <a href='/2017/10/23/perceptron.html'>感知机 </a> <br>
 <a href='/2017/07/18/probit.html'>probit模型 </a> <br>
