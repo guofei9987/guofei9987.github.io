@@ -39,6 +39,7 @@ data.drop('animal2', axis='columns', inplace=True)
 ## 替换数据
 ```python
 data.replace([4,5],np.nan,inplace=True)
+data.replace({4:np.nan,5:999},inplace=True)
 ```
 
 ## 填充空数据

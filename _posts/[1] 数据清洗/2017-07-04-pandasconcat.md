@@ -149,6 +149,10 @@ result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
 ### on
 
 有的时候，在左右表中，待匹配的列名不相同，分别指定左右表的列名就行了。    
+- on
+- left_on/right_on
+- left_index/right_index: 用index作为左连接键/右链接键
+
 
 ```python
 import pandas as pd
@@ -186,3 +190,5 @@ df1.add(df2,fill_value=0)
 ```
 
 add,sub,div,mul  
+
+## 参考文献

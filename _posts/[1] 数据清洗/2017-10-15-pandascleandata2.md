@@ -67,7 +67,7 @@ df[(df.one >=1 ) & (df.one < 3) ]#多个逻辑条件组合
 - bool*1可以变成数字，可以玩一些花招(df.one * 1+df.two * 1=1)
 - df>2是一个DataFrame
 
-### 其它bool生成方式
+### bool生成方式
 
 以下可以取得bool类型的Series，然后用来列筛选，这些Series可以相互之间做bool运算
 #### 1.符号

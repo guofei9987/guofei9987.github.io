@@ -153,12 +153,12 @@ df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxy
 ```py
 df.set_index(['w','x'],inplace=True)#多列变成index, 多级目录
 ```
-- append=True
+- append=True: 保留原index不删除
 ```py
 import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,4),index=list('abcd'),columns=list('wxyz'))
-df.set_index(['w','x'],inplace=True,append=True)#保留原来的index，设置多级目录
+df.set_index(['w','x'],inplace=True,append=True)
 ```
 <table border="1" class="dataframe">
   <thead>
@@ -534,7 +534,9 @@ Timestamp对象继承自datetime类,参见我写的[另一篇博客](http://www.
 ### 用map修改index&columns
 - rename可以完全替代这个
 - 参数不能是dict
-index有map()方法，但没有apply方法，案例：
+
+
+index有map()方法，但没有apply方法，案例：  
 ```python
 import pandas as pd
 import numpy as np
