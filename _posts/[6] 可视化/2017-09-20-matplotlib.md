@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【matplotlib】绘图
-categories: 
+categories:
 tags: 可视化
 keywords:
 description:
@@ -171,6 +171,7 @@ plt.plot(x, np.sin(x))
 plt.show()
 ```
 
+
 ## 字体&汉字支持
 
 1. 查询系统自带的字体
@@ -188,7 +189,7 @@ from matplotlib.font_manager import fontManager
 import matplotlib.pyplot as plt
 fig=plt.figure(figsize=(8,7))
 ax=fig.add_subplot(111)
-plt.subplots_adjust(0,0,1,1,0,0)
+plt.subplots_adjust(0,0,1,1,0,0)  #left,bottom,right,top,wspace:宽度百分比, hspace: 高度百分比
 plt.xticks([])
 plt.yticks([])
 x,y=0.05,0.05

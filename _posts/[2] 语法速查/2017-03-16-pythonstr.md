@@ -65,7 +65,7 @@ len('abc')
 ','.join(list('abc'))
 'a,b,c'.split(',')
 '  \n a,b, c '.strip()   #去两边的空格与换行,strip,lstrip,rstrip
-'abc'.ljust(5) , 'abc'.rjust(5)#填充空格
+'abc'.ljust(5) , 'abc'.rjust(5)  #填充空格使其达到指定长度
 
 
 for <var> in <string>
@@ -110,7 +110,7 @@ String1 ='hello world'
 for index,letter in enumerate(String1):
     print(index,letter)
 for i in enumerate(String1)
-    print(i)#i是tuple类型
+    print(i) #i是tuple类型
 ```
 此外，enumerate也可以用于list
 
@@ -130,8 +130,73 @@ string.whitespace
 ```
 
 ## regex正则表达式
-
+step1：编译一个可重用的regex对象
 ```py
 import re
 regex=re.compile('\s+')
+```
+step2：使用
+
+```py
+text='a\n b \t  c'
+regex.split(text) #返回list
+
+regex.findall(text) #返回list
+regex.finditer(text)  #迭代器
+```
+
+### 正则表达式的写法
+# 关于expression:
+1.  句点符号  
+ '.' ——匹配任意一个（只有一个）字符（包括空格）。
+
+2. 方括号符号
+ '[oum]' ——找到方括号中的任意一个即是匹配
+^表示取反
+c[aeiou]+t + 表示多次重复
+
+3.  方括号中的连接符
+ '[c1-c2]' ——匹配从字符c1开始到字符c2结束的字母序列（按字母表中的顺序）中的任意一个。
+
+4. 转义符  
+```
+\n ——特殊字符，为了防止混淆
+\.
+\^
+\xN或\x{N} 匹配八进制数值为N的字符
+\oN或\o{N} 匹配十六进制数值为N的字符
+\a Alarm(beep)
+\b Backspace
+\t 水平Tab
+\n New line
+\v 垂直Tab
+\f 换页符
+\r 回车符
+\e Escape
+\c 某些在正则表达式中有语法功能或特殊意义的字符c，要用\c来匹配，例如句号
+```
+5. 范围表达式
+```
+  \w,\s和\d——范围表达式
+
+\w 相当于[a-zA-Z0-9_];
+\W相当于[^a-zA-Z0-9_]；
+
+\s 相当于[\t\f\n\r]；
+\S相当于[^\t\f\n\r]；
+
+\d 相当于[0-9]；
+\D相当于[^0-9]。
+
+\oN or \o{N}\  ASCII码表
+\xN or \x{N}
+```
+6. 量词
+```
+(expr)*-----匹配任意多个(或0个)字符
+(expr)?-----0或1次
+(expr)+-----1次以上
+(expr){m,n}-----m次以上，n次以下
+(expr){m,}-------m次以上
+(expr){n}---------n次
 ```
