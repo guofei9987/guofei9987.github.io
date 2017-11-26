@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【matplotlib】面向对象方式绘图
-categories: 
+categories:
 tags: 可视化
 keywords:
 description:
@@ -11,7 +11,21 @@ description:
 不用面向对象方式画图，优点在于代码简单，缺点在于画多图和多子图附带各种标注时，代码很乱。  
 当然，更复杂和标注清晰的图，大部分需求场景是成熟的可视化展示，这种情况下用echart更好。  
 
+## 一个例子
+```py
+import matplotlib.pyplot as plt
+fig=plt.figure()
+ax=fig.add_subplot(111)
 
+rect=plt.Rectangle((0.2,0.75),0.4,0.15,color='k',alpha=0.3)
+circ=plt.Circle((0.7,0.2),0.15,color='b',alpha=0.3)
+pgon=plt.Polygon([[0.15,0.15],[0.35,0.4],[0.2,0.6]],color='g',alpha=0.5)
+
+ax.add_patch(rect)
+ax.add_patch(circ)
+ax.add_patch(pgon)
+plt.show()
+```
 ## 各个对象
 
 plt.figure()  

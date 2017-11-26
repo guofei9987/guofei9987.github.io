@@ -189,7 +189,7 @@ from matplotlib.font_manager import fontManager
 import matplotlib.pyplot as plt
 fig=plt.figure(figsize=(8,7))
 ax=fig.add_subplot(111)
-plt.subplots_adjust(0,0,1,1,0,0)  #left,bottom,right,top,wspace:宽度百分比, hspace: 高度百分比
+plt.subplots_adjust(0,0,1,1,0,0)  #left,bottom,right,top,wspace, hspace
 plt.xticks([])
 plt.yticks([])
 x,y=0.05,0.05
@@ -282,5 +282,5 @@ plt.show()
 ## 保存
 
 ```py
-plt.savefig('test.png',dpi=120)
+plt.savefig('test.png',dpi=120)  #自动根据扩展名推断文件类型，svg,png，pdf等
 ```
