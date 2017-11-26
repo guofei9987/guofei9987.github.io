@@ -89,16 +89,16 @@ df
 bins=[-np.inf,4,10,np.inf]
 pd.cut(df.w,bins)
 ```
->0    (-inf, 4.0]
-1    (-inf, 4.0]
-2    (-inf, 4.0]
-3    (4.0, 10.0]
-4    (4.0, 10.0]
-5    (4.0, 10.0]
-6    (10.0, inf]
-7    (10.0, inf]
-Name: w, dtype: category
-Categories (3, interval[float64]): [(-inf, 4.0] < (4.0, 10.0] < (10.0, inf]]
+>0    (-inf, 4.0]  
+1    (-inf, 4.0]  
+2    (-inf, 4.0]  
+3    (4.0, 10.0]  
+4    (4.0, 10.0]  
+5    (4.0, 10.0]  
+6    (10.0, inf]  
+7    (10.0, inf]  
+Name: w, dtype: category  
+Categories (3, interval[float64]): [(-inf, 4.0] < (4.0, 10.0] < (10.0, inf]]  
 
 - right=False: 选择右开还是闭，默认闭
 - labels=['low','mid','hig']： 给每个标签命名
@@ -106,16 +106,16 @@ Categories (3, interval[float64]): [(-inf, 4.0] < (4.0, 10.0] < (10.0, inf]]
 bins=[-np.inf,4,10,np.inf]
 pd.cut(df.w,bins,right=False,labels=['low','mid','hig'])
 ```
->0    low
-1    low
-2    mid
-3    mid
-4    mid
-5    hig
-6    hig
-7    hig
-Name: w, dtype: category
-Categories (3, object): [low < mid < hig]
+>0    low  
+1    low  
+2    mid  
+3    mid  
+4    mid  
+5    hig  
+6    hig  
+7    hig  
+Name: w, dtype: category  
+Categories (3, object): [low < mid < hig]  
 
 ## count
 
