@@ -12,7 +12,7 @@ description:
 ### 按照被解释变量分类
 
 <table>
-<tr><th>回归问题</th><th>分类问题</th><th><a href='/2017/09/29/cluster.html'>聚类问题</a></th></tr>
+<tr><th>回归问题</th><th>分类问题</th><th><a href='/2017/09/29/cluster.html'>聚类问题</a></th><th>降维问题</th></tr>
 <tr>
 
 <td>
@@ -37,7 +37,6 @@ description:
 <a href='/2017/10/06/bagingboosting.html'>bagging</a>  <br>
 <a href='/2017/10/06/bagingboosting.html'>boosting</a>  <br>
 <a href='/2017/10/20/randomforest.html'>随机森林 </a> <br>
-<a href='/2017/11/10/gmm.html'>高斯混合模型 </a> <br>
 <a href='/2017/11/11/hiddenmarkov.html'>隐马尔科夫模型 </a> <br>
 <a href='/2017/11/13/conditionalrandomfield.html'>条件随机场 </a> <br>
 </td>
@@ -46,10 +45,24 @@ description:
 <a href='/2017/09/30/hierachicalcluster.html'>系统聚类</a><br>
 神经网络<br>
 模糊C均值聚类<br>
-高斯混合模型<br>
+<a href='/2017/11/28/dbscan.html'>DBSCAN </a> <br>
+<a href='/2017/11/10/gmm.html'>高斯混合模型 </a> <br>
+
 
 </td>
 
+
+
+<td>
+<a href='/2017/10/12/pca.html'>PCA </a> <br>
+<a href='/2017/10/13/factor.html'>FA </a> <br>
+<a href='/2017/11/27/ica.html'>ICA </a> <br>
+<a href='/2017/11/25/mds.html'>MDS </a> <br>
+
+
+
+
+</td>
 </tr>
 
 </table>
