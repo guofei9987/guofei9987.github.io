@@ -83,7 +83,7 @@ import numpy as np
 df=pd.DataFrame(np.arange(16).reshape(-1,2),columns=list('wx'))
 df
 ```
-
+#### 传入bins
 - cut
 ```py
 bins=[-np.inf,4,10,np.inf]
@@ -117,6 +117,22 @@ pd.cut(df.w,bins,right=False,labels=['low','mid','hig'])
 Name: w, dtype: category  
 Categories (3, object): [low < mid < hig]  
 
+- 传入数字:按照区间等分n份
+```py
+pd.cut(df.w,4,precision=1)
+```
+
+### qcut
+- 传入区间：按照分位点切分
+```py
+from scipy.stats import norm
+df=pd.DataFrame(norm().rvs(size=(100)),columns=list('w'))
+pd.qcut(df.w,[-1,0.1,0.5,0.8,0.9,1]).value_counts()
+```
+- 传入数字：按样本数切分，每组样本数相同
+```py
+pd.qcut(df.w,4)
+```
 ## count
 
 ```py

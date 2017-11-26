@@ -406,7 +406,19 @@ df.pivot(index='w',columns='x')
   </tbody>
 </table>
 
-
+### get_dummies哑变量变换
+数据准备
+```py
+import pandas as pd
+from scipy.stats import norm
+df=pd.DataFrame(norm().rvs(size=(1000,2)),columns=list('wx'))
+a=pd.qcut(df.w,3,labels=list('abc'))#生成category
+```
+生成哑变量
+```py
+pd.get_dummies(a)
+pd.get_dummies(a,prefix='key')#生成的每列加前缀
+```
 
 ### 交换index
 

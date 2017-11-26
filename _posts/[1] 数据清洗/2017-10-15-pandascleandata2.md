@@ -86,12 +86,16 @@ df2[df2.ix[:,'E'].str.contains('tw|ou')]#又是一个特殊用法contains，注�
 
 选出NaN
 ```py
-df.isnull
-df.notnull
-~df.isnull
+df.isnull()
+df.notnull()
+~df.isnull()
 ```
 
-
+#### 5. any
+```py
+(df>1).any(0)#列
+(df>1).any(1)#行
+```
 ### 举例
 
 
