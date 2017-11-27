@@ -14,12 +14,16 @@ description:
 - float
 - str
     - format是一个str，例如`'%Y-%m-%d %H:%M:%S'`
-    - %y年份中的后两位，%Y年份4位数
-    - %a周几（简称） %A周几（全称）
-    - %u周几 范围1-7  %U一年中的第几周
+    - %y年份中的后两位，%Y年份4位数年
+    - %m ：2位数月
+    - %d： 2位数日
+    - %H： 24进制小时。%I：12进制小时
+    - %M： 2位数分钟
+    - %S： （秒，可以是60和61，表示闰秒）
+    - %a周几（简称） %A周几（全称）， %w：周几，0代表周日。%u：周几，7代表周日。
+    - %W一年中的第几周，每年第一个周一之前的几天认为是“第0周”， %U一年中的第几周，每年第一个周日之前的几天认为是“第0周”
     - %j 一年中的第几天，范围是001-366
     - %b月份简写 %B月份全称
-    - %I 12进制小时钟点
     - %p 上午还是下午, 值是AM或PM
 - datetime.datetime
     - datetime.datetime.now()
@@ -31,8 +35,12 @@ description:
 - float --> datetime: datetime.datetime.fromtimestamp( float )
 - datetime --> str: datetime.strftime(format, datetime)
 - str --> datetime: datetime.strptime(str, format)
+
+
 ## datatime
-### 生产
+
+
+### 创建
 1. 直接生成
 ```py
 import datetime
@@ -42,7 +50,12 @@ datetime.datetime(2017,11,12,18,5,9)
 ```py
 datetime.datetime.now()
 ```
-2. strptime
+3. strptime
+4. parse：好处是不用自定义格式
+```py
+from dateutil.parser import parse
+parse('2016/11/12 12:00:03')
+```
 
 
 ### 应用
