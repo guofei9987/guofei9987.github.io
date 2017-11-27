@@ -77,12 +77,12 @@ pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h')+Minute(30)
 - T/min 每分钟
 - S 每秒
 - L/ms 每毫秒
-- U 每微秒(报错？)
+- U 每微秒
 - M： MonthEnd，每个月最后一个日历日
 - BM： BusinessMonthEnd，每个月最后一个工作日
 - MS： MonthBegin，每个月第一个日历日
 - BMS： BusinessMonthBegin，每月第一个工作日
-- W-MON，W-TUE,...： 从指定星期几(MON, TUE, WED,THU,FRI,SAT,SUN)开始算计，每周
+- W-MON，W-TUE,...： Week，从指定星期几(MON, TUE, WED,THU,FRI,SAT,SUN)开始算计，每周
 - WOM-1MON，WOM-2MON,...： WeekOfMonth，每月第n个星期几(WOM-3FRI表示每月第3个星期五)
 - Q-JAN，Q-FEB，QuarterEnd，以指定月份开始(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)，每季度最后一月的最后一个日历日
 - BQ-JAN，BQ-FEB : BusinessQuarterEnd, 以指定月份结束的年度，每季度最后一个月的最后一个工作日
