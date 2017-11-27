@@ -62,15 +62,19 @@ ts.groupby(level=0).count() #可以groupby index的第0层
 
 ## 间隔时间
 ```py
-pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h') #'D', '4h30min'
+pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h') #freq='D', '4h30min'
+pd.date_range(datetime(2010,5,8),periods=3,freq='bas-Feb')
 ```
 
+
+## 偏移
 ```py
-from pandas.tseries.offsets import Hour,Minute
+from pandas.tseries.offsets import Day,Hour,Minute,MonthEnd
 pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h')+Minute(30)
+# MonthEnd指的是偏移到月末MonthEnd(2)就是往后加1个月
 ```
 
-
+freq：
 - D 每日历日
 - B 每工作日
 - H 每小时
@@ -84,7 +88,7 @@ pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h')+Minute(30)
 - BMS： BusinessMonthBegin，每月第一个工作日
 - W-MON，W-TUE,...： Week，从指定星期几(MON, TUE, WED,THU,FRI,SAT,SUN)开始算计，每周
 - WOM-1MON，WOM-2MON,...： WeekOfMonth，每月第n个星期几(WOM-3FRI表示每月第3个星期五)
-- Q-JAN，Q-FEB，QuarterEnd，以指定月份开始(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)，每季度最后一月的最后一个日历日
+- Q-JAN，Q-FEB，QuarterEnd，以指定月份为年结束(JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC)，每季度最后一月的最后一个日历日
 - BQ-JAN，BQ-FEB : BusinessQuarterEnd, 以指定月份结束的年度，每季度最后一个月的最后一个工作日
 - QS-JAN，QS-FEB ：QuarterBegin， 对于指定月份结束的年度，每季度最后一个月的第一个日历日
 - BQS-JAN，BQS-FEB： BusinessQuarterBegin，对于以指定月份的结束的年度，每季度最后一月的第一个工作日
@@ -94,7 +98,7 @@ pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h')+Minute(30)
 - BAS-JAN，BAS-FEB： BusinessYearBegin，每年指定月份的第一个工作日
 
 
-## reindex
+## reindex：填充
 
 
 ```py
@@ -106,6 +110,24 @@ ts=pd.DataFrame(values,index=dates)
 idx=pd.date_range(datetime(2017,5,1),datetime(2017,5,20),freq='H')
 ts.reindex(idx,fill_value=-999)
 ```
+
+## shift
+
+```py
+import pandas as pd
+from datetime import datetime
+values=[2,5,7,10,12]
+dates=[datetime(2017,5,i) for i in values]
+ts=pd.DataFrame(values,index=dates)
+ts.shift(1)#数据下移一格，第一格填入nan，最后个值丢弃
+```
+
+
+加上freq，不会丢弃数据，而是直接更改index：
+```py
+ts.shift(1,freq='D')
+```
+## resample
 
 ## 参考资料
 [^pydatetime]: [【Python】【datetime】时间的介绍](http://www.guofei.site/2017/10/22/pydatetime.html)
