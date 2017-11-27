@@ -77,7 +77,7 @@ pd.date_range(datetime(2017,5,1),'8/12/2017',freq='4h')+Minute(30)
 - T/min 每分钟
 - S 每秒
 - L/ms 每毫秒
-- U 每微秒
+- U 每微秒(报错？)
 - M： MonthEnd，每个月最优一个日历日
 - BM： BusinessMonthEnd，每个月最优一个工作日
 - MS： MonthBegin，每个月第一个日历日
