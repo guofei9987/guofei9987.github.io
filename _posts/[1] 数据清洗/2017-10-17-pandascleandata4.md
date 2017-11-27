@@ -406,6 +406,27 @@ df.pivot(index='w',columns='x')
   </tbody>
 </table>
 
+
+#### pivot_table:更强大
+```py
+import pandas as pd
+import numpy as np
+df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
+df.loc[:,'w']=[0,0,1,1]
+df.loc[:,'x']=[3,4,3,4]
+df
+```
+- 每个参数都可以传入列表
+```py
+df.pivot_table(values=['y','z'],index=['w'],columns='x')
+```
+- margins=True可以添加小计，配合聚合函数(默认是均值)
+```py
+df.pivot_table(values=['y','z'],index=['w'],columns='x',margins=True,aggfunc=len)
+```
+
+
+
 ### get_dummies哑变量变换
 数据准备
 ```py
