@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Python】【datetime】时间的介绍.
-categories: 
+categories:
 tags: Python语法
 keywords:
 description:
@@ -31,8 +31,24 @@ description:
 - float --> datetime: datetime.datetime.fromtimestamp( float )
 - datetime --> str: datetime.strftime(format, datetime)
 - str --> datetime: datetime.strptime(str, format)
+## datatime
+### 生产
+1. 直接生成
+```py
+import datetime
+datetime.datetime(2017,11,12,18,5,9)
+```
+2. now
+```py
+datetime.datetime.now()
+```
+2. strptime
 
 
+### 应用
+```py
+now.year,now.month,now.day
+```
 ## timedelta
 
 ### timedelta1
