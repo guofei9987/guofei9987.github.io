@@ -25,6 +25,7 @@ description:
     - %j 一年中的第几天，范围是001-366
     - %b月份简写 %B月份全称
     - %p 上午还是下午, 值是AM或PM
+    - %c 完整的日期和时间
 - datetime.datetime
     - datetime.datetime.now()
 
