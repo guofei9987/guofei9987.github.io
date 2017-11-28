@@ -36,7 +36,7 @@ feature vector: $x\in \mathcal X$
 target: $$y\in  \mathcal Y = \{ c_1, c_2,... , c_K\}$$  
 
 
-#### 模型
+### 模型
 选择0-1损失函数$$L(Y,f(X))=\left \{ \begin{array}{} 1, &Y \neq f(X)\\
 0,&Y=f(X)
 \end{array}\right.$$  
@@ -51,7 +51,7 @@ $=\arg\max\limits_{y \in \mathcal Y} \sum\limits_{k-1}^K P(y=c_k \mid X=x)$
 
 也就是说， **风险函数最小等价于后验概率最大** 。  
 
-#### 算法  
+### 算法  
 
 $P(Y=c_k \mid X=x)=\dfrac{P(X=x\mid Y=c_k)P(Y=c_k)}{P(X=x)}=\dfrac{P(X_1=x_1,X_2=x_2,...X_n=x_n\mid Y=c_k)P(Y=c_k)}{P(X=x)}$  
 
