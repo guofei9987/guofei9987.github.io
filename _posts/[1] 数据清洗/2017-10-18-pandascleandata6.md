@@ -214,7 +214,8 @@ import pandas as pd
 import numpy as np
 df=pd.DataFrame(np.arange(32).reshape(-1,4),columns=list('wxyz'))
 df.loc[:,'w']=[0,0,1,1,0,1,0,1]
-df.groupby('w').agg([('one','mean'),('two','std')])
+df.groupby('w').agg([('one','mean'),('two','std')]) #两列不再以mean, std命名，而是改成'one', 'two'
+df.groupby('w').agg({'x':'mean','y':'count'}) #每列求不一样的统计量
 ```
 也可以批量命名
 ```py
