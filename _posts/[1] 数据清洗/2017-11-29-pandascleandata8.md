@@ -180,6 +180,14 @@ ts.resample('D').ffill()
 ```
 
 
-
+## rolling
+```py
+import pandas as pd
+import numpy as np
+from datetime import datetime
+rng=pd.date_range(datetime(2017,11,1),periods=20,freq='3D')
+ts=pd.DataFrame(np.random.rand(20,1),index=rng,columns=['x1'])
+ts.rolling(window=5,center=False).mean() #mean()函数可以换成自定义函数
+```
 ## 参考资料
 [^pydatetime]: [【Python】【datetime】时间的介绍](http://www.guofei.site/2017/10/22/pydatetime.html)
