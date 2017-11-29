@@ -152,9 +152,22 @@ a.sort(key=lambda x: len(x))
 
 ## args/kwargs
 
-当你写`func(a,b,c,d=some1,e=some2)`时，实际上执行的是下面的内容  
+当你写`func(a,b,c,d=some1,e=some2)`时，实际上执行的是下面的内容:  
 ```py
 a,b,c=args
 d=kwargs.get('d',d_default_value)
 d=kwargs.get('d',d_default_value)
+```
+
+示例：  
+```
+def say_hello_then_call(f,*args,**kwargs):
+    print('args is',args)
+    print('kwargs is',kwargs)
+    print('call: ',f)
+    return f(*args,**kwargs)
+def g(x,y,z=1):
+    return 1
+
+say_hello_then_call(g,1,2,z=5)
 ```
