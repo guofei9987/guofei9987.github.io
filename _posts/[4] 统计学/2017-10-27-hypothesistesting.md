@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【假设检验】理论与Python实现.
+title: 【统计推断】理论与实现.
 categories:
 tags: 4统计学
 keywords:
 description:
-order: 2
+order: 406
 ---
 
 

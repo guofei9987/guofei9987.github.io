@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 基本时间序列分析.
-categories: 
+categories:
 tags: 4统计学
 keywords:
 description:
+order: 430
 ---
 
 本文涉及以下内容：  

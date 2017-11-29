@@ -5,6 +5,7 @@ categories:
 tags: 4统计学
 keywords:
 description:
+order: 430
 ---
 
 [scipy.stats](https://docs.scipy.org/doc/scipy/reference/stats.html)

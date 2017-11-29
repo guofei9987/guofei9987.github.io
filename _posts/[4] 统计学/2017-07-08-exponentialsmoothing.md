@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 指数平滑法.
-categories: 
+categories:
 tags: 4统计学
 keywords:
 description:
+order: 430
 ---
 
 指数平滑法（Exponential Smoothing，ES）是常用的趋势预测方法。  

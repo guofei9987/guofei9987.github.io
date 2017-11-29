@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 条件概率,条件期望,条件方差
-categories: 
+categories:
 tags: 4统计学
 keywords:
 description:
+order: 430
 ---
 
 本文介绍概念：  

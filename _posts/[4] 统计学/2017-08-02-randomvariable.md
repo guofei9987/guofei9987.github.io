@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 概率测度简介
-categories: 
+categories:
 tags: 4统计学
 keywords:
 description:
+order: 430
 ---
 
 本文介绍的概念：  
