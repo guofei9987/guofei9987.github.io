@@ -160,7 +160,7 @@ d=kwargs.get('d',d_default_value)
 ```
 
 示例：  
-```
+```py
 def say_hello_then_call(f,*args,**kwargs):
     print('args is',args)
     print('kwargs is',kwargs)

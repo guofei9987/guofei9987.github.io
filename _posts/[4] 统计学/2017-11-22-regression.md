@@ -38,6 +38,12 @@ order: 4
 
 大图见于<a href='http://www.guofei.site/StatisticsBlog/回归分析.html' target="HypothesisTesting">这里</a>  
 
+### AIC
+模型的似然函数为$L(\theta, x)$,其中$\theta$的维度为p，那么：  
+$AIC=-2\ln L(\theta,x)+2p$  
+
+
+把AIC用于回归，等价于$AIC=n \ln (SSE)+2p$
 
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
