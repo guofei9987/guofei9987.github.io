@@ -149,8 +149,15 @@ for i in enumerate(String1)
 a=[1,2,3]
 b=list('abc')
 list(zip(a,b))
+dict(zip(a,b))
 ```
 
+
+unzip:  
+```py
+a=[(1, 'a'), (2, 'b'), (3, 'c')]
+list(zip(*a))
+```
 ## dict
 
 - Python对存储顺序进行了优化
@@ -249,9 +256,13 @@ z3=y.difference(x);#差
 ```
 或者：
 ```python
-x&y#交
-x|y#并
-x-y#差
+x&y #交
+x|y #并
+x-y #差
+a^b #=x|y-x&y
+
+a.issebset(b) #a是否是b的子集
+a.issuperset(b)
 ```
 
 ### 互转

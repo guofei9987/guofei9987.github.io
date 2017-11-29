@@ -141,3 +141,20 @@ d1,d2=d[idx],d[idx+1]
 
 -y1*(x2-x1)/(d2-d1)+x1
 ```
+
+## sort
+
+
+```py
+a=['a','abds','cdd','c']
+a.sort(key=lambda x: len(x))
+```
+
+## args/kwargs
+
+当你写`func(a,b,c,d=some1,e=some2)`时，实际上执行的是下面的内容  
+```py
+a,b,c=args
+d=kwargs.get('d',d_default_value)
+d=kwargs.get('d',d_default_value)
+```
