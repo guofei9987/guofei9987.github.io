@@ -142,6 +142,14 @@ for i in enumerate(String1)
 ```
 此外，enumerate也可以用于list
 
+### zip/unzip
+
+
+```py
+a=[1,2,3]
+b=list('abc')
+list(zip(a,b))
+```
 
 ## dict
 
