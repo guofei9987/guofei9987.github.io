@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【虚拟变量回归】理论篇
+title: 【dummies】虚拟变量回归
 categories:
 tags: 2有监督学习
 keywords: model evaluation

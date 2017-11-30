@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【最小二乘估计】scipy.optimize.leastsq.
-categories: 
+categories:
 tags: 8数值计算与最优化
 keywords:
 description:
@@ -40,9 +40,22 @@ widely used in reliability and life (failure rate) data analysis
 
 
 ### leastsq
-最小二乘估计  
+最小二乘估计原理是这样的：  
+
+
+$y=f(x,\theta)+\varepsilon$,  
+其中$\varepsilon$独立同分布。  
+
+
+$\theta=\arg\min \sum(y_i-f(x_i,\theta))^2$  
+
+
+非线性最小二乘法中，SST=SSR+SSE不再成立，但仍然可以定义R_squared=1-SSE/SST  
+
 
 leastsq可以用来做最小二乘估计，可以在线性拟合和非线性拟合中使用。  
+
+
 
 #### 线性拟合案例
 
