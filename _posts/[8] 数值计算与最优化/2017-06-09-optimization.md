@@ -1,0 +1,205 @@
+---
+layout: post
+title: 【最优化】理论篇.
+categories:
+tags: 8数值计算与最优化
+keywords:
+description:
+---
+
+
+## 数学描述
+最优化的一般形式：
+
+$$minf(x)$$  
+$$s.t. \left \{ \begin{array}{ccc}
+h_i(x)=0\\
+g_j(x) \leq 0
+\end{array} \right.$$  
+
+
+- 若f,h,g都是线性函数，称为线性规划
+- 若其中任意一个是非线性函数，称为非线性规划
+- 若f是二次函数，h，g是线性函数，称为二次规划
+- 若f是向量函数，称为多目标规划  
+
+## 凸集分离定理  
+
+### 凸集的定义  
+凸集的定义：  
+$X \subset R^n$是一个凸集，当且仅当：  
+$$\forall x_1,x_2 \in X,\forall \alpha\in[0,1]$$,都有,  
+$$\alpha x_1+(1-\alpha)x_2 \in X$$
+
+### 超平面的定义
+
+超平面是这样的点集：   
+$$X=\{ x \mid c^Tx=z\}$$
+
+### 支撑超平面
+
+X是凸集，$c^Tx=0$ 是一个超平面。  
+如果X的边界点上某个点在超平面上，X所有点在超平面的某一侧，那么称超平面$c^Tx=0$为凸集X的支撑超平面  
+
+另外，边界点的定义：如果点P的任一邻域内既含有属于E的点，又含有不属于E的点，则称P为E的边界点。  
+
+### 凸集分离定理
+
+如果两个凸集没有交集，那么就可以用超平面将其隔开。  
+
+## 凸函数
+
+$f$是定义在凸集$C$上的函数，  
+如果$\forall x_1,x_2 \in C,\alpha \in [0,1]$,都有  
+$f(\alpha x_1+(1-\alpha)x_2) \leq f(\alpha x_1)+ f((1-\alpha)x_2)$  
+那么$f$是凸函数
+
+### 凸函数的判定
+1. 凸函数的线性组合也是凸函数。  
+如果$f_1,f_2,...f_k$是凸函数，那么$\phi(x)=\sum\limits_{i=1}^k \lambda_i f_i (x)$也是凸函数
+2. 如果凸集$D \subset R^n$内，$f(x)$可微，则$f(x)$是D内的凸函数的充分必要条件是，$\forall x,y\in D$,   
+$f(y) \geq f(x)+ \nabla f(x)^T (y-x)$  
+3. 如果凸集$D \subset R^n$内，$f(x)$二阶可微，则$f(x)$是D内的凸函数的充分必要条件是，$\forall x\in D$,   
+$f(x)$的Hesse矩阵半正定。  
+$$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
+\dfrac{\partial^2 f}{\partial x_1^2}&\dfrac{\partial^2 f}{\partial x_1 \partial x_2}&...&\dfrac{\partial^2 f}{\partial x_1 \partial x_n}\\
+\dfrac{\partial^2 f}{\partial x_1 x_2}&\dfrac{\partial^2 f}{\partial x_2^2}&...&\dfrac{\partial^2 f}{\partial x_2 \partial x_n}\\
+...&...&...&...\\
+\dfrac{\partial^2 f}{\partial x_n \partial x_1}&\dfrac{\partial^2 f}{\partial x_n \partial x_2}&...&\dfrac{\partial^2 f}{\partial x_n^2}
+\end{array}\right ]$$  
+
+
+<br>
+<br>
+列举一些凸函数的例子：  
+- 线性函数和仿射函数
+- 最大值函数
+- 幂函数
+- 对数函数
+- 指数和的对数$f(x)=\log(exp(x_1)+exp(x_2)+...+exp(x_n))$
+- 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^1/n$
+- 范数
+
+## 线性方程组：迭代求解法
+$$Ax=b$$
+线性代数给出的解法是高斯消元法。  
+然而，当矩阵$A$极大时，高斯消元的算法复杂度非常高。  
+迭代法：  
+$$x=Bx+f$$
+任意给出$x_0$,就可以迭代求解。  
+实验发现，收敛速度很快。  
+当然，对于某些系数，也有可能算法不收敛。  
+
+## 一维搜索算法
+
+### 平分法
+适用于一维、单峰、可微的情况
+1. 找到初始区间[a,b]  
+$x_0$为初始点，$\Delta x$是步长。如果$f'(x_0)<0$,则$x_1=x_0+\Delta x$.如果$f'(x_1)<0$,那么$x_2=x_1+\Delta x$.一直做下去，直到$f(x_n)>0$
+
+2. 迭代寻优  
+$x_0=(a+b)/2$.如果$f(x_0)>0$,区间为$[a,x_0]$.如果$f(x_0)<0$,区间为$[x_0,b]$.
+
+3. 重复第2步
+
+### 0.618法
+适用于一维、单峰的情况，不需要微分  
+
+这是另一种搜索方式，从$[a_k,b_k]$内，找到一个子集$[u_k,v_k]$，  
+(不妨假设$f(a_k)>f(b_k)$的情况)，  
+如果$f(u_k)>f(v_k)$,那么，最小值点在$[u_k,b_k]$，  
+如果$f(u_k)<f(v_k)$，那么，最小值点在$[a_k,v_k]$.
+
+显然，这样的$[u_k,b_k]$是有无穷多种的，如果满足这些条件，计算量显然会小很多：
+- 每次迭代，等可能性的保留$[u_k,b_k],[a_k,v_k]$，那么$[u_k,b_k]$在$[a_k,b_k]$的对称位置是合理的附加条件
+- 每次迭代，区间缩短的比例$\lambda$都是相同的,为了迭代更快，$\lambda$越小越好。
+- k次迭代计算的某一个分割点，也是k+1次迭代计算的某一个分割的（少算一次函数值）
+
+满足以上规则的试探点，正好是黄金分割点$(-1+\sqrt 5)/2$约等于0.618,迭代式如下：  
+$u_k=a_k+0.382* (b_k - a_k)$
+$v_k=a_k+0.618* (b_k - a_k)$
+
+
+## 梯度下降法
+
+沿着负梯度方向，$f(x)$下降的最快，因此有这么一种迭代求最优的方法
+$x_{k+1}=x_k-\rho_k \nabla f(x_k)$  
+
+### 最速下降法
+梯度下降法(gradient)或最速下降法(steepest descent)  
+沿着负梯度方向，做一维搜索（可以是黄金分割法或其它算法），找到这个方向上的最小值点。   
+在新的点上，按同样的方法继续沿着负梯度方向一维搜索   
+
+这里有一个规律：相邻两次的搜索方向是正交的
+
+输入：目标函数$f(x)$,梯度函数$g(x)=\nabla f(x)$, 精度$\epsilon$  
+
+
+输出：$f(x)$的极小值点$x^* $  
+
+
+算法：  
+step1：取初始值$x_0,k=0$  
+step2: 计算$f(x_k)$  
+step3: 计算$g_k=g(x_k)$, 如果$\mid \mid g_k \mid\mid <\epsilon$,$x^* =x_k$ 算法终止。否则求出：  
+$\lambda_k=\arg\min\limits_{\lambda \geq 0}f(x_k-\lambda g(x_k))$  
+step4: $x_{k+1}=x_k-\lambda_k g(x_k)$  
+如果$\mid\mid f(x_{k+1})-f(x_k)\mid\mid <\epsilon$或者$\mid\mid x_{k+1}-x_k\mid\mid<\epsilon$$x^* =x_k$，算法终止  
+step5: k=k+1，转到3  
+
+
+### 共轭梯度法
+前提：二阶可微  
+
+目标函数是二次函数时，用共轭方向作为搜索方向。  
+一般的二阶可微函数，局部近似视为二次函数，用共轭方向作为搜索。  
+
+### 牛顿法和拟牛顿法
+牛顿法(Newton method)和拟牛顿法(quasi Newton method), 优点是收敛速度快。  
+牛顿法每一步需要求解Hesse矩阵的逆矩阵。  
+拟牛顿法用正定矩阵近似Hesse矩阵的逆矩阵，进一步简化了运算。  
+
+### 牛顿法
+
+需要知道一阶导数和二阶导数。   
+牛顿法收敛速度非常快。  
+如果二阶梯度不正定，可能不收敛  
+
+
+二阶可微函数，局部近似视为二次函数，搜索方向和大小可以立即用解析式确定。  
+反复迭代。  
+
+
+考虑无约束最优化问题$\min\limits_{x\in E_n} f(x)$  
+梯度为$g_k(x)$, Hesse矩阵为$H(x)=[\dfrac{\partial^2 f}{\partial x_i \partial x_j}]_ {n \times n}$  
+
+
+二阶泰勒展开：$f(x)=f(x_k)+g^T(x_k)(x-x_k)+1/2 (x-x_k)^T H(x_k)(x-x_k)$  
+
+
+利用极小值的必要条件$\nabla f(x)=0$，推出  
+$x=x_k-H^{-1}(x_k)g(x_k)$  
+
+
+所以，迭代方法为$x_{k+1}=x_k-H^{-1}(x_k)g(x_k)$  
+
+
+算法流程：  
+输入：$f(x), g(x)=\nabla f(x), H(x)$，精度要求$\varepsilon$  
+step1: 取初始点$x_0, k=0$  
+step2: 计算$g_k=g(x_k)$，if $\mid \mid g_k \mid \mid<\varepsilon$:$x^* =x_k$,停止运算
+step3：计算$H_k=H(x_k)$，求$p_k$，使得$H_kp_k=-g_k$  
+step4: $x_{k+1}=x_k+p_k$  
+step5: $k=k+1$转到2
+
+
+### 拟牛顿法
+
+牛顿法中，需要计算Hesse矩阵的逆矩阵，这一计算较为复杂
+所以考虑用$G$去逼近$H^{-1}$  
+包括DFP算法  
+BFGS算法
+Broyden算法
+
+### 修正牛顿法
+如果二阶梯度不正定，牛顿法可能不收敛，为解决这个问题，引入修正牛顿法。  
