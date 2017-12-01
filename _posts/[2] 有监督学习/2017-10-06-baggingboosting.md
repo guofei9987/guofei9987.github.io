@@ -114,6 +114,11 @@ $Z_m=\sum\limits_{i=1}^Nw_{mi}\exp(-\alpha_m y_i G_m(x_i))$是为了使权值之
 **step6**： m=m+1，如果$m<=M$, 转到 **step2**  
 **step7**： 得到最终的分类器为$G(x)=sign(\sum\limits_{m=1}^M \alpha_mG_m(x))$  
 
+#### 问题
+1. 样本的权重是无法放入CART中的  
+用$\dfrac{w_i}{\min\limits_i (w_i)}$去复制样本。优点是简单，缺点是样本数可能会很多。
+2. 错误率可以放入决策树。
+
 
 ### 提升树
 第i+1个树的target，是$y-y_i$
