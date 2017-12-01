@@ -30,8 +30,9 @@ description:
 某天，收到邮件，被邀请成为science publishing group(SPG)的同行审稿员。  
 很惊喜，马上答应了下来。每年大概审5篇左右。  
 毕业后参加工作，时间越来越少，现在基本把审稿任务都拒掉，不知道会不会有一天被取消资格（哈哈哈）。  
+左边是2016年的证，右边是2017年的证
 <table >
-<tr><td>  <img width="600" height="800" src="http://www.guofei.site"></td><td>  <img width="600" height="800" src="http://www.guofei.site"></td></tr>
+<tr><td>  <img width="600" height="800" src="http://www.guofei.site/public/image/2016.jpg"></td><td>  <img width="600" height="800" src="http://www.guofei.site/public/image/2017.jpg"></td></tr>
 </table>
 
 
