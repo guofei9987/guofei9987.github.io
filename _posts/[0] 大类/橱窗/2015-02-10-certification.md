@@ -30,8 +30,10 @@ description:
 某天，收到邮件，被邀请成为science publishing group(SPG)的同行审稿员。  
 很惊喜，马上答应了下来。每年大概审5篇左右。  
 毕业后参加工作，时间越来越少，现在基本把审稿任务都拒掉，不知道会不会有一天被取消资格（哈哈哈）。  
+<table >
+<tr><td>  <img width="600" height="800" src="http://www.guofei.site"></td><td>  <img width="600" height="800" src="http://www.guofei.site"></td></tr>
+</table>
 
-  <img width="300" height="400" src="http://i.imgur.com/0yp285G.jpg">
 
 ## 第一作者发了3篇论文
 - “Research on the Connection relationship between Private Offering Fund and Share Price Index Futures” (2015) Atlantis Press Journal (ISSN 2352-5398)（ISTP检索）  
