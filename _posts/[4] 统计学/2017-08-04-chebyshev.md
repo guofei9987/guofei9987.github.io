@@ -5,7 +5,7 @@ categories:
 tags: 4统计学
 keywords:
 description:
-order: 430
+order: 450
 ---
 
 ## 切比雪夫不等式
