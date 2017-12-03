@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 指数平滑法.
+title: 【时间序列】指数平滑法.
 categories:
 tags: 4统计学
 keywords:

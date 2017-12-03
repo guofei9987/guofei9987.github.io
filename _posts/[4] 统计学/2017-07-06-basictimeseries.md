@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 基本时间序列分析.
+title: 【时间序列】基本分析.
 categories:
 tags: 4统计学
 keywords:
