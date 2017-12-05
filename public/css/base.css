@@ -105,8 +105,12 @@ body, html {
 #content {
   font-size: 18px;
 }
-#content h2, h3, h4{
+#content h2, h3{
   line-height: 2;
+  color:black;
+}
+#content h4{
+  line-height: 1;
   color:black;
 }
 #content td, th{
