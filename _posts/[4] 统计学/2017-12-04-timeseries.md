@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【时间序列】基本原理.
+title: 【统计时序】基本原理.
 categories:
 tags: 4统计学
 keywords:
@@ -104,3 +104,45 @@ ADF检验有三种形式：
 $\Delta y_t=\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
 $\Delta y_t=\alpha+\delta t+\gamma y_{t-1}+\sum\limits_{i=1}^l \beta_i \Delta y_{t-i}+\varepsilon_t$  
+
+
+## 白噪声过程
+满足两个性质：  
+1. $EX_t=u,\forall t\in T$  
+2. $$\gamma(t,s)=\left \{ \begin{array}{ccc} \sigma^2,t=s\\ 0, t\neq s \end{array}\right.$$,$\forall t,s \in T$
+
+
+显然，**白噪声过程是平稳过程**。  
+
+### 白噪声过程的性质
+
+#### 1. 纯随机性
+$\forall k\neq 0,\gamma(k)\neq 0$
+#### 2. 方差齐性
+$DX_t=\gamma(0)=0$  
+根据马尔科夫定理，只有方差齐性时，用OLS得到的参数估计值才是准确的、有效的。  
+### 白噪声的检验
+
+
+#### 1. 检验原理
+**Barlett定理**：  
+如果$X_t$是白噪声过程，$$\{ x_t \}$$是观察期数为n的观察序列，$\hat\rho_k$是观察序列的自相关系数，  
+那么$\hat\rho_k\dot\sim N(0,1/n),\forall k\neq 0$  
+(近似服从正态分布，是因为期数有限)
+
+
+推论：  $\sum\limits_{k=1}^n n \hat\rho_k^2 \sim \chi^2(n)$  
+
+
+#### 2. 假设
+$H_0: \rho_1=\rho_2=...=\rho_m=0,\forall m\geq 1$  
+
+#### 3. 构造统计量
+- **Q统计量**  
+$Q=n\sum\limits_{k=1}^m \hat\rho_k^2 \sim \chi^2(n)$  
+(因为期数有限，所以只计算前m个相关系数)  
+- **LB统计量**  
+$LB=n(n+2)\sum\limits_{k=1}^m (\dfrac{\hat\rho_k^2}{n-k})\sim\chi^2(m)$  
+(小样本时，表现也良好)
+#### 4. 判别原则
+$p<\alpha$,证明可以拒绝原假设，认为不是白噪声过程
