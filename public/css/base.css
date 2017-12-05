@@ -105,14 +105,15 @@ body, html {
 #content {
   font-size: 18px;
 }
-#content h2, h3 {
+#content h2, h3, h4{
   line-height: 2;
+  color:black;
 }
 #content td, th{
   border:1px solid #1ABC9C;
 }
 #content p{
-  padding-top: 1em;
+  padding-bottom: 1em;
 }
 blockquote p {
   font-size: 20px;

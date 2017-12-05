@@ -143,6 +143,8 @@ $Q=n\sum\limits_{k=1}^m \hat\rho_k^2 \sim \chi^2(n)$
 (因为期数有限，所以只计算前m个相关系数)  
 - **LB统计量**  
 $LB=n(n+2)\sum\limits_{k=1}^m (\dfrac{\hat\rho_k^2}{n-k})\sim\chi^2(m)$  
-(小样本时，表现也良好)
+(对于小样本的表现也良好)
+
+
 #### 4. 判别原则
 $p<\alpha$,证明可以拒绝原假设，认为不是白噪声过程
