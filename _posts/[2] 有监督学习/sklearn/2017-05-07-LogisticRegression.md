@@ -5,7 +5,7 @@ categories:
 tags: 2有监督学习
 keywords: model evaluation
 description:
-order: 250
+order: 220
 ---
 
 logistics regression是一种典型的分类模型  

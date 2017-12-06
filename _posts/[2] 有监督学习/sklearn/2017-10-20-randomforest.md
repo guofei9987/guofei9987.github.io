@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【随机森林】理论与实现
+title: 【Random Forest】理论与实现
 categories:
 tags: 2有监督学习
 keywords: model evaluation
 description:
-order: 250
+order: 223
 ---
 
 ## 介绍
