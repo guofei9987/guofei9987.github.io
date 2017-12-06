@@ -5,6 +5,7 @@ categories:
 tags: 2有监督学习
 keywords: model evaluation
 description:
+order: 250
 ---
 
 
@@ -206,6 +207,8 @@ plt.title('ROC curve')
 ## 模型保存与载入
 
 参见[SVM](http://www.guofei.site/2017/09/28/svm.html#title8)
+
+<iframe src="http://www.guofei.site/StatisticsBlog/%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7.html" width="100%" height="3600em" marginwidth="10%"></iframe>
 
 
 ## 参考文献
