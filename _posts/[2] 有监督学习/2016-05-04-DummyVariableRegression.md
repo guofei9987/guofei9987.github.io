@@ -5,7 +5,7 @@ categories:
 tags: 2有监督学习
 keywords: model evaluation
 description:
-order: 250
+order: 280
 ---
 
 虚拟变量回归，又叫做哑变量回归（Dummy Variable Regression Models）  
