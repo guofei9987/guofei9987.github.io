@@ -29,6 +29,7 @@ $E=\sum\limits_{i=13}^{25} C_{25}^i e^i (1-e)^{25-i}=0.06$
 1. 基分类器之间 **相互独立**
 2. 基分类器 **好于随机猜测分类器**  
 
+
 <img src='http://www.guofei.site/public/postimg/baggingboosting.gif'>
 
 ## 组合算法的分类
