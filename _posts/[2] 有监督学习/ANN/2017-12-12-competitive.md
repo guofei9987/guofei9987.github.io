@@ -5,13 +5,13 @@ categories:
 tags: 2有监督学习
 keywords:
 description:
-order: 255
+order: 256
 ---
 
 自组织竞争神经网络是一种无监督学习算法
 
 ## 结构
-<img src='http://www.guofei.site/public/postimg/ann_som.png'>
+<img src='http://www.guofei.site/public/postimg/ann_competitive.png'>
 
 输入层有N个神经元，竞争层有M个神经元  
 权值$w_{ij}(i=1,2...,N;j=1,2,...,M)$  
