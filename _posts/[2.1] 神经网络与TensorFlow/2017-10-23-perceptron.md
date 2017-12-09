@@ -2,7 +2,7 @@
 layout: post
 title: 【感知机】理论简介.
 categories:
-tags: 2.1神经网络与TF
+tags: 2B神经网络与TF
 keywords:
 description:
 order: 280
