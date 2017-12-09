@@ -2,7 +2,7 @@
 layout: post
 title: 【神经网络6】竞争神经网络.
 categories:
-tags: 2有监督学习
+tags: 2.1神经网络与TensorFlow
 keywords:
 description:
 order: 256

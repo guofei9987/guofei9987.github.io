@@ -2,7 +2,7 @@
 layout: post
 title: 【感知机】理论简介.
 categories:
-tags: 2有监督学习
+tags: 2.1神经网络与TensorFlow
 keywords:
 description:
 order: 280
