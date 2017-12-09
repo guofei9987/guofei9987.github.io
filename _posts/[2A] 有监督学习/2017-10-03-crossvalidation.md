@@ -2,7 +2,7 @@
 layout: post
 title: 【交叉验证】介绍
 categories:
-tags: 2有监督学习
+tags: 2A有监督学习
 keywords: model evaluation
 description:
 order: 202

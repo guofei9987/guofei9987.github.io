@@ -2,7 +2,7 @@
 layout: post
 title: 【logistics】理论与实现
 categories:
-tags: 2有监督学习
+tags: 2A有监督学习
 keywords: model evaluation
 description:
 order: 220
