@@ -106,3 +106,27 @@ $\dfrac{\partial f}{\partial x_i}+\sum\limits_{r=1}^p \lambda_r \dfrac{\partial 
 
 #### (充分条件)
 $a+h,a$在可行域上M，$g(a+h)-g(a)=0$二阶展开，带入$f(a+h)-f(a)$后，可以找到取极值的条件。  
+
+## Lagrange对偶性
+
+从上面知道，对于优化问题：  
+$\min f(x)$,   
+s.t. $g_i(x) <= 0; i =1, ..., n$  
+$h_i(x) = 0; i =1, ..., n $  
+
+
+对应的Lagrange函数是$L(x,\lambda,v)=\sum\limits_{i=1}^m\lambda_i f_i(x)+\sum\limits_{i=1}^p v_ih_i(x)$  
+
+
+那么Lagrange对偶函数是$g(\lambda,v)=\inf\limits_x L(x,\lambda,v)$  
+
+<!--
+### 性质
+1. 即使原问题不是凸的，对偶函数也是凹函数
+-->
+
+
+## 参考资料
+
+
+http://www.jianshu.com/p/96db9a1d16e9
