@@ -88,6 +88,8 @@ dataset = datasets.load_iris()
 
 #### 1. 高斯
 有些特征可能是连续型变量，直接转化为离散变量不够细腻。高斯模型假设这些一个特征的所有属于某个类别的观测值符合高斯分布  
+特征的条件概率满足高斯分布：  
+$P(X^{(j)}\mid y=c_k)=\dfrac{1}{\sqrt {2\pi \sigma_k^2}} \exp (-\dfrac{(X^{(j)}-u_k)^2}{2\sigma_k^2})$  
 ```py
 from sklearn.naive_bayes import GaussianNB
 gnb = GaussianNB(priors=[0.1, 0.5, 0.4])
@@ -102,7 +104,9 @@ MultinomialNB()
 ```
 
 #### 3. 伯努利
-
+适用于离散特征的情况  
+假定特征服从二项分布：  
+$P(X^{(j)}\mid y=c_k)=pX^{(j)}+(1-p)(1-X^{(j)})$  
 
 ```py
 from sklearn.naive_bayes import BernoulliNB
