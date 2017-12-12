@@ -98,9 +98,10 @@ gnb.fit(dataset.data, dataset.target)
 只有一个输入参数priors,表示先验概率，也可以省略。  
 
 #### 2. 多项式
-该模型常用于文本分类，特征是单词，值是单词的出现次数
+该模型常用于文本分类，特征是单词，值是单词的出现次数  
+$P(X^{(j)}\mid y=c_k)=\dfrac{N_{kj}+\alpha}{N_k+\alpha n}$  
 ```py
-MultinomialNB()
+mnb = MultinomialNB(alpha=1,fit_prior=False,class_prior=[0.3,0.3,0.4])# fit_prior=True表示从样本计算先验分布，class_prior表示先验分布
 ```
 
 #### 3. 伯努利
