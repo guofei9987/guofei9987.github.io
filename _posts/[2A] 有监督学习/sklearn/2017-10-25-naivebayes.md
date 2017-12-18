@@ -87,6 +87,7 @@ dataset = datasets.load_iris()
 ### 模型训练
 
 #### 1. 高斯
+[官方网站](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html)  
 有些特征可能是连续型变量，直接转化为离散变量不够细腻。高斯模型假设这些一个特征的所有属于某个类别的观测值符合高斯分布  
 特征的条件概率满足高斯分布：  
 $P(X^{(j)}\mid y=c_k)=\dfrac{1}{\sqrt {2\pi \sigma_k^2}} \exp (-\dfrac{(X^{(j)}-u_k)^2}{2\sigma_k^2})$  
@@ -95,16 +96,21 @@ from sklearn.naive_bayes import GaussianNB
 gnb = GaussianNB(priors=[0.1, 0.5, 0.4])
 gnb.fit(dataset.data, dataset.target)
 ```
+>GaussianNB(priors=[0.1, 0.5, 0.4])  
+
+
 只有一个输入参数priors,表示先验概率，也可以省略。  
 
 #### 2. 多项式
+[官方网站](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html)  
 该模型常用于文本分类，特征是单词，值是单词的出现次数  
 $P(X^{(j)}\mid y=c_k)=\dfrac{N_{kj}+\alpha}{N_k+\alpha n}$  
 ```py
-mnb = MultinomialNB(alpha=1,fit_prior=False,class_prior=[0.3,0.3,0.4])# fit_prior=True表示从样本计算先验分布，class_prior表示先验分布
+mnb = MultinomialNB(alpha=1,fit_prior=False,class_prior=[0.3,0.3,0.4]) # fit_prior=True表示从样本计算先验分布，class_prior表示先验分布
 ```
 
 #### 3. 伯努利
+[官方网站](http://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.BernoulliNB.html)  
 适用于离散特征的情况  
 假定特征服从二项分布：  
 $P(X^{(j)}\mid y=c_k)=pX^{(j)}+(1-p)(1-X^{(j)})$  
