@@ -139,12 +139,12 @@ negative</td>
 
 ### ROC曲线
 指的是不同阈值下曲线，  
-x轴：	FPR=FP/(FP+TN)   
-y轴：	TPR=TP/(TP+FN)
+x轴：	FNR=TN/(FP+TN)   
+y轴：	TPR=TP/(TP+FN)  
 
 
 - 观察曲线
-- 求出曲线下方的面积，也就是R统计量
+- 求出曲线下方的面积，(AUC, Area Under the ROC Curve)
 - 有些模型可以求出R统计量的解析形式
 
 
