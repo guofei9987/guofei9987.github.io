@@ -69,6 +69,10 @@ order: 200
 
 </table>
 
+[原文](http://www.guofei.site/StatisticsBlog/sklearn%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93.htm)
+<iframe src="http://www.guofei.site/StatisticsBlog/sklearn%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93.htm" width="100%" height="3600em" marginwidth="10%"></iframe>
+
+
 *调整ANN输出层的输出个数，可以达到升维和降维*  
 
 ### 按照问题分类
