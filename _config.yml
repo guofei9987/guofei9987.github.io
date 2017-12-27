@@ -1,7 +1,8 @@
 ﻿permalink: /:year/:month/:day/:title.html
 paginate: 10
 markdown: kramdown
-
+kramdown:
+  input: GFM
 # 作者信息
 author:
   name: Guofei
