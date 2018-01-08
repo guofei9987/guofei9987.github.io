@@ -61,9 +61,15 @@ $y=Y+y^* $是线性非齐次方程的通解。
 
 ## 高阶常系数微分方程
 **n阶常系数齐次线性微分方程** 表示为：  
-$\dfrac{d^n x}{dt^n}+a_1\dfrac{d^{n-1}x}{dt^{n-1}}+...+a_{n-1}\dfrac{dx}{dt}+a_nx=0$  
+$\dfrac{d^n x}{dt^n}+a_1\dfrac{d^{n-1}x}{dt^{n-1}}+...+a_{n-1}\dfrac{dx}{dt}+a_nx=0$   
 
 
+解法：  
+如果$\lambda=\alpha+i\beta$是对应的特征方程的k重根,那么  
+$\lambda=\alpha-i\beta$也是k重根  
+齐次方程有2k个线性无关的特解：  
+$e^{at}\cos\beta t,te^{at}\cos \beta t, t^2e^{at}\cos\beta t,...,t^{k-1}e^{at}\cos\beta t$  
+$e^{at}\sin\beta t,te^{at}\sin \beta t, t^2e^{at}\sin\beta t,...,t^{k-1}e^{at}\sin\beta t$  
 
 
 
