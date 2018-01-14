@@ -62,8 +62,8 @@ len('abc')
 'aaabc'.upper(),'aaabC'.lower()  #转大写/转小写
 'aaabc'.capitalize()  #首字母大写
 
-','.join(list('abc'))
-'a,b,c'.split(',')    #按','分割，并返回<list>
+','.join(list('abc'))  #前面的字符也可以为空，这时相当于对字符串做加号
+'a,b,c'.split(',')    #按','分割，并返回<list>。如果后面的参数为空，按照空格分割
 '  \n a,b, c '.strip()   #去两边的空格与换行,strip,lstrip,rstrip
 'abc'.ljust(5) , 'abc'.rjust(5)  #填充空格使其达到指定长度
 

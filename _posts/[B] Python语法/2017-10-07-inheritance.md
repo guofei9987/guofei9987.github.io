@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【Python】【面向对象】继承&多态.
-categories: 
+categories:
 tags: Python语法
 keywords:
 description:
+order: 1101
 ---
 
 ## 继承

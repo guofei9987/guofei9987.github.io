@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【Python】运行效率研究.
-categories: 
+categories:
 tags: Python语法
 keywords:
 description:
+order: 1111
 ---
 
 
@@ -122,3 +123,29 @@ out:
 
 >list.insert速度最慢，2.7秒才运行完
 >numpy虽然不是最快，但慢在了np.append环节，反转操作并不慢，由于np.append的适用范围更广，所以还是比较有用的
+
+
+
+
+*直接在jupyter里插入%%timeit，便可以主动运行上万次并测速，这比MATLAB效率研究方便太多了*  
+
+## 生成随机数速度比较
+准备：  
+```py
+import numpy as np
+from scipy.stats import randint
+rv=randint(low=0,high=2)
+```
+1. numpy
+```py
+%%timeit
+a=np.random.randint(low=0,high=2,size=(50,30))
+```
+>7.15 µs ± 768 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+
+2. scipy.stats
+```py
+%%timeit
+a=rv.rvs(size=(50,30))
+```
+>1.94 ms ± 58.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
