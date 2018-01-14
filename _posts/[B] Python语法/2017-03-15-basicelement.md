@@ -5,6 +5,7 @@ categories:
 tags: Python语法
 keywords:
 description:
+order: 1121
 ---
 
 ## 数字类型  
@@ -21,6 +22,16 @@ description:
 - 0x或0X开头表示16进制
 - 0b或0B开头表示2进制
 - 0o或0O表示8进制
+
+
+```py
+str(1)#数字转字符
+int('1')#字符转数字
+int('51',base=14)#指定进制字符转十进制
+ord("A")#字符转ascii码
+chr(97)#ascii码转字符
+
+```
 
 ### 浮点类型
 带小数点或小数的数字

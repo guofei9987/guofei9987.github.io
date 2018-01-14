@@ -5,6 +5,7 @@ categories:
 tags: Python语法
 keywords:
 description:
+order: 1122
 ---
 
 
@@ -57,7 +58,7 @@ len('abc')
 'aaabc'.count('aa')
 'aaabc'.endswith('bc'),'aaabc'.startswith('bc')  #bool类型,是否以指定字符串开头/结尾
 'aaabc'.index('bc')  #找到则返回序号，找不到则引发ValueError
-'aaabc'.find('bc')  #找到则返回序号，找不到则返回-1
+'aaabc'.find('bc')  #找到则返回第一个的序号，找不到则返回-1，'aaabc'.find('a',1)数字表示从第几个开始找
 'aaabc'.replace('bc','x')  #替换指定字符
 'aaabc'.upper(),'aaabC'.lower()  #转大写/转小写
 'aaabc'.capitalize()  #首字母大写
@@ -80,8 +81,9 @@ str()  返回数字对应的字符串
 ```python
 x="{1}{2}:计算机的CPU占用了{0}%。"
 print(x.format(10,"2016-12-31","python"))
+"{date} {name}:计算机的CPU占用了{}%。".format(10,date="2016-12-31",name="python")
 ```
-注1：{}中的数字代表序号，序号可以省略
+注1：{}中的数字代表序号，序号可以省略  
 注2：用两个大括号来print大括号  
 注3：槽的高级使用方式： <序号>：<填充><对齐><宽度>，<精度><类型>
 - <填充>:用于填充的字符
@@ -93,7 +95,10 @@ print(x.format(10,"2016-12-31","python"))
 1. b:二进制，c:整数对应的unicode字符，d:整数十进制，o八进制，x小写十六进制，X大写十六进制
 2. e:小写的科学计数法，E:大写科学计数法，f浮点形式，%浮点数的百分形式
 
-
+## 格式化方式
+```py
+"%(date)s %(name)s:计算机的CPU占用了%(data)s 。"%{'data':'10','date':"2016-12-31",'name':"python"}
+```
 
 
 几个案例：
@@ -103,6 +108,23 @@ string.split()#按空格分割,返回<list>
 string.split("a")#按a分割,返回<list>
 string.replace("o","a")#把string中的o替换成a
 ```
+## 编码问题
+```py
+str(1)#数字转字符
+int('1')#字符转数字
+int('51',base=14)#指定进制字符转十进制
+ord("A")#字符转ascii码
+chr(97)#ascii码转字符
+
+
+s="中文字符串"
+bs=s.encode("utf-8")#"gbk"
+bs.decode("utf-8")
+```
+- ascii码 7个二进制位
+- Unicode 每个字符2个字节（4位16进制）
+- UTF-8：可变长度的unicode，英文对应单字节，中文对应3字节
+
 
 ## enumerate迭代器
 ```python
@@ -150,13 +172,13 @@ regex.finditer(text)  #迭代器
 1.  句点符号  
  '.' ——匹配任意一个（只有一个）字符（包括空格）。
 
-2. 方括号符号
- '[oum]' ——找到方括号中的任意一个即是匹配
-^表示取反
-c[aeiou]+t + 表示多次重复
+2. 方括号符号  
+ '[oum]' ——找到方括号中的任意一个即是匹配  
+^表示取反  
+c[aeiou]+t + 表示多次重复  
 
-3.  方括号中的连接符
- '[c1-c2]' ——匹配从字符c1开始到字符c2结束的字母序列（按字母表中的顺序）中的任意一个。
+3.  方括号中的连接符  
+ '[c1-c2]' ——匹配从字符c1开始到字符c2结束的字母序列（按字母表中的顺序）中的任意一个。  
 
 4. 转义符  
 ```
