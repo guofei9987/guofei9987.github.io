@@ -13,10 +13,10 @@ order: 1124
 <table class="tableizer-table">
 <thead><tr class="tableizer-firstrow"><th>运算符</th><th>名称</th><th>说明</th><th>例子</th></tr></thead><tbody>
  <tr><td>+</td><td>加</td><td>两个对象相加</td><td>3 + 5得到8。'a' + 'b'得到'ab'。</td></tr>
- <tr><td>-</td><td>减</td><td>得到负数或是一个数减去另一个数</td><td>-5.2得到一个负数。50 - 24得到26。</td></tr>
- <tr><td>*</td><td>乘</td><td>两个数相乘或是返回一个被重复若干次的字符串</td><td>2 * 3得到6。'la' * 3得到'lalala'。</td></tr>
- <tr><td>**</td><td>幂</td><td>返回x的y次幂</td><td>3 ** 4得到81（即3 * 3 * 3 * 3）</td></tr>
- <tr><td>/</td><td>除</td><td>x除以y</td><td>4/3得到1（整数的除法得到整数结果）。4.0/3或4/3.0得到1.3333333333333333</td></tr>
+ <tr><td>-</td><td>减</td><td>负数或是减号</td><td>-5.2得到负数。50 - 24得到26。</td></tr>
+ <tr><td>*</td><td>乘</td><td>两个数相乘，或list重复若干次</td><td>2 * 3得到6。'la' * 3得到'lalala'。</td></tr>
+ <tr><td>**</td><td>幂</td><td>返回x的y次幂</td><td>3 ** 4得到81</td></tr>
+ <tr><td>/</td><td>除</td><td>x除以y</td><td>4/3得到1.3333333</td></tr>
  <tr><td>//</td><td>取整除</td><td>返回商的整数部分</td><td>4 // 3.0得到1.0</td></tr>
  <tr><td>%</td><td>取模</td><td>返回除法的余数</td><td>8%3得到2。-25.5%2.25得到1.5</td></tr>
 </tbody></table>

@@ -15,8 +15,7 @@ order: 1121
 - bool
 - complex
 
-八进制前面加0
-十六进制前面加0x
+
 ### 整数类型（没有取值范围的限制）
 - pow(x,y)
 - 0x或0X开头表示16进制
@@ -36,14 +35,14 @@ oct(x)   #把整数x变成八进制表示的字符串
 hex(x)   #把整数x变成十六进制表示的字符串
 ord("A") #字符转ascii码
 chr(97)  #ascii码转字符
-
 ```
 
 ```py
 str(obj) 得到obj的字符串描述
 int(x) 转换成一个integer
-
 ```
+
+
 ### 浮点类型
 带小数点或小数的数字
 - 精度有限制
@@ -136,7 +135,7 @@ exp in x#返回逻辑值，判断exp是否在x中
 ```py
 helloString='hello world'
 helloString[1:3]
-helloString[4:]%4到末尾
+helloString[4:]#4到末尾
 helloString[:-2]
 helloString[::2]#按照步长取字符
 helloString[::-1]
@@ -154,6 +153,9 @@ del x[1]           #直接删除
 
 
 <list>.sort()     #排序，返回none
+#b=['123','2','33']
+#b.sort(key=int,reverse=False)
+
 <list>.reverse()  #元素反转,返回none
 <list>.index(x)   #返回第一次出现x的索引位置
 <list>.count(x)   #返回x在列表中的数量
