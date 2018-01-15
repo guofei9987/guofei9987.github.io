@@ -115,7 +115,7 @@ x[2][0]=1000
 y[1]=800
 ```
 
-## 列表（list）
+## list
 
 ### 方法(与string类似)
 
@@ -131,7 +131,7 @@ exp in x#返回逻辑值，判断exp是否在x中
 #### 用索引取数据
 - 索引从0开始计数，
 - -1是末尾，-2是倒数第二个
-```
+```py
 helloString='hello world'
 helloString[1:3]
 helloString[4:]%4到末尾
@@ -141,16 +141,20 @@ helloString[::-1]
 ```
 
 以下几个方法，直接改变list，而是不返回list
-```
-<list>.append(x)#把x作为一个元素放到<list>的末尾
-<list>.sort()#排序
-<lsit>.reverse()#元素反转
-<list>.index(x)#返回第一次出现x的索引位置
-<list>.insert(i,x)#在i位置插入x
-<list>.count(x)#返回x在列表中的数量
-<list>.remove(x)#删除list中第一次出现的元素x
-<list>.pop(i)#返回list中第i个元素，并从list中删除
-<list>.extend(c)#把c中的元素添加到list中，c是集合、list、tuple等
+```py
+<list>.append(x)   #把x作为一个元素放到<list>的末尾
+<list>.extend(c)   #把c中的元素添加到list中，c是集合、list、tuple等
+<list>.insert(i,x) #在i位置插入x
+
+del x[1]           #直接删除
+<list>.remove(x)  #删除list中第一次出现的元素x，如果没找到会抛出异常
+<list>.pop(i)     #返回list中第i个元素，并从list中删除
+
+
+<list>.sort()     #排序，返回none
+<list>.reverse()  #元素反转,返回none
+<list>.index(x)   #返回第一次出现x的索引位置
+<list>.count(x)   #返回x在列表中的数量
 ```
 
 ### enumerate迭代器
@@ -265,10 +269,7 @@ copy()#拷贝
 
 集合是可变的
 
-### 构造
-
-
-### 方法
+### 集合运算
 
 ```python
 z1=x.intersection(y);#交
@@ -286,7 +287,15 @@ a.issebset(b) #a是否是b的子集
 a.issuperset(b)
 ```
 
-### 互转
+### 方法
+
+```py
+a.add(9) # 添加一个元素
+a.update([1,2,3,4]) #把iterable object中的元素作为元素
+
+a.remove(4) #删除一个元素，不存在则报错
+```
+## 互转
 x可以是tuple，list，set：
 ```
 tuple(x)
