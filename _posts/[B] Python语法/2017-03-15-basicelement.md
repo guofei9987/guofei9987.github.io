@@ -25,16 +25,17 @@ order: 1121
 
 
 ```py
-str(1)#数字转字符
-int('1')#字符转数字
-long(x) 转换成一个long interger
-float(x) 转换成一个浮点数
-complex(x) 转换成复数
-int('51',base=14)#把base进制表示字符串，转为十进制
-oct(x) 把整数x变成八进制表示的字符串
-hex(x) 把整数x变成十六进制表示的字符串
-ord("A")#字符转ascii码
-chr(97)#ascii码转字符
+str(1) #数字转字符
+int('1') #字符转数字
+long(x) #转换成一个long interger
+float(x) #转换成一个浮点数
+complex(x) #转换成复数
+int('51',base=14) #把base进制表示字符串，转为指定进制
+bin(x)   #把整数x变成二进制的字符串
+oct(x)   #把整数x变成八进制表示的字符串
+hex(x)   #把整数x变成十六进制表示的字符串
+ord("A") #字符转ascii码
+chr(97)  #ascii码转字符
 
 ```
 
@@ -107,7 +108,7 @@ x+y
 3*x
 x[::2]
 ```
-### 特性：
+### 特性
 ```python
 y=[5,6,7]
 x=(1,2,y)
@@ -117,7 +118,8 @@ y[1]=800
 
 ## list
 
-### 方法(与string类似)
+### 方法
+(与string类似)
 
 ```python
 x+y#连接起来
@@ -148,7 +150,7 @@ helloString[::-1]
 
 del x[1]           #直接删除
 <list>.remove(x)  #删除list中第一次出现的元素x，如果没找到会抛出异常
-<list>.pop(i)     #返回list中第i个元素，并从list中删除
+<list>.pop(i)     #返回list中第i个元素，并从list中删除，如果不给参数，指的是最后一个
 
 
 <list>.sort()     #排序，返回none
@@ -183,6 +185,10 @@ unzip:
 a=[(1, 'a'), (2, 'b'), (3, 'c')]
 list(zip(*a))
 ```
+### range
+```
+range(start, stop,step)
+```
 ## dict
 
 - Python对存储顺序进行了优化
@@ -209,8 +215,13 @@ d = dict(zip(keys,values))
 ### 修改
 
 ```python
-d["key3"]=5#新增一对key-value，如果有key那么是修改
-del(d["key3"])#删除一对key-value
+d["key3"]=5 #新增一对key-value，如果有key那么是修改
+d.update(dict) #同样，新增key-value，如果key已经存在则修改
+
+del(d["key3"]) #删除一对key-value
+d.clear() #清空dict
+d.pop('key1') #返回key1对应的value，并且从d中删除key1。不存在则报错
+#d.pop('key1','not exist') #不存在则返回'not exist', 而不是报错
 ```
 
 ### 遍历
@@ -236,14 +247,14 @@ or
 not
 ```
 ### 方法
-```
-<dict>.keys()#返回所有key
-<dict>.values()#返回所有value
-<dict>.items()#返回key-value
-<dict>.clear()#清除字典，返回none
-<dict>.get(key)#key对应的value
-<dict>.pop(key)#返回key对应的value，并从dict中删除
-<dict>.update(<dict>)#返回none，两个dict加一起
+```py
+<dict>.keys() #返回所有key
+<dict>.values() #返回所有value
+<dict>.items() #返回key-value
+<dict>.clear() #清除字典，返回none
+<dict>.get(key) #key对应的value，不存在返回None，而不是报错
+<dict>.pop(key) #返回key对应的value，并从dict中删除
+<dict>.update(<dict>) #返回none，两个dict加一起
 ```
 ### 取值
 
