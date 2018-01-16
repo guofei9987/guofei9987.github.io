@@ -17,7 +17,7 @@ order: 256
 权值$w_{ij}(i=1,2...,N;j=1,2,...,M)$  
 并且满足$\sum\limits_{i=1}^N=1$
 ### 输入层
-用来传递函数，输入是二值向量，取值0, 1
+用来传递函数
 ### 输出层
 $S_j=\sum\limits_{i=1}^N w_{ij}x_i$  
 输出是$$a_k=\left\{ \begin{array}{ccc}1,&S_k>S_j,\forall j \neq k\\
@@ -29,7 +29,8 @@ $w_{ij}=w_{ij}+a(\dfrac{x_i}{m}-w_ij)$,
 a是学习参数，$a\in (0,1]$,一般取$a\in [0.01,0.03]$  
 m是输入层的输出为1的神经元的个数，$m=\sum\limits_{i=1}^N x_i$  
 
-
+### 1. 归一化
+$\hat X =\dfrac{X}{\mid \mid X \mid \mid}, \hat W_j=\dfrac{W_j}{\mid\mid W_j\mid\mid}$
 
 
 
