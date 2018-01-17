@@ -14,20 +14,8 @@ WTA学习法则
 
 自组织竞争神经网络是一种无监督学习算法
 
-## 结构
+## 神经网络
 <img src='http://www.guofei.site/public/postimg/ann_competitive.png'>
-
-输入层有N个神经元，竞争层有M个神经元  
-权值$w_{ij}(i=1,2...,N;j=1,2,...,M)$  
-并且满足$\sum\limits_{i=1}^N=1$
-
-## 学习过程
-
-
-$w_{ij}=w_{ij}+a(\dfrac{x_i}{m}-w_ij)$,  
-其中，  
-a是学习参数，$a\in (0,1]$,一般取$a\in [0.01,0.03]$  
-m是输入层的输出为1的神经元的个数，$m=\sum\limits_{i=1}^N x_i$  
 
 
 输入层记为第I层，输出层记为第J层
