@@ -143,7 +143,7 @@ Def：
 
 
 Def： 定义內积  
-$x\centerdot y=\sum\limits_{j=1}^\infty x_i \bar y_i ,\space\space  x,y\in l_2$(复数域或实数域)  
+$x\cdot y=\sum\limits_{j=1}^\infty x_i \bar y_i ,\space\space  x,y\in l_2$(复数域或实数域)  
 
 
 p=2这种特殊情况是由`赫德尔不等式`给出的：  
