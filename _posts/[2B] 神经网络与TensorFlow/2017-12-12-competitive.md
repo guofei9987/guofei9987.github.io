@@ -7,6 +7,10 @@ keywords:
 description:
 order: 256
 ---
+关键词：  
+竞争神经网络  
+WTA学习法则  
+
 
 自组织竞争神经网络是一种无监督学习算法
 
@@ -16,26 +20,54 @@ order: 256
 输入层有N个神经元，竞争层有M个神经元  
 权值$w_{ij}(i=1,2...,N;j=1,2,...,M)$  
 并且满足$\sum\limits_{i=1}^N=1$
-### 输入层
-用来传递函数
-### 输出层
-$S_j=\sum\limits_{i=1}^N w_{ij}x_i$  
-输出是$$a_k=\left\{ \begin{array}{ccc}1,&S_k>S_j,\forall j \neq k\\
-0,&else\end{array}\right.$$
 
 ## 学习过程
+
+
 $w_{ij}=w_{ij}+a(\dfrac{x_i}{m}-w_ij)$,  
 其中，  
 a是学习参数，$a\in (0,1]$,一般取$a\in [0.01,0.03]$  
 m是输入层的输出为1的神经元的个数，$m=\sum\limits_{i=1}^N x_i$  
 
+
+输入层记为第I层，输出层记为第J层
 ### 1. 归一化
 $\hat X =\dfrac{X}{\mid \mid X \mid \mid}, \hat W_j=\dfrac{W_j}{\mid\mid W_j\mid\mid}$
 
+### 2. 寻找获胜神经元
+寻找获胜神经元，编号为$j^* $  
+所谓获胜神经元，指的是 **最相似** 的神经元。  
+最相似神经元的编号j满足$$j^* =\arg\min\limits_{j\in \{1,2,...n\}}\mid\mid\hat X-\hat W_j\mid\mid$$  
 
+
+又因为$\mid\mid \hat X-\hat W_j\mid\mid=\sqrt {(\hat X-\hat W_j)(\hat X-\hat W_j)^T}=\sqrt{2(1-\hat W\hat X^T)}$  
+所以，**最相似** 的神经元等价于使得$\hat W\hat X^T$最大的神经元  
+
+
+所以，只需要寻找$$j^* =\arg\max\limits_{j\in \{1,2,...n\}}\hat X \hat W_j^T$$  
+
+### 3. 网络输出
+根据WTA学习规则(Winner Takes All)，获胜神经元输出1，其它神经元输出0  
+即：$$y_j(t+1)=\left \{ \begin{array}{ccc}
+1&j=j^* \\
+0&j\neq j^*
+\end{array}\right.$$  
+### 4. 权值调整
+只有获胜的神经元才调整权值  
+即$$W_j(t+1)=\left \{ \begin{array}{ccc}
+\hat W_j(t)+\Delta W_j=\hat W_j(t)+\alpha(\hat X-\hat W_j)    &j=j^* \\
+W_j(t)&j\neq j^*
+\end{array}\right.$$  
+
+其中，$\alpha$是学习率，随着学习的进展，逐渐趋近于0  
+
+
+这样的学习规则下，权重始终满足这个性质：  
+$\mid\mid W_j \mid\mid=1$（简单列式可以证明）  
 
 
 ## 参考文献
+《神经网络原理及应用》朱大奇，史慧，科学出版社  
 《Matlab神经网络原理与实例精解》陈明，清华大学出版社   
 《神经网络43个案例》王小川，北京航空航天大学出版社  
 《人工神经网络原理》马锐，机械工业出版社  
