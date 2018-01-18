@@ -18,10 +18,25 @@ sns.distplot
 <img src='http://www.guofei.site/public/postimg2/seaborn1_1.png'>
 
 ### box图
+sns.boxplot  
+<a href='http://seaborn.pydata.org/examples/grouped_boxplot.html' target="title7">看这里</a>  
 
-plt.boxplot
+```py
+import seaborn as sns
+sns.set(style="ticks")
 
-<a href='http://www.guofei.site/2017/09/25/matplotlib2.html#title6' target="title7">看这里</a>
+# Load the example tips dataset
+tips = sns.load_dataset("tips")
+
+# Draw a nested boxplot to show bills by day and sex
+sns.boxplot(x="day", y="total_bill", hue="sex", data=tips, palette="PRGn")
+sns.despine(offset=10, trim=True)
+plot.show()
+```
+
+
+
+
 
 <img src='http://www.guofei.site/public/postimg/boxplot.png'>
 
