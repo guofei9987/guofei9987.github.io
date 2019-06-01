@@ -275,15 +275,41 @@ document.getElementById('demo_id1').innerHTML = tag;
 </script>
 ```
 
-### 案例2:跑马灯
+### 案例:跑马灯
 
 每次把第一个字符移动到最后
+
+```html
+<div id="id4">学习代码真的很好玩。</div>
+
+<script>
+    function myFun4() {
+        var id4 = document.getElementById('id4');
+        var text = id4.innerText
+        id4.innerText = text.slice(1,) + text.slice(0, 1)
+    }
+
+    window.setInterval('myFun4()', 500);
+</script>
+```
+
+<div id="id4">学习代码真的很好玩。</div>
+
+<script>
+    function myFun4() {
+        var id4 = document.getElementById('id4');
+        var text = id4.innerText
+        id4.innerText = text.slice(1,) + text.slice(0, 1)
+    }
+
+    window.setInterval('myFun4()', 500);
+</script>
 
 ## 其它：file
 
 上传一个文件给 JavaScript 处理：
 
-```
+```html
 <input type="file" id="file" accept="image/*">
 
 

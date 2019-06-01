@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【JavaScript】基本数据结构
+title: 【JavaScript】笔记
 categories: 语言
 tags:
 keywords:
