@@ -81,7 +81,23 @@ step3： 享受成功！
 $pip install scikit-opt
 ```
 
-## 相关扩展应用
+
+### pip命令
+
+```bash
+pip install --user --upgrade scikit-opt blind_watermark
+```
+- `-r`, `--requirement` 一般后接 requirement file
+- `-U, --upgrade` 升级
+- `-t, --target` 安装到哪个路径
+- `--user` 安装到哪个路径
+- `--no-deps` 不安装依赖的包
+- `-e`, `--editable` editable mode
+
+
+### 
+
+## 自动化测试
 
 ### travis-ci
 一个自动化测试和构建GitHub代码的网站。  
@@ -181,17 +197,6 @@ shell 中运行：
 
 python -c "from hello import say_hello;say_hello()"
 
-## pip命令
-
-```bash
-pip install --user --upgrade scikit-opt blind_watermark
-```
-- `-r`, `--requirement` 一般后接 requirement file
-- `-U, --upgrade` 升级
-- `-t, --target` 安装到哪个路径
-- `--user` 安装到哪个路径
-- `--no-deps` 不安装依赖的包
-- `-e`, `--editable` editable mode
 
 ## 重新载入包
 ```python

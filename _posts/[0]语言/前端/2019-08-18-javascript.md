@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【JavaScript】笔记
+title: 【JavaScript】全笔记
 categories: 语言
 tags:
 keywords:

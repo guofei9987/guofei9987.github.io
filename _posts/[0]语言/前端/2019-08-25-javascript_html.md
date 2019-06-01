@@ -275,7 +275,7 @@ document.getElementById('demo_id1').innerHTML = tag;
 </script>
 ```
 
-### 案例:跑马灯
+### 案例：跑马灯
 
 每次把第一个字符移动到最后
 
