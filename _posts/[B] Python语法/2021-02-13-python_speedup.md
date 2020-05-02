@@ -171,8 +171,8 @@ def func(x1, x2):
     return x1 + x2 + 1
 
 
-results = [pool.apply_async(func, args=(x1, x2)) for (x1, x2) in np.random.rand(100, 2)] # 这一步不实际运行
-results = [p.get() for p in results]
+results = [pool.apply_async(func, args=(x1, x2)) for (x1, x2) in np.random.rand(100, 2)]  # 会立即开始运行
+results = [p.get() for p in results]  # 如果还没运行完，get() 会阻塞等待。
 ```
 
 
@@ -213,7 +213,7 @@ print('end')
 ```
 
 要点：
-1. `setDaemon` 如果主线程结束，子线程 t1 也立即结束。（pycharm 的 scientific 模式不生效）
+1. `setDaemon` 如果主线程结束，子线程 t1 也立即结束。（pycharm 的 scientific 模式不生效，命令行启动py脚本时生效）
 2. `join` 主进程等待子进程 n 秒，然后主进程往下执行
 3. `setDaemon` 和 `join` 可以一起用，效果是子线程执行 n 秒继续执行
 4. `from multiprocessing import Process` 是多进程，使用方法和 `Thread` 一样
@@ -353,9 +353,9 @@ c.start()
 ```
 
 输出：
->等人来买包子
-买包子
-卖掉包子
+>等人来买包子  
+买包子  
+卖掉包子  
 
 
 ### 进程/线程间通信
@@ -402,12 +402,18 @@ ts = [Process(target=my_func, args=(value1, arr1)) for i in range(3)]
 print(list(arr1))
 ```
 
->[1.0, 2.0, 1.0, 1.0, 1.0]
-[1.0, 2.0, 2.0, 1.0, 1.0]
-[1.0, 2.0, 2.0, 1.0, 1.0]
-[1.0, 2.0, 2.0, 2.0, 1.0]
+>[1.0, 2.0, 1.0, 1.0, 1.0]  
+[1.0, 2.0, 2.0, 1.0, 1.0]  
+[1.0, 2.0, 2.0, 1.0, 1.0]  
+[1.0, 2.0, 2.0, 2.0, 1.0]  
 
 
+注：
+- `manager = multiprocessing.Manager()` 功能更多：
+- `d = manager.dict()`
+- `l = manager.list(range(10))`
+- d 和 l 可以作为入参传入，就像上面的 `value1`, `arr1` 一样
+- `Manager` 相比稍慢
 
 
 另一个并行工具
