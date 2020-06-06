@@ -1,88 +1,121 @@
 ---
 layout: post
-title: 【JavaScript】html相关
+title: 【JavaScript】结合html
 categories: 语言
 tags:
 keywords:
 description:
-order: 17003
+order: 17001
 ---
 
 
 
 ## JavaScript 代码嵌入html
 3种方法:
-- head中引用
-- head中填入js
-- body中填入js
+- 引用js文件
+- html中直接写js代码（位置可以是 head/body）
 
 
 ```html
 <html>
 <head>
-    <script src="test.js"></script> <!--引用js代码-->
+    <script src="test.js"></script> <!-- 方法1:引用js文件 -->
     <script>
-        <!--填入js代码-->
+        <!-- 方法2:head 中写 js 代码 -->
     </script>
 </head>
 
 <body>
 <script>
-    <!--填入js代码-->
+    <!-- 方法3: body 中写 js 代码-->
 </script>
 </body>
 </html>
 ```
 
 
-## demo
-### 简洁版
+
+## 按钮控制-简洁版
 ```html
-<p id="demo"></p>
-```
-
-
-```JavaScript
 <button type="button"
-onclick="document.getElementById('demo').innerHTML = Date()">
+onclick="document.getElementById('demo_id').innerHTML = Date()">按钮</button>
+<p id="demo_id"></p>
 ```
 
+<button type="button"
+onclick="document.getElementById('demo_id').innerHTML = Date()">按钮</button>
+<p id="demo_id"></p>
 
-### 复杂版
+
+
+## 按钮控制-复杂版
 ```html
-<!DOCTYPE html>
-<html>
-<head>
 <script>
-// 这一段代码可以放到head/引用/body中，都可以调用
-function myFunction() {
-    document.getElementById("demo").innerHTML = "段落被更改。";
-}
+  function myFunction() {
+      document.getElementById("demo_id2").innerHTML = "段落被更改。";
+  }
 </script>
-</head>
 
-<body>
-
-<h1>一张网页</h1>
-<p id="demo">一个段落</p>
 <button type="button" onclick="myFunction()">试一试</button>
-
-</body>
-</html>
+<p id="demo_id2">一个段落</p>
 ```
 
 
-## 几种显示方式
-- 使用 window.alert() 写入警告框
-- 使用 document.write() 写入 HTML 输出（就是整个页面变了）
-- 使用 innerHTML 写入 HTML 元素
-- 使用 console.log() 写入浏览器控制台
+<script>
+  function myFunction() {
+      document.getElementById("demo_id2").innerHTML = "段落被更改。";
+  }
+</script>
+
+<button type="button" onclick="myFunction()">试一试</button>
+<p id="demo_id2">一个段落</p>
+
+
+
+## 几个常用函数
+
+```javascript
+window.alert() // 弹窗
+console.log() // 写入浏览器控制台
+ocument.write() // 写入 HTML 输出（就是整个页面变了）
+```
+
+改变标签的各种属性：
+
+```javascript
+var obj = document.getElementById('id1');
+
+obj.innerText = '你好'; // 对应的html是：改变标签中间的值，例如 <p>你好</p> 中的你好
+obj.innerHTML = '你好'; // 与 innerText 的区别是这个还支持 html
+
+obj.className = 'hide'; // 用来改变标签的 class
+
+obj.setAttribute(key,val); // 例如，obj.setAttribute('style','color:red;')
+obj.getAttribute(key); //
+
+obj.style; // 是一个对象，用来读写各种属性，例如 : obj.style.color = 'blue'， 等价于 obj.setAttribute('style',val)
+```
+
+
+定时函数：
+```javascript
+window.setInterval("alert()",2000); // 每2000毫秒执行一次
+window.clearInterval();
+
+window.setTimeout("alert()",2000); // 2000毫秒后触发一次
+window.clearTimeout(obj); // 如果还没触发就执行了这个，就不再触发
+```
+
+
+
+表单相关
+```JavaScript
+document.getElementById('form_id').submit()
+```
+
 
 
 ## html事件
-
-
-
 
 - `onchange`	HTML 元素已被改变
 - `onclick`	用户点击了 HTML 元素
@@ -91,21 +124,168 @@ function myFunction() {
 - `onkeydown`	用户按下键盘按键
 - `onload`	浏览器已经完成页面加载
 
+更多事件 [参考](https://www.runoob.com/jsref/dom-obj-event.html)
 
 
 
 
 
 
+## DOM编程
 
-## File
-其实一知半解
+```html
+<p id="demo_id1">一个段落</p>
+
+<script>
+// 下面定义一个 a 标签
+var tag=document.createElement('a');
+tag.href='http://www.guofei.site';
+tag.innerText='点我';
+
+var id1=document.getElementById('demo_id1');
+id1.appendChild(tag); // 	添加为它的子标签
+</script>
+```
+
+另一种方式
+```html
+<p id="demo_id1">一个段落</p>
+
+<script>
+// 另一种方式定义标签
+var tag = "<a href='http://www.guofei.site'>点我</a>";
+// 另一种方式定义把标签添加进去
+document.getElementById('demo_id1').innerHTML = tag;
+</script>
+```
+
+
+## 案例
+
+### 案例：更改内容
+
+用上面的说明，可以实现下面的功能：
+
+
+<script>
+  function myFunction1() {
+      document.getElementById("demo_id3").innerHTML = "段落被更改。";
+  }
+
+	function myFunction2() {
+			document.getElementById("demo_id3").innerHTML = "鼠标移过来试一试";
+	}
+</script>
+
+<p id="demo_id3" onmouseover="myFunction1()" onmouseout="myFunction2()">鼠标移过来试一试</p>
+
+
+
+### 案例：隐藏和显示
+
+用按钮控制是否显示某个元素
+
+```html
+<style>
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: none;
+    }
+
+</style>
+
+
+<p id="id1" class="show">一个段落</p>
+
+
+<script>
+    function myFun1() {
+        id1 = document.getElementById('id1');
+        if (id1.className === 'hide') {
+            id1.className = 'show';
+        } else {
+            id1.className = 'hide'
+        }
+    }
+</script>
+
+
+<button type="button" onclick="myFun1()">试一试</button>
+```
+
+
+<style>
+    .show {
+        display: block;
+    }
+
+    .hide {
+        display: none;
+    }
+
+</style>
+<p id="id1" class="show">一个段落</p>
+<script>
+    function myFun1() {
+        id1 = document.getElementById('id1');
+        if (id1.className === 'hide') {
+            id1.className = 'show';
+        } else {
+            id1.className = 'hide'
+        }
+    }
+</script>
+<button type="button" onclick="myFun1()">试一试</button>
+
+
+### 案例：进度条
+画一个进度条，每0.5秒进度条前进一些。
+
+
+```html
+<div id="prog_text"></div>
+
+<div style="width: 500px;border: solid red;">
+    <div id="progress" style="width: 10%;background-color: red;height: 10px;">颜色</div>
+</div>
+
+<script>
+
+    var prog_tag = document.getElementById('progress');
+    var prog_text = document.getElementById('prog_text');
+    var progress = 10;
+
+    function myFun1() {
+
+        progress += 2;
+        if (progress > 100) {
+            window.clearInterval(interval);
+        } else {
+            prog_tag.style.width = progress + "%";
+            prog_text.innerText = progress + '%';
+        }
+
+    }
+
+    interval = window.setInterval('myFun1()', 100);
+</script>
+```
+
+### 案例2:跑马灯
+
+每次把第一个字符移动到最后
+
+### 其它：file
+
+上传一个文件给 JavaScript 处理：
+
 ```
 <input type="file" id="file" accept="image/*">
 
-```
 
-```
 window.onload=function(){
   let ofile=document.getElementById("file");
   file.onchange = function () {
@@ -113,3 +293,10 @@ window.onload=function(){
   }
 }
 ```
+
+### jquery
+
+jQeury 封装了 JavaScript 和 Dom
+
+
+官网下载： https://jquery.com/download/

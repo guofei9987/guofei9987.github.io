@@ -16,6 +16,78 @@ function plus1(x) {
 }
 ```
 
+### 函数的入参
+函数的输入很灵活，可以定义一个输入，但实际传入两个参数
+```JavaScript
+function myFunction(name) {
+  var arg=arguments[1]; // 这个函数可以有多个输入
+  console.log(name,arg);
+}
+
+myFunction(1,2)
+```
+
+### 局部变量和全局变量
+
+加 var 是局部变量，不加 var 是全局变量，例子：
+
+```javascript
+name = '1';
+
+function myFun1() {
+    var name = '2';
+    console.log(name);
+}
+
+function myFun2() {
+    console.log(name);
+}
+
+myFun1();
+myFun2();
+```
+上面代码打印出来是2，1
+
+
+
+```javascript
+name = '1';
+
+function myFun1() {
+    name = '2';
+    console.log(name);
+}
+
+function myFun2() {
+    console.log(name);
+}
+
+myFun1();
+myFun2();
+```
+上面代码打印出来 2，2
+
+
+因为容易弄混，定了以下规范：
+1. 尽量都加上var，用局部变量
+2. 对于用全局变量的情况，可以用 `window.name ="123"` 代替（实际效果一模一样）
+3. （另外）每个语句末尾要加分号（虽然不加分号也能运行），压缩的时候防止错误。
+
+### 匿名函数
+
+```javascript
+(function () {
+    console.log('Hello')
+})()
+```
+
+也可以传入参数
+```javascript
+(function (inp) {
+    console.log(inp)
+})('Hello')
+```
+
 ### 方法的使用
 
 ```JavaScript
@@ -80,23 +152,26 @@ while (i < 10);
 ### for
 
 ```JavaScript
-function factorial2(n) {
-    var i, product = 1;
-    for (i = 2; i <= n; i++) {
-        product *= i;
-    }
-    return product;
+var arr = [1, 2, 3];
+for (var i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
 }
 ```
 
 另一种for循环
 ```JavaScript
-var txt = "";
-var person = {fname:"Bill", lname:"Gates", age:62};
-var x;
-for (x in person) {
-  txt += person[x] + " ";
+var person = {fname: "Bill", lname: "Gates", age: 62};
+for (var x in person) {
+    console.log(x);
+    console.log(person[x]);
 }
+
+
+var arr = [4, 3, 2];
+for (var x in arr) {
+    console.log(x);
+}
+// 循环的也是 key，这段代码打印 0，1，2
 ```
 
 >循环也支持 break/continue 语句

@@ -5,13 +5,16 @@ categories: 语言
 tags:
 keywords:
 description:
-order: 17001
+order: 17002
 ---
 
 ## 入门
 - 浏览器 ctrl+shift+J 用来打开控制台
-- JavaScript 区分大小写，但html不区分大小写。html的标签名和属性名用大写或小写，但JavaScript必须用小写。
+- JavaScript 区分大小写，但html不区分大小写
 - JavaScript会忽略空格和换行。所以可以随意使用空格和换行，来提高代码的可读性。
+
+
+
 
 
 
@@ -19,8 +22,8 @@ order: 17001
 console.log(); //用来向控制台输出消息
 alert(); //弹出对话框
 
+// 双斜杠表示注释
 /*
-双斜杠表示注释
 或者用斜杠星+星斜杠做多行注释
 */
 ```
@@ -35,9 +38,8 @@ alert(); //弹出对话框
 
 
 ```JavaScript
-//变量通过var来声明
-var x;
-x = 0;
+var x; // 加 var 是局部变量
+x = 0; // 不加 var 是全局变量
 x = 0.01;//不区分整数和浮点数，都是浮点数
 x = 0xff; //0x或0X开头，是十六进制
 x = 012; //0开头，是八进制。但有些版本不支持八进制
@@ -81,19 +83,17 @@ Math.PI
 
 #### 日期
 ```javascript
+// 新建日期的n个方法
 var then = new Date(2017,0,1); //月份从0开始
 var later = new Date(2017,0,1,17,10,30);
-var now = new Date();
-
-var elapsed = now - then; //以毫秒计算的时间差
-
-//新建：数值日期
-//Date以毫秒计，以1970 年 1 月 1 日为0毫秒
+var now = new Date(); // 现在
+//Date以毫秒计，以1970 年 1 月 1 日为0毫秒：
 var d = new Date(-100000000000);
+//字符串日期：
+var d = new Date("December 25, 2019 12:46:00");
 
-//字符串日期
-d = new Date("December 25, 2019 12:46:00");
-
+// 一些方法：
+var elapsed = now - then; //以毫秒计算的时间差
 
 later.getFullYear();//年 yyyy
 later.getMonth();//月 0-11
@@ -110,13 +110,6 @@ getTime();// 1970 年 1 月 1 日以来的毫秒数
 
 later.getUTCDate();//基于时区，还有Month，Hour等，不重复写了
 ```
-
-```JavaScript
-
-
-
-```
-
 
 
 #### 字符串
@@ -137,25 +130,25 @@ x.length
 
 
 x.charAt(0);
-x.charAt(x.length-1);
+x.charAt(x.length - 1);
 
 //切片：含头不含尾
-x.substring(1,3)
-x.slice(1,3)
+x.substring(1, 3)
+x.slice(1, 3)
 x.slice(-3) //后3个
 
 //查找
 x.indexOf('o') //首次出现位置
 x.lastIndexOf('o') //最后一次出现位置
-x.indexOf('o',5) // 5号位置之后，第一次出现的位置
-x.lastIndexOf('o',5) // 从5号位置往前搜索，第一次出现的位置
+x.indexOf('o', 5) // 5号位置之后，第一次出现的位置
+x.lastIndexOf('o', 5) // 从5号位置往前搜索，第一次出现的位置
 // search()和indexOf()是相等的，但search()还可以用于正则表达式
 
 //
 x.split(' ')
 
 //修改，x本身不会变
-x.replace('h','H')
+x.replace('h', 'H')
 x.toUpperCase();
 x.trim(); //删除两端的空白符
 
@@ -172,24 +165,21 @@ x = false;
 //会自动把这些转换成false：
 //undefined, null, 0, -0, NaN, ""
 // 其它都转为true
-
-x = null;
-x = undefined;
 ```
 
 #### 格式转换
 显示转换
 ```JavaScript
-Number('2');
+Number('2'); // 返回2
 String(false);//=>"false"
 Boolean([]);//=>true
 Object(3);
 ```
 自动转换
 ```JavaScript
-1+'';
-'1'+0;
-!!'a';
+1+''; // 转为字符
+'1'+0; //转为字符
+!!'a'; // 返回 true
 ```
 
 高级数字转字符
@@ -212,7 +202,6 @@ parseFloat('     -123.22个');//=>-123.22
 //2. parseInt 可以自动识别0x为16进制，也可以指定进制
 parseInt('0x33');//自动识别进制
 parseInt('33',4); //指定进制
-
 ```
 
 
@@ -242,37 +231,43 @@ book["contents"] = {};
 ### 数组
 array，一种特殊的object，定义了一些专有方法
 ```JavaScript
-var x=[2,3,5,7];
-x[0];//取数
+var arr = [2, 3, 5, 7];
+var arr = Array(1,2,3,4);
+
+arr.length;
 
 
-prime.length;
+arr[0];//取数
+arr.slice(1,3); // 切片，含头不含尾
 
-x[4]=9; //增加一个元素
-x[4]=11; //改变 一个元素
+arr[4] = 9; //增加一个元素
+arr[4] = 11; //改变 一个元素
+
+arr[5] = [1, 2, 3]; // array 可以嵌套一个对象
 ```
-
-
-数组和对象可以相互嵌套
 
 
 增、删
 ```JavaScript
-x.push(13,19);
-x.pop();//返回最后一个元素，并删除
+arr.push(13, 19);//末尾插入13，19，然后返回 arr.length
+arr.pop();//返回最后一个元素，并删除
 
-x.unshift(1,2);
-x.shift();//返回第一个元素，并删除
+arr.unshift(1, 2);//开头插入1，2，然后返回 arr.length
+arr.shift();//返回第一个元素，并删除
 
-delete fruits[0]//这样删除会留下一个洞，这跟python不一样
+arr.splice(index=1,0,'content');  //在某个位置插入，这里的0代表意义比较复杂。
 
-[1,2,3].concat([4,5,6],[7,8,9]); //不会修改原数组
 
-x.join(" * ")//相当于python的'*'.join(x)
+delete arr[0];//这样删除会留下一个洞，这跟python不一样
+[1, 2, 3].concat([4, 5, 6], [7, 8, 9]); //不会修改原数组
+
 ```
 
 排序、翻转
 ```JavaScript
+arr.join("*")//相当于python的'*'.join(x)
+
+
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();
 fruits.reverse();
@@ -284,7 +279,10 @@ lst.sort(function(a, b){return a - b})
 lst.sort(function(a, b){return 0.5 - Math.random()});
 ```
 
-
+### 字典
+```javascript
+dic = {'name':'Tom','age':18}
+```
 
 ## 运算符
 ### 基本运算符
