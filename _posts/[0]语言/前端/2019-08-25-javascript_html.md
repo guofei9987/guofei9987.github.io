@@ -126,6 +126,7 @@ document.getElementById('form_id').submit()
 
 更多事件 [参考](https://www.runoob.com/jsref/dom-obj-event.html)
 
+[event](https://www.w3school.com.cn/jsref/dom_obj_event.asp)         
 
 
 
@@ -278,7 +279,7 @@ document.getElementById('demo_id1').innerHTML = tag;
 
 每次把第一个字符移动到最后
 
-### 其它：file
+## 其它：file
 
 上传一个文件给 JavaScript 处理：
 
@@ -293,10 +294,3 @@ window.onload=function(){
   }
 }
 ```
-
-### jquery
-
-jQeury 封装了 JavaScript 和 Dom
-
-
-官网下载： https://jquery.com/download/
