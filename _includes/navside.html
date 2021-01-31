@@ -1,0 +1,128 @@
+<div class="col-md-3 col-lg-3 col-sm-13 col-xs-13 aside visible-md visible-lg">
+  <div class="row">
+    <div class="col-md-2 col-xs-2 aside1">
+      <br>
+      <a class="pjaxlink" href="{{ site.url }}" target='GitHub'>
+        <img src="{{ site.favicon }}" class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+      </a>
+      <table class="table table-condensed">
+        <tr>
+          <td>
+            <a href="{{ site.author.github }}" target='GitHub'>
+              <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+            </a>
+          </td>
+        </tr>
+      </table>
+      <!-- 下面是一级侧边栏 -->
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+          <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a>
+        </li>
+        {% for category in site.categories %}
+
+        <!-- 这两个标签不放侧边栏，而是放到橱窗里面 -->
+          {% if category[0] == '前端' %}
+          {% continue %}
+          {% endif %}
+
+          {% if category[0] == '趣文' %}
+          {% continue %}
+          {% endif %}
+
+          <li>
+            <a href="#{{ category | first }}" data-toggle="tab">
+              {{ category[0] }}
+            </a>
+          </li>
+        {% endfor %}
+        <li>
+          <a class="pjaxlink" href="/pages/reading.html">读书</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/matlab.html">Matlab</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/course.html">听课</a>
+        </li>
+        <li>
+          <a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a>
+        </li>
+      </ul>
+      <div class="aside1_bottom">
+        <!-- 这里是一级侧边栏的底部，目前放空 -->
+      </div>
+    </div>
+
+    <!-- 下面是二级侧边栏 -->
+    <div class="col-md-10 col-xs-10 aside2">
+      <div class="row">
+        <div class="tab-content">
+          {% for category in site.categories %}
+            <div class="tab-pane" id="{{ category[0] }}">
+              <div class="list-group">
+
+                {% if category[0] == '橱窗' %}
+                  <a class="list-group-item-lay pjaxlink" href="/pages/reading.html">读书笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/course.html">听课笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/matlab.html">Matlab笔记库</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/certification.html">证书陈列柜</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/web_design.html">前端笔记集合</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/interesting.html">趣文集合</a>
+                  {% for post in category[1] %}
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                  {% endfor %}
+                {% endif %}
+
+
+
+
+
+                {% if category[0] == '开源' %}
+                  <a class="list-group-item-lay pjaxlink" href="/pages/sql_ol.html">【工具】在线sql</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/text_diff.html">【工具】在线文本比较</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/searcher.html">【工具】清爽搜索</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_en.html">【open source】scikit-opt</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_zh.html">【开源】scikit-opt</a>
+                  {% for post in category[1] %}
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                  {% endfor %}
+                {% endif %}
+
+                <!-- {% for post in category[1] %}
+                  <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                {% endfor %} -->
+              </div>
+            </div>
+          {% endfor %}
+
+          <!-- 下面这个是“模型”下面的条目 -->
+          <div class="tab-pane" id="tags">
+            <div class="panel-group" id="accordion">
+              {% assign sorted_tags = site.tags | sort %}
+              {% for tag in sorted_tags %}
+
+                <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-toggle="collapse" data-parent="#accordion" href="#{{ tag[0] }}">{{ tag[0] }}</a>
+                      <span class="badge pull-right">{{ tag[1].size }}</span>
+                    </h4>
+                  </div>
+                  <div id="{{ tag[0] }}" class="panel-collapse collapse">
+                    {% assign sorted_tag = tag[1] | sort:"order" %}
+                    {% for post in sorted_tag %}
+                      <a  href='{{ post.url }}' class="list-group-item pjaxlink">
+                        <font color="#FF9224">【{{post.order}}】</font>{{post.title}}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

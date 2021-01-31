@@ -1,0 +1,99 @@
+---
+layout: page
+title: 首页
+---
+
+<center><h3><font color="#D26900">人类必将化身为神</font></h3></center>
+
+
+<!-- 解决ios设备的iframe溢出问题 -->
+<style>
+.demo-iframe-holder {
+  width: 100%;
+  height: 300px;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+}
+
+.demo-iframe-holder iframe {
+  height: 100%;
+  width: 100%;
+}
+</style>
+
+
+<table width=100%>
+  <tr>
+    <th>
+      <a href="/reading/" target="reading">读书</a>
+    </th>
+    <th>
+      <a href="/matlab/" target="matlab">Matlab</a>
+    </th>
+    <th>
+      <a href="/course/" target="course">听课</a>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <div class="demo-iframe-holder">
+        <iframe src="/reading/#/sidebar" width="100%" height="300px" marginwidth="10%"></iframe>
+      </div>
+    </td>
+    <td>
+      <div class="demo-iframe-holder">
+        <iframe src="/matlab/#/homepage" width="100%" height="300px" marginwidth="10%"></iframe>
+      </div>
+    </td>
+    <td>
+      <div class="demo-iframe-holder">
+        <iframe src="/course/#/homepage" width="100%" height="300px" marginwidth="10%"></iframe>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+
+{% for post in site.posts  %}
+    {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+    {% capture this_month %}{{ post.date | date: "%m" }}{% endcapture %}
+    {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
+    {% capture next_month %}{{ post.previous.date | date: "%m" }}{% endcapture %}
+
+    {% if forloop.first %}
+      <legend id="{{this_year}}-{{this_month}}">{{this_year}}年-{{this_month}}月</legend>
+      <ul>
+    {% endif %}
+    <li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
+      <a class="pjaxlink" href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+
+    {% if forloop.last %}
+      </ul>
+    {% else %}
+      {% if this_year != next_year %}
+        </ul>
+        <legend id="{{next_year}}-{{next_month}}">{{next_year}}年-{{next_month}}月</legend>
+        <ul>
+      {% else %}
+        {% if this_month != next_month %}
+        </ul>
+        <legend id="{{next_year}}-{{next_month}}">{{next_year}}年-{{next_month}}月</legend>
+        <ul>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+{% endfor %}
+
+<hr>
+<div style="width:300px;margin:0 auto; padding:20px 0;">
+    <a href="https://beian.miit.gov.cn">豫ICP备19040059号</a>
+    <br>
+    <!-- <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202001976"
+       style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src=""  style="float:left;"/>
+        <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备
+            11011202001976号</p></a> -->
+</div>
+

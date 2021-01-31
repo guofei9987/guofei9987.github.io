@@ -1,0 +1,67 @@
+<meta charset="utf-8">
+<title>{{ page.title }} | {{ site.title }}</title>
+<meta name="shenma-site-verification" content="56a854808768bc06d4544ac292808619_1573202042">
+<meta name="author" content="{{ site.author.name }}">
+{% if page.keywords %}
+  <meta name="keywords" content="{{ page.keywords }}">
+{% endif %}
+{% if page.description  %}
+  <meta name="description " content="{{ page.description  }}">
+{% endif %}
+<link rel="shortcut icon" href="{{ site.favicon }}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/public/css/bootstrap.css">
+<link rel="stylesheet" href="/public/css/font-awesome.css">
+<link rel="stylesheet" href="/public/js/prettify/prettify.css">
+<link rel="stylesheet" href="/public/css/base.css">
+<link href="/pages/atom.xml" rel="alternate" title="{{site.title}}" type="application/atom+xml">
+
+
+<script src="http://www.guofei.site/public/jsforecharts/echarts.min.js"></script>
+<!-- <script src="http://www.guofei.site/public/jsforecharts/jquery-3.2.1.min.js"></script> -->
+<script src="http://www.guofei.site/public/jsforecharts/china.js"></script>
+
+
+
+
+
+
+<!-- LaTeX支持 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+    },
+  TeX: {
+              equationNumbers: {
+                  autoNumber: ["AMS"],
+                  useLabelIds: true
+              }
+          },
+          "HTML-CSS": {
+              linebreaks: {
+                  automatic: true
+              },
+              scale: 85
+          },
+          SVG: {
+              linebreaks: {
+                  automatic: true
+              }
+          }
+  });
+  </script>
+
+
+
+
+  <script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+
+
+
+</script>

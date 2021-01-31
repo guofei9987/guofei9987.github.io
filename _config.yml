@@ -1,0 +1,42 @@
+﻿permalink: /:year/:month/:day/:title.html
+paginate: 10
+markdown: kramdown
+
+
+# 作者信息
+author:
+  name: Guofei
+  email: me@guofei.site
+  link: https://www.guofei.site
+  github: https://github.com/guofei9987
+  linkedin: https://www.linkedin.com/in/guofei9987
+  facebook: https://www.facebook.com/guofei9987
+
+# 站点信息
+title: 郭飞的笔记
+description: My blog
+url: https://www.guofei.site
+repurl: https://github.com/guofei9987/guofei9987.github.io/edit/master/
+# rss_url: /pages/atom.xml
+
+# gavatar头像及Favicon
+gavatar: /public/about/me.png
+favicon: /public/about/me.png
+
+# google analytics 设置
+ga:
+  id: UA-98406918-1
+  url: www.guofei.site
+
+# disqus 设置
+disqus:
+  shortname: guofei9987
+
+# 主题设置，自动激活某个标签
+active: tags
+
+# 中文本地化
+locals:
+  tags: 知识
+  about: 我
+  trythis: 数据清洗

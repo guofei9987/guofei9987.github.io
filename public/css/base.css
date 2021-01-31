@@ -1,0 +1,271 @@
+/* 页面配置 */
+.container {
+  width: 100%;
+  height: 100%;
+}
+body, html {
+  margin: 0px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #303030;
+}
+.row {
+  height: 100%;
+}
+/* 导航栏 + 目录栏 */
+.aside {
+  height: 100%;
+}
+/* 左侧导航栏 */
+.aside1 {
+  /*background-color: #1f2c39;*/
+  background-color: #1abc9c;
+  /*background-image: url(/public/img/bg_grid.jpg);*/
+  height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+  /*box-shadow: inset -15px 0 20px -15px #77AEF4;*/
+}
+.aside1 > .nav > li > a {
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 0px;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px 10px;
+
+}
+
+.aside1> .nav > li > a:hover {
+  color:#fff;
+  background-color: #16a085;
+}
+
+.aside1 > .nav-pills>li.active>a ,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus {
+  color: #fff;
+  /*background-color: #fafaf6;*/
+  /*background-image: url(/public/img/body_bg.jpg);*/
+  background-color: #303030;
+}
+
+.avatar {
+  width: 56px;
+  /*height: 90px;*/
+  border: 0px solid #fff;
+}
+.aside1_bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+.aside1_bottom > .table {
+  margin-bottom: 0px;
+}
+/* 中部目录栏 */
+.aside2 {
+  /*background-color: #fafaf6;*/
+  /*background-image: url(/public/img/body_bg.jpg);*/
+
+  background-color: #303030;
+  height: 100%;
+  border-right: 2px solid #303030;
+  overflow-y: auto;
+  font-color: #fff;
+  margin-top: 40px;
+}
+
+/* 右侧内容栏 */
+.aside3 {
+  height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  overflow-x: hidden;
+
+  /*background-image: url(/public/img/bg_lines1.jpg);*/
+}
+.aside3-title {
+  background-color: #f5f5f5;
+  /*background-image: url(/public/img/bg_grid.jpg);*/
+  border-bottom: 1px solid #f5f5f5;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  color: #303030;
+}
+.aside3-content {
+/*  padding-left: 40px;
+  padding-right: 40px;
+*/
+  padding: 0 5% 0 5%;
+  color: #656565;
+  line-height: 1.42857143;
+}
+#content {
+  font-size: 18px;
+}
+
+#content h2{
+  line-height: 2;
+  color:black;
+  font-size: 36px;
+  background: #c0cda5;
+}
+
+#content h3{
+  font-size: 24px;
+}
+#content h4{
+  font-size: 16px;
+}
+#content h5{
+    font-size: 14px;
+}
+#content h6{
+    font-size: 12px;
+}
+
+#content h3, #content h4, #content h5, #content h6{
+  background: #e5f7f3;
+  color:black;
+  line-height: 2;
+}
+
+a.title_in_contend{
+  color: black
+}
+
+#content td, th{
+  border:1px solid #1ABC9C;
+}
+#content p{
+  padding-top: 10px;
+  margin-top: 10px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#content hr{
+  height:10px;
+  border:none;
+  border-top:10px groove skyblue;
+}
+blockquote p {
+  font-size: 20px;
+}
+/* 其他配置 */
+.center {
+  text-align: center;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+  color: #fff;
+  background-color: #303030;
+}
+/* 显示评论按钮 */
+.show-commend {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+/* ################################
+###################################
+#################################
+timeline */
+
+
+/*Time line*/
+ /*时间轴大容器*/
+ .line-warp{
+     position: relative;
+     width: 80%;
+     min-width: 200px;
+     margin: 0 auto;
+     margin-top: 50px;
+     margin-bottom: 30px;
+ }
+ /*timeline*/
+ .line-warp:before{
+     position: absolute;
+     content: '';
+     left:21px;
+     width: 2px;
+     height: 100%;
+     margin-top: 10px;
+     margin-bottom: 15px;
+     background: #adadad;
+
+ }
+     /* 每一行*/
+ .line-item{
+
+     position: relative;
+     margin-top: 30px;
+ }
+    /* 左边的图标 容器*/
+ .line-icon-warp{
+     position: absolute;
+     top: 0;
+     left: 0;
+
+
+ }
+ /*   通过修改font-size来控制图标大小*/
+ .line-icon-warp span:first-child{
+     font-size: 22px;
+ }
+ .line-icon-warp .badge{
+     font-size: 13px;
+ }
+  /*右边 内容*/
+ .line-content-box{
+     position: relative;
+     margin-left: 155px;
+     background: #e5e5e5;
+     border-radius: .25em;
+     padding: 1em;
+     color: #000;
+     font-family: "Calibri", "Arial", "Microsoft YaHei", "黑体";
+     -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+     transition: all .2s linear;
+     display: table;
+     /*width: 80%;*/
+ }
+
+ /* 用来画内容框左边的小箭头*/
+ .line-content-box:before{
+     content: '';
+     position: absolute;
+     top: 14px;
+     left: -14px;
+     height: 0;
+     width: 0;
+     border: 7px solid transparent;
+     border-right: 7px solid #e5e5e5;
+
+ }
+
+
+ .breakline{
+     padding: 0 30px 0;
+     margin: 40px 0;
+     text-align: center;
+     letter-spacing: -1px;
+     color: #ddd;
+ }
+
+ .timeline-header{
+     text-align: center;
+ }
+
+ .timeline-header span{
+     padding: 2px 10px 2px 6px;
+     font-size: 12px;
+ }

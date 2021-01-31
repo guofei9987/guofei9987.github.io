@@ -1,0 +1,8 @@
+##ignore this file##
+/_site/
+/.idea
+/pictures_for_blog
+/.jekyll-cache
+*/.Ds_Store
+.Ds_Store
+/_tmp
