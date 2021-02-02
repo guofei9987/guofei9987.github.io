@@ -19,7 +19,11 @@ def word_count(file_name_md):
     返回文件的字数，（新增）二级目录
     '''
     f = open(file_name_md, 'r', encoding='utf-8')
-    passages = f.readlines()
+    try:
+        passages = f.readlines()
+    except:
+        print(file_name_md)
+        return
     # word_num = sum([len(passage.replace('\n', '').replace(' ', '')) for passage in passages])
     word_num = sum([len(regex_chinese.findall(passage))
                     + len(regex_English.findall(passage))

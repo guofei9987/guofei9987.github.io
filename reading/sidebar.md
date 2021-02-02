@@ -26,6 +26,18 @@
     * [8_企业传记<sup style = "color:red">1540字<sup>](docs/2_历史/8_企业传记.md)
     * [J_日本专题<sup style = "color:red">8560字<sup>](docs/2_历史/J_日本专题.md)
     * [其它<sup style = "color:red">3822字<sup>](docs/2_历史/其它.md)
+* 3_1_金融学硕士
+    * [1_微观经济学<sup style = "color:red">2614字<sup>](docs/3_1_金融学硕士/1_微观经济学.md)
+    * [2_宏观经济学<sup style = "color:red">5891字<sup>](docs/3_1_金融学硕士/2_宏观经济学.md)
+    * [3_国际经济学<sup style = "color:red">2494字<sup>](docs/3_1_金融学硕士/3_国际经济学.md)
+    * [5_财政学<sup style = "color:red">6431字<sup>](docs/3_1_金融学硕士/5_财政学.md)
+    * [6_产业经济学<sup style = "color:red">3875字<sup>](docs/3_1_金融学硕士/6_产业经济学.md)
+    * [7_金融学<sup style = "color:red">1315字<sup>](docs/3_1_金融学硕士/7_金融学.md)
+    * [8_风险管理<sup style = "color:red">1650字<sup>](docs/3_1_金融学硕士/8_风险管理.md)
+    * [9_经济学知识补漏<sup style = "color:red">1011字<sup>](docs/3_1_金融学硕士/9_经济学知识补漏.md)
+* 3_2_中级经济师
+    * [1_经济师基础知识<sup style = "color:red">7340字<sup>](docs/3_2_中级经济师/1_经济师基础知识.md)
+    * [2_经济法<sup style = "color:red">6844字<sup>](docs/3_2_中级经济师/2_经济法.md)
 * 3_社科
     * [1_经济学科普<sup style = "color:red">3021字<sup>](docs/3_社科/1_经济学科普.md)
     * [2_认知升级<sup style = "color:red">463字<sup>](docs/3_社科/2_认知升级.md)
@@ -86,7 +98,7 @@
     * [说<sup style = "color:red">3707字<sup>](docs/G_沟通/说.md)
 * H_健康
     * [人体<sup style = "color:red">1068字<sup>](docs/H_健康/人体.md)
-    * [健康管理师1<sup style = "color:red">1751字<sup>](docs/H_健康/健康管理师1.md)
+    * [健康管理师1<sup style = "color:red">4817字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">285字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
     * [锻炼<sup style = "color:red">3633字<sup>](docs/H_健康/锻炼.md)
