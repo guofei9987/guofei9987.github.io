@@ -43,7 +43,7 @@ print(obj)
 obj
 # 输出：repr method
 
-# __str__ 只重构与print相关的，会覆盖__repr__中的print功能
+# __str__ 只重构与print(obj), str(obj) 相关的，会覆盖__repr__中的print功能
 # __repr__ 既重构与print相关的，也重构与直接输出相关的
 ```
 
