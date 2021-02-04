@@ -48,6 +48,9 @@ obj
 ```
 
 
+`__format__`, `__bytes__`
+
+
 
 ## 3. 属性访问
 ```py
@@ -141,9 +144,22 @@ __rlshift__ , __rrshift__ , __rxor__ , __ror__
 `__complex__(self)`| 定义`complex()`
 `__int__(self)`| 定义`int()`
 `__float__(self)`| 定义`float()`
-`__round__(self)`| 定义求反`round()`
+`__round__(self)`| 定义`round()`
+`__bool__(self)`|定义 `bool(obj)`，注意 `__bool__` 必须返回 bool 类型
+
+
+`__hash__`, `__index__`
 
 ## 5. 容器类型
+
+|方法|解释|
+|--|--|
+|`__len__` | 定义 `len()`
+|`__getitem__`| 定义 `obj['key1']`
+|`__setitem__`| 定义 `obj['key1'] = 'value1'`
+|`__delitem__`| 定义 `del obj['key1']`
+|`__contains__`| 定义  `1 in obj`
+
 
 
 ```py
@@ -193,6 +209,12 @@ reversed(obj)          # 触发执行 __reversed__
 
 
 ## 6. 迭代器
+
+__iter__, reversed__, __next__
+
+
+
+
 迭代器的用法
 ```py
 it=iter([1,2,3])
