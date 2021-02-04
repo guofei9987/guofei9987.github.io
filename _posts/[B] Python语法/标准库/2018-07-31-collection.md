@@ -69,7 +69,7 @@ for i in range(5):
 import collections
 
 # 新建
-deque=collections.deque([1,2,3,4,5]) # collection.deque(<iterable>)
+deque = collections.deque([1,2,3,4,5]) # collection.deque(<iterable>)
 
 # O(1)算法
 deque.append(99)
@@ -86,6 +86,14 @@ deque.count(val) # 计算val的数量
 deque.extend(d2) # 等价于 deque+d2
 
 ```
+
+maxlen 设定最大程度，一旦设定完就不能变了。左添加时，如果超过最大长度，丢弃右边；右添加时，如果超过最大长度，丢弃左边
+
+```python
+deque = collections.deque([1, 2, 3, 4, 5], maxlen=3)
+```
+
+
 
 ## 参考文献
 https://docs.python.org/3/
