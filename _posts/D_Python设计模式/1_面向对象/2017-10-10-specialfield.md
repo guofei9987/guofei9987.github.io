@@ -291,8 +291,62 @@ for i in fibs():
 ```
 
 
+## 8. 上下文管理器with
+
+`__enter__` 和   `__exit__` 方法，具体看下面
+
+使用上下文管理器有三个好处：
+- 提高代码的复用率；
+- 提高代码的优雅度；
+- 提高代码的可读性；
 
 
+### 示例
+```python
+class Resource():
+    def __init__(self, filename=''):
+        print('初始化 context manager, filename = {}'.format(filename))
+        self.filename = filename
+
+    def __enter__(self):
+        print('获取资源, filename = {}'.format(self.filename))
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print(f'关闭资源，异常类型 = {exc_type}, 异常值 = {exc_val}, 异常的错误栈信息 = {exc_tb}，如果主代码没有异常，三个参数都是 None')
+        # return True，就相当于告诉Python解释器，主逻辑的异常我们已经捕获了，不需要再往外抛了
+        # 如果 主逻辑本身就没有抛出异常，无论return True/False，都不会抛出异常
+        return True
+
+    def operate(self, num):
+        1 / num  # 用来看 __exit__ 如何捕获一个错误
+        print('执行某个操作，就是一个普通的方法')
+
+
+# 可以同时 with 多个
+with Resource('file1') as res1, Resource('file2') as res2:
+    res1.operate(1)
+    res2.operate(0)
+```
+
+
+
+运行结果：
+```
+初始化 context manager, filename = file1
+获取资源, filename = file1
+初始化 context manager, filename = file2
+获取资源, filename = file2
+执行某个操作，就是一个普通的方法
+关闭资源，异常类型 = <class 'ZeroDivisionError'>, 异常值 = division by zero, 异常的错误栈信息 = <traceback object at 0x7fe433a88f00>，如果主代码没有异常，三个参数都是 None
+关闭资源，异常类型 = None, 异常值 = None, 异常的错误栈信息 = None，如果主代码没有异常，三个参数都是 None
+```
+
+
+上下文管理器的优点：处理异常时，通常使用 `try...except...`，这会造成主代码中有大量的异常处理，很大影响可读性。  
+
+
+另外，上下文解释器也可以不是类，可以是函数，见于 [文档](http://magic.iswbm.com/zh/latest/c04/c04_01.html#what-context-manager)。
 
 
 
