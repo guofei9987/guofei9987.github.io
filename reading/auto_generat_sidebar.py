@@ -51,15 +51,15 @@ for top, dirs, nondirs in path_all:
     # detail += '\n### ' + block_name + '\n'
     detail += '''
 ###  {block_name}
-|板块|笔记字数|书目|
-|--|--|--|
+|板块|书目|
+|--|--|
 '''.format(block_name=block_name)
     for file_name in nondirs:
         word_num, title_level_2 = word_count(top + os.sep + file_name)
         article = file_name.replace('.md', '')
         sidebar += '    * [{article}<sup style = "color:red">{word_num}字<sup>](docs/{block_name}/{article}.md)\n'. \
             format(article=article, block_name=block_name, word_num=word_num)
-        detail += '|[{article}](docs/{block_name}/{article}.md)|{word_num}字|{title_level_2}\n'. \
+        detail += '|[{article}<sup style = "color:red">{word_num}字<sup>](docs/{block_name}/{article}.md)|{title_level_2}\n'. \
             format(article=article,
                    block_name=block_name,
                    word_num=word_num,
