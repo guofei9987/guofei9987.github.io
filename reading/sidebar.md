@@ -35,6 +35,9 @@
     * [7_金融学<sup style = "color:red">1315字<sup>](docs/3_1_金融学硕士/7_金融学.md)
     * [8_风险管理<sup style = "color:red">1650字<sup>](docs/3_1_金融学硕士/8_风险管理.md)
     * [9_经济学知识补漏<sup style = "color:red">1011字<sup>](docs/3_1_金融学硕士/9_经济学知识补漏.md)
+    * [a_电子商务<sup style = "color:red">4499字<sup>](docs/3_1_金融学硕士/a_电子商务.md)
+    * [b_消费者行为学<sup style = "color:red">3262字<sup>](docs/3_1_金融学硕士/b_消费者行为学.md)
+    * [c_管理学<sup style = "color:red">1720字<sup>](docs/3_1_金融学硕士/c_管理学.md)
 * 3_2_中级经济师
     * [1_经济师基础知识<sup style = "color:red">7340字<sup>](docs/3_2_中级经济师/1_经济师基础知识.md)
     * [2_经济法<sup style = "color:red">6844字<sup>](docs/3_2_中级经济师/2_经济法.md)
@@ -68,7 +71,7 @@
     * [4_技术影响社会<sup style = "color:red">5469字<sup>](docs/6_科技/4_技术影响社会.md)
     * [《信号与噪声》<sup style = "color:red">1501字<sup>](docs/6_科技/《信号与噪声》.md)
     * [《复杂》<sup style = "color:red">6148字<sup>](docs/6_科技/《复杂》.md)
-    * [武器百科<sup style = "color:red">7801字<sup>](docs/6_科技/武器百科.md)
+    * [武器百科<sup style = "color:red">12038字<sup>](docs/6_科技/武器百科.md)
 * 7_心理学
     * [1_《心理学十五讲》<sup style = "color:red">14729字<sup>](docs/7_心理学/1_《心理学十五讲》.md)
     * [2_武志红<sup style = "color:red">1354字<sup>](docs/7_心理学/2_武志红.md)
@@ -98,7 +101,7 @@
     * [说<sup style = "color:red">3707字<sup>](docs/G_沟通/说.md)
 * H_健康
     * [人体<sup style = "color:red">1068字<sup>](docs/H_健康/人体.md)
-    * [健康管理师1<sup style = "color:red">4817字<sup>](docs/H_健康/健康管理师1.md)
+    * [健康管理师1<sup style = "color:red">8580字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">285字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
     * [锻炼<sup style = "color:red">3633字<sup>](docs/H_健康/锻炼.md)
