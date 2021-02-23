@@ -71,6 +71,7 @@
     * [4_技术影响社会<sup style = "color:red">5469字<sup>](docs/6_科技/4_技术影响社会.md)
     * [《信号与噪声》<sup style = "color:red">1501字<sup>](docs/6_科技/《信号与噪声》.md)
     * [《复杂》<sup style = "color:red">6148字<sup>](docs/6_科技/《复杂》.md)
+    * [材料学<sup style = "color:red">855字<sup>](docs/6_科技/材料学.md)
     * [武器百科<sup style = "color:red">12038字<sup>](docs/6_科技/武器百科.md)
 * 7_心理学
     * [1_《心理学十五讲》<sup style = "color:red">14729字<sup>](docs/7_心理学/1_《心理学十五讲》.md)
@@ -104,6 +105,7 @@
     * [健康管理师1<sup style = "color:red">8580字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">285字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
+    * [求生<sup style = "color:red">1259字<sup>](docs/H_健康/求生.md)
     * [锻炼<sup style = "color:red">3633字<sup>](docs/H_健康/锻炼.md)
 * Y_碎片阅读
     * [大IP<sup style = "color:red">4377字<sup>](docs/Y_碎片阅读/大IP.md)

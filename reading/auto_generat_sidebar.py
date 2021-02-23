@@ -72,8 +72,9 @@ print('_' * 10, 'sidebar:', '_' * 10)
 print(sidebar)
 print('_' * 10, 'detail:', '_' * 10)
 print(detail)
-print('_' * 10, 'total words:', '_' * 10)
-print(sum(i[2] for i in data))
+total_words=sum(i[2] for i in data)
+print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
+
 # %%
 head = '''
 <a href="http://www.guofei.site" target='blog'>
@@ -100,11 +101,14 @@ tail = '''
 '''
 
 f = open('sidebar.md', 'w', encoding='utf-8')
-# print(head+content)
-# f.write(head+content.encode('utf-8').decode('utf-8'))
 f.write(head + sidebar + tail)
 f.close()
 
+f = open('README.md', 'w', encoding='utf-8')
+f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
+f.close()
+
+
 f = open('homepage.md', 'w', encoding='utf-8')
-f.write(detail)
+f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
 f.close()
