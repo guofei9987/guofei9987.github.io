@@ -499,6 +499,24 @@ concat_ws(',',collect_list(cast (name as string)))
 ```sql
 select explode(split(concat_ws(',','1','2','3','4'),','))
 ```
+
+进阶的一行转多行：
+
+```sql
+SELECT t1.id,t2.serialno,t2.arr 
+FROM (SELECT 'xxx' as id,array('a','b','c') as arr) t1 
+LATERAL VIEW posexplode(t1.arr) t2 AS serialno,arr;
+```
+
+输出：
+id | serialno | arr
+|--|----------|-----|
+xxx | 0 | a
+xxx | 1 | b
+xxx | 2 | c
+
+
+
 ## 参考文献
 
 https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html  
