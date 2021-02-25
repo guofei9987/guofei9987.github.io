@@ -519,6 +519,7 @@ xxx | 2 | c
 
 ## 参考文献
 
+[LATERAL VIEW](https://blog.csdn.net/clerk0324/article/details/58600284)  
 https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html  
 [w2school:SQL教程](http://www.w3school.com.cn/sql/)  
 [SQL字符串函数](https://www.cnblogs.com/vofill/p/6806962.html)  
