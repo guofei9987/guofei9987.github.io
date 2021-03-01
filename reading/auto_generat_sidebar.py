@@ -110,6 +110,6 @@ f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
 f.close()
 
 
-f = open('homepage.md', 'w', encoding='utf-8')
-f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
-f.close()
+# f = open('homepage.md', 'w', encoding='utf-8')
+# f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
+# f.close()

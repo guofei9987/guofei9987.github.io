@@ -3,7 +3,7 @@
 <img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
 </a>
 <br>
-<a href="{{ site.author.github }}" target='GitHub'>
+<a href="https://github.com/guofei9987/" target='GitHub'>
   <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
 </a>
 
