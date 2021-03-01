@@ -81,7 +81,7 @@ head = '''
 <img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
 </a>
 <br>
-<a href="{{ site.author.github }}" target='GitHub'>
+<a href="https://github.com/guofei9987/" target='GitHub'>
   <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
 </a>
 
@@ -104,6 +104,7 @@ f = open('sidebar.md', 'w', encoding='utf-8')
 f.write(head + sidebar + tail)
 f.close()
 
+# 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
 f = open('README.md', 'w', encoding='utf-8')
 f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
 f.close()

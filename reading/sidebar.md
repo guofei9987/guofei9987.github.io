@@ -72,7 +72,7 @@
     * [《信号与噪声》<sup style = "color:red">1501字<sup>](docs/6_科技/《信号与噪声》.md)
     * [《复杂》<sup style = "color:red">6148字<sup>](docs/6_科技/《复杂》.md)
     * [材料学<sup style = "color:red">855字<sup>](docs/6_科技/材料学.md)
-    * [武器百科<sup style = "color:red">12038字<sup>](docs/6_科技/武器百科.md)
+    * [武器百科<sup style = "color:red">16449字<sup>](docs/6_科技/武器百科.md)
 * 7_心理学
     * [1_《心理学十五讲》<sup style = "color:red">14729字<sup>](docs/7_心理学/1_《心理学十五讲》.md)
     * [2_武志红<sup style = "color:red">1354字<sup>](docs/7_心理学/2_武志红.md)
