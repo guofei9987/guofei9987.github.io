@@ -18,7 +18,7 @@ options = dict(
     keyword_case='upper'  # 保留字转大写，也可转小写 'lower'
     , identifier_case='upper'  # 标识符转大写，也可转小写 'lower'
     , strip_comments=True  # 删除注释
-    , reindent=True  # 美化锁进
+    , reindent=True  # 美化缩进
 )
 
 sqlparse.format(sql.lower(), encoding=None, **options)

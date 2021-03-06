@@ -13,7 +13,7 @@ order: 150
 ## select
 
 ```sql
-select 列名称
+SELECT 列名称
 from 表名
 where 条件1
 group by 列名 having 条件2
@@ -83,17 +83,17 @@ count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
 
 给出名字
 ```
-select 列名 as 显示列名 where...
+SELECT 列名 as 显示列名 where...
 ```
 
 ## union
 两个表并到一起，并且删掉重复内容
 ```
-select field1,field2,...,from tablename1
+SELECT field1,field2,...,from tablename1
 UNION
-select  field1,field2,...,from tablename2
+SELECT  field1,field2,...,from tablename2
 UNION
-select  field1,field2,...,from tablenamen
+SELECT  field1,field2,...,from tablenamen
 ...
 ```
 
@@ -121,7 +121,7 @@ INTERSECT ALL表示不删除重复行。
 
 
 ```sql
-select field1, field2, ... ,fieldn
+SELECT field1, field2, ... ,fieldn
 from join_tablename1
 inner join join_tablename2
 on joincondition;
@@ -129,7 +129,7 @@ on joincondition;
 
 三重内连接+别名
 ```sql
-select a.id, a.name, b.salary, c.department
+SELECT a.id, a.name, b.salary, c.department
 from table_name1 a
 inner join table_name2 b
 on a.id=b.id
@@ -139,7 +139,7 @@ on a.id=c.id;
 
 以上可以用where的形式实现(更简单)
 ```sql
-select a.id, a.name, b.salary, c.department
+SELECT a.id, a.name, b.salary, c.department
 from table_name1 a, table_name2 b, table_name3 c
 where a.id=b.id and a.id=c.id;
 ```
@@ -147,10 +147,10 @@ where a.id=b.id and a.id=c.id;
 ## 子查询
 单行子查询
 ```sql
-select enamel,sal,job
+SELECT enamel,sal,job
     from t_employee
     where(sal,job)=(
-            select sal,job
+            SELECT sal,job
                 from t_employee
                 where ename='smith');
 ```
@@ -200,8 +200,6 @@ end
 ```
 eg:
 ```sql
-update  employee
-set e_wage =
 case
     when   job_level = '1'    then e_wage*1.97
     when   job_level = '2'   then e_wage*1.07
@@ -245,10 +243,10 @@ Dayname(arg):返回arg的星期。
 
 字符串时间
 ```sql
-select to_date('2008-12-29 16:25:46'); -- 返回日期
-select date_sub('2008-12-29',5); -- 日期减去一个天数
-select date_add('2008-12-29',5); -- 日期增加一个天数
-select datediff('2008-12-19','2008-12-10'); -- 两个日期之差
+SELECT to_date('2008-12-29 16:25:46'); -- 返回日期
+SELECT date_sub('2008-12-29',5); -- 日期减去一个天数
+SELECT date_add('2008-12-29',5); -- 日期增加一个天数
+SELECT datediff('2008-12-19','2008-12-10'); -- 两个日期之差
 ```
 
 ### 多列函数
@@ -426,7 +424,7 @@ https://jingyan.baidu.com/article/9989c74604a644f648ecfef3.html
 
 应用案例2：（选出每组最大的记录）  
 ```
-select * from app.app_temp_test where row_number(id)<=1;
+SELECT * from app.app_temp_test where row_number(id)<=1;
 ```
 
 #### 2. 描述统计函数
@@ -438,7 +436,7 @@ pd_df=pd.DataFrame(np.random.randint(low=0,high=3,size=(20,2)),columns=['a','b']
 df=spark.createDataFrame(pd_df).cache()
 df.createOrReplaceTempView('df')
 spark.sql('''
-select *,
+SELECT *,
 count(*) over() as c1, -- 总行数
 count(*) over(order by a asc) as c2, -- 递加行数，例如，a=[0,0,0,1,1], 那么结果就是[3,3,3,5,5]
 count(*) over(partition by b) as c3, -- 分组行数，就是每个分组有多少行
@@ -497,18 +495,20 @@ concat_ws(',',collect_list(cast (name as string)))
 ```
 逆操作（行转列）
 ```sql
-select explode(split(concat_ws(',','1','2','3','4'),','))
+SELECT explode(split('a,b,c,d,e',','))
 ```
 
 进阶的一行转多行：
 
 ```sql
-SELECT t1.id,t2.serialno,t2.arr 
-FROM (SELECT 'xxx' as id,array('a','b','c') as arr) t1 
+SELECT t1.id,t2.serialno,t2.arr
+FROM (SELECT 'xxx' as id,array('a','b','c') as arr) t1
 LATERAL VIEW posexplode(t1.arr) t2 AS serialno,arr;
 ```
 
 输出：
+
+
 id | serialno | arr
 |--|----------|-----|
 xxx | 0 | a
