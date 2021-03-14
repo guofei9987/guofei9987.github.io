@@ -167,8 +167,24 @@ shell 中运行：
 
 python -c "from hello import say_hello;say_hello()"
 
+## pip命令
 
+```bash
+pip install --user --upgrade scikit-opt blind_watermark
+```
+- `-r`, `--requirement` 一般后接 requirement file
+- `-U, --upgrade` 升级
+- `-t, --target` 安装到哪个路径
+- `--user` 安装到哪个路径
+- `--no-deps` 不安装依赖的包
+- `-e`, `--editable` editable mode
 
+## 重新载入包
+```python
+import importlib
+
+importlib.reload(scipy)
+```
 ## 参考资料
 
 
@@ -180,3 +196,5 @@ python -c "from hello import say_hello;say_hello()"
 [Cython介绍](https://blog.csdn.net/feijiges/article/details/77932382)
 
 [知乎：如何保护你的 Python 代码](https://zhuanlan.zhihu.com/p/54296517)
+
+[pip install](https://pip.pypa.io/en/stable/reference/pip_install/)

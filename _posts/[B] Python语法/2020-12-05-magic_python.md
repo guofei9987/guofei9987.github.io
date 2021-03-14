@@ -231,6 +231,9 @@ print(add(3, 5))
 
 看到，第二次调用 `add(1,2)`，没有真正执行函数。
 
+参数说明：
+- `maxsize`: cache 容量，`None` 表示无限大
+- `typed`: 如果为 True，会按照type分类，例如， `f(3.0)` 和 `f(3)` 会被当成不同的调用 
 
 ## 清理函数
 
@@ -285,7 +288,15 @@ inspect.getsource(pd.read_csv)  # 打印 pd.read_csv 的源代码
 ```
 
 
+## 判断是函数还是方法
 
+
+```python
+from types import FunctionType, MethodType
+
+func.__class__ is FunctionType
+func.__class__ is MethodType
+```
 
 
 
