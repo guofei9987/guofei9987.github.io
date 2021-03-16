@@ -45,7 +45,11 @@ obj1 is obj2 # 返回 True
 ### 简单工厂模式
 
 ```python
-class Animal:
+from abc import ABCMeta, abstractmethod
+
+
+class Animal(metaclass=ABCMeta):
+    @abstractmethod
     def do_say(self):
         pass
 
@@ -74,6 +78,135 @@ ff.make_sound('Dog')
 - `ForestFactory` 是一个工厂，运行时创建适当的 `Animal` 实例，并输出正确的声音
 
 工厂模式的好处：松耦合，客户端不需要考虑传递哪些参数，或实例化哪些类
+
+
+### 工厂方法
+
+```py
+from abc import ABCMeta, abstractmethod
+
+
+class Section(metaclass=ABCMeta):
+    @abstractmethod
+    def describe(self):
+        pass
+
+
+class PersonalSection(Section):
+    def describe(self):
+        print('Personal Section')
+
+
+class AlbumSection(Section):
+    def describe(self):
+        print('Album Section')
+
+
+class PatentSection(Section):
+    def describe(self):
+        print('Patent Section')
+
+
+class PublicationSection(Section):
+    def describe(self):
+        print('Publication Section')
+
+
+# %%
+class Profile(metaclass=ABCMeta):
+    def __init__(self):
+        self.sections = []
+        self.create_profile()
+
+    @abstractmethod
+    def create_profile(self):
+        pass
+
+    def get_sections(self):
+        return self.sections
+
+    def add_sections(self, section):
+        self.sections.append(section)
+
+
+class LinkedIn(Profile):
+    def create_profile(self):
+        self.add_sections(PersonalSection())
+        self.add_sections(PatentSection())
+        self.add_sections(PublicationSection())
+
+
+class Facebook(Profile):
+    def create_profile(self):
+        self.add_sections(PersonalSection())
+        self.add_sections(AlbumSection())
+
+```
+
+## 适配器模式
+
+如果我们调用接口时，不能修改接口名，那么可以使用适配器模式。
+
+例如，我们需要调用以下3个类：
+
+```py
+class Computer:
+    def __init__(self, name):
+        self.name = name
+
+    def execute(self):
+        print('{} execute a program'.format(self.name))
+
+
+class MusicPlayer:
+    def __init__(self, name):
+        self.name = name
+
+    def execute(self):
+        print('{} is playing a song'.format(self.name))
+
+
+class Human:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print('{} says hello'.format(self.name))
+```
+
+旧系统是为了 Computer 类设计的，因此客户端只知道如何调用 `execute()` 方法，而不知道 `player()`, `speak()`，并且不允许改变 `MusicPlayer`, `Human` 这两个类。这样就可以使用适配器模式。
+
+```python
+class Adapter:
+    def __init__(self, obj, adapted_methods):
+        self.obj = obj
+        self.__dict__.update(adapted_methods)
+
+    def __repr__(self):
+        return self.obj
+```
+
+如何使用呢？
+```python
+computer = Computer('MacBook')
+music_player = MusicPlayer('iphone')
+human = Human('jobs')
+
+objs = []
+objs.append(Adapter(computer, dict(execute=computer.execute)))
+objs.append(Adapter(music_player, dict(execute=music_player.play)))
+objs.append(Adapter(human, dict(execute=human.speak)))
+
+# 调用方法就统一起来了
+
+for i in objs:
+    i.execute()
+
+```
+
+
+
+
 
 
 ## 代理模式
@@ -194,7 +327,61 @@ subject.notifyAll('notification', k=5)
 
 
 ## 命令模式
-示例代码有点儿复杂，以后整理完再写
+
+命令模式最常见的案例是对操作（撤销、重做）封装成一个对象。
+
+
+下面是重命名、删除、新建操作的命令模式。  
+（为了阅读和测试方便，不真的实现这些操作，而是用print代替）
+```py
+class RenameFile:
+    def __init__(self, path_src, path_dst):
+        self.path_src, self.path_dst = path_src, path_dst
+
+    def do(self):
+        print('rename {} {}'.format(self.path_src, self.path_dst))
+
+    def undo(self):
+        print('rename {} {}'.format(self.path_dst, self.path_src))
+
+
+class DeleteFile:
+    def __init__(self, path):
+        self.path = path
+
+    def do(self):
+        print('mv {} .trash/{}'.format(self.path, self.path))
+
+    def undo(self):
+        print('mv .trach/{} {}'.format(self.path, self.path))
+
+
+class CreateFile:
+    def __init__(self, path):
+        self.path = path
+
+    def do(self):
+        print('mkdir {}'.format(self.path))
+
+    def undo(self):
+        print('rmdir {}'.format(self.path))
+
+
+commands = [CreateFile('file1'), DeleteFile('file1'), CreateFile('file2'), RenameFile('file2', 'file1')]
+
+for cmd in commands:
+    cmd.do()
+
+answer = input('undo all the commands?')
+if answer in 'Yy':
+    for cmd in commands[::-1]:
+        cmd.undo()
+```
+
+命令模式不只是适用于撤销操作。还可以：
+- 组合一连串命令
+- 多级撤销
+- 某个操作失败，则全部回滚
 
 ## 模版方法--封装算法
 
