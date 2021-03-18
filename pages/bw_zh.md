@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 【开源】blind_watermark ![](https://img.shields.io/github/stars/guofei9987/blind_watermark.svg?style=social)
+title: 【开源】blind_watermark
 categories:
 tags:
 keywords:

@@ -74,11 +74,14 @@
 
 
                 {% if category[0] == '开源' %}
+                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_zh.html">【开源】scikit-opt<img src="https://img.shields.io/github/stars/guofei9987/scikit-opt.svg?style=social"></a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_en.html">【open source】scikit-opt![](https://img.shields.io/github/stars/guofei9987/scikit-opt.svg?style=social)</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/bw_zh.html">【开源】blind_watermark<img src="https://img.shields.io/github/stars/guofei9987/blind_watermark.svg?style=social"></a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/bw_en.html">【open source】blind_watermark![](https://img.shields.io/github/stars/guofei9987/blind_watermark.svg?style=social)</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/sql_ol.html">【工具】在线sql</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/text_diff.html">【工具】在线文本比较</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/searcher.html">【工具】清爽搜索</a>
-                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_en.html">【open source】scikit-opt</a>
-                  <a class="list-group-item-lay pjaxlink" href="/pages/sko_zh.html">【开源】scikit-opt</a>
+
                   {% for post in category[1] %}
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                   {% endfor %}
