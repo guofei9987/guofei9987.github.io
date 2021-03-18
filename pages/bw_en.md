@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 【open source】blind_watermark
+title: 【open source】blind_watermark123<img src="https://img.shields.io/github/stars/guofei9987/blind_watermark.svg?style=social">
 categories:
 tags:
 keywords:
