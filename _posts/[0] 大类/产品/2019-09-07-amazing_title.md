@@ -11,7 +11,7 @@ description:
 **如果点击按钮没反应，刷新一次就好了（网站框架的锅，从目录点进来就有这问题，以后有时间再修复）**
 
 
-<script src="http://www.guofei.site/vulgar_language_generator/amazing_title/amazing_title.js"></script>
+<script src="https://www.guofei.site/vulgar_language_generator/amazing_title/amazing_title.js"></script>
 <script>
 function myFunction1() {
     document.getElementById("amazing_tile").innerHTML += amazing_title_1();
