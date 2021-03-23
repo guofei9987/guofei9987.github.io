@@ -396,8 +396,8 @@ with Resource('file1') as res1, Resource('file2') as res2:
 ### `__dict__`
 返回所有属性组成的dict  
 类或对象中的所有成员  
-类：静态字段、方法  
-对象的成员  
+- 类：静态字段，方法（公有的、私有的）  
+- 对象: 普通字段，普通私有字段格式如 `_MyClass__PrivateDynamic`。不包含方法，不包含静态字段（因为它们属于Class）
 
 
 ### `__module__` 和  `__class__`
@@ -416,9 +416,37 @@ with Resource('file1') as res1, Resource('file2') as res2:
 - `__call__`方法的执行是由对象后加括号触发的  
 对象() 或者 类()()
 
+### `func.__code__`
+```python
 
+func.__code__.co_name  # 函数名
+func.__code__.co_argcount  # 函数的参数个数，不包含*args与**kwargs
+func.__code__.co_varnames  # tuple 形式的入参名，包含args，kwargs. ？有闭包时，还包含被闭包的函数名
 
+func.__code__.co_filename  # 函数所在的文件
+func.__code__.co_firstlineno  # 函数第一行在文件中的行数
 
+func.__code__.co_kwonlyargcount  # 函数强制关键字参数个数
+
+func.__code__.co_cellvars  # 闭包专用，外部函数中被内嵌函数调用的参数
+func.__code__.co_freevars  # 闭包专用，内部函数中引用外部函数参数
+
+# 下面这些还没查：
+func.__code__.co_code  # ？似乎是编译后的二进制
+func.__code__.co_consts  # ？似乎是涉及到的变量
+
+func.__code__.co_flags
+func.__code__.co_lnotab
+
+func.__code__.co_names  # ？？
+func.__code__.co_nlocals
+func.__code__.co_stacksize
+```
+
+另外
+```python
+func.__defaults__ # 入参的默认值
+```
 
 
 
