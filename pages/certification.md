@@ -68,6 +68,10 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 |![工信部高级数据分析师](/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg)|![中级经济师](/pictures_for_blog/certification/水证/中级经济师.jpg)|
 
 
+
+红十字会急救证：![红十字会急救证](https://www.guofei.site/pictures_for_blog/certification/健康类/急救证.jpg)
+
+
 ### 第一作者发了3篇论文
 - “Research on the Connection relationship between Private Offering Fund and Share Price Index Futures” (2015) Atlantis Press Journal (ISSN 2352-5398)（ISTP检索）  
 1st author
