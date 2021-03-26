@@ -1,27 +1,82 @@
 改名：多进程&多线程
 
+## 前言
+
+- 多线程。（python 提供了2个多线程接口 `thread` 提供底层接口。`threading`提供高等级接口。）
+    - 一个进程中启动多个线程
+    - 一般来说使用多线程可以达到并行的目的，
+    - 但由于Python中使用了全局解释锁GIL的概念，导致Python中的多线程并不是真并行，而是“交替执行” 。所以 Python 多线程适合IO密集型任务，而不适合计算密集型任务。
+    - 甚至在多核CPU上用多线程执行计算密集任务，由于 GIL 的存在，会导致多核争抢1个GIL，让任务比普通的更慢。
+- 多进程（Python 提供 `mutliprocess` 作为多进程接口。）
+  - 由于Python中GIL的原因，对于计算密集型任务，Python下比较好的并行方式是使用多进程，这样可以非常有效的使用CPU资源。
+  - 同一时间执行的进程数量取决你电脑的CPU核心数。
+
 
 测试函数：
 ```python
 import time
 import datetime
 import os
+from multiprocessing.dummy import Pool as ThreadPool
+from multiprocessing import Pool
+import numpy as np
+
+print(__name__, os.getpid())
 
 
-def func1(name):
+def costly_task(inputs):
+    task_num, task_type = inputs
+    # task_mode can be 'io_costly', 'cpu_costly'
+    ppid = os.getppid()
     pid = os.getpid()
     start_time = datetime.datetime.now().strftime('%S.%f')
-    time.sleep(1)
+    if task_type == 'io_costly':
+        time.sleep(1)
+        task_res = 0
+    else:
+        n = 500000
+        step1 = [np.log(i + 1) for i in range(n)] + [np.power(i, 1.1) for i in range(n)]
+        task_res = sum(step1)
     end_time = datetime.datetime.now().strftime('%S.%f')
-    print('task_name={name}, pid={pid}, start_time={start_time}, end_time={end_time}'.
-          format(name=name, pid=pid, start_time=start_time, end_time=end_time))
-    return name
+    # print(
+    #     'task_num={task_num}, task_type={task_type}, __name__={__name__}, pid={pid}, ppid ={ppid}, start_time={start_time}, end_time={end_time}\n'.
+    #         format(task_num=task_num, task_type=task_type, __name__=__name__, pid=pid, ppid=ppid, start_time=start_time,
+    #                end_time=end_time))
 
 
-func1(1)
+    return task_res
+
+
+if __name__ == '__main__':
+    for task_type in ('io_costly', 'cpu_costly'):
+        start = datetime.datetime.now()
+        list(map(costly_task, [[i, task_type] for i in range(10)]))
+        print(task_type, ', 普通任务', datetime.datetime.now() - start)
+
+        start = datetime.datetime.now()
+        pool = ThreadPool()  # ThreadPool(4), 不指定进程数，则使用全部线程
+        pool.map(costly_task, [[i, task_type] for i in range(10)])  # 返回list，就是结果
+        print(task_type, ', 多线程', datetime.datetime.now() - start)
+
+        start = datetime.datetime.now()
+        pool = Pool()
+        pool.map(costly_task, [[i, task_type] for i in range(10)])  # 返回list，就是结果
+        print(task_type, ', 多进程', datetime.datetime.now() - start)
 ```
+输出：
+>io_costly , 普通任务 0:00:10.077721
+io_costly , 多线程 0:00:03.075839
+io_costly , 多进程 0:00:04.180210
+cpu_costly , 普通任务 0:00:39.668068
+cpu_costly , 多线程 0:00:43.041522
+cpu_costly , 多进程 0:00:25.812865
 
-## 不能并行的实现
+
+输出符合预期。
+
+## 另外
+
+一下实现并不能实现并且，并且耗时差不多（很多博客有误导）
 ```python
 
 a=[func1(i) for i in range(5)]
@@ -35,12 +90,10 @@ for i in range(5):
     c.append(func1(i))
 ```
 
-发现
-- 消耗的时间差不多
-- map并没有实现并行（很多博客有误导）
 
 
-## multiprocessing
+
+### multiprocessing
 multiprocessing 多进程，可以充分利用多核做计算
 
 
