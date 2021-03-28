@@ -1,3 +1,12 @@
+---
+layout: post
+title: 【multiprocessing】多线程&多进程实现并行
+categories:
+tags: Python语法
+keywords:
+description:
+order: 1011
+---
 
 ## 前言
 
@@ -73,6 +82,8 @@ cpu_costly , 多进程 0:00:25.812865
 
 输出符合预期。
 
+（多进程在windows下，如果不加 `if __name__ == '__main__':`，会进入无限递归然后报错，越多较多文章后觉得这个无法解决，考虑用 sys.platform == 'win32' 判断一下转多线程）
+
 ### 代码解释
 ```python
 from multiprocessing.dummy import Pool as ThreadPool
@@ -86,6 +97,7 @@ pool.map(func1, range(5)) # 返回list，就是结果
 pool.imap(func1, range(10)) # 返回 generator
 pool.imap_unordered(func1, range(10)) # 返回generator，并且不要求按顺序
 ```
+
 
 
 显示可用的cpu数量
