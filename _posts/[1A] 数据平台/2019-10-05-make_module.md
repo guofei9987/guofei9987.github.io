@@ -185,6 +185,61 @@ import importlib
 
 importlib.reload(scipy)
 ```
+
+
+
+
+## python 环境
+
+创建环境
+```bash
+conda create -n myenv_py38 python=3.8
+```
+
+激活环境
+```bash
+activate myenv_py38 # for Windows
+source activate myenv_py38 # for Linux & Mac
+
+# 然后可以在此环境中安装包，例如：
+pip install scikit-opt
+
+# 反激活环境
+conda deactivate
+```
+
+
+
+
+删除环境
+```bash
+conda remove --name myenv_py38 --all
+```
+
+显示python路径
+```bash
+whereis python # 只会显示 /usr/bin/python 之类
+
+sys.path # 这个好像显示的比较正确
+```
+
+另外，`pyenv` 也是个强大的 python 版本管理工具。
+
+
+一些概念
+- conda: python虚拟环境管理工具，其中一个功能是安装python包。conda 还可以用来管理其它语言。
+- pip: python的包管理工具，可以用于安装python包。
+- miniconda: conda的压缩包，自带了一个名为base的虚拟环境，这个虚拟环境里只安装了python和几个必要的库。
+- anaconda：conda的压缩包。自带了一个名为base的虚拟环境，这个虚拟环境里安装了很多和数据处理有关的python包。
+
+
+
+也可以用 docker：
+- anaconda `docker run -it continuumio/anaconda3 /bin/bash` https://hub.docker.com/r/continuumio/anaconda3
+- miniconda `docker run -it continuumio/miniconda3 /bin/bash` https://hub.docker.com/r/continuumio/miniconda3
+
+
+
 ## 参考资料
 
 
