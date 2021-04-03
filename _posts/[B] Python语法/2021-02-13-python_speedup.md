@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【multiprocessing】多线程&多进程实现并行
+title: 【加速】multiprocessing多线程、多进程、并行、numba
 categories:
 tags: Python语法
 keywords:
@@ -318,9 +318,9 @@ print('numba 加速，nopython=True', datetime.datetime.now() - start_time)
 ```
 
 结果：  
->普通： 0:00:30.612512
-numpy 计算： 0:00:00.665852
-numba 加速 0:00:00.917495
+>普通： 0:00:30.612512  
+numpy 计算： 0:00:00.665852  
+numba 加速 0:00:00.917495  
 numba 加速，nopython=True 0:00:00.798196
 
 
@@ -328,6 +328,69 @@ numba 快了几十倍。任务正好是 numpy 擅长的，所以 numpy 最快，
 
 官方建议使用 `nopython=True`，这样的话，遇到不能加速的函数会直接报错，让你知道。
 
+
+其他配置
+```python
+
+@jit(nopython=True,parallel=True,fastmath=True)
+@numba.jit（signature = None,nopython = False,nogil = False,cache = False,forceobj = False,parallel = False,error_model ='python',fastmath = False，locals = {} ）
+#
+#
+#
+# fastmath=True，关闭一些严格的浮点运算标准，可以使速度提升1.8倍
+```
+- signature 类似这种形式 (numba.int32,numba.double)，用于提前定义输入参数的数据类型，不过对于提速没啥用。和cython不一样，cython的静态数据类型能够提速非常多
+- nopython=True，就是不用 python 解释器参与，略微提升效率。建议开启，因为这样的话，遇到不能加速的函数会直接报错，让你知道。
+- nogil = False，用于去除python的gil锁，只有当Numba可以在nopython模式下编译函数时才会释放GIL，否则将打印编译警告。
+- cache=False 是否缓存编译后的文件，缓存后的文件保存在 `__pycache__` 或者指定的地方例如 `$HOME/.cache/numba` 。如果不缓存则每一次调用都需要重新编译，编译耗时比较长的程序建议设置cache为True，并非所有函数都可以缓存，无法缓存函数时，会发出警告。
+- fastmath=False 前面也介绍过了，如果为true，则fastmath允许使用LLVM文档中描述的其他不安全的浮点变换。
+- parallel=True，实测打开并行可以在已经提速的基础上把速度提高到十万倍。
+- error_model 控制除以零行为。将它设置为'python'会导致被零除以引发像CPython这样的异常。将其设置为'numpy'会导致被零除以将结果设置为+/- inf或nan。
+
+
+
+
+
+
+### vectorize
+
+```python
+
+# 全局设置多线程
+# numba.config.NUMBA_NUM_THREADS=8
+
+from numba import vectorize
+@vectorize('float64(float64)',target='parallel')
+def my_func4(x):
+    res = 0
+    for x in range(n):
+        res = 0
+        for i in range(x):
+            res += i
+    return res
+
+
+# 如果入参是 array：
+@guvectorize('float64[:,:], float64[:,:], float64[:,:]',
+            '(m,n),(n,p)->(m,p)')
+def matmul(A, B, C):
+    m, n = A.shape
+    n, p = B.shape
+    for i in range(m):
+        for j in range(p):
+            C[i, j] = 0
+            for k in range(n):
+                C[i, j] += A[i, k] * B[k, j]
+
+a = numpy.random.random((500, 500))
+
+out = matmul(a, a, numpy.zeros_like(a))
+```
+
+另外，vectorize 和 jit 连用反而会降低速度（所以不建议）
+
+
+### 一些测试结果
 
 一些辅助测试的方法:
 ```python
@@ -338,3 +401,23 @@ sum_array4.inspect_types()
 import cProfile
 cProfile.run('sum_array4(150)')
 ```
+
+两层循环：
+- 只jit内部循环，加速了500倍
+- jit两层循环，加速了1400倍
+- vectorize，竟然加速了 百万倍？？？（另外，别人的博客测试结果比 numpy 的 ufunc 提升 30 倍）
+- 如果开启parallel=True，并行化，JIT 也能加速到百万倍
+
+numba性能的一些技巧
+- JIT 对循环的提升非常强。尽量把循环写在 numba里
+
+## 参考文献
+
+numba从入门到精通系列：
+- https://zhuanlan.zhihu.com/p/68742702
+- https://zhuanlan.zhihu.com/p/68743922
+- https://zhuanlan.zhihu.com/p/68744646
+- https://zhuanlan.zhihu.com/p/68805601
+- https://zhuanlan.zhihu.com/p/68846159
+- https://zhuanlan.zhihu.com/p/68851264
+- https://zhuanlan.zhihu.com/p/68852771
