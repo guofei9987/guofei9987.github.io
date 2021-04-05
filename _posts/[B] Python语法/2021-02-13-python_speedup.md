@@ -191,6 +191,47 @@ mpi4py，基于MPI-1/MPI-2
 参见[subprocess](https://www.guofei.site/2018/06/05/sysos.html#subprocess)
 
 
+## lru_cache
+
+如果某一个函数多次执行某一类输入，例如，用递归计算斐波那契数列f(5)时，会频繁计算 f(2)，那么我们需要一个机制，可以把之前的计算缓存下来，下次优先去找缓存里面的结果，性能就得到优化。
+
+实现方法很多:
+- 最简单的可以做一个 `dict`
+- 使用 decorator
+- 使用 functools.lru_cache，这个最优雅
+
+
+```python
+import functools
+
+
+@functools.lru_cache(maxsize=None, typed=None)
+def add(x, y):
+    print('计算 {x} + {y}'.format(x=x, y=y))
+    return x + y
+
+
+print(add(1, 2))
+print(add(1, 2))
+print(add(3, 5))
+```
+
+打印结果：
+```
+计算 1 + 2
+3
+3
+计算 3 + 5
+8
+```
+
+看到，第二次调用 `add(1,2)`，没有真正执行函数。
+
+参数说明：
+- `maxsize`: cache 容量，`None` 表示无限大
+- `typed`: 如果为 True，会按照type分类，例如， `f(3.0)` 和 `f(3)` 会被当成不同的调用
+
+
 ## numba 专题
 
 numba为什么能加速？
