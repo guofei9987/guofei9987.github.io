@@ -117,6 +117,12 @@ len(x)
 x[::2]
 for i in x
 exp in x#返回逻辑值，判断exp是否在x中
+
+# 取出 list 中的元素
+lst = [1, 2, 3, 4, 5]
+a, *b, c = lst
+*a, b = lst
+a, *b = lst
 ```
 
 ### 切片
