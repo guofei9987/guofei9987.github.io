@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【面向对象】类的特殊成员
 categories:
-tags: Python设计模式
+tags: 设计模式
 keywords:
 description:
 order: 1003

@@ -2,7 +2,7 @@
 layout: post
 title: 【decorator】装饰器
 categories:
-tags: Python设计模式
+tags: 设计模式
 keywords:
 description:
 order: 1004
@@ -19,9 +19,10 @@ def logger(func):
         print('我准备开始执行：{} 函数了:'.format(func.__name__))
 
         # 真正执行的是这行。
-        func(*args, **kwargs)
+        res = func(*args, **kwargs)
 
         print('我执行完啦。')
+        return res
 
     return wrapper
 ```
@@ -31,7 +32,7 @@ def logger(func):
 @logger
 def add(x, y):
     print('{} + {} = {}'.format(x, y, x + y))
-
+    return x + y
 
 add(1, 2)
 ```

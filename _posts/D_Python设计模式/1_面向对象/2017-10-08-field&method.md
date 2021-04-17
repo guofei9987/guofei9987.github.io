@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【面向对象】字段&方法
 categories:
-tags: Python设计模式
+tags: 设计模式
 keywords:
 description:
 order: 1002
@@ -129,9 +129,9 @@ f = Foo('abc')
 # 调用普通方法
 f.ord_func()
 
-# 调用类方法，这个案例中，print出来的都一样，都是 Foo 类
-Foo.class_func()
-f.class_func()
+# 调用类方法
+Foo.class_func() # 打印了 <Foo>
+f.class_func() # 打印了 <Foo>
 
 # 调用静态方法
 Foo.static_func()

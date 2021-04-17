@@ -1,3 +1,15 @@
+---
+layout: post
+title: 重构
+categories:
+tags: 设计模式
+keywords:
+description:
+order: 1040
+---
+
+
+## 前言
 
 面对重构的两难
 - 面对多年的大型遗留系统，越来越多的需求变更让维护成本越来越高，面对越来越多的竞争，有被市场淘汰的风险
