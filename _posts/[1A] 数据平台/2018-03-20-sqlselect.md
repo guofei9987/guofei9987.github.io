@@ -165,18 +165,19 @@ not in(select...)
 
 ## 函数
 ### CASE
-#### 简单Case
 
-格式说明    
+
+简单Case
+
 ```sql
+-- 公式：
 case 列名
     when   条件值1   then  选择项1
     when   条件值2    then  选项2.......
     else     默认值      
 end
-```
-eg:
-```sql
+
+-- 例子：
 select
     case 　　job_level
         when    '1'     then    'rich'
@@ -187,19 +188,19 @@ select
 from table_employee
 ```
 
-#### 复杂Case
+复杂Case
 
-格式说明    
 ```sql
+-- 公式：
 case  
     when  条件值1   then  选择项1
     when  条件值2   then  选择项2
     ...
     else 选择项n
 end
-```
-eg:
-```sql
+
+
+-- 例子：
 case
     when   job_level = '1'    then e_wage*1.97
     when   job_level = '2'   then e_wage*1.07
@@ -260,15 +261,15 @@ least()
 
 ```sql
 length,lcase, ucase, ltrim , rtrim  
-Concat(arg1,arg2):连接两个字符串arg1和arg2。  
-insert(arg1,pos,size,arg2):返回一个，将arg1从pos处删除size个字符，将arg2插入该位置。  
-left(arg,length):返回arg最左边的length个字符串。  
-locate(arg1,arg2,<pos>;):在arg2中查找arg1第一次出现的位置，指定pos，则从arg2的pos处开始找arg1第一次出现的位置。  
-posstr(arg1,arg2):返回arg2第一次在arg1中出现的位置。  
-repeat(arg1 ,num_times):返回arg1被重复num_times次的字符串。  
-replace(arg1,arg2,arg3):将在arg1中的所有arg2替换成arg3。  
-right(arg,length):返回一个有arg左边length个字节组成的字符串。  
-space(arg):返回一个包含arg个空格的字符串。  
+CONCAT(arg1,arg2) -- 连接两个字符串arg1和arg2。  
+insert(arg1,pos,size,arg2) -- 返回一个，将arg1从pos处删除size个字符，将arg2插入该位置。  
+left(arg,length) -- 返回arg最左边的length个字符串。  
+right(arg,length) -- 返回一个有arg右边length个字节组成的字符串。
+locate(arg1,arg2,<pos>;) -- 在arg2中查找arg1第一次出现的位置；如果指定pos，则从arg2的pos处开始查找  
+posstr(arg1,arg2) -- 返回arg2第一次在arg1中出现的位置。  
+repeat(arg1 ,num_times) -- 返回arg1被重复num_times次的字符串。  
+replace(arg1,arg2,arg3) -- 将在arg1中的所有arg2替换成arg3。  
+space(arg) -- 返回一个包含arg个空格的字符串。  
 substr(arg1,pos,<length>;):返回arg1中pos位置开始的length个字符，如果没指定length，则返回剩余的字符。
 initcap(col) -- 每个单词的首字母大写（一个字符串中可以有多个单词）
 ```
@@ -279,17 +280,16 @@ Abs
 
 ln, log10, log2, log(base,arg)
 exp(d), power(a,b)
+Power(arg1,arg2) -- 返回arg1的arg2次方。
 
 Mod(arg1,arg2) --返回arg1除以arg2的余数，符号与arg1相同。
-Rand():返回1到1之间的随机数。
-Power(arg1,arg2):返回arg1的arg2次方。
+Round(arg1,arg2) -- 四舍五入截断处理，arg2是位数，如果arg2为负，则对小数点前的数做四舍五入处理。
+Ceil(arg) -- 返回大于或等于arg的最小整数。
+Floor(arg) -- 返回小于或等于参数的最小整数。
 
-Round(arg1,arg2):四舍五入截断处理，arg2是位数，如果arg2为负，则对小数点前的数做四舍五入处理。
-Ceil(arg):返回大于或等于arg的最小整数。
-Floor(arg):返回小于或等于参数的最小整数。
-
-Sign(arg):返回arg的符号指示符。-1,0,1表示。
-truncate(arg1,arg2):截断arg1，arg2是位数，如果arg2是负数，则保留arg1小数点前的arg2位。
+Rand() -- 返回1到1之间的随机数。
+Sign(arg) -- 返回arg的符号指示符。-1,0,1表示。
+truncate(arg1,arg2) -- 截断arg1，arg2是位数，如果arg2是负数，则保留arg1小数点前的arg2位。
 
 e(),pi() 常数e和常数pi
 
@@ -313,7 +313,9 @@ A^B 按位异或
 ```
 
 ### 比较运算符
-输出逻辑结果
+
+输出bool结果
+
 ```
 =
 A<=>B
@@ -374,9 +376,8 @@ WHERE dt = '2018-02-16'
 GROUP BY id HAVING COUNT(id) > 2;
 ```
 
-*where group by 顺序不能反了，不然报错*  
 
-## 分析函数
+## 窗口函数
 
 一般语法是：
 ```sql
@@ -445,7 +446,6 @@ from
 df
 ''').show()
 ```
-（看起来 order by 的应用场景应该比较少）
 
 
 **COUNT(*)** 4种都支持，但不支持 COUNT(distinct * )  
@@ -481,7 +481,7 @@ stddec_pop=sqrt( var_pop() )*
 
 ## 表生成函数
 
-单行多列->但行单列（横向拼接）
+单行多列->单行单列（横向拼接）
 ```sql
 -- 拼接行：
 CONCAT(col1,col2) -- 拼接每一个字段，按行
@@ -500,7 +500,7 @@ CONCAT_WS(',',COLLECT_LIST(name))
 CONCAT_WS(',',COLLECT_LIST(cast (name as string))) -- 非 string 的必须要转格式
 ```
 
-单行单列->多行单列
+单行单列->多行单列（纵向展开）
 ```sql
 SELECT explode(split('a,b,c,d,e',','))
 ```
@@ -522,7 +522,7 @@ xxx | 1 | b
 xxx | 2 | c
 
 
-## 特殊数据结构处理
+## 特殊数据结构
 ### json
 数据准备
 

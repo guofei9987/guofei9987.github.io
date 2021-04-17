@@ -344,6 +344,21 @@ groupdict() # 返回命名分组信息
 (expr){m,} # m次以上
 (expr){n} # n次
 ```
+6. **?** 比较`(X)`和`(?:X)`，前者是捕获分组，后者不捕获，在 groups 中有体现。
+```python
+re.search('(?:a)(b)(c)', "abcdef").groups() # 返回捕获的 ('b', 'c')
+re.search('(a)(b)(c)', "abcdef").groups() # 返回捕获的  ('a', 'b', 'c')
+# 扩展阅读：
+'exp1(?=exp2)' # 前瞻：捕获exp2前面的exp1
+'(?<=exp2)exp1' # 后顾：捕获exp2后面的exp1
+'exp1(?!exp2)' # 负前瞻：捕获后面不是exp2的exp1
+'(?<!exp2)exp1' # 负后顾：捕获前面不是exp2的exp1
+re.search('(a)(?=b)', "abcdef").groups() # 返回  ('a',)
+re.search('(?<=a)(b)', "abcdef").groups() # 返回 ('b',)
+re.search('(\d+)(?!bc)', '0bc3bb').groups() # 返回 ('3',)，而不匹配 0
+re.search('(?<!0)([a-zA-Z]+)', '0bc3bb').groups() # 返回 ('c',)。解释：第一个符合的序列是 'bc'，捕获c
+```
+
 
 
 ## 参考文献
