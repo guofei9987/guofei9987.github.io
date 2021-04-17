@@ -259,7 +259,32 @@ func.__class__ is MethodType
 ```
 
 
+## Linux 打印
 
+```python
+import sys
+
+def clear_traces(): # 清除一行
+    sys.__stdout__.write('\033[2K\r')
+
+
+def hide_cursor(): # 隐藏光标
+    sys.__stdout__.write('\033[?25l')
+
+
+def show_cursor(): # 显示光标
+    sys.__stdout__.write('\033[?25h')
+
+
+def go_up(n=20): # 光标向上移动 n 行
+    up_command = '\033[{}A'.format(n)
+    print(up_command)
+
+
+def flush():
+    sys.__stdout__.flush()
+
+```
 
 
 

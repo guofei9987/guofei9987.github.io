@@ -480,26 +480,32 @@ stddec_pop=sqrt( var_pop() )*
 [分析函数参考资料](https://blog.csdn.net/weixin_43274226/article/details/83304836)
 
 ## 表生成函数
+
+单行多列->但行单列（横向拼接）
 ```sql
 -- 拼接行：
-concat(col1,col2) -- 拼接每一个字段，按行
-concat_ws(",",col1,col2) -- 拼接,并且中间用逗号分隔
+CONCAT(col1,col2) -- 拼接每一个字段，按行
+CONCAT_WS(",",col1,col2) -- 拼接,并且中间用逗号分隔
+```
 
+多行->单行（纵向拼接）
+```sql
 -- 把列拼接到一个单元格：（要与group by 配合使用）
 -- 注意：新字段是 array 对象
 collect_list
 collect_set
 
 -- 综合用法：(列拼接成一个单元格，并转为string)
-concat_ws(',',collect_list(cast (name as string)))
+CONCAT_WS(',',COLLECT_LIST(name))
+CONCAT_WS(',',COLLECT_LIST(cast (name as string))) -- 非 string 的必须要转格式
 ```
-逆操作（行转列）
+
+单行单列->多行单列
 ```sql
 SELECT explode(split('a,b,c,d,e',','))
 ```
 
-进阶的一行转多行：
-
+（进阶）单行单列->多行多列
 ```sql
 SELECT t1.id,t2.serialno,t2.arr
 FROM (SELECT 'xxx' as id,array('a','b','c') as arr) t1
@@ -515,6 +521,62 @@ xxx | 0 | a
 xxx | 1 | b
 xxx | 2 | c
 
+
+## 特殊数据结构处理
+### json
+数据准备
+
+```sql
+CREATE TABLE tmp_example_json AS
+SELECT id,json_str FROM
+(SELECT '0' AS id,'[{"name":"王二狗","sex":"男","age":"25"},{"name":"李狗嗨","sex":"男","age":"47"}]' AS json_str)
+UNION
+(SELECT '1' AS id,'[{"name":"王三狗","sex":"女","age":"21"}]' AS json_str)
+```
+
+提取指定的值
+```sql
+SELECT id
+,GET_JSON_OBJECT(json_str,'$.[0]') -- 提取第0个
+,GET_JSON_OBJECT(json_str,'$.[0].name') -- 提取第0个的name属性
+FROM tmp_example_json;
+```
+另外，不带中括号的json格式也可以用：
+```
+SELECT GET_JSON_OBJECT('{"name":"李狗嗨","sex":"男","age":"47"}','$.name')
+```
+
+
+
+
+json_tuple：外围没有中括号，且需要在 LATERAL VIEW 中使用：
+```sql
+SELECT JSON_TUPLE('{"name":"王二狗","sex":"女","age":"21"}','name','age') AS (name,age)
+```
+
+遍历提取。预先不知道 json array 长度，并且提取出所有name，需要手动分割，然后提取。（暂时没找到更优雅的方法）
+
+```sql
+SELECT  id
+        ,GET_JSON_OBJECT(json_str_split,'$.name') AS name
+FROM    (
+            SELECT  t1.id
+                    ,t2.json_str_split
+            FROM    (
+                        SELECT  id
+                                ,
+                                    REGEXP_REPLACE(
+                                        REGEXP_EXTRACT(json_str,'^\\[(.+)\\]$',1)    --把前后中括号去掉
+                                        ,'\}\,\{\"name"'
+                                        ,'\}\|\|\{\"name\"'    --把两个name之间的逗号换成||
+                                    )
+                                 AS json_str_tmp
+                        FROM    tmp_example_json
+                    ) t1
+            LATERAL VIEW EXPLODE(SPLIT(t1.json_str_tmp,'\\|\\|')) t2 AS json_str_split
+        )
+;
+```
 
 
 ## 参考文献
