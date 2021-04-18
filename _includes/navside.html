@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-2 col-xs-2 aside1">
       <br>
-      <a class="pjaxlink" href="{{ site.url }}" target='GitHub'>
+      <a class="pjaxlink" href="/" target='GitHub'>
         <img src="{{ site.favicon }}" class="img-ronuded avatar" style="border-width:0px; border-color:#000">
       </a>
       <table class="table table-condensed">
@@ -40,9 +40,6 @@
           <a class="pjaxlink" href="/pages/reading.html">读书</a>
         </li>
         <li>
-          <a class="pjaxlink" href="/2015/01/15/matlab.html">Matlab</a>
-        </li>
-        <li>
           <a class="pjaxlink" href="/pages/about.html">{{ site.locals.about }}</a>
         </li>
       </ul>
@@ -70,7 +67,11 @@
                 {% endif %}
 
 
-
+                {% if category[0] == '语言' %}
+                  {% for post in category[1] %}
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                  {% endfor %}
+                {% endif %}
 
 
                 {% if category[0] == '开源' %}
@@ -94,7 +95,7 @@
             </div>
           {% endfor %}
 
-          <!-- 下面这个是“模型”下面的条目 -->
+          <!-- 下面这个是“算法”下面的条目 -->
           <div class="tab-pane" id="tags">
             <div class="panel-group" id="accordion">
               {% assign sorted_tags = site.tags | sort %}
