@@ -117,7 +117,23 @@ print 3 << 2 + 1
 10. 优先级排行榜第10名——逻辑的not、and、or
 11. 优先级排行榜第11名——lambda表达式
 
+## math
 
+```python
+import math
+math.pi
+math.e
+math.ceil(x); math.floor(x)   # int也是向下取整
+math.pow(x,y); pow(x,y)
+math.log(x); math.log10(x)
+math.sqrt(x)
+math.exp(x)
+math.sin(x); math.cos(); math.tan()
+math.asin(); math.acos(); math.atan()
+math.acos(x); math.asinh()
+degrees(x)  # 弧度转角度
+radians(x)  # 角度转弧度
+```
 
 ## 参考文献
 https://docs.python.org/3/

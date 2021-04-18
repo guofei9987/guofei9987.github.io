@@ -1,0 +1,200 @@
+```python
+import socket
+
+
+def handle_request(client):
+    buf = client.recv(1024)  # 服务端接收数据，也是阻塞的。
+    # 服务端返回数据:
+    client.send("HTTP/1.1 200 OK\r\n\r\n".encode('utf-8'))
+    client.send("Hello, world!".encode('utf-8'))
+
+
+def main():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind(('localhost', 8080))  # 监听本地8080端口
+    sock.listen(5)  # 最多接受的链接数
+
+    while True:
+        connection, address = sock.accept()  # 阻塞，如果没有请求，就停在这。connection 是客户端的 socket 对象。adress 是 tuple(客户端的ip, 客户端的端口号)
+        handle_request(connection)
+        connection.close()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+然后浏览器打开 `localhost:8080` 看到效果
+
+## 服务端-客户端
+
+下面的客户端和服务端都是 python 程序：
+
+服务端先运行：
+```python
+# serve.py
+import socket
+
+sock = socket.socket()
+sock.bind(('127.0.0.1', 9999))
+sock.listen(5)
+
+conn, addr = sock.accept()
+conn.send('Hello, guofei'.encode('utf-8'))
+conn.close()
+```
+
+然后运行客户端：
+```python
+# client.py
+import socket
+
+client = socket.socket()
+client.connect(('127.0.0.1', 9999))
+
+data = client.recv(1024)
+print(data)
+```
+
+以上实现一个最简单的，从服务端到客户端发送信息的逻辑。
+
+按照上面的案例，试试写个双向交互的程序：
+
+```python
+# serve.py
+import socket
+
+sock = socket.socket()
+sock.bind(('127.0.0.1', 9999))
+sock.listen(5)
+
+while True:
+    conn, addr = sock.accept()
+
+    conn.send('Hello, guofei'.encode('utf-8'))
+    while True:
+        msg = conn.recv(1024).decode('utf-8')
+        msg = msg.replace('吗', '').replace('?', '!').replace('？', '！')
+        conn.send(msg.encode('utf-8'))
+    conn.close()
+
+
+# client.py
+import socket
+
+client = socket.socket()
+client.connect(('127.0.0.1', 9999))
+
+while True:
+    data = client.recv(1024)
+    print(data.decode('utf-8'))
+    inp = input('client>')
+    client.send(inp.encode('utf-8'))
+
+    if inp == 'exit':
+        break
+```
+
+
+>Hello, guofei
+client>在吗？
+在！
+client>你好
+你好
+client>能听懂汉语吗？
+能听懂汉语！
+client>真的吗？
+真的！
+client>exit
+
+
+一些方法：
+
+```python
+sk.bind(address) # 将套接字绑定到地址。address地址的格式取决于地址族。在AF_INET下，以元组（host,port）的形式表示地址。
+
+sk.listen(backlog) # 开始监听传入连接。backlog指定在拒绝连接之前，操作系统可以挂起的最大连接数量。该值至少为1，大部分应用程序设为5就可以了。
+
+conn, address = sk.accept() # 接受连接并返回（conn,address）,其中conn是新的套接字对象，可以用来接收和发送数据。address是连接客户端的地址。接收TCP 客户的连接（阻塞式）等待连接的到来
+
+sk.connect(address) # 连接到address处的套接字。一般，address的格式为元组（hostname,port）,如果连接出错，返回socket.error错误。
+sk.connect_ex(address) # 同上，只不过会有返回值，连接成功时返回 0 ，连接失败时候返回编码，例如：10061
+
+sk.close() # 关闭套接字
+
+sk.recv(bufsize[,flag]) # 接受套接字的数据。bufsize指定要接收的最大数据量。flag提供有关消息的其他信息，通常可以忽略。
+sk.recvfrom(bufsize[.flag]) # 与recv()类似，但返回值是（data,address）。其中data是包含接收数据的字符串，address是发送数据的套接字地址。
+
+sk.send(string[,flag]) # 将string中的数据发送到连接的套接字。返回值是要发送的字节数量，该数量可能小于string的字节大小。
+sk.sendall(string[,flag]) # 将string中的数据发送到连接的套接字，但在返回之前会尝试发送所有数据。成功返回None，失败则抛出异常。
+sk.sendto(string[,flag],address) # 将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。该函数主要用于UDP协议。
+
+sk.settimeout(timeout) # 设置套接字操作的超时期，timeout是一个浮点数，单位是秒。值为None表示没有超时期。一般，超时期应该在刚创建套接字时设置，因为它们可能用于连接的操作（如connect()）
+
+sk.getpeername() # 返回连接套接字的远程地址。返回值通常是元组（ipaddr,port）。
+
+sk.getsockname() # 返回套接字自己的地址。通常是一个元组(ipaddr,port)
+
+sk.fileno() # 套接字的文件描述符
+```
+
+## socketserver
+
+socketserver 基于 socket 实现了异步多线程。
+
+```python
+# server.py
+import socketserver
+
+
+class MyServer(socketserver.BaseRequestHandler):
+
+    def setup(self) -> None:
+        pass
+
+    def handle(self) -> None:
+        print(self.request)  # 客户端对象
+        print(self.client_address)  # 客户端ip地址和端口
+        print(self.server)  # 服务端对象
+
+        self.request.send('Hello, guofei'.encode('utf-8'))
+        while True:
+            msg = self.request.recv(1024).decode('utf-8')
+            if msg == 'exit':
+                self.request.close()
+                break
+            msg = msg.replace('吗', '').replace('?', '!').replace('？', '！')
+            self.request.send(msg.encode('utf-8'))
+
+    def finish(self) -> None:
+        pass
+
+
+if __name__ == '__main__':
+    server = socketserver.ThreadingTCPServer(('127.0.0.1', 9999), MyServer)
+    server.serve_forever()
+```
+
+客户端不变：
+```python
+import socket
+
+client = socket.socket()
+client.connect(('127.0.0.1', 9999))
+
+while True:
+    data = client.recv(1024)
+    print(data.decode('utf-8'))
+    inp = input('client>')
+    client.send(inp.encode('utf-8'))
+
+    if inp == 'exit':
+        break
+```
+
+
+
+
+## 参考资料
+
+https://www.cnblogs.com/wupeiqi/articles/4198124.html

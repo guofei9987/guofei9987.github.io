@@ -70,9 +70,12 @@ a = A()
 a.bar()
 ```
 
-### 继承中的 `__init__` 方法
-子类继承父类时，会覆写父类的方法，也包括 `__init__` 方法。有时候不想要这种效果，想让父类也执行创建，有两种方法解决。
-- 未绑定的父类方法
+### 引用父类方法
+子类继承父类时，会覆写父类的方法，有时候还想调用父类的方法（例如，使用 `__init__` 方法时，想让父类的 `__init__` 方法先运行一次），有两种方法解决：
+
+
+
+- 引用指定的父类方法
 ```py
 import random
 import scipy.stats as stats
@@ -95,15 +98,16 @@ shark.move()
 ```py
 import random
 import scipy.stats as stats
-class Fish:
-    def __init__(self):
+class Fish(object):
+    def __init__(self,name='fish'):
+        self.name=name
         self.position = stats.randint(1, 10).rvs(size=(2,))
     def move(self):
         self.position[0] -= 1
         print('move to {position}'.format(position=self.position))
 class Shark(Fish):
     def __init__(self):
-        super().__init__(self) # super方法，好处是不用一一去找父类的名称，改继承关系很方便
+        super().__init__(name='shark')  # super方法，好处是不用一一去找父类的名称，改继承关系很方便
         self.ishungry = False
 shark = Shark()
 shark.move()

@@ -1,3 +1,13 @@
+---
+layout: post
+title: 【Python】异常和错误
+categories:
+tags: Python语法
+keywords:
+description:
+order: 1011
+---
+
 ## assert
 
 ```python
@@ -13,6 +23,65 @@ warnings.warn('It is deprecated')
 ```
 
 ## error
+
+
+```python
+# 简单写法
+try:
+    import aaaaaaaa
+except ImportError:
+    print('import error')
+
+
+# 同时 catch 多种错误
+try:
+    num = 1
+    num.aaaa
+except (ImportError, AttributeError):
+    print('import error')
+
+# 分别 catch 多种错误
+try:
+    import aaaaaaaa
+    print('上一行出错，就不往下执行了')
+except ImportError:
+    print('import error')
+except AttributeError:
+    print('attr error')
+except Exception:
+    print('other error')
+else:
+    print('no error')
+finally:
+    print('无论是否异常都会执行')
+```
+
+
+如何自定义异常类型：
+```python
+class MyException(Exception):
+    def __init__(self, error):
+        self.error = error  # print 时显示的信息
+        self.msg = '自定义字段'
+
+    def myfunc(self):
+        print('可以定义一个方法，来显示信息:', self.msg)
+        return '自定义方法也可以return'
+
+
+# 使用：
+try:
+    raise MyException('错误')
+except MyException as e:
+    print(e)
+    print(e.msg)
+    print(e.myfunc())
+```
+
+为何需要异常：
+- 永远不要让用户看到错误
+- 有时需要在执行到某个阶段后，跳到 exception
+
 
 | 异常名称                      | 描述                                  |
 |---------------------------|-------------------------------------|
