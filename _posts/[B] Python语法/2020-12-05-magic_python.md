@@ -286,7 +286,57 @@ def flush():
 
 ```
 
+## 一些基础知识
 
+内置函数
+```python
+help()
+dir()
+vars() # obj.__dict__
+type()
+id()
+```
+
+内置函数
+```python
+abs(-9)
+bool(-1) # True
+divmod(9,4)
+max(1,2,3)
+max([1,2,3])
+min(1,2,3)
+sum(1,2,3)
+pow(2,10)
+all([1,2,3,0])
+any([1,0,0,0])
+```
+
+
+反射
+```python
+tmp = 'numpy'
+tmp = 'math'
+
+model = __import__(tmp)
+print(model.sin)
+```
+
+反射2
+```python
+module_name = 'numpy'
+func_name = 'sin'
+module = __import__('numpy')
+func = getattr(module, func_name)
+```
+
+作为对比，还有
+```python
+eval('8*8')
+
+import ast
+
+ast.literal_eval('(8,8)')
+```
 
 
 ## 参考资料

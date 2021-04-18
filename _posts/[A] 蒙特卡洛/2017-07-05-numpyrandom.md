@@ -28,11 +28,13 @@ random.sample(all_papers,k=2)
 ----------------------------------------
 
 ## 随机种子
-numpy.random.seed(seed=None)
+```
+np.random.seed(seed=None)
+```
 ## shuffle&permutation重新洗牌
 ```python
-np.random.shuffle(arr)#直接改arr，返回none
-np.random.permutation(arr)#不改arr，返回重新洗牌后的
+np.random.shuffle(arr) # 直接改arr，返回none
+np.random.permutation(arr) # 不改arr，返回重新洗牌后的
 ```
 
 多维数组：只shuffle第0维
@@ -70,6 +72,17 @@ chisquare
 gamma
 #Gamma分布
 
+
+```
+
+## random
+
+```python
+import random
+
+random.random() # 0-1 之间的自然数
+random.randint(1, 2) # 整数，含头含尾
+random.randrange(start=1, stop=10, step=2) # 含头不含尾
 
 ```
 

@@ -448,6 +448,24 @@ func.__code__.co_stacksize
 func.__defaults__ # 入参的默认值
 ```
 
+## 与包相关
+
+```python
+# filename.py
+
+print(__name__)
+print(__file__) # 文件所在路径
+print(__doc__) # 文件的注释
+```
+
+以上几个也可以作为调包时使用，例如：
+```python
+import filename
+
+filename.__name__
+filename.__file__
+filename.__doc__
+```
 
 
 参考文献：  

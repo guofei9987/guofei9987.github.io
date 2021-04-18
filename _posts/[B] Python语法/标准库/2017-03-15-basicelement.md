@@ -205,14 +205,15 @@ range(start, stop, step)
 
 ### 创建
 ```python
-p={"key1":"value1","key2":"value2"} #构造方法1
+# 构造方法1:
+d={"key1":"value1","key2":"value2"}
 
-#构造方法2：
+# 构造方法2：
 d = dict()
 d = dict(key1=value1, key2=value2) # key的名字不用是字符串
 d = dict([('name','tom'), ('age',22)])
 
-#构造方法3：
+# 构造方法3：
 keys = ['name','age']
 values = ['tom', 22]
 d = dict(zip(keys,values))
@@ -221,13 +222,19 @@ d = dict(zip(keys,values))
 ### 修改
 
 ```python
-d["key3"]=5 #新增一对key-value，如果有key那么是修改
-d.update(dict) #同样，新增key-value，如果key已经存在则修改
+d["key3"] = 5 # 新增一对key-value，如果有key那么是修改
+d.update(<dict>) # 新增key-value，如果key已经存在则修改
 
-del(d["key3"]) #删除一对key-value
+del(d["key3"]) # 删除一对key-value
 d.clear() #清空dict
-d.pop('key1') #返回key1对应的value，并且从d中删除key1。不存在则报错
-#d.pop('key1','not exist') #不存在则返回'not exist', 而不是报错
+d.pop('key1') # 返回key1对应的value，并且从d中删除key1。不存在则报错
+d.pop('key1','not exist') # 不存在则返回'not exist', 而不是报错
+
+d.popitem() # 返回一对 key-value，并将其从字典移除
+
+d.clear() # 清除字典，返回 None
+
+
 ```
 
 ### 遍历
@@ -240,17 +247,16 @@ for k in my_dict.items():print(k) #k是tuple,里面放着一对key-value;my_dict
 for key,value in my_dict.items():print(key,value)
 ```
 
-### 方法
+### 查询
 ```py
-<dict>.keys() #返回所有key
-<dict>.values() #返回所有value
-<dict>.items() #返回key-value
-<dict>.clear() #清除字典，返回none
-<dict>.get(key) #key对应的value，不存在返回None，而不是报错
+<dict>.keys() # 返回所有key
+<dict>.values() # 返回所有value
+<dict>.items() # 返回key-value
+<dict>.get(key) # key对应的value，不存在返回 None，而不是报错
 <dict>.get(key,val) # 不存在则返回 val，而不是报错
-<dict>.pop(key) #返回key对应的value，并从dict中删除
-<dict>.update(<dict>) #返回none，两个dict加一起
 ```
+
+
 ### 取值
 
 ```python

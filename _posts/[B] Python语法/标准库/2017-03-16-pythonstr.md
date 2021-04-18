@@ -241,14 +241,14 @@ step2：使用regex对象
 text='a\n b \t  c'
 regex.split(text) # 返回list，regex是 split 的间隔，regex对应的内容以空字符串 '' 的形式也放在 list 中
 
-regex.findall(text) # 返回list
-regex.finditer(text) # 迭代器,存放的是<SRE_Match object>
+regex.findall(text) # 返回 list
+regex.finditer(text) # 迭代器,存放的是 <SRE_Match object>
 m = regex.match(text) # 从起始位置匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
 regex.fullmatch(text) # 精确全文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
-m = regex.search(text) # 扫描并返回第一个成功的匹配
+m = regex.search(text) # 扫描并返回第一个成功的匹配，返回同上
 
-regex.sub(replace_char, sentence, 2) # 把 sentence 前2个符合的语句，替换成replace_char
-regex.subn(replace_char, sentence, 2) # 返回2个元素的元组，第一个元素是 regex.sub 的返回结果，第二个元素是实际被替换了多少个。
+regex.sub(replace_char, sentence, count=2) # 把 sentence 前2个符合的语句，替换成replace_char
+regex.subn(replace_char, sentence, count=2) # 返回2个元素的元组：tuple(替换后的字符串, 实际替换了几个)
 
 # sub 可以后接 lambda
 regex = re.compile('[0-9]+')
@@ -264,11 +264,21 @@ step3：使用'SRE_Match'对象
 m.start() # 返回起始位置
 m.end() # 返回结束位置(不包含该位置的字符).
 
-m.span() # 返回一个tuple表示(m.start(), m.end())
+m.span() # 相当于 tuple(m.start(), m.end())
 
-group() # 返回匹配的完整字符串。可以接收多个参数，⽤用于返回指定序号的分组。例如 m.group(1),m.group(0,2)
+
+
+m.group() # 返回匹配的完整字符串。可以接收多个参数，⽤用于返回指定序号的分组。例如 m.group(1),m.group(0,2)
 # start,end,span 都可以接受参数，意义同上
-groups() # 返回分组信息
+
+
+groups() # 只获取组内的信息，需要配合正则表达式有括号。例子：
+regex1 = re.compile('(\d+)\w*(\d+)')
+m1 = regex1.search('123asda1234')
+print(m1.group())  # 返回：123asda1234
+print(m1.groups())  # 返回：('123', '4')
+
+
 groupdict() # 返回命名分组信息
 ```
 
@@ -292,6 +302,7 @@ groupdict() # 返回命名分组信息
 '\S' # 相当于[^\t\f\n\r]
 '\d' # 相当于[0-9]
 '\D' # 相当于[^0-9]
+'.' # 匹配任意字符
 '[\w@\.\s]' # 可以混合使用，此案例下， \w, \s, @,. 这4种混合都可以匹配到。注意：点是特殊字符，需要转义
 ```
 4. 转义符  
@@ -325,13 +336,13 @@ groupdict() # 返回命名分组信息
 '[。；，：“”（）、？《》]' # 中文标点
 ```
 6. 量词  
-```
-(expr)* #匹配任意多个(或0个)字符
-(expr)? #0或1次
-(expr)+ #1次以上
-(expr){m,n} #m次以上，n次以下。例如ab{1,3}c,可以匹配abc,abbc,abbbc
-(expr){m,} #m次以上
-(expr){n} #n次
+```python
+(expr)* # 匹配任意多个(或0个)字符
+(expr)? # 0或1次
+(expr)+ # 1次以上
+(expr){m,n} # m次以上，n次以下（含m, n）。例如ab{1,3}c,可以匹配abc,abbc,abbbc
+(expr){m,} # m次以上
+(expr){n} # n次
 ```
 
 
