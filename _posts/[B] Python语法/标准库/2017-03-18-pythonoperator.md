@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python标准库】运算符
+title: 【Python】运算符
 categories:
 tags: Python语法
 keywords:
