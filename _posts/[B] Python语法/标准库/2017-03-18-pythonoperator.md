@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】运算符
+title: 【Python】运算符&math
 categories:
 tags: Python语法
 keywords:

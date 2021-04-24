@@ -42,3 +42,15 @@ find -type d -empty | xargs rm -rf
 # 删除本目录下所有 css文件
 find ./ -name *.css | xargs rm -rf
 ```
+
+## 硬盘不装载
+
+Mac的移动硬盘不能装载该如何解决? - 陶落落的文章 - 知乎
+https://zhuanlan.zhihu.com/p/346106923
+
+```sh
+diskutil list # 查看
+ps aux | grep fsck
+sudo pkill -f fsck # 然后输入密码
+# 再次打开磁盘工具，发现分区是可被选择的状态了，点击上方的急救
+```

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python标准库】datetime
+title: 【Python】datetime
 categories:
 tags: Python语法
 keywords:
@@ -147,5 +147,7 @@ ddt1==ddt2
 ```
 True
 ```
+
+
 ## 参考文献
 https://docs.python.org/3/
