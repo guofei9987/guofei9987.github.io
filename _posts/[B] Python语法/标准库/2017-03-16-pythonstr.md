@@ -269,9 +269,10 @@ m.span() # 相当于 tuple(m.start(), m.end())
 
 m.group() # 返回匹配的完整字符串。
 # 可以接收多个参数，⽤用于返回指定序号的分组。例如 m.group(1) 返回第1各 ,m.group(0,2) 返回 0，2 这两个。
+groups() # 只获取组内的信息，必须分组运算符
+# (另外一提，findall 配合分组运算符的时候，也是只返回分组内的内容)
 
-
-groups() # 只获取组内的信息，需要配合正则表达式有括号。例子：
+# 例子：
 regex1 = re.compile('(\d+)\w*(\d+)')
 m1 = regex1.search('123asda1234')
 print(m1.group())  # 返回：123asda1234
@@ -339,23 +340,35 @@ groupdict() # 返回命名分组信息
 ```
 1. 分组运算符
 ```python
+# 1. 基础用法
 '(\w+) had a ((\w+) \w+)' # 去匹配 'I had a nice day，I had a nice day'
 # findall 返回：[('I', 'nice day', 'nice'), ('I', 'nice day', 'nice')]
-# search 后 group 返回：I had a nice day
+# group 返回：I had a nice day
 # groups 返回 ('I', 'nice day', 'nice')
-# 分组替换，可以用 \+数字来指定序号，序号从1开始
+# 2. 分组替换，可以用 \+数字来指定序号，序号从1开始
 regex1 = re.compile(r'I have a (\w+) and a (\w+)')
 regex1.sub(r'There is \2 and \1, Good!', 'I have a book and a pen. You May use those.')
 # 上面的语句返回 'There is pen and book, Good!. You May use those.'
 # 一个sub的实用案例：
 regex1 = re.compile(r'min=(\w{2}), hour=(\w{2})')
 regex1.sub(r'\2:\1', 'Now time is min=15, hour=20') # 返回：'Now time is 20:15'
+# 3. 反向引用：在同一个正则里面，引用其它分组
+regex1 = re.compile(r'(\w+) is (\1)')
+regex1.findall('one is one, two is two, one is two')
+for m in regex1.finditer('one is one, two is two, one is two'):
+    print(m.group())
+# 上面这个例子，返回one is one  two is two
+# 另外，分组引用符也可以外加括号变成分组：
+#
+re.compile(r'(\w+) is (\1)')
 ```
 7. **?** 比较`(X)`和`(?:X)`，前者是捕获分组，后者不捕获，在 groups 中有体现。
 ```python
 re.search('(?:a)(b)(c)', "abcdef").groups() # 返回捕获的 ('b', 'c')
 re.search('(a)(b)(c)', "abcdef").groups() # 返回捕获的  ('a', 'b', 'c')
 # 扩展阅读：
+'(?<name>exp)' # 捕获的分组命名为 name
+'(?#这是一段注释)' # 不起任何作用
 'exp1(?=exp2)' # 前瞻：捕获exp2前面的exp1
 '(?<=exp2)exp1' # 后顾：捕获exp2后面的exp1
 'exp1(?!exp2)' # 负前瞻：捕获后面不是exp2的exp1
@@ -365,7 +378,7 @@ re.search('(?<=a)(b)', "abcdef").groups() # 返回 ('b',)
 re.search('(\d+)(?!bc)', '0bc3bb').groups() # 返回 ('3',)，而不匹配 0
 re.search('(?<!0)([a-zA-Z]+)', '0bc3bb').groups() # 返回 ('c',)。解释：第一个符合的序列是 'bc'，捕获c
 ```
-8. 非贪婪匹配：默认会做最长匹配，如果末尾加上 `?` 做最短匹配
+8. 懒惰匹配：默认会做最长匹配，如果末尾加上 `?` 做最短匹配
 ```python
 '".*?"' # 这个匹配 '"3"45"' 会得到 '"3"'，而'".*"'会得到 '"3"45"'
 '\d{4,5}?' # 等价于 '\d{4}'
@@ -389,7 +402,12 @@ a|b|c与[abc]相同
 ```
 
 
+一个高难度例子：递归匹配（见下面的链接）
+
 
 
 ## 参考文献
-https://docs.python.org/3/
+
+- https://docs.python.org/3/
+- [50分钟正则](https://github.com/EZLippi/practical-programming-books/blob/master/src/30-minutes-to-learn-regex.md)
+- [30分组正则](https://deerchao.cn/tutorials/regex/regex.htm)
