@@ -17,6 +17,7 @@ title: 404
 
 <script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8" homePageUrl="http://www.guofei.site" homePageName="回到郭飞的博客"></script> -->
 
+<h1 class="page-title">404找不到页面了，点击下面的链接查看文章</h1>
 
 
 {% assign sorted_tags = site.tags | sort %}
@@ -27,7 +28,7 @@ title: 404
 
 <table>
   <tr>
-    <th>文章编号</th><th>文章题目</th><th>链接</th>
+    <th>文章编号</th><th>文章题目</th>
   </tr>
 
   {% assign sorted_tag = tag[1] | sort:"order" %}
@@ -35,9 +36,13 @@ title: 404
   <tr>
     <th><font color="#FF9224">{{post.order}}</font></th>
 
-    <th>{{post.title}}</th>
+    <th>
+      <a href="{{ site.url }}{{ post.url }}">
+        {{post.title}}
+      </a>
+    </th>
 
-    <th><a href="{{ site.url }}{{ post.url }}">链接</th>
+  </tr>
   {% endfor %}
 
 </table>
