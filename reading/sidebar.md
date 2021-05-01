@@ -123,4 +123,3 @@
     * [配置项](建站日志/configuration.md)
     * [主题](建站日志/themes.md)
     * [扩展Markdown语法<sup style="color:red">(new)<sup>](建站日志/markdown.md)
-    * [mermaid语法](建站日志/mermaid.md)
