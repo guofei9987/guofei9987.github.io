@@ -205,9 +205,16 @@ writer.sheets['test1'].insert_image(3, 9, 'me.png')
 writer.close()
 ```
 
-## 其它to
+## 其它read和to
 ```py
-df.to_clipboard # 到剪切板上
+# 剪贴板
+read_clipboard
+to_clipboard
+
+# csv 文件
+read_csv
+to_csv
+
 to_panel
 to_period # 把时间序列数据，变成频率数据
 to_latex

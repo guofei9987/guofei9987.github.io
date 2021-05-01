@@ -33,9 +33,15 @@ big data: dev/test 占比可以很小，just big enough for you to evaluat。（
     - big network
     - train longer
 - high variance?
-    - more data
+    - Biger train set
+        - 获取更多的真实数据。往往是最有效的方法，但成本巨大
+        - 数据增强。在现有数据基础上，生成一些假象的数据。例如在做图像的时候，对图像做旋转、剪切，大大增加了数据量。
     - regularization
 - trade-off between bias & variance
+- early stopping。一般会同时影响 train/dev 的表现，所以不会多用。
+    - validation：一种 early stopping。如果发现在 validation datasets 上误差连续上升，就停止迭代。
+
+
 
 ## Regularization
 
@@ -57,7 +63,49 @@ $J(w,b)=\dfrac{1}{m}\sum\limits_{i=1}^m\mathcal L(\hat y^{(i)},y^{(i)})+\dfrac{\
 - 想象极端情况，W接近0，多层神经网络的表现接近1层（logistics regression）
 - w接近0，使得激活函数局部更接近线性。
 
-## Dropout Regularization
+
+
+
+### L1, L2 更多解释
+
+
+$C=C_0+\dfrac{\lambda}{2n}\sum w^2$（其中n是数据集的大小）  
+偏导数就变成这种形式：  
+1. $\dfrac{\partial C}{\partial w}=\dfrac{\partial C_0}{\partial w}+\dfrac{\lambda}{n}w$
+2. $\dfrac{\partial C}{\partial b}=\dfrac{\partial C_0}{\partial b}$
+
+
+训练算法变成这样：
+1. $w\to w-\eta\dfrac{\partial C_0}{\partial b}-\dfrac{\eta\lambda}{n}w$
+2. $b\to b-\eta\dfrac{\partial C_0}{\partial b}$
+
+
+对于L1正则化，$\dfrac{\partial C}{\partial w}=\dfrac{\partial C_0}{\partial w}+\dfrac{\lambda}{n}  \mathcal{N}w$
+
+
+以下引用 [Michael Nielsen](http://michaelnielsen.org/) 的说法  
+规范化能够减轻过拟合，但背后的原因还不得而知。通常认为是因为小的权重意味着更低的复杂性。  
+例如，一个线性模型和一个9阶多项式都可以回归一组点，有两种可能：
+1. 9次多项式是正确的
+2. 线性模型是正确的，噪音是因为存在测量误差
+
+
+科学中，很难说明哪种原则正确，“奥卡姆剃刀”也不是一个一般的科学原理。例如，爱因斯坦的理论更能预测天体的微小偏差，但复杂很多。  
+归根结底，你可以把规范化看成某种整合的技术，尽管其效果不错，但我们并没有一套完整的理解，仅仅当作不完备的启发规则或经验。规范化是一种帮助神经网络泛化的魔法，但不会带来原理上理解的指导。
+
+
+
+### Dropout
+
+Dropout Regularization  
+
+
+随机、临时关闭某些神经元。在预测阶段，全部神经元激活，为了补偿这个，把权重按比例缩小。  
+Dropout 类似于某种 Bagging，含有某种投票机制。但又有显著的区别：
+- Bagging 每个模型是独立的，而 Dropout 是共享参数的。
+- Dropout 并不显式训练每个模型，如果按照 Bagging 的做法，对应排列组合到海量的子模型
+
+
 ```py
 # 对 l=3 进行dropout 操作
 keep_prob=0.8
@@ -125,50 +173,6 @@ notes
 
 
 --------------------------
-
-## 过拟合的应对
-### 1. 增加数据量往往可以有效降低过拟合的可能性
-效果显著，但成本巨大
-### 2. 人为扩展训练数据。  
-第一条说了，增加数据量往往可以有效降低过拟合的可能性，但获取真实数据的成本往往很高，这里考虑在原数据上进行一些扩展。  
-例如，MNIST数据库中，将图像进行少量旋转。
-
-### 3. validation
-
-一种 early stopping  
-如果发现在 validation datasets 上误差连续上升，就停止迭代。
-
-### 4. L1, L2 规范化
-
-
-$C=C_0+\dfrac{\lambda}{2n}\sum w^2$（其中n是数据集的大小）  
-偏导数就变成这种形式：  
-1. $\dfrac{\partial C}{\partial w}=\dfrac{\partial C_0}{\partial w}+\dfrac{\lambda}{n}w$
-2. $\dfrac{\partial C}{\partial b}=\dfrac{\partial C_0}{\partial b}$
-
-
-训练算法变成这样：
-1. $w\to w-\eta\dfrac{\partial C_0}{\partial b}-\dfrac{\eta\lambda}{n}w$
-2. $b\to b-\eta\dfrac{\partial C_0}{\partial b}$
-
-
-对于L1正则化，$\dfrac{\partial C}{\partial w}=\dfrac{\partial C_0}{\partial w}+\dfrac{\lambda}{n}  \mathcal{N}w$
-
-
-以下引用 [Michael Nielsen](http://michaelnielsen.org/) 的说法  
-规范化能够减轻过拟合，但背后的原因还不得而知。通常认为是因为小的权重意味着更低的复杂性。  
-例如，一个线性模型和一个9阶多项式都可以回归一组点，有两种可能：
-1. 9次多项式是正确的
-2. 线性模型是正确的，噪音是因为存在测量误差
-
-
-科学中，很难说明哪种原则正确，“奥卡姆剃刀”也不是一个一般的科学原理。例如，爱因斯坦的理论更能预测天体的微小偏差，但复杂很多。  
-归根结底，你可以把规范化看成某种整合的技术，尽管其效果不错，但我们并没有一套完整的理解，仅仅当作不完备的启发规则或经验。规范化是一种帮助神经网络泛化的魔法，但不会带来原理上理解的指导。
-
-
-### 5. Dropout
-随机、临时关闭某些神经元。实际预测时，全部神经元激活，为了补偿这个，把权重按比例缩小。  
-Dropout 类似于某种投票机制，有些类似训练不同的神经网络  
 
 ## Underfitting
 - model is not powerful enough
