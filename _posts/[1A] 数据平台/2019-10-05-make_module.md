@@ -133,9 +133,23 @@ after_success:
 ### 方法1:用 pyc 文件加密
 
 ```bash
-find <src> -name '*.py' -type f -print -exec rm {} \;
-python -m compileall <src>
+export my_package_dir='tst_package'
+# 编译文件夹和子文件夹中的 py 文件：
+python -m compileall -b ${my_package_dir}
+# 这里加入 -b，否则生成的 pyc 文件在 __cache__ 文件夹下，且文件名包含python版本信息，就不能直接用
+
+# 删除 py 文件（慎重！）：
+find ${my_package_dir} -name '*.py' -type f -print -exec rm {} \;
 ```
+
+
+compileall 官网： https://docs.python.org/3/library/compileall.html
+
+
+注：
+1. 无法用 `pip install .` 安装
+2. ?能否打包
+
 
 
 ### 方法2:使用 cython

@@ -108,6 +108,7 @@ class Fish(object):
 class Shark(Fish):
     def __init__(self):
         super().__init__(name='shark')  # super方法，好处是不用一一去找父类的名称，改继承关系很方便
+        # Python2 是这么做的：super(B, self).__init__(x)
         self.ishungry = False
 shark = Shark()
 shark.move()

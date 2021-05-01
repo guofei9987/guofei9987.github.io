@@ -232,6 +232,46 @@ t1.start()
 
 这个模式中，生产者多线程的生产包子，消费者多线程的吃包子。
 
+
+```python
+import threading
+import time
+
+
+def producer(name, stack):
+    while True:
+        time.sleep(1)
+        if len(stack) < 10:
+            stack.append('包子')
+            print(name + '生产了一个包子' + '\n')
+        else:
+            print('篮子满了，停止生产')
+
+
+def consumer(name, stack):
+    while True:
+        time.sleep(1)
+        if stack:
+            item = stack.pop()
+            print(name + '消费了一个' + item + '\n')
+        else:
+            print(name + '没拿到包子')
+
+
+stack = list()
+
+# 3个厨师3线程去做包子
+cookers = [threading.Thread(target=producer, args=(cooker_name, stack)) for cooker_name in ['厨师张三', '厨师李四', '厨师王五']]
+[cooker.start() for cooker in cookers]
+
+# 20 个消费者多线程去吃包子
+consumers = [threading.Thread(target=consumer, args=('consumer' + str(i), stack)) for i in range(5)]
+[consumer.start() for consumer in consumers]
+```
+
+
+也可以用类来实现：
+
 ```python
 from threading import Thread
 import time
@@ -240,20 +280,16 @@ import time
 class Producer(Thread):
 
     def __init__(self, name, stack):
-        super().__init__(name)
+        super().__init__()
         self.name = name
         self.stack = stack
 
     def run(self):
         while True:
-            if self.stack:
-                time.sleep(1)
-            else:
+            time.sleep(1)
+            if not self.stack:
                 self.stack.append('包子')
                 print(self.name + '生产了一个包子' + '\n')
-                time.sleep(1)
-
-        # Thread.run(self)
 
 
 class Consumer(Thread):
@@ -264,34 +300,24 @@ class Consumer(Thread):
 
     def run(self) -> None:
         while True:
+            time.sleep(1)
             if self.stack:
                 item = self.stack.pop()
                 print(self.name + '消费了一个' + item + '\n')
-                time.sleep(1)
-            else:
-                time.sleep(1)
-
-        # Thread.run(self)
 
 
 stack = list()
 
-cooker1 = Producer(name='厨师张三', stack=stack)
-cooker2 = Producer(name='厨师李四', stack=stack)
-cooker3 = Producer(name='厨师王五', stack=stack)
+# 3个厨师3线程去做包子
+cookers = [Producer(name=cooker_name, stack=stack) for cooker_name in ['厨师张三', '厨师李四', '厨师王五']]
+[cooker.start() for cooker in cookers]
 
-cooker1.start()
-cooker2.start()
-cooker3.start()
-
-for i in range(20):
-    consumer = Consumer(name='consumer' + str(i), stack=stack)
-    consumer.start()
+# 20 个消费者多线程去吃包子
+consumers = [Consumer(name='consumer' + str(i), stack=stack) for i in range(10)]
+[consumer.start() for consumer in consumers]
 ```
 
-
-
-
+也可以函数式实现：
 
 另一个并行工具
 mpi4py，基于MPI-1/MPI-2
