@@ -84,3 +84,11 @@ readyState 的值不会递减，除非当一个请求在处理过程中的时候
 如果 readyState 小于 3，这个属性就是一个空字符串。当 readyState 为 3，这个属性返回目前已经接收的响应部分。如果 readyState 为 4，这个属性保存了完整的响应体。
 
 如果响应包含了为响应体指定字符编码的头部，就使用该编码。否则，假定使用 Unicode UTF-8。
+
+
+## mermaid支持
+
+```html
+<script src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+```
