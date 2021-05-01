@@ -36,8 +36,15 @@ hello"""
 
 字符串前面加r，使转移符\ 失效
 ```python
-r"hello boy\nhello boy"
+s1 = u'Hello, 你好！'  # unicode 编码。等价于u省略掉 s1 = 'Hello, 你好！'
+
+s2 = r'hello\n你\好！'  # 斜杠 \ 不再是转义符，而是斜杠本身
+
+s3 = b'Hello, \xe4\xbd\xa0\xe5\xa5\xbd\xef\xbc\x81'  # bytes 类型，显示出来时英文正常，中文变成 \x 开头.
+s3.decode('utf-8')  # 转 str 类型
 ```
+
+
 
 ## 索引
 ```

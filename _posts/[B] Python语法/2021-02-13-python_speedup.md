@@ -133,7 +133,7 @@ for i in range(5):
 
 
 
-### 其它
+### 其它实用方法
 
 启动一个子进程
 ```python
@@ -176,6 +176,119 @@ results = [p.get() for p in results]
 进一步阅读：
 多线程：https://zhuanlan.zhihu.com/p/90180209  
 多进程：https://zhuanlan.zhihu.com/p/93305921  
+
+
+### Threading
+
+`Threading` 封装了 `Thread`，提供了更方便的用法。
+
+
+```python
+from threading import Thread
+import time
+
+
+def my_fun(arg1, arg2):
+    for i in range(10):
+        print(i)
+        time.sleep(0.5)
+    print(arg1, arg2)
+
+
+t1 = Thread(target=my_fun, args=(1, 1))
+t1.setDaemon(True)  # 如果主线程结束，子线程 t1 也立即结束。
+t1.start()
+# t1.join()  # 等待 t1 执行完，主进程然后才向下执行
+t1.join(timeout=2)  # t1 执行 3 秒后，主线程同时向下执行
+
+print(t1.getName())
+print('end')
+```
+
+要点：
+1. `setDaemon` 如果主线程结束，子线程 t1 也立即结束。（pycharm 的 scientific 模式不生效）
+2. `join` 主进程等待子进程 n 秒，然后主进程往下执行
+3. `setDaemon` 和 `join` 可以一起用，效果是子线程执行 n 秒继续执行
+
+
+
+面向对象实现多线程：  
+```python
+from threading import Thread
+
+
+class MyThread(Thread):
+    def run(self):
+        print('我是线程')
+
+
+t1 = MyThread()
+t1.start()
+```
+重写了 `Thread.run` 方法。其实原本的 `Thread` 方法就是调用 target 的。
+
+
+### 生产者-消费者模型
+
+这个模式中，生产者多线程的生产包子，消费者多线程的吃包子。
+
+```python
+from threading import Thread
+import time
+
+
+class Producer(Thread):
+
+    def __init__(self, name, stack):
+        super().__init__(name)
+        self.name = name
+        self.stack = stack
+
+    def run(self):
+        while True:
+            if self.stack:
+                time.sleep(1)
+            else:
+                self.stack.append('包子')
+                print(self.name + '生产了一个包子' + '\n')
+                time.sleep(1)
+
+        # Thread.run(self)
+
+
+class Consumer(Thread):
+    def __init__(self, name, stack):
+        super().__init__()
+        self.name = name
+        self.stack = stack
+
+    def run(self) -> None:
+        while True:
+            if self.stack:
+                item = self.stack.pop()
+                print(self.name + '消费了一个' + item + '\n')
+                time.sleep(1)
+            else:
+                time.sleep(1)
+
+        # Thread.run(self)
+
+
+stack = list()
+
+cooker1 = Producer(name='厨师张三', stack=stack)
+cooker2 = Producer(name='厨师李四', stack=stack)
+cooker3 = Producer(name='厨师王五', stack=stack)
+
+cooker1.start()
+cooker2.start()
+cooker3.start()
+
+for i in range(20):
+    consumer = Consumer(name='consumer' + str(i), stack=stack)
+    consumer.start()
+```
+
 
 
 
