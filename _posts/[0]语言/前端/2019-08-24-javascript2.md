@@ -1,10 +1,11 @@
 ---
 layout: post
 title: 【JavaScript】函数、控制语句
-categories: 前端
+categories: 语言
 tags:
 keywords:
 description:
+order: 16002
 ---
 
 ## 函数

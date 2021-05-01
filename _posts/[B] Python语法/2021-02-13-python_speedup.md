@@ -25,9 +25,11 @@ order: 1208
 import time
 import datetime
 import os
+import multiprocessing
 from multiprocessing.dummy import Pool as ThreadPool
 from multiprocessing import Pool
 import numpy as np
+multiprocessing.set_start_method('fork')
 
 print(__name__, os.getpid())
 
@@ -80,15 +82,20 @@ cpu_costly , 多线程 0:00:43.041522
 cpu_costly , 多进程 0:00:25.812865  
 
 
-输出符合预期。
+输出符合预期：
+- 普通任务是最慢的
+- IO密集型任务，多线程最快，多进程因为会抢CPU锁所以比多线程稍慢一些。
+- CPU密集型任务，本身已经占满CPU了，所以多线程不会更快，反而因为反复切换资源更慢一些。多进程能加快速度。
 
-（多进程在windows下，如果不加 `if __name__ == '__main__':`，会进入无限递归然后报错，阅读较多文章后觉得这个无法解决，考虑用 sys.platform == 'win32' 判断一下转多线程）
 
-（Python 3.8 也不支持，但是加一行即可 `multiprocessing.set_start_method('spawn')` ）
+
+
+另外，多进程下，需要加一行，`multiprocessing.set_start_method('fork')` ：
 - `spawn`: default on windows，父进程开启一个新进程，新进程只继承父进程 run() 方法相关的必须资源
 - `fork`: available on unix, default on unix. 使用 os.fork() 来 fork
 - `forkserver`: 同上，但更安全。
 
+如果用 `spawn` 模式，且不在 `if __name__ == '__main__':` 下，会进入无限递归然后报错。windows 只有 `spawn` 模式，目前无法解决，考虑用 `sys.platform == 'win32'` 判断一下转多线程）
 
 
 ### 代码解释
@@ -317,7 +324,40 @@ consumers = [Consumer(name='consumer' + str(i), stack=stack) for i in range(10)]
 [consumer.start() for consumer in consumers]
 ```
 
-也可以函数式实现：
+
+### 多线程中的事件
+```python
+import threading
+import time
+
+
+def producer():
+    print('等人来买包子')
+    event.wait()  # 这里会等待 event
+    print('卖掉包子')
+
+
+def consumer():
+    time.sleep(2)
+    print('买包子')
+    event.set()
+
+
+event = threading.Event()
+
+p = threading.Thread(target=producer)
+c = threading.Thread(target=consumer)
+p.start()
+c.start()
+```
+
+输出：
+>等人来买包子
+买包子
+卖掉包子
+
+
+
 
 另一个并行工具
 mpi4py，基于MPI-1/MPI-2

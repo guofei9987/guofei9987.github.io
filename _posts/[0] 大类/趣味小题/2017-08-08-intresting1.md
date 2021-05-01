@@ -1,20 +1,84 @@
 ---
 layout: post
-title: 【趣味小题】酒鬼90%几率去酒吧.
+title: 【概率论】趣味小题
 categories: 趣文
 tags:
 keywords:
 description:
 ---
 
-## 问题
+## 随机数生成问题
+
+手里有一个随机整数生成器，拿来制造另一个随机数生成器。
+
+### “大”生成“小”
+
+有个方法很直观，反复调用“大”随机数生成器，直到满足条件即可。
+
+例如，我有 rand5，想生成 rand3
+
+```python
+import random
+
+def rand5():
+    return int(5 * random.random())
+
+
+def rand3():
+    tmp = rand5()
+    while tmp >= 3:
+        tmp = rand5()
+    return tmp
+```
+
+注：
+- 算法并不是最优的，但却是最直观的
+- 对于特殊的，有一些优化方法，例如，如果要用 rand5 生成 rand2，可以先用 rand5 生成 rand4，然后除以2
+
+### “小”生成“大”
+
+例如，我想用 rand5 生成 rand7，那么可以遵循以下流程：
+1. 用5进制的形式，生成 rand25，
+2. 从 rand25 生成 rand7，这就转化成了 “大”生成“小” 的问题。然后基于上面写的 “大”生成“小” 的优化方法，可以有以下步骤：
+    - 从 rand25 生成 rand21
+    - rand21 除以3，得到 rand7
+
+
+```python
+import random
+import collections
+
+
+def rand5():
+    return int(5 * random.random())
+
+
+def rand25():
+    return rand5() * 5 + rand5()
+
+
+def rand21():
+    tmp = rand25()
+    while tmp >= 21:
+        tmp = rand25()
+    return tmp
+
+
+def rand7():
+    return rand21() // 3
+```
+
+
+## 酒鬼90%几率去酒吧.
+
+### 问题
 
 >有个酒鬼每天都有90%的几率去酒吧喝酒  
 而且他只去三家酒吧，去三家酒吧的几率一样大  
 今天，警察检查了其中两家酒吧，发现他不在.  
 问：他在第三家酒吧的几率有多大？
 
-## 解释
+### 解释
 
 事件A: 在第三个酒吧
 
@@ -26,7 +90,7 @@ $P(A)=0.3,P(B)=0.4,P(B \mid A)=1$
 $P(A\mid B)=P(A) * P(B \mid A) / P(B)=0.3 * 1/0.4=0.75$
 
 
-## 程序模拟
+### 程序模拟
 
 ```py
 import numpy as np
@@ -61,5 +125,8 @@ output：
 
 ```
 0.7531826190535276
+
+
+
 ```
 概率是75%
