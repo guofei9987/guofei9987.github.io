@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【python】网络编程
+title: 【python】web
 categories:
 tags: Python语法
 keywords:
@@ -87,7 +87,7 @@ python manage.py runserver 0.0.0.0:9000
 
 `settings.py` 用来存放基础信息，一些重要的配置：
 ```py
-BASE_DIR  # 基本目录，其它目录设置都是这个拼接出来的饿
+BASE_DIR  # 基本目录，其它目录都是这个拼接出来的
 
 INSTALLED_APPS  # 把自己的应用放进去
 
@@ -140,14 +140,14 @@ def page(request, page_id):
     return HttpResponse('page_id 就是接受的正则中的数字 page_id = {}'.format(page_id))
 ```
 
-另外，正则可以多个，例如 `page/2021/04/17`
+另外，正则可以更复杂，例如 `page/2021/04/17`
 
 ### url分发
 
 想让不同的app，各种处理自己的 url
 
 ```py
-# urls.py
+# urls.py，根路由
 from django.urls import include, path
 
 urlpatterns = [
@@ -179,6 +179,8 @@ def page(request, page_id):
 ```
 
 ## Model
+
+用来做数据库相关
 
 ```py
 # models.py
@@ -385,7 +387,7 @@ urlpatterns = [
 ]
 ```
 
-## 前端
+## template
 
 需求：把数据库中的数据好看的展示到前端。
 
@@ -396,14 +398,163 @@ urlpatterns = [
 
 但这毕竟太麻烦，还有方案2，使用 **模版语言**：
 
+模版html
+```html
+<!-- myapp/templates/show.html -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--1、展示直接使用-->
+    <title>{{user}}</title>
+</head>
+<body>
+
+<!--2、展示for循环引用-->
+{% for item in data%}
+<table>
+    <tr>
+        <td>{{item.page}}</td>
+        <td>{{item.create_time}}</td>
+        <td>{{item.update_time}}</td>
+    </tr>
+    {%endfor%}
+</table>
+
+<!--展示if语句-->
+<!--{%if user==='Guofei'%}-->
+<!--作者：郭飞-->
+<!--{%else%}-->
+<!--作则：未知-->
+<!--{%endif%}-->
+
+</body>
+</html>
 ```
-{{ item }}
 
-
-
-
+views.py
+```py
+def get_and_show(request, page_id):
+    all_data = models.PV.objects.all()
+    return render(request,
+                  'show.html',
+                  {'user': 'Guofei',
+                   'data': all_data,
+                   })
 ```
+
+### 母版
+
+目的：不同页面的html中，往往有共用的部分。把共用的部分放到母版里面
+
+母版
+```html
+<!-- base.html -->
+<div>公用的头部</div>
+<div>
+    {%1block content%}{%1endblock%}
+</div>
+<div>公用的底部</div>
+</body>
+</html>
+```
+
+子版
+```html
+<!-- child.html -->
+{%extends "base.html"%}
+{%1block content%}
+{{user}}
+{%1endblock%}
+```
+
+view引用的是子版
+```py
+# views.py
+def child(request, page_id):
+    return render(request, 'child.html', {'user': 'Guofei'})
+```
+
+
+## 表单
+
+一个简单的表单使用：
+
+```html
+<!-- login.html -->
+<form action="/myapp/login/" method="POST">
+    用户名<input name="username">
+    <br>
+    密码<input name="password">
+    <input type="submit" value="提交">
+</form>
+```
+
+为了用较短的代码说明问题，返回一个结果html。实际网站应当读取数据库做比较之类的。
+```html
+<!-- login2.html -->
+登陆成功：
+username{{username}}
+password{{password}}
+```
+
+```py
+# views.py
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get("username", None)
+        password = request.POST.get("password", None)
+        return render(request, 'login2.html', {"username": username, "password": password})
+    elif request.method == 'GET':
+        return render(request, 'login.html', )
+    else:
+        return render(request, 'login.html', )
+```
+
+### 类的方式做表单：更傻瓜
+
+```html
+<!-- register.html -->
+<form action="/web/login/" method="POST">
+    用户名：{{form.username}}
+    <br>
+    邮箱{{form.email}}
+    <br>
+<!--   或者更简单的方法 {{form.as_table}}-->
+    <input type="submit" value="提交">
+</form>
+```
+
+
+
+```py
+# views.py
+
+from django import forms
+
+
+class RegisterForm(forms.Form):
+    # 类里面定义“表单需要什么内容”
+    username = forms.CharField()
+    email = forms.EmailField(required=True)
+
+
+def register(request):
+    register_form = RegisterForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():  # 验证数据格式，例如邮箱格式
+            data = form.cleaned_data  # 返回一个字典
+            print(data)
+        else:
+            print(form.errors.as_json())  # 如果数据格式不对，打印错误类型
+
+    return render(request, 'register.html', {'form': register_form})
+```
+
+（url.py就不写了）
+
 
 
 ## 参考资料
