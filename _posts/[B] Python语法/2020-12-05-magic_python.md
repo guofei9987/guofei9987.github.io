@@ -339,6 +339,24 @@ ast.literal_eval('(8,8)')
 ```
 
 
+## 字典转对象
+
+```python
+class Dict(dict):
+    __setattr__ = dict.__setitem__
+    __getattr__ = dict.__getitem__
+```
+
+用法：
+```python
+d1 = {'a': 1, 'b': 2}
+d2 = Dict(d1)
+
+d2.a
+d2.b = 3
+```
+
+
 ## 参考资料
 
 https://github.com/iswbm/magic-python
