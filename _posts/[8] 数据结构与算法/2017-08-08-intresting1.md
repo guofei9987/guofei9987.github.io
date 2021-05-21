@@ -1,11 +1,22 @@
 ---
 layout: post
 title: 【概率论】趣味小题
-categories: 趣文
-tags:
+categories:
+tags: 8-数据结构与算法
+order: 530
+---
+
+
+---
+layout: post
+title: 【最小生成树问题】Prim和Kruskal
+categories:
+tags: 8-数据结构与算法
 keywords:
 description:
+order: 530
 ---
+
 
 ## 随机数生成问题
 
@@ -33,7 +44,7 @@ def rand3():
 
 注：
 - 算法并不是最优的，但却是最直观的
-- 对于特殊的，有一些优化方法，例如，如果要用 rand5 生成 rand2，可以先用 rand5 生成 rand4，然后除以2
+- 有一些优化方法，例如，如果要用 rand5 生成 rand2，可以先用 rand5 生成 rand4，然后除以2
 
 ### “小”生成“大”
 

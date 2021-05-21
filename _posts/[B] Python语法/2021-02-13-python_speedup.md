@@ -216,6 +216,7 @@ print('end')
 1. `setDaemon` 如果主线程结束，子线程 t1 也立即结束。（pycharm 的 scientific 模式不生效）
 2. `join` 主进程等待子进程 n 秒，然后主进程往下执行
 3. `setDaemon` 和 `join` 可以一起用，效果是子线程执行 n 秒继续执行
+4. `from multiprocessing import Process` 是多进程，使用方法和 `Thread` 一样
 
 
 
@@ -355,6 +356,56 @@ c.start()
 >等人来买包子
 买包子
 卖掉包子
+
+
+### 进程/线程间通信
+
+线程之间通信很简单，借用类似 list 的特性即可
+```python
+import threading
+
+
+def my_func(i, lst):
+    lst.append(i)
+    print(lst)
+
+
+lst = list()
+ts = [threading.Thread(target=my_func, args=(i, lst)) for i in range(5)]
+[t.start() for t in ts]
+print(lst)
+```
+
+>[0, 1, 2, 3, 4]
+
+如果把上面的 `threading.Thread` 换成 `multiprocessing.Process` （就是多线程换成多进程），发现每个进程复制了1份，各不相同，主进程的那一份 `lst` 保持空的。（简单来说，进程会把内存都复制一份，并且每一份相互不影响）  
+
+为解决多进程的通信问题， `multiprocessing` 提供了两个数据类型 `Value`, `Array`，这两个数据类型的特点是：在一个进程中更改，在所有进程生效
+
+```python
+from multiprocessing import Process
+import multiprocessing
+
+multiprocessing.set_start_method('fork')
+
+
+def my_func(value1, arr1):
+    value1.value += 1  # 要点1：Value 对象可以在一个进程中更改，在所有进程生效
+    arr1[value1.value] += 1  # 要点2：Array 对象同上
+    print(list(arr1))
+
+
+value1 = multiprocessing.Value('i', 0)  # d 是小数类型，i是整数类型
+arr1 = multiprocessing.Array('d', [1, 1, 1, 1, 1])
+ts = [Process(target=my_func, args=(value1, arr1)) for i in range(3)]
+[t.start() for t in ts]
+print(list(arr1))
+```
+
+>[1.0, 2.0, 1.0, 1.0, 1.0]
+[1.0, 2.0, 2.0, 1.0, 1.0]
+[1.0, 2.0, 2.0, 1.0, 1.0]
+[1.0, 2.0, 2.0, 2.0, 1.0]
 
 
 
