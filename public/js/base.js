@@ -90,7 +90,23 @@ function contentEffects(){
         tag = current.prop('tagName').substr(-1);
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
+    
     // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      // customised options
+      // • auto-render specific keys, e.g.:
+      delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: true},
+          // {left: '\\(', right: '\\)', display: false},
+          // {left: '\\[', right: '\\]', display: true}
+      ],
+      // • rendering keys, e.g.:
+      throwOnError : true
+    });
+});
+
     $("pre").addClass("prettyprint");
     prettyPrint();
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
