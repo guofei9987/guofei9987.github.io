@@ -1,7 +1,6 @@
 ﻿permalink: /:year/:month/:day/:title.html
 paginate: 10
 markdown: kramdown
-
 kramdown:
   math_engine: katex
 
