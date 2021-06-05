@@ -2,6 +2,8 @@
 paginate: 10
 markdown: kramdown
 
+kramdown:
+  math_engine: katex
 
 # 作者信息
 author:

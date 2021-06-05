@@ -398,6 +398,7 @@ urlpatterns = [
 
 但这毕竟太麻烦，还有方案2，使用 **模版语言**：
 
+
 模版html
 ```html
 <!-- myapp/templates/show.html -->
