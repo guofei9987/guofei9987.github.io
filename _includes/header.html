@@ -18,31 +18,35 @@
 
 
 
-<link rel="stylesheet" href="/public/katex/katex.min.css">
-<script defer src="/public/katex/katex.min.js"></script>
-<script defer src="/public/katex/auto-render.min.js"></script>
 
 
-    <script>
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     renderMathInElement(document.body, {
-        //         // ...options...
-        //     });
-        // });
 
-        document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-          // customised options
-          // • auto-render specific keys, e.g.:
-          delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: true},
-              // {left: '\\(', right: '\\)', display: false},
-              // {left: '\\[', right: '\\]', display: true}
-          ],
-          // • rendering keys, e.g.:
-          throwOnError : true
-        });
-    });
-
-    </script>
+<!-- LaTeX支持 -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+    },
+  TeX: {
+              equationNumbers: {
+                  autoNumber: ["AMS"],
+                  useLabelIds: true
+              }
+          },
+          "HTML-CSS": {
+              linebreaks: {
+                  automatic: true
+              },
+              scale: 85
+          },
+          SVG: {
+              linebreaks: {
+                  automatic: true
+              }
+          }
+  });
+  </script>
