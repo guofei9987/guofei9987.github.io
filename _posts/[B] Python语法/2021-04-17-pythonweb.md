@@ -35,8 +35,10 @@ environ['PATH_INFO'] # 用户输入的网址，例如 '/login'
 environ['REMOTE_ADDR'] # 用户ip地址
 ```
 
-## MVC
+## MTV
 
+
+MVC
 - C：controller
 - V：View，例如html等
 - M：Model，例如数据库
@@ -187,9 +189,6 @@ def page(request, page_id):
 class UserInfo(models.Model):
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    gender = models.BooleanField(default=False)
-    age = models.IntegerField(default=18)
-    memo = models.TextField(default='')
 # 之后会自动生成对应的表，表名是 myapp_userinfo
 
 
@@ -277,29 +276,7 @@ class UserInfo(models.Model):
     )
 ```
 
-### 外键
 
-```py
-class UserType(models.Model):
-    type_name = models.CharField(max_length=50)
-
-
-class UserInfo(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-    gender = models.BooleanField(default=False)
-    age = models.IntegerField(default=18)
-    memo = models.TextField(default='')
-    type_id = models.ForeignKey(UserType, on_delete=models.SET_DEFAULT, default='')
-    # on_delete = models.SET_DEFAULT, models.SET_NULL, models.CASCADE, models.RESTRICT
-```
-
-如此，myapp_userinfo.type_id 就映射到 myapp_usertype.id 了
-
-
-另外，除了 `models.ForeignKey` 之外，还有一些：
-- models.ManyToManyField
-- models.OneToOneField
 
 ### 增删改查数据库
 
@@ -327,7 +304,7 @@ def add_one(requst, page_id):
     # obj.save()
     return HttpResponse('page_id = {}'.format(page_id))
 
-# get 只能获取一条记录，filter 获取多条记录
+# get 只能获取一条记录，filter 获取多条记录，all 获取全部记录
 # 删
 def del_one(requst, page_id):
     models.PV.objects.get(id=page_id).delete()  # 删除一条记录
@@ -387,6 +364,154 @@ urlpatterns = [
 ]
 ```
 
+
+
+
+### 外键
+
+```py
+# models.py
+class UserType(models.Model):
+    type_name = models.CharField(max_length=50)
+
+
+class UserInfo(models.Model):
+    username = models.CharField(max_length=50)
+    user_type = models.ForeignKey(UserType, on_delete=models.SET_DEFAULT, default='')
+    # on_delete = models.SET_DEFAULT, models.SET_NULL, models.CASCADE, models.RESTRICT
+```
+
+如此，myapp_userinfo.type_id 就映射到 myapp_usertype.id 了
+
+userinfo:
+
+|id|username|user_type
+|--|--|--|
+|1|Tom|1|
+|2|Jack|2|
+|3|Lily|1|
+
+user_type:
+
+|id|type_name|
+|--|--|
+|1|用户|
+|2|管理员|
+
+
+
+**连表查询**  本质上是 join 操作
+
+
+```py
+select_res = models.UserInfo.objects.filter(user_type__name='用户')
+select_res = models.UserInfo.objects.filter(user_type__id__gt=1)
+```
+
+什么规律？ 相当于 UserInfo 这个表有一个字段 `user_type`，而这个字段实际上是个指针，指向 UserType 这个表。
+
+
+
+
+### 多对多
+
+另外，除了 `models.ForeignKey` 之外，还有一些：
+- `models.ForeignKey` 看上面的例子，一个 user 对应一种身份
+- `models.ManyToManyField` 下面的例子，一个 user 对应多种身份
+- models.OneToOneField
+
+ManyTOMany
+```py
+class UserInfo(models.Model):
+    username = models.CharField(max_length=50)
+    email = models.EmailField(null=True)
+
+
+class UserGroup(models.Model):
+    group_name = models.CharField(max_length=50)
+    user = models.ManyToManyField('UserInfo')
+```
+
+生成三张表
+- userinfo
+- usergroup
+- usergroupuser
+
+userinfo:
+
+|id|username|email|
+|--|--|--|
+1|guofei1|1@guofei.site
+2|guofei2|2@guofei.site
+3|guofei3|3@guofei.site
+
+usergroup:
+
+|id|group_name|
+|--|--|
+1|报警组
+2|监控组
+3|DBA
+
+
+myapp_usergroup_user 用于存放它们之间的多对对关系：
+
+|id|usergroup_id|userinfo_id|
+|--|--|--|
+1|3|2
+2|3|3
+
+
+怎么操作？
+
+新增连接
+```py
+u1 = models.UserInfo.objects.get(id=1)
+g1 = models.UserGroup.objects.get(id=1)
+u1.user.add(g1)
+# 另一种写法： u1.usergroup_set.add(g1)
+
+```
+
+`myapp_usergroup_user` 会新增一条记录
+|id|usergroup_id|userinfo_id|
+|--|--|--|
+1|3|2|
+2|3|3|
+3|1|1|
+
+
+其它操作：
+
+```py
+# 添加数据
+#group_obj.user_info.add(user_info_obj)
+#group_obj.user_info.add(*user_info_objs)
+
+# 删除数据
+#group_obj.user_info.remove(user_info_obj)
+#group_obj.user_info.remove(*user_info_objs)
+
+# 添加数据
+#user_info_obj.usergroup_set.add(group_obj)
+#user_info_obj.usergroup_set.add(*group_objs)
+
+# 删除数据
+#user_info_obj.usergroup_set.remove(group_obj)
+#user_info_obj.usergroup_set.remove(*group_objs)
+
+# 获取数据
+#print group_obj.user_info.all()
+#print group_obj.user_info.all().filter(id=1)
+
+# 获取数据
+#print user_info_obj.usergroup_set.all()
+#print user_info_obj.usergroup_set.all().filter(caption='CEO')
+#print user_info_obj.usergroup_set.all().filter(caption='DBA')
+```
+
+参考资料：https://www.cnblogs.com/wupeiqi/articles/4508271.html
+
 ## template
 
 需求：把数据库中的数据好看的展示到前端。
@@ -399,6 +524,155 @@ urlpatterns = [
 但这毕竟太麻烦，还有方案2，使用 **模版语言**：
 
 
+模版html
+```html
+<!--1、展示直接使用-->
+<dib>【【user】】</div>
+
+
+<!--2、展示for循环引用-->
+{% for item in data%}
+<table>
+    <tr>
+        <td>【【item.page】】</td>
+        <td>【【item.create_time】】</td>
+        <td>【【item.update_time】】</td>
+    </tr>
+    {%endfor%}
+</table>
+
+<!--展示if语句-->
+<!--{%if user==='Guofei'%}-->
+<!--作者：郭飞-->
+<!--{%else%}-->
+<!--作则：未知-->
+<!--{%endif%}-->
+
+</body>
+</html>
+```
+
+views.py
+```py
+def get_and_show(request, page_id):
+    all_data = models.PV.objects.all()
+    return render(request,
+                  'show.html',
+                  {'user': 'Guofei',
+                   'data': all_data,
+                   })
+```
+
+### 母版
+
+目的：不同页面的html中，往往有共用的部分。把共用的部分放到母版里面
+
+母版
+```html
+<!-- base.html -->
+<div>公用的头部</div>
+<div>
+    {%block content%}{%endblock%}
+</div>
+<div>公用的底部</div>
+</body>
+</html>
+```
+
+子版
+```html
+<!-- child.html -->
+{%extends "base.html"%}
+{%1block content%}
+【【user】】
+{%1endblock%}
+```
+
+view引用的是子版
+```py
+# views.py
+def child(request, page_id):
+    return render(request, 'child.html', {'user': 'Guofei'})
+```
+
+
+## 表单
+
+一个简单的表单使用：
+
+```html
+<!-- login.html -->
+<form action="/myapp/login/" method="POST">
+    用户名<input name="username">
+    <br>
+    密码<input name="password">
+    <input type="submit" value="提交">
+</form>
+```
+
+为了用较短的代码说明问题，返回一个结果html。实际网站应当读取数据库做比较之类的。
+```html
+<!-- login2.html -->
+登陆成功：
+username【【username】】
+password【【password】】
+```
+
+```py
+# views.py
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get("username", None)
+        password = request.POST.get("password", None)
+        return render(request, 'login2.html', {"username": username, "password": password})
+    elif request.method == 'GET':
+        return render(request, 'login.html', )
+    else:
+        return render(request, 'login.html', )
+```
+
+### 类的方式做表单：更傻瓜
+
+```html
+<!-- register.html -->
+<form action="/web/login/" method="POST">
+    用户名：【【form.username】】
+    <br>
+    邮箱【【form.email】】
+    <br>
+<!--   或者更简单的方法 【【form.as_table】】-->
+    <input type="submit" value="提交">
+</form>
+```
+
+
+
+```py
+# views.py
+
+from django import forms
+
+
+class RegisterForm(forms.Form):
+    # 类里面定义“表单需要什么内容”
+    username = forms.CharField()
+    email = forms.EmailField(required=True)
+
+
+def register(request):
+    register_form = RegisterForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():  # 验证数据格式，例如邮箱格式
+            data = form.cleaned_data  # 返回一个字典
+            print(data)
+        else:
+            print(form.errors.as_json())  # 如果数据格式不对，打印错误类型
+
+    return render(request, 'register.html', {'form': register_form})
+```
+
+（url.py就不写了）
 
 
 ## 参考资料
