@@ -54,7 +54,9 @@ MTV：
 ### 创建项目
 
 ```bash
-django-admin create project sitename
+django-admin startproject my_sitename
+
+# 或者： django-admin create project my_sitename
 ```
 
 会生成几个文件模版：
@@ -69,7 +71,7 @@ django-admin create project sitename
 
 一个网站可以有多个app，创建一个app ：
 ```bash
-python manage.py startapp myapp
+python manage.py startapp my_app
 ```
 - `models.py`
 - `views.py`
@@ -80,6 +82,27 @@ python manage.py startapp myapp
 ```bash
 python manage.py runserver 0.0.0.0:9000
 ```
+
+### settings
+
+`settings.py` 用来存放基础信息，一些重要的配置：
+```py
+BASE_DIR  # 基本目录，其它目录设置都是这个拼接出来的饿
+
+INSTALLED_APPS  # 把自己的应用放进去
+
+ROOT_URLCONF = 'my_sitename.urls'  # 你的根路由
+
+TEMPLATES  # 用来配置模版
+
+DATABASES  # 数据库配置
+
+LANGUAGE_CODE = 'en-us'  # 语言，！改为 ‘zh-hans’
+TIME_ZONE = 'UTC'  # 时区，！改为'Asia/Shanghai'
+USE_TZ = False  # 是否使用国际时间，改为 False，否则数据库时间会不对
+```
+
+
 
 ## url路由系统
 
@@ -360,6 +383,26 @@ urlpatterns = [
     path('update_many/<int:page_id>/', views.update_many),
     path('select_many/<int:page_id>/', views.select_many),
 ]
+```
+
+## 前端
+
+需求：把数据库中的数据好看的展示到前端。
+
+方案1:
+1. `show_str = read('template.html')`
+2. 在 `show_str` 中替换
+3. 返回 `show_str`
+
+但这毕竟太麻烦，还有方案2，使用 **模版语言**：
+
+
+```
+{{ item }}
+
+
+
+
 ```
 
 

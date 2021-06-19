@@ -20,7 +20,7 @@ body {
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
-main, nav, section, summary {
+main, nav, section {
     display: block
 }
 
