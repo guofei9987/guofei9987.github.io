@@ -531,22 +531,22 @@ u1.user.add(g1)
 
 
 <!--2、展示for循环引用-->
-{% for item in data%}
+【% for item in data%】
 <table>
     <tr>
         <td>【【item.page】】</td>
         <td>【【item.create_time】】</td>
         <td>【【item.update_time】】</td>
     </tr>
-    {%endfor%}
+    【%endfor%】
 </table>
 
 <!--展示if语句-->
-<!--{%if user==='Guofei'%}-->
+<!--【%if user==='Guofei'%】-->
 <!--作者：郭飞-->
-<!--{%else%}-->
+<!--【%else%】-->
 <!--作则：未知-->
-<!--{%endif%}-->
+<!--【%endif%】-->
 
 </body>
 </html>
@@ -572,7 +572,7 @@ def get_and_show(request, page_id):
 <!-- base.html -->
 <div>公用的头部</div>
 <div>
-    {%block content%}{%endblock%}
+    【%block content%】【%endblock%】
 </div>
 <div>公用的底部</div>
 </body>
@@ -582,10 +582,10 @@ def get_and_show(request, page_id):
 子版
 ```html
 <!-- child.html -->
-{%extends "base.html"%}
-{%1block content%}
+【%extends "base.html"%】
+【%1block content%】
 【【user】】
-{%1endblock%}
+【%1endblock%】
 ```
 
 view引用的是子版
