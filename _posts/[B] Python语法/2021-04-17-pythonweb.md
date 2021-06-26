@@ -643,6 +643,9 @@ def login(request):
 <!--   或者更简单的方法 【【form.as_table】】-->
     <input type="submit" value="提交">
 </form>
+
+<!-- 用来展示出错信息，详细看下面 -->
+【【error.as_ul】】
 ```
 
 
@@ -657,6 +660,7 @@ class RegisterForm(forms.Form):
     # 类里面定义“表单需要什么内容”
     username = forms.CharField()
     email = forms.EmailField(required=True)
+    ip = forms.GenericIPAddressField()
 
 
 def register(request):
@@ -667,12 +671,75 @@ def register(request):
             data = form.cleaned_data  # 返回一个字典
             print(data)
         else:
-            print(form.errors.as_json())  # 如果数据格式不对，打印错误类型
+            error_msg = form.errors  # <ErrorDict>对象，打印出来是 html 格式，有多种解析格式：
+            error1 = form.errors.as_json()  # <str>，形式是 json
+            error2 = error_msg.as_data()  # <dict>
+            error3 = error_msg.as_ul()  # <SafeString> ，形式是 html，这个 html 展示出来是个列表
+            error4 = error_msg.as_text()  # <str>，形式是 markdown
+
+            return render(request, 'register.html', {'form': register_form, 'error': error_msg})
 
     return render(request, 'register.html', {'form': register_form})
 ```
 
 （url.py就不写了）
+
+
+如何定制错误信息？
+```python
+class RegisterForm(forms.Form):
+    ip = forms.GenericIPAddressField(error_messages={'required': '用户名不能为空', 'invalid': '格式错啦！'})
+```
+
+
+## Ajax
+
+用异步请求的方式，来刷新部分内容
+
+
+**step1**：需要 `jquery-3.6.0.min.js` 文件，可以放到 project 目录下的 `/static/js/jquery-3.6.0.min.js`，也可以放到 `/myapp/static/js/jquery-3.6.0.min.js`
+
+
+**step2** templates
+```html
+<!-- ajax.html -->
+<input id="name" type="text">
+<input type="button" value="点击执行ajax请求" onclick="DoAjax()">
+
+<script src="/static/js/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    function DoAjax() {
+        var tmp = $('#name').val();
+        $.ajax({
+            url: '/myapp/ajax/', // 这次异步请求提交给哪个url
+            type: 'POST',
+            data: {dat: tmp}, //提交什么内容
+            success: function (arg) {
+                console.log('success')
+                console.log(arg);
+            },
+            error: function (arg) {
+                console.log('failed');
+                console.log(arg)
+            }
+        });
+    }
+</script>
+```
+
+**step3** view.py
+
+```py
+def ajax(request):
+    if request.method == 'POST':
+        print(request.POST)
+        return HttpResponse('ok') # 这个 ok 会传到 html 中作为 arg。
+        # 如果想传入更多信息，可以用 json.dump 打包为 json 形式的字符串；对应的 html 端用 jQuery.parseJson(arg) 来解析。  
+    else:
+        return render(request, 'ajax.html')
+```
+
 
 
 ## 参考资料
