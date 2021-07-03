@@ -740,6 +740,188 @@ def ajax(request):
         return render(request, 'ajax.html')
 ```
 
+## Cookie 和 Session
 
+区别
+- Cookie 是存放在客户端电脑上的，因此 jquery 可以操作 cookie。一个典型场景是，退出登陆后用户名输入框里仍然显示上次的用户名。
+- Session 是存放在服务器上的。可以存在内存/数据库/缓冲上。典型场景是维持登陆状态
+
+
+题目：实现一个简单的登陆系统
+- 登陆后可以查看个人页面
+- 用户名密码错误会有提醒
+- 防止“水平越权”
+
+
+```html
+<!-- login.html -->
+<form method="POST" action="/myapp/login/">
+    用户名: <input name="username">
+    密码：<input name="password" type="password">
+    <input type="submit" value="提交">
+    登陆提醒：<label style="color: red">【【msg】】</label>
+</form>
+
+
+<!-- show.html -->
+用户名：【【username】】的个人消息
+```
+
+```py
+from django.shortcuts import redirect
+
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        if username == 'guofei9987' and password == '123':
+            request.session['login'] = username  # 这相当于这个 session 的全局变量
+            return redirect('/myapp/show/')  # 登陆成功后跳转
+        else:
+            return render(request, 'login.html', {'msg': '用户密码错误'})
+
+    return render(request, 'login.html')
+
+
+def show(request):
+    username = request.session.get('login', None)
+    if username:  # 如果成功登陆，显示个人信息
+        return render(request, 'show.html', {'username': username})
+    else:  # 未登陆的人查看这个页面，跳转到 login 页面
+        return redirect('/myapp/login/')
+
+
+def logout(request):
+    del request.session['is_login']  # 删除 session
+```
+
+- 过期时间默认2周
+- `SESSION_SQVE_EVERY_QEUEST` 登陆保持时间，默认两周
+- `SESSION_COOKIE_AGE = 5` 登陆保持5秒，即使有操作
+
+reder(...).set_cookie
+
+
+### cookie
+
+题目：记下用户的上次操作，下次默认继续
+
+借助工具：
+- [js.cookie](https://github.com/js-cookie/js-cookie)，使前端可以读写 cookie
+```html
+<!-- cookie.html -->
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+<script type="text/javascript">
+// 写
+Cookies.set('key1', 'value1', { expires: 7, path: '' })  // 过期 7天，
+// 读
+Cookie.get('key1') // 如果没定义，返回 undefined
+Cookies.remove('name') // 删
+</script>
+```
+- 后端也能读写 cookie
+```py
+# views.py
+# 获取 cookie
+print(request.COOKIES)
+# 写入 cookie
+response = render(...)
+response.set_cookie(key='k1', value='v1')
+return response
+```
+- 一般实践：html 端把上次用户的操作写入 cookie，后端先读取 cookie然后返回一个新页面
+
+
+## 中间件
+
+settins.py 设置添加中间件
+```py
+MIDDLEWARE = [
+  ...,
+  'my_middleware.my_middleware_1.MyMiddleware'
+]
+```
+
+```py
+# /my_middleware/my_middleware_1.py 下：
+
+from django.http.response import HttpResponse
+
+
+class MyMiddleware(object):
+    def __init__(self, get_response):
+        self.get_response = get_response
+        print('__init__')
+        # One-time configuration and initialization.
+
+    def __call__(self, request):
+        # Code to be executed for each request before
+        # the view (and later middleware) are called.
+        print('call')
+        response = self.get_response(request)
+
+        # Code to be executed for each request/response after
+        # the view is called.
+
+        return response
+
+    def process_request(self, request):
+        """
+        请求交给路由处理之前执行
+        如果返回HttpResponse对象，视图将不会被执行
+        """
+        print('process_request')
+        return None
+
+    def process_response(self, request, response):
+        # 渲染结果返回给模板之前执行
+        print('process_response')
+        return response
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        """
+        在Django调用视图之前会调用该函数。
+        它应返回一个None或一个HttpResponse
+        对象。如果返回None，则Django将继续处理此请求，并执行其他的process_view()
+        中间件，然后执行相应的视图。如果它返回一个HttpResponse对象，则Django不会调用视图。它将执行中间件的process_response函数，并把HttpResponse作为返回结果。
+        """
+        print('process_view')
+        return None
+
+    def process_exception(self, request, exception):
+        """
+        当视图发出异常时，Django会调用这个函数。
+        process_exception()应该返回一个None或一个 HttpResponse对象。
+        如果它返回一个 HttpResponse对象，则将直接调用template response和response函数，并将结果响应返回到浏览器。
+        否则，将启动默认异常处理。
+        """
+        print('process_exception')
+
+    def process_template_response(self, request, response):
+        """
+        如果视图调用了render()
+        方法，Django会在视图调用结束后理解调用这个方法。它必须返回实现render()
+        方法的response
+        object，并且可以修改传入的response或者创建一个新的TemplateResponse。
+        """
+        print('process_template_response')
+        return None
+```
+
+
+
+## 其它
+
+django 向页面传入 str 格式的 html 时，不会让 html 生效（转为字符串，以防注入攻击）。如果向传入，可以这样：
+```py
+from django.utils.safestring import mark_safe
+html = mark_safe('<head></head>')
+```
+
+
+```
+python manage.py createsuperuser
+```
 
 ## 参考资料
