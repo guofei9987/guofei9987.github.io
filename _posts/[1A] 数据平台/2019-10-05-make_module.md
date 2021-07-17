@@ -21,22 +21,51 @@ scikit-opt/
 ```
 
 ### setup.py
+
 ```py
-from setuptools import setup
-setup(name='scikit-opt',
-      version='0.1',
-      description='Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Algorithm in Python',
-      url='https://github.com/guofei9987/scikit-opt', # 随意填写，一般是项目的 github 地址
-      author='Guofei',
-      author_email='guofei9987@foxmail.com',
-      license='MIT',
-      packages=['sko'],
-      install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'], # 指定此包的依赖
-      zip_safe=False # 为了兼容性，一般填 False
-      )
+from setuptools import setup, find_packages
+setup(
+    name='scikit-opt',  # 包的名字，也是将来用户使用 pip install scikit-opt 来安装
+    version='0.0.1',  # 版本号，每次上传的版本号应当不一样，可以用类似 sko.__version__ 去自动指定
+    python_requires='>=3.5',
+    description='Swarm Intelligence in Python',
+    long_description=read_file('README.md'),
+    long_description_content_type="text/markdown",
+    url='https://github.com/guofei9987/scikit-opt',  # 随意填写，一般是项目的 github 地址
+    author='Guo Fei',
+    author_email='guofei9987@foxmail.com',
+    license='MIT',
+    packages=find_packages(),  # 也可以是一个列表，例如 ['sko']
+    platforms=['linux', 'windows', 'macos'],
+    install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'],  # 指定此包的依赖
+    zip_safe=False,  # 为了兼容性，一般填 False
+    # 命令行工具，一般不需要
+    entry_points={
+        'console_scripts': [
+            'file2tree = file2tree.file2tree:main'
+        ]
+    }
+)
+
+
+
+# 配合使用：
+this_directory = os.path.abspath(os.path.dirname(__file__))
+
+
+# 读取 README
+def read_file(filename):
+    with open(os.path.join(this_directory, filename), encoding='utf-8') as f:
+        long_description = f.read()
+    return long_description
+
+
+# 获取依赖
+def read_requirements(filename):
+    return [line.strip() for line in read_file(filename).splitlines()
+            if not line.startswith('#')]
 ```
-- name: 包的名字，也是将来用户使用 `pip install` 时的名字
-- version： 每次上传的版本号应该不一样
+
 
 
 ### 在本地试一试
@@ -87,15 +116,44 @@ $pip install scikit-opt
 ```bash
 pip install --user --upgrade scikit-opt blind_watermark
 ```
+- `--user` 安装到哪个路径
 - `-r`, `--requirement` 一般后接 requirement file
 - `-U, --upgrade` 升级
 - `-t, --target` 安装到哪个路径
-- `--user` 安装到哪个路径
 - `--no-deps` 不安装依赖的包
 - `-e`, `--editable` editable mode
 
 
-### 
+
+### 命令行工具
+
+```bash
+python3 file2tree/tst1.py args # 直接运行
+python3 -m file2tree.tst1 args # 当做模块运行，如果你 pip install 了file2tree，这里直接运行其中的 tst1.py 文件
+
+# 如果包里放入 __main__.py， 下面的效果是运行 __main__.py
+python3 -m file2tree args
+```
+
+我们有时候想把 `python3` 省略掉，如何做？  
+上面提过 `entry_points` 这个选项：
+
+```py
+setup(
+    entry_points={
+        'console_scripts': [
+            # 等号左边对应的是命令的名字（file2tree）
+            'file2tree = file2tree.file2tree:main'
+            # 等号右边代表，指向 file2tree 这个包下的 file2tree.py 中的 main() 函数
+        ]
+    }
+)
+```
+
+
+
+
+
 
 ## 自动化测试
 

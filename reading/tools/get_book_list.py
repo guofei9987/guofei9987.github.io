@@ -18,16 +18,15 @@ def get_one_year_books(year):
     book_list_year = soup.find_all(name='div', attrs={'class': 'col-md-12'})
     for book in book_list_year:
         book_detail = book.table.tbody.find_all(name='td')
-        one_year_books.append([book_detail[1].string, book_detail[3].string, book_detail[5].string, book_detail[7].string])
+        one_year_books.append(
+            [book_detail[1].string, book_detail[3].string, book_detail[5].string, book_detail[7].string])
     return one_year_books
 
 
-years = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013]
+years = [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013]
 all_books = []
 for year in years:
     all_books.extend(get_one_year_books(year))
-
-
 
 # %% 把书单列出来，并写入 书单/读完的书单.md
 all_books_md = ''
@@ -39,9 +38,10 @@ for year in years:
 |书名|作者|读完时间|我的打分|
 |----|---|--------|-------|
 '''. \
-                        format(year=year, count_book=len(tmp_one_year_books))
+        format(year=year, count_book=len(tmp_one_year_books))
     for book in tmp_one_year_books:
-        all_books_md += '|{book}|{author}|{date}|{score}|\n'.format(book=book[0], author=book[2], date=book[1], score=book[3])
+        all_books_md += '|{book}|{author}|{date}|{score}|\n'.format(book=book[0], author=book[2], date=book[1],
+                                                                    score=book[3])
 
 print(all_books_md)
 
