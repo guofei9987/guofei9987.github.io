@@ -151,7 +151,53 @@ setup(
 ```
 
 
+### 命令行工具的入参
 
+
+```python
+# tst_optparse.py
+
+from optparse import OptionParser
+
+optParser = OptionParser()
+
+# 1. 键值对的形式：
+# python tst_optparse.py -f filename1
+optParser.add_option('-f', '--file', dest='filename', help='a file name')
+# dst: 存到哪个变量里面，例子是存到 opt.filename 里面
+
+# 2. 单一键的形式
+# python tst_optparse.py -v
+optParser.add_option('-v', '--verbose', dest='is_verbose', action='store_const', const='yes',
+                     help='Is it process verbosely?')
+# 如果有 -v，那么就 opts.is_verbose='yes'，否则是 None
+
+# 定义默认，如果不定义默认，默认就是 None
+optParser.set_default('filename', 'default_filename')
+
+
+
+# 解析
+(opts, args) = optParser.parse_args()
+# 可以指定解析什么：
+# (opts, args) = optParser.parse_args(['-v', '-f', 'my_file'])
+# opts 是一个 optparse.Values 对象
+opts.filename  # 返回 filename1
+args  # list，额外“找不到成对匹配的”，放到 args里面
+```
+
+
+help 命令也很方便：
+
+```bash
+python tst_optparse.py -h
+python tst_optparse.py -help
+python tst_optparse.py --help
+```
+
+备注：
+- 很方便，这些场景有效：python调用、python -m、用 entry_points
+- 还有一些其它包，例如 `argparse`, `getopt`，感觉相对没那么傻瓜。
 
 
 
