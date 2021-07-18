@@ -79,12 +79,11 @@
     * [5_心理学读物<sup style = "color:red">872字<sup>](docs/7_心理学/5_心理学读物.md)
     * [《心流》<sup style = "color:red">1753字<sup>](docs/7_心理学/《心流》.md)
     * [心理学效应<sup style = "color:red">979字<sup>](docs/7_心理学/心理学效应.md)
+    * [情商<sup style = "color:red">1836字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">1163字<sup>](docs/7_心理学/行为心理学.md)
 * 8_自我管理
-    * [健康管理<sup style = "color:red">1717字<sup>](docs/8_自我管理/健康管理.md)
     * [工作<sup style = "color:red">9102字<sup>](docs/8_自我管理/工作.md)
     * [心灵<sup style = "color:red">263字<sup>](docs/8_自我管理/心灵.md)
-    * [情商<sup style = "color:red">1836字<sup>](docs/8_自我管理/情商.md)
     * [投资<sup style = "color:red">1072字<sup>](docs/8_自我管理/投资.md)
     * [时间管理<sup style = "color:red">1979字<sup>](docs/8_自我管理/时间管理.md)
     * [目标管理<sup style = "color:red">2336字<sup>](docs/8_自我管理/目标管理.md)
@@ -104,6 +103,7 @@
     * [说<sup style = "color:red">3707字<sup>](docs/G_沟通/说.md)
 * H_健康
     * [人体<sup style = "color:red">1068字<sup>](docs/H_健康/人体.md)
+    * [健康管理<sup style = "color:red">1717字<sup>](docs/H_健康/健康管理.md)
     * [健康管理师1<sup style = "color:red">11423字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">428字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
