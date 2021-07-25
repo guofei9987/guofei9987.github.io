@@ -124,6 +124,13 @@ pip install --user --upgrade scikit-opt blind_watermark
 - `-e`, `--editable` editable mode
 
 
+```bash
+# 看一个包的位置
+pip show scikit-opt
+```
+
+
+
 
 ### 命令行工具
 
@@ -159,7 +166,7 @@ setup(
 
 from optparse import OptionParser
 
-optParser = OptionParser()
+optParser = OptionParser(usage='file2tree -N')
 
 # 1. 键值对的形式：
 # python tst_optparse.py -f filename1
@@ -200,6 +207,73 @@ python tst_optparse.py --help
 - 还有一些其它包，例如 `argparse`, `getopt`，感觉相对没那么傻瓜。
 
 
+### init
+
+
+`__all__` 用来约定暴露哪些接口
+```py
+# file1.py
+__all__ = ['func1', 'func2']
+```
+
+含义：
+1. 在执行 `from file1 import *` 时，未在 `__all__` 中的函数不会被导入。
+2. `from file1 import func3` 仍然可用
+3. 可以和 `__init__` 配合使用
+
+
+
+
+`__init__.py` 用来“把一个路径变成一个模块”
+
+
+子目录中如何做？
+
+空的 `__init__.py`
+
+```py
+# pkg1/__init__.py 为空
+
+from tst_pkg.pkg1 import pkg1_file1
+pkg1_file1.func1()
+
+# 但是这个会报错：
+from tst_pkg import pkg1
+pkg1.pkg1_file1.func1()
+```
+
+
+```py
+# pkg1/__init__.py
+from .pkg1_file1 import func1
+
+
+# 外面这样导入
+from tst_pkg import pkg1
+
+pkg1.func1()
+pkg1.pkg1_file1.func1()
+```
+
+
+
+```py
+# pkg1/__init__.py
+from . import pkg1_file1
+
+# tst_pkg.pkg1.pkg1_file1.func1()
+
+
+
+# 外面这样导入
+from tst_pkg import pkg1
+
+pkg1.pkg1_file1.func1()
+
+from tst_pkg.pkg1 import pkg1_file1
+
+pkg1_file1.func1()
+```
 
 ## 自动化测试
 
@@ -361,6 +435,42 @@ sys.path # 这个好像显示的比较正确
 - anaconda `docker run -it continuumio/anaconda3 /bin/bash` https://hub.docker.com/r/continuumio/anaconda3
 - miniconda `docker run -it continuumio/miniconda3 /bin/bash` https://hub.docker.com/r/continuumio/miniconda3
 
+
+
+### pyenv
+
+
+```bash
+# 查看当前python版本
+pyenv version
+
+# 查看所有版本
+pyenv versions
+
+# 查看所有可安装的版本
+pyenv install --list
+
+# 安装指定版本
+pyenv install 3.6.5
+# 安装新版本后rehash一下
+pyenv rehash
+
+# 删除指定版本
+pyenv uninstall 3.5.2
+
+# 指定全局版本
+pyenv global 3.6.5
+
+# 指定多个全局版本, 3版本优先
+pyenv global 3.6.5 2.7.14
+
+# 实际上当你切换版本后, 相应的pip和包仓库都是会自动切换过去的
+```
+
+
+```bash
+echo $PATH # 显示path
+```
 
 
 ## 参考资料
