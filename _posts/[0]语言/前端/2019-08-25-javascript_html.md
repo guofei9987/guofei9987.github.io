@@ -275,6 +275,33 @@ document.getElementById('demo_id1').innerHTML = tag;
 </script>
 ```
 
+<div id="prog_text"></div>
+
+<div style="width: 500px;border: solid red;">
+    <div id="progress" style="width: 10%;background-color: red;height: 10px;">颜色</div>
+</div>
+
+<script>
+
+    var prog_tag = document.getElementById('progress');
+    var prog_text = document.getElementById('prog_text');
+    var progress = 10;
+
+    function myFun1() {
+
+        progress += 2;
+        if (progress > 100) {
+            window.clearInterval(interval);
+        } else {
+            prog_tag.style.width = progress + "%";
+            prog_text.innerText = progress + '%';
+        }
+
+    }
+
+    interval = window.setInterval('myFun1()', 100);
+</script>
+
 ### 案例：跑马灯
 
 每次把第一个字符移动到最后
@@ -305,7 +332,113 @@ document.getElementById('demo_id1').innerHTML = tag;
     window.setInterval('myFun4()', 500);
 </script>
 
-## 其它：file
+## 其它
+
+### 全屏
+
+
+```html
+
+
+<style>
+  #fulldiv {
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+  }
+</style>
+
+
+<h3>指定区域全屏测试</h3>
+<button id="btn">全屏按钮</button>
+<div id="fulldiv">
+  <h3>这里是全屏显示的内容</h3>
+</div>
+
+<script>
+  var fullscreen = false;
+  let btn = document.getElementById('btn');
+  let fullarea = document.getElementById('fulldiv')
+  btn.addEventListener('click',function(){
+    if (fullscreen) {    // 退出全屏
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    } else {    // 进入全屏
+      if (fullarea.requestFullscreen) {
+        fullarea.requestFullscreen();
+      } else if (fullarea.webkitRequestFullScreen) {
+        fullarea.webkitRequestFullScreen();
+      } else if (fullarea.mozRequestFullScreen) {
+        fullarea.mozRequestFullScreen();
+      } else if (fullarea.msRequestFullscreen) {
+        // IE11
+        fullarea.msRequestFullscreen();
+      }
+    }
+    fullscreen = !fullscreen;
+  })
+</script>
+```
+
+
+<style>
+  #fulldiv {
+    background: #fff;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+  }
+</style>
+
+
+<h3>指定区域全屏测试</h3>
+<button id="btn">全屏按钮</button>
+<div id="fulldiv">
+  <h3>这里是全屏显示的内容</h3>
+</div>
+
+<script>
+  var fullscreen = false;
+  let btn = document.getElementById('btn');
+  let fullarea = document.getElementById('fulldiv')
+  btn.addEventListener('click',function(){
+    if (fullscreen) {    // 退出全屏
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    } else {    // 进入全屏
+      if (fullarea.requestFullscreen) {
+        fullarea.requestFullscreen();
+      } else if (fullarea.webkitRequestFullScreen) {
+        fullarea.webkitRequestFullScreen();
+      } else if (fullarea.mozRequestFullScreen) {
+        fullarea.mozRequestFullScreen();
+      } else if (fullarea.msRequestFullscreen) {
+        // IE11
+        fullarea.msRequestFullscreen();
+      }
+    }
+    fullscreen = !fullscreen;
+  })
+</script>
+
+
+### file
+
 
 上传一个文件给 JavaScript 处理：
 
