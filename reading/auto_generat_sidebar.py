@@ -73,15 +73,14 @@ for top, dirs, nondirs in path_all:
                                           format(l2=l2, block_name=block_name, article=article)
                                            for l2 in title_level_2]))
 
-
-
         detail_2 += '|<a href="/#/docs/{block_name}/{article}" target="_blank">{article}<sup style = "color:red">{word_num}字<sup></a>|{title_level_2}\n'. \
             format(article=article,
                    block_name=block_name,
                    word_num=word_num,
-                   title_level_2='，'.join(['<a href="/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
-                                          format(l2=l2, block_name=block_name, article=article)
-                                           for l2 in title_level_2]))
+                   title_level_2='，'.join(
+                       ['<a href="/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
+                       format(l2=l2, block_name=block_name, article=article)
+                        for l2 in title_level_2]))
 
         data.append([article, block_name, word_num])
 
@@ -119,14 +118,30 @@ f = open('sidebar.md', 'w', encoding='utf-8')
 f.write(head + sidebar + tail)
 f.close()
 
-#%% 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
+# %% 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
 f = open('README.md', 'w', encoding='utf-8')
 f.write('\n笔记总字数 {} 字 \n'.format(total_words) + detail)
 f.close()
 
-
-
-#%% guofei.site 首页专用，链接到新库
+# %% guofei.site 首页专用，链接到新库
 f = open('all.md', 'w', encoding='utf-8')
 f.write(detail_2)
 f.close()
+
+# %% 封面
+
+coverpage = '''![logo](media/pic.jpg)
+
+# 郭飞的知识宝库
+
+> By guofei
+
+* 人类必将化身为神
+* (读书笔记累积 {} 字)
+
+[GitHub](https://github.com/guofei9987/guofei9987.github.io)
+[读书](/README)
+'''.format(total_words)
+
+with open('coverpage.md', 'w') as f:
+    f.write(coverpage)
