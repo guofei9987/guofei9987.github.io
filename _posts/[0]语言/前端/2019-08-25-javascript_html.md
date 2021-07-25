@@ -247,59 +247,59 @@ document.getElementById('demo_id1').innerHTML = tag;
 
 
 ```html
-<div id="prog_text"></div>
-
 <div style="width: 500px;border: solid red;">
-    <div id="progress" style="width: 10%;background-color: red;height: 10px;">颜色</div>
+    <div id="progress" style="width: 10%;background-color: red;height: 10px;">进度</div>
 </div>
+
+<button type="button" onclick="myFun5()">开启进度条</button>
 
 <script>
 
     var prog_tag = document.getElementById('progress');
-    var prog_text = document.getElementById('prog_text');
     var progress = 10;
 
-    function myFun1() {
-
+    function myFun5_1() {
         progress += 2;
         if (progress > 100) {
             window.clearInterval(interval);
         } else {
             prog_tag.style.width = progress + "%";
-            prog_text.innerText = progress + '%';
+            prog_tag.innerText = progress + '%';
         }
 
     }
 
-    interval = window.setInterval('myFun1()', 100);
+    function myFun5(){
+      interval = window.setInterval('myFun5_1()', 100);
+    }
 </script>
 ```
 
-<div id="prog_text"></div>
-
 <div style="width: 500px;border: solid red;">
-    <div id="progress" style="width: 10%;background-color: red;height: 10px;">颜色</div>
+    <div id="progress" style="width: 10%;background-color: red;height: 10px;">进度</div>
 </div>
+
+<button type="button" onclick="myFun5()">开启进度条</button>
 
 <script>
 
     var prog_tag = document.getElementById('progress');
-    var prog_text = document.getElementById('prog_text');
     var progress = 10;
 
-    function myFun1() {
-
+    function myFun5_1() {
         progress += 2;
         if (progress > 100) {
             window.clearInterval(interval);
         } else {
             prog_tag.style.width = progress + "%";
-            prog_text.innerText = progress + '%';
+            prog_tag.innerText = progress + '%';
         }
 
     }
 
-    interval = window.setInterval('myFun1()', 100);
+    function myFun5(){
+      interval = window.setInterval('myFun5_1()', 100);
+    }
 </script>
 
 ### 案例：跑马灯
@@ -338,8 +338,6 @@ document.getElementById('demo_id1').innerHTML = tag;
 
 
 ```html
-
-
 <style>
   #fulldiv {
     background: #fff;
@@ -350,10 +348,10 @@ document.getElementById('demo_id1').innerHTML = tag;
 </style>
 
 
-<h3>指定区域全屏测试</h3>
+<b>指定区域全屏测试</b>
 <button id="btn">全屏按钮</button>
 <div id="fulldiv">
-  <h3>这里是全屏显示的内容</h3>
+  <b>这里是全屏显示的内容</b>
 </div>
 
 <script>
@@ -399,10 +397,10 @@ document.getElementById('demo_id1').innerHTML = tag;
 </style>
 
 
-<h3>指定区域全屏测试</h3>
+<b>指定区域全屏测试</b>
 <button id="btn">全屏按钮</button>
 <div id="fulldiv">
-  <h3>这里是全屏显示的内容</h3>
+  <b>这里是全屏显示的内容</b>
 </div>
 
 <script>
