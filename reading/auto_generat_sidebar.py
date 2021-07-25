@@ -73,12 +73,12 @@ for top, dirs, nondirs in path_all:
                                           format(l2=l2, block_name=block_name, article=article)
                                            for l2 in title_level_2]))
 
-        detail_2 += '|<a href="/#/docs/{block_name}/{article}" target="_blank">{article}<sup style = "color:red">{word_num}字<sup></a>|{title_level_2}\n'. \
+        detail_2 += '|<a href="/reading/#/docs/{block_name}/{article}" target="_blank">{article}<sup style = "color:red">{word_num}字<sup></a>|{title_level_2}\n'. \
             format(article=article,
                    block_name=block_name,
                    word_num=word_num,
                    title_level_2='，'.join(
-                       ['<a href="/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
+                       ['<a href="/reading/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
                        format(l2=l2, block_name=block_name, article=article)
                         for l2 in title_level_2]))
 
