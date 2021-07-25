@@ -81,14 +81,14 @@
     * [心理学效应<sup style = "color:red">979字<sup>](docs/7_心理学/心理学效应.md)
     * [情商<sup style = "color:red">1836字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">1163字<sup>](docs/7_心理学/行为心理学.md)
-* 8_自我管理
-    * [工作<sup style = "color:red">9102字<sup>](docs/8_自我管理/工作.md)
-    * [心灵<sup style = "color:red">263字<sup>](docs/8_自我管理/心灵.md)
-    * [投资<sup style = "color:red">1072字<sup>](docs/8_自我管理/投资.md)
-    * [时间管理<sup style = "color:red">1979字<sup>](docs/8_自我管理/时间管理.md)
-    * [目标管理<sup style = "color:red">2336字<sup>](docs/8_自我管理/目标管理.md)
-    * [詹姆斯柯林斯<sup style = "color:red">3779字<sup>](docs/8_自我管理/詹姆斯柯林斯.md)
-    * [项目管理<sup style = "color:red">5086字<sup>](docs/8_自我管理/项目管理.md)
+* 8_管理
+    * [工作<sup style = "color:red">9102字<sup>](docs/8_管理/工作.md)
+    * [心灵<sup style = "color:red">263字<sup>](docs/8_管理/心灵.md)
+    * [投资<sup style = "color:red">1072字<sup>](docs/8_管理/投资.md)
+    * [时间管理<sup style = "color:red">1979字<sup>](docs/8_管理/时间管理.md)
+    * [目标管理<sup style = "color:red">2336字<sup>](docs/8_管理/目标管理.md)
+    * [詹姆斯柯林斯<sup style = "color:red">3779字<sup>](docs/8_管理/詹姆斯柯林斯.md)
+    * [项目管理<sup style = "color:red">5086字<sup>](docs/8_管理/项目管理.md)
 * 9_小说
     * [刘慈欣<sup style = "color:red">7730字<sup>](docs/9_小说/刘慈欣.md)
     * [反乌托邦小说<sup style = "color:red">4255字<sup>](docs/9_小说/反乌托邦小说.md)
@@ -119,7 +119,6 @@
 
 
 * 书单
-    * [书单](书单/书单.md)
     * [读完的书单](书单/读完的书单.md)
 * 建站日志
     * [快速开始](建站日志/quickstart.md)

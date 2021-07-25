@@ -44,16 +44,22 @@ path_all = [(top, dirs, sorted(nondirs)) for top, dirs, nondirs in path_all]
 
 sidebar = ''
 detail = ''
+detail_2 = ''
 data = []
 for top, dirs, nondirs in path_all:
     block_name = top.replace('docs' + os.sep, '')
     sidebar += '* ' + block_name + '\n'
-    # detail += '\n### ' + block_name + '\n'
     detail += '''
 ###  {block_name}
 |板块|书目|
-|--|--|
+|---|---|
 '''.format(block_name=block_name)
+    detail_2 += '''
+###  {block_name}
+|板块|书目|
+|---|---|
+'''.format(block_name=block_name)
+
     for file_name in nondirs:
         word_num, title_level_2 = word_count(top + os.sep + file_name)
         article = file_name.replace('.md', '')
@@ -66,16 +72,27 @@ for top, dirs, nondirs in path_all:
                    title_level_2='，'.join(['[{l2}](docs/{block_name}/{article}.md?id={l2})'.
                                           format(l2=l2, block_name=block_name, article=article)
                                            for l2 in title_level_2]))
+
+
+
+        detail_2 += '|<a href="/#/docs/{block_name}/{article}" target="_blank">{article}<sup style = "color:red">{word_num}字<sup></a>|{title_level_2}\n'. \
+            format(article=article,
+                   block_name=block_name,
+                   word_num=word_num,
+                   title_level_2='，'.join(['<a href="/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
+                                          format(l2=l2, block_name=block_name, article=article)
+                                           for l2 in title_level_2]))
+
         data.append([article, block_name, word_num])
 
 print('_' * 10, 'sidebar:', '_' * 10)
 print(sidebar)
 print('_' * 10, 'detail:', '_' * 10)
 print(detail)
-total_words=sum(i[2] for i in data)
+total_words = sum(i[2] for i in data)
 print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 
-# %%
+# %% 侧边栏
 head = '''
 <a href="http://www.guofei.site" target='blog'>
 <img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
@@ -90,7 +107,6 @@ head = '''
 tail = '''
 
 * 书单
-    * [书单](书单/书单.md)
     * [读完的书单](书单/读完的书单.md)
 * 建站日志
     * [快速开始](建站日志/quickstart.md)
@@ -103,12 +119,14 @@ f = open('sidebar.md', 'w', encoding='utf-8')
 f.write(head + sidebar + tail)
 f.close()
 
-# 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
+#%% 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
 f = open('README.md', 'w', encoding='utf-8')
-f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
+f.write('\n笔记总字数 {} 字 \n'.format(total_words) + detail)
 f.close()
 
 
-# f = open('homepage.md', 'w', encoding='utf-8')
-# f.write(detail+'\n'+'总字数 {} 字'.format(total_words))
-# f.close()
+
+#%% guofei.site 首页专用，链接到新库
+f = open('all.md', 'w', encoding='utf-8')
+f.write(detail_2)
+f.close()

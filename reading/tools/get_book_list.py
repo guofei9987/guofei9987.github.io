@@ -24,9 +24,38 @@ def get_one_year_books(year):
 
 
 years = [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013]
-all_books = []
+all_books = dict()
 for year in years:
-    all_books.extend(get_one_year_books(year))
+    all_books[year] = get_one_year_books(year)
+
+# %%
+# 把 None 换成 ''
+all_books_ = {year: [[i or ' ' for i in book] for book in books] for year, books in all_books.items()}
+
+# %% 把书单列出来，并写入 书单/读完的书单.md
+all_books_md = ''
+
+for year in years:
+    tmp_one_year_books = all_books_[year]
+    all_books_md += '''
+### {year}年（共读完{count_book}本）
+|书名|作者|读完时间|我的打分|
+|----|---|--------|-------|
+'''. \
+        format(year=year, count_book=len(tmp_one_year_books))
+    for book in tmp_one_year_books:
+        all_books_md += '|{book}|{author}|{date}|{score}|\n'.format(book=book[0], author=book[2], date=book[1],
+                                                                    score=book[3])
+
+print(all_books_md)
+
+f = open('../书单/读完的书单.md', encoding='utf-8', mode='w')
+
+f.write('## 书单\n' + all_books_md)
+f.close()
+
+
+
 
 # %% 把书单列出来，并写入 书单/读完的书单.md
 all_books_md = ''
