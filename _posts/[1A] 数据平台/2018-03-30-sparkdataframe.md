@@ -168,7 +168,7 @@ df = spark.createDataFrame(pd_df)
 step2: 用 collect_list 汇总数据
 ```py
 import pyspark.sql.functions as F
-from pyspark.sql.types import DoubleType
+from pyspark.sql.types import DoubleType, ArrayType
 
 df2 = df.groupBy('type'). \
     agg(F.collect_list('col1').alias('col1_lst'),
@@ -206,6 +206,7 @@ df3 = df2.selectExpr('type', 'func2(col1_lst,col2_lst) as col3_lst')
 
 # 展开：
 df3.selectExpr('*', 'explode(col3_lst) as col4')
+df3.selectExpr('*', 'posexplode(col3_lst) as (col4,col5)')
 ```
 
 
@@ -303,7 +304,7 @@ df1.subtract(df2)  # 差集
 ### 2. 横向
 ```py
 df1.join(df2) #  笛卡尔积，慎用！
-df1.join(df2,on='id')
+df1.join(df2, on='col1')
 a.join(b,on=['id','dt'],how='inner')
 # innner, left, right, outer
 # left_semi，以左表为准，在右表中查找匹配的记录，相当于 in ，并且只返回左表的字段。如果左表的 key 中有 null，会忽略这条记录
@@ -318,12 +319,7 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 ```
 
 
-## funs
-增添一列递增、唯一（但不连续）的数字
-```py
-import pyspark.sql.functions as fn
-df_abnormal_id=df1.select(fn.monotonically_increasing_id().alias('id'),'*')
-```
+
 
 
 

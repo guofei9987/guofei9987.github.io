@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【spark】模型持久化
+title: 【丢】【spark】模型持久化
 categories:
-tags: 1-1-算法平台
+tags:
 keywords:
 description:
 order: 173
@@ -40,7 +40,7 @@ model_load=ps.loads(model_str)
 model_load.predict([[0.1]])
 ```
 
-## 另外
+### 另外
 这个可以序列化 iterator，不过还没试过
 
 ```Python
@@ -48,5 +48,4 @@ ps.dump_stream
 ps.load_stream
 ```
 
-### MarshalSerializer
-faster than PickleSerializer but supports fewer datatypes
+MarshalSerializer：faster than PickleSerializer but supports fewer datatypes

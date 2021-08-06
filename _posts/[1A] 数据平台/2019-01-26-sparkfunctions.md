@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【spark】sql.functions详解
+title: 【spark】sql.functions
 categories:
 tags: 1-1-算法平台
 keywords:
@@ -287,6 +287,12 @@ approx_count_distinct
 ```
 
 
+## 自增ID
+增添一列递增、唯一（但不连续）的数字
+```py
+import pyspark.sql.functions as fn
+df_abnormal_id=df1.select(fn.monotonically_increasing_id().alias('id'),'*')
+```
 
 ## 参考文献
 http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions  
