@@ -27,57 +27,57 @@ spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate(
 ```
 ### 新建
 ```py
-df=spark.createDataFrame([[1,2],[1,3],[2,3],[2,4]],schema=['col1','col2'])
+df = spark.createDataFrame([[1, 2], [1, 3], [2, 3], [2, 4]], schema=['col1', 'col2'])
 spark.createDataFrame(<pd.DataFrame>)
 spark.createDataFrame(<rdd>)
 ```
 ### show
 ```py
-df.limit(5) # 取前5行，不同的是，是transformation
-df.show() # 返回20条数据
-df.show(30) # 返回30条数据
-df.collect() # 返回一个list，里面多个Row
+df.limit(5)  # 取前5行，不同的是，是transformation
+df.show()  # 返回20条数据
+df.show(30)  # 返回30条数据
+df.collect()  # 返回一个list，里面多个Row
 
 # df.take(5) #类似RDD，等价于 df.limit(n).collect()
 # df.head(5) #类似RDD，等价于 df.take(n)
 # df.first() #返回一个Row，等价于 df.head(1)
 
 
+df.describe()  # 返回统计值，是一个action，但返回的是DataFrame
+df.describe('col1', 'col2')  # 返回指定字段的统计值
 
-df.describe() #返回统计值，是一个action，但返回的是DataFrame
-df.describe('col1','col2') #返回指定字段的统计值
 
-df.columns #返回一个list，内容是列名
+df.columns  # 返回一个list，内容是列名
 df.dtypes
 
 
-df.drop('col1','col2') # 删除某些列
-df.withColumnRenamed('col1','col1_new') # 给指定列改名
+df.drop('col1', 'col2')  # 删除某些列
+df.withColumnRenamed('col1', 'col1_new')  # 给指定列改名
 ```
 
 
 ## 查询
 
 ```py
-# df.where('col1=1 and col2="abc"') #是transformation，返回RDD
-df.filter('col1=1 and col2="abc"') #与where效果完全相同
-df.filter(df.col1>5)
+df.filter('col1=1 and col2="abc"')  # 与 df.where 效果完全相同
+df.filter(df.col1 > 5)
 
-df.select('col1','col2') # 取指定列,返回RDD
-df.selectExpr('col1 as id','col2*2 as col2_value')
+df.select('col1', 'col2')
+df.selectExpr('col1 as id', 'col2*2 as col2_value')
 ```
 
 ## 数据清洗类操作
 ```py
 # 去重
-df.distinct() # 返回一个去重的DataFrame
+df.distinct()  # 返回一个去重的DataFrame
 df.dropDuplicates()
-df.dropDuplicates(subset=['col1','col2']) # 按字段去重
+df.dropDuplicates(subset=['col1', 'col2'])  # 按字段去重，其它未指定的字段只会保留1个
 
 
-df.dropna(how='any', thresh=None, subset=None)
-# ! 注意，不会修改df，而是返回一个新的df
-# thresh 是一个阈值，例如，thresh=3，代表一行的缺失值达到3个以上时，移除这一行
+df.dropna(how='any', thresh=None, subset=None)  # 返回一个去 null 后的 DataFrame （不会修改df）
+# how='any' / 'all'
+# thresh: 1) 使 how 失效，2) 如果某一行的非空值个数小于 thresh，就 drop 这一行.
+# subset: 你定义的 how/thresh 规则作用于哪些字段
 
 df.fillna(0)
 ```
@@ -99,30 +99,22 @@ df.orderBy(['col1','col2'], ascending=[0,1])
 df.approxQuantile('col1', [0.25,0.75], 0.05) # 返回一个list，大小与第二个参数相同，表示分位数。
 # 第一个参数是列名，第二个参数是分位数，第三个参数是准确度，设定为0时代价巨大
 
-df.corr('pv','uv') # 相关系数，目前只支持两个字段，只支持Person相关系数
-df.cov('a','b')
+df.corr('col1','col2') # 返回一个数字，相关系数。目前只支持两个字段，只支持Person相关系数
+df.cov('col1','col2')
 ```
 
 ### pivot
-- 借用pandas
-```py
-import pandas as pd
-import numpy as np
-pd_df=pd.DataFrame(np.arange(40).reshape(4,-1).T,columns=list('wxyz'))
-pd_df.w=pd_df.w%2
-pd_df.x=pd_df.x//3
-pd_df.pivot_table(index='w',columns='x',values='y',aggfunc=sum)
-```
-- 借用spark
+
 ```py
 df=spark.createDataFrame(pd_df)
 df.groupBy('w', 'x').pivot('y').sum('z')
 # 详解：
 # 1. groupby 后面的内容作为 index （因为 spark.DataFrame 不搞 index，因此作为普通列）
 # 2. pivot 后面的内容作为 col
-# 3. 后面接的agg func 作为返回的表里面的 value
+# 3. 后面接的agg func 作为返回的表里面的 value. 例如 count(), sum('z'), mean,  avg, max, min
+# 3_2. sum('z1', 'z2') 产生多个列
 # df.groupBy('w', 'x').pivot('y', [20,21,22]).sum('z') # pivot 的第二个参数用来限定 col 所取的范围
-# df.groupBy('w', 'x').pivot('y') 是一个 <GroupedData> ，因此后面可以跟 agg 等操作
+# df.groupBy('w', 'x').pivot('y') 是一个 <GroupedData> ，因此后面可以跟 agg 等操作（agg ,apply）
 ```
 
 ## groupby
@@ -140,7 +132,7 @@ df.groupby('col1').agg({'col2':'mean','col3':'sum'}) # 似乎不能与F混用
 
 # agg2：F中的函数
 from pyspark.sql import functions as F
-df.groupBy('col1').agg(F.countDistinct('col2'))
+df.groupBy('col1').agg(F.countDistinct('col2').alias('col2_cnt'))
 
 # agg3：自定义函数
 ## agg3_1：udf作用于被 groupBy 的列，一一映射就有意义
@@ -156,8 +148,73 @@ df.selectExpr('func(a)')
 ```
 
 
-### 方案1：UDF
-目前因为一些包没装好，暂时没去测
+### aggfunc 方案1
+
+先把被汇总的数据放到一个 list 中，然后用 UDF 处理这个list
+
+step1：生成数据
+```py
+from pyspark.sql import SparkSession
+import pandas as pd
+import scipy.stats as stats
+
+spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
+
+pd_df = pd.DataFrame(stats.norm().rvs(size=(100, 3)), columns=['type', 'col1', 'col2'])
+pd_df.type = (pd_df.type > 0) * 1.0
+df = spark.createDataFrame(pd_df)
+```
+
+step2: 用 collect_list 汇总数据
+```py
+import pyspark.sql.functions as F
+from pyspark.sql.types import DoubleType
+
+df2 = df.groupBy('type'). \
+    agg(F.collect_list('col1').alias('col1_lst'),
+        F.collect_list('col2').alias('col2_lst'))
+
+```
+
+step3:构建 udf 并计算得到结果
+
+```py
+def func1(x, y):
+    return float(stats.pearsonr(x, y)[0])
+
+
+# 方法1（文本）：
+spark.udf.register('func1', func1, returnType=DoubleType())
+df2.selectExpr('type', 'func1(col1_lst,col2_lst) as corr_1_2').show()
+
+# 方法2（借助F）：
+udf_func1 = F.udf(func1, DoubleType())
+df2.select('type', udf_func1('col1_lst', 'col2_lst').alias('corr_1_2')).show()
+```
+
+额外来讲，可以返回一个list
+```py
+def func2(col1, col2):
+    return max(col1), min(col1), min(col2)
+
+
+spark.udf.register('func2', func2, returnType=ArrayType(DoubleType()))
+df3 = df2.selectExpr('type', 'func2(col1_lst,col2_lst) as col3_lst')
+
+# 也可以同上用 F 来实现：
+# 不多写了
+
+# 展开：
+df3.selectExpr('*', 'explode(col3_lst) as col4')
+```
+
+
+
+
+
+
+
+### aggfunc 方案2
 ```py
 # http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.GroupedData.apply
 from pyspark.sql.functions import pandas_udf, PandasUDFType
@@ -174,136 +231,6 @@ def substract_mean(pdf):
 
 df.groupby("id").apply(substract_mean).show()
 ```
-### 方案2：借助register
-（目前个人偏爱这个方案）
-```py
-from pyspark.sql import SparkSession
-spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
-import pandas as pd
-import scipy.stats as stats
-pd_df=pd.DataFrame(stats.norm().rvs(size=(100,3)),columns=list('abc'))
-pd_df.a=(pd_df.a>0)*1.0
-df=spark.createDataFrame(pd_df)
-```
-
-```py
-import pyspark.sql.functions as F
-# step1:groupby阶段，先把待使用的数据做成list
-df2 = df.groupBy('a').agg(F.collect_list('b').alias('b_list'),
-                          F.collect_list('c').alias('c_list'))
-
-# step2：定义函数并 register
-#（注意，返回的应当是标准的float格式，scipy返回的是 numpy.float64，如果不转化一下，会使spark报错）
-def my_fun1(x, y):
-    return float(stats.pearsonr(x, y)[0])
-
-# step3：应用
-from pyspark.sql.types import DoubleType
-spark.udf.register('my_fun1', my_fun1, returnType=DoubleType())
-df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
-
-#%%
-# 附：有时候每次调用 udf，想要返回多个数字组成的 list
-# 返回的是 array 对象
-def my_fun1(x, y):
-    return x+y
-
-spark.udf.register('my_fun1', my_fun1,returnType=ArrayType(DoubleType())) # 这里指定了 type，注意，如果 return 的 type 不同，会置为空
-df3 = df2.selectExpr('*', 'my_fun1(b_list,c_list) as a_end')
-
-# 1. 想要把 array 横向展开，只需自定义一个udf
-spark.udf.register('my_fun2',lambda x,y:x[y])
-df4=df3.selectExpr('my_fun2(a_end,1) as a_1')
-# 2. 想要把 array 纵向展开，用explode即可
-df3.selectExpr('*','explode(a_end)')
-```
-
-### 方案3：借助F.udf
-思路类似方案2。  
-生成数据也与方案2一样，略去  
-[参考](https://changhsinlee.com/pyspark-udf/)
-```py
-import pyspark.sql.functions as F
-from pyspark.sql.types import DoubleType
-
-df2=df.groupBy('a').agg(F.collect_list('b').alias('b_list'),
-                    F.collect_list('c').alias('c_list'))
-
-# 同方案2，这里如果返回 numpy.float64,将会报错
-def corr_fun(x,y):
-    return float(stats.pearsonr(x,y)[0])
-
-# 这里也需要注意，要指定返回值得类型。任何不一致都会用null填充。
-# 例如，如果 udf 返回 int，这里指定 DoubleType,会用null填充。
-# 方案2则没有这种困扰
-spark_corr_fun=F.udf(corr_fun,DoubleType())
-df3=df2.withColumn('corr',spark_corr_fun('b_list','c_list'))
-
-
-# 如果想让新列是一个 ArrayType:
-from pyspark.sql.types import ArrayType
-def myfun(x, y):
-    return x + y
-
-spark_myfun = F.udf(myfun, ArrayType(DoubleType()))
-df4 = df2.withColumn('merge', spark_myfun('b_list', 'c_list'))
-
-# 一个增加效率的技巧:df2=df2.repartition(number_of_executors)
-# 否则，如果小文件过多，只会让一个 executors 去计算
-```
-
-
-### 方案4：借助rdd
-```py
-df.rdd.map(lambda row: ((row['sku_id']), row)).groupByKey().flatMap(lambda row : func(row))
-```
-示例（因为目前平台的udf没配置好，所以用rdd来代替，如下）
-```py
-import scipy.stats as stats
-import scipy
-import pandas as pd
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
-
-pd_df = pd.DataFrame(scipy.stats.norm().rvs(size=(3000, 3)), columns=list('abc'))
-pd_df.a = (pd_df.a > 0.5) * 1
-
-df = spark.createDataFrame(pd_df)
-
-
-def myfunc1(row, mystr):
-    '''
-    :param row: (row[0],row[1)结构，
-    其中row[0]是一个row['key']，是一个元素
-    row[1]是 <iterable of row>
-    :param mystr: 可以额外自定义一些输入
-    :return: 返回一定是 <iterable> ,其中的每个元素就是新rdd的一行
-    '''
-    key = row[0]
-    x, y = [], []
-    for i in row[1]:
-        x.append(i['b'])
-        y.append(i['c'])
-    # pd_df = pd.DataFrame(list(row[1]), columns=list('abc'))  # 一行转为DataFrame. 需要手动定义 columns
-    return [[key, sum(x), sum(y)]]
-
-
-rdd1 = df.rdd.map(lambda row: ((row['a']), row)).groupByKey() \
-    .flatMap(lambda row: myfunc1(row, 'cool!'))
-
-df1 = spark.createDataFrame(rdd1, schema=['a', 'b', 'c'])
-df1.show()
-pd_df1 = df1.toPandas()
-```
-
-### 非groupby下的agg
-
-```py
-df1.agg({'col1':'max','col2':'min'}) # 返回1行2列的 DataFrame
-
-```
-
 
 一下是相关网站：  
 http://spark.apache.org/docs/2.1.1/api/python/index.html  
@@ -313,20 +240,69 @@ https://blog.csdn.net/dabokele/article/details/52802150
 https://blog.csdn.net/sparkexpert/article/details/51042970
 
 
+## UDF 详解
+
+
+```py
+import pyspark.sql.functions as F
+from pyspark.sql.types import DoubleType, IntegerType, StringType, ArrayType
+import numpy as np
+
+
+def myfunc(col1, col2):
+    return float(np.sin(col1 + 1) + col2)
+
+
+
+# 方法1:F形式
+myudf = F.udf(myfunc, returnType=DoubleType())  # 这个类型一定要正确指定，否则结果为 null
+df.select('col1', 'col2', myudf('col1', 'col2').alias('sin_col1'))
+
+# 或者：
+df.withColumn('sin_col1', myudf('col1', 'col2'))
+
+
+
+# 方法2:文本形式
+spark.udf.register('myudf', myfunc, returnType=DoubleType())
+df.selectExpr('col1', 'col2', 'myudf(col1,col2) as sin_col1')
+```
+
+
+例子：UDF 如何处理 list  
+(见于上面的 aggfunc)
+
+
+
+
+
+
+### 非groupby下的agg
+
+```py
+df1.agg({'col1':'max','col2':'min'}) # 返回1行2列的 DataFrame
+```
+
 
 ## 合并操作
 
 ### 1. 纵向
 ```py
-df1.union(df2) # 并集：纵向合并，不会删除重复
-df1.intersect(df2) # 交集
-df1.subtract(df2) # 差集
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("appName").enableHiveSupport().getOrCreate()
+df1 = spark.createDataFrame([[1, 2], [1, 3], [2, 3], [2, 4]], schema=['col1', 'col2'])
+df2 = spark.createDataFrame([[1, 2], [1, 4], [2, 3], [2, 3]], schema=['col1', 'col3'])
+
+df1.union(df2)  # 并集：纵向合并，不会删除重复
+df1.intersect(df2)  # 交集
+df1.subtract(df2)  # 差集
 ```
 注意，这里的交集和差集是按照整个列
 
 ### 2. 横向
 ```py
-df1.join(df2) #笛卡尔积，慎用！
+df1.join(df2) #  笛卡尔积，慎用！
 df1.join(df2,on='id')
 a.join(b,on=['id','dt'],how='inner')
 # innner, left, right, outer
@@ -348,6 +324,15 @@ a.join(b,on=[a.id==b.id,a.col1>b.col2+1],how='right').show()
 import pyspark.sql.functions as fn
 df_abnormal_id=df1.select(fn.monotonically_increasing_id().alias('id'),'*')
 ```
+
+
+
+一个增加效率的技巧:
+```py
+df2=df2.repartition(number_of_executors)
+# 否则，如果小文件过多，只会让一个 executors 去计算
+```
+
 
 
 ## 参考文献

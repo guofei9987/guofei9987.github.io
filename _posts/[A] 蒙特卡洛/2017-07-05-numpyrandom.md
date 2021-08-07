@@ -31,6 +31,13 @@ random.sample(all_papers,k=2)
 ```
 np.random.seed(seed=None)
 ```
+
+另一种做法
+```py
+state = np.random.get_state()
+np.random.set_state(state)
+```
+
 ## shuffle&permutation重新洗牌
 ```python
 np.random.shuffle(arr) # 直接改arr，返回none

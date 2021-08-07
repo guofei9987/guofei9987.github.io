@@ -409,21 +409,24 @@ df.pivot(index='w',columns='x')
 
 #### pivot_table:更强大
 ```py
-import pandas as pd
 import numpy as np
-df=pd.DataFrame(np.arange(16).reshape(-1,4),columns=list('wxyz'))
-df.loc[:,'w']=[0,0,1,1]
-df.loc[:,'x']=[3,4,3,4]
+
+df = pd.DataFrame(np.arange(16).reshape(-1, 4), columns=list('wxyz'))
+df.loc[:, 'w'] = [0, 0, 1, 1]
+df.loc[:, 'x'] = [3, 4, 3, 4]
 df
 ```
 - 每个参数都可以传入列表
 ```py
-df.pivot_table(values=['y','z'],index=['w'],columns='x')
+df.pivot_table(values=['y', 'z'], index=['w'], columns='x')
 ```
 - margins=True可以添加小计，配合聚合函数(默认是均值)
 ```py
 df.pivot_table(values=['y','z'],index=['w'],columns='x',margins=True,aggfunc=len)
 ```
+1. `values`, `index`, `columns` 既可以传入字段名，也可以传入 list<字段名>
+2. `margins=True` 可以添加小计
+3. `aggfunc` 默认是均值，可以是自定义函数。如果是自定义函数，入参是一个 `pd.Seris`，内容是 分片+values 颗粒度
 
 
 

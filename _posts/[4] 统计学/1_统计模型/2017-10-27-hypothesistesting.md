@@ -82,3 +82,13 @@ sm.stats.anova_lm(ana)
 
 
 点击<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%AE%A1%E6%8E%A8%E6%96%AD%E5%9F%BA%E7%A1%80.ipynb' target="HypothesisTesting">下载ipynb文件</a>  
+
+
+## 额外知识
+
+kstest 不但可以传入指定的分布字符串（上文），也可以传入一个分布对象（如下）
+
+```py
+stats.kstest(rvs=[1, 2, 3, 4, 5], cdf='norm')
+stats.kstest(rvs=[1, 2, 3, 4, 5], cdf=stats.norm(loc=0, scale=1).cdf)
+```

@@ -135,5 +135,22 @@ degrees(x)  # 弧度转角度
 radians(x)  # 角度转弧度
 ```
 
+## for-else 语句
+
+
+如果 for 循环是正常跑完，执行 else。如果被 break 了，不但跳出循环，而且跳过 else
+```py
+for x in range(1, 8):
+    if x == 5:
+        print('find 5')
+        break
+else:
+    print('can not find 5!')
+```
+
+while-else 同理
+
+
+
 ## 参考文献
 https://docs.python.org/3/
