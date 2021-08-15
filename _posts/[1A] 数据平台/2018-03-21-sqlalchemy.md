@@ -15,21 +15,24 @@ engine=create_engine("sqlite://", echo=False)
 ```
 
 ```py
+# 建表
 engine.execute("create table users(userid char(10), username char(50))")
-resultProxy=engine.execute("insert into users (userid,username) values('user1','tony')")
+
+# 插入单条
+resultProxy = engine.execute("insert into users (userid,username) values('user1','tony')")
 
 # 批量插入
-data=[(str(i),'user'+str(i)) for i in range(5)]
+data = [(str(i), 'user' + str(i)) for i in range(5)]
 engine.execute("insert into users (userid,username) values(?,?)", data)
 
 
-
-resultProxy=engine.execute("select * from users")
-resultProxy.fetchall() # fetch 类的语句，只有 select 才可以用，其它报错
+# 查
+resultProxy = engine.execute("select * from users")
+resultProxy.fetchall()  # fetch 类的语句，只有 select 才可以用，其它报错
 resultProxy.fetchmany(size=1)
 
 
-resultProxy.close() # resultProxy 用完之后, 需要close
+resultProxy.close()  # resultProxy 用完之后, 需要close
 
 
 resultProxy.rowcount  # return rows affected by an UPDATE or DELETE statement
@@ -51,7 +54,7 @@ resultProxy.scalar() # 返回第一行第一列，然后关闭这次查询
 ```py
 import numpy as np
 import pandas as pd
-df=pd.DataFrame(np.random.rand(10,5),columns=list('abcde'))
+df = pd.DataFrame(np.random.rand(10, 5), columns=list('abcde'))
 ```
 
 ### 连接数据库
@@ -77,36 +80,43 @@ pd.read_sql(sql='select * from tablename where e>:value', con=engine, params={'v
 
 ## 方式3：ORM
 
-### step1：创建基类
+
+调包
 ```py
+import sqlalchemy
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+engine = sqlalchemy.create_engine('sqlite:///:memory:')
 Base = declarative_base()
+# 创建session对象:
+session = sessionmaker(bind=engine)()
 ```
-### step2:创建类
+
+建表
 ```py
-from sqlalchemy import Column, Integer, String
+# 1. 必须继承 Base
 class User(Base):
+    # 2. 定义表名
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    fullname = Column(String)
-    password = Column(String)
+    # 3. 定义字段
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
+    name = sqlalchemy.Column(sqlalchemy.String)
+    fullname = sqlalchemy.Column(sqlalchemy.Integer)
+    password = sqlalchemy.Column(sqlalchemy.String)
 
     def __repr__(self):
         return "<User(name='%s', fullname='%s', password='%s')>" % (
-                 self.name, self.fullname, self.password)   
-# 注意事项：
-# User继承之前创建的Base
-# __tablename__指定表名
-# Column 指定字段
+            self.name, self.fullname, self.password)
+
+
+Base.metadata.create_all(engine)  # 创建表结构
 ```
 
-### step3：创建DBSession类型
+做增删改查操作
 ```py
-DBSession = sessionmaker(bind=engine)
-# 创建session对象:
-session = DBSession()
+
 # 创建新User对象:
 new_user = User(id='5', name='Bob')
 # 添加到session:
@@ -116,11 +126,13 @@ session.commit()
 # 关闭session:
 session.close()
 
-
-user = session.query(User).filter(User.id=='5').one()
+user = session.query(User).filter(User.id == '5').one()
 # user是一个User对象
+
+session.query(User).filter(User.id == '5').all()
 ```
 
+另外，还有外键查询等功能，见于 https://blog.csdn.net/fgf00/article/details/52949973
 
 ## 创建连接方法一览
 ### 1. sqlite

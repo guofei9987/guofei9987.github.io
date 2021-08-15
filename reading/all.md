@@ -57,6 +57,7 @@
 |<a href="/reading/#/docs/3_社科/9_人口" target="_blank">9_人口<sup style = "color:red">2340字<sup></a>|<a href="/reading/#/docs/3_社科/9_人口.md?id=《大国空巢》" target="_blank">《大国空巢》</a>
 |<a href="/reading/#/docs/3_社科/《洞穴奇案》" target="_blank">《洞穴奇案》<sup style = "color:red">3157字<sup></a>|<a href="/reading/#/docs/3_社科/《洞穴奇案》.md?id=《洞穴奇案》（阅读中）" target="_blank">《洞穴奇案》（阅读中）</a>
 |<a href="/reading/#/docs/3_社科/其它书" target="_blank">其它书<sup style = "color:red">887字<sup></a>|<a href="/reading/#/docs/3_社科/其它书.md?id=《优秀的绵羊》" target="_blank">《优秀的绵羊》</a>，<a href="/reading/#/docs/3_社科/其它书.md?id=经济学科普" target="_blank">经济学科普</a>，<a href="/reading/#/docs/3_社科/其它书.md?id=社会效应" target="_blank">社会效应</a>
+|<a href="/reading/#/docs/3_社科/吴思" target="_blank">吴思<sup style = "color:red">3249字<sup></a>|<a href="/reading/#/docs/3_社科/吴思.md?id=《潜规则》" target="_blank">《潜规则》</a>，<a href="/reading/#/docs/3_社科/吴思.md?id=《血酬定律》" target="_blank">《血酬定律》</a>
 |<a href="/reading/#/docs/3_社科/社会调查" target="_blank">社会调查<sup style = "color:red">18904字<sup></a>|<a href="/reading/#/docs/3_社科/社会调查.md?id=温铁军：《十次危机》" target="_blank">温铁军：《十次危机》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《格调》" target="_blank">《格调》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《民主的细节》（阅读中）" target="_blank">《民主的细节》（阅读中）</a>
 |<a href="/reading/#/docs/3_社科/经济学教材" target="_blank">经济学教材<sup style = "color:red">3673字<sup></a>|<a href="/reading/#/docs/3_社科/经济学教材.md?id=《当代西方经济学主要流派》" target="_blank">《当代西方经济学主要流派》</a>
 
@@ -64,7 +65,7 @@
 |板块|书目|
 |---|---|
 |<a href="/reading/#/docs/4_进化论/《人类鉴定手册》" target="_blank">《人类鉴定手册》<sup style = "color:red">1186字<sup></a>|<a href="/reading/#/docs/4_进化论/《人类鉴定手册》.md?id=《人类鉴定手册》" target="_blank">《人类鉴定手册》</a>
-|<a href="/reading/#/docs/4_进化论/《机器人叛乱》" target="_blank">《机器人叛乱》<sup style = "color:red">682字<sup></a>|<a href="/reading/#/docs/4_进化论/《机器人叛乱》.md?id=《机器人叛乱》" target="_blank">《机器人叛乱》</a>
+|<a href="/reading/#/docs/4_进化论/《机器人叛乱》" target="_blank">《机器人叛乱》<sup style = "color:red">654字<sup></a>|<a href="/reading/#/docs/4_进化论/《机器人叛乱》.md?id=《机器人叛乱》" target="_blank">《机器人叛乱》</a>
 |<a href="/reading/#/docs/4_进化论/疯狂人类进化史" target="_blank">疯狂人类进化史<sup style = "color:red">427字<sup></a>|<a href="/reading/#/docs/4_进化论/疯狂人类进化史.md?id=《疯狂人类进化史》" target="_blank">《疯狂人类进化史》</a>
 |<a href="/reading/#/docs/4_进化论/自私的基因" target="_blank">自私的基因<sup style = "color:red">3844字<sup></a>|<a href="/reading/#/docs/4_进化论/自私的基因.md?id=《自私的基因》" target="_blank">《自私的基因》</a>
 |<a href="/reading/#/docs/4_进化论/裸猿三部曲" target="_blank">裸猿三部曲<sup style = "color:red">2932字<sup></a>|<a href="/reading/#/docs/4_进化论/裸猿三部曲.md?id=《裸猿》（阅读中）" target="_blank">《裸猿》（阅读中）</a>，<a href="/reading/#/docs/4_进化论/裸猿三部曲.md?id=《人类动物园》" target="_blank">《人类动物园》</a>
@@ -75,7 +76,7 @@
 |---|---|
 |<a href="/reading/#/docs/5_思维/思考的艺术" target="_blank">思考的艺术<sup style = "color:red">3023字<sup></a>|<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《思考快与慢》" target="_blank">《思考快与慢》</a>，<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《清醒思考的艺术----你最好让别人去犯的52种思维错误》" target="_blank">《清醒思考的艺术----你最好让别人去犯的52种思维错误》</a>，<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《明智行动的艺术：成功决策必须避免的52个思维陷阱》" target="_blank">《明智行动的艺术：成功决策必须避免的52个思维陷阱》</a>
 |<a href="/reading/#/docs/5_思维/批判性思维" target="_blank">批判性思维<sup style = "color:red">11148字<sup></a>|<a href="/reading/#/docs/5_思维/批判性思维.md?id=《逻辑思维简易入门》" target="_blank">《逻辑思维简易入门》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《思考的艺术》" target="_blank">《思考的艺术》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《学会提问》" target="_blank">《学会提问》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《批判性思维工具》" target="_blank">《批判性思维工具》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=思维模版" target="_blank">思维模版</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《知乎周刊：日常经济学》" target="_blank">《知乎周刊：日常经济学》</a>
-|<a href="/reading/#/docs/5_思维/统计中的批判思维" target="_blank">统计中的批判思维<sup style = "color:red">8047字<sup></a>|<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《赤裸裸的的统计学》" target="_blank">《赤裸裸的的统计学》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《统计数字会撒谎》" target="_blank">《统计数字会撒谎》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《数据造假理论》" target="_blank">《数据造假理论》</a>
+|<a href="/reading/#/docs/5_思维/统计中的批判思维" target="_blank">统计中的批判思维<sup style = "color:red">8354字<sup></a>|<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《赤裸裸的的统计学》" target="_blank">《赤裸裸的的统计学》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《统计数字会撒谎》" target="_blank">《统计数字会撒谎》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《数据造假理论》" target="_blank">《数据造假理论》</a>
 
 ###  6_科技
 |板块|书目|

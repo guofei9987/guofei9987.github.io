@@ -51,11 +51,12 @@
     * [9_人口<sup style = "color:red">2340字<sup>](docs/3_社科/9_人口.md)
     * [《洞穴奇案》<sup style = "color:red">3157字<sup>](docs/3_社科/《洞穴奇案》.md)
     * [其它书<sup style = "color:red">887字<sup>](docs/3_社科/其它书.md)
+    * [吴思<sup style = "color:red">3249字<sup>](docs/3_社科/吴思.md)
     * [社会调查<sup style = "color:red">18904字<sup>](docs/3_社科/社会调查.md)
     * [经济学教材<sup style = "color:red">3673字<sup>](docs/3_社科/经济学教材.md)
 * 4_进化论
     * [《人类鉴定手册》<sup style = "color:red">1186字<sup>](docs/4_进化论/《人类鉴定手册》.md)
-    * [《机器人叛乱》<sup style = "color:red">682字<sup>](docs/4_进化论/《机器人叛乱》.md)
+    * [《机器人叛乱》<sup style = "color:red">654字<sup>](docs/4_进化论/《机器人叛乱》.md)
     * [疯狂人类进化史<sup style = "color:red">427字<sup>](docs/4_进化论/疯狂人类进化史.md)
     * [自私的基因<sup style = "color:red">3844字<sup>](docs/4_进化论/自私的基因.md)
     * [裸猿三部曲<sup style = "color:red">2932字<sup>](docs/4_进化论/裸猿三部曲.md)
@@ -63,7 +64,7 @@
 * 5_思维
     * [思考的艺术<sup style = "color:red">3023字<sup>](docs/5_思维/思考的艺术.md)
     * [批判性思维<sup style = "color:red">11148字<sup>](docs/5_思维/批判性思维.md)
-    * [统计中的批判思维<sup style = "color:red">8047字<sup>](docs/5_思维/统计中的批判思维.md)
+    * [统计中的批判思维<sup style = "color:red">8354字<sup>](docs/5_思维/统计中的批判思维.md)
 * 6_科技
     * [1_物理科普<sup style = "color:red">4328字<sup>](docs/6_科技/1_物理科普.md)
     * [2_科技<sup style = "color:red">4093字<sup>](docs/6_科技/2_科技.md)

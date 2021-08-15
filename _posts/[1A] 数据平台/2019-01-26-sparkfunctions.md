@@ -30,7 +30,7 @@ F.col('col1') # 选取一列
 F.when().else()
 ```
 
-F.expr: 用python风格写sql
+F.expr: 在 Python 里面写sql
 ```py
 # 最简单的用法
 df.withColumn('row_num',F.expr('row_number() over(partition by col1 order by col2)'))

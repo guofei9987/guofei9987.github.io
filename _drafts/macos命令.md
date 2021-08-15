@@ -54,3 +54,11 @@ ps aux | grep fsck
 sudo pkill -f fsck # 然后输入密码
 # 再次打开磁盘工具，发现分区是可被选择的状态了，点击上方的急救
 ```
+
+## 烦人的Microsoft AutoUpdate弹框提示
+
+
+```bash
+cd /Library/Application\ Support/Microsoft/MAU2.0
+sudo chmod 000 Microsoft\ AutoUpdate.app
+```
