@@ -113,7 +113,7 @@
                     {% assign sorted_tag = tag[1] | sort:"order" %}
                     {% for post in sorted_tag %}
                       <a  href='{{ post.url }}' class="list-group-item pjaxlink">
-                        <font color="#FF9224">【{{post.order}}】</font>{{post.title}}
+                        {{post.title}}
                       </a>
                     {% endfor %}
                   </div>
