@@ -8,6 +8,7 @@ description:
 order: 7512
 ---
 
+
 ## interp1d
 
 ```py
@@ -15,20 +16,17 @@ import numpy as np
 from scipy import interpolate
 import pylab as pl
 
-x=np.linspace(0,10,11)
-y=np.sin(x)
+x = np.linspace(0, 10, 11)
+y = np.sin(x)
 
-xnew=np.linspace(0,10,101)
+x_new = np.linspace(0, 10, 101)
 
-pl.plot(x,y,'ro')
-list1=['linear','nearest']
-list2=[0,1,2,3]
-for kind in list1:
-    print(kind)
-    f=interpolate.interp1d(x,y,kind=kind)
-    #f是一个函数，用这个函数就可以找插值点的函数值了：
-    ynew=f(xnew)
-    pl.plot(xnew,ynew,label=kind)
+pl.plot(x, y, 'ro')
+for kind in ['zero', 'slinear', 'quadratic', 'cubic', 'linear', 'nearest', 'previous', 'next']:
+    f = interpolate.interp1d(x, y, kind=kind)
+    # f是一个函数，用这个函数就可以找插值点的函数值了：
+    y_new = f(x_new)
+    pl.plot(x_new, y_new, label=kind)
 
 pl.legend(loc='lower right')
 pl.show()

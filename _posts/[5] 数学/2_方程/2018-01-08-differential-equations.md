@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 微分方程
+title: 常微分方程
 categories:
-tags: 5-1-代数与分析
+tags: 5-2-方程
 keywords:
 description:
 order: 92401
