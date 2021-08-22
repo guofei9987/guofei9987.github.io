@@ -1,3 +1,12 @@
+---
+layout: post
+title: 数学物理方程
+categories:
+tags: 5-2-方程
+keywords:
+description:
+order: 5210
+---
 
 ## 波动方程
 弦上任意一点的位移为$u(x,t)$  
