@@ -5,7 +5,7 @@ categories:
 tags: 5-5-数值计算
 keywords:
 description:
-order: 7510
+order: 5510
 ---
 ### fsolve求方程的解
 如果要求解方程：  
