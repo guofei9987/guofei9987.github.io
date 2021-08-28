@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【数值计算方法】数值逼近
+title: 【数值计算】数值逼近
 categories:
 tags: 5-5-数值计算
 keywords:

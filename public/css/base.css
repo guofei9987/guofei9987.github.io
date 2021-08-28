@@ -150,6 +150,9 @@ a.title_in_contend{
   border:none;
   border-top:10px groove skyblue;
 }
+#content strong{
+  color: red;
+}
 blockquote p {
   font-size: 20px;
 }

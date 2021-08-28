@@ -84,7 +84,7 @@ order: 5210
 称$u_{xx}+u_{yy}=0$为 **二维拉普拉斯方程** 或 **调和方程**  
 
 
-### 边界条件
+### 波动方程的边界条件
 
 对于一维度弦震动问题，要解偏微分方程，需要额外条件
 - t=0 的位置给定 $u(x,0)=\phi(x)$
@@ -115,9 +115,11 @@ order: 5210
 
 悬链线：（不是弦震动方程，但推导过程类似）
 - 附加条件1：“弦上每一点都静止” $u_{tt}(x,t)=0$
-- 附加条件2:“受到的外力是重力，重力与密度有关”，$F(x,t)=-mg=-\rho\Delta l g = -\rho g \sqrt{1+u_x^2}$（外力与 $u(x)$ 有关，所以不是弦震动方程）
+- 附加条件2:“受到的外力是重力，重力与密度有关，线不做弹性形变”，$F(x,t)=-mg=-\rho\Delta l g = -\rho g \sqrt{1+u_x^2}$（外力与 $u(x)$ 有关，所以不是弦震动方程）
 - 悬链线的微分方程是 $u_{xx}=k\sqrt{1+u_x^2}$
 - 解出来是 $y=1/k \cosh(kx+c_1)+x_2$
+
+悬链线2：如果假设线做弹性形变，并且服从胡克定理。？？好像还是满足震动方程，其 $f(x,t)=c$（没算出来），解出来是二次方程。
 
 
 ### 波动方程的一些性质
@@ -139,3 +141,66 @@ $u_{tt}(x,t) - a^2 u_{xx}(x,t) = 0$ 的通解形如 $F(x-at)+G(x+at)$
 
 
 ## 热传导方程
+
+1. 符号表示
+    - $u(x,y,z,t)$ 是物体 G 在位置 $(x,y,z)$ 和时刻 t 的温度
+    - $k(x,y,z)$ 是热传导系数
+2. 根据 **傅立叶实验定律**，dt 时间内，沿法线 n 流过无穷小面积 dS 的热量 记为 $dQ = -k \dfrac{\partial u}{\partial n}dSdt$
+    - 物品 G 内任意闭曲线是 $\Gamma$，所包围的区域记为 $\Omega$
+    - $(t_1,t_2)$ 时间段内，流入 $\Omega$ 的热量为 $$Q_1 = \int_{t_1}^{t_2} \{ \iint\limits_{\Gamma} k \dfrac{\partial u}{\partial n}dS \}dt$$
+    - 根据格林函数，化简为 $Q_1 = \int_{t_1}^{t_2}  \iiint\limits_{\Omega} \{ \dfrac{\partial}{\partial x}(ku_x) + \dfrac{\partial}{\partial y}(ku_y) + \dfrac{\partial}{\partial z}(ku_z) \} dxdydzdt$
+3. 从温度变化的角度看，流入的热量是 $Q_2 = \iiint\limits_{\Omega} c\rho[u(x,y,z,t_1)-u(x,y,z,t_2)]dxdydz$
+    - $c(x,y,z)$ 是比热
+    - $\rho(x,t,z)$ 是密度
+    - 用积分基本定理化简为 $Q = \iiint\limits_{\Omega} c\rho [\int_{t_1}^{t_2} u_tdt]dxdydz$
+    - $ = \int_{t_1}^{t_2} \iiint\limits_{\Omega} c\rho u_t dxdydzdt$
+4. 假设内部有热源，$Q_3=\int_{t_1}^{t_2} \iiint\limits_\Omega F(x,y,z,t)dxdydzdt$
+5. 联合2、3、4，$Q_1+Q_3=Q_2$
+6. 注意到 $t_1,t_2,\Omega$都是任意的，有
+    - $\dfrac{\partial}{\partial x}(ku_x) + \dfrac{\partial}{\partial y}(ku_y) + \dfrac{\partial}{\partial z}(ku_z) +F(x,t,z,t) = c\rho u_t$
+    - （上式就是 **非均匀各向同性体的热传导方程**）
+
+
+如果物体是均匀的，也就是说$k,c,\rho$是常数，那么，热传导方程可以化简为
+- $u_t=a^2(u_{xx}^2+u_{yy}^2+u_{zz}^2) + f(x,y,z,t)$
+- 其中，$a^2=\dfrac{k}{c\rho}$
+- 其中，$f(x,y,z,t)=\dfrac{F(x,y,z,t)}{\rho c}$
+- 如果 $f(x,y,z,t)\equiv 0$，称为 **齐次热传导方程**
+
+
+
+### 热传导方程的边界条件
+
+
+**第一类边界条件**
+1. 知道初始时间每一点的温度 $u(x,y,z,0)=\phi(x,y,z)$
+2. 知道边界上每个点每个时刻的温度 $u(x,y,z,y) \mid_{(x,y,z)\in \Gamma} = g(x,y,z,t),$
+
+**第二类边界条件**
+1. 同上的条件1
+2. 知道的不是表面温度，而是表面热量的流动，
+    - 根据傅立叶定律 $\dfrac{dQ}{dSdt}=-k\dfrac{\partial u}{\partial n}$
+    - 也就是说，边界条件的形式是 $\dfrac{\partial u}{\partial n}\mid_{(x,y,z)\in \Gamma} = g(x,y,z,t)$
+
+
+**第三类边界条件**
+1. 条件同上
+2. 如果物体在介质（如空气）中，只能测量物体边缘处的介质温度 $u_1$，它与物体温度 $u$ 往往不相等。而是服从牛顿定律 $dQ=k_1(u-u_1)dSdt$
+    - 可以写为 $(\dfrac{\partial u}{\partial n}+\sigma u) \mid_{(x,t,z)\in\Gamma}=g(x,y,z,t)$
+
+
+**柯西问题**，如果物体体积很大，或者只考虑较短时间和较小温度变化的情况，边界条件可以忽略，初始条件是 $u(x,y,z,0)=\phi(x,y,z),(-\infty<x,y,z<\infty)$
+
+
+
+## 椭圆型方程
+
+Laplace 方程：$u_{xx}+u_{yy}+u_{zz} = 0$
+
+Poisson 方程：$u_{xx}+u_{yy}+u_{zz} = f(x,y,z)$
+
+
+
+
+## 参考文献
+《数学物理方程》谷超豪，高等教育出版社
