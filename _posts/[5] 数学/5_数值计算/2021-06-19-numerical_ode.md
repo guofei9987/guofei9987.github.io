@@ -26,3 +26,34 @@ order: 5503
 
 误差来自
 1. **模型误差**。把实际问题归结为模型时做的简化。
+2. **观测误差**。模型需要的系数、值来源于测量，由于客观条件和仪器产生的误差。
+3. **截断误差**。模型离散化时，舍弃了一些次要项，产生的误差
+4. **舍入误差**。计算机计算时的精度产生的误差。
+
+
+## Eluer法
+
+问题：
+$$\left \{\begin{array}{ll}
+u'=f(t,u),  & t_0<t\leq T \\
+u(t_0) = a
+\end{array}\right.$$
+
+
+**Euler 法** 是一种 **递推法** ，递推公式：
+$$\left \{\begin{array}{ll}
+u_{m+1} = u_m + hf(t_m, u_m) \\
+u_0 = u(t_0) = a
+\end{array}\right.$$
+
+3种理解：
+1. 微分角度 $u'\approx \dfrac{u(t+h)-u(t)}{h}$
+2. 积分角度 $u(t+h)-u(t)=\int_t^{t+h}f(\tau,u(\tau))d\tau \approx hf(t,u(t))$
+3. 幂级数展开 $u(t+h) = u(t) +hu'(t)+ \dfrac{h^2}{2!}u''(t)+...$
+
+
+**改进的 Euler 法**，
+$$\left \{\begin{array}{ll}
+u_{m+1} = u_m + h/2[f(t_m, u_m) + f(t_{m+1}, u_{m+1})] & m=0,1,...,N-1\\
+u_0 = u(t_0) = a
+\end{array}\right.$$

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【404】找不到页面了，点击下面的链接查看文章
+title: 【404】
 categories:
 ---
 
@@ -20,13 +20,15 @@ categories:
 
 <table>
   <tr>
-    <th>文章编号</th><th>文章题目</th>
+    <th>文章编号</th><th>日期</th><th>文章题目</th>
   </tr>
 
   {% assign sorted_tag = tag[1] | sort:"order" %}
   {% for post in sorted_tag %}
   <tr>
     <th><font color="#FF9224">{{post.order}}</font></th>
+
+    <th>{{ post.date | date: "%Y年-%m月-%d日" }}</th>
 
     <th>
       <a href="{{ site.url }}{{ post.url }}">
