@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【离散数学】数理逻辑
+title: 【离散数学1】数理逻辑
 categories:
 tags: 5-9-应用数学
 keywords:
@@ -102,7 +102,7 @@ $\lor$ 变成 $\land $ 3）T 与 F 也互换，所得 $A^\star$ 称为 A 的对�
 
 日常用于还有一些“所有的”、“存在一些”这样的表达，
 - 所有的、任何的、每个、对任意一个。“所有的人都是要呼吸的”。M(x):x是人，H(x)：x要呼吸。命题就记为 $(\forall x)(M(x)\to H(x))$
-- 存在一些、至少有一个、对于一些。“有些人早饭吃面包”。M(x):x是人，H(x)：x早饭吃面包。命题就记为 $(\exist x)(M(x)\to H(x))$
+- 存在一些、至少有一个、对于一些。“有些人早饭吃面包”。M(x):x是人，H(x)：x早饭吃面包。命题就记为 $(\exists x)(M(x)\to H(x))$
 
 变元数量
 - $(\forall A)P(x,y,z)$ 是一个二元谓词
@@ -112,19 +112,19 @@ $\lor$ 变成 $\land $ 3）T 与 F 也互换，所得 $A^\star$ 称为 A 的对�
 
 ### 谓词的否定
 
-- $\lnot (\forall x) P(x) \Leftrightarrow (\exist x) \lnot P(x)$  
-- $\lnot (\exist x)P(x) \Leftrightarrow (\forall x) \lnot P(x)$
+- $\lnot (\forall x) P(x) \Leftrightarrow (\exists x) \lnot P(x)$  
+- $\lnot (\exists x)P(x) \Leftrightarrow (\forall x) \lnot P(x)$
 
 
 证明1：  
 $\lnot (\forall x)A(x)$  
 $\Leftrightarrow \lnot(A(a_1\land A(a_2) \land...\land A(a_n))$  
 $\Leftrightarrow (\lnot A(a_1)\land...\land \lnot A(a_n))$  
-$\Leftrightarrow (\exist x) \lnot A(x)$
+$\Leftrightarrow (\exists x) \lnot A(x)$
 
 
 证明2：  
-$\lnot (\exist)A(x)$  
+$\lnot (\exists)A(x)$  
 $\Leftrightarrow \lnot (A(a_1)\lor A(a_2) \lor ... \lor A(a_n))$  
 $\Leftrightarrow (\lnot A(a_1)) \land ...\land (\lnot A(a_n))$  
 $\Leftrightarrow (\forall x) \lnot A(x)$
@@ -135,21 +135,48 @@ $\Leftrightarrow (\forall x) \lnot A(x)$
 类似的方法可以证明：
 
 - $(\forall x) (A(x)\land B(x)) \Leftrightarrow (\forall x)A(x) \land (\forall x)B(x)$
+- $(\forall x) (A(x)\lor B(x)) \Leftarrow (\forall x)A(x) \lor (\forall x)B(x)$（单向的被蕴含关系，不是双向的，翻过来不成立）
 - $(\exists x)(A(x)\lor B(x)) \Leftrightarrow (\exists x)A(x) \lor (\exists x)B(x) $
+- $(\exists x)(A(x)\land B(x)) \Rightarrow (\exists x) A(x) \land (\exists x)B(x)$（蕴含关系）
+
+
+第2条的一个现实例子：“一班学生全都聪明或努力”不能推导出 “（一班学生全都聪明）或者（一班学生全都努力）”，但反过来可以推导出。
+
+上面的2、4是单向的蕴含关系，如果其中一个是命题，就是双向的等价关系了:
+- $(\forall x) (A(x)\land B) \Leftrightarrow (\forall x)A(x) \land B$
+- $(\forall x) (A(x)\lor B) \Leftrightarrow (\forall A(x)) \lor B$
+- $(\exists x)(A(x)\lor B) \Leftrightarrow (\exists x)A(x) \lor (\exists x)B $
+- $(\exists x)(A(x)\land B) \Rightarrow (\exists x) A(x) \land B$
+
+另外，还有带 $\to$ 的表达式也有对应的一堆运算律，可以从上面的运算律中轻松推导出来，就不多写了。
 
 
 
+### 多量词的“连用”
+
+一些等价关系：
+- $(\forall x)(\forall y)A(x,y) \Leftrightarrow (\forall y)(\forall x)A(x,y)$
+- $(\exists x)(\exists y)A(x,y) \Leftrightarrow (\exists y)(\exists x)A(x,y)$
 
 
+一些蕴含关系：
+- $(\forall x)(\forall y)A(x,y) \Rightarrow (\exists x)(\forall y)A(x,y)$
+- $(\exists x)(\forall y) A(x,y) \Rightarrow (\forall y)(\exists x) A(x,y)$
+- $(\forall x)(\exists y)A(x,y) \Rightarrow (\exists x)(\exists y)A(x,y)$
+
+以上也是用前面的方法可以证明，不多写。下面用一个例子做说明。
 
 
+A(x,y) 表示 x 和 y 同姓。x是甲村的人，y是乙村的人。
+- $(\forall x)(\forall y)A(x,y)$ 就表示甲村所有人于乙村所有人都同姓
+- $(\exists x)(\forall y)A(x,y)$ 甲村存在一个人，乙村所有人都跟他同姓
+- $(\forall x)(\exist y)A(x,y)$ 对于甲村每一个人，乙村存在一个人都与他同姓。
 
+### 前束范式
 
+**【定义】前束范式**：形如这样的形式，叫做前束范式：$(\square v_1)(\square v_2)...(\square v_n) A$
 
-
-
-
-
+**【定理】** 任意一个谓词公式，都和一个前束范式等价。
 
 
 
