@@ -131,7 +131,7 @@ $$
 
 ### 集合的划分和覆盖
 
-**【定义】集合的划分：** 给定一个集合 A，找到集合 $$S=\{S_1, S_2,...,S_m\}$$，使得 $S_i\subseteq A$ 并且 $S_i\not=\varnothing$ 并且 $\bigcup\limits_{i=1}^mS_i=A$，那么集合 S 称为 A 的覆盖
+**【定义】集合的覆盖：** 给定一个集合 A，找到集合 $$S=\{S_1, S_2,...,S_m\}$$，使得 $S_i\subseteq A$ 并且 $S_i\not=\varnothing$ 并且 $\bigcup\limits_{i=1}^mS_i=A$，那么集合 S 称为 A 的覆盖
 
 **【定义】集合的划分：** 上述条件外，另外附加条件 $S_i\cap S_j = \varnothing (i\not=j)$，那么集合 S 称为 A 的划分
 
