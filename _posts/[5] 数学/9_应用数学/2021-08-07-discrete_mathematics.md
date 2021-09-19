@@ -5,7 +5,7 @@ categories:
 tags: 5-9-应用数学
 keywords:
 description:
-order: 5909
+order: 5901
 ---
 
 ## 命题逻辑
