@@ -5,7 +5,7 @@ categories:
 tags: 5-1-代数与分析
 keywords:
 description:
-order: 92205
+order: 5125
 ---
 
 函数的连续性也可以有拓扑含义。
