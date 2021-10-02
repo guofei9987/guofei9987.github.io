@@ -12,8 +12,9 @@ order: 301
 
 一些约定：（为了变量名前后统一，并且开箱即用，约定一些固定的符号）
 - `y`: target 标签, 0/1 或者在多分类模型中是 0/1/2，一维的，直接传到模型里面
-- `X`：原始语料， `list<str>`
-- `sentences`
+- `sentences_raw`：原始语料， `list<str>`
+- `sentences`: 初步清洗后的语料 `list<str>`
+- `X`: 特征提取后的向量
 
 
 
@@ -23,8 +24,8 @@ order: 301
 ```py
 import pandas as pd
 df = pd.read_csv('http://www.guofei.site/datasets_for_ml/SMSSpamCollection/SMSSpamCollection.csv', sep='\t', header=None, names=['label', 'sentences'])
-Y = (df.label == 'spam') * 1
-X_raw = df.sentences.values
+y = ((df.label == 'spam') * 1).values
+sentences_raw = df.sentences.values
 ```
 ### step2 初步清洗
 清洗目标：
@@ -32,23 +33,35 @@ X_raw = df.sentences.values
 2. 去除标点、数字等
 3. 去除单个字母的单词
 4. （如有）去除stopwords中的词语
-
+5. （需要用 NLTK）词形还原，例如进行时、过去式、复数形式
 
 ```py
 import re
-regex = re.compile('[a-zA-Z]{2,}') # 2次以上字母组合，去除标点符号和数字
-X = [regex.findall(sentence.lower()) for sentence in X_raw]
-X = [' '.join(words) for words in X] # 重新整合成句子
-# X = [' '.join([word for word in words if word not in stops]) for words in X] # 如果有stopswords的话
+
+regex = re.compile('[a-zA-Z]{2,}')  # 2次以上字母组合，去除标点符号和数字
+sentences = [regex.findall(sentence.lower()) for sentence in sentences_raw]
+sentences = [' '.join(words) for words in sentences]  # 重新整合成句子
+# sentences = [' '.join([word for word in words if word not in stops]) for words in sentences]  # 如果有stopswords的话
 
 
 # train_test_split
 from sklearn.model_selection import train_test_split
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.2)
 ```
 
 
 #### 中文清洗
+
+读入语料
+```py
+import pandas as pd
+
+df = pd.read_csv('外卖评价语料.csv')
+y = df.label
+sentences_raw = df.sentences.values
+```
+
+
 1. 用jieba拆词
 2. 去除数字
 3. 去除停词
@@ -57,11 +70,11 @@ X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 ```py
 import jieba
 import re
-X = [jieba.lcut(sentence, cut_all=False) for sentence in X_raw]  # 拆词
+sentences = [jieba.lcut(sentence, cut_all=False) for sentence in sentences_raw]  # 拆词
 regex = re.compile(u'[\u4e00-\u9fa5]')
-X = [[word for word in sentence if regex.match(word) is not None] for sentence in X]  # jieba 拆开的词，一串数字也作为一个词返回，这里过滤一下
-# X=[[word for word in sentence if word not in stops] for sentence in X] # 停词
-X = [' '.join(sentence) for sentence in X]
+sentences = [[word for word in sentence if regex.match(word) is not None] for sentence in sentences]  # jieba 拆开的词，一串数字也作为一个词返回，这里过滤一下
+# sentences=[[word for word in sentence if word not in stops] for sentence in sentences] # 停词
+sentences = [' '.join(sentence) for sentence in sentences]
 ```
 
 
@@ -81,11 +94,11 @@ add_words = ['沙瑞金', '田国富', '高育良', '侯亮平','钟小艾', '�
 for add_word in add_words:
     jieba.add_word(add_word)
 
-X = [jieba.lcut(sentence.lower(), cut_all=False) for sentence in X_raw]  # 拆词
-regex = re.compile(u'[a-z\u4e00-\u9fa5]')
-X = [[word for word in sentence if regex.match(word) is not None] for sentence in X]  # jieba 拆开的词，一串数字也作为一个词返回，这里过滤一下
-# X=[[word for word in sentence if word not in stops] for sentence in X] # 停词
-X = [' '.join(sentence) for sentence in X]
+sentences = [jieba.lcut(sentence, cut_all=False) for sentence in sentences_raw]  # 拆词
+regex = re.compile(u'[\u4e00-\u9fa5]')
+sentences = [[word for word in sentence if regex.match(word) is not None] for sentence in sentences]  # jieba 拆开的词，一串数字也作为一个词返回，这里过滤一下
+# sentences=[[word for word in sentence if word not in stops] for sentence in sentences] # 停词
+sentences = [' '.join(sentence) for sentence in sentences]
 ```
 
 
@@ -210,21 +223,21 @@ count_vectorizer = text.CountVectorizer()
 
 
 # 源数据
-X = ['This is the first document.',
+sentences = ['This is the first document.',
      'This is the second second document.',
      'And the third one.',
      'Is this the first document?']
 
-count_vectorizer.fit(X)
-X_cnt_vec = count_vectorizer.transform(X)
+count_vectorizer.fit(sentences)
+X = count_vectorizer.transform(sentences)
 # 1. 不在vocabulary中的词，在transform阶段被忽略
 # 2. 返回的 numpy 的稀疏矩阵，用 X.toarray() 转换成普通矩阵
 
-X_cnt_vec.toarray()  # 是一个shape=(num_sentence,num_words) 的array
+X.toarray()  # 是一个shape=(num_sentence,num_words) 的array
 
-# count_vectorizer.fit_transform(corpus) # 合并写法
+# count_vectorizer.fit_transform(sentences) # 合并写法
 
-count_vectorizer.vocabulary_  # vocabulary向量（dict格式，{单词:序号}）
+count_vectorizer.vocabulary_  # vocabulary向量（dict格式，{'word': idx}）
 # {u'and': 0, u'document': 1, u'first': 2, u'is': 3, u'one': 4, u'second': 5, u'the': 6, u'third': 7, u'this': 8}
 
 count_vectorizer.get_feature_names() # 返回一个list，按照单词的序号排列
@@ -284,12 +297,14 @@ TfidfVectorizer = CountVectorizer + TfidfTransformer
 from sklearn.feature_extraction import text
 
 tf_idf=text.TfidfVectorizer()
-tf_idf.fit(X)
+tf_idf.fit(sentences)
 
 # tf_idf.vocabulary_ # {'单词':idx}
 # tf_idf.fixed_vocabulary_ # 是否指定 vocabulary
 # tf_idf.idf_ # 每个单词的 idf 值
 # tf_idf.stop_words_
+
+X = tf_idf.transform(sentences)
 ```
 
 
