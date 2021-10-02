@@ -45,7 +45,7 @@ all_models = [
     ['DecisionTreeClassifier', tree.DecisionTreeClassifier(), dict()],
     ['DecisionTreeClassifier_deep3', tree.DecisionTreeClassifier(), {'max_depth': [3, 4, 5]}],
     ['GaussianNB', naive_bayes.GaussianNB(), dict()],
-    # ['MultinomialNB', naive_bayes.MultinomialNB(),dict(], #  用于特征离散时使用
+    # ['MultinomialNB', naive_bayes.MultinomialNB(),dict()], #  用于特征离散时使用
     ['BernoulliNB', naive_bayes.BernoulliNB(), dict()],
     ['KNeighborsClassifier', neighbors.KNeighborsClassifier(), dict()],
     ['LinearSVC', svm.LinearSVC(), dict()],
