@@ -9,6 +9,15 @@ order: 301
 ---
 
 
+
+一些约定：（为了变量名前后统一，并且开箱即用，约定一些固定的符号）
+- `y`: target 标签, 0/1 或者在多分类模型中是 0/1/2，一维的，直接传到模型里面
+- `X`：原始语料， `list<str>`
+- `sentences`
+
+
+
+
 ## 1. 文本数据的初步清洗
 ### step1 读入数据
 ```py
@@ -61,7 +70,7 @@ X = [' '.join(sentence) for sentence in X]
 1. （代码还没有）繁体转简体，
 2. （代码还没有）5位以上数字转NUM，
 3. 英文转小写
-4. 增加专有名词，防止分词时的戳五
+4. 增加专有名词，防止分词时的错误
 
 ```python
 import jieba
@@ -103,9 +112,9 @@ class VocabularyProcessor:
               'this is the second second document',
               'and the third one',
               'is this the first document']
-    wp = VocabularyProcessor(max_vocabulary_size=5)
-    wp.fit(corpus)
-    X = wp.transform(corpus)
+    vp = VocabularyProcessor(max_vocabulary_size=5)
+    vp.fit(corpus)
+    X = vp.transform(corpus)
     ```
     - 剔除低频词，并且把所有的低频词标记为 'RARE'，其序号固定为 0
     - max_vocabulary_size=10000 最多保留多少单词
@@ -157,11 +166,13 @@ X = vp.transform(corpus)
 # vp.word_count, vp.dictionary, vp.reverse_dictionary
 print(X)
 ```
->[[1, 2, 0, -1, 3], [1, 2, 0, -1, -1, 3], [-1, 0, -1, -1], [2, 1, 0, -1, 3]]
+>[[1, 2, 3, 0, 0], [1, 2, 3, 0, 0, 0], [0, 3, 0, 0], [2, 1]]
 
 fit之后，还可以查询字典的其它信息
 ```py
-wp.word_count, wp.dictionary, wp.reverse_dictionary
+vp.word_count  # 字典大小
+vp.dictionary  # {'word': idx}
+vp.reverse_dictionary  # {idx: 'word'}
 ```
 
 
@@ -279,11 +290,15 @@ tf_idf.fit(X)
 # tf_idf.fixed_vocabulary_ # 是否指定 vocabulary
 # tf_idf.idf_ # 每个单词的 idf 值
 # tf_idf.stop_words_
+```
 
 
+## 其它的特征提取方法
 
 
-
+```py
+text.HashingVectorizer  # 占用内存更少，索引速度更快
+VectorizerMixin
 ```
 
 
