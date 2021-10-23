@@ -149,3 +149,14 @@ a=np.random.randint(low=0,high=2,size=(50,30))
 a=rv.rvs(size=(50,30))
 ```
 >1.94 ms ± 58.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+
+
+## list相关
+
+
+`lst[0]`, `lst[-1]`, `lst[300000]` 效率是一样的，既是 lst 很大
+
+
+插入
+- lst.insert(0,i) 比 append 慢很多，并且列表越长，insert越慢
+- lst.insert(len(lst)-1,i) 其实 只比 append 慢一点

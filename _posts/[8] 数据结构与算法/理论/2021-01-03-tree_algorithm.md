@@ -7,7 +7,63 @@ keywords:
 description:
 order: 505
 ---
-## 定义二叉树
+
+## 二叉树的存储
+
+### 顺序存储结构
+
+
+用一个 list 存放二叉树的每一个结点  
+
+
+[heapq](http://www.guofei.site/2017/09/11/heapq.html)就是以这种方式存储二叉树的  
+
+
+
+
+- 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
+  - 所以顺序表的第i个元素，其孩子节点序号必是 2 * i + 1, 2 * i + 2
+- 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置.
+  - 优点是节省空间，尤其是针对有很多空节点的二叉树。
+
+
+### 链式存储
+
+```py
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+```
+
+left 和 right 都是指针，指向下一个节点  
+
+### 仿真指针
+
+
+维护下面的这个表：  
+
+|data|leftChild|rightChild|
+|--|--|--|
+|0|1|2|
+|1|3|-1|
+|...|...|...|
+
+(-1表示空指针)  
+
+
+### 二叉树遍历
+规定 D,L,R 分别代表“访问根节点”，“访问根节点的左子树”,“访问根节点的右子树”，这样便有6中遍历方式：  
+LDR,DLR,LRD,RDL,DRL,RLD  
+因为先遍历左子树和先遍历右子树的算法很相似，所以研究这几种遍历方式：  
+前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
+
+
+给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
+
+
+## 代码实现
 
 这里除了定义二叉树外，还实现了以下功能：
 - 顺序表到二叉树的相互变化
@@ -17,8 +73,6 @@ order: 505
   - 后序遍历
 - 查找路径
 - 可视化
-
-
 
 
 ```py
@@ -34,11 +88,11 @@ class TreeNode(object):
 
 
 class Transform:
-    # 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也占一个位置
+    # 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
     # 所以顺序表的第i个元素，其孩子节点序号必是 2 * i + 1, 2 * i + 2
     # 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置
     def list2tree1_1(self, list_num, i=0):
-        # 顺序结构转稀疏型顺序存储，递归法
+        # 稀疏型顺序结构建树，递归法
         if i >= len(list_num):
             return None
         treenode = TreeNode(list_num[i])
@@ -46,8 +100,8 @@ class Transform:
         treenode.right = self.list2tree1_1(list_num, 2 * i + 2)
         return treenode
 
-    def list2tree1_2(self):
-        # 顺序结构转稀疏型顺序存储，迭代法
+    def list2tree1_2(self, nums):
+        # 稀疏型顺序存储建图，迭代法
         if not nums:
             return None
         nodes = [None if val is None else TreeNode(val) for val in nums]
@@ -65,7 +119,7 @@ class Transform:
         return root
 
     def list2tree2_2(self, nums):
-        # 顺序结构转紧凑顺序存储，迭代法
+        # 紧凑型顺序结构建树，迭代法
         if not nums:
             return None
         nodes = [None if val is None else TreeNode(val) for val in nums]
@@ -212,6 +266,50 @@ print(draw2)
 draw3 = draw.drawtree(root)
 ```
 
+
+### 其它的二叉树遍历方案
+
+
+
+递归
+
+```python
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
+        self.traverse(root, ans)
+        return ans
+
+    def traverse(self, node, ans):
+        if node:
+            self.traverse(node.left, ans)
+            ans.append(node.val)
+            self.traverse(node.right, ans)
+```
+
+迭代
+```python
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        stack = []
+        ans = []
+        node = root
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            ans.append(node.val)
+            node = node.right
+        return ans
+```
+
+
+
+
+
+
+### 额外
 额外的，深度优先搜索（遍历版，使用 stack ）：
 ```python
 
@@ -228,6 +326,11 @@ def dlr(root):
 
 ```
 （TODO: 但是LDR还没想好，LRD之后实现一下）
+
+
+
+
+
 
 ### 基础算法2
 
@@ -312,6 +415,12 @@ class Solution:
         """
         return 0 if root is None else max(self.maxDepth(root.left),self.maxDepth(root.right))+1
 ```
+
+### BST
+
+
+
+
 
 ### 1
 https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/  

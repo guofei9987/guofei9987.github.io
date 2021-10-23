@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【数据结构2】Queue & Stack & heapq
+title: 【堆、栈、队列】Queue & Stack & heapq
 categories:
 tags: 8-数据结构与算法
 keywords:
@@ -122,6 +122,12 @@ class Queue(object):
 ```py
 num_list[i%len_list]
 ```
+
+## 优先队列
+
+这样的队列：每个项目对应一个优先度，出列顺序按照优先度来排。
+- 常用于计算机进程分配、医院急救队列
+- ？好像用二叉堆是最优的
 
 ## 二叉堆
 
