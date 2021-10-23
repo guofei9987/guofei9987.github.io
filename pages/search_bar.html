@@ -1,0 +1,92 @@
+---
+layout: search
+---
+
+
+<input type="text" id="search-box" name="query">
+<button type="button" onclick="myFunction()">试一试</button>
+<p id="demo_id2">一个段落</p>
+
+<ul id="search-results"></ul>
+
+<script>
+// 主逻辑
+
+function myFunction(){
+  var searchTerm = document.getElementById("search-box").value;
+
+
+   // document.getElementById('search-box').setAttribute("value", searchTerm);
+
+   // Initalize lunr with the fields it will be searching on. I've given title
+   // a boost of 10 to indicate matches on this field are more important.
+   var idx = lunr(function () {
+     this.field('id');
+     this.field('title', { boost: 10 });
+     this.field('author');
+     this.field('category');
+     this.field('content');
+
+     for (var key in window.store) { // Add the data to lunr
+       this.add({
+         'id': key,
+         'title': window.store[key].title,
+         'author': window.store[key].author,
+         'category': window.store[key].category,
+         'content': window.store[key].content
+           });
+         }
+   });
+
+
+  var results = idx.search(searchTerm); // Get lunr to perform a search
+  displaySearchResults(results, window.store); // We'll write this in the next section
+
+
+
+}
+
+
+
+
+// 把搜索结果展示到页面里面
+  function displaySearchResults(results, store) {
+    var searchResults = document.getElementById('search-results');
+
+    if (results.length) { // Are there any results?
+      var appendString = '';
+
+      for (var i = 0; i < results.length; i++) {  // Iterate over the results
+        var item = store[results[i].ref];
+        appendString += '<li><a href="' + item.url + '"><h3>' + item.title + '</h3></a>';
+        appendString += '<p>' + item.content.substring(0, 150) + '...</p></li>';
+      }
+
+      searchResults.innerHTML = appendString;
+    } else {
+      searchResults.innerHTML = '<li>No results found</li>';
+    }
+}
+
+
+// 搜索
+window.store = {
+  {% for post in site.posts %}
+    "{{ post.url | slugify }}": {
+      "title": "{{ post.title | xml_escape }}",
+      "author": "{{ post.author | xml_escape }}",
+      "category": "{{ post.category | xml_escape }}",
+      "content": {{ post.content | strip_html | strip_newlines | jsonify }},
+      "url": "{{ post.url | xml_escape }}"
+    }
+    {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+};
+
+
+
+
+</script>
+
+
+<script src="/public/js/search/lunr.js"></script>
