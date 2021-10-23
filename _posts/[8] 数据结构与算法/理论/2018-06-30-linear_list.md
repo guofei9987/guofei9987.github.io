@@ -39,7 +39,79 @@ order: 501
 有两种：带头结点单链表（用一个空节点作为头部结点），不带头结点单链表（用第一个数据节点作为头部结点）  
 不带头结点单链表对第一个元素增、删时，与其它元素的增删操作不一致，所以一般使用带头结点  
 
-下面是参考 LeetCode，自己写的单链表
+带头节点的单链表
+```py
+class Node(object):
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+    def __repr__(self):
+        return str(self.val)
+
+
+# 改为带头的
+class MyLinkedList:
+    def __init__(self):
+        self.head = Node('□')
+        self.size = 0
+
+    def get(self, index):
+        if index < 0 or index >= self.size:
+            raise IndexError('index out of range')
+        curr = self.head
+        for i in range(index + 1):
+            curr = curr.next
+        return curr.val
+
+    def add_at_head(self, val):
+        node_tmp = Node(val)
+        node_tmp.next = self.head.next
+        self.size += 1
+
+    def add_at_tail(self, val):
+        curr = self.head
+        while curr.next is not None:
+            curr = curr.next
+        curr.next = Node(val)
+        self.size += 1
+
+    def add_at_index(self, index, val):
+        if index < 0 or index > self.size:
+            raise IndexError('index out of range')
+        else:
+            node_new = Node(val)
+            curr = self.head
+            for i in range(index):
+                curr = curr.next
+            node_new.next = curr.next
+            curr.next = node_new
+            self.size += 1
+
+    def delete_at_index(self, index):
+        if index < 0 or index >= self.size:
+            raise IndexError('index out of range')
+        curr = self.head
+        for i in range(index):
+            curr = curr.next
+        curr.next = curr.next.next
+
+        self.size -= 1
+
+    def __repr__(self):
+        curr = self.head
+        list_str = curr.val
+        curr = curr.next
+        while curr is not None:
+            list_str += ' -> ' + str(curr.val)
+            curr = curr.next
+        return list_str
+```
+
+
+
+
+不带头节点的单链表，增删操作时需要对头节点特殊处理，代码量略多一些，LC用的这个格式，所以也写出来
 ```py
 class Node(object):
     def __init__(self, val):
@@ -115,6 +187,11 @@ class MyLinkedList:
         return list_str
 ```
 
+
+
+
+
+
 ### Two Pointer Technique
 [Two Pointer Technique](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
 1. Two pointers starts at different position: one starts at the beginning while another starts at the end;
@@ -167,6 +244,12 @@ def reverseList(self, head):
         head=tmp
     return head
 ```
+
+## 环形链表
+
+其实现与单链表很相似，不过检查结束的条件是 `curr.next == head`
+
+## 双向链表
 
 
 ## 跳跃表

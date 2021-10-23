@@ -15,10 +15,107 @@ order: 502
 - 优先队列、优先堆：Last-in-first-out Data Structure（先进先出表）
 - 多级反馈队列
 
+## 栈和队列
+我们知道，list天然地适合做 Stack，即尾部入，尾部出。  
+我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可。  
 
-## 栈
+TODO：这里还需要补充
 
-## 队列
+
+### 栈
+
+用 list 实现栈
+```py
+class Stack(list):
+    def push(self, term):
+        self.append(term)
+
+    def take(self):
+        return self.pop()
+```
+
+
+### 队列
+
+用 list 实现队列
+- 缺点：内存会一直增加
+
+```py
+# 缺点：内存会一直增加
+class Queue1(list):
+    def __init__(self):
+        super(Queue1, self).__init__()
+        self.head_idx = -1
+
+    def push(self, term):
+        self.append(term)
+
+    def take(self):
+        self.head_idx += 1
+        return self[self.head_idx]
+
+
+# 缺点：虽然内存控制住了，但是 take 操作耗时加倍
+class Queue2(object):
+    def __init__(self):
+        self.q = list()
+
+    def push(self, term):
+        self.q.append(term)
+
+    def take(self):
+        self.q = self.q[1:]
+
+
+# 用链表做，效率和 2 一样
+class Node(object):
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+class Queue3(object):
+    def __init__(self):
+        self.head = Node(None)
+        self.tail = self.head
+
+    def push(self, term):
+        node_new = Node(term)
+        self.tail.next = node_new
+        self.tail = node_new
+
+    def take(self):
+        res = self.head.next
+        self.head.next = res.next
+        return res
+
+# 当已经出列的元素多余100个时，重整list，这应该是比较均衡的方案了
+class Queue(object):
+    def __init__(self):
+        self.q = list()
+        self.head_idx = -1
+
+    def push(self, term):
+        self.q.append(term)
+
+    def take(self):
+      # 这里还可以根据列表大小和实际功能，做动态更改，而不是固定100
+        if self.head_idx == 100:
+            self.q = self.q[101:]
+            self.head_idx = -1
+        self.head_idx += 1
+        return self.q[self.head_idx]
+```
+
+某测试数据伤的耗时：
+```
+0:00:02.868541
+0:00:06.369444
+0:00:06.533770
+0:00:03.142483
+```
+
+
 
 ## Circular Queue
 用list来模拟Cirular Queue
@@ -290,11 +387,7 @@ print('heap: ', heap)
 ```
 
 
-## list实现栈和队列
-我们知道，list天然地适合做 Stack，即尾部入，尾部出。  
-我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可，。  
 
-TODO：这里还需要补充
 
 ## 应用
 

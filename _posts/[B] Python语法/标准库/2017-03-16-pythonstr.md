@@ -181,7 +181,7 @@ ord("A")#字符转ascii码
 chr(97)#ascii码转字符
 ```
 
-### encode & decode
+### 字符串转 byte 类型（encode & decode）
 ```py
 s="中文字符串" # Python3 默认的字符串是 utf-8 格式
 bs=s.encode("utf-8") # utf-8 转为 byte 格式
@@ -197,19 +197,70 @@ bs.decode("utf-8") # byte 格式 转为 utf-8
 
 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
-### 转二进制
+### 转二进制、十六进制
+
+都需要先把字符串转成 `bytes` 类型，然后转二进制或者转回来
+
+二进制
+```python
+s = '这是一个字符串'
+
+# 字符串转二进制
+s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
+# 二进制转十六进制
+[chr(int(b, 2)) for b in s_bin]
+```
+
+十六进制有内置函数，生产上推荐用十六进制
 
 ```python
 s = '这是一个字符串'
-s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
-[chr(int(b, 2)) for b in s_bin]  # 转回来
+
+# 字符串转十六进制
+s_hex = s.encode('utf-8').hex()
+# 十六进制转字符串
+bytes.fromhex(s_hex).decode('utf-8')
 ```
+
+### 字符串压缩
 
 压缩+转十六进制
 ```python
-encrypt_str = zlib.compress(ori_str.encode('utf-8')).hex() # 压缩+转16进制
-zlib.decompress(bytes.fromhex(''.join(encrypt_split))).decode('utf-8') # 16进制转字符串+解压缩
+import zlib
+import sys
+
+s = '''
+zlib.compress 可以压缩字符串。
+它输入 byte 类型，输出也是 byte 类型。
+
+有些系统（例如某些数据库） 不支持 byte 类型，所以往往把压缩后的  byte 类型转为十六进制；
+后果是有可能转为十六进制后的文本反而变大。
+
+zlib 对于有很多重复/空格的字符串效果很好，例如：
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+'''
+
+# 压缩
+zlib_str = zlib.compress(s.encode('utf-8'))
+# 转回
+s_new = zlib.decompress(zlib_str).decode('utf-8')
+
+# 压缩 + 转16进制
+hex_str = zlib.compress(s.encode('utf-8')).hex()
+# 转回
+s_new2 = zlib.decompress(bytes.fromhex(hex_str)).decode('utf-8')
+
+print("原始字符串大小 = ", sys.getsizeof(s))
+print("压缩后的字符串大小 = ", sys.getsizeof(zlib_str))
+print("压缩+转十六进制后的大小 = ", sys.getsizeof(hex_str))
 ```
+
+>原始字符串大小 =  1042  
+压缩后的字符串大小 =  320  
+压缩+转十六进制后的大小 =  623
+
 
 ## enumerate迭代器
 ```python
