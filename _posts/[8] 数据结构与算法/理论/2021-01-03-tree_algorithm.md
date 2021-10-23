@@ -408,6 +408,93 @@ class OtherAlgorithm:
 
 ## BST 二叉搜索树
 
+查、插入、删除都是 O(h) 复杂度。
+
+查（其实就是上面递归了）
+- https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xpsqtv/
+- 还没没梳理最佳代码实现
+
+```python
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if root is None:
+            return None
+
+        if root.val==val:
+            return root
+        elif root.val>val:
+            return self.searchBST(root.left,val)
+        else:
+            return self.searchBST(root.right,val)
+```
+
+插入
+- 要求是插入一个节点，同时保持仍然是一个BST
+- 方法有很多，甚至插入后的二叉树都可能不一样，这里写一种最简单的经典方法：找叶节点，在叶节点上添加新节点
+- https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xp1llt/
+- (没梳理最佳)
+
+```python
+class Solution:
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        if root is None:
+            return TreeNode(val)
+
+        self.insert(root,val)
+        return root
+
+
+
+    def insert(self,node,val):        
+        if node.val<val:
+            if node.right is None:
+                node.right=TreeNode(val)
+            else:
+                self.insert(node.right,val)
+        if node.val>val:
+            if node.left is None:
+                node.left=TreeNode(val)
+            else:
+                self.insert(node.left,val)
+```
+
+删
+- 一样的思路
+- https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xpyd7r/
+
+```python
+class Solution:
+
+    def get_next(self,node):
+        while node.left:
+            node=node.left
+        return node
+
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        if root is None:
+            return root
+
+        if root.val>key:
+            root.left=self.deleteNode(root.left,key)
+        elif root.val<key:
+            root.right=self.deleteNode(root.right,key)
+        else:
+            if root.left is None:
+                return root.right
+            elif root.right is None:
+                return root.left
+            else:
+                node=self.get_next(root.right)
+                node.left = root.left
+                root = root.right
+                return root
+
+        return root
+```
+
+
+
+
 
 
 
