@@ -42,109 +42,77 @@ order: 501
 下面是参考 LeetCode，自己写的单链表
 ```py
 class Node(object):
-
     def __init__(self, val):
         self.val = val
         self.next = None
+
     def __repr__(self):
         return str(self.val)
 
 
 class MyLinkedList:
-
     def __init__(self):
         self.head = None
         self.size = 0
 
     def get(self, index):
-        """
-        Get the value of the index-th node in the linked list. If the index is invalid, return -1.
-        :type index: int
-        :rtype: int
-        """
-        if index<0 or index>=self.size:
-            print('index is out of range')
-            return -1
-        curr=self.head
+        if index < 0 or index >= self.size:
+            raise IndexError('index out of range')
+        curr = self.head
         for i in range(index):
-            curr=curr.next
+            curr = curr.next
         return curr.val
 
+    def add_at_head(self, val):
+        head_new = Node(val)
+        head_new.next = self.head
+        self.head = head_new
+        self.size += 1
 
-    def addAtHead(self, val):
-        """
-        Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
-        :type val: int
-        :rtype: void
-        """
-        head_new=Node(val)
-        head_new.next=self.head
-        self.head=head_new
-
-        self.size+=1
-
-    def addAtTail(self, val):
-        """
-        Append a node of value val to the last element of the linked list.
-        :type val: int
-        :rtype: void
-        """
-        curr=self.head
+    def add_at_tail(self, val):
+        curr = self.head
         if curr is None:
-            self.head=Node(val)
+            self.head = Node(val)
         else:
             while curr.next is not None:
-                curr=curr.next
-            curr.next=Node(val)
-        self.size+=1
+                curr = curr.next
+            curr.next = Node(val)
+        self.size += 1
 
-    def addAtIndex(self, index, val):
-        """
-        Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
-        :type index: int
-        :type val: int
-        :rtype: void
-        """
-        if index<0 or index>self.size:
-            print('index out of range')
-            return
-        if index==0:
-            self.addAtHead(val)
+    def add_at_index(self, index, val):
+        if index < 0 or index > self.size:
+            raise IndexError('index out of range')
+        elif index == 0:
+            self.add_at_head(val)
         else:
-            node_new=Node(val)
-            curr=self.head
-            for i in range(index-1):
-                curr=curr.next
-            node_new.next=curr.next
-            curr.next=node_new
-            self.size+=1
+            node_new = Node(val)
+            curr = self.head
+            for i in range(index - 1):
+                curr = curr.next
+            node_new.next = curr.next
+            curr.next = node_new
+            self.size += 1
 
-    def deleteAtIndex(self, index):
-        """
-        Delete the index-th node in the linked list, if the index is valid.
-        :type index: int
-        :rtype: void
-        """
-        if index<0 or index>=self.size:
-            print('index out of range')
+    def delete_at_index(self, index):
+        if index < 0 or index >= self.size:
+            raise IndexError('index out of range')
+        curr = self.head
+        if index == 0:
+            self.head = curr.next
             return
-        curr=self.head
-        if index==0:
-            self.head=curr.next
-            return
-        for i in range(index-1):
-            curr=curr.next
-        curr.next=curr.next.next
+        for i in range(index - 1):
+            curr = curr.next
+        curr.next = curr.next.next
 
-        self.size-=1
+        self.size -= 1
 
     def __repr__(self):
-        nlist='|'
-        curr=self.head
+        list_str = '□'
+        curr = self.head
         while curr is not None:
-            nlist+='->'+str(curr.val)
-            curr=curr.next
-        return nlist
+            list_str += ' -> ' + str(curr.val)
+            curr = curr.next
+        return list_str
 ```
 
 ### Two Pointer Technique
