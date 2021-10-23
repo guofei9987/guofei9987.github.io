@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【数据结构1】线性表
+title: 【算法】线性表
 categories:
 tags: 8-数据结构与算法
 keywords:
