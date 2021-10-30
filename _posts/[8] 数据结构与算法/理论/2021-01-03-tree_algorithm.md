@@ -8,7 +8,7 @@ description:
 order: 505
 ---
 
-## 二叉树的存储
+## 二叉树的数据结构
 
 ### 顺序存储结构
 
@@ -24,7 +24,7 @@ order: 505
 - 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
   - 所以顺序表的第i个元素，其孩子节点序号必是 2 * i + 1, 2 * i + 2
 - 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置.
-  - 优点是节省空间，尤其是针对有很多空节点的二叉树。
+  - 优点是节省空间，尤其是有很多空节点的二叉树。
 
 
 ### 链式存储
@@ -53,20 +53,8 @@ left 和 right 都是指针，指向下一个节点
 (-1表示空指针)  
 
 
-### 二叉树遍历
-规定 D,L,R 分别代表“访问根节点”，“访问根节点的左子树”,“访问根节点的右子树”，这样便有6中遍历方式：  
-LDR,DLR,LRD,RDL,DRL,RLD  
-因为先遍历左子树和先遍历右子树的算法很相似，所以研究这几种遍历方式：  
-前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
 
 
-给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
-
-
-## 代码实现
-
-这里除了定义二叉树外，还实现了以下功能：
-- 顺序表到二叉树的相互变化
 - 二叉树上的 DFS
   - 前序遍历
   - 中序遍历
@@ -74,9 +62,14 @@ LDR,DLR,LRD,RDL,DRL,RLD
 - 查找路径
 - 可视化
 
+### 二叉树的数据结构
+
+此部分代码包括
+- 二叉树的数据结构
+- 顺序表转二叉树（反过来见于之后的 level order）
+- 画图输出二叉树、打印二叉树
 
 ```py
-# Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
         self.val = x
@@ -130,61 +123,11 @@ class Transform:
                 if kids: node.left = kids.pop()
                 if kids: node.right = kids.pop()
         return root
+```
 
+打印输出二叉树
 
-class Travel:
-    # 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
-    # 有些场景还是需要空节点返回[None]的，灵活去改动
-    def InOrder(self, root):  # LDR
-        return [] if (root is None) else self.InOrder(root.left) + [root.val] + self.InOrder(root.right)
-
-    def PreOrder(self, root):  # DLR
-        return [] if (root is None) else [root.val] + self.PreOrder(root.left) + self.PreOrder(root.right)
-
-    def PostOrder(self, root):  # LRD
-        return [] if (root is None) else self.PostOrder(root.left) + self.PostOrder(root.right) + [root.val]
-
-    def level_order(self, root):
-        # BFS, tree转稀疏型顺序存储。
-        q, ret = [root], []
-        while any(q):
-            ret.extend([node.val if node else None for node in q])
-            q = [child for node in q for child in [node.left if node else None, node.right if node else None]]
-        return ret
-
-    def level_order2(self, root):
-        # BFS, tree转紧凑型顺序存储。
-        q, ret = [root], []
-        while any(q):
-            ret.extend([node.val if node else None for node in q])
-            q = [child for node in q if node for child in [node.left, node.right]]
-        # 结尾的 None 无意义，清除掉
-        while ret[-1] is None:
-            ret.pop()
-        return ret
-
-    def level_order_nary(self, root):
-        # 针对N-ary Tree的方法，非常漂亮，前面几个 level_order 都是参考这个
-        # https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/
-        q, ret = [root], []
-        while any(q):
-            ret.append([node.val for node in q])
-            q = [child for node in q for child in node.children if child]
-        return ret
-
-    def find_track(self, num, root, track_str=''):
-        '''
-        二叉树搜索
-        '''
-        track_str = track_str + str(root.val)
-        if root.val == num:
-            return track_str
-        if root.left is not None:
-            self.find_track(num, root.left, track_str + ' ->left-> ')
-        if root.right is not None:
-            self.find_track(num, root.right, track_str + ' ->right-> ')
-
-
+```python
 class Draw:
     def print_tree(self, root, total_width=36):
         q, ret, level = [root], '', 0
@@ -238,9 +181,11 @@ class Draw:
         draw(root, 0, 30 * h, 40 * h)
         t.hideturtle()
         turtle.mainloop()
+```
 
 
-# %%
+使用：
+```python
 transform = Transform()
 travel = Travel()
 draw = Draw()
@@ -266,28 +211,91 @@ print(draw2)
 draw3 = draw.drawtree(root)
 ```
 
-
-### 其它的二叉树遍历方案
-
+## 二叉树遍历
 
 
-递归
+规定 D,L,R 分别代表“访问根节点”，“访问根节点的左子树”,“访问根节点的右子树”，这样便有6中遍历方式：  
+LDR,DLR,LRD,RDL,DRL,RLD  
+因为先遍历左子树和先遍历右子树的算法很相似，所以研究这几种遍历方式：  
+前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
 
+
+给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
+
+
+
+
+```py
+class Travel:
+    # 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
+    # 有些场景还是需要空节点返回[None]的，灵活去改动
+    def ldr(self, root):  # Inorder
+        return [] if (root is None) else self.ldr(root.left) + [root.val] + self.ldr(root.right)
+
+    def dlr(self, root):  # PreOrder
+        return [] if (root is None) else [root.val] + self.dlr(root.left) + self.dlr(root.right)
+
+    def lrd(self, root):  # PostOrder
+        return [] if (root is None) else self.lrd(root.left) + self.lrd(root.right) + [root.val]
+
+    def level_order(self, root):
+        # BFS, tree转稀疏型顺序存储。
+        q, ret = [root], []
+        while any(q):
+            ret.extend([node.val if node else None for node in q])
+            q = [child for node in q for child in [node.left if node else None, node.right if node else None]]
+        return ret
+
+    def level_order2(self, root):
+        # BFS, tree转紧凑型顺序存储。
+        q, ret = [root], []
+        while any(q):
+            ret.extend([node.val if node else None for node in q])
+            q = [child for node in q if node for child in [node.left, node.right]]
+        # 结尾的 None 无意义，清除掉
+        while ret[-1] is None:
+            ret.pop()
+        return ret
+
+    def level_order_nary(self, root):
+        # 针对N-ary Tree的方法，非常漂亮，前面几个 level_order 都是参考这个
+        # https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/
+        q, ret = [root], []
+        while any(q):
+            ret.append([node.val for node in q])
+            q = [child for node in q for child in node.children if child]
+        return ret
+
+    def find_track(self, num, root, track_str=''):
+        '''
+        二叉树搜索
+        '''
+        track_str = track_str + str(root.val)
+        if root.val == num:
+            return track_str
+        if root.left is not None:
+            self.find_track(num, root.left, track_str + ' ->left-> ')
+        if root.right is not None:
+            self.find_track(num, root.right, track_str + ' ->right-> ')
+```
+
+
+
+其它的二叉树遍历方案：
+- 递归法
 ```python
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         ans = []
         self.traverse(root, ans)
         return ans
-
     def traverse(self, node, ans):
         if node:
             self.traverse(node.left, ans)
             ans.append(node.val)
             self.traverse(node.right, ans)
 ```
-
-迭代
+- 迭代法
 ```python
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
@@ -326,6 +334,9 @@ def dlr(root):
 
 ```
 （TODO: 但是LDR还没想好，LRD之后实现一下）
+
+
+### 二叉树上递归的一般方法
 
 
 
@@ -373,6 +384,13 @@ class OtherAlgorithm:
         root.right = self.build_tree_from_dlr_ldr(preorder, inorder[inorder_index + 1:])
         return root
 ```
+
+
+## BST 二叉搜索树
+
+
+
+
 
 ## 其它应用举例
 
