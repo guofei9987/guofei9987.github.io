@@ -47,20 +47,14 @@ left 和 right 都是指针，指向下一个节点
 |data|leftChild|rightChild|
 |--|--|--|
 |0|1|2|
-|1|3|-1|
+|1|3|-1（表示指向空指针）|
 |...|...|...|
 
-(-1表示空指针)  
 
 
 
 
-- 二叉树上的 DFS
-  - 前序遍历
-  - 中序遍历
-  - 后序遍历
-- 查找路径
-- 可视化
+
 
 ### 二叉树的数据结构
 
@@ -214,16 +208,19 @@ draw3 = draw.drawtree(root)
 ## 二叉树遍历
 
 
-规定 D,L,R 分别代表“访问根节点”，“访问根节点的左子树”,“访问根节点的右子树”，这样便有6中遍历方式：  
+规定 D,L,R 分别代表“访问根节点”, “访问根节点的左子树”, “访问根节点的右子树”，这样便有6中遍历方式：  
 LDR,DLR,LRD,RDL,DRL,RLD  
-因为先遍历左子树和先遍历右子树的算法很相似，所以研究这几种遍历方式：  
+因为先遍历左子树和先遍历右子树的算法很相似，所以下面实现这几种遍历方式：  
 前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
 
 
-给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
 
-
-
+以下代码包括
+- 二叉树上的 DFS
+  - 前序遍历
+  - 中序遍历
+  - 后序遍历
+- 查找路径
 
 ```py
 class Travel:
@@ -281,46 +278,37 @@ class Travel:
 
 
 
-其它的二叉树遍历方案：
+有些任务中，套用 one-liner 未必合适，所以有下面的实现
 - 递归法
 ```python
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def ldr(self, root: Optional[TreeNode]) -> List[int]:
         ans = []
-        self.traverse(root, ans)
+        self.ldr_(root, ans)
         return ans
-    def traverse(self, node, ans):
+    def ldr_(self, node, ans):
         if node:
             self.traverse(node.left, ans)
             ans.append(node.val)
             self.traverse(node.right, ans)
 ```
-- 迭代法
+- 迭代法（ldr）
 ```python
-class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        stack = []
-        ans = []
-        node = root
-        while stack or node:
-            while node:
-                stack.append(node)
-                node = node.left
-            node = stack.pop()
-            ans.append(node.val)
-            node = node.right
-        return ans
+def ldr(root: Optional[TreeNode]) -> List[int]:
+    stack = []
+    ans = []
+    node = root
+    while stack or node:
+        while node:
+            stack.append(node)
+            node = node.left
+        node = stack.pop()
+        ans.append(node.val)
+        node = node.right
+    return ans
 ```
-
-
-
-
-
-
-### 额外
-额外的，深度优先搜索（遍历版，使用 stack ）：
+- 迭代法（dlr）
 ```python
-
 def dlr(root):
     stack, res = [root], list()
     while stack:
@@ -331,13 +319,42 @@ def dlr(root):
         if pointer.left:
             stack.append(pointer.left)  # 压入左子节点
     return res
-
 ```
-（TODO: 但是LDR还没想好，LRD之后实现一下）
+- （TODO: 迭代法 LRD）
 
 
 ### 二叉树上递归的一般方法
 
+https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/534/
+
+有 top-down，bottom-up 两种方案，标准化流程分别是：
+
+```python
+1. return specific value for null node
+2. update the answer if needed                      // answer <-- params
+3. left_ans = top_down(root.left, left_params)      // left_params <-- root.val, params
+4. right_ans = top_down(root.right, right_params)   // right_params <-- root.val, params
+5. return the answer if needed                      // answer <-- left_ans, right_ans
+```
+
+以及
+```python
+1. return specific value for null node
+2. left_ans = bottom_up(root.left)      // call function recursively for left child
+3. right_ans = bottom_up(root.right)    // call function recursively for right child
+4. return answers                       // answer <-- left_ans, right_ans, root.val
+```
+
+例如，寻找最大深度 https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/535/
+```python
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        left_ans=self.maxDepth(root.left)
+        right_ans=self.maxDepth(root.right)
+        return max(left_ans,right_ans)+1
+```
 
 
 
@@ -345,8 +362,11 @@ def dlr(root):
 
 ### 基础算法2
 
-```py
+给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
 
+https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/942/
+
+```py
 class OtherAlgorithm:
     def build_tree_from_ldr_lrd(self, inorder, postorder):
         """
