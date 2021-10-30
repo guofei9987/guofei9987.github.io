@@ -410,10 +410,13 @@ class OtherAlgorithm:
 
 查、插入、删除都是 O(h) 复杂度。
 
-查（其实就是上面递归了）
+### 查BST
+
+（其实就是上面递归了）
 - https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xpsqtv/
 - 还没没梳理最佳代码实现
 
+递归法
 ```python
 class Solution:
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
@@ -428,7 +431,26 @@ class Solution:
             return self.searchBST(root.right,val)
 ```
 
-插入
+迭代法
+```
+class Solution:
+    def searchBST(self, root: TreeNode, val: int) -> TreeNode:
+        if root is None:
+            return None
+
+        curr=root
+        while curr is not None:
+            if curr.val==val:
+                return curr
+            elif curr.val>val:
+                curr=curr.left
+            else:
+                curr=curr.right
+```
+
+
+### 插入BST
+
 - 要求是插入一个节点，同时保持仍然是一个BST
 - 方法有很多，甚至插入后的二叉树都可能不一样，这里写一种最简单的经典方法：找叶节点，在叶节点上添加新节点
 - https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xp1llt/
@@ -456,6 +478,30 @@ class Solution:
                 node.left=TreeNode(val)
             else:
                 self.insert(node.left,val)
+```
+
+
+迭代法
+```python
+class Solution:
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        new_node=TreeNode(val)
+        if root is None:
+            return new_node
+        curr=root
+        while curr is not None:
+            # 注意这个思路，用来找上一层
+            back_level=curr
+            if curr.val>val:
+                curr=curr.left
+            else:
+                curr=curr.right
+
+        if back_level.val>val:
+            back_level.left=new_node
+        else:
+            back_level.right=new_node
+        return root
 ```
 
 删
