@@ -39,10 +39,10 @@ setup(
     platforms=['linux', 'windows', 'macos'],
     install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'],  # 指定此包的依赖
     zip_safe=False,  # 为了兼容性，一般填 False
-    # 命令行工具，一般不需要
+    # 命令行工具，下文的意思是，命令行 file2tree1 启动 file2tree/file2tree.py 的 main() 这个函数
     entry_points={
         'console_scripts': [
-            'file2tree = file2tree.file2tree:main'
+            'file2tree1 = file2tree.file2tree:main'
         ]
     }
 )
