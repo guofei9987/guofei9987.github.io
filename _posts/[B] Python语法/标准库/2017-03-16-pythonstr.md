@@ -183,13 +183,19 @@ chr(97)#ascii码转字符
 
 ### 字符串转 byte 类型（encode & decode）
 ```py
-s="中文字符串" # Python3 默认的字符串是 utf-8 格式
-bs=s.encode("utf-8") # utf-8 转为 byte 格式
-bs.decode("utf-8") # byte 格式 转为 utf-8
+s = "中文字符串"  # Python3 默认的字符串是 utf-8 格式
+bs = s.encode("utf-8")  # utf-8 转为 byte 格式
+bs.decode("utf-8")  # byte 格式 转为 utf-8
 
 # 除此之外，还有 "utf-8", "utf-16", "ascii", "ISO-8859-1" 等格式
 # byte 格式，print出来类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这样，这是utf-8的样子
 # 假如是这样的 '%u8a84%u12bc' 这是 unicode 编码，每段4位16进制数对应ascii码，例如 chr(int('12cd', base=16))
+
+# byte格式转16进制:
+s_hex = bs.hex()
+
+# byte转2进制
+s_bin = bin(int(s_hex, 16))
 ```
 - ascii码 7个二进制位
 - Unicode 每个字符2个字节（4位16进制）
@@ -197,21 +203,14 @@ bs.decode("utf-8") # byte 格式 转为 utf-8
 
 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
+
+
+
 ### 转二进制、十六进制
 
-都需要先把字符串转成 `bytes` 类型，然后转二进制或者转回来
 
-二进制
-```python
-s = '这是一个字符串'
 
-# 字符串转二进制
-s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
-# 二进制转十六进制
-[chr(int(b, 2)) for b in s_bin]
-```
-
-十六进制有内置函数，生产上推荐用十六进制
+生产环境推荐用十六进制，并且推荐如下的操作
 
 ```python
 s = '这是一个字符串'
@@ -220,7 +219,38 @@ s = '这是一个字符串'
 s_hex = s.encode('utf-8').hex()
 # 十六进制转字符串
 bytes.fromhex(s_hex).decode('utf-8')
+
+# 另外，转2进制
+s_bin = bin(int(s_hex, 16))
 ```
+
+
+
+都需要先把字符串转成 `bytes` 类型，然后转二进制或者转回来
+
+字符串列表转n进制：  
+字符--`ord`-->10进制整型--`bin/hex`-->2/10进制文本
+
+
+```python
+s = '这是一个字符串'
+
+# 字符串转10进制列表
+s_dec = [ord(c) for c in s]
+
+# 字符串转2进制列表(带 0x )
+s_bin = [bin(ord(c)) for c in s]  # 字符串转二进制
+
+# 字符串转2进制列表(不带 0x )
+s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
+
+# 字符串转16进制列表
+[hex(ord(c)) for c in s]
+```
+
+
+
+
 
 ### 字符串压缩
 

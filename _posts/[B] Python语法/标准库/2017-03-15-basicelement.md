@@ -26,9 +26,13 @@ order: 1201
 
 ```py
 str(1) #数字转字符
-int('1') #字符转数字
+int('1') #字符转数字 int
 float(x) #转换成一个浮点数
 complex(x) #转换成复数
+```
+
+进制转换
+```py
 int('51',base=14) #把base进制表示字符串，转为十进制
 bin(x)   #把整数x变成二进制的字符串
 oct(x)   #把整数x变成八进制表示的字符串
@@ -37,10 +41,9 @@ ord("A") #字符转ascii码
 chr(97)  #ascii码转字符
 ```
 
+四舍五入
 ```py
-str(obj) 得到obj的字符串描述
-int(x) 转换成一个integer
-round(x)# 也是转换成int
+round(x) # 返回 int
 round(x,0) #截取相应的位数，返回float
 math.trunc#  向0取整
 math.ceil
