@@ -48,6 +48,7 @@ function myFunction2() {
 
 ## 源码和原理
 
+[源码](https://github.com/guofei9987/vulgar_language_generator)  
 [![Stars](https://img.shields.io/github/stars/guofei9987/vulgar_language_generator.svg?label=Stars&style=social)](https://github.com/guofei9987/vulgar_language_generator/stargazers)
 [![Forks](https://img.shields.io/github/forks/guofei9987/vulgar_language_generator.svg?label=Fork&style=social)](https://github.com/guofei9987/vulgar_language_generator/network/members)
 
