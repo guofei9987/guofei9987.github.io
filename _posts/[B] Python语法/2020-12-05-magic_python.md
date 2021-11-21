@@ -8,6 +8,40 @@ description:
 order: 1301
 ---
 
+## Python效率研究
+
+```python
+import numpy as np
+import datetime
+
+a = np.arange(20)
+b = list(range(20))
+num = 10000
+start_time = datetime.datetime.now()
+for i in range(num):
+    for i in range(10):
+        i in a
+
+print(datetime.datetime.now() - start_time)
+
+num = 10000
+start_time = datetime.datetime.now()
+for i in range(num):
+    for i in range(10):
+        i in b
+
+print(datetime.datetime.now() - start_time)
+```
+
+打印结果：
+
+>0:00:01.026981
+0:00:00.044941
+
+结论：i in array 的性能消耗大概是 i in list 的20倍
+
+
+
 ## 冷知识
 ### 可直接运行的 zip 包
 正常人认为 Python 包的格式是 egg 或者 whl，但也可以是 zip

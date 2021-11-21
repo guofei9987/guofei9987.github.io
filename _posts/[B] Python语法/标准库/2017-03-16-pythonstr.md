@@ -183,12 +183,15 @@ chr(97)#ascii码转字符
 
 ### 字符串转 byte 类型（encode & decode）
 ```py
-s = "中文字符串"  # Python3 默认的字符串是 utf-8 格式
-bs = s.encode("utf-8")  # utf-8 转为 byte 格式
-bs.decode("utf-8")  # byte 格式 转为 utf-8
+s = "中文字符串hello"  # 默认是 utf-8 格式
+bs = s.encode(encoding="utf-8", errors='strict')  # utf-8 转为 byte 格式
+bs.decode(encoding="utf-8", errors='strict')  # byte 格式 转为 utf-8
 
-# 除此之外，还有 "utf-8", "utf-16", "ascii", "ISO-8859-1" 等格式
-# byte 格式，print出来类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这样，这是utf-8的样子
+
+# encoding 可以是 "utf-8", "utf-16", "ascii", "ISO-8859-1" 等格式
+# errors 默认是 'strict'，代表编码错误抛出错误。'replace' 代表错误的位置换成问号。'ignore' 代表错误的位置跳过去
+
+# 返回byte 格式，print出来类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这样，这是utf-8的样子
 # 假如是这样的 '%u8a84%u12bc' 这是 unicode 编码，每段4位16进制数对应ascii码，例如 chr(int('12cd', base=16))
 
 # byte格式转16进制:
@@ -370,6 +373,73 @@ print(m1.groups())  # 返回：('123', '4')
 groupdict() # 返回命名分组信息
 ```
 
+### 分组运算符
+
+基础用法
+```python
+
+regex = re.compile('(\w+) had a ((\w+) \w+)')
+text = 'I had a nice day，I had a nice day'
+regex.findall(text)
+# [('I', 'nice day', 'nice'), ('I', 'nice day', 'nice')]
+# 每个括号里面都匹配出来。整体没加括号，所以不匹配
+
+[m.group(0) for m in regex.finditer(text)]
+# 等价于 [m.group() for m in regex.finditer(text)]
+# ['I had a nice day', 'I had a nice day']
+# 0 指的是把整体匹配出来
+
+# 分别把括号里面的内容匹配出来
+[m.group(1) for m in regex.finditer(text)]
+# ['I', 'I']
+[m.group(2) for m in regex.finditer(text)]
+# ['nice day', 'nice day']
+[m.group(3) for m in regex.finditer(text)]
+# ['nice', 'nice']
+
+
+[m.groups() for m in regex.finditer(text)]
+# 与 group 的区别
+# 括号里面的全部匹配出来，而不是
+# [('I', 'nice day', 'nice'), ('I', 'nice day', 'nice')]
+```
+
+
+分组替换
+```python
+# 可以用 \+数字来指定序号，序号从1开始
+regex1 = re.compile(r'I have a (\w+) and a (\w+)')
+replace_str = r'There is \2 and \1, Good!'
+sentence = 'I have a book and a pen. You May use those.'
+regex1.sub(replace_str, sentence)
+# 上面的语句返回 'There is pen and book, Good!. You May use those.'
+# 解释：
+# step1：按照正则，从 sentence 中提取 1: book, 2: pen
+# step2：分别填入 replace_str 中的 \2 \1
+
+
+# 一个sub的实用案例：
+regex1 = re.compile(r'min=(\w{2}), hour=(\w{2})')
+regex1.sub(r'\2:\1', 'Now time is min=15, hour=20')
+# 返回：'Now time is 20:15'
+```
+
+
+分组的引用：在同一个正则里面，引用其它分组
+```python
+# 可以用 \+数字来指定序号，序号从1开始
+regex1 = re.compile(r'(\w+) is (\1)')
+regex1.findall('one is one, two is two, one is two')
+
+[m.group(0) for m in regex1.finditer('one is one, two is two, one is two')]
+# ['one is one', 'two is two']
+# 意味着 one is two 不会被匹配出来
+
+
+# 另外，分组引用符也可以外加括号变成分组：
+#
+re.compile(r'(\w+) is (\1)')
+```
 
 ### 正则表达式的写法
 
@@ -427,30 +497,6 @@ groupdict() # 返回命名分组信息
 '\xN' or '\x{N}' # 匹配八进制数值为N的字符
 '\oN' or '\o{N}' # 匹配十六进制数值为N的字符
 '[。；，：“”（）、？《》]' # 一些中文标点
-```
-1. 分组运算符
-```python
-# 1. 基础用法
-'(\w+) had a ((\w+) \w+)' # 去匹配 'I had a nice day，I had a nice day'
-# findall 返回：[('I', 'nice day', 'nice'), ('I', 'nice day', 'nice')]
-# group 返回：I had a nice day
-# groups 返回 ('I', 'nice day', 'nice')
-# 2. 分组替换，可以用 \+数字来指定序号，序号从1开始
-regex1 = re.compile(r'I have a (\w+) and a (\w+)')
-regex1.sub(r'There is \2 and \1, Good!', 'I have a book and a pen. You May use those.')
-# 上面的语句返回 'There is pen and book, Good!. You May use those.'
-# 一个sub的实用案例：
-regex1 = re.compile(r'min=(\w{2}), hour=(\w{2})')
-regex1.sub(r'\2:\1', 'Now time is min=15, hour=20') # 返回：'Now time is 20:15'
-# 3. 反向引用：在同一个正则里面，引用其它分组
-regex1 = re.compile(r'(\w+) is (\1)')
-regex1.findall('one is one, two is two, one is two')
-for m in regex1.finditer('one is one, two is two, one is two'):
-    print(m.group())
-# 上面这个例子，返回one is one  two is two
-# 另外，分组引用符也可以外加括号变成分组：
-#
-re.compile(r'(\w+) is (\1)')
 ```
 7. **?** 比较`(X)`和`(?:X)`，前者是捕获分组，后者不捕获，在 groups 中有体现。
 ```python
