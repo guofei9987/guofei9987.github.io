@@ -202,7 +202,7 @@ __rlshift__ , __rrshift__ , __rxor__ , __ror__
 |方法|解释|
 |--|--|
 |`__len__` | 定义 `len()`
-|`__getitem__`| 定义 `obj['key1']`
+|`__getitem__`| 定义 `obj['key1']` ，同时定义 `obj[1:9]` 切片，同时定义 `for i in obj`（输入值其实是 0,1,... ）
 |`__setitem__`| 定义 `obj['key1'] = 'value1'`
 |`__delitem__`| 定义 `del obj['key1']`
 |`__contains__`| 定义  `1 in obj`
