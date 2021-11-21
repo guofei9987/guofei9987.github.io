@@ -1,4 +1,43 @@
 
+
+
+
+## 边缘检测
+
+```python
+Laplacian()        #作为边缘检测函数，他会产生明显的边缘线条，灰度图像更是如此。
+Sobel()
+Scharr()
+```
+这些滤波函数都会将非边缘区域转换为黑色，边缘区域转换成白色或其他饱和的颜色。但是这些函数都容易将噪声错误的识别为边缘。缓解这个问题的方法就是在找到边缘之前对图像进行模糊处理，去除噪声。
+
+Open CV也提供了需要模糊滤波函数，包括以下：
+
+```python
+blur()
+medianBlur()         #它对去除数字化的视频噪声特别有效，特别是去除彩色图像的噪声
+GaussianBlur()
+```
+
+
+
+## 最小外接矩形
+
+```python
+x,y,w,h = cv2.boundingRect(array)  # 矩形框左上角的坐标(x, y)、宽度w和高度h。
+```
+
+```python
+cv.minAreaRect(cnt) # 返回值中还包含旋转信息，返回值信息为包括中心点坐标(x,y)，宽高(w, h)和旋转角度。
+```
+
+
+
+---------------
+
+
+
+
 ```py
 
 def recovery(ori_img, attacked_img, outfile_name='./recoveried.png', rate=0.7):
