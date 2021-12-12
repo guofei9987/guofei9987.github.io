@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 在线文本比较工具
+title: 在线文本去重工具
 categories:
 tags:
 keywords:
