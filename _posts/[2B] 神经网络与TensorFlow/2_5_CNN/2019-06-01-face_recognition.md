@@ -2,7 +2,7 @@
 layout: post
 title: 【CNN】face recognition
 categories:
-tags: 2-5-CV
+tags: 0x25_CV
 keywords:
 description:
 order: 280

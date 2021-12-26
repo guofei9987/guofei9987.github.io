@@ -2,7 +2,7 @@
 layout: post
 title: 常微分方程
 categories:
-tags: 5-2-方程
+tags: 0x52_方程
 keywords:
 description:
 order: 5201

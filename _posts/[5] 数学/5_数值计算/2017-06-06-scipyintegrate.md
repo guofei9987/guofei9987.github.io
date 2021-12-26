@@ -2,7 +2,7 @@
 layout: post
 title: 【数值积分】scipy.integrate
 categories:
-tags: 5-5-数值计算
+tags: 0x55_数值计算
 keywords:
 description:
 order: 5512

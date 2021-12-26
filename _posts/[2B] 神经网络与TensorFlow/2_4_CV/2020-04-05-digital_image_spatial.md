@@ -2,7 +2,7 @@
 layout: post
 title: 【CV】数字图像处理
 categories:
-tags: 2-5-CV
+tags: 0x25_CV
 keywords:
 description:
 order: 1012

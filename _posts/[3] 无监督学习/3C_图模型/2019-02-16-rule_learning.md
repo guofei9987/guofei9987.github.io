@@ -2,7 +2,7 @@
 layout: post
 title: 【规则学习】简介
 categories:
-tags: 3-3-图模型
+tags: 0x33_图模型
 keywords:
 description:
 order: 350

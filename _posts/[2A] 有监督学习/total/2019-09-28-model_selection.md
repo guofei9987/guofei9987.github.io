@@ -2,7 +2,7 @@
 layout: post
 title: 【sklearn】模型选取+参数选择
 categories:
-tags: 2-1-有监督学习
+tags: 0x21_有监督学习
 keywords: model evaluation
 description:
 order: 201

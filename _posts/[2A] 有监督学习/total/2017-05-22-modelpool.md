@@ -2,7 +2,7 @@
 layout: post
 title: 机器学习模型汇总
 categories:
-tags: 2-1-有监督学习
+tags: 0x21_有监督学习
 keywords: model evaluation
 description:
 order: 200

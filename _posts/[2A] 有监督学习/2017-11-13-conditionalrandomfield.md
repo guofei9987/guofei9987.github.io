@@ -2,7 +2,7 @@
 layout: post
 title: 【CRF】理论篇
 categories:
-tags: 2-1-有监督学习
+tags: 0x21_有监督学习
 keywords:
 description:
 order: 280

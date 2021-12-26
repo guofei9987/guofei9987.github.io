@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】groupby
 categories:
-tags: 1-2-Pandas与numpy
+tags: 0x12_Pandas与numpy
 keywords:
 description:
 order: 106

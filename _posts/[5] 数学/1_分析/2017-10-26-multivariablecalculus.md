@@ -2,7 +2,7 @@
 layout: post
 title: 多元微积分
 categories:
-tags: 5-1-代数与分析
+tags: 0x51_代数与分析
 keywords:
 description:
 order: 5131

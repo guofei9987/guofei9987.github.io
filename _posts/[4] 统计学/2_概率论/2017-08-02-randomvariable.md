@@ -2,7 +2,7 @@
 layout: post
 title: 概率测度简介
 categories:
-tags: 4-2-概率论
+tags: 0x42_概率论
 keywords:
 description:
 order: 450

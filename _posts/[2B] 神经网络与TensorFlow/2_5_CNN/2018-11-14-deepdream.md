@@ -2,7 +2,7 @@
 layout: post
 title: 【DeepDream】初学
 categories:
-tags: 2-5-CV
+tags: 0x25_CV
 keywords:
 description:
 order: 270

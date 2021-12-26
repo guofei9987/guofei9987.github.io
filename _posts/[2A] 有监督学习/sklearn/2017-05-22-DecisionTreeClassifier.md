@@ -2,7 +2,7 @@
 layout: post
 title: 【Decision Tree】理论与实现
 categories:
-tags: 2-1-有监督学习
+tags: 0x21_有监督学习
 keywords: Decision Tree Classifier
 description:
 order: 221

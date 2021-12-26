@@ -2,7 +2,7 @@
 layout: post
 title: 【statsmodels】OLS最小二乘法
 categories:
-tags: 4-1-统计模型
+tags: 0x41_统计模型
 keywords:
 description:
 order: 409

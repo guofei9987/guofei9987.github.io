@@ -2,7 +2,7 @@
 layout: post
 title: 【数值计算】数值线性代数
 categories:
-tags: 5-5-数值计算
+tags: 0x55_数值计算
 keywords:
 description:
 order: 5502

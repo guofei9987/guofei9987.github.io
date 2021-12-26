@@ -2,7 +2,7 @@
 layout: post
 title: 常见统计分布
 categories:
-tags: 4-2-概率论
+tags: 0x42_概率论
 keywords:
 description:
 order: 421

@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】时间序列
 categories:
-tags: 1-2-Pandas与numpy
+tags: 0x12_Pandas与numpy
 keywords:
 description:
 order: 107

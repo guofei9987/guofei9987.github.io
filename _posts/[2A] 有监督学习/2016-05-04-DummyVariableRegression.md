@@ -2,7 +2,7 @@
 layout: post
 title: 【dummies】虚拟变量回归
 categories:
-tags: 2-1-有监督学习
+tags: 0x21_有监督学习
 keywords: model evaluation
 description:
 order: 280
