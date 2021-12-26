@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【面向对象】继承&多态
 categories:
-tags: 设计模式
+tags: 0xd0_设计模式
 keywords:
 description:
 order: 1001

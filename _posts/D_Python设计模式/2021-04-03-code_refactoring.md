@@ -2,7 +2,7 @@
 layout: post
 title: 重构
 categories:
-tags: 设计模式
+tags: 0xd0_设计模式
 keywords:
 description:
 order: 1040

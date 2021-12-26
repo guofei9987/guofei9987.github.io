@@ -2,7 +2,7 @@
 layout: post
 title: 【离散数学1】数理逻辑
 categories:
-tags: 5-9-应用数学
+tags: 0x59_应用数学
 keywords:
 description:
 order: 5901

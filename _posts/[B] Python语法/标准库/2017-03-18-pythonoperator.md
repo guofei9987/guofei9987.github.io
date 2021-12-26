@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】运算符&math
 categories:
-tags: Python语法
+tags: 0xb0_Python语法
 keywords:
 description:
 order: 1202

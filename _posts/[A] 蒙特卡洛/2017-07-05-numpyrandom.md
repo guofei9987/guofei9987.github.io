@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【numpy】random随机数生成
 categories:
-tags: A蒙特卡洛方法
+tags: 0xa0_蒙特卡洛方法
 keywords:
 description:
 order: 10022

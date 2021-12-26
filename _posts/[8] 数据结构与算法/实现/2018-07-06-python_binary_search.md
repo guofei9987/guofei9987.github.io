@@ -2,7 +2,7 @@
 layout: post
 title: 【Python数据结构3】Binary Search
 categories:
-tags: 8-数据结构与算法
+tags: 0x80_数据结构与算法
 keywords:
 description:
 order: 553

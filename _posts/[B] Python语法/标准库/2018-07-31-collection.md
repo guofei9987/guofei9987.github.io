@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】collection&itertools
 categories:
-tags: Python语法
+tags: 0xb0_Python语法
 keywords:
 description:
 order: 1221

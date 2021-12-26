@@ -2,18 +2,7 @@
 layout: post
 title: 【概率论】趣味小题
 categories:
-tags: 8-数据结构与算法
-order: 530
----
-
-
----
-layout: post
-title: 【最小生成树问题】Prim和Kruskal
-categories:
-tags: 8-数据结构与算法
-keywords:
-description:
+tags: 0x80_数据结构与算法
 order: 530
 ---
 

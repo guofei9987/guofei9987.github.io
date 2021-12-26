@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】magic黑魔法
 categories:
-tags: Python语法
+tags: 0xb0_Python语法
 keywords:
 description:
 order: 1301

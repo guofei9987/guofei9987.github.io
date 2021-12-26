@@ -2,7 +2,7 @@
 layout: post
 title: 【Mento Carlo 3】给定分布生成随机数
 categories:
-tags: A蒙特卡洛方法
+tags: 0xa0_蒙特卡洛方法
 keywords:
 description:
 order: 10003

@@ -2,7 +2,7 @@
 layout: post
 title: 【动态最优化】变分法
 categories:
-tags: 5-6-最优化
+tags: 0x56_最优化
 keywords:
 description:
 order: 7401

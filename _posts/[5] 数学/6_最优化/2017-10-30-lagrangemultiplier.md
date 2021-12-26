@@ -2,7 +2,7 @@
 layout: post
 title: 【约束非线性优化】拉格朗日法与KKT
 categories:
-tags: 5-6-最优化
+tags: 0x56_最优化
 keywords:
 description:
 order: 7210

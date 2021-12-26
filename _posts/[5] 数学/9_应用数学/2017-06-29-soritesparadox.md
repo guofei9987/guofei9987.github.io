@@ -2,7 +2,7 @@
 layout: post
 title: 【逻辑学】连锁悖论、真值度、超赋值理论与认知主义
 categories:
-tags: 5-9-应用数学
+tags: 0x59_应用数学
 keywords:
 description:
 order: 98001

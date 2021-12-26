@@ -2,7 +2,7 @@
 layout: post
 title: 【隐写术】入门知识大全
 categories:
-tags: 5-9-应用数学
+tags: 0x59_应用数学
 keywords:
 description:
 order: 59003

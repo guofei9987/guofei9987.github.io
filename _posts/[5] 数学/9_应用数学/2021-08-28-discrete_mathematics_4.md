@@ -2,7 +2,7 @@
 layout: post
 title: 【离散数学3】格和布尔代数
 categories:
-tags: 5-9-应用数学
+tags: 0x59_应用数学
 keywords:
 description:
 order: 5904

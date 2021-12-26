@@ -2,7 +2,7 @@
 layout: post
 title: 【探索】曲面上均匀随机采样
 categories:
-tags: A蒙特卡洛方法
+tags: 0xa0_蒙特卡洛方法
 keywords:
 description:
 order: 10103

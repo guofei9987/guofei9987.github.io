@@ -2,7 +2,7 @@
 layout: post
 title: 【pyecharts】漂亮的可视化
 categories:
-tags: 7-可视化
+tags: 0x70_可视化
 keywords:
 description:
 order: 764
