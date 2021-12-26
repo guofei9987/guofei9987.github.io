@@ -2,7 +2,7 @@
 layout: post
 title: 【随机过程】
 categories:
-tags: 4-4-随机过程
+tags: 0x44_随机过程
 keywords:
 description:
 order: 470

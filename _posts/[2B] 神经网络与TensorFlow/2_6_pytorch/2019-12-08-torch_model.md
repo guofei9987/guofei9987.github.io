@@ -2,7 +2,7 @@
 layout: post
 title: 【pytorch】【进行中】建立模型
 categories:
-tags: 2-6-torch
+tags: 0x26_torch
 keywords:
 description:
 order: 262

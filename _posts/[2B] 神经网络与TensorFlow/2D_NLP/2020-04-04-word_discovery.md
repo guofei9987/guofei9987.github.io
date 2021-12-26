@@ -2,7 +2,7 @@
 layout: post
 title: 【NLP】【Python】新词发现
 categories:
-tags: 2-4-NLP
+tags: 0x24_NLP
 keywords:
 description:
 order: 305

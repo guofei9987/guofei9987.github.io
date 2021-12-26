@@ -2,7 +2,7 @@
 layout: post
 title: 【pytorch】【进行中】基本配置
 categories:
-tags: 2-6-torch
+tags: 0x26_torch
 keywords:
 description:
 order: 261
