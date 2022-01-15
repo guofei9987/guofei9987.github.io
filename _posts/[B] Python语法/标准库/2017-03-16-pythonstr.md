@@ -208,23 +208,21 @@ s_bin = bin(int(s_hex, 16))
 
 
 
-
 ### 转二进制、十六进制
-
-
-
-生产环境推荐用十六进制，并且推荐如下的操作
 
 ```python
 s = '这是一个字符串'
 
 # 字符串转十六进制
 s_hex = s.encode('utf-8').hex()
+# >'e8bf99e698afe4b880e4b8aae5ad97e7aca6e4b8b2'
 # 十六进制转字符串
 bytes.fromhex(s_hex).decode('utf-8')
+# >'这是一个字符串'
 
 # 另外，转2进制
 s_bin = bin(int(s_hex, 16))
+# >'0b111010001011111110011001...'
 ```
 
 
@@ -249,6 +247,46 @@ s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 
 # 字符串转16进制列表
 [hex(ord(c)) for c in s]
+```
+
+
+另一种转二进制
+
+```python
+import struct
+import numpy as np
+
+content = '你tst1'.encode('utf-8')
+
+# 转二进制
+seq = np.array(list(content), dtype=np.uint8)
+content_bits = np.unpackbits(seq)
+
+# 二进制转字符串
+nums = np.packbits(content_bits)
+content_decode = b''.join([struct.pack('>B', n) for n in nums])
+
+content_decode.decode('utf-8')
+```
+
+额外
+```python
+content = '你tst1'.encode('utf-8')
+
+list(content)  # 等价于 [n for n in content]
+
+[bin(i) for i in content]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
+[format(i, 'b') for i in content]  # ['11100100', '1101']
+binary = [format(i, '08b') for i in content]  # 8位2进制格式
+binary
+
+b''.join([struct.pack('>B', int(i, base=2)) for i in binary])
+
+# %%
+
+a = [int(i, base=2) for i in binary]
+bytearray(a).decode('utf-8')  # bytearray 是可变类型
+bytes(a).decode('utf-8')  # 是不可变类型
 ```
 
 
