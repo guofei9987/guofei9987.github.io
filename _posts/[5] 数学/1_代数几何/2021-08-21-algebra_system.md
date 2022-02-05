@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【代数系统】群、环、域
+title: 【代数5】群、环、域
 categories:
 tags: 0x51_代数与分析
 keywords:
 description:
-order: 5122
+order: 5105
 ---
 
 
