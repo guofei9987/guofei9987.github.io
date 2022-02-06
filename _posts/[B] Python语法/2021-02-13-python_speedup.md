@@ -441,7 +441,7 @@ mpi4py，基于MPI-1/MPI-2
 import functools
 
 
-@functools.lru_cache(maxsize=None, typed=None)
+@functools.lru_cache(maxsize=None, typed=False)
 def add(x, y):
     print('计算 {x} + {y}'.format(x=x, y=y))
     return x + y
@@ -461,11 +461,71 @@ print(add(3, 5))
 8
 ```
 
-看到，第二次调用 `add(1,2)`，没有真正执行函数。
+看到，第二次调用 `add(1,2)`，没有真正执行。
 
 参数说明：
 - `maxsize`: cache 容量，`None` 表示无限大
 - `typed`: 如果为 True，会按照type分类，例如， `f(3.0)` 和 `f(3)` 会被当成不同的调用
+
+### lru进阶
+
+有以下情况
+- 某些入参无法hash，例如 numpy.array
+- 某些入参不必缓存，因为它变化很频繁，每次 hash 耗时太多，且没有必要
+
+
+解决：做一个类，每次在函数中读取即可
+
+代码：
+```py
+import functools
+
+
+class MyValues:
+    def __init__(self):
+        self.idx = 0
+        self.const = None
+
+    def set_val(self, const):
+        self.idx += 1
+        self.const = const
+
+
+my_value = MyValues()
+
+
+@functools.lru_cache(maxsize=None, typed=False)
+def add(x, y, idx):
+    const = my_value.const
+    print('计算 {x} + {y} + const'.format(x=x, y=y))
+    return x + y + const.sum()
+
+
+def my_add(x, y):
+    return add(x, y, idx=my_value.idx)
+```
+
+使用
+```py
+import numpy as np
+
+my_value.set_val(const=np.arange(0, 10, 1))
+print(my_add(1, 2))
+print(my_add(1, 2))
+my_value.set_val(const=np.arange(0, 20, 1))
+print(my_add(1, 2))
+```
+
+结果：
+```
+计算 1 + 2 + const
+48
+48
+计算 1 + 2 + const
+193
+```
+
+
 
 
 ## numba 专题
