@@ -152,6 +152,14 @@ style="fill:white;stroke:red;stroke-width:2"/>
 注：以上所有命令：大写表示绝对定位，小写表示相对定位
 
 
+### 文字
+
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <text x="10" y="20" style="fill:red;">文字
+  </text>
+</svg>
+
 
 
 
