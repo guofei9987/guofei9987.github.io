@@ -160,6 +160,7 @@ style="fill:white;stroke:red;stroke-width:2"/>
   </text>
 </svg>
 
+这里的y似乎是中心的位置，因此设定为0会看不清。
 
 
 
