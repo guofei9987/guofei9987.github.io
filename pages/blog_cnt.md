@@ -6,8 +6,4 @@ tags:
 keywords:
 description:
 ---
-
-
-
-
 {{ site.posts | size }}
