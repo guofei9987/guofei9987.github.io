@@ -1,6 +1,6 @@
 ---
 ---
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="112" height="20" role="img">
-  <text x="10" y="20" style="fill:red;">{{ site.posts | size }}
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="20" role="img">
+  <text x="0" y="18" style="fill:red;font-weight: bold;">{{ site.posts | size }}
   </text>
 </svg>
