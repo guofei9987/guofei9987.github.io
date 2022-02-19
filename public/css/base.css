@@ -273,3 +273,35 @@ timeline */
      padding: 2px 10px 2px 6px;
      font-size: 12px;
  }
+
+ /* 代码黏贴板 */
+ pre.highlight{
+   position: relative;
+ }
+  pre.highlight > button{
+    position: absolute;
+    right: 1.2rem;
+    top: 1.2rem;
+  }
+ /* 鼠标不悬浮时的样子 */
+ pre.highlight > button {
+   opacity: 0.7;
+   background: #000000;
+   color: #e5f7f3;
+ }
+/* 鼠标悬浮 */
+ pre.highlight:hover > button {
+   opacity: 1;
+   background: #000000;
+
+   color: #1abc9c;
+ }
+
+ pre.highlight > button:active,
+ pre.highlight > button:focus {
+   opacity: 1;
+   background: #000000;
+   color: #FF0000;
+ }
+
+/* end:代码黏贴版 */
