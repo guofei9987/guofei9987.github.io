@@ -27,7 +27,9 @@ from setuptools import setup, find_packages
 setup(
     name='scikit-opt',  # 包的名字，也是将来用户使用 pip install scikit-opt 来安装
     version='0.0.1',  # 版本号，每次上传的版本号应当不一样，可以用类似 sko.__version__ 去自动指定
+    packages=find_packages(),
     python_requires='>=3.5',
+    install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'],  # 指定此包的依赖    
     description='Swarm Intelligence in Python',
     long_description=read_file('README.md'),
     long_description_content_type="text/markdown",
@@ -35,9 +37,7 @@ setup(
     author='Guo Fei',
     author_email='guofei9987@foxmail.com',
     license='MIT',
-    packages=find_packages(),  # 也可以是一个列表，例如 ['sko']
     platforms=['linux', 'windows', 'macos'],
-    install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'],  # 指定此包的依赖
     zip_safe=False,  # 为了兼容性，一般填 False
     # 命令行工具，下文的意思是，命令行 file2tree1 启动 file2tree/file2tree.py 的 main() 这个函数
     entry_points={
@@ -66,6 +66,121 @@ def read_requirements(filename):
             if not line.startswith('#')]
 ```
 
+其它配置项
+- `packages=['sko', 'sko.operators_gpu', 'sko.operators']` 打包哪些目录
+    - `packages=find_packages()` 会寻找所有的包（定义为含有 `__init__.py` 的目录）
+    - 子目录不会自动打包，除非指定（上面的例子）
+
+### 编译：ext_modules
+
+ext_modules 可以指定 C/C++/Python 代码编译为 .so 文件
+
+#### Python 和 C 混合编程
+
+```py
+ext_modules=[
+    # c文件会编译为 .so 文件
+    Extension(
+        # 1)必须指定my_build，否则 so 文件直接生成到包的根目录下。
+        # 2）my_add 是生成的so文件名，会自动添加后缀使其符合规范
+        "my_build.my_add",
+        # 被编译的 c 文件
+        ['my_build/my_add.c', 'my_build/my_add2.c'])
+],
+```
+
+
+
+python 如何调用这些编译好的文件呢？可以手动指定
+```py
+import ctypes
+my_so = ctypes.cdll.LoadLibrary("my_add.cpython-38-darwin.so")
+```
+很不优雅
+1. 后缀名你也要明确写出来，不同平台做不同的处理，有些麻烦
+2. 安装后的包，需要识别其所在目录（方法在下面）
+3. 测试包里面生成同名的 so 文件： `python setup.py build_ext  --inplace`
+
+
+
+？？？但是我的 python 怎么写，才能正确调用这些c文件呢？
+
+
+
+#### 编译py文件，顺便加密
+
+
+
+
+你的源码，放到文件 `hello.py`
+```python
+def say_hello():
+    print("hello world")
+```
+
+同一个目录中建立一个 `setup.py` 文件
+```python
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(ext_modules = cythonize("hello.py"))
+```
+
+shell 中运行：
+```
+>>> python setup.py build_ext  --inplace
+```
+- build_ext是指明python生成`.so`文件，
+- inplace指示 将编译后的扩展模块直接放在与test.py同级的目录中
+
+后台流程是这样的：
+`.py`->`.pyc`-(使用Cython)-> `.c`-(使用C编译器)- >`.pyd`(win)或`.so`(linux)
+
+
+生成的 so 文件，可以当成普通的 py 文件一样，**直接 import** 就行
+
+规范：
+```
+my_build
+├── __init__.py
+├── core（所有待编译的，统一放这里）
+│   ├── CoreClass1.py
+│   ├── CoreClass2.py
+│   ├── ***.py
+│   └── setup.py # 用这个批量编译
+├── my_add.cpython-38-darwin.so # 编译后移动到这里
+├── main
+```
+
+
+
+### 数据文件 package_data
+如何把数据文件也一起打包进去？
+- `package_data={'my_build': ['data/*.txt']}` 同时把文件也作为安装包的一部分
+    - my_build 是包，`data` 指的是 `my_build/data` （好像有些奇怪）
+- 代码部分，包可能安装在任何目录，因此这样调整
+    - `__init__.py` 里面：（其它py文件中也行，不过这个感觉更规范）
+```py
+from os.path import dirname
+module_path = dirname(__file__)
+```
+    - 使用数据的目录中：
+```py
+from . import module_path
+# 如果是子目录，from .. import module_path
+os.path.join(module_path, 'data/a.txt')
+```
+- 另一个方法： `data_files=[('my_build/data', ['my_build/data/a.txt'])]`
+    - 这个是把 a.txt 这个文件，放到 python 根目录/my_build/data 这个文件夹中 （更奇怪）
+
+
+```py
+scripts = ['say_hello.py']
+keywords = "hello world example examples"
+```
+
+
+参考：https://docs.python.org/3/distutils/setupscript.html
 
 
 ### 在本地试一试
@@ -348,32 +463,7 @@ compileall 官网： https://docs.python.org/3/library/compileall.html
 
 ### 方法2:使用 cython
 
-你的源码，放到文件 `hello.py`
-```python
-def say_hello():
-    print("hello world")
-```
-
-同一个目录中建立一个 `setup.py` 文件
-```python
-from distutils.core import setup
-from Cython.Build import cythonize
-
-setup(ext_modules = cythonize("hello.py"))
-```
-
-shell 中运行：
-```
->>> python setup.py build_ext  --inplace
-```
-- build_ext是指明python生成C/C++的扩展模块
-- inplace指示 将编译后的扩展模块直接放在与test.py同级的目录中
-
-后台流程是这样的：
-`.py`->`.pyc`-(使用Cython)-> `.c`-(使用C编译器)- >`.pyd`(win)或`.so`(linux)
-
-
-python -c "from hello import say_hello;say_hello()"
+（移动到上面）
 
 
 ## 重新载入包
