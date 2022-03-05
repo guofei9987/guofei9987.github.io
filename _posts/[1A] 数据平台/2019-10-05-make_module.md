@@ -71,87 +71,93 @@ def read_requirements(filename):
     - `packages=find_packages()` 会寻找所有的包（定义为含有 `__init__.py` 的目录）
     - 子目录不会自动打包，除非指定（上面的例子）
 
-### 编译：ext_modules
+
+
+### ext_modules：C 语言扩展
 
 ext_modules 可以指定 C/C++/Python 代码编译为 .so 文件
 
-#### Python 和 C 混合编程
+例子：https://github.com/guofei9987/hibird_python
 
+
+关键目录：https://github.com/guofei9987/hibird_python/tree/main/my_build/core
+
+
+`CoreFunction.c` ：C语言代码
+
+`__init__.py`：为了做到平台无关、接口统一而做的代码
+1. 生成的文件形如 `CoreFunction.cpython-38-darwin.so`，每个平台不一样，我们在init里面统一处理
+2. 暴露接口 CoreFunction 给 ide 识别，防止用户导入时显示红线
+3. 代码：
+```py
+import os
+import ctypes
+core_path = os.path.dirname(__file__)
+so_files = {file.split('.')[0]: os.path.join(core_path, file)
+            for file in os.listdir(core_path)
+            if file.endswith('.so')}
+CoreFunction = ctypes.cdll.LoadLibrary(so_files['CoreFunction'])
+```
+
+`core/setup.py` 用于在本地生成 .so 文件，仅测试方便，无其它用
+```py
+# python setup.py build_ext --inplace
+from distutils.core import setup
+from Cython.Build import cythonize
+setup(ext_modules=cythonize(['CoreFunction.c']))
+```
+
+
+`setup.py` 不多说，用 `ext_modules` 指定扩展c文件
 ```py
 ext_modules=[
     # c文件会编译为 .so 文件
     Extension(
-        # 1)必须指定my_build，否则 so 文件直接生成到包的根目录下。
-        # 2）my_add 是生成的so文件名，会自动添加后缀使其符合规范
-        "my_build.my_add",
-        # 被编译的 c 文件
-        ['my_build/my_add.c', 'my_build/my_add2.c'])
+        # 1)my_build.core 对应安装时的目录，不写 so 文件直接生成到包的根目录下。
+        # 2）CoreFunction 是生成的so文件名，会自动添加后缀使其符合规范
+        "my_build.core.CoreFunction",
+        # 被编译的 c 文件：
+        ['my_build/core/CoreFunction.c'])
 ],
 ```
 
 
 
-python 如何调用这些编译好的文件呢？可以手动指定
+**附：基础知识点**
+
+1. python 如何调用 .so
 ```py
 import ctypes
 my_so = ctypes.cdll.LoadLibrary("my_add.cpython-38-darwin.so")
 ```
-很不优雅
-1. 后缀名你也要明确写出来，不同平台做不同的处理，有些麻烦
-2. 安装后的包，需要识别其所在目录（方法在下面）
-3. 测试包里面生成同名的 so 文件： `python setup.py build_ext  --inplace`
-
-
-
-？？？但是我的 python 怎么写，才能正确调用这些c文件呢？
-
-
-
-#### 编译py文件，顺便加密
-
-
-
-
-你的源码，放到文件 `hello.py`
-```python
-def say_hello():
-    print("hello world")
+2. 生成 so 方法见于上面 `core/setup.py`
+    - 对应命令是 `python setup.py build_ext --inplace`
+    - build_ext是指明python生成 `.so` 文件，
+    - inplace指示将编译后的扩展模块直接放在同级的目录中
+    - 后台流程是这样的：
+    - `.py`->`.pyc`-(使用Cython)-> `.c`-(使用C编译器)- >`.pyd`(win)或`.so`(linux)
+3. setup 中配置方法见于上面 `setup.py`
+4. 还有另一种方式来生成 so 文件
 ```
-
-同一个目录中建立一个 `setup.py` 文件
-```python
-from distutils.core import setup
-from Cython.Build import cythonize
-
-setup(ext_modules = cythonize("hello.py"))
+ext_modules=cythonize(["my_build/core/CoreClass.py", 'my_build/core/CoreFunction.c']
 ```
+5. python 生成的 .so 文件不能用 ctypes.cdll.LoadLibrary 读取，但可以 import
 
-shell 中运行：
-```
->>> python setup.py build_ext  --inplace
-```
-- build_ext是指明python生成`.so`文件，
-- inplace指示 将编译后的扩展模块直接放在与test.py同级的目录中
+### ext_modules: 加密c和py
 
-后台流程是这样的：
-`.py`->`.pyc`-(使用Cython)-> `.c`-(使用C编译器)- >`.pyd`(win)或`.so`(linux)
+加密的原理：代码文件编译为 .so 文件，打包 .so 文件，不打包代码。
 
 
-生成的 so 文件，可以当成普通的 py 文件一样，**直接 import** 就行
+不希望被看到代码的文件夹，里面有 python 和 c 源文件
+https://github.com/guofei9987/hibird_python/tree/main/core_private_source
+- `core_private_source/setup.py` 用来自动生成 .so 文件。命令是 `python setup.py build_ext --inplace`
+- **注意**，每种系统上生成的 so 文件不通用
 
-规范：
-```
-my_build
-├── __init__.py
-├── core（所有待编译的，统一放这里）
-│   ├── CoreClass1.py
-│   ├── CoreClass2.py
-│   ├── ***.py
-│   └── setup.py # 用这个批量编译
-├── my_add.cpython-38-darwin.so # 编译后移动到这里
-├── main
-```
 
+so文件复制到目标子包中，[/my_build/core_private](https://github.com/guofei9987/hibird_python/tree/main/my_build/core_private)
+- 注意 `__init__.py`
+- 对于python生成的 so，直接import
+- 对于c生成的so，调用方法同上
 
 
 ### 数据文件 package_data
@@ -436,34 +442,6 @@ after_success:
 提一句，`coverage` 是一个包，可以用 `pip install` 或者 `easy_install` 安装，然后，  
 `coverage run -p test.py` 可以多条不覆盖  
 `coverage combine` 可以合并多条（经测试，不需要合并多条，就可以codecov上传）
-
-
-## 加密python代码
-### 方法1:用 pyc 文件加密
-
-```bash
-export my_package_dir='tst_package'
-# 编译文件夹和子文件夹中的 py 文件：
-python -m compileall -b ${my_package_dir}
-# 这里加入 -b，否则生成的 pyc 文件在 __cache__ 文件夹下，且文件名包含python版本信息，就不能直接用
-
-# 删除 py 文件（慎重！）：
-find ${my_package_dir} -name '*.py' -type f -print -exec rm {} \;
-```
-
-
-compileall 官网： https://docs.python.org/3/library/compileall.html
-
-
-注：
-1. 无法用 `pip install .` 安装
-2. ?能否打包
-
-
-
-### 方法2:使用 cython
-
-（移动到上面）
 
 
 ## 重新载入包
