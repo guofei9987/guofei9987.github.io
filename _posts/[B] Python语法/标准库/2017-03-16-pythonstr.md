@@ -221,8 +221,9 @@ bytes.fromhex(s_hex).decode('utf-8')
 # >'这是一个字符串'
 
 # 另外，转2进制
-s_bin = bin(int(s_hex, 16))
+s_bin = bin(int(s.encode('utf-8').hex(), 16))
 # >'0b111010001011111110011001...'
+s_out = bytes.fromhex(hex(int(byte, base=2))[2:]).decode('utf-8', errors='ignore')
 ```
 
 

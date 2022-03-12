@@ -10,6 +10,72 @@ order: 1301
 
 ## Python效率研究
 
+### 避免全局变量
+
+定义在全局范围内的代码运行速度会比定义在函数中的慢不少。  
+把代码放入到函数中，通常可带来 15% - 30% 的速度提升。
+
+
+不推荐：
+```py
+size = 10000
+for x in range(size):
+    for y in range(size):
+        z = math.sqrt(x) + math.sqrt(y)
+```
+
+推荐：
+```py
+def main():
+    size = 10000
+    for x in range(size):
+        for y in range(size):
+            z = math.sqrt(x) + math.sqrt(y)
+main()
+```
+
+
+### 避免用点
+
+每次使用.（属性访问操作符时）会触发特定的方法，如__getattribute__()和__getattr__()，这些方法会进行字典操作，因此会带来额外的时间开销
+·
+```py
+
+import math
+import datetime
+
+# 不推荐
+def main1(size):
+    y = []
+    for x in range(size):
+        y.append(math.sqrt(x))
+
+
+# 推荐
+def main2(size):
+    y = []
+    # 1. import 的包赋值给一个变量，也可以 from math import sqrt
+    sqrt = math.sqrt
+    # 2. 对象的方法也可以用赋值来加速
+    append = y.append
+
+    for x in range(size):
+        append(sqrt(x))
+
+
+```
+
+>0:00:00.001974
+0:00:00.000895
+
+
+### 利用if条件的短路特性
+
+if 条件的短路特性是指对if a and b这样的语句， 当a为False时将直接返回，不再计算b；对于if a or b这样的语句，当a为True时将直接返回，不再计算b。因此， 为了节约运行时间，对于or语句，应该将值为True可能性比较高的变量写在or前，而and应该推后。
+
+
+
+### i in array
 ```python
 import numpy as np
 import datetime
