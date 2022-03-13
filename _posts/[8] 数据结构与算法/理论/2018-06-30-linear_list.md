@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【算法】线性表
+title: 【数据结构1】线性表
 categories:
 tags: 0x80_数据结构与算法
 keywords:
 description:
-order: 501
+order: 511
 ---
 
 

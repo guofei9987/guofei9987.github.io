@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【最小生成树问题】Prim和Kruskal
+title: 【最小生成树】Prim和Kruskal
 categories:
 tags: 0x80_数据结构与算法
 keywords:
 description:
-order: 530
+order: 572
 ---
 
 ## 问题介绍

@@ -3,7 +3,7 @@ layout: post
 title: 【概率论】趣味小题
 categories:
 tags: 0x80_数据结构与算法
-order: 530
+order: 599
 ---
 
 

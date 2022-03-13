@@ -5,7 +5,7 @@ categories:
 tags: 0x80_数据结构与算法
 keywords:
 description:
-order: 505
+order: 572
 ---
 
 ## 二叉树的数据结构

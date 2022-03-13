@@ -232,7 +232,7 @@ python3 -m http.server 8888
 构建一个漫画网站
 `import antigravity`
 
-### 包撞到指定的python版本
+### 包装到指定的python版本
 ```
 # 在 python2 中安装
 $ python -m pip install requests

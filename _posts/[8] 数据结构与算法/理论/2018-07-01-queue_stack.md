@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 【堆、栈、队列】Queue & Stack & heapq
+title: 【堆栈、队列2】Queue & Stack & heapq
 categories:
 tags: 0x80_数据结构与算法
 keywords:
 description:
-order: 502
+order: 521
 ---
 
 
