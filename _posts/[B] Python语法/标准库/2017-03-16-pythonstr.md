@@ -220,10 +220,11 @@ s_hex = s.encode('utf-8').hex()
 bytes.fromhex(s_hex).decode('utf-8')
 # >'这是一个字符串'
 
-# 另外，转2进制
-s_bin = bin(int(s.encode('utf-8').hex(), 16))
-# >'0b111010001011111110011001...'
-s_out = bytes.fromhex(hex(int(byte, base=2))[2:]).decode('utf-8', errors='ignore')
+# 转2进制
+s_bin = bin(int(s.encode('utf-8').hex(), base=16))[2:]
+# 开头的0会被略去，某些其操作导致错位而出错，用这个补救：
+s_bin = (8 - len(s_bin) % 8) * '0' + s_bin
+s_out = bytes.fromhex(hex(int(s_bin, base=2))[2:]).decode('utf-8', errors='replace')
 ```
 
 
@@ -240,9 +241,6 @@ s = '这是一个字符串'
 # 字符串转10进制列表
 s_dec = [ord(c) for c in s]
 
-# 字符串转2进制列表(带 0x )
-s_bin = [bin(ord(c)) for c in s]  # 字符串转二进制
-
 # 字符串转2进制列表(不带 0x )
 s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 
@@ -251,16 +249,52 @@ s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 ```
 
 
-另一种转二进制
+
+用 for 循环，原理清晰
+```python
+s = '你tst1'
+
+# 1:不encode的话，遍历的是字符，汉字对应3个字节
+# 字符串转10进制列表
+s_dec = [ord(c) for c in s]
+# 字符串转16进制列表
+[hex(ord(c)) for c in s]
+# 字符串转2进制列表(不带 0x )
+s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制，!开头的0会被忽略
+
+
+
+# 2:所以一定要encode
+
+list(s.encode('utf-8'))  # [228, 189, 160, 116, 115, 116, 49]
+
+[bin(i) for i in s.encode('utf-8')]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
+[format(i, 'b') for i in s.encode('utf-8')]  # ['11100100', '1101']
+s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
+s_bin = ''.join(s_bin)
+
+s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
+
+# %%
+
+a = [int(i, base=2) for i in s_bin]
+
+bytearray(a).decode('utf-8')  # bytearray 是可变类型
+bytes(a).decode('utf-8')  # 是不可变类型
+```
+
+
+
+3借助numpy
 
 ```python
 import struct
 import numpy as np
 
-content = '你tst1'.encode('utf-8')
+s = '你tst1'
 
 # 转二进制
-seq = np.array(list(content), dtype=np.uint8)
+seq = np.array(list(s.encode('utf-8')), dtype=np.uint8)
 content_bits = np.unpackbits(seq)
 
 # 二进制转字符串
@@ -269,28 +303,6 @@ content_decode = b''.join([struct.pack('>B', n) for n in nums])
 
 content_decode.decode('utf-8')
 ```
-
-额外
-```python
-content = '你tst1'.encode('utf-8')
-
-list(content)  # 等价于 [n for n in content]
-
-[bin(i) for i in content]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
-[format(i, 'b') for i in content]  # ['11100100', '1101']
-binary = [format(i, '08b') for i in content]  # 8位2进制格式
-binary
-
-b''.join([struct.pack('>B', int(i, base=2)) for i in binary])
-
-# %%
-
-a = [int(i, base=2) for i in binary]
-bytearray(a).decode('utf-8')  # bytearray 是可变类型
-bytes(a).decode('utf-8')  # 是不可变类型
-```
-
-
 
 
 
