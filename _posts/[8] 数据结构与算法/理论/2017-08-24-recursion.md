@@ -10,23 +10,8 @@ order: 541
 
 ## 算法流程
 
-用递归生成树结构的一般方法：（我总结的）  
-（Matlab）  
-```matlab
-function myfun(i,A)
-    if iscorrect(i,A)
-        for i=ii
-            myfun(i,A)
-    elseif 到了树终点
-        statement
-    else
-        donothing
-    end
-end
-```
+用递归的一般方法：（我总结的）  
 
-
-伪代码
 ```python
 def 判断是否到达叶节点(已选解集合):
   # 已选解集合符合最终要的结果，例如符合某种查找
@@ -53,7 +38,7 @@ recursion 本质上是树型结构上的一个 DFS，以树的视角来看，思
 
 公式
 ```python
-def meet_conditions(selected):
+def meet_leef(selected):
     # 自定义代码块1，用来判断是否递归到了叶节点
     return True or False
 
@@ -62,7 +47,7 @@ res = list()
 
 
 def myfunc(selected, selectable):
-    if meet_conditions(selected):
+    if meet_leef(selected):
         res.append(selected)
         return
 
@@ -72,7 +57,9 @@ def myfunc(selected, selectable):
         next_selectable = selectable  # 自定义代码块3，用来给定下一步的候选选项
         myfunc(next_selected, next_selectable)
 ```
-在套用
+
+
+## 套用公式
 
 
 套公式的示例1：放回抽样，从6个数里面抽取3个。改动自定义代码块1。
@@ -80,7 +67,7 @@ def myfunc(selected, selectable):
 nums, total = [1, 2, 3, 4, 5, 6], 3
 
 
-def meet_conditions(selected):
+def meet_leef(selected):
     if len(selected) >= 3:
         return True
 
@@ -89,7 +76,7 @@ res = list()
 
 
 def myfunc(selected, selectable):
-    if meet_conditions(selected):
+    if meet_leef(selected):
         res.append(selected)
         return
 
@@ -111,7 +98,7 @@ res
 nums, total = [1, 2, 3, 4, 5, 6], 3
 
 
-def meet_conditions(selected):
+def meet_leef(selected):
     if len(selected) >= 3:
         return True
 
@@ -120,7 +107,7 @@ res = list()
 
 
 def myfunc(selected, selectable):
-    if meet_conditions(selected):
+    if meet_leef(selected):
         res.append(selected)
         return
 
@@ -141,7 +128,7 @@ res
 nums, total = [1, 2, 3, 4, 5, 6], 3
 
 
-def meet_conditions(selected):
+def meet_leef(selected):
     if len(selected) >= 3:
         return True
 
@@ -150,7 +137,7 @@ res = list()
 
 
 def myfunc(selected, selectable):
-    if meet_conditions(selected):
+    if meet_leef(selected):
         res.append(selected)
         return
 
