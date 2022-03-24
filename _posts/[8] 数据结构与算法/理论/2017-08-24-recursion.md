@@ -53,8 +53,8 @@ def myfunc(selected, selectable):
 
     for next_item in selectable:
         # 这个是下一阶段的迭代逻辑，中高难度题这2行需要仔细设计
-        next_selected = selected + [next_item]  # 自定义代码块2，这一步迭代得到的结果，传递给下一步
-        next_selectable = selectable  # 自定义代码块3，用来给定下一步的候选选项
+        next_selected = selected + [next_item]  # 自定义代码块2，子节点接收的树
+        next_selectable = selectable  # 自定义代码块3，子节点的可用解
         myfunc(next_selected, next_selectable)
 ```
 
