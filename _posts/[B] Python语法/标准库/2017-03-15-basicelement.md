@@ -18,7 +18,6 @@ order: 1201
 
 ### 整数类型
 整数类型没有取值范围的限制
-- pow(x,y)
 - 0x或0X开头表示16进制
 - 0b或0B开头表示2进制
 - 0o或0O表示8进制
@@ -34,9 +33,9 @@ complex(x) #转换成复数
 进制转换
 ```py
 int('51',base=14) #把base进制表示字符串，转为十进制
-bin(x)   #把整数x变成二进制的字符串
-oct(x)   #把整数x变成八进制表示的字符串
-hex(x)   #把整数x变成十六进制表示的字符串
+bin(2)   # 整数转二进制 '0b10'
+oct(8)   # 整数转八进制 '0o10'
+hex(31)   # 整数转十六进制 '0x1f'
 ord("A") #字符转ascii码
 chr(97)  #ascii码转字符
 ```
@@ -44,10 +43,17 @@ chr(97)  #ascii码转字符
 四舍五入
 ```py
 round(x) # 返回 int
-round(x,0) #截取相应的位数，返回float
+round(x, 0) #截取相应的位数，返回float
 math.trunc#  向0取整
 math.ceil
 math.floor
+```
+
+其它基本运算符
+```python
+abs(-2) # 2
+divmod(11,3) # (3, 2)
+pow(x,y)
 ```
 
 
@@ -175,10 +181,10 @@ for i in enumerate(String1)
 
 
 ```py
-a=[1,2,3]
-b=list('abc')
-list(zip(a,b))
-dict(zip(a,b))
+a = [1, 2, 3, 4]
+b = ['a', 'b', 'c']
+list(zip(a,b)) # [(1, 'a'), (2, 'b'), (3, 'c')]
+dict(zip(a,b)) # {1: 'a', 2: 'b', 3: 'c'}
 # a, b的长度可以不一样，这样就是取最短的
 ```
 
@@ -186,7 +192,7 @@ dict(zip(a,b))
 unzip:  
 ```py
 a=[(1, 'a'), (2, 'b'), (3, 'c')]
-list(zip(*a))
+list(zip(*a)) # [(1, 2, 3), ('a', 'b', 'c')]
 ```
 
 
@@ -273,7 +279,7 @@ dict1= sorted(word_dict.items(), key=lambda d:d[1], reverse = True)
 
 ## set
 
-集合是可变的
+集合是可变的，`frozenset` 是不可变的
 
 ### 集合运算
 
@@ -375,6 +381,37 @@ c=a
 del a
 ```
 b的值是什么。为什么呢？
+
+## 可迭代对象
+
+```
+all
+any
+enumerate
+map(func, lst)
+```
+
+## 其它
+```
+locals() # 全部本地对象
+globals() # 全部全局对象
+```
+
+hash:在hash()对对象使用时，所得的结果不仅和对象的内容有关，还和对象的id()，也就是内存地址有关。
+```
+class Test:
+    def __init__(self, i):
+        self.i = i
+for i in range(10):
+    t = Test(1)
+    print(hash(t), id(t))
+```
+
+查看对象的内存
+```
+v = memoryview(bytearray("abcefg", 'utf-8'))
+```
+
 
 
 ## 参考文献

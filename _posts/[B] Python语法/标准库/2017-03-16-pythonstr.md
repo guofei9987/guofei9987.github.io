@@ -348,11 +348,14 @@ print("压缩+转十六进制后的大小 = ", sys.getsizeof(hex_str))
 
 ## enumerate迭代器
 ```python
-String1 ='hello world'
-for index,letter in enumerate(String1):
+str1 ='hello world'
+for index,letter in enumerate(str1):
     print(index,letter)
-for i in enumerate(String1)
+for i in enumerate(str1)
     print(i) #i是tuple类型
+
+# 1. 可用于可迭代对象
+# 2. enumerate(str1, start=2) 可以指定从第几个开始
 ```
 此外，enumerate也可以用于list
 
