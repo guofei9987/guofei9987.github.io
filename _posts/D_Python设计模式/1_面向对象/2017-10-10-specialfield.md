@@ -215,6 +215,8 @@ __rlshift__ , __rrshift__ , __rxor__ , __ror__
 
 ```py
 class Foo(object):
+    def __init__(self):
+        self.n = 0
 
     def __getitem__(self, key):
         # 执行类似 obj[key] 的操作
@@ -243,10 +245,16 @@ class Foo(object):
         print('__iter__')
         return self
 
+    def __next__(self):
+        print('__next__')
+        self.n += 1
+        if self.n > 5:
+            raise StopIteration # 用来结束 for 循环，或next
+        return self.n
+
     def __reversed__(self):
         # reversed() 触发
         print('__reversed__')
-
 
 
 obj = Foo()
@@ -256,21 +264,17 @@ obj['k2'] = 'wupeiqi'  # 触发执行 __setitem__
 del obj['k1']          # 触发执行 __delitem__
 len(obj)               # 触发执行 __len__
 1 in obj               # 触发执行 __contains__
-
 reversed(obj)          # 触发执行 __reversed__
+
+
+for i in obj:
+    print(i)
 
 ```
 
 
 
-## 6. 迭代器
-
-__iter__, __reversed__, __next__
-
-
-
-
-迭代器的用法
+附：迭代器的用法
 ```py
 it=iter([1,2,3])
 next(it)
@@ -279,8 +283,7 @@ next(it)
 next(it) # 迭代到头会报一个 StopIteration 错误
 ```
 
-*for 语句也是调用上面两个方法来实现的*  
-
+例2
 ```py
 class Fibs:
     def __init__(self):
