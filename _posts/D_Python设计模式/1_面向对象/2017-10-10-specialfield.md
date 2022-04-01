@@ -24,7 +24,7 @@ order: 1003
 注:
 1. 析构函数本身不做资源回收，这是 Python 解释器的任务，析构函数是垃圾回收时同时触发执行的。  
 2. 并不是说 `del object` 时都会执行，而是当引用数量为0，才会启用垃圾回收机制，并调用 `__del__` 方法
-3. `Foo()` 没赋值，也没有给 `_` ，因此引用变为0，触发 `__del__` 
+3. `Foo()` 没赋值，也没有给 `_` ，因此引用变为0，触发 `__del__`
 
 
 ```py
@@ -208,7 +208,9 @@ __rlshift__ , __rrshift__ , __rxor__ , __ror__
 |`__setitem__`| 定义 `obj['key1'] = 'value1'`
 |`__delitem__`| 定义 `del obj['key1']`
 |`__contains__`| 定义  `1 in obj`
-
+|`__reversed__`|触发 reversed(obj)
+|`__iter__`|触发 iter(obj)|
+|`__next__`|触发 next(obj). 另外 for i in obj 会先调用 iter，然后调用next
 
 
 ```py
@@ -231,35 +233,39 @@ class Foo(object):
         print('__len__')
         return 1  # 必须返回一个 integer ，否则报错
 
+    def __contains__(self, item):
+        # item in obj 和 item not in obj 触发
+        print('__contains__')
+        return 1  # 最后的 return 会被强制变成 bool 类型
+
     def __iter__(self):
         # 执行迭代器操作
         print('__iter__')
+        return self
 
     def __reversed__(self):
-        # 执行 reversed() 操作
+        # reversed() 触发
         print('__reversed__')
 
-    def __contains__(self, item):
-        # 执行 item in obj 和 item not in obj 操作
-        print('__contains__')
-        return 1  # 最后的 return 会被强制变成 bool 类型
 
 
 obj = Foo()
 
-result = obj['k1']     # 触发执行 __getitem__
+obj['k1']              # 触发执行 __getitem__
 obj['k2'] = 'wupeiqi'  # 触发执行 __setitem__
 del obj['k1']          # 触发执行 __delitem__
 len(obj)               # 触发执行 __len__
-reversed(obj)          # 触发执行 __reversed__
 1 in obj               # 触发执行 __contains__
+
+reversed(obj)          # 触发执行 __reversed__
+
 ```
 
 
 
 ## 6. 迭代器
 
-__iter__, reversed__, __next__
+__iter__, __reversed__, __next__
 
 
 
