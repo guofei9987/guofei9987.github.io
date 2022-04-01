@@ -172,19 +172,23 @@ Func(s2_obj) # 在Func函数中传入Ss类的对象 ss_obj，执行 Ss 的show�
 为了让Func函数既可以执行S1对象的show方法，又可以执行S2对象的show方法，所以，定义了一个S1和S2类的父类  
 而实际传入的参数是：S1对象和S2对象  
 
-## 元类
 
-```python
-def hello(self):
-    self.name = 10
-    print("hello world")
+## issubclass和isinstance
 
-
-Test = type('Test', (object,), {'num': 0,'hello':hello})
-# 3个参数，类名，父类名。第三个字典中是类属性、类方式、静态方法
-t = Test()
+issubclass：检查一个类是否是另一个类的子类
+```py
+issubclass(SubCls, Cls)
+# 1. 一个类是其自身的子类
+# 2. Cls 可以是tuple of class，任意为 True 就返回 True
+# 3. 父类和祖先都返回 True
 ```
 
+isinstance：检查一个对象是否是一个类的实例
+```py
+isinstance(obj, cls)
+# 1. cls 是父类或祖先，都返回True
+# 2. cls 可以是tuple of class，任意为True就返回True
+```
 
 
 ## 其它

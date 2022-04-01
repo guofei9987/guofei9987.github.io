@@ -141,6 +141,55 @@ Foo.static_func()
 f.static_func()
 ```
 
+## 动态面向对象
+
+元类
+
+```python
+def hello(self):
+    self.name = 10
+    print("hello world")
+
+
+Test = type('Test', (object,), {'num': 0,'hello':hello})
+# 3个参数，类名，父类名。第三个字典中是类属性、类方式、静态方法
+t = Test()
+```
+
+
+namedtuple：快速生成简单的类
+
+```python
+from collections import namedtuple
+Point = namedtuple('Point', ['x', 'y', 'z'])  
+lst = [Point(1.5, 2, 3.0), Point(-0.3, -1.0, 2.1), Point(1.3, 2.8, -2.5)]
+print(lst[0].y - lst[1].y)
+
+# 可以用 len, count, index 之类的类似list的方法
+```
+
+### 动态修改属性
+
+
+```python
+class Student():
+    def __init__(self, num_id, name):
+        self.num_id = num_id
+        self.name = name
+
+
+tom = Student(1, 'Tom')
+
+# 删除
+delattr(tom, 'num_id')
+# 判断
+hasattr(tom, 'num_id')
+# 获取属性
+getattr(tom, 'name')
+# 修改属性
+setattr(tom, 'num_id_new', 3)
+```
+
 ### 动态地添加方法
 
 ```python

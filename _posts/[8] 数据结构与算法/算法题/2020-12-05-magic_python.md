@@ -118,6 +118,41 @@ for num, cnts in enumerate(nums):
 
 ```
 
+
+## 一些方便的方法
+
+### groupby
+
+```py
+a = [{'date': '2019-12-15', 'weather': 'cloud'},
+ {'date': '2019-12-13', 'weather': 'sunny'},
+ {'date': '2019-12-14', 'weather': 'cloud'}]
+from operator import itemgetter
+from itertools import groupby
+
+# 要点1：除了用 lambda 之外，还可以用 itemgetter，
+a.sort(key=itemgetter('weather'))
+
+# 要点2：groupby 操作
+# 必须先排序，否则不相邻的不会分为一组
+for k, items in groupby(a, key=itemgetter('weather')):
+     print(k)
+     for i in items:
+         print(i)
+```
+
+
+其实list也可以这么做：
+```python
+a = [[1, 2, 'tom'], [8, 9, 'tony'], [3, 4, 'tom']]
+a.sort(key=itemgetter(2)) # 必须
+for k, items in groupby(a, key=itemgetter(2)):
+    print(k)
+    for i in items:
+        print(i)
+```
+
+
 ## Python效率研究
 
 ### 避免全局变量
