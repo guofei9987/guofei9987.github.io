@@ -208,7 +208,7 @@ __rlshift__ , __rrshift__ , __rxor__ , __ror__
 |`__setitem__`| 定义 `obj['key1'] = 'value1'`
 |`__delitem__`| 定义 `del obj['key1']`
 |`__contains__`| 定义  `1 in obj`
-|`__reversed__`|触发 reversed(obj)
+|`__reversed__`|触发 reversed(obj)，约定它返回一个迭代器
 |`__iter__`|触发 iter(obj)|
 |`__next__`|触发 next(obj). 另外 for i in obj 会先调用 iter，然后调用next
 
@@ -253,7 +253,7 @@ class Foo(object):
         return self.n
 
     def __reversed__(self):
-        # reversed() 触发
+        # reversed() 触发，约定它返回一个迭代器
         print('__reversed__')
 
 

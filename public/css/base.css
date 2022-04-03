@@ -73,7 +73,7 @@ body, html {
   border-right: 2px solid #303030;
   overflow-y: auto;
   font-color: #fff;
-  margin-top: 40px;
+  margin-top: 0.2em;
 }
 
 /* 右侧内容栏 */

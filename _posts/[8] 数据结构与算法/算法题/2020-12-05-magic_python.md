@@ -152,6 +152,50 @@ for k, items in groupby(a, key=itemgetter(2)):
         print(i)
 ```
 
+chain：兼顾内存效率优雅
+```python
+from itertools import chain
+a = [1,3,5,0]
+b = (2,4,6)
+
+for i in chain(a,b):
+  print(i)
+```
+
+## 一些比较骚的代码
+
+求更长的列表
+```py
+def max_length(*arg):
+    return max(*arg, key=lambda lst: len(lst))
+
+
+longest_lst = max_length([1, 2, 3], [4, 5, 6, 7], [8])
+```
+
+求众数
+```py
+lst = [1, 3, 3, 2, 1, 1, 2]
+max(lst, default=None, key=lambda v: lst.count(v))
+```
+
+
+返回字典d前n个最大值对应的键
+
+```py
+from heapq import nlargest
+def topn_dict(d, n):
+    return nlargest(n, d, key=lambda k: d[k])
+```
+
+
+两个字符串含有相同字母，但排序不同，简称：互为变位词
+
+```py
+from collections import Counter
+
+Counter(str1) == Counter(str2)
+```
 
 ## Python效率研究
 

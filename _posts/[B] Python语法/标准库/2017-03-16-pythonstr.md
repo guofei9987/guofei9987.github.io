@@ -345,6 +345,14 @@ print("压缩+转十六进制后的大小 = ", sys.getsizeof(hex_str))
 压缩后的字符串大小 =  320  
 压缩+转十六进制后的大小 =  623
 
+### 判断编码类型
+
+```python
+# !pip install chardet
+import chardet
+chardet.detect(b'\xc8\xcb\xc9\xfa\xbf\xe0\xb6\xcc\xa3\xac\xce\xd2\xd3\xc3Python')
+# {'encoding': 'GB2312', 'confidence': 0.99, 'language': 'Chinese'}
+```
 
 ## enumerate迭代器
 ```python
