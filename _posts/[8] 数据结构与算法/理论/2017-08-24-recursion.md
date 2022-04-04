@@ -83,46 +83,28 @@ def backtrack(路径, 选择列表):
 - 如果我们只是要找到一种符合的情况，那么深度优先DFS的效率更高
 - 而如果我们要找到所有的符合的情况，那么广度优先BFS的效率更高。
 - DFS用递归更好写
-- BFS用队列+while循环更好写。例如，树的level order。写树的level order的时候，queue用的是 list，这对于树没问题。如果父节点有多个的场景，要用set，否则queue中的节点会无意义的重复
+- BFS用队列+while循环更好写。例如，树的level order。
 
 典型题目 https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/
 
 ```python
 queue = [root]
-visited = [0] # 用于记录已访问的位置，
+visited = {0:0} # 用于记录已访问的位置，也可以用来存放求结果的必要信息。有的场景可以简化为 list
+
 
 while queue:
-    update(queue)
+    next_queue=set()
     for item in queue:
         如果到了终点，做某个操作
-        
-        ？？？
-
-
-#------------------c--------------------
-
-void BFS()
-{
-    定义队列;
-    定义备忘录，用于记录已经访问的位置；
-
-    判断边界条件，是否能直接返回结果的。
-
-    将起始位置加入到队列中，同时更新备忘录。
-
-    while (队列不为空) {
-        获取当前队列中的元素个数。
-        for (元素个数) {
-            取出一个位置节点。
-            判断是否到达终点位置。
-            获取它对应的下一个所有的节点。
-            条件判断，过滤掉不符合条件的位置。
-            新位置重新加入队列。
-        }
-    }
-
-}
+        update_visted(visited) # 更新记录
+        next_items=generate_next_item(item) # 生成下一步的节点，这一步过滤掉不可能的节点。
+        new_queue.update(next_items) # 更新队列
 ```
+
+细节：
+1. 写树的level order的时候，queue用的是 list，这对于树没问题。如果某个节点有多个父节点，queue 要用 set，否则queue中的节点会无意义的重复（每个父节点都产生一个）。不过树的父节点只有1个，用list反而更快，不用hash了。
+2. 用每次迭代+set 来代替 queue 操作，代码更清晰一些，目前见过的场景都能这么做（不确定是否所有场景都可以）。
+
 
 
 ## 套用公式

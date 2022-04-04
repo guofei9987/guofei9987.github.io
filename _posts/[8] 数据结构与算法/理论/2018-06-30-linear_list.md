@@ -227,13 +227,9 @@ class Solution(object):
                 return True
 ```
 
-### 反转单链表
+### reverse 链表
 ```py
 def reverseList(self, head):
-    """
-    :type head: ListNode
-    :rtype: ListNode
-    """
     if head is None:
         return None
     curr=head
