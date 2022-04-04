@@ -78,6 +78,51 @@ def backtrack(路径, 选择列表):
 
 参见：46. Permutations
 
+### BFS
+
+- 如果我们只是要找到一种符合的情况，那么深度优先DFS的效率更高
+- 而如果我们要找到所有的符合的情况，那么广度优先BFS的效率更高。
+- DFS用递归更好写
+- BFS用队列+while循环更好写。例如，树的level order。写树的level order的时候，queue用的是 list，这对于树没问题。如果父节点有多个的场景，要用set，否则queue中的节点会无意义的重复
+
+典型题目 https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/
+
+```python
+queue = [root]
+visited = [0] # 用于记录已访问的位置，
+
+while queue:
+    update(queue)
+    for item in queue:
+        如果到了终点，做某个操作
+        
+        ？？？
+
+
+#------------------c--------------------
+
+void BFS()
+{
+    定义队列;
+    定义备忘录，用于记录已经访问的位置；
+
+    判断边界条件，是否能直接返回结果的。
+
+    将起始位置加入到队列中，同时更新备忘录。
+
+    while (队列不为空) {
+        获取当前队列中的元素个数。
+        for (元素个数) {
+            取出一个位置节点。
+            判断是否到达终点位置。
+            获取它对应的下一个所有的节点。
+            条件判断，过滤掉不符合条件的位置。
+            新位置重新加入队列。
+        }
+    }
+
+}
+```
 
 
 ## 套用公式

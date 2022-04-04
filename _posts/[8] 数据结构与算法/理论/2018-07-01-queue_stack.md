@@ -173,11 +173,13 @@ heapq 模块提供堆算法，[官方文档](https://docs.python.org/3.5/library
 
 ```py
 import heapq
-heap=[] # 创建一个空的 heap
-heapq.heapify(<list>) # 把list转化为 heapq，时间复杂度为O(n)
 
-heapq.heappush(heap, item) # 插入一个新值
+heap = [6, 5, 3, 1, 2, 0]
+heapq.heapify(heap) # 把 heap 变为 heapq 格式的 list，时间复杂度为O(n)，直接修改 heap
+
+heapq.heappush(heap, item) # 插入一个新值，直接修改 heap
 heapq.heappop(heap) # 返回并删除最小的值（也就是树最顶端的值）
+
 
 heapq.heappushpop(heap, item)
 # 相当于做这个(但速度更快)：
@@ -185,6 +187,12 @@ heapq.heappushpop(heap, item)
 heapq.heapreplace(heap, item)
 # 相当于做这个(但速度更快)：
 # heapq.pop();heapq.heappush(heap,item)
+
+
+heapq.nlargest(n=3, iterable=heap)
+# 返回一个 list，从大到小排序，长度最多为 n，如果不够就能返回多少返回多少
+heapq.nsmallest(n=3, iterable=heap)
+# 返回一个 list，从小到大排序，长度最多为 n，如果不够就能返回多少返回多少
 ```
 
 
