@@ -42,61 +42,57 @@ order: 511
 带头节点的单链表
 ```py
 class Node(object):
-    def __init__(self, val):
+    def __init__(self, val=None, next=None):
         self.val = val
-        self.next = None
+        self.next = next
 
     def __repr__(self):
         return str(self.val)
 
 
-# 改为带头的
+# 带dummy的LinkedList
 class MyLinkedList:
     def __init__(self):
-        self.head = Node('□')
+        self.head = Node(val='□')  # 打印要用
         self.size = 0
 
     def get(self, index):
-        if index < 0 or index >= self.size:
-            raise IndexError('index out of range')
+        assert 0 <= index < self.size
         curr = self.head
-        for i in range(index + 1):
+        for _ in range(index + 1):
             curr = curr.next
         return curr.val
 
-    def add_at_head(self, val):
-        node_tmp = Node(val)
-        node_tmp.next = self.head.next
-        self.size += 1
-
     def add_at_tail(self, val):
         curr = self.head
-        while curr.next is not None:
+        while curr.next:
             curr = curr.next
         curr.next = Node(val)
         self.size += 1
 
     def add_at_index(self, index, val):
-        if index < 0 or index > self.size:
-            raise IndexError('index out of range')
-        else:
-            node_new = Node(val)
-            curr = self.head
-            for i in range(index):
-                curr = curr.next
-            node_new.next = curr.next
-            curr.next = node_new
-            self.size += 1
+        assert 0 <= index < self.size
+        curr = self.head
+        for i in range(index):
+            curr = curr.next
+        curr.next = Node(val=val, next=curr.next)
+        self.size += 1
 
     def delete_at_index(self, index):
-        if index < 0 or index >= self.size:
-            raise IndexError('index out of range')
+        assert 0 <= index < self.size
         curr = self.head
         for i in range(index):
             curr = curr.next
         curr.next = curr.next.next
 
         self.size -= 1
+
+    def from_list(self, lst):
+        curr = self.head
+        for val in lst:
+            curr.next = Node(val=val)
+            curr = curr.next
+            self.size += 1
 
     def __repr__(self):
         curr = self.head
@@ -108,88 +104,7 @@ class MyLinkedList:
         return list_str
 ```
 
-
-
-
-不带头节点的单链表，增删操作时需要对头节点特殊处理，代码量略多一些，LC用的这个格式，所以也写出来
-```py
-class Node(object):
-    def __init__(self, val):
-        self.val = val
-        self.next = None
-
-    def __repr__(self):
-        return str(self.val)
-
-
-class MyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.size = 0
-
-    def get(self, index):
-        if index < 0 or index >= self.size:
-            raise IndexError('index out of range')
-        curr = self.head
-        for i in range(index):
-            curr = curr.next
-        return curr.val
-
-    def add_at_head(self, val):
-        head_new = Node(val)
-        head_new.next = self.head
-        self.head = head_new
-        self.size += 1
-
-    def add_at_tail(self, val):
-        curr = self.head
-        if curr is None:
-            self.head = Node(val)
-        else:
-            while curr.next is not None:
-                curr = curr.next
-            curr.next = Node(val)
-        self.size += 1
-
-    def add_at_index(self, index, val):
-        if index < 0 or index > self.size:
-            raise IndexError('index out of range')
-        elif index == 0:
-            self.add_at_head(val)
-        else:
-            node_new = Node(val)
-            curr = self.head
-            for i in range(index - 1):
-                curr = curr.next
-            node_new.next = curr.next
-            curr.next = node_new
-            self.size += 1
-
-    def delete_at_index(self, index):
-        if index < 0 or index >= self.size:
-            raise IndexError('index out of range')
-        curr = self.head
-        if index == 0:
-            self.head = curr.next
-            return
-        for i in range(index - 1):
-            curr = curr.next
-        curr.next = curr.next.next
-
-        self.size -= 1
-
-    def __repr__(self):
-        list_str = '□'
-        curr = self.head
-        while curr is not None:
-            list_str += ' -> ' + str(curr.val)
-            curr = curr.next
-        return list_str
-```
-
-
-
-
+LeetCode 给的格式都是不带头节点的，做个 next 即可
 
 
 ### Two Pointer Technique
