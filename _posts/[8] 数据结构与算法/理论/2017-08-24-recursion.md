@@ -78,16 +78,47 @@ def backtrack(路径, 选择列表):
 
 参见：46. Permutations
 
+
+DFS 做 count 类的题目
+- 区别是return 这个 count 值，
+- 往往也需要用 visited （也就是DP方法）做个缓存，否则经常超时
+- 典型题目70/91题。
+
+
+DFS+DP解决count类问题
+
+```py
+visited = dict()
+
+def dfs(s):
+    if s in visited:
+      return visited[s]
+    if 结束条件1:
+      res = 计算数量()
+    elif 结束条件2: # 注意这里为了放入缓存，用elif，而不是直接 return
+      res = 计算数量()
+    else:
+      res = dfs(s[1:]) + dfs(s[2:])
+
+    visited[s]=res
+    return res
+```
+
+
+
+
 ### BFS
 
 - 如果我们只是要找到一种符合的情况，那么深度优先DFS的效率更高
 - 而如果我们要找到所有的符合的情况，那么广度优先BFS的效率更高。
-- （从做的几个题看）count 类的，似乎 DFS+DP更好写。虽然BFS也可以，但有些要么，例如 70题。
+- （从做的几个题看）count 类的，似乎 DFS+DP更好写。虽然BFS也可以，但有些麻烦，例如 70/91题。
 - DFS用递归更好写
 - BFS用队列+while循环更好写。例如，树的level order。
 
 典型题目 https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/
 
+
+BFS:
 ```python
 queue = [root]
 visited = {0:0} # 用于记录已访问的位置，也可以用来存放求结果的必要信息。有的场景可以简化为 list
