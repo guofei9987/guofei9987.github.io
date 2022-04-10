@@ -492,6 +492,82 @@ class OtherAlgorithm:
 - but less than (or equal to) any values in its right subtree
 
 
+### BST 的基本操作
+
+
+```py
+class BST
+    # 以下是BST方法
+    def isValidBST(self, root):
+        # 判断是否是BST，返回 True/False
+        inorder = self.inorder(root)
+        return inorder == list(sorted(set(inorder)))
+
+    def searchBST(self, root, val):
+        # 搜索 BST，如果val在 BST中，返回对应节点，否则返回None
+        if root and val < root.val:
+            return self.searchBST(root.left, val)
+        elif root and val > root.val:
+            return self.searchBST(root.right, val)
+        return root
+
+    def insertIntoBST(self, root, val):
+        """
+        把值 val 插入到BST中
+        :type root: TreeNode
+        :type val: int
+        :rtype: TreeNode
+        """
+        if root is None:
+            return TreeNode(val)
+        if root.val < val:
+            root.right = self.insertIntoBST(root.right, val)
+        elif root.val > val:
+            root.left = self.insertIntoBST(root.left, val)
+        return root
+
+    def deleteNode(self, root, key):
+        """
+        删除节点的方式有很多种：左子节点提升，右子节点提升，下面这个思路是把右子树的最左左叶节点作为替换被删节点的值
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        if not root:
+            return root
+        if root.val > key:
+            root.left = self.deleteNode(root.left, key)
+        elif root.val < key:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if not root.right:
+                return root.left
+            if not root.left:
+                return root.right
+            else:
+                tmp, mini = root.right, root.right.val
+                while tmp.left:
+                    tmp, mini = tmp.left, tmp.left.val
+                root.val = mini
+                root.right = self.deleteNode(root.right, root.val)
+        return root
+
+        def sortedArrayToBST(self, nums):
+            """
+            从一个sorted list生成平衡的BST
+            https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/
+            :type nums: List[int]
+            :rtype: TreeNode
+            """
+            if not nums:
+                return None
+            mid = len(nums) // 2
+            root = TreeNode(nums[mid])
+            root.left = self.sortedArrayToBST(nums[:mid])
+            root.right = self.sortedArrayToBST(nums[mid + 1:])
+            return root
+```
+
 ### BST 的 iterator 化
 
 
@@ -659,7 +735,27 @@ class Solution:
 ```
 
 
-
+### 实用方法
+https://leetcode.com/problems/trim-a-binary-search-tree/description/
+```py
+class Solution(object):
+    def trimBST(self, root, L, R):
+        """
+        :type root: TreeNode
+        :type L: int
+        :type R: int
+        :rtype: TreeNode
+        """
+        if not root:
+            return None
+        if root.val < L:
+            return self.trimBST(root.right, L, R)
+        if root.val > R:
+            return self.trimBST(root.left, L, R)
+        root.left = self.trimBST(root.left, L, R)
+        root.right = self.trimBST(root.right, L, R)
+        return root
+```
 
 
 
