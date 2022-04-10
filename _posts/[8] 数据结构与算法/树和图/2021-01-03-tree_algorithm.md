@@ -276,6 +276,45 @@ LDR,DLR,LRD,RDL,DRL,RLD
 
 ```py
 class Travel:
+
+  def ldr(self, root):  # InOrder
+      res = []
+
+      def _ldr(node):
+          if node:
+              res.append(node.val)
+              _ldr(node.left)
+              _ldr(node.right)
+
+      _ldr(root)
+      return res
+
+  def dlr(self, root):  # PreOrder
+      res = []
+
+      def _dlr(node):
+          if node:
+              res.append(node.val)
+              _dlr(node.left)
+              _dlr(node.right)
+
+      _dlr(root)
+      return res
+
+  def lrd(self, root):  # PostOrder
+      res = []
+
+      def lrd(node):
+          if node:
+              res.append(node.val)
+              lrd(node.left)
+              lrd(node.right)
+
+      lrd(root)
+      return res
+
+
+    # one liner 很多时候效率更高，但可修改性差一点儿
     # 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
     # 有些场景还是需要空节点返回[None]的，灵活去改动
     def ldr(self, root):  # Inorder
@@ -354,20 +393,7 @@ class Travel:
 
 
 
-有些任务中，套用 one-liner 未必合适，所以有下面的实现
-- 递归法
-```python
-class Solution:
-    def ldr(self, root: Optional[TreeNode]) -> List[int]:
-        ans = []
-        self.ldr_(root, ans)
-        return ans
-    def ldr_(self, node, ans):
-        if node:
-            self.traverse(node.left, ans)
-            ans.append(node.val)
-            self.traverse(node.right, ans)
-```
+迭代法则各不相同：
 - 迭代法（ldr）
 ```python
 def ldr(root: Optional[TreeNode]) -> List[int]:
@@ -510,7 +536,7 @@ class BST
             return None
         mid = len(nums) // 2
         return TreeNode(val=nums[mid], left=self.sorted2BST(nums[:mid]), right=self.sorted2BST(nums[mid + 1:]))
-        
+
     def isValidBST(self, root):
         # 判断是否是BST，返回 True/False
         inorder = self.inorder(root)
