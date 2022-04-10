@@ -499,6 +499,18 @@ class OtherAlgorithm:
 
 ```py
 class BST
+    def sorted2BST(self, nums):
+        """
+        从一个sorted list生成平衡的BST
+        https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if not nums:
+            return None
+        mid = len(nums) // 2
+        return TreeNode(val=nums[mid], left=self.sorted2BST(nums[:mid]), right=self.sorted2BST(nums[mid + 1:]))
+        
     def isValidBST(self, root):
         # 判断是否是BST，返回 True/False
         inorder = self.inorder(root)
@@ -553,20 +565,7 @@ class BST
                 root.right = self.deleteNode(root.right, root.val)
         return root
 
-        def sortedArrayToBST(self, nums):
-            """
-            从一个sorted list生成平衡的BST
-            https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/
-            :type nums: List[int]
-            :rtype: TreeNode
-            """
-            if not nums:
-                return None
-            mid = len(nums) // 2
-            root = TreeNode(nums[mid])
-            root.left = self.sortedArrayToBST(nums[:mid])
-            root.right = self.sortedArrayToBST(nums[mid + 1:])
-            return root
+
 ```
 
 
