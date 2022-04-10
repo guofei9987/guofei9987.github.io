@@ -30,11 +30,9 @@ order: 572
 ### 链式存储
 
 ```py
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
 ```
 
 left 和 right 都是指针，指向下一个节点  
@@ -56,7 +54,7 @@ left 和 right 都是指针，指向下一个节点
 
 
 
-### 二叉树的数据结构
+## 二叉树的实现
 
 此部分代码包括
 - 二叉树的数据结构
@@ -64,17 +62,15 @@ left 和 right 都是指针，指向下一个节点
 - 画图输出二叉树、打印二叉树
 
 ```py
-class TreeNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
 
     def __repr__(self):
         return 'Node val = {}'.format(str(self.val))
 
 
-class Transform:
+class BuildTree:
     # 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
     # 所以顺序表的第i个元素，其孩子节点序号必是 2 * i + 1, 2 * i + 2
     # 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置
@@ -110,6 +106,62 @@ class Transform:
         if not nums:
             return None
         nodes = [None if val is None else TreeNode(val) for val in nums]
+        kids = nodes[::-1]
+        root = kids.pop()
+        for node in nodes:
+            if node:
+                if kids: node.left = kids.pop()
+                if kids: node.right = kids.pop()
+        return root
+
+
+    def in_post2tree(self, inorder, postorder):
+        """
+        https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+        中序+后序确定一棵树，前提是list中没有重复的数字
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        if not inorder or not postorder:
+            return None
+        root = TreeNode(postorder.pop())
+        inorder_index = inorder.index(root.val)
+
+        root.right = self.in_post2tree(inorder[inorder_index + 1:], postorder)
+        root.left = self.in_post2tree(inorder[:inorder_index], postorder)
+
+        return root
+
+    def pre_in2tree(self, preorder, inorder):
+        """
+        https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+        前序+中序确定一棵树，前提是list中没有重复的数字
+        pop(0)效率很低，看看怎么解决
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if not preorder or not inorder:
+            return None
+        root=TreeNode(preorder.pop(0))
+        inorder_index=inorder.index(root.val)
+
+        root.left=self.pre_in2tree(preorder,inorder[:inorder_index])
+        root.right=self.pre_in2tree(preorder,inorder[inorder_index+1:])
+        return root
+
+
+
+    def deserialize(self, string):
+        # LeetCode官方版本
+        # https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python
+        # deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
+        # 这里是 deserialize 和 serialize 的案例
+        # https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/discuss
+        if string == '{}':
+            return None
+        nodes = [None if val == 'null' else TreeNode(int(val)) for val in string.strip('[]{}').split(',')]
         kids = nodes[::-1]
         root = kids.pop()
         for node in nodes:
@@ -180,13 +232,13 @@ class Draw:
 
 使用：
 ```python
-transform = Transform()
+build_tree = BuildTree()
 travel = Travel()
 draw = Draw()
 
 # %%
 nums = [2, 1, 3, 0, 7, 9, 1, 2, None, 1, 0, None, None, 8, 8, None, None, None, None, 7]
-root = transform.list2tree2_2(nums)
+root = build_tree.list2tree2_2(nums)
 
 bfs_res1 = travel.level_order(root)
 bfs_res2 = travel.level_order2(root)
@@ -253,6 +305,30 @@ class Travel:
         while ret[-1] is None:
             ret.pop()
         return ret
+
+    def level_order3(self, root):
+        """
+        队列实现，待整理，这个返回值是有结构的list，其实 level_order2 也可以轻松改造
+        https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        import collections
+        level = 0
+        deque = collections.deque([(root,0)])
+        output=[]
+        while deque:
+            tmp_root,level = deque.popleft()
+            if tmp_root.left: deque.append((tmp_root.left,level+1))
+            if tmp_root.right: deque.append((tmp_root.right,level+1))
+            if len(output)<=level:
+                output.append([tmp_root.val])
+            else:
+                output[level].append(tmp_root.val)
+        return output
+
 
     def level_order_nary(self, root):
         # 针对N-ary Tree的方法，非常漂亮，前面几个 level_order 都是参考这个
@@ -360,7 +436,7 @@ class Solution:
 
 
 
-### 基础算法2
+### 前序+中序=二叉树
 
 给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
 
@@ -410,9 +486,53 @@ class OtherAlgorithm:
 
 查、插入、删除都是 O(h) 复杂度。
 
+定义：
+- `Binary Search Tree`(BST) is a special form of a binary tree.  
+- The value in each node must be greater than (or equal to) any values in its left subtree
+- but less than (or equal to) any values in its right subtree
+
+
+### BST 的 iterator 化
+
+
+设计一个Binary Search Tree Iterator  
+并定义next()和hasNext()方法，并且有 O(1) time 和 O(h) memory  
+```py
+class BSTIterator(object):
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.stack=[]
+        while root:
+            self.stack.append(root)
+            root=root.left
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return len(self.stack)>0
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        node=self.stack.pop()
+        x=node.right
+        while x:
+            self.stack.append(x)
+            x=x.left
+        return node.val
+
+# Your BSTIterator will be called like this:
+# i, v = BSTIterator(root), []
+# while i.hasNext(): v.append(i.next())
+```
+
 ### 查BST
 
-（其实就是上面递归了）
+（其实就是递归了）
 - https://leetcode-cn.com/leetbook/read/introduction-to-data-structure-binary-search-tree/xpsqtv/
 - 还没没梳理最佳代码实现
 
@@ -432,7 +552,7 @@ class Solution:
 ```
 
 迭代法
-```
+```py
 class Solution:
     def searchBST(self, root: TreeNode, val: int) -> TreeNode:
         if root is None:
