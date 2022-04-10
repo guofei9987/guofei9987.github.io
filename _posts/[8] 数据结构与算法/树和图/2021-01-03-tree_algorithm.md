@@ -484,7 +484,9 @@ class OtherAlgorithm:
 
 ## BST 二叉搜索树
 
-查、插入、删除都是 O(h) 复杂度。
+性质
+- 查、插入、删除都是 O(h) 复杂度。
+- inorder 的结果是生序的
 
 定义：
 - `Binary Search Tree`(BST) is a special form of a binary tree.  
@@ -497,7 +499,6 @@ class OtherAlgorithm:
 
 ```py
 class BST
-    # 以下是BST方法
     def isValidBST(self, root):
         # 判断是否是BST，返回 True/False
         inorder = self.inorder(root)
@@ -567,6 +568,38 @@ class BST
             root.right = self.sortedArrayToBST(nums[mid + 1:])
             return root
 ```
+
+
+其它做法
+
+```py
+# https://leetcode-cn.com/problems/validate-binary-search-tree/
+class Solution:
+    int_min=-2 ** 32
+    int_max=2 ** 32
+    def isValidBST(self, root: TreeNode) -> bool:
+        res = [True]
+
+        def dfs(node, parent_min, parent_max):
+            if res[0] is False:
+                return
+
+            if node is None:
+                return
+
+            if not parent_min < node.val < parent_max:
+                res[0] = False
+                return
+
+            dfs(node.left, parent_min, node.val)
+            dfs(node.right, node.val, parent_max)
+
+        dfs(root, self.int_min, self.int_max)
+        return res[0]
+
+```
+
+
 
 ### BST 的 iterator 化
 
