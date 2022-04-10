@@ -56,10 +56,7 @@ left 和 right 都是指针，指向下一个节点
 
 ## 二叉树的实现
 
-此部分代码包括
-- 二叉树的数据结构
-- 顺序表转二叉树（反过来见于之后的 level order）
-- 画图输出二叉树、打印二叉树
+### 生成二叉树
 
 ```py
 class TreeNode:
@@ -114,45 +111,6 @@ class BuildTree:
                 if kids: node.right = kids.pop()
         return root
 
-
-    def in_post2tree(self, inorder, postorder):
-        """
-        https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
-        中序+后序确定一棵树，前提是list中没有重复的数字
-        :type inorder: List[int]
-        :type postorder: List[int]
-        :rtype: TreeNode
-        """
-        if not inorder or not postorder:
-            return None
-        root = TreeNode(postorder.pop())
-        inorder_index = inorder.index(root.val)
-
-        root.right = self.in_post2tree(inorder[inorder_index + 1:], postorder)
-        root.left = self.in_post2tree(inorder[:inorder_index], postorder)
-
-        return root
-
-    def pre_in2tree(self, preorder, inorder):
-        """
-        https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
-        前序+中序确定一棵树，前提是list中没有重复的数字
-        pop(0)效率很低，看看怎么解决
-        :type preorder: List[int]
-        :type inorder: List[int]
-        :rtype: TreeNode
-        """
-        if not preorder or not inorder:
-            return None
-        root=TreeNode(preorder.pop(0))
-        inorder_index=inorder.index(root.val)
-
-        root.left=self.pre_in2tree(preorder,inorder[:inorder_index])
-        root.right=self.pre_in2tree(preorder,inorder[inorder_index+1:])
-        return root
-
-
-
     def deserialize(self, string):
         # LeetCode官方版本
         # https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python
@@ -171,7 +129,77 @@ class BuildTree:
         return root
 ```
 
-打印输出二叉树
+
+### x序 + x序 = 二叉树
+
+
+
+给定一个x序遍历不能唯一决定一个二叉树。  
+但x序 + x序可以唯一确定一个二叉树。  
+
+https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/942/
+
+```py
+class BuildTree:
+    def build_tree_from_ldr_lrd(self, inorder, postorder):
+        """
+        https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
+        已知中序+后序结果，确定这棵树，前提是list中没有重复的数字
+        :type inorder: List[int]
+        :type postorder: List[int]
+        :rtype: TreeNode
+        """
+        if not inorder or not postorder:
+            return None
+        root = TreeNode(postorder.pop())
+        inorder_index = inorder.index(root.val)
+
+        root.right = self.build_tree_from_ldr_lrd(inorder[inorder_index + 1:], postorder)
+        root.left = self.build_tree_from_ldr_lrd(inorder[:inorder_index], postorder)
+
+        return root
+
+    def build_tree_from_dlr_ldr(self, preorder, inorder):
+        """
+        https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
+        前序+中序确定一棵树，前提是list中没有重复的数字
+        TODO: pop(0)效率很低，看看怎么解决
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if not preorder or not inorder:
+            return None
+        root = TreeNode(preorder.pop(0))
+        inorder_index = inorder.index(root.val)
+
+        root.left = self.build_tree_from_dlr_ldr(preorder, inorder[:inorder_index])
+        root.right = self.build_tree_from_dlr_ldr(preorder, inorder[inorder_index + 1:])
+        return root
+
+    preIndex, posIndex = 0, 0
+    def constructFromPrePost(self, pre, post):
+      """
+      pre+post 确定一个树
+      https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
+      """
+        root = TreeNode(pre[self.preIndex])
+        self.preIndex += 1
+        if (root.val != post[self.posIndex]):
+            root.left = self.constructFromPrePost(pre, post)
+        if (root.val != post[self.posIndex]):
+            root.right = self.constructFromPrePost(pre, post)
+        self.posIndex += 1
+        return root
+```
+
+
+额外：
+- 知道深度，https://leetcode-cn.com/problems/recover-a-tree-from-preorder-traversal/
+- 确定知道是BST， https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/
+
+
+### 打印输出二叉树
 
 ```python
 class Draw:
@@ -304,13 +332,13 @@ class Travel:
   def lrd(self, root):  # PostOrder
       res = []
 
-      def lrd(node):
+      def _lrd(node):
           if node:
-              lrd(node.left)
-              lrd(node.right)
+              _lrd(node.left)
+              _lrd(node.right)
               res.append(node.val)
 
-      lrd(root)
+      _lrd(root)
       return res
 
 
@@ -461,51 +489,6 @@ class Solution:
 
 
 
-
-### 前序+中序=二叉树
-
-给定一个遍历序列并不能唯一决定一个二叉树，但给定一个二叉树序列的前序遍历序列和一个中序遍历序列，可以唯一确定一个二叉树。  
-
-https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/942/
-
-```py
-class OtherAlgorithm:
-    def build_tree_from_ldr_lrd(self, inorder, postorder):
-        """
-        https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
-        已知中序+后序结果，确定这棵树，前提是list中没有重复的数字
-        :type inorder: List[int]
-        :type postorder: List[int]
-        :rtype: TreeNode
-        """
-        if not inorder or not postorder:
-            return None
-        root = TreeNode(postorder.pop())
-        inorder_index = inorder.index(root.val)
-
-        root.right = self.build_tree_from_ldr_lrd(inorder[inorder_index + 1:], postorder)
-        root.left = self.build_tree_from_ldr_lrd(inorder[:inorder_index], postorder)
-
-        return root
-
-    def build_tree_from_dlr_ldr(self, preorder, inorder):
-        """
-        https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
-        前序+中序确定一棵树，前提是list中没有重复的数字
-        TODO: pop(0)效率很低，看看怎么解决
-        :type preorder: List[int]
-        :type inorder: List[int]
-        :rtype: TreeNode
-        """
-        if not preorder or not inorder:
-            return None
-        root = TreeNode(preorder.pop(0))
-        inorder_index = inorder.index(root.val)
-
-        root.left = self.build_tree_from_dlr_ldr(preorder, inorder[:inorder_index])
-        root.right = self.build_tree_from_dlr_ldr(preorder, inorder[inorder_index + 1:])
-        return root
-```
 
 
 ## BST 二叉搜索树
