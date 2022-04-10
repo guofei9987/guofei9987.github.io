@@ -282,8 +282,8 @@ class Travel:
 
       def _ldr(node):
           if node:
-              res.append(node.val)
               _ldr(node.left)
+              res.append(node.val)
               _ldr(node.right)
 
       _ldr(root)
@@ -306,9 +306,9 @@ class Travel:
 
       def lrd(node):
           if node:
-              res.append(node.val)
               lrd(node.left)
               lrd(node.right)
+              res.append(node.val)
 
       lrd(root)
       return res
