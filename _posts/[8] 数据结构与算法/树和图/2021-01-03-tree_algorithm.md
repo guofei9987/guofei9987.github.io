@@ -800,6 +800,94 @@ class Solution(object):
 
 
 
+## Trie
+
+链表存储的方式
+
+```py
+
+import collections
+
+
+class TrieNode:
+    def __init__(self):
+        # 如果字符是有限的，这里可以用 list 来存储。不用做hash更快
+        self.children = collections.defaultdict(TrieNode)
+        self.is_word = False
+
+
+class Trie:
+
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            curr = curr.children[char]
+        curr.is_word = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            curr = curr.children.get(char)
+            if curr is None:
+                return False
+        return curr.is_word
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            curr = curr.children.get(char)
+            if curr is None:
+                return False
+        return True
+
+```
+
+
+set 嵌套的方式：性能更好
+```py
+# https://leetcode-cn.com/problems/implement-trie-prefix-tree/submissions/
+class Trie:
+
+    def __init__(self):
+        self.root = {}
+
+    def insert(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            node = node.setdefault(char, {})
+        node['-'] = True
+
+    def search(self, word: str) -> bool:
+        node = self.root
+        for char in word:
+            if char not in node:
+                return False
+            node = node[char]
+        return '-' in node
+
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for char in prefix:
+            if char not in node:
+                return False
+            node = node[char]
+        return True
+
+    def in_start(self, sentence):
+        node = self.root
+        for char in sentence:
+            if char not in node:
+                return False
+            node = node[char]
+            if '-' in node:
+                return True
+        return True
+
+```
+
 
 
 ## 其它应用举例
