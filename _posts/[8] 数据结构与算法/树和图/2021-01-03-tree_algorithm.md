@@ -802,7 +802,9 @@ class Solution(object):
 
 ## Trie
 
-链表存储的方式
+
+https://leetcode.com/problems/implement-trie-prefix-tree/
+
 
 ```py
 
@@ -843,12 +845,21 @@ class Trie:
                 return False
         return True
 
+
+trie = Trie()
+trie.insert("apple")
+trie.search("apple")  # returns true
+trie.search("app")  # returns false
+trie.startsWith("app")  # returns true
+trie.insert("app")
+trie.search("app")  # returns true
 ```
+
+
 
 
 set 嵌套的方式：性能更好
 ```py
-# https://leetcode-cn.com/problems/implement-trie-prefix-tree/submissions/
 class Trie:
 
     def __init__(self):
