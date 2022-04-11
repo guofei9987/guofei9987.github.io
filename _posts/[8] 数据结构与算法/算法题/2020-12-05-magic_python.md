@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】magic黑魔法
 categories:
-tags: 0x80_数据结构与算法
+tags: 0x81_刷题
 keywords:
 description:
 order: 1301

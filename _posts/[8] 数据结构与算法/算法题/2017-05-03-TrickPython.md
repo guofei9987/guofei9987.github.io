@@ -2,7 +2,7 @@
 layout: post
 title: 【Python】【算法题集1】
 categories:
-tags: 0x80_数据结构与算法
+tags: 0x81_刷题
 keywords:
 description:
 order: 593
