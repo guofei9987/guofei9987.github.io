@@ -805,9 +805,49 @@ class Solution(object):
 
 https://leetcode.com/problems/implement-trie-prefix-tree/
 
+我的版本（持续改进）：
 
 ```py
+class TrieNode:
+    def __init__(self):
+        # 如果字符是有限的，这里可以用 list 来存储。不用做hash更快
+        self.children = dict()
+        self.is_word = False
 
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                curr.children[char] = TrieNode()
+            curr = curr.children[char]
+        curr.is_word = True
+
+    def search(self, word: str) -> bool:
+        curr = self.root
+        for char in word:
+            curr = curr.children.get(char)
+            if curr is None:
+                return False
+        return curr.is_word
+
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        for char in prefix:
+            curr = curr.children.get(char)
+            if curr is None:
+                return False
+        return True
+```
+
+
+
+
+```py
 import collections
 
 
@@ -845,6 +885,16 @@ class Trie:
                 return False
         return True
 
+    def in_start(self, sentence):
+        curr = self.root
+        for char in sentence:
+            if char not in curr.children:
+                return False
+            curr = curr.children.get(char)
+            if curr.is_word:
+                return True
+        return False # 理论上不会执行
+
 
 trie = Trie()
 trie.insert("apple")
@@ -858,7 +908,7 @@ trie.search("app")  # returns true
 
 
 
-set 嵌套的方式：性能更好
+set 嵌套的方式：时间和空间性能更好
 ```py
 class Trie:
 
