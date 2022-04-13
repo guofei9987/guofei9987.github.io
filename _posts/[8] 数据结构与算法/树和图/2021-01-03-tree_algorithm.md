@@ -810,7 +810,6 @@ https://leetcode.com/problems/implement-trie-prefix-tree/
 ```py
 class TrieNode:
     def __init__(self):
-        # 如果字符是有限的，这里可以用 list 来存储。不用做hash更快
         self.children = dict()
         self.is_word = False
 
@@ -828,19 +827,29 @@ class Trie:
         curr.is_word = True
 
     def search(self, word: str) -> bool:
-        curr = self.root
-        for char in word:
-            curr = curr.children.get(char)
-            if curr is None:
+        curr, idx = self.root, 0
+        while curr.children.values() and idx < len(word):
+            if word[idx] in curr.children:
+                curr = curr.children[word[idx]]
+            else:
                 return False
-        return curr.is_word
+            idx += 1
+
+        if idx < len(word):
+            return False
+        return curr.is_word  # idx==len(word)
 
     def startsWith(self, prefix: str) -> bool:
-        curr = self.root
-        for char in prefix:
-            curr = curr.children.get(char)
-            if curr is None:
+        curr, idx = self.root, 0
+        while curr.children.values() and idx < len(prefix):
+            if prefix[idx] in curr.children:
+                curr = curr.children[prefix[idx]]
+            else:
                 return False
+            idx += 1
+
+        if idx < len(prefix):
+            return False
         return True
 ```
 
