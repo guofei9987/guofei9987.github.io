@@ -1,4 +1,0 @@
-
-```bash
-pip install paramiko
-```

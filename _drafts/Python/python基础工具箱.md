@@ -2,7 +2,7 @@
 # 调研过
 
 
-MinHash 的，已经很完善了：   https://github.com/ekzhu/datasketch
+- MinHash 的，已经很完善了：   https://github.com/ekzhu/datasketch
 
 
 
