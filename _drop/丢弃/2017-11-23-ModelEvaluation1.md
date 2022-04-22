@@ -69,8 +69,7 @@ mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share 挂�
 ```
 df -h 显示已经挂载的分区列表
 ls -lSr |more 以尺寸大小排列文件和目录
-du -sh dir1 估算目录 'dir1' 已经使用的磁盘空间'
-du -sk * | sort -rn 以容量大小为依据依次显示文件和目录的大小
+
 rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统)
 dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统)
 ```
