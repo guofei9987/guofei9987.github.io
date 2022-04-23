@@ -66,7 +66,35 @@ class Solution:
 ```
 
 
+### 547. Number of Provinces
 
+```python
+class UnionFind:
+    def __init__(self, n: int):
+        self.parent = list(range(n))
+
+    def find(self, idx: int) -> int:
+        if idx != self.parent[idx]:
+            self.parent[idx] = self.find(self.parent[idx])
+        return self.parent[idx]
+
+    def union(self, idx1: int, idx2: int):
+        self.parent[self.find(idx1)] = self.find(idx2)
+
+    def is_connected(self, idx1: int, idx2: int) -> bool:
+        return self.find(idx1) == self.find(idx2)
+
+
+class Solution:
+    def findCircleNum(self, isConnected) -> int:
+        union_find = UnionFind(len(isConnected))
+        for row in range(len(isConnected)):
+            for col in range(len(isConnected[0])):
+                if isConnected[row][col]:
+                    union_find.union(row, col)
+
+        return sum(i == union_find.parent[i] for i in range(len(isConnected)))
+```
 
 ## 没用到并查集的
 

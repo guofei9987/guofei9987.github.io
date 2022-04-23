@@ -250,32 +250,35 @@ s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 
 
 
-用 for 循环，原理清晰
+**用 for 循环，原理清晰**
+
+不推荐(不encode的话，遍历的是字符，汉字对应3个字节)
 ```python
 s = '你tst1'
-
-# 1:不encode的话，遍历的是字符，汉字对应3个字节
 # 字符串转10进制列表
 s_dec = [ord(c) for c in s]
 # 字符串转16进制列表
 [hex(ord(c)) for c in s]
 # 字符串转2进制列表(不带 0x )
 s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制，!开头的0会被忽略
+```
 
 
-
-# 2:所以一定要encode
-
+2:所以一定要encode
+```python
 list(s.encode('utf-8'))  # [228, 189, 160, 116, 115, 116, 49]
 
 [bin(i) for i in s.encode('utf-8')]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
-[format(i, 'b') for i in s.encode('utf-8')]  # ['11100100', '1101']
-s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
-s_bin = ''.join(s_bin)
+[format(i, 'b') for i in s.encode('utf-8')]  # 同上 ['11100100', '1101']
 
+s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
 s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
 
-# %%
+s_bin = ''.join(s_bin)
+s_out = b''.join([struct.pack('>B', int(s_bin[i * 8:i * 8 + 8], base=2)) for i in range(len(s_bin) // 8)])
+
+
+# %% 或者不用struct，而是用bytes
 
 a = [int(i, base=2) for i in s_bin]
 
