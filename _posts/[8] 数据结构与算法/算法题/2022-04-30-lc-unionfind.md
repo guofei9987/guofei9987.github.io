@@ -159,3 +159,34 @@ class Solution:
         return res
 
 ```
+
+### 695. Max Area of Island
+
+dfs
+
+```
+class Solution:
+    def maxAreaOfIsland(self, grid) -> int:
+        h, w = len(grid), len(grid[0])
+
+        def dfs(row, col):
+            if not (0 <= row < h and 0 <= col < w):
+                return
+            if grid[row][col] == 0:
+                return
+
+            grid[row][col] = 0
+            area[0] += 1
+
+            for diff_i, diff_j in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                dfs(row + diff_i, col + diff_j)
+
+        res = 0
+        for i in range(h):
+            for j in range(w):
+                area = [0]
+                dfs(i, j)
+                res = max(res, area[0])
+
+        return res
+```
