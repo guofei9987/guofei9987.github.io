@@ -97,6 +97,42 @@ deque = collections.deque([1, 2, 3, 4, 5], maxlen=3)
 ```
 
 
+### OrderedDict
+
+```python
+import collections
+
+ordered_dict = collections.OrderedDict({9: 2, 91: 5, 92: 1})
+
+ordered_dict.move_to_end(key=91, last=False)
+# 把一个元素移动到末尾；last=False 移动到开头
+# key不存在则报错
+
+# 删除
+ordered_dict.popitem(last=True)
+# last=True（默认） 删除最后一个
+# last=False 删除第一个
+
+
+下面与dict类似的方法
+```python
+ordered_dict.keys()
+ordered_dict.values()
+ordered_dict.items()
+
+# 新增（存在则覆盖）
+ordered_dict.update({91: 6, 94: 3})
+ordered_dict[888]=5
+
+# 删除并返回
+ordered_dict.pop(key=91)
+
+# 取
+ordered_dict[9]
+```
+
+
+
 
 ## 迭代器
 ### iter
