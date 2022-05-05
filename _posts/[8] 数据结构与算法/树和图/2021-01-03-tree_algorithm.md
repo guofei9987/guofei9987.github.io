@@ -130,6 +130,214 @@ class BuildTree:
 ```
 
 
+
+### 二叉树遍历
+
+
+规定 D,L,R 分别代表“访问根节点”, “访问根节点的左子树”, “访问根节点的右子树”，这样便有6中遍历方式：  
+LDR,DLR,LRD,RDL,DRL,RLD  
+因为先遍历左子树和先遍历右子树的算法很相似，所以下面实现这几种遍历方式：  
+前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
+
+
+
+以下代码包括
+- 二叉树上的 DFS
+  - 前序遍历
+  - 中序遍历
+  - 后序遍历
+- 查找路径
+
+```py
+class Travel:
+
+  def ldr(self, root):  # InOrder
+      res = []
+
+      def _ldr(node):
+          if node:
+              _ldr(node.left)
+              res.append(node.val)
+              _ldr(node.right)
+
+      _ldr(root)
+      return res
+
+  def dlr(self, root):  # PreOrder
+      res = []
+
+      def _dlr(node):
+          if node:
+              res.append(node.val)
+              _dlr(node.left)
+              _dlr(node.right)
+
+      _dlr(root)
+      return res
+
+  def lrd(self, root):  # PostOrder
+      res = []
+
+      def _lrd(node):
+          if node:
+              _lrd(node.left)
+              _lrd(node.right)
+              res.append(node.val)
+
+      _lrd(root)
+      return res
+
+
+    def level_order(self, root):
+        # BFS, tree转稀疏型顺序存储。
+        q, ret = [root], []
+        while any(q):
+            ret.extend([node.val if node else None for node in q])
+            q = [child for node in q for child in [node.left if node else None, node.right if node else None]]
+        return ret
+
+    def level_order2(self, root):
+        # BFS, tree转紧凑型顺序存储。
+        q, ret = [root], []
+        while any(q):
+            ret.extend([node.val if node else None for node in q])
+            q = [child for node in q if node for child in [node.left, node.right]]
+        # 结尾的 None 无意义，清除掉
+        while ret[-1] is None:
+            ret.pop()
+        return ret
+
+    def level_order3(self, root):
+        """
+        队列实现，待整理，这个返回值是有结构的list，其实 level_order2 也可以轻松改造
+        https://leetcode.com/problems/binary-tree-level-order-traversal/description/
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        import collections
+        level = 0
+        deque = collections.deque([(root,0)])
+        output=[]
+        while deque:
+            tmp_root,level = deque.popleft()
+            if tmp_root.left: deque.append((tmp_root.left,level+1))
+            if tmp_root.right: deque.append((tmp_root.right,level+1))
+            if len(output)<=level:
+                output.append([tmp_root.val])
+            else:
+                output[level].append(tmp_root.val)
+        return output
+
+
+    def level_order_nary(self, root):
+        # 针对N-ary Tree的方法，非常漂亮，前面几个 level_order 都是参考这个
+        # https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/
+        q, ret = [root], []
+        while any(q):
+            ret.append([node.val for node in q])
+            q = [child for node in q for child in node.children if child]
+        return ret
+
+    def find_track(self, num, root, track_str=''):
+        '''
+        二叉树搜索
+        '''
+        track_str = track_str + str(root.val)
+        if root.val == num:
+            return track_str
+        if root.left is not None:
+            self.find_track(num, root.left, track_str + ' ->left-> ')
+        if root.right is not None:
+            self.find_track(num, root.right, track_str + ' ->right-> ')
+```
+
+
+one liner 实现
+```python
+# one liner 很多时候效率更高，但可修改性差一点儿
+# 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
+# 有些场景还是需要空节点返回[None]的，灵活去改动
+class Travel:
+    def ldr(self, root):  # Inorder
+        return [] if (root is None) else self.ldr(root.left) + [root.val] + self.ldr(root.right)
+
+    def dlr(self, root):  # PreOrder
+        return [] if (root is None) else [root.val] + self.dlr(root.left) + self.dlr(root.right)
+
+    def lrd(self, root):  # PostOrder
+        return [] if (root is None) else self.lrd(root.left) + self.lrd(root.right) + [root.val]
+```
+
+
+迭代法实现
+- 迭代法（ldr）
+```python
+# LDR：
+def ldr(root: Optional[TreeNode]) -> List[int]:
+    stack = []
+    ans = []
+    node = root
+    while stack or node:
+        while node:
+            stack.append(node)
+            node = node.left
+        node = stack.pop()
+        ans.append(node.val)
+        node = node.right
+    return ans
+
+# DLR：
+def dlr(root):
+    stack, res = [root], list()
+    while stack:
+        pointer = stack.pop()  # 栈尾取一个
+        res.append(pointer.val)  # 做一定的处理，加入结果
+        if pointer.right:
+            stack.append(pointer.right)  # 压入右子节点
+        if pointer.left:
+            stack.append(pointer.left)  # 压入左子节点
+    return res
+
+# TODO: 迭代法 LRD
+```
+
+
+#### 二叉树上递归的一般方法
+
+https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/534/
+
+有 top-down，bottom-up 两种方案，标准化流程分别是：
+
+```python
+1. return specific value for null node
+2. update the answer if needed                      // answer <-- params
+3. left_ans = top_down(root.left, left_params)      // left_params <-- root.val, params
+4. right_ans = top_down(root.right, right_params)   // right_params <-- root.val, params
+5. return the answer if needed                      // answer <-- left_ans, right_ans
+```
+
+以及
+```python
+1. return specific value for null node
+2. left_ans = bottom_up(root.left)      // call function recursively for left child
+3. right_ans = bottom_up(root.right)    // call function recursively for right child
+4. return answers                       // answer <-- left_ans, right_ans, root.val
+```
+
+例如，寻找最大深度 https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/535/
+```python
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        left_ans=self.maxDepth(root.left)
+        right_ans=self.maxDepth(root.right)
+        return max(left_ans,right_ans)+1
+```
+
+
 ### x序 + x序 = 二叉树
 
 
@@ -285,207 +493,6 @@ print(draw2)
 draw3 = draw.drawtree(root)
 ```
 
-## 二叉树遍历
-
-
-规定 D,L,R 分别代表“访问根节点”, “访问根节点的左子树”, “访问根节点的右子树”，这样便有6中遍历方式：  
-LDR,DLR,LRD,RDL,DRL,RLD  
-因为先遍历左子树和先遍历右子树的算法很相似，所以下面实现这几种遍历方式：  
-前序遍历(DLR)，中序遍历(LDR)，后序遍历(LRD)  
-
-
-
-以下代码包括
-- 二叉树上的 DFS
-  - 前序遍历
-  - 中序遍历
-  - 后序遍历
-- 查找路径
-
-```py
-class Travel:
-
-  def ldr(self, root):  # InOrder
-      res = []
-
-      def _ldr(node):
-          if node:
-              _ldr(node.left)
-              res.append(node.val)
-              _ldr(node.right)
-
-      _ldr(root)
-      return res
-
-  def dlr(self, root):  # PreOrder
-      res = []
-
-      def _dlr(node):
-          if node:
-              res.append(node.val)
-              _dlr(node.left)
-              _dlr(node.right)
-
-      _dlr(root)
-      return res
-
-  def lrd(self, root):  # PostOrder
-      res = []
-
-      def _lrd(node):
-          if node:
-              _lrd(node.left)
-              _lrd(node.right)
-              res.append(node.val)
-
-      _lrd(root)
-      return res
-
-
-    # one liner 很多时候效率更高，但可修改性差一点儿
-    # 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
-    # 有些场景还是需要空节点返回[None]的，灵活去改动
-    def ldr(self, root):  # Inorder
-        return [] if (root is None) else self.ldr(root.left) + [root.val] + self.ldr(root.right)
-
-    def dlr(self, root):  # PreOrder
-        return [] if (root is None) else [root.val] + self.dlr(root.left) + self.dlr(root.right)
-
-    def lrd(self, root):  # PostOrder
-        return [] if (root is None) else self.lrd(root.left) + self.lrd(root.right) + [root.val]
-
-    def level_order(self, root):
-        # BFS, tree转稀疏型顺序存储。
-        q, ret = [root], []
-        while any(q):
-            ret.extend([node.val if node else None for node in q])
-            q = [child for node in q for child in [node.left if node else None, node.right if node else None]]
-        return ret
-
-    def level_order2(self, root):
-        # BFS, tree转紧凑型顺序存储。
-        q, ret = [root], []
-        while any(q):
-            ret.extend([node.val if node else None for node in q])
-            q = [child for node in q if node for child in [node.left, node.right]]
-        # 结尾的 None 无意义，清除掉
-        while ret[-1] is None:
-            ret.pop()
-        return ret
-
-    def level_order3(self, root):
-        """
-        队列实现，待整理，这个返回值是有结构的list，其实 level_order2 也可以轻松改造
-        https://leetcode.com/problems/binary-tree-level-order-traversal/description/
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-        if root is None:
-            return []
-        import collections
-        level = 0
-        deque = collections.deque([(root,0)])
-        output=[]
-        while deque:
-            tmp_root,level = deque.popleft()
-            if tmp_root.left: deque.append((tmp_root.left,level+1))
-            if tmp_root.right: deque.append((tmp_root.right,level+1))
-            if len(output)<=level:
-                output.append([tmp_root.val])
-            else:
-                output[level].append(tmp_root.val)
-        return output
-
-
-    def level_order_nary(self, root):
-        # 针对N-ary Tree的方法，非常漂亮，前面几个 level_order 都是参考这个
-        # https://leetcode.com/problems/n-ary-tree-level-order-traversal/description/
-        q, ret = [root], []
-        while any(q):
-            ret.append([node.val for node in q])
-            q = [child for node in q for child in node.children if child]
-        return ret
-
-    def find_track(self, num, root, track_str=''):
-        '''
-        二叉树搜索
-        '''
-        track_str = track_str + str(root.val)
-        if root.val == num:
-            return track_str
-        if root.left is not None:
-            self.find_track(num, root.left, track_str + ' ->left-> ')
-        if root.right is not None:
-            self.find_track(num, root.right, track_str + ' ->right-> ')
-```
-
-
-
-迭代法则各不相同：
-- 迭代法（ldr）
-```python
-def ldr(root: Optional[TreeNode]) -> List[int]:
-    stack = []
-    ans = []
-    node = root
-    while stack or node:
-        while node:
-            stack.append(node)
-            node = node.left
-        node = stack.pop()
-        ans.append(node.val)
-        node = node.right
-    return ans
-```
-- 迭代法（dlr）
-```python
-def dlr(root):
-    stack, res = [root], list()
-    while stack:
-        pointer = stack.pop()  # 栈尾取一个
-        res.append(pointer.val)  # 做一定的处理，加入结果
-        if pointer.right:
-            stack.append(pointer.right)  # 压入右子节点
-        if pointer.left:
-            stack.append(pointer.left)  # 压入左子节点
-    return res
-```
-- （TODO: 迭代法 LRD）
-
-
-### 二叉树上递归的一般方法
-
-https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/534/
-
-有 top-down，bottom-up 两种方案，标准化流程分别是：
-
-```python
-1. return specific value for null node
-2. update the answer if needed                      // answer <-- params
-3. left_ans = top_down(root.left, left_params)      // left_params <-- root.val, params
-4. right_ans = top_down(root.right, right_params)   // right_params <-- root.val, params
-5. return the answer if needed                      // answer <-- left_ans, right_ans
-```
-
-以及
-```python
-1. return specific value for null node
-2. left_ans = bottom_up(root.left)      // call function recursively for left child
-3. right_ans = bottom_up(root.right)    // call function recursively for right child
-4. return answers                       // answer <-- left_ans, right_ans, root.val
-```
-
-例如，寻找最大深度 https://leetcode.com/explore/learn/card/data-structure-tree/17/solve-problems-recursively/535/
-```python
-class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
-        left_ans=self.maxDepth(root.left)
-        right_ans=self.maxDepth(root.right)
-        return max(left_ans,right_ans)+1
-```
-
 
 
 
@@ -504,7 +511,7 @@ class Solution:
 
 重要性质
 - 查、插入、删除都是 O(h) 复杂度。
-- 中序遍历（ldr，inorder)是生序的 
+- 中序遍历（ldr，inorder)是生序的
 
 定义：
 - `Binary Search Tree`(BST) 是一种二叉树，并且满足：
