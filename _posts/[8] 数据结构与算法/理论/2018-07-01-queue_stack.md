@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【堆栈、队列2】Queue & Stack & heapq
+title: 【数据结构2】Queue、Stack、heapq
 categories:
 tags: 0x80_数据结构与算法
 keywords:
@@ -89,8 +89,9 @@ class Queue3(object):
         self.head.next = res.next
         return res
 
+
 # 当已经出列的元素多余100个时，重整list，这应该是比较均衡的方案了
-class Queue(object):
+class Queue4(object):
     def __init__(self):
         self.q = list()
         self.head_idx = -1
@@ -99,22 +100,62 @@ class Queue(object):
         self.q.append(term)
 
     def take(self):
-      # 这里还可以根据列表大小和实际功能，做动态更改，而不是固定100
+        # 这里还可以根据列表大小和实际功能，做动态更改，而不是固定100
         if self.head_idx == 100:
             self.q = self.q[101:]
             self.head_idx = -1
         self.head_idx += 1
         return self.q[self.head_idx]
+
+
+from collections import deque
+
+
+# 使用循环链表
+class Queue(object):
+    def __init__(self):
+        self.q = deque()
+
+    def push(self, term):
+        self.q.append(term)
+
+    def take(self):
+        return self.q.popleft()
 ```
 
-某测试数据伤的耗时：
-```
-0:00:02.868541
-0:00:06.369444
-0:00:06.533770
-0:00:03.142483
+性能测试：
+```py
+import datetime
+
+Classes = [Queue1, Queue2, Queue3, Queue4, Queue]
+
+
+def test_time(q_class):
+    num = 100
+    start_time = datetime.datetime.now()
+    for i in range(num):
+        queue = q_class()
+
+        for i in range(10000):
+            queue.push(i)
+
+        for i in range(10000):
+            queue.take()
+
+    print(datetime.datetime.now() - start_time)
+
+
+for q_class in Classes:
+    test_time(q_class)
 ```
 
+```
+0:00:00.319176
+0:00:11.864376
+0:00:00.891820
+0:00:00.481168
+0:00:00.242382
+```
 
 
 ## Circular Queue

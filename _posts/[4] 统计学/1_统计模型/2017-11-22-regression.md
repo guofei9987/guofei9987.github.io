@@ -24,6 +24,83 @@ order: 408
 大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
 ## 一元线性模型
+
+### 模型假设
+
+1. **零均值假定** $E(\varepsilon_i\mid X_i)=0$
+2. **同方差假定** $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
+3. **无自相关假定** $cov(u_i,u_j)=E(u_i u_j)=0$
+4. **解释变量与随机扰动不相关** $cov(\varepsilon_i ,X_i)=E[\varepsilon_i -E\varepsilon_i][\varepsilon_j-E\varepsilon_j]$
+5. **正态性假定** $u_i\sim N(0,\sigma^2)$，也就是说 $E(Y_i)=\beta_1+\beta_2X_i$
+
+### 一元回归的检验
+
+
+
+
+
+## 多元回归模型
+
+### 多元回归模型定义
+**模型形式1**:
+
+$$\left ( \begin{array}{lll}
+Y_1\\
+Y_2\\
+...\\
+Y_n
+\end{array}\right)
+= \left [ \begin{array}{lll}
+1 & X_{21} & X_{31} & ... & X_{k1}\\
+1 & X_{22} & X_{32} & ... & X_{k2}\\
+...
+1 & X_{2n} & X_{3n} & ... & X_{kn} \end{array}\right ]
+\left( \begin{array}{lll}
+\beta_1\\
+\beta_2\\
+...\\
+\beta_n
+\end{array}\right)
++\left( \begin{array}{lll}
+u_1\\
+u_2\\
+...\\
+u_n
+\end{array}\right)
+$$
+
+
+**模型形式2**：$Y=X\beta+U$
+
+**模型形式3**： $Y=X\hat\beta+e$，以及 $\hat Y=X\hat \beta$
+
+
+
+
+### RESET检验（regresion error specification test）
+检验思路:
+- 如果残差中包含被遗漏变量，那么把此变量引入模型，并检验其参数是否显著
+- 问题是不知道遗漏了哪个变量，因此“虚构一个”
+- “虚构的变量”用 Y 的估计值 $\hat Y$ 的若干次幂
+
+
+步骤：
+1. OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+u_i$
+2. 再次OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+\delta_1+u_i$
+3. 假设检验，构造 $H0: \delta_i=0$
+4. 构建F统计量
+5. 判断。F较大时拒绝原假设，认为存在设定误差
+
+
+
+
+## 另一种写法
+
+
+
+
+
+
 为简化记号，记：  
 $l_{xy}=\sum\limits_{i=1}^n (x_i-\bar x)(y_i-\bar y)=\sum\limits_{i=1}^n x_i y_i-n\bar x\bar y$  
 $l_{xx}=\sum\limits_{i=1}^n(x_i-\bar x)^2=\sum\limits_{i=1}^n x_i^2 -n\bar x^2$  

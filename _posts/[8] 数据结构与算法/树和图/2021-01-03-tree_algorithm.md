@@ -493,12 +493,27 @@ class Solution:
 
 ## BST 二叉搜索树
 
-性质
+[拓展阅读](https://mp.weixin.qq.com/s/dYP5-fM22BgM3viWg4V44A)
+
+二叉查找树，是一种特殊的二叉树，满足：
+1. 若它的左子树不为空，则左子树上所有的节点值都小于它的根节点值。
+2. 若它的右子树不为空，则右子树上所有的节点值均大于它的根节点值。
+3. 它的左右子树也分别可以充当为二叉查找树。
+
+
+
+重要性质
 - 查、插入、删除都是 O(h) 复杂度。
-- inorder 的结果是生序的
+- 中序遍历（ldr，inorder)是生序的 
 
 定义：
-- `Binary Search Tree`(BST) is a special form of a binary tree.  
+- `Binary Search Tree`(BST) 是一种二叉树，并且满足：
+1. 若它的左子树不为空，则左子树上所有的节点值都小于它的根节点值。
+2. 若它的右子树不为空，则右子树上所有的节点值均大于它的根节点值。
+3. 它的左右子树也分别可以充当为二叉查找树。
+
+（英文定义）
+- Binary Search Tree(BST) is a special form of a binary tree.
 - The value in each node must be greater than (or equal to) any values in its left subtree
 - but less than (or equal to) any values in its right subtree
 
