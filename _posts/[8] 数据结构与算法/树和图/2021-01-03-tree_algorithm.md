@@ -115,7 +115,7 @@ class Codec:
 
 
 
-稀疏型(反序列化的代码待新写)
+稀疏型(反序列化的代码可以按照上面的例子新写，但是较大的树会超时)
 
 ```python
 class BuildTree:
@@ -146,6 +146,7 @@ class BuildTree:
                     kids.pop()
         return root
 ```
+
 
 
 
@@ -286,6 +287,15 @@ class Travel:
 
     def lrd(self, root):  # PostOrder
         return [] if (root is None) else self.lrd(root.left) + self.lrd(root.right) + [root.val]
+
+
+    '''
+    一个漂亮的序列化实现
+    '''
+    def dlr2(self,node):
+        if node is None:
+            return '#'
+        return '{},{},{}'.format(node.val,self.dlr2(node.left),self.dlr2(node.right))
 ```
 
 

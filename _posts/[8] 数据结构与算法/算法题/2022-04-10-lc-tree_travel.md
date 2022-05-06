@@ -110,6 +110,43 @@ class Solution:
 ```
 
 
+
+#### 652. Find Duplicate Subtrees
+
+思路：
+1. 把所有 nodes 提取出来放到一起。改进：按照val放到dict中，因为val不同必然不在同一个组
+2. 对dict每一组做遍历，找到相同结构
+3. 判断相同结构是用递归来做。
+
+上面会超时
+
+思路：序列化
+
+
+```py
+class Solution:
+    def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+        cache=dict()
+        res=[]
+        def dlr(node):
+            if node is None:
+                return '#'
+            node_str='{},{},{}'.format(node.val,dlr(node.left),dlr(node.right))
+
+            if node_str not in cache:
+                cache[node_str]=1
+            else:
+                cache[node_str]+=1
+
+            if cache[node_str]==2:
+                res.append(node)
+            return node_str
+
+        dlr(root)
+        return res
+```
+
+
 ### 相关题
 ### 257. Binary Tree Paths
 
@@ -481,13 +518,354 @@ class Solution:
         return dfs(root1,root2)
 ```            
 
-###
+
+
+### 653. Two Sum IV - Input is a BST
+
+```
+class Solution:
+    def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
+
+        dlr_res=[]
+        def dlr(node):
+            if node:
+                dlr_res.append(node.val)
+                dlr(node.left)
+                dlr(node.right)
+
+        dlr(root)
+
+        cache=set()
+        for val in dlr_res:
+            if val in cache:
+                return True
+            else:
+                cache.add(k-val)
+
+        return False
+```
+
+### 655. Print Binary Tree
+
+机械的按照题目要求做就行了
+
+```
+class Solution:
+    def printTree(self, root: TreeNode) -> List[List[str]]:
+        def get_level(node):
+            if node is None:
+                return 0
+            return max(get_level(node.left),get_level(node.right))+1
+
+        height=get_level(root)
+
+        res=[[""]*((1<<height) -1) for i in range(height)]
+
+        queue={root:(0,(len(res[0])-1)//2)}
+        while queue:
+            new_queue=dict()
+            for node,(r,c) in queue.items():
+                res[r][c]=str(node.val)
+                if node.left:
+                    new_queue[node.left]=(r+1,c-(1<<(height-r-2)))
+                if node.right:
+                    new_queue[node.right]=(r+1,c+(1<<(height-r-2)))
+            queue=new_queue
+
+        return res
+```
+
+
+### 662. Maximum Width of Binary Tree
 
 思路：
-1. 把所有 nodes 提取出来放到一起。改进：按照val放到dict中，因为val不同必然不在同一个组
-2. 对dict每一组做遍历，找到相同结构
-3. 判断相同结构是用递归来做。
+1. 第一想到套公式用 level order，但是超时
+2. 调试发现，None来自中间那些不可删除的空节点，想到合并这些空节点，用 int 表示其数量
 
+
+```
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        res=0
+        queue=[root]
+        while queue:
+            # print([node if isinstance(node,int) else 'n' for node in queue])
+
+            # 剔除无效的头和尾，并且合并中间
+            queue_format=[]
+            for node in queue:
+                if not queue_format:
+                    if isinstance(node,int):
+                        continue
+                    else:
+                        queue_format.append(node)
+                else:
+                    if isinstance(node,int):
+                        if isinstance(queue_format[-1],int):
+                            queue_format[-1]+=node
+                        else:
+                            queue_format.append(node)
+                    else:
+                        queue_format.append(node)
+
+            if queue_format and isinstance(queue[-1],int):
+                queue_format.pop()
+            queue=queue_format
+
+            res=max(res,sum(i if isinstance(i,int) else 1 for i in queue))
+
+            new_queue=list()
+            for node in queue:
+                if isinstance(node,int):
+                    new_queue.append(node*2)
+                else:
+                    new_queue.append(1 if node.left is None else node.left)
+                    new_queue.append(1 if node.right is None else node.right)
+            queue=new_queue
+
+        return res
+```
+
+
+### 669. Trim a Binary Search Tree
+
+这个递归写的我好累。。。
+
+
+```
+class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        def dfs(node):
+            if node is None:
+                return
+
+            node_old=None
+            while node is not None:
+                if node.val<low:
+                    node=node.right
+                elif node.val>high:
+                    node=node.left
+
+                # 迭代后不再变化，则跳出
+                if node_old is not node:
+                    node_old=node
+                else:
+                    break
+
+            if node is None:
+                return
+
+            node.left=dfs(node.left)
+            node.right=dfs(node.right)
+            return node
+
+        return dfs(root)
+```
+
+
+一开始是这么写的，但怎样都写不对，又写一遍对了
+
+```py
+class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        def dfs(node):
+            if node is None:
+                return
+            if node.val<low:
+                return dfs(node.right)
+            if node.val>high:
+                return dfs(node.left)
+
+            node.left=dfs(node.left)
+            node.right=dfs(node.right)
+            return node
+
+        return dfs(root)
+```
+
+
+### 671. Second Minimum Node In a Binary Tree
+
+思路：
+1. 简单的level order，但是必须剪枝
+2. 某一个level，大于 res，其子节点也不可能是结果，剪掉
+
+
+```
+class Solution:
+    def findSecondMinimumValue(self, root: TreeNode) -> int:
+
+        queue=[root]
+        res_1=root.val
+        res_2=(1<<31)
+        while queue:
+            queue.sort(key=lambda node:node.val)
+            for node in queue:
+                if node.val>res_1:
+                    res_2=min(res_2,node.val)
+            queue=[node for node in queue if node.val<=res_2]        
+            new_queue=list()
+            for node in queue:
+                if node.left is not None:
+                    new_queue.append(node.left)
+                if node.right is not None:
+                    new_queue.append(node.right)
+            queue=new_queue
+
+        if res_2==(1<<31):
+            return -1
+        else:
+            return res_2
+```
+
+
+### 687. Longest Univalue Path
+
+思路：
+1. 一次遍历估计搞不定，例如 '1,1,1,1,1' 这种左子树的结果不能用在父树上
+2. 两次遍历，第一次求单链上的最大深度，第二次求结果
+
+
+
+```
+class Solution:
+    def longestUnivaluePath(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        def dfs(node):
+            if node is None:
+                return None
+
+            if node.left:
+                dfs(node.left)
+
+            if node.right:
+                dfs(node.right)
+
+            depth_left=depth_right=1
+            if node.left and node.left.val==node.val:
+                depth_left+=node.left.depth
+            if node.right and node.right.val==node.val:
+                depth_right+=node.right.depth
+            node.depth=max(depth_left,depth_right)
+
+        dfs(root)
+
+        # print(root.left.depth)
+        # print(root.right.depth)
+
+        res=[0]
+        def dfs2(node):
+            if node is None:
+                return
+
+            path_len=1
+            if node.left and node.left.val==node.val:
+                path_len+=node.left.depth
+            if node.right and node.right.val==node.val:
+                path_len+=node.right.depth
+
+            res[0]=max(res[0],path_len)
+
+            if node.left:
+                dfs2(node.left)
+            if node.right:
+                dfs2(node.right)
+
+        dfs2(root)
+        return res[0]-1
+```
+
+
+### 814. Binary Tree Pruning
+
+```
+class Solution:
+    def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+        def dfs(node):
+            if not node:
+                return None
+
+            if not dfs(node.left):
+                node.left=None
+            if not dfs(node.right):
+                node.right=None
+
+            if node.left or node.right or node.val==1:
+                return True
+
+        dfs(root)
+
+        if root.left is None and root.right is None and root.val==0:
+            return None
+        return root
+```
+
+### 863. All Nodes Distance K in Binary Tree
+
+这个递归写的我好累！
+
+思路：
+1. 实现一个函数，找k层子节点。用level order，套公式
+2. 用 top_bottom 方法，找到 target node，同时记录它所有父节点序列
+3. 在父节点序列上遍历
+4. 遍历过程中，记得把遍历过的删掉。防止出现回路（回路不符合要求）
+
+
+```py
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+
+        def get_k_children(root,k):
+            if k<0:
+                return []
+            if not root:
+                return []
+            queue=[root]
+            for i in range(k):
+                new_queue=[]
+                for node in queue:
+                    if node.left:
+                        new_queue.append(node.left)
+                    if node.right:
+                        new_queue.append(node.right)
+                queue=new_queue
+            return [i.val for i in queue]
+
+
+        parents=[]
+        def top_bottom(node,nodes):
+            if node is None:
+                return
+            if parents:
+                return
+            top_bottom(node.left,nodes+[node])
+            top_bottom(node.right,nodes+[node])
+
+            if node is target:
+                parents.extend(nodes+[node])
+
+        top_bottom(root,[])
+
+        res=[]
+        while k>=0 and parents:
+            target_node=parents.pop()
+            res.extend(get_k_children(target_node,k))
+            # 算完之后删掉
+            if parents:
+                upper_node=parents[-1]
+                if upper_node.left is target_node:
+                    upper_node.left=None
+                if upper_node.right is target_node:
+                    upper_node.right=None
+
+            k-=1
+
+
+        return res
+
+```
 
 
 ## BST 相关
