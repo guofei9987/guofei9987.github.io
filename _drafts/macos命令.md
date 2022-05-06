@@ -45,7 +45,7 @@ find ./ -name *.css | xargs rm -rf
 
 ## 硬盘不装载
 
-Mac的移动硬盘不能装载该如何解决? - 陶落落的文章 - 知乎
+MacBook的移动硬盘不能装载该如何解决? - 陶落落的文章 - 知乎
 https://zhuanlan.zhihu.com/p/346106923
 
 ```sh
