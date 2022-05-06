@@ -14,7 +14,33 @@ visible: n
 
 主要题解
 1. 用dfs（例如 dlr，ldr，lrd等）、bfs（queue，level order 等）可以解决大部分问题了
-2. 寻找重复（定义为结构相同，值也相等），虽然也可以用上面的方法，但是先序列化，再操作，性能和编程性都更好。
+2. 寻找重复（定义为结构相同，值也相等），虽然也可以用上面的方法，但是先序列化，再操作，性能（因为可以使用KMP）和可扩展性都更好。
+    - 注意这种情况： `12,1` 和 `2,1` 在字符串匹配中会被匹配上，实际上不是
+    - 主要题目：572. Subtree of Another Tree（官方题解用DLR加上空节点来唯一表示一个树）；
+    - 652. Find Duplicate Subtrees（官方题解用的下面这个）
+
+两种序列化的方案：
+```py
+# 第一种略慢，但是从公式抄过来的
+def get_str(root):
+    dlr_list=[]
+    def dlr(node):
+        # 与一般的 dlr不同，空节点也带进去
+        dlr_list.append(str(node.val) if node else '#')
+        if node is not None:
+            dlr(node.left)
+            dlr(node.right)
+
+    dlr(root)
+    return ','.join(dlr_list)
+
+# 652题用这个效率更高
+def get_str(node):
+    if node is None:
+        return '#'
+    return "{},{},{}".format(node.val, get_str(node.left), get_str(node.right))
+```
+
 
 基础的遍历题目
 94. Binary Tree Inorder Traversal
@@ -326,7 +352,8 @@ class Solution:
 ### 572. Subtree of Another Tree
 
 
-```
+```py
+# dfs方法，不推荐
 class Solution:
     def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
 
@@ -365,6 +392,47 @@ class Solution:
         dfs(root)
         return cache[0]
 ```
+
+
+
+序列化方法，推荐
+```py
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+
+        def get_str(root):
+            dlr_list=[]
+            def dlr(node):
+                dlr_list.append(str(node.val) if node else '#')
+                if node is not None:
+                    dlr(node.left)
+                    dlr(node.right)
+
+            dlr(root)
+            return ','.join(dlr_list)
+
+        sub1=get_str(root)
+        sub2=get_str(subRoot)
+        # 防止 '12,1' 和 '2,1' 被误匹配到的情况
+        idx=sub1.find(sub2)
+        return (idx>0 and sub1[idx-1]==',') or idx==0
+```
+
+自底向上序列化+kmp
+```py
+class Solution:
+    def isSubtree(self, root: TreeNode, subRoot: TreeNode) -> bool:
+        def get_str(node):
+            if node is None:
+                return '#'
+            return "{},{},{}".format(node.val, get_str(node.left), get_str(node.right))
+
+        sub1=get_str(root)
+        sub2=get_str(subRoot)
+        idx=sub1.find(sub2)
+        return (idx>0 and sub1[idx-1]==',') or idx==0
+```
+
 
 
 ### 606. Construct String from Binary Tree

@@ -56,7 +56,6 @@ left 和 right 都是指针，指向下一个节点
 
 ## 二叉树的实现
 
-### 生成二叉树
 
 ```py
 class TreeNode:
@@ -65,12 +64,61 @@ class TreeNode:
 
     def __repr__(self):
         return 'Node val = {}'.format(str(self.val))
+```
 
 
+### 二叉树序列化
+
+二叉树的 level order 以及 x序遍历不能唯一确定一个树，
+- 但是如果允许把空节点反应在在遍历结果中，就可以唯一确定一个树。（已验证 level order，dlr；可以用这个方法判断相等子树）
+- 如果同时有两种遍历结果，也可以唯一确定一个树
+- 序列化的测试（题目是BST，但可以当成一般二叉树）： https://leetcode-cn.com/problems/serialize-and-deserialize-bst/submissions/
+
+
+level order 的思路：
+- 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置
+    - 优点是节省空间，多数场合使用这种
+- 稀疏型顺序存储：空节点占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
+    - 优点是对应关系明确，第i个元素的子节点序号必是 2 * i + 1, 2 * i + 2；某些场景下也很有用
+
+
+```py
+'''
+紧凑型顺序存储
+参考资料： https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/discuss
+测试： https://leetcode-cn.com/problems/serialize-and-deserialize-bst/submissions/
+'''
+class Codec:
+    def serialize(self, root: TreeNode) -> str:
+        queue = [root]
+        res = []
+        while queue:
+            new_queue = []
+            for node in queue:
+                res.append(node)
+                if node is not None:
+                    new_queue.append(node.left)
+                    new_queue.append(node.right)
+            queue = new_queue
+        return ','.join([str(node.val) if node else '#' for node in res])
+
+    def deserialize(self, data: str) -> TreeNode:
+        nodes = [None if val == '#' else TreeNode(int(val)) for val in data.split(',')]
+        queue = nodes[::-1]
+        root = queue.pop()
+        for node in nodes:
+            if node:
+                if queue: node.left = queue.pop()
+                if queue: node.right = queue.pop()
+        return root
+```
+
+
+
+稀疏型(反序列化的代码待新写)
+
+```python
 class BuildTree:
-    # 稀疏型顺序存储：二叉树的空节点也占一个位置，空节点的两个孩子（虽然实际不存在）也各自占一个位置
-    # 所以顺序表的第i个元素，其孩子节点序号必是 2 * i + 1, 2 * i + 2
-    # 紧凑型顺序存储：空节点占一个位置，但空节点的孩子不再占位置
     def list2tree1_1(self, list_num, i=0):
         # 稀疏型顺序结构建树，递归法
         if i >= len(list_num):
@@ -96,36 +144,6 @@ class BuildTree:
                     kids.pop()
                 if kids:
                     kids.pop()
-        return root
-
-    def list2tree2_2(self, nums):
-        # 紧凑型顺序结构建树，迭代法
-        if not nums:
-            return None
-        nodes = [None if val is None else TreeNode(val) for val in nums]
-        kids = nodes[::-1]
-        root = kids.pop()
-        for node in nodes:
-            if node:
-                if kids: node.left = kids.pop()
-                if kids: node.right = kids.pop()
-        return root
-
-    def deserialize(self, string):
-        # LeetCode官方版本
-        # https://leetcode.com/problems/recover-binary-search-tree/discuss/32539/Tree-Deserializer-and-Visualizer-for-Python
-        # deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]')
-        # 这里是 deserialize 和 serialize 的案例
-        # https://leetcode.com/explore/learn/card/data-structure-tree/133/conclusion/995/discuss
-        if string == '{}':
-            return None
-        nodes = [None if val == 'null' else TreeNode(int(val)) for val in string.strip('[]{}').split(',')]
-        kids = nodes[::-1]
-        root = kids.pop()
-        for node in nodes:
-            if node:
-                if kids: node.left = kids.pop()
-                if kids: node.right = kids.pop()
         return root
 ```
 
