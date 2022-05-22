@@ -1,9 +1,8 @@
 ---
 layout: post
 title: 【LeetCode】树遍历
-categories:
-tags: 0x81_刷题
-keywords:
+categories: 刷题
+tags:
 description:
 order: 595
 visible: n

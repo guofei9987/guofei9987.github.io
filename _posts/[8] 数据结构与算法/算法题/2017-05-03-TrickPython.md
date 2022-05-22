@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Python】【算法题集1】
-categories:
-tags: 0x81_刷题
+categories: 刷题
+tags:
 keywords:
 description:
 order: 593
