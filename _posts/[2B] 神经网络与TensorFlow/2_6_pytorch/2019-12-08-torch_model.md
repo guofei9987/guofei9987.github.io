@@ -10,36 +10,32 @@ order: 262
 
 
 
-## 配置
-[官网上的安装教程](https://pytorch.org/get-started/locally/)
 
-```python
-import torch
-torch.cuda.is_available() # 看 cuda 是否可用
-```
 
-## 开始
-### 生成Tensor
-- 新生成
+
+## Tensor
+
+
+新建
 ```python
 torch.empty(5, 3)
 torch.rand(5, 3)
 torch.zeros(5, 3, dtype=torch.long)
 # dtype=torch.float, torch.double
-```
-- 从其它数据
-```python
-torch.tensor([5.5, 3])
-```
-- like
-```python
+
 torch.randn_like(x, dtype=torch.float)
+
+# 从其它数据新建
+torch.tensor([5.5, 3])
+torch.from_numpy(np.ones()) #
 ```
 
 
-### 运算
+运算
 ```python
 torch.add(x, y)
+# 或者
+x + y
 
 # 或者
 result = torch.empty(5, 3)
@@ -51,7 +47,8 @@ y.add_(x) # 这个会把加法的结果赋值给y
 
 **注：加下划线后，是替换，很多这样的例子，如x.copy_(y), x.t_()**
 
-### size
+
+其它方法
 ```
 x.size()
 ```
@@ -70,27 +67,24 @@ z = x.view(-1, 8)
 ```
 
 tensor 转其它格式
-- 转数字
+
 ```python
 # 用来转为 Python 的数字，但只能转单元数tensor
-x = torch.randn(1)
-print(x.item())
-```
-- 转 NumPy
-```python
+# 转 Python 数字，只有单个元素的时候可以用
+x[0][0].item()
+
 # tensor 转 numpy
-x = torch.ones(5)
 x.numpy()
 ```
 
 注意一个特性: 共享内存
 ```python
-x = torch.ones(5)
+x = torch.ones(2)
 y = x.numpy()
 x += 1
 print(x, y)
-# 这个打印出来都是2，说明：
-# +=是指针操作内存
+# 打印：tensor([2., 2.]) [2. 2.]
+# += 是指针操作内存
 # 转 numpy 时共用内存
 
 
@@ -99,6 +93,7 @@ a = np.ones(5)
 b = torch.from_numpy(a)
 a += 1
 print(a, b)
+# [2. 2.] tensor([2., 2.])
 ```
 
 ## AUTOGRAD
