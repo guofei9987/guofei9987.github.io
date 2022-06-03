@@ -7,7 +7,21 @@ keywords:
 description:
 order: 263
 ---
-进行中
+
+
+## 基本
+
+```python
+m = torch.tensor([[1, 2], [3, 4]])
+
+
+# 矩阵积
+m.matmul(m)
+
+# 矩阵的点积
+m * m
+
+```
 
 ## 布尔类型
 ### ByteTensor
