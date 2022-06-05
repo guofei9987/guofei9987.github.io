@@ -290,9 +290,30 @@ import torch
 import torch.nn as nn
 
 # 编数据
-x_train = np.linspace(0, 10, 11, dtype=np.float32).reshape(-1, 1)  # 注意维度
-y_train = 2 * x_train + 1
 
+from sklearn import datasets
+
+X, y, coef = \
+    datasets.make_regression(n_samples=1000,
+                             n_features=5,
+                             n_informative=3,  # 其中，3个feature是有信息的
+                             n_targets=1,  # 多少个 target
+                             bias=1,  # 就是 intercept
+                             coef=True,  # 为True时，会返回真实的coef值
+                             noise=0.001,  # 噪声的标准差
+                             )
+
+# 必须标准化
+
+from sklearn import preprocessing
+
+X_transform = preprocessing.StandardScaler().fit_transform(X).astype(np.float32)
+y_transform = preprocessing.StandardScaler().fit_transform(y.reshape(-1, 1)).astype(np.float32)
+
+X_transform.min(), X_transform.max(), y_transform.min(), y_transform.max()
+
+
+# %%
 
 class MyModel(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -304,7 +325,7 @@ class MyModel(nn.Module):
         return out
 
 
-my_model = MyModel(input_dim=1, output_dim=1)
+my_model = MyModel(input_dim=5, output_dim=1)
 
 # 定义参数和损失函数
 epochs = 1000
@@ -315,8 +336,8 @@ criterion = nn.MSELoss()
 # 训练
 
 for epoch in range(epochs):
-    inputs = torch.from_numpy(x_train)
-    labels = torch.from_numpy(y_train)
+    inputs = torch.from_numpy(X_transform)
+    labels = torch.from_numpy(y_transform)
 
     # 每次迭代都要清空梯度
     optimizer.zero_grad()
@@ -336,10 +357,8 @@ for epoch in range(epochs):
     if epoch % 50 == 0:
         print("epoch = {}, loss on train {:.5f}".format(epoch, loss.item()))
 
-
 # 预测
-y_hat = my_model(torch.from_numpy(x_train)).data.numpy()
-
+y_hat = my_model(torch.from_numpy(X_transform)).data.numpy()
 ```
 
 
@@ -539,7 +558,9 @@ for i in range(10000):
     hidden = x_tensor.mm(weights1) + biases1
     hidden = torch.relu(hidden)
     y_hat = hidden.mm(weights2) + biases2
+    # 可以用 my_nn = torch.nn.Sequential，简化
 
+    # 可以用 cost = torch.nn.MSELoss，以及 loss = cost(y_hat, y) ，简化
     loss = torch.mean((y_hat - y_tensor) ** 2)
     losses.append(loss.data.numpy())
 
@@ -548,13 +569,13 @@ for i in range(10000):
 
     loss.backward()
 
-    #     更新参数
+    # 更新参数，可以用 optimizer.step() 更新
     weights1.data.add_(-learning_rate * weights1.grad.data)
     biases1.data.add_(-learning_rate * biases1.grad.data)
     weights2.data.add_(-learning_rate * weights2.grad.data)
     biases2.data.add_(-learning_rate * biases2.grad.data)
 
-    #     清空
+    # 清空
     weights1.grad.data.zero_()
     biases1.grad.data.zero_()
     weights2.grad.data.zero_()
