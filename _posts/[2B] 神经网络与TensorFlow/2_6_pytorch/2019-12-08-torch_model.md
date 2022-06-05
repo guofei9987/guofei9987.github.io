@@ -511,6 +511,7 @@ optimizer=optim.Adam(net.parameters(),weight_decay =0.0001) # weight_decay 是 L
 
 
 ```python
+import numpy as np
 from sklearn import datasets
 
 X, y, coef = \
@@ -528,7 +529,7 @@ X, y, coef = \
 from sklearn import preprocessing
 
 X_transform=preprocessing.StandardScaler().fit_transform(X)
-y_transform=preprocessing.StandardScaler().fit_transform(y.reshape(-1,1)).reshape(-1)
+y_transform=preprocessing.StandardScaler().fit_transform(y.reshape(-1,1))
 
 # 构建参数
 
@@ -540,7 +541,7 @@ y_tensor=torch.tensor(y_transform,dtype=float)
 input_size, hidden_size, output_size, batch_size = x_tensor.shape[1], 128, 1, 116
 ```
 
-方法1:从raw建立（？？？但是loss趋近于1而不是0）
+方法1:从raw建立
 
 ```python
 # 权重
@@ -586,7 +587,6 @@ for i in range(10000):
 方法2:使用torch的内置函数，可以有更简洁的写法
 
 ```python
-
 my_nn = torch.nn.Sequential(
     torch.nn.Linear(input_size, hidden_size),
     torch.nn.Sigmoid(),
