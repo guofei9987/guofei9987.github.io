@@ -284,14 +284,17 @@ model = nn.DataParallel(model)
 
 ## 案例：回归模型
 
-```python
-import numpy as np
-import torch
-import torch.nn as nn
+比上面的案例额外多了
+- 数据标准化
+- 用 DataLoader 划分 batch
 
+```python
 # 编数据
 
 from sklearn import datasets
+from sklearn import model_selection
+from sklearn import preprocessing
+import numpy as np
 
 X, y, coef = \
     datasets.make_regression(n_samples=1000,
@@ -303,14 +306,33 @@ X, y, coef = \
                              noise=0.001,  # 噪声的标准差
                              )
 
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X.astype(np.float32),
+                                                                    y.reshape(-1, 1).astype(np.float32), test_size=0.2)
+
 # 必须标准化
+X_Scaler, y_Scaler = preprocessing.StandardScaler(), preprocessing.StandardScaler()
+X_train = X_Scaler.fit_transform(X_train).astype(np.float32)
+X_test = X_Scaler.transform(X_test).astype(np.float32)
+y_train = y_Scaler.fit_transform(y_train)
+y_test = y_Scaler.transform(y_test)
 
-from sklearn import preprocessing
 
-X_transform = preprocessing.StandardScaler().fit_transform(X).astype(np.float32)
-y_transform = preprocessing.StandardScaler().fit_transform(y.reshape(-1, 1)).astype(np.float32)
+# %%
 
-X_transform.min(), X_transform.max(), y_transform.min(), y_transform.max()
+import torch.nn as nn
+import torch
+from torch.utils.data import TensorDataset
+from torch.utils.data import DataLoader
+
+# 使用 DataLoader 做 batch
+X_train, X_test, y_train, y_test = map(torch.tensor, (X_train, X_test, y_train, y_test))
+
+batch_size = 20
+dataset_train = TensorDataset(X_train, y_train)
+dataset_test = TensorDataset(X_test, y_test)
+
+dataloader_train = DataLoader(dataset_train, batch_size=batch_size, shuffle=True)
+dataloader_test = DataLoader(dataset_test, batch_size=batch_size * 2)
 
 
 # %%
@@ -328,37 +350,38 @@ class MyModel(nn.Module):
 my_model = MyModel(input_dim=5, output_dim=1)
 
 # 定义参数和损失函数
-epochs = 1000
+epochs = 400
 learning_rate = 0.01
-optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
 criterion = nn.MSELoss()
+optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
 
-# 训练
+# %% 训练
 
 for epoch in range(epochs):
-    inputs = torch.from_numpy(X_transform)
-    labels = torch.from_numpy(y_transform)
+    for X_train_batch, y_train_batch in dataloader_train:
+        # 每次迭代都要清空梯度
+        optimizer.zero_grad()
 
-    # 每次迭代都要清空梯度
-    optimizer.zero_grad()
+        # 前向传播
+        outputs = my_model(X_train_batch)
 
-    # 前向传播
-    outputs = my_model(inputs)
+        # 计算损失
+        loss = criterion(outputs, y_train_batch)
 
-    # 计算损失
-    loss = criterion(outputs, labels)
+        # 反向传播
+        loss.backward()
 
-    # 反向传播
-    loss.backward()
-
-    # 更新权重参数值
-    optimizer.step()
+        # 更新权重参数值
+        optimizer.step()
 
     if epoch % 50 == 0:
-        print("epoch = {}, loss on train {:.5f}".format(epoch, loss.item()))
+        with torch.no_grad():
+            loss_train = criterion(my_model(X_train), y_train).item()
+            loss_test = criterion(my_model(X_test), y_test).item()
+            print("epoch {}, loss_train = {:.5f}, loss_test = {:.5f}".format(epoch, loss_train, loss_test))
 
-# 预测
-y_hat = my_model(torch.from_numpy(X_transform)).data.numpy()
+# %% 预测
+y_hat = my_model(X_test).data.numpy()
 ```
 
 
