@@ -392,9 +392,12 @@ map(func, lst)
 ```
 
 ## 其它
-```
+```python
 locals() # 全部本地对象
 globals() # 全部全局对象
+
+# 内存查看对象
+memoryview(bytes(string, encoding='utf-8'))
 ```
 
 hash:在hash()对对象使用时，所得的结果不仅和对象的内容有关，还和对象的id()，也就是内存地址有关。
