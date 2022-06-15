@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pytorch】【进行中】运算符
+title: 【pytorch】运算符
 categories:
 tags: 0x26_torch
 keywords:
@@ -20,7 +20,6 @@ m.matmul(m)
 
 # 矩阵的点积
 m * m
-
 ```
 
 ## 布尔类型
