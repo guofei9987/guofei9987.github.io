@@ -95,6 +95,17 @@ mytensor = my_tensor.to(device) # tensor
 model = nn.DataParallel(model)
 ```
 
+### 并行资源
+
+```python
+# 设定这个之后，CPU占用会极大提高
+torch.set_num_threads(num_physical_cores/num_workers)
+
+# 加载并行
+DataLoader(..., num_workers=args.nThreads)
+```
+
+
 ## 案例
 ```python
 model = Model(input_size, output_size)
