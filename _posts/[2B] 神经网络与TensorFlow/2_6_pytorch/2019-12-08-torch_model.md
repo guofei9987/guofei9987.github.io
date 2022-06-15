@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pytorch】【进行中】建立模型
+title: 【pytorch】建立模型
 categories:
 tags: 0x26_torch
 keywords:
@@ -8,13 +8,7 @@ description:
 order: 262
 ---
 
-
-
-
-
-
 ## Tensor
-
 
 新建
 ```python
@@ -49,12 +43,10 @@ y.add_(x) # 这个会把加法的结果赋值给y
 
 
 其它方法
-```
-x.size()
-```
-
-index 和 Numpy 一样
 ```python
+x.size()
+
+# index 和 Numpy 一样
 x[:, 1]
 ```
 
@@ -69,7 +61,6 @@ z = x.view(-1, 8)
 tensor 转其它格式
 
 ```python
-# 用来转为 Python 的数字，但只能转单元数tensor
 # 转 Python 数字，只有单个元素的时候可以用
 x[0][0].item()
 
@@ -134,14 +125,12 @@ k = z.mean()
 - `y.grad_fn` 是与梯度计算有关的函数
 
 
-
-
 ```python
 # 求导数
 k.backward() # 开始计算梯度
 print(x.grad) # 返回梯度值
 # 1. 返回 dk/dx_ij，形式是矩阵
-# 2. 只会给出叶子的导数。所以 z.grad 没有值。计算这个值往往意义不大
+# 2. 只会给出叶子的导数。所以 z.grad 没有值。因为计算这个值往往意义不大
 # 3. 如果确实需要 z.grad，提前声明 z.retain_grad()
 
 x.is_leaf, y.is_leaf # (True, False)
@@ -149,7 +138,7 @@ x.is_leaf, y.is_leaf # (True, False)
 
 要点：
 - `k.backward()` 只能运行一次
-- `k.backward(retain_graph=True)` 可以运行多次，但结果为上一次的累加
+- `k.backward(retain_graph=True)` 可以运行多次，但结果为上一次的累加，（会导致内存占用较多？）
 
 
 ```python
@@ -203,6 +192,11 @@ class MyNet(nn.Module):
 
 
 my_net = MyNet()
+
+# print(my_net) # 打印网络的基本情况
+# my_net.state_dict() 看详细情况
+# net.parameters() # <generator of Parameter>，用法类似 tonsor，例如：
+# [params.size() for params in net.parameters()]
 ```
 
 step3: 定义参数和损失函数
@@ -359,19 +353,10 @@ optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
 
 for epoch in range(epochs):
     for X_train_batch, y_train_batch in dataloader_train:
-        # 每次迭代都要清空梯度
         optimizer.zero_grad()
-
-        # 前向传播
         outputs = my_model(X_train_batch)
-
-        # 计算损失
         loss = criterion(outputs, y_train_batch)
-
-        # 反向传播
         loss.backward()
-
-        # 更新权重参数值
         optimizer.step()
 
     if epoch % 50 == 0:
@@ -387,11 +372,11 @@ y_hat = my_model(X_test).data.numpy()
 
 
 
-## 旧的
+## 一些研究
 
 
 
-进一步研究：不计算梯度 `with torch.no_grad():`
+不计算梯度 `with torch.no_grad():`
 ```python
 x = torch.randn(3, requires_grad=True)
 y = x * x
@@ -404,106 +389,16 @@ with torch.no_grad():
 print(y.requires_grad) # True
 print(y2.requires_grad) # False
 ```
-或者使用 `y = x.detach()` 生成的是数据共享内存，但制定不微分的新 Tensor
-
-## 神经网络
-
-下面这个是官方代码
-```python
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+或者使用 `y = x.detach()` 生成的是数据共享内存，但指定不微分的新 Tensor
 
 
-class Net(nn.Module):
-
-    def __init__(self):
-        super(Net, self).__init__()
-        # 1 input image channel, 6 output channels, 3x3 square convolution
-        # kernel
-        self.conv1 = nn.Conv2d(1, 6, 3)
-        self.conv2 = nn.Conv2d(6, 16, 3)
-        # an affine operation: y = Wx + b
-        self.fc1 = nn.Linear(16 * 6 * 6, 120)  # 6*6 from image dimension
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
-
-    def forward(self, x):
-        # Max pooling over a (2, 2) window
-        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
-        # If the size is a square you can only specify a single number
-        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
-        x = x.view(-1, self.num_flat_features(x))
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
-
-    def num_flat_features(self, x):
-        size = x.size()[1:]  # all dimensions except the batch dimension
-        num_features = 1
-        for s in size:
-            num_features *= s
-        return num_features
 
 
-net = Net()
-
-# 下面是看一眼基本情况
-print(net) # 会打印出 __init__ 中定义的 nn 函数
-net.parameters() # 这是一个 generator，每个元素是一个 Parameter 类型，这个类型和 tensor 很像。例如：
-[params.size() for params in net.parameters()]
-```
-
-### forward&backprops
-
-```python
-# forward
-input = torch.randn(1, 1, 32, 32)
-out = net(input)
-
-# backprops
-net.zero_grad() # parameters 缓冲池归零
-out.backward(torch.randn(1, 10))
-```
-
-### Loss Function
-```python
-input = torch.randn(1, 1, 32, 32)
-output = net(input)
-target = torch.randn(1,10)
-
-criterion = nn.MSELoss()
-loss = criterion(output, target)
-print(loss)
-```
-### Backprop
-求梯度
-```python
-net.zero_grad()
-loss.backward()
-
-net.conv1.bias.grad
-```
 可以手动去做 SGD
 ```python
 learning_rate = 0.01
 for f in net.parameters():
     f.data.sub_(f.grad.data * learning_rate)
-```
-但是推荐这么做
-```python
-import torch.optim as optim
-
-# create your optimizer
-optimizer = optim.SGD(net.parameters(), lr=0.01)
-
-# in your training loop:
-optimizer.zero_grad()   # zero the gradient buffers
-output = net(input)
-loss = criterion(output, target)
-loss.backward()
-optimizer.step()    # Does the update
 ```
 
 
@@ -528,10 +423,6 @@ optimizer=optim.Adam(net.parameters(),weight_decay =0.0001) # weight_decay 是 L
 
 
 ## 从raw建立神经网络
-
-
-
-
 
 ```python
 import numpy as np
