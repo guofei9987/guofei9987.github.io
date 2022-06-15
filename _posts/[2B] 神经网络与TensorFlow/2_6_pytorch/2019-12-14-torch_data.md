@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pytorch】【进行中】data
+title: 【pytorch】data
 categories:
 tags: 0x26_torch
 keywords:
@@ -9,15 +9,6 @@ order: 263
 ---
 
 
-
-
-
-
-
-
-
-
-## 旧
 ## 整体架构
 分为3部分
 1. Transforms
