@@ -17,12 +17,12 @@ order: 263
     - `torchvision.transforms.Compose` 可以把多个串起来，当成一个来用
     - 可以自定义，继承自 `object`
 2. Dataset：
-    - 用来设定如何读取数据源、以及相关控制
-    - 用设计模式来调用 `Transforms`，实现自动的
-    - `torchvision.datasets` 有现成的实现
+    - 用来设定如何读取数据源，整合 Transforms
     - 可以自定义，继承自 `torch.utils.data.Dataset`
-3. DataLoader
-    - 生成一个iterable对象，使用时也是用 `for` 来做的
+    - 也可以用 `dataset = torch.utils.data.Dataset(x_train_tensor, y_train_tensor)`
+    - `torchvision.datasets` 有现成的实现。例如 `torchvision.datasets.ImageFolder()` 以及经典数据集
+3. `torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)`
+    - 是一个iterable对象
 
 
 
@@ -157,4 +157,31 @@ for epoch in range(num_epochs):
         optimizer.step()
     scheduler.step()
 
+```
+
+
+## tmp
+
+
+torchtext 中的一个 transformer
+
+
+```
+import torchtext.transforms as T
+from torch.hub import load_state_dict_from_url
+
+padding_idx = 1
+bos_idx = 0
+eos_idx = 2
+max_seq_len = 256
+xlmr_vocab_path = r"https://download.pytorch.org/models/text/xlmr.vocab.pt"
+xlmr_spm_model_path = r"https://download.pytorch.org/models/text/xlmr.sentencepiece.bpe.model"
+
+text_transform = T.Sequential(
+    T.SentencePieceTokenizer(xlmr_spm_model_path),
+    T.VocabTransform(load_state_dict_from_url(xlmr_vocab_path)),
+    T.Truncate(max_seq_len - 2),
+    T.AddToken(token=bos_idx, begin=True),
+    T.AddToken(token=eos_idx, begin=False),
+)
 ```
