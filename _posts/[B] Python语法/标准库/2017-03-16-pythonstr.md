@@ -79,7 +79,7 @@ a.swapcase() # 返回一个字符串，大写转为小写，同时小写转为�
 'abc! '.strip('a') #去掉指定字符
 
 'abc'.ljust(5) , 'abc'.rjust(5) ,'abc'.center(10)  # 填充空格使其达到指定长度
-'123'.isdecimal(); '123'.isnumeric();'123'.isdigit()
+'123'.isdecimal() # 优先用这个;  '²'.isnumeric();'⅓'.isdigit()
 'ab'.islower();'ab'.isupper()
 
 for <var> in <string>
