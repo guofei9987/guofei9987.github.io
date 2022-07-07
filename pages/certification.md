@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 证书和著作
 ---
 
