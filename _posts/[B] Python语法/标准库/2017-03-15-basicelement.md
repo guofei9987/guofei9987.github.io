@@ -417,6 +417,29 @@ for i in range(10):
 v = memoryview(bytearray("abcefg", 'utf-8'))
 ```
 
+## 类型标注
+
+
+```python
+from typing import List, Tuple, Dict, Union, Optional
+
+
+def func(inp1: List[float], inp2: List[Tuple], inp3: str = "123") -> int:
+    return int(inp3)
+
+
+func([1, 2, 3], [(2, 3)], "12")
+```
+
+别名
+```python
+Vec2D = List[List[int]]
+
+
+def func2(inp: Vec2D):
+    pass
+```
+
 
 
 ## 参考文献
