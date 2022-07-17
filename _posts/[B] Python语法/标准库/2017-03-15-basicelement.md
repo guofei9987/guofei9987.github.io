@@ -85,7 +85,7 @@ type(x) 返回类型
 
 ## tuple
 
-### 特点
+**特点**
 - 元组中的元素可以是不同类型的
 ```python
 t3=123,456,("hello","中国")
@@ -94,19 +94,21 @@ t3=123,456,("hello","中国")
 - 如果tuple中有个list，这个list可以更改
 
 
-### 生成
+**生成**
 ```python
 x=(1,2,3)
 x=1,2,3 # 不加括号也能生成 tuple
 x=1, # 包含一个元素的 tuple
 ```
-### 方法
+
+**方法**
 ```python
 x+y
 3*x
 x[::2]
 ```
-### 特性
+
+**特性**
 ```python
 y=[5,6,7]
 x=(1,2,y)
@@ -116,8 +118,7 @@ y[1]=800
 
 ## list
 
-### 方法
-(与string类似)
+**方法**
 
 ```python
 x+y#连接起来
@@ -134,7 +135,7 @@ a, *b, c = lst
 a, *b = lst
 ```
 
-### 切片
+**切片**
 - 索引从0开始计数，
 - -1是末尾，-2是倒数第二个
 ```py
@@ -204,6 +205,8 @@ list(zip(*a)) # [(1, 2, 3), ('a', 'b', 'c')]
 ```py
 range(start, stop, step)
 ```
+
+
 ## dict
 
 - Python对存储顺序进行了优化
@@ -212,7 +215,7 @@ range(start, stop, step)
 - 值可以是任何类型
 - 命名空间是通过字典来实现的
 
-### 创建
+**创建**
 ```python
 # 构造方法1:
 d={"key1":"value1","key2":"value2"}
@@ -228,7 +231,7 @@ values = ['tom', 22]
 d = dict(zip(keys,values))
 ```
 
-### 修改
+**修改**
 
 ```python
 d["key3"] = 5 # 新增一对key-value，如果有key那么是修改
@@ -242,11 +245,9 @@ d.pop('key1','not exist') # 不存在则返回'not exist', 而不是报错
 d.popitem() # 返回一对 key-value，并将其从字典移除
 
 d.clear() # 清除字典，返回 None
-
-
 ```
 
-### 遍历
+**遍历**
 
 ```python
 for key in my_dict:print(key) #key是str
@@ -256,7 +257,7 @@ for k in my_dict.items():print(k) #k是tuple,里面放着一对key-value;my_dict
 for key,value in my_dict.items():print(key,value)
 ```
 
-### 查询
+**查询**
 ```py
 <dict>.keys() # 返回所有key
 <dict>.values() # 返回所有value
@@ -266,7 +267,7 @@ for key,value in my_dict.items():print(key,value)
 ```
 
 
-### 取值
+**取值**
 
 ```python
 x['bill'] # 取值
@@ -281,7 +282,7 @@ dict1= sorted(word_dict.items(), key=lambda d:d[1], reverse = True)
 
 集合是可变的，`frozenset` 是不可变的
 
-### 集合运算
+**集合运算**
 
 ```python
 z1=x.intersection(y) # 交
@@ -314,7 +315,7 @@ a ^= b
 ```
 
 
-### 方法
+**方法**
 
 ```py
 a.add(9) # 添加一个元素
@@ -334,14 +335,15 @@ set(x)
 
 一些“特性”
 
-### 1
+
 ```py
 sum([0.1 for i in range(10)])==1
+# False
 ```
 
-out:False
 
-### 2效率
+
+**效率**  
 与set/dict相比，list擅长内存使用和迭代，不擅长成员检测$(\Theta (lg n))$   
 list:指定位置修改是$\Theta(1)$   
 链表：指定位置修改$\Theta(n)$,因为需要遍历，平均遍历半个数据量  
@@ -351,7 +353,7 @@ list：插入和删除$\Theta(n)$
 
 
 
-### 3递归引用
+**3递归引用**
 
 ```py
 p = [1, 2, 3]  
@@ -361,7 +363,7 @@ p in p
 
 结果是 True
 
-### 4循环引用
+**4循环引用**
 
 ```py
 a = [1, 2]
@@ -373,7 +375,7 @@ a in b,b in a
 
 结果是(True, True)
 
-### 5
+5
 ```py
 a = [1,2,3]
 b = a[:]
