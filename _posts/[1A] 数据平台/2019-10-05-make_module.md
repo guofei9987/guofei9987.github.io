@@ -443,6 +443,70 @@ after_success:
 `coverage run -p test.py` 可以多条不覆盖  
 `coverage combine` 可以合并多条（经测试，不需要合并多条，就可以codecov上传）
 
+### pytest
+
+文档：https://docs.pytest.org/en/latest/contents.html
+
+安装
+```bash
+pip install -U pytest
+pytest --version
+```
+
+测试范围
+- 测试文件以test_开头（或者_test结尾）
+- 测试类以Test开头，并且不能带有 init 方法
+- 测试函数以test_开头
+- 断言使用assert
+- 在执行pytest命令时，会自动从当前目录及子目录中寻找符合上述约束的测试函数来执行。
+
+
+pytest.main()会自动读取当前目录下的所有test开头的.py文件，运行test方法或者类
+
+```python
+pytest.main(['./'])               # 运行./目录下所有（test_*.py  和 *_test.py）
+pytest.main (['./subpath1'])    # 运行./subpath1 目录下用例
+pytest.main (['./subpath1/test_module1.py'])    # 运行指定模块
+pytest.main (['./subpath1/test_module1.py::test_m1_1'])  # 运行模块中的指定用例
+pytest.main (['./subpath2/test_module2.py::TestM2::test_m2_02'])  # 运行类中的指定用例
+pytest.main (['-k','pp'])         # 匹配包含pp的用例(匹配目录名、模块名、类名、用例名)
+pytest.main(['-k','spec','./subpath1/test_module1.py'])     # 匹配test_module1.py模块下包含spec的用例
+pytest.main(['-k','pp','./subpath2/test_module2.py::TestM2'])   # 匹配TestM2类中包含pp的用例
+```
+
+
+```bash
+# 默认 print 不能显示，用下面这个
+pytest -s
+```
+
+配合gh action（https://docs.codecov.com/docs/github-2-getting-a-codecov-account-and-uploading-coverage）
+
+```yaml
+name: API workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Test python API
+    defaults:
+      run:
+        working-directory: ./api
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install requirements
+      run: pip install -r requirements.txt
+    - name: Run tests and collect coverage
+      run: pytest --cov .
+    - name: Upload coverage reports to Codecov with GitHub Action
+      uses: codecov/codecov-action@v3
+```
+
 
 ## 重新载入包
 ```python
