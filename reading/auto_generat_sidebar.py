@@ -96,7 +96,7 @@ print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 total_words
 with open('media/reading_words.svg', 'w') as f:
     f.write('''<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="112" height="22" role="img">
-  <text x="10" y="20" style="fill:red;">{}万
+  <text x="10" y="20" style="fill:red;">{}万字
   </text>
 </svg>'''.format(round(total_words / 10000, ndigits=1)))
 
@@ -139,18 +139,18 @@ f.close()
 
 # %% 封面
 
-coverpage = '''![logo](media/pic.jpg)
-
-# 郭飞的知识宝库
-
-> By guofei
-
-* 人类必将化身为神
-* (读书笔记累积 {} 字)
-
-[GitHub](https://github.com/guofei9987/guofei9987.github.io)
-[读书](/README)
-'''.format(total_words)
-
-with open('coverpage.md', 'w') as f:
-    f.write(coverpage)
+# coverpage = '''![logo](media/pic.jpg)
+#
+# # 郭飞的知识宝库
+#
+# > By guofei
+#
+# * 人类必将化身为神
+# * (读书笔记累积 {} 字)
+#
+# [GitHub](https://github.com/guofei9987/guofei9987.github.io)
+# [读书](/README)
+# '''.format(total_words)
+#
+# with open('coverpage.md', 'w') as f:
+#     f.write(coverpage)

@@ -101,7 +101,7 @@
     * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_小说/科幻小说.md)
     * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_小说/阿西莫夫.md)
 * A_艺术
-    * [摄影<sup style = "color:red">2767字<sup>](docs/A_艺术/摄影.md)
+    * [摄影<sup style = "color:red">2788字<sup>](docs/A_艺术/摄影.md)
 * G_沟通
     * [做<sup style = "color:red">2132字<sup>](docs/G_沟通/做.md)
     * [写<sup style = "color:red">456字<sup>](docs/G_沟通/写.md)

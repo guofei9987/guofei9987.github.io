@@ -128,7 +128,7 @@
 ###  A_艺术
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/A_艺术/摄影" target="_blank">摄影<sup style = "color:red">2767字<sup></a>|<a href="/reading/#/docs/A_艺术/摄影.md?id=运镜" target="_blank">运镜</a>，<a href="/reading/#/docs/A_艺术/摄影.md?id=打击感" target="_blank">打击感</a>
+|<a href="/reading/#/docs/A_艺术/摄影" target="_blank">摄影<sup style = "color:red">2788字<sup></a>|<a href="/reading/#/docs/A_艺术/摄影.md?id=运镜" target="_blank">运镜</a>，<a href="/reading/#/docs/A_艺术/摄影.md?id=打击感" target="_blank">打击感</a>
 
 ###  G_沟通
 |板块|书目|
