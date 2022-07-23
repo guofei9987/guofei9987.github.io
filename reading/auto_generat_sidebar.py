@@ -79,7 +79,7 @@ for top, dirs, nondirs in path_all:
                    word_num=word_num,
                    title_level_2='，'.join(
                        ['<a href="/reading/#/docs/{block_name}/{article}.md?id={l2}" target="_blank">{l2}</a>'.
-                       format(l2=l2, block_name=block_name, article=article)
+                            format(l2=l2, block_name=block_name, article=article)
                         for l2 in title_level_2]))
 
         data.append([article, block_name, word_num])
@@ -90,6 +90,15 @@ print('_' * 10, 'detail:', '_' * 10)
 print(detail)
 total_words = sum(i[2] for i in data)
 print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
+
+# %%字数svg
+
+total_words
+with open('media/reading_words.svg', 'w') as f:
+    f.write('''<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="112" height="22" role="img">
+  <text x="10" y="20" style="fill:red;">{}万
+  </text>
+</svg>'''.format(round(total_words / 10000, ndigits=1)))
 
 # %% 侧边栏
 head = '''
