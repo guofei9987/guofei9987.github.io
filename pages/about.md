@@ -35,3 +35,23 @@ I contributed:
 
 [![scipy](https://github-readme-stats.vercel.app/api/pin/?username=scipy&repo=scipy&theme=radical)](https://github.com/scipy/scipy)
 [![statsmodels](https://github-readme-stats.vercel.app/api/pin/?username=statsmodels&repo=statsmodels&theme=radical)](https://github.com/guofei9987/statsmodels)
+
+
+<h3>然后就是一些我的联系方式...</h3>
+
+
+<center>
+    <a href="{{ site.author.linkedin }}">
+        <i class="fa fa-linkedin fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="{{ site.author.github }}" target="_blank">
+        <i class="fa fa-github fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="mailto:{{ site.author.email }}">
+        <i class="fa fa-envelope-o fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="/public/donate/qr_wechat.jpg">
+        <i class="fa fa-weixin" style="color:#16a095;font-size:70px;"></i>
+    </a>
+
+</center>
