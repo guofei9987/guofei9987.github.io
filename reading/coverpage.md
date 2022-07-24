@@ -5,7 +5,7 @@
 > By guofei
 
 * 人类必将化身为神
-* (读书笔记累积 576197 字)
+* (读书笔记累积 579384 字)
 
 [GitHub](https://github.com/guofei9987/guofei9987.github.io)
 [读书](/README)

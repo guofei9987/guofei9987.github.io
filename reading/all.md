@@ -106,7 +106,7 @@
 ###  8_管理
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/8_管理/产品" target="_blank">产品<sup style = "color:red">8970字<sup></a>|<a href="/reading/#/docs/8_管理/产品.md?id=《人人都是产品经理》" target="_blank">《人人都是产品经理》</a>
+|<a href="/reading/#/docs/8_管理/产品" target="_blank">产品<sup style = "color:red">9232字<sup></a>|<a href="/reading/#/docs/8_管理/产品.md?id=《人人都是产品经理》" target="_blank">《人人都是产品经理》</a>，<a href="/reading/#/docs/8_管理/产品.md?id=《引爆品牌卖点》阅读中" target="_blank">《引爆品牌卖点》阅读中</a>
 |<a href="/reading/#/docs/8_管理/工作" target="_blank">工作<sup style = "color:red">9102字<sup></a>|<a href="/reading/#/docs/8_管理/工作.md?id=《卓有成效的管理者》" target="_blank">《卓有成效的管理者》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=什么是工作到位？" target="_blank">什么是工作到位？</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《20个职场忠告》" target="_blank">《20个职场忠告》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《不要对上司说的10句话》" target="_blank">《不要对上司说的10句话》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《开窍》" target="_blank">《开窍》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=授权" target="_blank">授权</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《细节决定成败》" target="_blank">《细节决定成败》</a>
 |<a href="/reading/#/docs/8_管理/心灵" target="_blank">心灵<sup style = "color:red">263字<sup></a>|<a href="/reading/#/docs/8_管理/心灵.md?id=《每个人都会死，但我总以为自己不会》" target="_blank">《每个人都会死，但我总以为自己不会》</a>
 |<a href="/reading/#/docs/8_管理/投资" target="_blank">投资<sup style = "color:red">1072字<sup></a>|<a href="/reading/#/docs/8_管理/投资.md?id=《富爸爸穷爸爸》" target="_blank">《富爸爸穷爸爸》</a>
@@ -124,6 +124,11 @@
 |<a href="/reading/#/docs/9_小说/杜拉拉" target="_blank">杜拉拉<sup style = "color:red">13751字<sup></a>|<a href="/reading/#/docs/9_小说/杜拉拉.md?id=《杜拉拉1》" target="_blank">《杜拉拉1》</a>，<a href="/reading/#/docs/9_小说/杜拉拉.md?id=杜拉拉的信" target="_blank">杜拉拉的信</a>，<a href="/reading/#/docs/9_小说/杜拉拉.md?id=《杜拉拉升职记2：华年似水》" target="_blank">《杜拉拉升职记2：华年似水》</a>，<a href="/reading/#/docs/9_小说/杜拉拉.md?id=《杜拉拉升职记》总结" target="_blank">《杜拉拉升职记》总结</a>
 |<a href="/reading/#/docs/9_小说/科幻小说" target="_blank">科幻小说<sup style = "color:red">1446字<sup></a>|<a href="/reading/#/docs/9_小说/科幻小说.md?id=《消失的殖民星球》" target="_blank">《消失的殖民星球》</a>，<a href="/reading/#/docs/9_小说/科幻小说.md?id=《异星歧途》" target="_blank">《异星歧途》</a>
 |<a href="/reading/#/docs/9_小说/阿西莫夫" target="_blank">阿西莫夫<sup style = "color:red">44字<sup></a>|<a href="/reading/#/docs/9_小说/阿西莫夫.md?id=《神们自己》" target="_blank">《神们自己》</a>
+
+###  A_艺术
+|板块|书目|
+|---|---|
+|<a href="/reading/#/docs/A_艺术/摄影" target="_blank">摄影<sup style = "color:red">2767字<sup></a>|<a href="/reading/#/docs/A_艺术/摄影.md?id=运镜" target="_blank">运镜</a>，<a href="/reading/#/docs/A_艺术/摄影.md?id=打击感" target="_blank">打击感</a>
 
 ###  G_沟通
 |板块|书目|
@@ -151,7 +156,7 @@
 |---|---|
 |<a href="/reading/#/docs/Y_碎片阅读/大IP" target="_blank">大IP<sup style = "color:red">4377字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗胖60秒" target="_blank">罗胖60秒</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗振宇视频" target="_blank">罗振宇视频</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗辑思维微信笔记" target="_blank">罗辑思维微信笔记</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=得到" target="_blank">得到</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=时间的朋友2019" target="_blank">时间的朋友2019</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=高晓松" target="_blank">高晓松</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=李永乐" target="_blank">李永乐</a>
 |<a href="/reading/#/docs/Y_碎片阅读/广播剧" target="_blank">广播剧<sup style = "color:red">1699字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=《冬吴相对论》" target="_blank">《冬吴相对论》</a>，<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=《百家讲坛：春秋五霸》" target="_blank">《百家讲坛：春秋五霸》</a>，<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=其它" target="_blank">其它</a>
-|<a href="/reading/#/docs/Y_碎片阅读/文章" target="_blank">文章<sup style = "color:red">7096字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=知乎好文" target="_blank">知乎好文</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=《技术大停滞》" target="_blank">《技术大停滞》</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=天涯kk神作" target="_blank">天涯kk神作</a>
+|<a href="/reading/#/docs/Y_碎片阅读/文章" target="_blank">文章<sup style = "color:red">7254字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=知乎好文" target="_blank">知乎好文</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=《技术大停滞》" target="_blank">《技术大停滞》</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=天涯kk神作" target="_blank">天涯kk神作</a>
 |<a href="/reading/#/docs/Y_碎片阅读/零碎知识" target="_blank">零碎知识<sup style = "color:red">1348字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/零碎知识.md?id=茶叶" target="_blank">茶叶</a>
 
 ###  Z_专业类

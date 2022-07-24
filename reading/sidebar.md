@@ -85,7 +85,7 @@
     * [情商<sup style = "color:red">1836字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">1163字<sup>](docs/7_心理学/行为心理学.md)
 * 8_管理
-    * [产品<sup style = "color:red">8970字<sup>](docs/8_管理/产品.md)
+    * [产品<sup style = "color:red">9232字<sup>](docs/8_管理/产品.md)
     * [工作<sup style = "color:red">9102字<sup>](docs/8_管理/工作.md)
     * [心灵<sup style = "color:red">263字<sup>](docs/8_管理/心灵.md)
     * [投资<sup style = "color:red">1072字<sup>](docs/8_管理/投资.md)
@@ -100,6 +100,8 @@
     * [杜拉拉<sup style = "color:red">13751字<sup>](docs/9_小说/杜拉拉.md)
     * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_小说/科幻小说.md)
     * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_小说/阿西莫夫.md)
+* A_艺术
+    * [摄影<sup style = "color:red">2767字<sup>](docs/A_艺术/摄影.md)
 * G_沟通
     * [做<sup style = "color:red">2132字<sup>](docs/G_沟通/做.md)
     * [写<sup style = "color:red">456字<sup>](docs/G_沟通/写.md)
@@ -118,7 +120,7 @@
 * Y_碎片阅读
     * [大IP<sup style = "color:red">4377字<sup>](docs/Y_碎片阅读/大IP.md)
     * [广播剧<sup style = "color:red">1699字<sup>](docs/Y_碎片阅读/广播剧.md)
-    * [文章<sup style = "color:red">7096字<sup>](docs/Y_碎片阅读/文章.md)
+    * [文章<sup style = "color:red">7254字<sup>](docs/Y_碎片阅读/文章.md)
     * [零碎知识<sup style = "color:red">1348字<sup>](docs/Y_碎片阅读/零碎知识.md)
 * Z_专业类
     * [数据安全<sup style = "color:red">2758字<sup>](docs/Z_专业类/数据安全.md)
