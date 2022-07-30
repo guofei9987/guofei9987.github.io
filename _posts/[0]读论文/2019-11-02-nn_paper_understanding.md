@@ -131,7 +131,7 @@ fitness：把image放入DNN，if the image generates a higher prediction score f
 - 第三种找到 fooling image 的方法。
 
 
-## How transferable are features in deep neural networks
+## 3. How transferable are features in deep neural networks
 
 
 
@@ -173,7 +173,7 @@ transfer learning 可以这样：
 - 如果 target datasets 较大，前n层参数不多，用 fine-tune 可以提升表现。
 - 当然，如果 target datasets 很大，你也用不着 transfer learning 了，直接训练一个新模型也可以。
 
-## Generality vs. Specificity Measured as Transfer Performance
+### Generality vs. Specificity Measured as Transfer Performance
 ImageNet有1000个class，随机分成2组，各500个class，分别训练两个8层CNN  
 起名叫 baseA, baseB  
 n从1到7，构造如下的网络：（下面以n=3为例）
@@ -189,7 +189,7 @@ n从1到7，构造如下的网络：（下面以n=3为例）
 ![](/pictures_for_blog/papers/transferable-features.png)  
 
 
-## 结果分析
+### 结果分析
 
 ![](/pictures_for_blog/papers/transferable-features2.png)  
 
@@ -211,3 +211,32 @@ n从1到7，构造如下的网络：（下面以n=3为例）
 
 右上角的图，是为了对2004和2009年两个大神的结论做进一步研究。当时的结论是，random convolutional filters, rectification, pooling, and local normalization 的组合，也能 work。  
 这里看到n=1,2 时，表现下降，并在n=3时表现变成0
+
+
+## 4. CNN features off-the-Shelf: An astounding baseline for recognition
+
+- **CNN features off-the-Shelf: An astounding baseline for recognition** (2014), A. Razavian et al. [[pdf]](http://www.cv-foundation.org//openaccess/content_cvpr_workshops_2014/W15/papers/Razavian_CNN_Features_Off-the-Shelf_2014_CVPR_paper.pdf)
+- 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
+
+### abstract&introduction
+最近的研究表明，从CNN中提取的generic descriptors很强大，这篇论文进一步实锤了。  
+
+本文使用 OverFeat 模型（一种CNN模型），这个模型：
+- 有96-1024个3×3-7×7的卷积核  
+- 激活函数是 Half-wave rectification
+- Max Pooling是 3×3和5×5的
+
+### Visual Classification
+
+- feature vector 做了 L2 normalize然后在这上面做SVM，这叫做CNN-SVM
+- 训练集增强（方法是对样本进行裁切和旋转），这叫做CNNaug-SVM
+- 这里用了 1-against-all 策略，但其他地方用 1-against-1 策略
+- 数据有两组：Pascal VOC（1万张图片，20个类） 和 MIT-67 indoor scenes（1.5万张图片）
+
+
+结论是，CNN-SVM 能良好的工作，CNNaug-SVM的表现更为良好
+
+然后，论文又在 Object Detection 上做了实验，再其他数据集上也是。
+
+### 结论
+CNN在提取特征上，很有竞争力。
