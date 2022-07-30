@@ -34,7 +34,7 @@ stroke:rgb(0,0,0)"/>
 </svg>
 ```
 <svg width="100%" height="100%">
-<rect x=1 y=20 rx=30 ry=5 width="300" height="100"
+<rect x=1 y=20 rx=30 ry=5 width="200" height="100"
 style="fill:rgb(0,0,255);stroke-width:1;
 stroke:rgb(0,0,0)"/>
 </svg>
@@ -155,8 +155,8 @@ style="fill:white;stroke:red;stroke-width:2"/>
 ### 文字
 
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <text x="10" y="20" style="fill:red;">文字
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="50" height="20" role="img">
+  <text x="0" y="20" style="fill:red;">文字
   </text>
 </svg>
 
@@ -513,7 +513,7 @@ style="fill:url(#grey_blue)"/>
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1">
 <g transform="translate(100,100)">
 <text id="TextElement" x="0" y="0" style="font-family:Verdana;font-size:24"> It's SVG!
-    <animateMotion path="M 0 0 L 100 100" dur="5s" fill="freeze"/>
+    <animateMotion path="M 0 0 L 100 100" dur="5s" fill="freeze" repeatCount="indefinite"/>
 </text>
 </g>
 </svg>
@@ -523,10 +523,9 @@ style="fill:url(#grey_blue)"/>
 <g transform="translate(100,100)">
 <text id="TextElement" x="0" y="0" style="font-family:Verdana;font-size:24; visibility:hidden"> It's SVG!
     <set attributeName="visibility" attributeType="CSS" to="visible" begin="1s" dur="5s" fill="freeze"/>
-    <animateMotion path="M 0 0 L 100 100" begin="1s" dur="5s" fill="freeze"/>
-    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="-30" to="0" begin="1s" dur="5s" fill="freeze"/>
-    <animateTransform attributeName="transform" attributeType="XML" type="scale" from="1" to="3" additive="sum" begin="1s" dur="5s" fill="freeze"/>
+    <animateMotion path="M 0 0 L 100 100" begin="1s" dur="5s" fill="freeze" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="-30" to="0" begin="1s" dur="5s" fill="freeze" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" attributeType="XML" type="scale" from="1" to="3" additive="sum" begin="1s" dur="5s" fill="freeze" repeatCount="indefinite"/>
 </text>
 </g>
 </svg>
-### 沿一个运动路径移动、旋转并缩放的文本 + 逐步放大并改变颜色的矩形
