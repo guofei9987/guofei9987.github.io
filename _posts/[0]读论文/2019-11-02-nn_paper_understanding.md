@@ -343,3 +343,8 @@ pooling是不可逆的，因此需要一定的期缴来处理。在做pooling时
 训练：用的是 ImageNet 2012，细节就不摘抄了。
 
 可视化：用前面写的 deconvnet，对某个激活值，不是给出最大的图片，而是给出top9
+
+
+## 7. DeCAF: A Deep Convolutional Activation Feature for Generic Visual Recognition
+
+DeCAF 神经网络计算框架
