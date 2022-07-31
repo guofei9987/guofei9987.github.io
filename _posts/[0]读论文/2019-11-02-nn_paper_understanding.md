@@ -240,3 +240,106 @@ n从1到7，构造如下的网络：（下面以n=3为例）
 
 ### 结论
 CNN在提取特征上，很有竞争力。
+
+
+
+
+
+
+
+
+## 5. 【2014】Learning and transferring mid-Level image representations using convolutional neural networks
+
+- **Learning and transferring mid-Level image representations using convolutional neural networks** (2014), M. Oquab et al. [[pdf]](http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Oquab_Learning_and_Transferring_2014_CVPR_paper.pdf)
+- 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
+
+
+
+CNN最近获得了成功，这得益于它能学到大量的 mid-Level image representations，而不是手动设计的低级特征。  
+
+然而，CNN需要巨大的参数量，以及大量的标记图片，限制了CNN在有限训练集上的应用。
+
+这篇论文展示了，可以在一个训练集上训练得到数据，然后 transfer 到其它训练集。
+
+### 相关进展
+名词：原本的训练叫做 `source task`，后来的训练叫做 `target task`
+### 1. transfer learning 有一些用法：
+- 弥补某些类别数据不足的问题
+- 同一类别，source domain和target domain 数据情况不一致（例如图片的亮度、背景和视角不一样）
+
+### 2. visual object classification
+例如，一些 clustering 方法，（K-means，GMM），Histogram encoding，spatial pooling，等。
+
+这些方法实践证明挺好，但还不清楚是否是最优的方案。
+### 3. Deap Learning
+不多说
+
+### transfering CNN weights
+CNN 有 60M parameters，所以往往需要 transfer learning 来训练它
+
+- 显式的做一个映射，把 source task 的 label 映射到 target task
+- 借助一些 sliding window detectors 方法，下面会详细说
+
+
+举例来说，你的 source task 是识别不同狗的种类，而 target task 仅需要把狗识别出来。  
+那么具体做法是，把最后一层softmax层（记为FC8）拿掉，然后加上一层ReLU（FCa）和一层softmax（FCb）
+
+论文实验中用的 source task 的数据源图片是位于中心、背景噪声极低的。而target task 的数据源图片则未必在中心，且背景复杂。
+
+训练时用了上面说的 sliding window detectors ，具体做法是，按不同比例裁剪图片，每个原始图片得到很多样本。  
+（具体裁剪比例就不摘抄了）  
+
+一些细节处理：
+- 有些图片的某些裁剪，让背景中的物体变成图片的主要部分。论文用共同覆盖比例来解决。
+- 裁剪出来的大多数图片，其实来源于背景。这导致训练集 unbalanced，可以是改变 cost function 的权重，但这里用的是重抽样。
+
+### 训练
+
+这部分是论文主要工作内容，是对各种数据集的验证结果，以及很多细节。最终结论是 transfer learning 是一个挺靠谱的事儿。  
+
+这部分就不摘抄了。
+
+
+
+
+## 6. Visualizing and understanding CNN
+
+- **Visualizing and understanding convolutional networks** (2014), M. Zeiler and R. Fergus [[pdf]](http://arxiv.org/pdf/1311.2901)
+- 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
+
+
+最近人们发现，CNN的效果很好，但没人知道：
+- 为什么表现好
+- 如何提升效果
+
+这篇论文就是要解决这个问题。并提出了一些创新的可视化方法。
+
+### 做法
+这篇文章用的是这种CNN：ReLU、带max pooling、（有时）有正则化。
+
+（原文不够详细，我又查了其它资料）
+
+### deconvnet
+
+**1. Unpooling**
+
+pooling是不可逆的，因此需要一定的期缴来处理。在做pooling时，额外记最大的坐标，然后unpooling的过程中，把相应坐标填进去，其余格子置为0
+
+下面这个示意图是在其他地方找的:
+
+![visualizing_and_understanding1](/pictures_for_blog/papers/Understanding_Generalization_Transfer/visualizing_and_understanding1.png)
+
+**2. Rectification**
+
+因为用的激活函数是ReLu，因此反激活过程也是ReLu
+
+**3. Filtering**
+
+反卷积
+
+
+
+
+训练：用的是 ImageNet 2012，细节就不摘抄了。
+
+可视化：用前面写的 deconvnet，对某个激活值，不是给出最大的图片，而是给出top9
