@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】绘图方法汇总2
+title: 【seaborn】绘图方法汇总2
 categories:
 tags: 0x70_可视化
 keywords:
