@@ -32,9 +32,7 @@ $p_i=\dfrac{\exp(v_i/T)}{\sum\exp(v_i/T)}$
 下一步做distillation，就是把上一步的$p_i$作为y，因为这一步和上一步都用交叉熵作为cost function，我们得到
 $\dfrac{\partial C}{\partial z_i}=\dfrac{1}{T}(q_i-p_i)=\dfrac{1}{T}(\dfrac{\exp(z_i/T)}{\sum_j\exp(z_j/T)}-\dfrac{\exp(v_i/T)}{\sum\exp(v_j/T)})$
 
-### 近似
-
-当T足够大时，
+**近似** 当T足够大时：  
 
 $\dfrac{\partial C}{\partial z_i}\approx \dfrac{1}{T}(\dfrac{1+z_i/T}{N+\sum_j z_j/T}-\dfrac{1+v_i/T}{N+\sum_j v_j/T})$
 
@@ -80,7 +78,7 @@ plt.show()
 - **Deep neural networks are easily fooled: High confidence predictions for unrecognizable images** (2015), A. Nguyen et al. [[pdf]](http://arxiv.org/pdf/1412.1897)
 - 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
 
-### abstract&introduction
+
 DNN识别图片，已经达到 near-human-level，我们想知道算法与人脑的区别。  
 观察到这些现象：
 - 一副狮子图片，稍加变化，就会被识别成其它东西。这个变化对人类来说微乎其微。
@@ -218,7 +216,6 @@ n从1到7，构造如下的网络：（下面以n=3为例）
 - **CNN features off-the-Shelf: An astounding baseline for recognition** (2014), A. Razavian et al. [[pdf]](http://www.cv-foundation.org//openaccess/content_cvpr_workshops_2014/W15/papers/Razavian_CNN_Features_Off-the-Shelf_2014_CVPR_paper.pdf)
 - 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
 
-### abstract&introduction
 最近的研究表明，从CNN中提取的generic descriptors很强大，这篇论文进一步实锤了。  
 
 本文使用 OverFeat 模型（一种CNN模型），这个模型：
@@ -242,13 +239,7 @@ n从1到7，构造如下的网络：（下面以n=3为例）
 CNN在提取特征上，很有竞争力。
 
 
-
-
-
-
-
-
-## 5. 【2014】Learning and transferring mid-Level image representations using convolutional neural networks
+## 5. Learning and transferring mid-Level image representations using convolutional neural networks
 
 - **Learning and transferring mid-Level image representations using convolutional neural networks** (2014), M. Oquab et al. [[pdf]](http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Oquab_Learning_and_Transferring_2014_CVPR_paper.pdf)
 - 镜像地址 [pdf](https://github.com/guofei9987/pictures_for_blog/tree/master/papers)
@@ -261,8 +252,8 @@ CNN最近获得了成功，这得益于它能学到大量的 mid-Level image rep
 
 这篇论文展示了，可以在一个训练集上训练得到数据，然后 transfer 到其它训练集。
 
-### 相关进展
-名词：原本的训练叫做 `source task`，后来的训练叫做 `target task`
+（相关进展）名词：原本的训练叫做 `source task`，后来的训练叫做 `target task`
+
 ### 1. transfer learning 有一些用法：
 - 弥补某些类别数据不足的问题
 - 同一类别，source domain和target domain 数据情况不一致（例如图片的亮度、背景和视角不一样）
