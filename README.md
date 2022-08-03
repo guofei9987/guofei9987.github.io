@@ -1,25 +1,21 @@
 
 
-
-## 0x00_读论文 （11 篇）
+## 0x00_读论文 （8 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
-|<font color="#FF9224">0</font>|【读论文】prophet|[链接](https://www.guofei.site/2019/10/20/prophet.html)|
-|<font color="#FF9224">1</font>|【论文笔记】Distilling the Knowledge in a Neural Network|[链接](https://www.guofei.site/2019/11/02/distilling_knowledge.html)|
-|<font color="#FF9224">2</font>|【论文笔记】Deep neural networks are easily fooled|[链接](https://www.guofei.site/2019/11/03/dnn_fooled.html)|
-|<font color="#FF9224">3</font>|【论文笔记】How transferable are features in deep neural networks|[链接](https://www.guofei.site/2019/11/04/transferable_features.html)|
-|<font color="#FF9224">4</font>|【论文笔记】CNN features off-the-Shelf|[链接](https://www.guofei.site/2019/11/05/cnn_features_off_the_shelf.html)|
-|<font color="#FF9224">5</font>|【论文笔记】Learning and transferring mid-Level image representations CNN|[链接](https://www.guofei.site/2019/11/06/transfer_learning_dnn.html)|
-|<font color="#FF9224">6</font>|【论文学习】深度学习“里程碑”论文|[链接](https://www.guofei.site/2021/10/13/paper_dl_basics.html)|
+|<font color="#FF9224">0</font>|【论文学习】论文目录|[链接](https://www.guofei.site/2018/08/11/papers.html)|
+|<font color="#FF9224">1</font>|【论文学习7篇】Understanding/Generalization/Transfer|[链接](https://www.guofei.site/2019/11/02/nn_paper_understanding.html)|
+|<font color="#FF9224">2</font>|【论文笔记】Optimization/Training Techniques|[链接](https://www.guofei.site/2019/11/03/nn_papers_train.html)|
+|<font color="#FF9224">4</font>|【论文笔记】CNN|[链接](https://www.guofei.site/2019/11/05/cnn.html)|
 |<font color="#FF9224">6</font>|【论文2018】【推荐算法】Alibaba Embedding|[链接](https://www.guofei.site/2020/02/08/alibaba_embedding.html)|
 |<font color="#FF9224">6</font>|【读论文2016】node2vec|[链接](https://www.guofei.site/2020/02/02/node2vec.html)|
 |<font color="#FF9224">6</font>|【论文2014】Deep Walk|[链接](https://www.guofei.site/2020/02/01/deep_walk.html)|
-|<font color="#FF9224">6</font>|【论文笔记】Visualizing and understanding CNN|[链接](https://www.guofei.site/2019/11/07/transfer_learning_dnn.html)|
+|<font color="#FF9224">99</font>|【读论文】prophet|[链接](https://www.guofei.site/2019/10/20/prophet.html)|
 
 
 
-## 0x11_算法平台 （16 篇）
+## 0x11_算法平台 （14 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
@@ -31,8 +27,6 @@
 |<font color="#FF9224">155</font>|【spark】sql.functions|[链接](https://www.guofei.site/2019/01/26/sparkfunctions.html)|
 |<font color="#FF9224">159</font>|【spark】工程实践|[链接](https://www.guofei.site/2018/11/15/sparkpractice.html)|
 |<font color="#FF9224">162</font>|【Hive SQL】速查|[链接](https://www.guofei.site/2018/03/01/hive2.html)|
-|<font color="#FF9224">173</font>|【Python-c】Python 与 C 混合编程|[链接](https://www.guofei.site/2021/11/06/python_c.html)|
-|<font color="#FF9224">173</font>|【PMML】Java调用Python算法模型|[链接](https://www.guofei.site/2021/09/12/pmml.html)|
 |<font color="#FF9224">173</font>|打包Python库|[链接](https://www.guofei.site/2019/10/05/make_module.html)|
 |<font color="#FF9224">173</font>|mySQL配置|[链接](https://www.guofei.site/2015/01/30/mySQL.html)|
 |<font color="#FF9224">175</font>|【SQL】通用语法|[链接](https://www.guofei.site/2015/02/03/SQL.html)|
@@ -55,9 +49,9 @@
 |<font color="#FF9224">107</font>|【pandas】时间序列|[链接](https://www.guofei.site/2017/11/29/pandascleandata8.html)|
 |<font color="#FF9224">107</font>|【pandas】合并数据表|[链接](https://www.guofei.site/2017/07/04/pandasconcat.html)|
 |<font color="#FF9224">120</font>|【pandas】练习题|[链接](https://www.guofei.site/2017/10/29/pandascleandata7.html)|
-|<font color="#FF9224">200</font>|【Python】【numpy】ndarray|[链接](https://www.guofei.site/2017/07/05/ndarray.html)|
-|<font color="#FF9224">1101</font>|【Python】【numpy】linalg线性代数|[链接](https://www.guofei.site/2017/07/05/numpylinalg.html)|
-|<font color="#FF9224">1102</font>|【Python】【numpy】ufunc|[链接](https://www.guofei.site/2017/07/05/ufunc.html)|
+|<font color="#FF9224">200</font>|【numpy】ndarray|[链接](https://www.guofei.site/2017/07/05/ndarray.html)|
+|<font color="#FF9224">1101</font>|【numpy】linalg线性代数|[链接](https://www.guofei.site/2017/07/05/numpylinalg.html)|
+|<font color="#FF9224">1102</font>|【numpy】ufunc|[链接](https://www.guofei.site/2017/07/05/ufunc.html)|
 
 
 
@@ -177,15 +171,18 @@
 
 
 
-## 0x26_torch （5 篇）
+## 0x26_torch （8 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
 |<font color="#FF9224">261</font>|【pytorch】【进行中】基本配置|[链接](https://www.guofei.site/2019/12/07/torch_setting.html)|
-|<font color="#FF9224">262</font>|【pytorch】【进行中】建立模型|[链接](https://www.guofei.site/2019/12/08/torch_model.html)|
-|<font color="#FF9224">263</font>|【pytorch】【进行中】hub|[链接](https://www.guofei.site/2019/12/21/torch_hub.html)|
-|<font color="#FF9224">263</font>|【pytorch】【进行中】运算符|[链接](https://www.guofei.site/2019/12/15/torch_operators.html)|
-|<font color="#FF9224">263</font>|【pytorch】【进行中】data|[链接](https://www.guofei.site/2019/12/14/torch_data.html)|
+|<font color="#FF9224">262</font>|【pytorch】GAN|[链接](https://www.guofei.site/2022/06/18/gan.html)|
+|<font color="#FF9224">262</font>|【pytorch】RNN|[链接](https://www.guofei.site/2022/06/14/torch_rnn.html)|
+|<font color="#FF9224">262</font>|【pytorch】CNN|[链接](https://www.guofei.site/2022/06/05/torch_cnn.html)|
+|<font color="#FF9224">262</font>|【pytorch】建立模型|[链接](https://www.guofei.site/2019/12/08/torch_model.html)|
+|<font color="#FF9224">263</font>|【pytorch】hub|[链接](https://www.guofei.site/2019/12/21/torch_hub.html)|
+|<font color="#FF9224">263</font>|【pytorch】运算符|[链接](https://www.guofei.site/2019/12/15/torch_operators.html)|
+|<font color="#FF9224">263</font>|【pytorch】data|[链接](https://www.guofei.site/2019/12/14/torch_data.html)|
 
 
 
@@ -290,17 +287,18 @@
 
 
 
-## 0x51_代数与分析 （13 篇）
+## 0x51_代数与分析 （14 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
 |<font color="#FF9224">5101</font>|【代数1】线性空间|[链接](https://www.guofei.site/2018/04/09/algebra.html)|
 |<font color="#FF9224">5102</font>|【代数2】线性映射|[链接](https://www.guofei.site/2018/04/13/algebra2.html)|
 |<font color="#FF9224">5103</font>|【代数3】多项式|[链接](https://www.guofei.site/2018/12/23/algebra3.html)|
+|<font color="#FF9224">5104</font>|【代数4】矩阵|[链接](https://www.guofei.site/2022/02/05/algebra4.html)|
+|<font color="#FF9224">5105</font>|【代数5】群、环、域|[链接](https://www.guofei.site/2021/08/21/algebra_system.html)|
 |<font color="#FF9224">5111</font>|【解析几何】|[链接](https://www.guofei.site/2018/06/07/geometry.html)|
 |<font color="#FF9224">5121</font>|【集合】定义、序偶、可列|[链接](https://www.guofei.site/2021/08/14/set.html)|
 |<font color="#FF9224">5121</font>|【Real analysis(1)】范数、测度和距离|[链接](https://www.guofei.site/2017/06/04/distance.html)|
-|<font color="#FF9224">5122</font>|【代数系统】群、环、域|[链接](https://www.guofei.site/2021/08/21/algebra_system.html)|
 |<font color="#FF9224">5123</font>|【集合】开集、度量空间勒贝格测度|[链接](https://www.guofei.site/2021/09/19/lebesgue_measure.html)|
 |<font color="#FF9224">5123</font>|【Real analysis(3)】Sequence in Metric Space|[链接](https://www.guofei.site/2017/07/19/sequence.html)|
 |<font color="#FF9224">5124</font>|【Real analysis(4)】级数，巴拿赫空间与希尔伯特空间|[链接](https://www.guofei.site/2017/07/23/seriesrealanalysis.html)|
@@ -398,7 +396,7 @@
 
 
 
-## 0x70_可视化 （11 篇）
+## 0x70_可视化 （12 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
@@ -407,7 +405,8 @@
 |<font color="#FF9224">701</font>|【matplotlib】设置|[链接](https://www.guofei.site/2017/09/20/matplotlib.html)|
 |<font color="#FF9224">710</font>|【matplotlib】面向对象绘图|[链接](https://www.guofei.site/2017/09/22/matplotlib1.html)|
 |<font color="#FF9224">721</font>|【matplotlib】绘图方法汇总1|[链接](https://www.guofei.site/2017/09/25/matplotlib2.html)|
-|<font color="#FF9224">722</font>|【Python】绘图方法汇总2|[链接](https://www.guofei.site/2017/11/01/datavisualization.html)|
+|<font color="#FF9224">722</font>|【svg】SVG基础知识、Pygal|[链接](https://www.guofei.site/2022/07/16/svg.html)|
+|<font color="#FF9224">722</font>|【seaborn】绘图方法汇总2|[链接](https://www.guofei.site/2017/11/01/datavisualization.html)|
 |<font color="#FF9224">726</font>|【Matplotlib】3D视图|[链接](https://www.guofei.site/2017/12/08/matplotlib3d.html)|
 |<font color="#FF9224">731</font>|【matplotlib】键鼠响应事件|[链接](https://www.guofei.site/2017/09/26/matplotlib3.html)|
 |<font color="#FF9224">741</font>|【matplotlib】动画|[链接](https://www.guofei.site/2017/09/27/matplotlib4.html)|
@@ -416,30 +415,25 @@
 
 
 
-## 0x80_数据结构与算法 （21 篇）
+## 0x80_数据结构与算法 （16 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
-|<font color="#FF9224">500</font>|【算法】知识体系|[链接](https://www.guofei.site/2017/05/18/algorithm0.html)|
-|<font color="#FF9224">501</font>|【算法】线性表|[链接](https://www.guofei.site/2018/06/30/linear_list.html)|
-|<font color="#FF9224">502</font>|【堆、栈、队列】Queue & Stack & heapq|[链接](https://www.guofei.site/2018/07/01/queue_stack.html)|
-|<font color="#FF9224">503</font>|【数据结构3】hash|[链接](https://www.guofei.site/2017/09/18/hash.html)|
-|<font color="#FF9224">504</font>|【树】定义、表示、最小生成树|[链接](https://www.guofei.site/2021/01/02/tree.html)|
-|<font color="#FF9224">505</font>|【数据结构5】Tree实现|[链接](https://www.guofei.site/2021/01/03/tree_algorithm.html)|
-|<font color="#FF9224">507</font>|【图论】欧拉图、汉密尔顿图|[链接](https://www.guofei.site/2021/10/23/graph2.html)|
-|<font color="#FF9224">507</font>|【数据结构7】Graph|[链接](https://www.guofei.site/2017/05/18/graph.html)|
-|<font color="#FF9224">514</font>|【算法理论6】排序算法（附Python实现）|[链接](https://www.guofei.site/2018/11/20/sort.html)|
-|<font color="#FF9224">515</font>|【算法理论5】递归|[链接](https://www.guofei.site/2017/08/24/recursion.html)|
-|<font color="#FF9224">530</font>|【最小生成树问题】Prim和Kruskal|[链接](https://www.guofei.site/2017/09/12/minimumspanningtree.html)|
-|<font color="#FF9224">530</font>|【概率论】趣味小题|[链接](https://www.guofei.site/2017/08/08/intresting1.html)|
-|<font color="#FF9224">553</font>|【Python数据结构3】Binary Search|[链接](https://www.guofei.site/2018/07/06/python_binary_search.html)|
-|<font color="#FF9224">555</font>|【数据结构算法】动态规划|[链接](https://www.guofei.site/2021/01/09/greedy.html)|
-|<font color="#FF9224">555</font>|【Python数据结构5】Binary Search Tree|[链接](https://www.guofei.site/2018/08/06/binary_search_tree.html)|
-|<font color="#FF9224">580</font>|【Python】【算法题集1】|[链接](https://www.guofei.site/2017/05/03/TrickPython.html)|
-|<font color="#FF9224">590</font>|LeetCode刷题精选篇|[链接](https://www.guofei.site/2020/09/20/lc.html)|
-|<font color="#FF9224">590</font>|LeetCode刷题大全|[链接](https://www.guofei.site/2020/09/19/lc.html)|
-|<font color="#FF9224">590</font>|【Python】【算法题集2】|[链接](https://www.guofei.site/2017/08/28/someproblems.html)|
-|<font color="#FF9224">591</font>|【Python】【算法题集3】|[链接](https://www.guofei.site/2018/07/05/pythonalgorithma.html)|
+|<font color="#FF9224">500</font>|【数据结构0】知识体系|[链接](https://www.guofei.site/2017/05/18/algorithm0.html)|
+|<font color="#FF9224">511</font>|【数据结构1】线性表|[链接](https://www.guofei.site/2018/06/30/linear_list.html)|
+|<font color="#FF9224">521</font>|【数据结构2】Queue、Stack、heapq|[链接](https://www.guofei.site/2018/07/01/queue_stack.html)|
+|<font color="#FF9224">531</font>|【数据结构3】hash|[链接](https://www.guofei.site/2017/09/18/hash.html)|
+|<font color="#FF9224">541</font>|【数据结构4】递归|[链接](https://www.guofei.site/2017/08/24/recursion.html)|
+|<font color="#FF9224">551</font>|【数据结构5】搜索|[链接](https://www.guofei.site/2018/07/06/search.html)|
+|<font color="#FF9224">561</font>|【数据结构6】排序（Python）|[链接](https://www.guofei.site/2018/11/20/sort.html)|
+|<font color="#FF9224">571</font>|【树】定义、表示、最小生成树|[链接](https://www.guofei.site/2021/01/02/tree.html)|
+|<font color="#FF9224">572</font>|【数据结构5】Tree实现|[链接](https://www.guofei.site/2021/01/03/tree_algorithm.html)|
+|<font color="#FF9224">572</font>|【最小生成树】Prim和Kruskal|[链接](https://www.guofei.site/2017/09/12/minimumspanningtree.html)|
+|<font color="#FF9224">581</font>|【图论】欧拉图、汉密尔顿图|[链接](https://www.guofei.site/2021/10/23/graph2.html)|
+|<font color="#FF9224">582</font>|【数据结构8】Graph|[链接](https://www.guofei.site/2017/05/18/graph.html)|
+|<font color="#FF9224">591</font>|【数据结构9】动态规划|[链接](https://www.guofei.site/2021/01/09/greedy.html)|
+|<font color="#FF9224">593</font>|【文章集合】刷题|[链接](https://www.guofei.site/2017/02/11/problem.html)|
+|<font color="#FF9224">599</font>|【概率论】趣味小题|[链接](https://www.guofei.site/2017/08/08/intresting1.html)|
 |<font color="#FF9224">821001</font>|生成迷宫|[链接](https://www.guofei.site/2019/06/22/maze.html)|
 
 
@@ -479,11 +473,11 @@
 |<font color="#FF9224">1252</font>|【Python】爬虫|[链接](https://www.guofei.site/2018/05/03/crawler.html)|
 |<font color="#FF9224">1261</font>|【python】web|[链接](https://www.guofei.site/2021/04/17/pythonweb.html)|
 |<font color="#FF9224">1261</font>|【python】socket|[链接](https://www.guofei.site/2021/04/10/socket.html)|
-|<font color="#FF9224">1301</font>|【Python】magic黑魔法|[链接](https://www.guofei.site/2020/12/05/magic_python.html)|
+|<font color="#FF9224">1265</font>|【python】redis和ES使用简记|[链接](https://www.guofei.site/2022/07/09/redis.html)|
 
 
 
-## 0xd0_设计模式 （7 篇）
+## 0xd0_设计模式 （6 篇）
 
 |文章编号|文章题目|链接|
 |--|--|--|
@@ -492,6 +486,4 @@
 |<font color="#FF9224">1003</font>|【Python】【面向对象】类的特殊成员|[链接](https://www.guofei.site/2017/10/10/specialfield.html)|
 |<font color="#FF9224">1004</font>|【decorator】装饰器|[链接](https://www.guofei.site/2019/10/27/decorator.html)|
 |<font color="#FF9224">1004</font>|【Python】设计模式|[链接](https://www.guofei.site/2019/10/26/design_patterns.html)|
-|<font color="#FF9224">1004</font>|【Python】【面向对象】BIF|[链接](https://www.guofei.site/2018/08/24/bif.html)|
 |<font color="#FF9224">1040</font>|重构|[链接](https://www.guofei.site/2021/04/03/code_refactoring.html)|
-
