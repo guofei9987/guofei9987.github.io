@@ -85,7 +85,7 @@
     * [情商<sup style = "color:red">1836字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">1163字<sup>](docs/7_心理学/行为心理学.md)
 * 8_管理
-    * [产品<sup style = "color:red">9232字<sup>](docs/8_管理/产品.md)
+    * [产品<sup style = "color:red">9856字<sup>](docs/8_管理/产品.md)
     * [工作<sup style = "color:red">9102字<sup>](docs/8_管理/工作.md)
     * [心灵<sup style = "color:red">263字<sup>](docs/8_管理/心灵.md)
     * [投资<sup style = "color:red">1072字<sup>](docs/8_管理/投资.md)

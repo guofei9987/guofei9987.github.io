@@ -106,7 +106,7 @@
 ###  8_管理
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/8_管理/产品" target="_blank">产品<sup style = "color:red">9232字<sup></a>|<a href="/reading/#/docs/8_管理/产品.md?id=《人人都是产品经理》" target="_blank">《人人都是产品经理》</a>，<a href="/reading/#/docs/8_管理/产品.md?id=《引爆品牌卖点》阅读中" target="_blank">《引爆品牌卖点》阅读中</a>
+|<a href="/reading/#/docs/8_管理/产品" target="_blank">产品<sup style = "color:red">9856字<sup></a>|<a href="/reading/#/docs/8_管理/产品.md?id=《人人都是产品经理》" target="_blank">《人人都是产品经理》</a>，<a href="/reading/#/docs/8_管理/产品.md?id=《引爆品牌卖点》阅读中" target="_blank">《引爆品牌卖点》阅读中</a>
 |<a href="/reading/#/docs/8_管理/工作" target="_blank">工作<sup style = "color:red">9102字<sup></a>|<a href="/reading/#/docs/8_管理/工作.md?id=《卓有成效的管理者》" target="_blank">《卓有成效的管理者》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=什么是工作到位？" target="_blank">什么是工作到位？</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《20个职场忠告》" target="_blank">《20个职场忠告》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《不要对上司说的10句话》" target="_blank">《不要对上司说的10句话》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《开窍》" target="_blank">《开窍》</a>，<a href="/reading/#/docs/8_管理/工作.md?id=授权" target="_blank">授权</a>，<a href="/reading/#/docs/8_管理/工作.md?id=《细节决定成败》" target="_blank">《细节决定成败》</a>
 |<a href="/reading/#/docs/8_管理/心灵" target="_blank">心灵<sup style = "color:red">263字<sup></a>|<a href="/reading/#/docs/8_管理/心灵.md?id=《每个人都会死，但我总以为自己不会》" target="_blank">《每个人都会死，但我总以为自己不会》</a>
 |<a href="/reading/#/docs/8_管理/投资" target="_blank">投资<sup style = "color:red">1072字<sup></a>|<a href="/reading/#/docs/8_管理/投资.md?id=《富爸爸穷爸爸》" target="_blank">《富爸爸穷爸爸》</a>

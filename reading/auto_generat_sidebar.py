@@ -95,8 +95,8 @@ print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 
 total_words
 with open('media/reading_words.svg', 'w') as f:
-    f.write('''<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="112" height="22" role="img">
-  <text x="10" y="20" style="fill:red;">{}万字
+    f.write('''<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="67" height="22" role="img">
+  <text x="1" y="20" style="fill:red;">{}万字
   </text>
 </svg>'''.format(round(total_words / 10000, ndigits=1)))
 
