@@ -65,7 +65,7 @@
     * [进化论与生活<sup style = "color:red">1594字<sup>](docs/4_进化论/进化论与生活.md)
 * 5_思维
     * [思考的艺术<sup style = "color:red">3023字<sup>](docs/5_思维/思考的艺术.md)
-    * [批判性思维<sup style = "color:red">11148字<sup>](docs/5_思维/批判性思维.md)
+    * [批判性思维<sup style = "color:red">11143字<sup>](docs/5_思维/批判性思维.md)
     * [统计中的批判思维<sup style = "color:red">8354字<sup>](docs/5_思维/统计中的批判思维.md)
 * 6_科技
     * [1_物理科普<sup style = "color:red">4328字<sup>](docs/6_科技/1_物理科普.md)
@@ -100,8 +100,9 @@
     * [杜拉拉<sup style = "color:red">13751字<sup>](docs/9_小说/杜拉拉.md)
     * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_小说/科幻小说.md)
     * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_小说/阿西莫夫.md)
-* A_艺术
-    * [摄影<sup style = "color:red">2788字<sup>](docs/A_艺术/摄影.md)
+* A_文艺
+    * [摄影<sup style = "color:red">2788字<sup>](docs/A_文艺/摄影.md)
+    * [茶<sup style = "color:red">1348字<sup>](docs/A_文艺/茶.md)
 * G_沟通
     * [做<sup style = "color:red">2132字<sup>](docs/G_沟通/做.md)
     * [写<sup style = "color:red">456字<sup>](docs/G_沟通/写.md)
@@ -120,8 +121,7 @@
 * Y_碎片阅读
     * [大IP<sup style = "color:red">4377字<sup>](docs/Y_碎片阅读/大IP.md)
     * [广播剧<sup style = "color:red">1699字<sup>](docs/Y_碎片阅读/广播剧.md)
-    * [文章<sup style = "color:red">7254字<sup>](docs/Y_碎片阅读/文章.md)
-    * [零碎知识<sup style = "color:red">1348字<sup>](docs/Y_碎片阅读/零碎知识.md)
+    * [文章<sup style = "color:red">7394字<sup>](docs/Y_碎片阅读/文章.md)
 * Z_专业类
     * [数据安全<sup style = "color:red">2758字<sup>](docs/Z_专业类/数据安全.md)
 

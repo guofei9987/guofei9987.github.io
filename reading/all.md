@@ -77,7 +77,7 @@
 |板块|书目|
 |---|---|
 |<a href="/reading/#/docs/5_思维/思考的艺术" target="_blank">思考的艺术<sup style = "color:red">3023字<sup></a>|<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《思考快与慢》" target="_blank">《思考快与慢》</a>，<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《清醒思考的艺术----你最好让别人去犯的52种思维错误》" target="_blank">《清醒思考的艺术----你最好让别人去犯的52种思维错误》</a>，<a href="/reading/#/docs/5_思维/思考的艺术.md?id=《明智行动的艺术：成功决策必须避免的52个思维陷阱》" target="_blank">《明智行动的艺术：成功决策必须避免的52个思维陷阱》</a>
-|<a href="/reading/#/docs/5_思维/批判性思维" target="_blank">批判性思维<sup style = "color:red">11148字<sup></a>|<a href="/reading/#/docs/5_思维/批判性思维.md?id=《逻辑思维简易入门》" target="_blank">《逻辑思维简易入门》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《思考的艺术》" target="_blank">《思考的艺术》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《学会提问》" target="_blank">《学会提问》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《批判性思维工具》" target="_blank">《批判性思维工具》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=思维模版" target="_blank">思维模版</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《知乎周刊：日常经济学》" target="_blank">《知乎周刊：日常经济学》</a>
+|<a href="/reading/#/docs/5_思维/批判性思维" target="_blank">批判性思维<sup style = "color:red">11143字<sup></a>|<a href="/reading/#/docs/5_思维/批判性思维.md?id=《思考的艺术》" target="_blank">《思考的艺术》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《学会提问》" target="_blank">《学会提问》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《批判性思维工具》" target="_blank">《批判性思维工具》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=思维模版" target="_blank">思维模版</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《知乎周刊：日常经济学》" target="_blank">《知乎周刊：日常经济学》</a>，<a href="/reading/#/docs/5_思维/批判性思维.md?id=《逻辑思维简易入门》" target="_blank">《逻辑思维简易入门》</a>
 |<a href="/reading/#/docs/5_思维/统计中的批判思维" target="_blank">统计中的批判思维<sup style = "color:red">8354字<sup></a>|<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《赤裸裸的的统计学》" target="_blank">《赤裸裸的的统计学》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《统计数字会撒谎》" target="_blank">《统计数字会撒谎》</a>，<a href="/reading/#/docs/5_思维/统计中的批判思维.md?id=《数据造假理论》" target="_blank">《数据造假理论》</a>
 
 ###  6_科技
@@ -125,10 +125,11 @@
 |<a href="/reading/#/docs/9_小说/科幻小说" target="_blank">科幻小说<sup style = "color:red">1446字<sup></a>|<a href="/reading/#/docs/9_小说/科幻小说.md?id=《消失的殖民星球》" target="_blank">《消失的殖民星球》</a>，<a href="/reading/#/docs/9_小说/科幻小说.md?id=《异星歧途》" target="_blank">《异星歧途》</a>
 |<a href="/reading/#/docs/9_小说/阿西莫夫" target="_blank">阿西莫夫<sup style = "color:red">44字<sup></a>|<a href="/reading/#/docs/9_小说/阿西莫夫.md?id=《神们自己》" target="_blank">《神们自己》</a>
 
-###  A_艺术
+###  A_文艺
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/A_艺术/摄影" target="_blank">摄影<sup style = "color:red">2788字<sup></a>|<a href="/reading/#/docs/A_艺术/摄影.md?id=运镜" target="_blank">运镜</a>，<a href="/reading/#/docs/A_艺术/摄影.md?id=打击感" target="_blank">打击感</a>
+|<a href="/reading/#/docs/A_文艺/摄影" target="_blank">摄影<sup style = "color:red">2788字<sup></a>|<a href="/reading/#/docs/A_文艺/摄影.md?id=运镜" target="_blank">运镜</a>，<a href="/reading/#/docs/A_文艺/摄影.md?id=打击感" target="_blank">打击感</a>
+|<a href="/reading/#/docs/A_文艺/茶" target="_blank">茶<sup style = "color:red">1348字<sup></a>|<a href="/reading/#/docs/A_文艺/茶.md?id=茶叶" target="_blank">茶叶</a>
 
 ###  G_沟通
 |板块|书目|
@@ -156,8 +157,7 @@
 |---|---|
 |<a href="/reading/#/docs/Y_碎片阅读/大IP" target="_blank">大IP<sup style = "color:red">4377字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗胖60秒" target="_blank">罗胖60秒</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗振宇视频" target="_blank">罗振宇视频</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=罗辑思维微信笔记" target="_blank">罗辑思维微信笔记</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=得到" target="_blank">得到</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=时间的朋友2019" target="_blank">时间的朋友2019</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=高晓松" target="_blank">高晓松</a>，<a href="/reading/#/docs/Y_碎片阅读/大IP.md?id=李永乐" target="_blank">李永乐</a>
 |<a href="/reading/#/docs/Y_碎片阅读/广播剧" target="_blank">广播剧<sup style = "color:red">1699字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=《冬吴相对论》" target="_blank">《冬吴相对论》</a>，<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=《百家讲坛：春秋五霸》" target="_blank">《百家讲坛：春秋五霸》</a>，<a href="/reading/#/docs/Y_碎片阅读/广播剧.md?id=其它" target="_blank">其它</a>
-|<a href="/reading/#/docs/Y_碎片阅读/文章" target="_blank">文章<sup style = "color:red">7254字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=知乎好文" target="_blank">知乎好文</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=《技术大停滞》" target="_blank">《技术大停滞》</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=天涯kk神作" target="_blank">天涯kk神作</a>
-|<a href="/reading/#/docs/Y_碎片阅读/零碎知识" target="_blank">零碎知识<sup style = "color:red">1348字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/零碎知识.md?id=茶叶" target="_blank">茶叶</a>
+|<a href="/reading/#/docs/Y_碎片阅读/文章" target="_blank">文章<sup style = "color:red">7394字<sup></a>|<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=知乎好文" target="_blank">知乎好文</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=《技术大停滞》" target="_blank">《技术大停滞》</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=天涯kk神作" target="_blank">天涯kk神作</a>，<a href="/reading/#/docs/Y_碎片阅读/文章.md?id=微信好文章" target="_blank">微信好文章</a>
 
 ###  Z_专业类
 |板块|书目|

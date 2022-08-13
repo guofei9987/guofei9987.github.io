@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 # print sidebar & detail list
 # 我另外写了一个多叉树实现的版本。
 # 我的目录结构都是两级，且都在docs下，所以也就不需要多叉树了。
