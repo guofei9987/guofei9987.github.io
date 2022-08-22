@@ -79,8 +79,6 @@ a.swapcase() # 返回一个字符串，大写转为小写，同时小写转为�
 'abc! '.strip('a') #去掉指定字符
 
 'abc'.ljust(5) , 'abc'.rjust(5) ,'abc'.center(10)  # 填充空格使其达到指定长度
-'123'.isdecimal() # 优先用这个;  '²'.isnumeric();'⅓'.isdigit()
-'ab'.islower();'ab'.isupper()
 
 for <var> in <string>
 
@@ -102,9 +100,8 @@ isalpha # 全字母返回True。如果出现标点、数字、空格，都返回
 
 isalnum # 如果 string 至少有一个字符并且所有字符都是字母或数字则返回 True,否则返回 False.如果出现标点、空格等，都返回 False
 
-
-isdigit # 如果字符串只包含数字则返回 True 否则返回 False。有小数点也返回 False。有空格也返回False
-isnumeric # 似乎同上
+'123'.isdecimal() # 如果字符串只包含数字则返回 True 否则返回 False。有小数点也返回 False。有空格也返回False
+'²'.isnumeric();'⅓'.isdigit()
 ```
 
 
