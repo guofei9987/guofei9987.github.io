@@ -394,7 +394,7 @@ step2：使用regex对象
 text='a\n b \t  c'
 regex.split(text) # 返回list，regex是 split 的间隔，regex对应的内容以空字符串 '' 的形式也放在 list 中
 
-regex.findall(text) # 返回 list
+regex.findall(text) # 返回 list，等价于 [m.groups() for m in regex1.finditer(text)]
 regex.finditer(text) # 迭代器,存放的是 <SRE_Match object>
 m = regex.match(text) # 从起始位置匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
 regex.fullmatch(text) # 精确全文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
@@ -426,13 +426,22 @@ groups() # 只获取组内的信息，必须分组运算符
 # (另外一提，findall 配合分组运算符的时候，也是只返回分组内的内容)
 
 # 例子：
-regex1 = re.compile('(\d+)\w*(\d+)')
-m1 = regex1.search('123asda1234')
-print(m1.group())  # 返回：123asda1234
+regex1 = re.compile('(?:hello)(\d+)world(\d+)')
+m1 = regex1.search('hello123world4')
+
+# 返回整体匹配，不但包括不加括号的部分，还包括不捕获
+print(m1.group())  # 等价于 m1.group(0)
+# 返回：hello123world4
+
+# 返回第i个分组（i>=1）
+print(m1.group(1))
+# 返回：123
+
+# 返回所有的分组
 print(m1.groups())  # 返回：('123', '4')
 
 
-groupdict() # 返回命名分组信息
+m1.groupdict() # 返回命名分组信息
 ```
 
 ### 分组运算符
