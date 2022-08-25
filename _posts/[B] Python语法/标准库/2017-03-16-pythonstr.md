@@ -397,7 +397,7 @@ regex.split(text) # 返回list，regex是 split 的间隔，regex对应的内容
 regex.findall(text) # 返回 list，等价于 [m.groups() for m in regex1.finditer(text)]
 regex.finditer(text) # 迭代器,存放的是 <SRE_Match object>
 m = regex.match(text) # 从起始位置匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
-regex.fullmatch(text) # 精确全文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
+m = regex.fullmatch(text) # 整文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
 m = regex.search(text) # 扫描并返回第一个成功的匹配，返回同上
 
 regex.sub(replace_char, sentence, count=2) # 把 sentence 前2个符合的语句，替换成replace_char
@@ -429,7 +429,7 @@ groups() # 只获取组内的信息，必须分组运算符
 regex1 = re.compile('(?:hello)(\d+)world(\d+)')
 m1 = regex1.search('hello123world4')
 
-# 返回整体匹配，不但包括不加括号的部分，还包括不捕获
+# 返回整体匹配，包括：加括号部分+不加括号的部分+不捕获
 print(m1.group())  # 等价于 m1.group(0)
 # 返回：hello123world4
 
