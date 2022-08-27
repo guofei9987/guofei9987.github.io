@@ -394,10 +394,10 @@ step2：使用regex对象
 text='a\n b \t  c'
 regex.split(text) # 返回list，regex是 split 的间隔，regex对应的内容以空字符串 '' 的形式也放在 list 中
 
-regex.findall(text) # 返回 list
+regex.findall(text) # 返回 list，等价于 [m.groups() for m in regex1.finditer(text)]
 regex.finditer(text) # 迭代器,存放的是 <SRE_Match object>
 m = regex.match(text) # 从起始位置匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
-regex.fullmatch(text) # 精确全文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
+m = regex.fullmatch(text) # 整文匹配，匹配成功返回 返回<SRE_Match object>，如果匹配不成功，返回None
 m = regex.search(text) # 扫描并返回第一个成功的匹配，返回同上
 
 regex.sub(replace_char, sentence, count=2) # 把 sentence 前2个符合的语句，替换成replace_char
@@ -426,13 +426,22 @@ groups() # 只获取组内的信息，必须分组运算符
 # (另外一提，findall 配合分组运算符的时候，也是只返回分组内的内容)
 
 # 例子：
-regex1 = re.compile('(\d+)\w*(\d+)')
-m1 = regex1.search('123asda1234')
-print(m1.group())  # 返回：123asda1234
+regex1 = re.compile('(?:hello)(\d+)world(\d+)')
+m1 = regex1.search('hello123world4')
+
+# 返回整体匹配，包括：加括号部分+不加括号的部分+不捕获
+print(m1.group())  # 等价于 m1.group(0)
+# 返回：hello123world4
+
+# 返回第i个分组（i>=1）
+print(m1.group(1))
+# 返回：123
+
+# 返回所有的分组
 print(m1.groups())  # 返回：('123', '4')
 
 
-groupdict() # 返回命名分组信息
+m1.groupdict() # 返回命名分组信息
 ```
 
 ### 分组运算符
@@ -518,7 +527,7 @@ re.compile(r'(\w+) is (\1)')
 '\D' # 相当于[^0-9]
 '.' # 匹配任意字符，包括空格，但不能匹配 \n
 '[\u4e00-\u9fa5]' # 全部中文
-'[\uFF00-\uFFFF]' # 全角符号
+'[\uFF00-\uFFFF]' # 全角符号（包括全角字母数字）
 '[\u0000-\u00FF]' # 半角符号
 '[\w@\.\s]' # 可以混合使用，此案例下， \w, \s, @,. 这4种混合都可以匹配到。注意：点是特殊字符，需要转义
 ```
@@ -594,7 +603,6 @@ a|b|c与[abc]相同
 # 不算的：紧挨着的字母、数字、汉字。
 '\b'  # 匹配 'hello' # 得到 2 个空字符串，匹配 'he()llo' 得到4各空字符串
 '\b\w{3}\b' # 可以匹配长度为3的单词。
-
 # 2. 位置符号 '^' 表示字符串的开头，'$'表示字符串的末尾
 '^as' # 表示匹配开头的 as，例如 'asas' 自会匹配到第一个as。另外，如果开头是 \n，就不认了。
 'as$' # 同样道理，匹配末尾的 as。不同的是，允许末尾有一个 \n。
