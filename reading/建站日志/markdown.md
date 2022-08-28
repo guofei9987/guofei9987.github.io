@@ -257,3 +257,22 @@ if __name__ == '__main__':
 ```
 ▓▓▓▓▓▓░░░░ 54%
 ```
+
+### 然后就是一些我的联系方式...
+
+
+<center>
+    <a href="{{ site.author.linkedin }}">
+        <i class="fa fa-linkedin fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="{{ site.author.github }}" target="_blank">
+        <i class="fa fa-github fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="mailto:{{ site.author.email }}">
+        <i class="fa fa-envelope-o fa-lg" style="color:#16a095;font-size:70px;"></i>
+    </a>
+    <a href="/public/donate/qr_wechat.jpg">
+        <i class="fa fa-weixin" style="color:#16a095;font-size:70px;"></i>
+    </a>
+
+</center>
