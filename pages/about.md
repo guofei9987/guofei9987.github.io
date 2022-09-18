@@ -12,7 +12,7 @@ title: 关于
 <a href="https://www.guofei.site/2019/08/31/github_star_counter.html"><img align="right" alt="guofei9987's github stats" width="40%" src="https://github-profile-trophy.vercel.app/?username=guofei9987&title=Stars,Followers&row=1&column=2"></a>
 
 
-- 👯 目前在蚂蚁集团/天堑实验室/算法专家
+- 👯 目前在蚂蚁集团/天堑实验室/算法专家。上一份工作是京东集团/Y事业部/算法专家。
 - 🧮 热爱算法。[2021年，人类首次在另一个星球（火星）实现动力飞行](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)，本人因开源贡献获得 NASA 徽章
 - 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
 - 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) <img alt="Blog Counts" src="https://www.guofei.site/reading/media/reading_words.svg">
