@@ -64,11 +64,20 @@ pub fn usage1(obj1: &impl MyTrait, obj2: &impl MyTrait) -> impl MyTrait {
 }
 
 
-// 4. 上面是个语法糖，下面这个是原始写法。这个写法严格限制每个 T 必须是同一个 Classs
+// 4. 上面是个语法糖，下面这个是原始写法。注：严格限制每个 T 必须是同一个 Class
 pub fn usage2<T: MyTrait, U: MyTrait>(obj1: &T, obj2: &U) {
     println!("input {},{} and  as MyTrait", obj1.my_func1(), obj2.my_func1());
     // return MyClass2 {};
 }
+
+// 5. 可以多个 trait，这个表示inp必须实现2个trait才可以
+// pub fn usage3<T: MyTrait1 + MyTrait2>(inp: T) {}
+
+// 6. where 语句更好看一些
+// pub fn usage3<T, U>(t: T, u: U) -> i32
+//     where T: MyTrait1 + MyTrait2,
+//           U: MyTrait3
+// { 1 }
 
 fn main() {
     let obj1 = MyClass1 {
@@ -95,7 +104,15 @@ fn main() {
 
 
 
+
+
+知识点
+- 不能为别的crate添加 trait，例如，不能给 Vec 添加一个方法/添加一个 Display trait
+
+## trait 作为参数
+
 ？？？trait 作为参数，trait作为返回值
+
 
 
 ##  常见 trait
