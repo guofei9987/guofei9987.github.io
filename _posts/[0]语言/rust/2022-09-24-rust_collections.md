@@ -273,6 +273,7 @@ s1.push_str(s_append); // 不获取所有权
 str1.extend(str2.chars()); // 参数是一个 Iterator
 str1.insert(1, 'd'); // 指定位置插入
 str1.insert_str(1, &*str2); // 指定位置插入
+str1 + &str2; // str1 的所有权被移动
 
 // 删除
 str1.shrink_to_fit(); // 清除未用内存
@@ -492,52 +493,48 @@ std::char::from_digit(15, 20) // 把15 转换为 20进制下的数字表示。 �
 ```Rust
 use std::collections::HashMap;
 
-fn main() {
-    // 新建
-    let mut hash_map = HashMap::new();
-    // 或者 HashMap::from(...);
+// 新建
+let mut hash_map = HashMap::new();
+// 或者 HashMap::from(...);
 
-    // 新建2（实战中往往要这么用）
-    let keys = vec![String::from("blue"), String::from("red")];
-    let values = vec![10, 30];
-    let hash_map2: HashMap<_, _> = keys.iter().zip(values.iter()).collect();
-    println!("{:?}", hash_map2);
-
-
-    // 增&改
-    hash_map.insert(String::from("Blue"), 10);
-    hash_map.insert(String::from("Red"), 20);
-    // 注：insert 之后，HashMap 将获得所有权
-    // 查重复 insert 同一个 key 将覆盖
+// 新建2（实战中往往要这么用）
+let keys = vec![String::from("blue"), String::from("red")];
+let values = vec![10, 30];
+let hash_map2: HashMap<_, _> = keys.iter().zip(values.iter()).collect();
+println!("{:?}", hash_map2);
 
 
-    // 查1
-    let val_opt: Option<&i32> = hash_map.get("Blue");
-    // 返回一个 Option
-    let _b = match val_opt {
-        Some(x) => println!("x={}", x),
-        None => println!("None")
-    };
-
-    // 查2
-    for (key, val) in &hash_map {
-        println!("k:v = {}:{}", key, val);
-    }
-
-    // 改2：循环中改
-
-    for (key, val) in &mut hash_map {
-        println!("k:v = {}:{}", key, val);
-        *val += 100;
-    }
+// 增&改
+hash_map.insert(String::from("Blue"), 10); // 获取所有权
+// 重复 insert 同一个 key 将覆盖
 
 
-    // 删
-    hash_map.remove("red1");
+// 查1
+let val_opt: Option<&i32> = hash_map.get("Blue"); // 获取引用，而不是所有权
+// 返回一个 Option
+let _b = match val_opt {
+    Some(x) => println!("x={}", x),
+    None => println!("None")
+};
 
-
-    println!("{:?}", hash_map);
+// 查2
+for (key, val) in &hash_map {
+    println!("k:v = {}:{}", key, val);
 }
+
+// 改2：循环中改
+
+for (key, val) in &mut hash_map {
+    println!("k:v = {}:{}", key, val);
+    *val += 100;
+}
+
+
+// 删
+hash_map.remove("red1");
+
+
+println!("{:?}", hash_map);
 ```
 
 

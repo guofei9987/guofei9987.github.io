@@ -247,3 +247,42 @@ fn main() {
 说明
 - `Drop` 和 `Copy` 只能有一个
 - ??? https://blog.csdn.net/feiyanaffection/article/details/125574787/
+
+
+### derive：快速的操作符重载
+
+
+```Rust
+#[derive(Debug, PartialEq)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn main() {
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+    println!("Rect is {:?}", rect);
+    // 下面这个格式更好看
+    println!("Rect is {:#?}", rect);
+}
+```
+结果：
+
+```
+Rect is Rectangle { width: 30, height: 50 }
+Rect is Rectangle {
+    width: 30,
+    height: 50,
+}
+```
+
+
+- Debug
+- Eq, PartialEq, Ord, PartialOrd
+- Clone
+- Copy
+- Hash，从 &T 计算哈希值（hash）
+- Default, 创建数据类型的一个空实例。
