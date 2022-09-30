@@ -10,14 +10,6 @@ order: 11204
 
 
 
-
-
-
-
-
-
-
-
 ## 面向对象
 
 参考 https://rustwiki.org/zh-CN/book/ch10-02-traits.html
@@ -303,3 +295,19 @@ Rect is Rectangle {
 - Copy
 - Hash，从 &T 计算哈希值（hash）
 - Default, 创建数据类型的一个空实例。
+
+
+
+## 匿名函数
+
+```Rust
+let func = |num: i32| -> i32{
+    println!("{}", num);
+    return num + 5;
+};
+
+// 也可以省略类型，会自动推导类型
+let func2 = |num| { num + 1 };
+```
+
+更多：https://weread.qq.com/web/reader/d733256071eeeed9d7322fd
