@@ -258,6 +258,13 @@ fn main() {
 - ??? https://blog.csdn.net/feiyanaffection/article/details/125574787/
 
 
+
+
+
+
+
+
+
 ### derive：快速的操作符重载
 
 
@@ -276,6 +283,9 @@ fn main() {
     println!("Rect is {:?}", rect);
     // 下面这个格式更好看
     println!("Rect is {:#?}", rect);
+
+    // PartialEq 实现的功能
+    println!("{}", rect == Rectangle { width: 20, height: 40 })
 }
 ```
 结果：
@@ -286,6 +296,7 @@ Rect is Rectangle {
     width: 30,
     height: 50,
 }
+false
 ```
 
 
