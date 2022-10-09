@@ -161,8 +161,7 @@ pub trait MyTrait2: MyTrait {
 }
 ```
 
-## 常用
-### Iterator
+## Iterator
 
 实现 `for i in obj` 的功能
 
@@ -202,7 +201,7 @@ fn main() {
 ```
 
 
-### 操作符重载
+## 操作符重载
 
 |        类别        |            特型              |                 操作符              |
 |:------------------:|:--------------------------------:|:--------------------------:|
@@ -248,7 +247,7 @@ fn main() {
 参考：https://blog.csdn.net/feiyanaffection/article/details/125574733
 
 
-### 常用 trait
+## 常用 trait
 
 
 <table><thead><tr><th>特型</th><th>简介</th></tr></thead><tbody><tr><td><code>Drop</code></td><td>解构函数。清除值时 Rust 自动运行的清除代码</td></tr><tr><td><code>Sized</code></td><td>标记特型，针对编译时可以知道大小的类型（而不是像切片那样动态大小的类型）</td></tr><tr><td><code>Clone</code></td><td>针对支持克隆值的类型</td></tr><tr><td><code>Copy</code></td><td>标记特型，针对可以简单地对内存中包含的值进行逐字节复制来克隆的类型</td></tr><tr><td><code>Deref</code> 与 <code>DerefMut</code></td><td>智能指针类型的特型</td></tr><tr><td><code>Default</code></td><td>针对有合理 “默认值” 的类型</td></tr><tr><td><code>AsRef</code> 与 <code>AsMut</code></td><td>转换特型，借用某种类型的引用</td></tr><tr><td><code>Borrow</code> 与 <code>BorrowMut</code></td><td>转换特型，类似 <code>AsRef</code> 与 <code>AsMut</code>，但额外保证一致的散列、顺序和相等</td></tr><tr><td><code>From</code> 与 <code>Into</code></td><td>转换特型，将某种类型的值转换为另一种类型</td></tr><tr><td><code>ToOwned</code></td><td>转换特型，将引用转换为所有值</td></tr></tbody></table>
@@ -259,9 +258,57 @@ fn main() {
 
 
 
+### deref
+
+```Rust
+use std::ops::Deref;
 
 
+struct MyBox<T>(T);
 
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
+
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    // *obj 返回的值
+    fn deref(&self) -> &T {
+        &self.0
+    }
+}
+
+
+fn main() {
+    let x = MyBox::new(3);
+    assert_eq!(3, *x);
+}
+```
+
+### Drop
+
+```Rust
+struct MyStruct {
+    data: String,
+}
+
+impl Drop for MyStruct {
+    fn drop(&mut self) {
+        println!("Dropped MyStruct with data {}", self.data);
+    }
+}
+
+// 1. 可以手动drop，触发 drop 方法
+let c = MyStruct { data: String::from("data3") };
+drop(c);
+
+let a = MyStruct { data: String::from("data1") };
+let b = MyStruct { data: String::from("data2") };
+// 程序块末尾会先Drop2后Drop1
+```
 
 
 
@@ -306,6 +353,8 @@ false
 - Copy
 - Hash，从 &T 计算哈希值（hash）
 - Default, 创建数据类型的一个空实例。
+
+
 
 
 
