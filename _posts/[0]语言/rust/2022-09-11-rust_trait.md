@@ -207,11 +207,11 @@ fn main() {
 |:------------------:|:--------------------------------:|:--------------------------:|
 | 一元操作符         | `std::ops::Neg` <br> `std::ops::Not` | `-x` <br> `!x` |
 | 算术操作符         | `std::ops::Add` <br> `std::ops::Sub` <br> `std::ops::Mul` <br> `std::ops::Div` <br> `std::ops::Rem` | `x + y` <br> `x - y` <br> `x * y` <br> `x / y` <br> `x % y`  |
-| 位操作符           | `std::ops::BitAnd` <br> `std::ops::BitOr` <br>`std::ops::BitXor` <br> `std::ops::Shl`<br> `std::ops::Shr`  | `x & y` <br> `x - y` <br> `x * y` <br> `x / y` <br> `x % y` |
-| 复合赋值算术操作符 | `std::ops::AddAssign` <br> `std::ops::SubAssign` <br> `std::ops::MulAssign` <br> `std::ops::DivAssign` <br> `std::ops::RemAssign` | `x += y` <br> `x -= y` <br> `x *= y` <br> `x /= y` <br> `x %= y`  |
-| 复合赋值位操作符   | `std::ops::BitAndAssign` <br> `std::ops::BitOrAssign` <br> `std::ops::BitXorAssing` <br> `std::ops::ShlAssign` <br> `std::ops::ShrAssign` | `x &= y` <br> x  |
+| 位操作符           | `std::ops::BitAnd` <br> `std::ops::BitOr` <br>`std::ops::BitXor` <br> `std::ops::Shl`<br> `std::ops::Shr`  | `x & y` <br> `x | y` <br> `x ^ y` <br> `x << y` <br> `x >> y` |
+| 算术赋值操作符 | `std::ops::AddAssign` <br> `std::ops::SubAssign` <br> `std::ops::MulAssign` <br> `std::ops::DivAssign` <br> `std::ops::RemAssign` | `x += y` <br> `x -= y` <br> `x *= y` <br> `x /= y` <br> `x %= y`  |
+| 位赋值操作符   | `std::ops::BitAndAssign` <br> `std::ops::BitOrAssign` <br> `std::ops::BitXorAssing` <br> `std::ops::ShlAssign` <br> `std::ops::ShrAssign` | `x &= y` <br> 其它 |
 | 比较               | `std::cmp::PartialEq` <br>` std::cmp::PartialOrd` | `x == y`、`x != y` 分别对应 `eq(), ne()` <br> `x < y`、`x <= y`、`x > y`、`x >= y` |
-| 索引               | `std::ops::Index` <br> ` std::ops::IndexMut`  | `x[y]`、`&x[y]` <br> `x[y] = z`、`&mut x[y]`  |
+| 索引               | `std::ops::Index` <br> `std::ops::IndexMut`  | `x[y]`、`&x[y]` <br> `x[y] = z`、`&mut x[y]`  |
 
 
 
