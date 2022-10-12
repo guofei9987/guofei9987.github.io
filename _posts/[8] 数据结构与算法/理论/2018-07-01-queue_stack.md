@@ -37,8 +37,13 @@ class Stack(list):
 
 ### 队列
 
-用 list 实现队列
-- 缺点：内存会一直增加
+以下是队列的不同实现
+- Queue：借用 deque（底层是循环 array），是效率最高的了
+- Queue1：用 list 实现队列
+- Queue2：用 list 实现队列，并且每次take都清除多余
+- Queue3：用链表
+- Queue4：用 list 实现队列，并且当多余信息过多时清除多余
+
 
 ```py
 # 缺点：内存会一直增加
@@ -111,7 +116,7 @@ class Queue4(object):
 from collections import deque
 
 
-# 使用循环链表
+# 使用 deque （循环array），最快的方案
 class Queue(object):
     def __init__(self):
         self.q = deque()

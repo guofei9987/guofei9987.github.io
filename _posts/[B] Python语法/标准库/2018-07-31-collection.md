@@ -65,8 +65,10 @@ for i in range(5):
 ```
 
 ### deque
-对 `list` 进行了改进，使得在头部和尾部进行 pop 和 append 操作时，都是 O(1) performance.  
-对比之下，`list` 进行pop(0) 和 insert(0,value) 都是 O(n) performance.  
+- 对 `list` 进行了改进，使得在头部和尾部进行 pop 和 append 操作时，都是 O(1) performance.  
+- 对比之下，`list` 进行pop(0) 和 insert(0,value) 都是 O(n) performance.  
+- 底层实现是环形array
+
 
 ```py
 import collections

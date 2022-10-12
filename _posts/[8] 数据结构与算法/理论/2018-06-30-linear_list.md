@@ -94,14 +94,24 @@ class MyLinkedList:
             curr = curr.next
             self.size += 1
 
-    def __repr__(self):
-        curr = self.head
-        list_str = curr.val
-        curr = curr.next
+    def to_list(self):
+        curr = self.head.next
+        res = list()
         while curr is not None:
-            list_str += ' -> ' + str(curr.val)
+            res.append(curr.val)
             curr = curr.next
-        return list_str
+        return res
+
+    def __repr__(self):
+        return ' -> '.join([self.head.val] + [str(i) for i in self.to_list()])
+
+
+if __name__ == "__main__":
+    my_linked_list = MyLinkedList()
+    lst = [1, 1, 2, 3, 4, 5]
+    my_linked_list.from_list(lst)
+    assert my_linked_list.to_list() == lst
+    print(my_linked_list)
 ```
 
 LeetCode 给的格式都是不带头节点的，做个 next 即可
