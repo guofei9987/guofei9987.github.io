@@ -10,6 +10,32 @@ order: 572
 
 ## 二叉树的数据结构
 
+### 结构化存储
+
+
+维护下面的这个表：  
+
+|data|leftChild|rightChild|
+|--|--|--|
+|0|1|2|
+|1|3|-1（表示指向空指针）|
+|...|...|...|
+
+
+
+
+### 链式存储
+
+```py
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+```
+
+left 和 right 都是指针，指向下一个节点
+
+
+
 ### 顺序存储结构
 
 
@@ -27,31 +53,7 @@ order: 572
   - 优点是节省空间，尤其是有很多空节点的二叉树。
 
 
-### 链式存储
-
-```py
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val, self.left, self.right = val, left, right
-```
-
-left 和 right 都是指针，指向下一个节点  
-
-### 仿真指针
-
-
-维护下面的这个表：  
-
-|data|leftChild|rightChild|
-|--|--|--|
-|0|1|2|
-|1|3|-1（表示指向空指针）|
-|...|...|...|
-
-
-
-
-
+其本质上是BFS（Level order）的结果
 
 
 ## 二叉树的实现
@@ -168,6 +170,8 @@ LDR,DLR,LRD,RDL,DRL,RLD
 - 查找路径
 
 ```py
+# DFS用递归实现更可维护，但也可以用 stack 实现
+# BFS用队列实现更可维护，但也可以用递归
 class Travel:
 
   def ldr(self, root):  # InOrder
@@ -273,9 +277,9 @@ class Travel:
 ```
 
 
-one liner 实现
+one liner 实现（不推荐，很多时候运行效率更高，但很难修改）
 ```python
-# one liner 很多时候效率更高，但可修改性差一点儿
+# one liner
 # 注意，三个 DFS 算法中，空节点处理为[],而不是[None]
 # 有些场景还是需要空节点返回[None]的，灵活去改动
 class Travel:
@@ -848,6 +852,31 @@ class Solution(object):
         return root
 ```
 
+## 二叉堆
+
+分为 **最大堆** 和 **最小堆**
+
+定义
+- 是一种满二叉树
+- （最小堆）：任何一个父节点的值都小于子节点的值（小于左孩子且小于右孩子）
+
+算法：插入一个节点 O(logn)
+1. 把新节点放到末尾
+2. 不断比较它和父节点的大小，更小则与父节点交换位置（上浮）
+
+算法：删除一个节点 O(logn)
+1. 删除根节点（之后返回它），并且把末尾放到根节点的位置（以下称为tmp）
+2. 不断比较它和子节点，并与最小的交换（下沉）。
+3. 好像会导致它变成非完全二叉树，但是 heapq 的二叉树是用 array 存储的，所以不会有这种情况
+
+算法：构建二叉堆，复杂度看似 O(nlogn)，实际上可以证明是 O(n)
+1. 从最后一个非叶子节点（curr）向前遍历
+    - 比较curr和它的最小子节点，如果更大则下沉，在 while 循环里面重复下沉
+
+
+
+
+
 
 
 ## Trie
@@ -1007,6 +1036,7 @@ class Trie:
         return True
 
 ```
+
 
 
 
