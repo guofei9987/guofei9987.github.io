@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】collection&itertools
+title: 【Python】collection&itertools&bisect
 categories:
 tags: 0xb0_Python语法
 keywords:
@@ -114,7 +114,7 @@ ordered_dict.move_to_end(key=91, last=False)
 ordered_dict.popitem(last=True)
 # last=True（默认） 删除最后一个
 # last=False 删除第一个
-
+```
 
 下面与dict类似的方法
 ```python
@@ -200,6 +200,38 @@ from scipy.special import comb, perm
 perm(3, 2)
 comb(3, 2)
 ```
+
+
+## bisect
+`bisect` 一个二分法的库，最大的价值是提供一个二分法算法示例
+```py
+import bisect
+
+a=[1,2,3,3,5,6,7]
+
+# 找到可以把 x 插入 a 的 index，使得 a 仍然能保持顺序
+# 其中，a 是 升序的 list，x 是 value
+bisect.bisect_left(a=a,x=3,lo=0,hi=len(a)) # 遇到 x in a 的情况，输出最左边的可插入的index
+bisect.bisect_right(a=a,x=3) # 遇到 x in a 的情况，输出最右边可插入的 index （注意，a中最右边的index）
+bisect.bisect(a=a,x=3) # 完全等价于 bisect.bisect_right
+
+
+bisect.insort_left(a=a,x=4,lo=0,hi=len(a))
+# equivalent to a.insert(bisect.bisect_left(a, x, lo, hi), x)
+# 记住，虽然 binary search 是 O(lg n)的，但 insert 是 O(n) 的
+bisect.insort_right(a=a,x=4,lo=0,hi=len(a))
+# a.insert(bisect.bisect_right(a, x, lo, hi), x)
+```
+
+### 应用举例
+想把百分制的考试成绩，转化为'ABCDF'这种标志
+```py
+breakpoints = [60, 70, 80, 90] # 隔断区间
+grades = 'FDCBA' # 标志
+scores = [33, 99, 77, 70, 89, 90, 100] # 同学们的分数
+[grades[bisect.bisect_left(a=breakpoints,x=i)] for i in scores]
+```
+
 
 ## 参考文献
 https://docs.python.org/3/
