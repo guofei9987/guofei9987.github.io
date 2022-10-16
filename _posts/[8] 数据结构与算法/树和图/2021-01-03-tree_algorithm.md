@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【数据结构5】Tree实现
+title: 【数据结构7】Tree实现
 categories:
 tags: 0x80_数据结构与算法
 keywords:
