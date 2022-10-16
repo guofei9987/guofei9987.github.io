@@ -36,7 +36,7 @@ left 和 right 都是指针，指向下一个节点
 
 
 
-### 顺序存储结构
+### 顺序存储
 
 
 用一个 list 存放二叉树的每一个结点  
@@ -854,27 +854,293 @@ class Solution(object):
 
 ## 二叉堆
 
+[扩展阅读](https://mp.weixin.qq.com/s/TKRtF2dAtH7VuNs-FC4awA)
+
+
+
 分为 **最大堆** 和 **最小堆**
 
 定义
 - 是一种满二叉树
-- （最小堆）：任何一个父节点的值都小于子节点的值（小于左孩子且小于右孩子）
+- （最小堆）：任何一个父节点的值都小于等于左右孩子节点的值。最大堆相反
 
-算法：插入一个节点 O(logn)
-1. 把新节点放到末尾
-2. 不断比较它和父节点的大小，更小则与父节点交换位置（上浮）
 
-算法：删除一个节点 O(logn)
+
+因为是满二叉树，因此 **二叉堆往往用顺序表来实现。** 节点 n 的孩子节点为 2n+1，2n+2
+
+
+
+
+构建一个二叉堆的算法流程如下：
+1. 首先是面临一个无序的完全二叉树
+2. 从最下方开始，
+
+
+
+**算法：插入一个节点** O(logn)
+1. 把新节点放到二叉堆的末尾
+2. 调整位置，变成二叉堆。不断比较它和父节点的大小，更小则与父节点交换位置（**上浮**）
+
+**算法：删除一个节点** O(logn)
 1. 删除根节点（之后返回它），并且把末尾放到根节点的位置（以下称为tmp）
-2. 不断比较它和子节点，并与最小的交换（下沉）。
+2. 不断比较tmp和子节点，并与最小的交换（**下沉**）。
 3. 好像会导致它变成非完全二叉树，但是 heapq 的二叉树是用 array 存储的，所以不会有这种情况
 
-算法：构建二叉堆，复杂度看似 O(nlogn)，实际上可以证明是 O(n)
+
+**算法：构建二叉堆**，复杂度看似 O(nlogn)，实际上可以证明是 O(n)
+1. 面临一个无序的满二叉树
 1. 从最后一个非叶子节点（curr）向前遍历
-    - 比较curr和它的最小子节点，如果更大则下沉，在 while 循环里面重复下沉
+    - 遍历每一个节点，使其 **下沉** （在 while 循环里面下沉到底）
+    - 当然，叶节点不能下沉，也就无需遍历了
 
 
 
+用途
+- heap queue algorithm, also known as the priority queue algorithm，优先队列
+
+
+
+TODO，这里需要添加一个Python实现
+
+heapq 实现的是最小堆
+
+
+heapq 模块提供堆算法，[官方文档](https://docs.python.org/3.5/library/heapq.html?highlight=heapq)写的很好，摘抄下来(对格式和段落进行了整理)：  
+
+
+
+
+### heapq  
+heapq 模块提供堆算法，[官方文档](https://docs.python.org/3.5/library/heapq.html?highlight=heapq)
+
+```py
+import heapq
+
+heap = [6, 5, 3, 1, 2, 0]
+heapq.heapify(heap) # 把 heap 变为 heapq 格式的 list，时间复杂度为O(n)，直接修改 heap
+
+heapq.heappush(heap, item) # 插入一个新值，直接修改 heap
+heapq.heappop(heap) # 返回并删除最小的值（也就是树最顶端的值）
+
+
+heapq.heappushpop(heap, item)
+# 相当于做这个(但速度更快)：
+# heapq.heappush(heap,item);heapq.pop()
+heapq.heapreplace(heap, item)
+# 相当于做这个(但速度更快)：
+# heapq.pop();heapq.heappush(heap,item)
+
+
+heapq.nlargest(n=3, iterable=heap)
+# 返回一个 list，从大到小排序，长度最多为 n，如果不够就能返回多少返回多少
+heapq.nsmallest(n=3, iterable=heap)
+# 返回一个 list，从小到大排序，长度最多为 n，如果不够就能返回多少返回多少
+```
+
+
+
+### 应用
+```py
+[heapq.pop(heap) for i in range(len(heap))] # 等价于 sorted
+
+heap=[]
+for i in [4,3,2,5,6]:
+    heapq.heappush(heap,[1,i]) # 注意到list和str也可以比大小，所以 item 可以是 list, str
+```
+
+
+### show_tree
+（这个函数来自网络）  
+这个是自编函数，功能是打印heap  
+可以输入list，也可以输入heap  
+```py
+import math
+from io import StringIO
+
+
+def show_tree(tree, total_width=36, fill=' '):
+    output = StringIO()
+    last_row = -1
+    for i, n in enumerate(tree):
+        if i:
+            row = int(math.floor(math.log(i + 1, 2)))
+        else:
+            row = 0
+        if row != last_row:
+            output.write('\n')
+        columns = 2 ** row
+        col_width = int(math.floor((total_width * 1.0) / columns))
+        output.write(str(n).center(col_width, fill))
+        last_row = row
+    print(output.getvalue())
+    print('-' * total_width)
+    print
+    return
+```
+
+#### 应用示例1:show_tree
+（输入可以是list，也可以是heap）  
+```py
+data = range(1, 8)
+print('data: ', data)
+show_tree(data)
+```
+
+output
+```
+data:  range(1, 8)
+
+                 1                  
+        2                 3         
+    4        5        6        7    
+------------------------------------
+```
+
+#### 应用示例2：heapify
+
+heapify可以在线性时间内进行排序  
+需要注意，直接改输入的list，而不是return一个list  
+
+```py
+import random
+import heapq
+heap = random.sample(range(1, 8), 7)
+heapq.heapify(heap)
+show_tree(heap)
+```
+
+output  
+```
+
+                 7                  
+        3                 5         
+    1        2        4        6    
+------------------------------------
+
+                 1                  
+        2                 4         
+    3        7        5        6    
+------------------------------------
+```
+
+#### 应用示例3：heappush
+
+下面展示多次heappush的过程：  
+
+```py
+import math
+from io import StringIO
+
+
+def show_tree(tree, total_width=36, fill=' '):
+    output = StringIO()
+    last_row = -1
+    for i, n in enumerate(tree):
+        if i:
+            row = int(math.floor(math.log(i + 1, 2)))
+        else:
+            row = 0
+        if row != last_row:
+            output.write('\n')
+        columns = 2 ** row
+        col_width = int(math.floor((total_width * 1.0) / columns))
+        output.write(str(n).center(col_width, fill))
+        last_row = row
+    print(output.getvalue())
+    print('-' * total_width)
+    print
+    return
+
+import heapq
+import random
+
+heap = []
+data = random.sample(range(1, 8), 7)
+print('data:', data)
+for i in data:
+    heapq.heappush(heap, i)
+    show_tree(heap)
+```
+
+output：  
+
+```
+data: [1, 4, 7, 6, 2, 5, 3]
+
+                 1                  
+------------------------------------
+
+                 1                  
+        4         
+------------------------------------
+
+                 1                  
+        4                 7         
+------------------------------------
+
+                 1                  
+        4                 7         
+    6    
+------------------------------------
+
+                 1                  
+        2                 7         
+    6        4    
+------------------------------------
+
+                 1                  
+        2                 5         
+    6        4        7    
+------------------------------------
+
+                 1                  
+        2                 3         
+    6        4        7        5    
+------------------------------------
+```
+
+#### 应用示例4：heappop
+
+```py
+import math
+from io import StringIO
+
+
+def show_tree(tree, total_width=36, fill=' '):
+    output = StringIO()
+    last_row = -1
+    for i, n in enumerate(tree):
+        if i:
+            row = int(math.floor(math.log(i + 1, 2)))
+        else:
+            row = 0
+        if row != last_row:
+            output.write('\n')
+        columns = 2 ** row
+        col_width = int(math.floor((total_width * 1.0) / columns))
+        output.write(str(n).center(col_width, fill))
+        last_row = row
+    print(output.getvalue())
+    print('-' * total_width)
+    print
+    return
+
+import heapq
+import random
+
+data = random.sample(range(1, 8), 7)
+print ('data: ', data)
+heapq.heapify(data)
+show_tree(data)
+
+heap = []
+while data:
+    i = heapq.heappop(data)
+    print('pop %3d:' % i)
+    show_tree(data)
+    heap.append(i)
+print('heap: ', heap)
+```
 
 
 
