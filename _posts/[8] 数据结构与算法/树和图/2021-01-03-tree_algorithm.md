@@ -1008,11 +1008,9 @@ heapq.heappush(heap, item) # 插入一个新值，直接修改 heap
 heapq.heappop(heap) # 返回并删除最小的值（也就是树最顶端的值）
 
 heapq.heappushpop(heap, item)
-# 相当于heappush+pop(但速度更快)：
-# heapq.heappush(heap,item);heapq.pop()
+# 相当于heappush+heappop(但速度更快)
 heapq.heapreplace(heap, item)
-# 相当于做这个(但速度更快)：
-# heapq.pop();heapq.heappush(heap,item)
+# 相当于heappop+相当于heappush(但速度更快)
 
 
 heapq.nlargest(n=3, iterable=heap)
@@ -1025,7 +1023,7 @@ heapq.nsmallest(n=3, iterable=heap)
 
 ### 应用
 ```py
-[heapq.pop(heap) for i in range(len(heap))] # 等价于 sorted
+[heapq.heappop(heap) for i in range(len(heap))] # 等价于 sorted
 
 heap=[]
 for i in [4,3,2,5,6]:
@@ -1058,37 +1056,19 @@ def show_tree(tree, total_width=36, fill=' '):
         last_row = row
     print(output.getvalue())
     print('-' * total_width)
-    print
-    return
 ```
 
-#### 应用示例1:show_tree
-（输入可以是list，也可以是heap）  
-```py
-data = range(1, 8)
-print('data: ', data)
-show_tree(data)
-```
-
-output
-```
-data:  range(1, 8)
-
-                 1                  
-        2                 3         
-    4        5        6        7    
-------------------------------------
-```
-
-#### 应用示例2：heapify
 
 heapify可以在线性时间内进行排序  
-需要注意，直接改输入的list，而不是return一个list  
 
 ```py
 import random
 import heapq
-heap = random.sample(range(1, 8), 7)
+
+heap = list(range(1, 8))
+random.shuffle(heap)
+show_tree(heap)
+
 heapq.heapify(heap)
 show_tree(heap)
 ```
@@ -1107,39 +1087,16 @@ output
 ------------------------------------
 ```
 
-#### 应用示例3：heappush
 
 下面展示多次heappush的过程：  
 
 ```py
-import math
-from io import StringIO
-
-
-def show_tree(tree, total_width=36, fill=' '):
-    output = StringIO()
-    last_row = -1
-    for i, n in enumerate(tree):
-        if i:
-            row = int(math.floor(math.log(i + 1, 2)))
-        else:
-            row = 0
-        if row != last_row:
-            output.write('\n')
-        columns = 2 ** row
-        col_width = int(math.floor((total_width * 1.0) / columns))
-        output.write(str(n).center(col_width, fill))
-        last_row = row
-    print(output.getvalue())
-    print('-' * total_width)
-    print
-    return
-
 import heapq
 import random
 
 heap = []
-data = random.sample(range(1, 8), 7)
+data = list(range(1, 8))
+random.shuffle(data)
 print('data:', data)
 for i in data:
     heapq.heappush(heap, i)
@@ -1183,47 +1140,26 @@ data: [1, 4, 7, 6, 2, 5, 3]
 ------------------------------------
 ```
 
-#### 应用示例4：heappop
+
+逐步 heappop
 
 ```py
-import math
-from io import StringIO
-
-
-def show_tree(tree, total_width=36, fill=' '):
-    output = StringIO()
-    last_row = -1
-    for i, n in enumerate(tree):
-        if i:
-            row = int(math.floor(math.log(i + 1, 2)))
-        else:
-            row = 0
-        if row != last_row:
-            output.write('\n')
-        columns = 2 ** row
-        col_width = int(math.floor((total_width * 1.0) / columns))
-        output.write(str(n).center(col_width, fill))
-        last_row = row
-    print(output.getvalue())
-    print('-' * total_width)
-    print
-    return
-
 import heapq
 import random
 
-data = random.sample(range(1, 8), 7)
-print ('data: ', data)
-heapq.heapify(data)
-show_tree(data)
+data = list(range(1, 8))
+random.shuffle(heap)
+print('data: ', heap)
+heapq.heapify(heap)
+show_tree(heap)
 
-heap = []
+res = []
 while data:
     i = heapq.heappop(data)
     print('pop %3d:' % i)
     show_tree(data)
-    heap.append(i)
-print('heap: ', heap)
+    res.append(i)
+print('heap: ', res)
 ```
 
 
