@@ -866,7 +866,7 @@ class Solution(object):
 
 
 
-因为是满二叉树，因此 **二叉堆往往用顺序表来实现。** 节点 n 的孩子节点为 2n+1，2n+2
+因为是满二叉树，因此 **二叉堆往往用顺序表来实现。** 节点 k 的孩子节点为 2k+1，2k+2
 
 
 
@@ -884,14 +884,12 @@ class Solution(object):
 **算法：删除一个节点** O(logn)
 1. 删除根节点（之后返回它），并且把末尾放到根节点的位置（以下称为tmp）
 2. 不断比较tmp和子节点，并与最小的交换（**下沉**）。
-3. 好像会导致它变成非完全二叉树，但是 heapq 的二叉树是用 array 存储的，所以不会有这种情况
-
 
 **算法：构建二叉堆**，复杂度看似 O(nlogn)，实际上可以证明是 O(n)
 1. 面临一个无序的满二叉树
 1. 从最后一个非叶子节点（curr）向前遍历
     - 遍历每一个节点，使其 **下沉** （在 while 循环里面下沉到底）
-    - 当然，叶节点不能下沉，也就无需遍历了
+    - 当然，叶节点不能下沉，也就无需遍历了，所以实际上是从最后一个非叶子节点向前遍历的。
 
 
 
@@ -902,12 +900,99 @@ class Solution(object):
 
 TODO，这里需要添加一个Python实现
 
-heapq 实现的是最小堆
+### Python 实现
+
+实战中直接用 heapq 实现，这里用 Python 实现其原理
+
+算法技巧
+- k的孩子节点是 2k+1，2k+2；因此 n 的父节点是 `(n-1)//2`
+- 上浮/下沉时，其实不用每次循环都把 curr 赋值，只需要在循环结束后赋值
 
 
-heapq 模块提供堆算法，[官方文档](https://docs.python.org/3.5/library/heapq.html?highlight=heapq)写的很好，摘抄下来(对格式和段落进行了整理)：  
+```py
+def up_adjust(arr):
+    tmp = arr[-1]
+    child_idx, parent_idx = len(arr) - 1, (len(arr) - 1 - 1) // 2
+
+    while child_idx > 0 and tmp < arr[parent_idx]:
+        arr[child_idx] = arr[parent_idx]
+        child_idx, parent_idx = parent_idx, (parent_idx - 1) // 2
+    arr[child_idx] = tmp
 
 
+def down_adjust(parent_idx, length, arr):
+    tmp = arr[parent_idx]
+    child_idx = 2 * parent_idx + 1
+    while child_idx < length:
+        # 如果有右孩子，并且右孩子更小，则定位到右孩子
+        if child_idx + 1 < length and arr[child_idx + 1] < arr[child_idx]:
+            child_idx += 1
+
+        # 如果已达到目的，则跳出
+        if tmp <= arr[child_idx]:
+            break
+
+        arr[parent_idx] = arr[child_idx]
+        parent_idx, child_idx = child_idx, 2 * child_idx + 1
+
+    arr[parent_idx] = tmp
+
+
+def build_heap(arr):
+    for i in range((len(arr) - 1 - 1) // 2, -1, -1):
+        down_adjust(i, len(arr), arr)
+
+
+def pop_top(arr):
+    if len(arr) == 1:
+        return arr.pop()
+    tmp = arr[0]
+    arr[0] = arr.pop()
+    down_adjust(parent_idx=0, length=len(arr), arr=arr)
+    return tmp
+
+
+class PriorityQueue:
+    def __init__(self, arr):
+        self.arr = arr
+
+    def heapify(self):
+        build_heap(self.arr)
+
+    def heappop(self):
+        return pop_top(self.arr)
+
+    def heappush(self, val):
+        self.arr.append(val)
+        up_adjust(self.arr)
+
+    def to_array(self):
+        res = []
+        while self.arr:
+            res.append(self.heappop())
+        return res
+
+
+# %% 测试核心算法
+arr = [1, 3, 2, 6, 5, 7, 8, 9, 0]
+up_adjust(arr)
+print(arr)
+
+arr = [9, 3, 2, 6, 5, 7, 8]
+down_adjust(parent_idx=0, length=len(arr), arr=arr)
+print(arr)
+
+arr = [7, 1, 3, 10, 5, 2, 8, 9, 6]
+build_heap(arr)
+print(arr)
+
+# %%测试优先队列
+arr = [9, 3, 2, 6, 5, 7, 8]
+priority = PriorityQueue(arr)
+priority.heapify()
+
+priority.to_array()
+```
 
 
 ### heapq  
@@ -922,9 +1007,8 @@ heapq.heapify(heap) # 把 heap 变为 heapq 格式的 list，时间复杂度为O
 heapq.heappush(heap, item) # 插入一个新值，直接修改 heap
 heapq.heappop(heap) # 返回并删除最小的值（也就是树最顶端的值）
 
-
 heapq.heappushpop(heap, item)
-# 相当于做这个(但速度更快)：
+# 相当于heappush+pop(但速度更快)：
 # heapq.heappush(heap,item);heapq.pop()
 heapq.heapreplace(heap, item)
 # 相当于做这个(但速度更快)：
