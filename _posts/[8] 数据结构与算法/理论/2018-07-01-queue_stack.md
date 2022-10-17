@@ -43,6 +43,7 @@ class Stack(list):
 - Queue2：用 list 实现队列，并且每次take都清除多余
 - Queue3：用链表
 - Queue4：用 list 实现队列，并且当多余信息过多时清除多余
+- Queue5: 用两个 stack 可以模拟一个 queue，效率仅比 deque 慢一点点
 
 
 ```py
@@ -115,6 +116,21 @@ class Queue4(object):
 
 from collections import deque
 
+# 双 stack 可以实现一个 queue
+class Queue5:
+    def __init__(self):
+        self.stack1 = list()
+        self.stack2 = list()
+
+    def push(self, val):
+        self.stack1.append(val)
+
+    def take(self):
+        if not self.stack2:
+            self.stack2 = self.stack1[::-1]
+            self.stack1 = list()
+        return self.stack2.pop()
+
 
 # 使用 deque （循环array），最快的方案
 class Queue(object):
@@ -132,7 +148,7 @@ class Queue(object):
 ```py
 import datetime
 
-Classes = [Queue1, Queue2, Queue3, Queue4, Queue]
+Classes = [Queue1, Queue2, Queue3, Queue4, Queue5, Queue]
 
 
 def test_time(q_class):
@@ -155,11 +171,12 @@ for q_class in Classes:
 ```
 
 ```
-0:00:00.319176
-0:00:11.864376
-0:00:00.891820
-0:00:00.481168
-0:00:00.242382
+0:00:00.327828
+0:00:11.765587
+0:00:00.814363
+0:00:00.459293
+0:00:00.262654
+0:00:00.238956
 ```
 
 
