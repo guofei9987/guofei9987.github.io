@@ -105,6 +105,10 @@ torch.set_num_threads(num_physical_cores/num_workers)
 DataLoader(..., num_workers=args.nThreads)
 ```
 
+### 性能相关的其它资料
+
+- [ ] https://zhuanlan.zhihu.com/p/69250939
+
 
 ## 案例
 ```python

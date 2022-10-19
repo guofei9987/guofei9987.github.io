@@ -97,12 +97,14 @@ SELECT  field1,field2,...,from tablenamen
 ...
 ```
 
-把UNION换成 UNION ALL，把两个表并到一起，不删除重复内容  
-EXCEPT 差集，也就是在table1中，但不在table2中的结果。  
-EXCEPT ALL表示不删除重复行  
-INTERSECT 交集，表示同时出现在table1和table2中的结果  
-INTERSECT ALL表示不删除重复行。  
-注：差集和交集也可以用in来实现  
+- 把 UNION 换成 **UNION ALL**，把两个表并到一起，不删除重复内容  
+- **EXCEPT** 差集，也就是在table1中，但不在table2中的结果。  
+- **EXCEPT ALL** 表示不删除重复行  
+- 有的数据库还可以用 **MINUS** 和 **MINUS ALL**
+- INTERSECT 交集，表示同时出现在table1和table2中的结果  
+- **INTERSECT ALL** 表示不删除重复行。  
+
+注：差集和交集也可以用in/join来实现  
 
 
 ## join
@@ -118,6 +120,7 @@ INTERSECT ALL表示不删除重复行。
     - 右外连接(right [outer] join)：保留匹配，还保留右边表的不匹配
     - 全外连接(full [outer] join)：保留匹配，保留左表、右表的不匹配
 - 交叉连接
+- 额外：**semi join, anti join**
 
 
 ```sql
@@ -578,6 +581,16 @@ FROM    (
 ;
 ```
 
+## with语句
+
+```sql
+WITH
+tmp_table_01 AS (SELECT 1 AS col1)
+-- 前面定义的表，后面可以直接用
+,tmp_table_02 AS (SELECT  col1+9 AS col1 FROM    tmp_table_01)
+insert overwrite table table_name partition (dt='dt')
+SELECT  * FROM    tmp_table_01 UNION ALL SELECT  * FROM    tmp_table_02;
+```
 
 ## 参考文献
 
