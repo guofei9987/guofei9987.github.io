@@ -24,7 +24,7 @@
 <script>
      function  getD1(){
          var now=new Date();
-         document.getElementById("time").innerHTML = now.toLocaleTimeString().substring(0,5);
+         document.getElementById("time").innerHTML = now.toTimeString().substring(0,5);
          document.getElementById("date").innerHTML = now.toLocaleDateString();
      }
 
