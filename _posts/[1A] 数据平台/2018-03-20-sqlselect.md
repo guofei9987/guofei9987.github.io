@@ -369,17 +369,6 @@ percentile_approx(col_name,0.25) # 求0.25分位数
 
 
 
-## 查询案例
-
-### 找出重复的记录
-```sql
-SELECT id,COUNT(id)
-FROM table1
-WHERE dt = '2018-02-16'
-GROUP BY id HAVING COUNT(id) > 2;
-```
-
-
 ## 窗口函数
 
 一般语法是：
@@ -591,6 +580,58 @@ tmp_table_01 AS (SELECT 1 AS col1)
 insert overwrite table table_name partition (dt='dt')
 SELECT  * FROM    tmp_table_01 UNION ALL SELECT  * FROM    tmp_table_02;
 ```
+
+## 查询案例
+
+### 找出重复的记录
+```sql
+SELECT id,COUNT(id)
+FROM table1
+WHERE dt = '2018-02-16'
+GROUP BY id HAVING COUNT(id) > 2;
+```
+
+## 性能优化
+
+**1** 避免使用 `select *`，而是使用 `select col1, col2` （未测试）
+
+**2** where 条件中尽量避免函数，比起 `where col1 + 5 > 90`，更推荐 `where col1 > 90 - 5`
+
+**3** 避免类型隐式转换，如果 `col1` 是string类型，那么推荐 `where col1 = '1'`，而不是 `col1 = 1`
+
+
+
+**4** 避免用 `or`, `!=`, `<>`，而是用 `union` (未测试)  
+原因：Mysql 使用 or 之类可能会使索引失效
+
+```sql
+-- 不推荐
+select col1 from table1 where col2 == 1 or col2 == 2
+-- 推荐
+select col1 from table1 where col2 ==1
+union
+select col1 from table1 where col2 ==2
+
+
+-- 不推荐
+select col1 from table1 where col2 <> 10
+-- 推荐
+select col1 from table1 where col2 < 10
+union select col1 from table1 where col2 > 10
+
+```
+
+**5** 如果确定知道只有1条记录，那么使用 `limit`  
+原因：使用 `limit 1` 之后，找到一个就不会再继续找了
+
+```sql
+-- 不推荐
+select col1 from table1 where name == 'Tom'
+-- 推荐
+select col1 from table1 where name == 'Tom' limit 1;
+```
+
+**6** 尽量使用 `union all` 而不是 `union`，因为 `union` 还会尝试合并和排序
 
 ## 参考文献
 
