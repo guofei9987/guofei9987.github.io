@@ -1,12 +1,12 @@
 
-# 调研过
+# 开源库
 
 
 - MinHash 的，已经很完善了：   https://github.com/ekzhu/datasketch
 
 
 
-
+# 基础库
 
 ## 1. 数据处理
 Chardet 字符编码探测器，可以自动检测文本、网页、xml的编码。

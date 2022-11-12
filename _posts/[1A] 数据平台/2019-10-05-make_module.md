@@ -413,7 +413,7 @@ www.travis-ci.org
 [![Build Status](https://travis-ci.com/guofei9987/scikit-opt.svg?branch=master)](https://travis-ci.com/guofei9987/scikit-opt)
 ```
 
-### coeralls
+### coveralls
 一个代码覆盖率检测服务网站  
 coveralls.io  
 配置挺简单的，就是授权一下，然后 `.travis.yml` 改成这样
@@ -427,6 +427,8 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - pip install pytest-cover
+  # 下面这个忘了干啥用的了
   - pip install coverage codecov
   - python setup.py install
 
@@ -453,11 +455,27 @@ pip install -U pytest
 pytest --version
 ```
 
+
+
+
+
+- Test level, which runs a single test. The first example runs a test in a class. The second runs a stand alone test.
+```
+pytest statsmodels/regression/tests/test_regression.py::TestOLS::test_missing
+pytest statsmodels/regression/tests/test_regression.py::test_ridge
+```
+
+
+
 测试范围
-- 测试文件以test_开头（或者_test结尾）
-- 测试类以Test开头，并且不能带有 init 方法
-- 测试函数以test_开头
-- 断言使用assert
+- 测试整个项目，例如 `pytest blind_watermark`
+- 测试一个目录 `pytest blind_watermark/examples/tests`
+- 测试一个文件，文件以`test_`开头或者 `_test`结尾，`pytest test_one.py`
+- 测试类以 Test 开头，并且不能带有 init 方法，`pytest test_one.py::TestMyClass`
+- 测试函数以 `test_` 开头，例如
+    - `pytest test_one.py::TestMyClass::test_my_func`
+    - `pytest test_one.py::test_my_func`
+- 断言使用 `assert`
 - 在执行pytest命令时，会自动从当前目录及子目录中寻找符合上述约束的测试函数来执行。
 
 
