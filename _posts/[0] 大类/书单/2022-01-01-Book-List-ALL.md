@@ -7,9 +7,7 @@ keywords: 阅读,书单,2022
 
 
 
-    <div class="row" id="book_list">
-
-    </div>
+<div class="row" id="book_list"></div>
 
 
 
