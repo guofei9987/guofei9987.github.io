@@ -5,6 +5,15 @@ category: 橱窗
 keywords: 阅读,书单,2022
 ---
 
+<ul>
+{% for member in site.data.data %}
+  <li>
+    data.a
+  </li>
+{% endfor %}
+</ul>
+
+
 <div class="row" id="total_cnt"></div>
 
 
