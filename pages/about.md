@@ -15,7 +15,7 @@ title: 关于
 - 👯 目前在蚂蚁集团/天堑实验室/算法专家。曾任京东集团/Y事业部/算法专家。
 - 🧮 热爱算法。[2021年，人类首次在另一个星球（火星）实现动力飞行](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)，本人因开源贡献获得 NASA 徽章
 - 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
-- 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) <img alt="Blog Counts" src="https://www.guofei.site/reading/media/reading_words.svg">
+- 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) <img alt="Blog Counts" src="https://www.guofei.site/reading/media/reading_words.svg">，读书 <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg">
 - 🤔 one of 121 [authors](https://github.com/scipy/scipy/issues/7798) in [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0)
 - 📚 学术期刊 [Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171) **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
 - 🏃 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>

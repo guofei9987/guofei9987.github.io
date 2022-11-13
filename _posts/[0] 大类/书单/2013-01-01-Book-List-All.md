@@ -1,6 +1,6 @@
 ---
 layout: post_pure
-title: 读完的书单
+title: 读完的书单 <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg">
 category: 橱窗
 keywords: 阅读,书单,2022
 ---
