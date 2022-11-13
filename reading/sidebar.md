@@ -8,13 +8,13 @@
 </a>
 
 * 1_哲学
-    * [1_西方哲学<sup style = "color:red">49134字<sup>](docs/1_哲学/1_西方哲学.md)
+    * [1_西方哲学<sup style = "color:red">49119字<sup>](docs/1_哲学/1_西方哲学.md)
     * [2_诸子百家<sup style = "color:red">4057字<sup>](docs/1_哲学/2_诸子百家.md)
     * [3_佛家<sup style = "color:red">17370字<sup>](docs/1_哲学/3_佛家.md)
     * [5_《哲学家们都干了些什么》<sup style = "color:red">20326字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)
     * [《上帝掷骰子吗》<sup style = "color:red">8168字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
     * [《原则》<sup style = "color:red">15468字<sup>](docs/1_哲学/《原则》.md)
-    * [《苏菲的世界》<sup style = "color:red">4600字<sup>](docs/1_哲学/《苏菲的世界》.md)
+    * [《苏菲的世界》<sup style = "color:red">4952字<sup>](docs/1_哲学/《苏菲的世界》.md)
 * 2_历史
     * [1_尤瓦尔赫拉利<sup style = "color:red">43803字<sup>](docs/2_历史/1_尤瓦尔赫拉利.md)
     * [2_吴晓波<sup style = "color:red">43692字<sup>](docs/2_历史/2_吴晓波.md)
@@ -22,7 +22,7 @@
     * [4_中国史<sup style = "color:red">2428字<sup>](docs/2_历史/4_中国史.md)
     * [5_世界史<sup style = "color:red">1842字<sup>](docs/2_历史/5_世界史.md)
     * [6_经济史<sup style = "color:red">3070字<sup>](docs/2_历史/6_经济史.md)
-    * [7_人物传记<sup style = "color:red">3353字<sup>](docs/2_历史/7_人物传记.md)
+    * [7_人物传记<sup style = "color:red">3481字<sup>](docs/2_历史/7_人物传记.md)
     * [8_企业传记<sup style = "color:red">3463字<sup>](docs/2_历史/8_企业传记.md)
     * [J_日本专题<sup style = "color:red">8560字<sup>](docs/2_历史/J_日本专题.md)
     * [《浪潮之巅》<sup style = "color:red">5334字<sup>](docs/2_历史/《浪潮之巅》.md)

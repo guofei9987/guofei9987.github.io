@@ -2,13 +2,13 @@
 ###  1_哲学
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/1_哲学/1_西方哲学" target="_blank">1_西方哲学<sup style = "color:red">49134字<sup></a>|<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=主要哲学流派" target="_blank">主要哲学流派</a>，<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=《西方哲学十五讲》" target="_blank">《西方哲学十五讲》</a>
+|<a href="/reading/#/docs/1_哲学/1_西方哲学" target="_blank">1_西方哲学<sup style = "color:red">49119字<sup></a>|<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=主要哲学汇总" target="_blank">主要哲学汇总</a>，<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=《西方哲学十五讲》" target="_blank">《西方哲学十五讲》</a>
 |<a href="/reading/#/docs/1_哲学/2_诸子百家" target="_blank">2_诸子百家<sup style = "color:red">4057字<sup></a>|<a href="/reading/#/docs/1_哲学/2_诸子百家.md?id=诸子百家" target="_blank">诸子百家</a>
 |<a href="/reading/#/docs/1_哲学/3_佛家" target="_blank">3_佛家<sup style = "color:red">17370字<sup></a>|<a href="/reading/#/docs/1_哲学/3_佛家.md?id=《佛祖都说了些什么》" target="_blank">《佛祖都说了些什么》</a>
 |<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》" target="_blank">5_《哲学家们都干了些什么》<sup style = "color:red">20326字<sup></a>|<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=上：理性的崛起" target="_blank">上：理性的崛起</a>，<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=下：理性的陨落" target="_blank">下：理性的陨落</a>
 |<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》<sup style = "color:red">8168字<sup></a>|<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》.md?id=《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》</a>
 |<a href="/reading/#/docs/1_哲学/《原则》" target="_blank">《原则》<sup style = "color:red">15468字<sup></a>|<a href="/reading/#/docs/1_哲学/《原则》.md?id=《原则》" target="_blank">《原则》</a>
-|<a href="/reading/#/docs/1_哲学/《苏菲的世界》" target="_blank">《苏菲的世界》<sup style = "color:red">4600字<sup></a>|<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=《苏菲的世界》" target="_blank">《苏菲的世界》</a>
+|<a href="/reading/#/docs/1_哲学/《苏菲的世界》" target="_blank">《苏菲的世界》<sup style = "color:red">4952字<sup></a>|<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=《苏菲的世界》" target="_blank">《苏菲的世界》</a>，<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=希腊时代" target="_blank">希腊时代</a>
 
 ###  2_历史
 |板块|书目|
@@ -19,7 +19,7 @@
 |<a href="/reading/#/docs/2_历史/4_中国史" target="_blank">4_中国史<sup style = "color:red">2428字<sup></a>|<a href="/reading/#/docs/2_历史/4_中国史.md?id=《明朝那些事》阅读中" target="_blank">《明朝那些事》阅读中</a>，<a href="/reading/#/docs/2_历史/4_中国史.md?id=简史" target="_blank">简史</a>，<a href="/reading/#/docs/2_历史/4_中国史.md?id=北洋军阀" target="_blank">北洋军阀</a>
 |<a href="/reading/#/docs/2_历史/5_世界史" target="_blank">5_世界史<sup style = "color:red">1842字<sup></a>|<a href="/reading/#/docs/2_历史/5_世界史.md?id=世界通史" target="_blank">世界通史</a>，<a href="/reading/#/docs/2_历史/5_世界史.md?id=《极简欧洲历史》" target="_blank">《极简欧洲历史》</a>，<a href="/reading/#/docs/2_历史/5_世界史.md?id=《极简美国历史》" target="_blank">《极简美国历史》</a>，<a href="/reading/#/docs/2_历史/5_世界史.md?id=《极简日本历史》" target="_blank">《极简日本历史》</a>
 |<a href="/reading/#/docs/2_历史/6_经济史" target="_blank">6_经济史<sup style = "color:red">3070字<sup></a>|<a href="/reading/#/docs/2_历史/6_经济史.md?id=《大博弈》" target="_blank">《大博弈》</a>，<a href="/reading/#/docs/2_历史/6_经济史.md?id=《作局》" target="_blank">《作局》</a>
-|<a href="/reading/#/docs/2_历史/7_人物传记" target="_blank">7_人物传记<sup style = "color:red">3353字<sup></a>|<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《特朗普自传》" target="_blank">《特朗普自传》</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《促销的艺术》（沃尔顿）" target="_blank">《促销的艺术》（沃尔顿）</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《仓鼠劫》（李斯）" target="_blank">《仓鼠劫》（李斯）</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=其它" target="_blank">其它</a>
+|<a href="/reading/#/docs/2_历史/7_人物传记" target="_blank">7_人物传记<sup style = "color:red">3481字<sup></a>|<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《特朗普自传》" target="_blank">《特朗普自传》</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《促销的艺术》（沃尔顿）" target="_blank">《促销的艺术》（沃尔顿）</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=《仓鼠劫》（李斯）" target="_blank">《仓鼠劫》（李斯）</a>，<a href="/reading/#/docs/2_历史/7_人物传记.md?id=其它" target="_blank">其它</a>
 |<a href="/reading/#/docs/2_历史/8_企业传记" target="_blank">8_企业传记<sup style = "color:red">3463字<sup></a>|<a href="/reading/#/docs/2_历史/8_企业传记.md?id=《重新定义公司》（谷歌）" target="_blank">《重新定义公司》（谷歌）</a>，<a href="/reading/#/docs/2_历史/8_企业传记.md?id=《创京东》" target="_blank">《创京东》</a>，<a href="/reading/#/docs/2_历史/8_企业传记.md?id=《腾讯传》阅读中" target="_blank">《腾讯传》阅读中</a>
 |<a href="/reading/#/docs/2_历史/J_日本专题" target="_blank">J_日本专题<sup style = "color:red">8560字<sup></a>|<a href="/reading/#/docs/2_历史/J_日本专题.md?id=《菊与刀》" target="_blank">《菊与刀》</a>，<a href="/reading/#/docs/2_历史/J_日本专题.md?id=《低智商社会》" target="_blank">《低智商社会》</a>，<a href="/reading/#/docs/2_历史/J_日本专题.md?id=《低欲望社会》" target="_blank">《低欲望社会》</a>
 |<a href="/reading/#/docs/2_历史/《浪潮之巅》" target="_blank">《浪潮之巅》<sup style = "color:red">5334字<sup></a>|<a href="/reading/#/docs/2_历史/《浪潮之巅》.md?id=浪潮之颠" target="_blank">浪潮之颠</a>
