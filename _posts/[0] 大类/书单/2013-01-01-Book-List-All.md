@@ -30,7 +30,7 @@ var book_list = [];
 xmlhttp.open("GET", url, false);
 xmlhttp.send();
 
-document.getElementById("total_cnt").innerHTML = book_list[0].length;
+document.getElementById("total_cnt").innerHTML = "共读书" +book_list[0].length +"本";
 
 
 
