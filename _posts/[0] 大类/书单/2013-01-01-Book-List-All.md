@@ -41,7 +41,6 @@ tmp=    `
           <div class="panel panel-primary">
             <div class="panel-heading">` + book['书名'] + `</div>
             <div class="panel-body">
-              <div class="row">
 
                 <div class="col-md-8 col-xs-12">
                   <table class="table table-bordered">
@@ -69,7 +68,6 @@ tmp=    `
                     </tbody>
                   </table>
                 </div>
-              </div>
             </div>
           </div>
         </div>
