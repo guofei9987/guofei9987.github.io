@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_pure
 title: 读完的书单
 category: 橱窗
 keywords: 阅读,书单,2022
