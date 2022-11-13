@@ -5,7 +5,6 @@ category: 橱窗
 keywords: 阅读,书单,2022
 ---
 
-<div class="row" id="total_cnt"></div>
 
 
 <div class="row" id="book_list"></div>
@@ -30,7 +29,6 @@ var book_list = [];
 xmlhttp.open("GET", url, false);
 xmlhttp.send();
 
-document.getElementById("total_cnt").innerHTML = "共读书" +book_list[0].length +"本";
 
 
 
