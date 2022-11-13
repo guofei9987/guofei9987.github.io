@@ -15,7 +15,7 @@ keywords: 阅读,书单,2022
 <script type="text/javascript">
 
 
-  //1. 读入数据
+//1. 读入数据
 var url = "https://www.guofei.site/pages/book_list.json";
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -31,12 +31,6 @@ xmlhttp.open("GET", url, false);
 xmlhttp.send();
 
 document.getElementById("total_cnt").innerHTML = book_list[0].length;
-
-
-
-
-text=''
-
 
 
 
@@ -80,7 +74,6 @@ tmp=    `
           </div>
         </div>
         `
-        text += tmp
 
 // 写入
 document.getElementById("book_list").innerHTML += tmp;
