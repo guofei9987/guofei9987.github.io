@@ -82,9 +82,10 @@ tmp=    `
         `
         text += tmp
 
-}
 // 写入
-document.getElementById("book_list").innerHTML = text;
+document.getElementById("book_list").innerHTML += tmp;
+
+}
 
 
 
