@@ -244,6 +244,11 @@ pip install --user --upgrade scikit-opt blind_watermark
 - `--no-deps` 不安装依赖的包
 - `-e`, `--editable` editable mode
 
+从 github 安装
+```
+pip install git+git://github.com/guofei9987/blind_watermark.git@master
+```
+
 
 ```bash
 # 看一个包的位置
