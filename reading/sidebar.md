@@ -98,7 +98,7 @@
     * [刘慈欣<sup style = "color:red">7730字<sup>](docs/9_小说/刘慈欣.md)
     * [历史小说<sup style = "color:red">3400字<sup>](docs/9_小说/历史小说.md)
     * [反乌托邦小说<sup style = "color:red">4255字<sup>](docs/9_小说/反乌托邦小说.md)
-    * [名著速读<sup style = "color:red">2991字<sup>](docs/9_小说/名著速读.md)
+    * [名著速读<sup style = "color:red">3049字<sup>](docs/9_小说/名著速读.md)
     * [杜拉拉<sup style = "color:red">13751字<sup>](docs/9_小说/杜拉拉.md)
     * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_小说/科幻小说.md)
     * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_小说/阿西莫夫.md)
