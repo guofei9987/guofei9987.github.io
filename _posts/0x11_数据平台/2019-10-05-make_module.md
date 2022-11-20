@@ -401,6 +401,21 @@ from tst_pkg.pkg1 import pkg1_file1
 pkg1_file1.func1()
 ```
 
+## import 一个 zip 包
+
+```python
+import os
+import sys
+abs_file = __file__
+prefix = os.path.dirname(abs_file)
+sys.path.append(os.path.join(prefix,"testZip.zip"))
+
+from testZip import a
+
+print(a.__file__)
+```
+
+
 ## 自动化测试
 
 ### travis-ci
