@@ -54,6 +54,7 @@ math.floor
 abs(-2) # 2
 divmod(11,3) # (3, 2)
 pow(x,y)
+pow(x, y, z)  # 相当于 x**y % z
 ```
 
 
