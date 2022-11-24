@@ -49,7 +49,7 @@ tmp=    `
                       </tr>
 
                       <tr><td style="width:40px;">作者</td><td>` + book['作者'] + `</td>
-                      <td style="width:40px;">我的打分</td><td>` + book['打分'] + `</td>
+                      <td style="width:40px;">我的打分</td><td><font color="red">` + book['打分'] + `</font></td>
                       </tr>
 
                       <tr><td>出版商</td><td>` + book['出版商'] + `</td>
