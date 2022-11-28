@@ -266,7 +266,6 @@ end
 ### 函数1
 ```sql
 distinct 字段1
-is null：字段1 is null
 is missing：字段1 is missing
 contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
 CONTAINS(*,'beijing')
