@@ -266,9 +266,7 @@ end
 ### 函数1
 ```sql
 distinct 字段1
-is missing：字段1 is missing
-contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
-CONTAINS(*,'beijing')
+
 ```
 
 ### 类型转化函数
@@ -325,6 +323,9 @@ replace(arg1,arg2,arg3) -- 将在arg1中的所有arg2替换成arg3。
 space(arg) -- 返回一个包含arg个空格的字符串。  
 substr(arg1,pos,<length>;):返回arg1中pos位置开始的length个字符，如果没指定length，则返回剩余的字符。
 initcap(col) -- 每个单词的首字母大写（一个字符串中可以有多个单词）
+
+contains：CONTAINS( 字段1, '"HEIBEI province" OR beijing' )
+CONTAINS(*,'beijing')
 ```
 ### 数学函数
 
