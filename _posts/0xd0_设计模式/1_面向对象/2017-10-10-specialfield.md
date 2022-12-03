@@ -471,8 +471,8 @@ func.__defaults__ # 入参的默认值
 ```python
 # filename.py
 
-print(__name__)
-print(__file__) # 文件所在路径
+print(__name__) # __main__ 或者包名
+print(__file__) # 文件所在绝对路径
 print(__doc__) # 文件的注释
 ```
 
