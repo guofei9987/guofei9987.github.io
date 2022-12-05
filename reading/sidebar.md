@@ -82,7 +82,7 @@
     * [2_武志红<sup style = "color:red">1354字<sup>](docs/7_心理学/2_武志红.md)
     * [5_心理学读物<sup style = "color:red">872字<sup>](docs/7_心理学/5_心理学读物.md)
     * [《心流》<sup style = "color:red">1753字<sup>](docs/7_心理学/《心流》.md)
-    * [心理学效应<sup style = "color:red">979字<sup>](docs/7_心理学/心理学效应.md)
+    * [心理学实验<sup style = "color:red">6367字<sup>](docs/7_心理学/心理学实验.md)
     * [情商<sup style = "color:red">1836字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">1163字<sup>](docs/7_心理学/行为心理学.md)
 * 8_管理
@@ -94,14 +94,15 @@
     * [目标管理<sup style = "color:red">3176字<sup>](docs/8_管理/目标管理.md)
     * [詹姆斯柯林斯<sup style = "color:red">3779字<sup>](docs/8_管理/詹姆斯柯林斯.md)
     * [项目管理<sup style = "color:red">5086字<sup>](docs/8_管理/项目管理.md)
-* 9_小说
-    * [刘慈欣<sup style = "color:red">7730字<sup>](docs/9_小说/刘慈欣.md)
-    * [历史小说<sup style = "color:red">3400字<sup>](docs/9_小说/历史小说.md)
-    * [反乌托邦小说<sup style = "color:red">4255字<sup>](docs/9_小说/反乌托邦小说.md)
-    * [名著速读<sup style = "color:red">3049字<sup>](docs/9_小说/名著速读.md)
-    * [杜拉拉<sup style = "color:red">13751字<sup>](docs/9_小说/杜拉拉.md)
-    * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_小说/科幻小说.md)
-    * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_小说/阿西莫夫.md)
+* 9_文学
+    * [刘慈欣<sup style = "color:red">7730字<sup>](docs/9_文学/刘慈欣.md)
+    * [历史小说<sup style = "color:red">3400字<sup>](docs/9_文学/历史小说.md)
+    * [反乌托邦小说<sup style = "color:red">4255字<sup>](docs/9_文学/反乌托邦小说.md)
+    * [名著速读<sup style = "color:red">3049字<sup>](docs/9_文学/名著速读.md)
+    * [杜拉拉<sup style = "color:red">13751字<sup>](docs/9_文学/杜拉拉.md)
+    * [科幻小说<sup style = "color:red">1446字<sup>](docs/9_文学/科幻小说.md)
+    * [诗歌<sup style = "color:red">2276字<sup>](docs/9_文学/诗歌.md)
+    * [阿西莫夫<sup style = "color:red">44字<sup>](docs/9_文学/阿西莫夫.md)
 * A_文艺
     * [摄影<sup style = "color:red">2788字<sup>](docs/A_文艺/摄影.md)
     * [茶<sup style = "color:red">1348字<sup>](docs/A_文艺/茶.md)
