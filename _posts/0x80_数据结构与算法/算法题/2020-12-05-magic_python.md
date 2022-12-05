@@ -296,7 +296,7 @@ print(datetime.datetime.now() - start_time)
 
 
 
-## 冷知识
+## 魔法功能
 ### 可直接运行的 zip 包
 正常人认为 Python 包的格式是 egg 或者 whl，但也可以是 zip
 
@@ -440,6 +440,20 @@ $ python3.9 -m pip install requests
 echo '{"name": "MING"}' | python -m json.tool
 ```
 
+### 获取本机IP
+
+```
+import socket
+
+# 本地IP
+localIP = socket.gethostbyname(socket.gethostname())
+# 公网IP
+requests.post("https://www.ip138.com/")
+```
+
+
+
+
 ## 连接列表
 ```
 a = [1, 2, 3]
@@ -483,7 +497,7 @@ msg = ('未成年', '成年')[age > 18]
 msg = {True: "成年", False: "未成年"}[age > 18]
 ```
 
-## 清理函数
+## clean()
 
 可以注册一个函数，当代码运行结束/代码崩溃时，执行这个函数
 
@@ -533,6 +547,9 @@ import pandas as pd
 import inspect
 
 inspect.getsource(pd.read_csv)  # 打印 pd.read_csv 的源代码
+
+# 显示函数名等信息
+pd.read_csv.__code__
 ```
 
 
@@ -547,7 +564,7 @@ func.__class__ is MethodType
 ```
 
 
-## Linux 打印
+## Linux 打印多彩字
 
 ```python
 import sys
@@ -598,19 +615,7 @@ type()
 id()
 ```
 
-内置函数
-```python
-abs(-9)
-bool(-1) # True
-divmod(9,4)
-max(1,2,3)
-max([1,2,3])
-min(1,2,3)
-sum(1,2,3)
-pow(2,10)
-all([1,2,3,0])
-any([1,0,0,0])
-```
+
 
 
 反射
