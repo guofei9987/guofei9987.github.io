@@ -452,6 +452,71 @@ requests.post("https://www.ip138.com/")
 ```
 
 
+### 通过文件头查看文件类型
+
+
+```python
+# -*- coding:utf-8 -*-
+import struct
+
+type_dict = {
+    '424D': 'bmp',
+    'FFD8FF': 'jpg',
+    '2E524D46': 'rm',
+    '4D546864': 'mid',
+    '89504E47': 'png',
+    '47494638': 'gif',
+    '49492A00': 'tif',
+    '41433130': 'dwg（CAD）',
+    '38425053': 'psd（Adobe Photoshop）',
+    'FF575043': 'wpd',
+    'AC9EBD8F': 'qdf',
+    'E3828596': 'pwl',
+    '504B0304': 'zip',
+    '52617221': 'rar',
+    '57415645': 'wav',
+    '41564920': 'avi',
+    '2E7261FD': 'ram',
+    '000001BA': 'mpg',
+    '000001B3': 'mpg',
+    '6D6F6F76': 'mov',
+    '7B5C727466': 'rtf',
+    '3C3F786D6C': 'xml',
+    '68746D6C3E': 'html',
+    'D0CF11E0': 'doc/xls',
+    '255044462D312E': 'pdf',
+    'CFAD12FEC5FD746F': 'dbx（Outlook Express）',
+    '2142444E': 'pst（Outlook）',
+    '3026B2758E66CF11': 'asf',
+    '5374616E64617264204A': 'mdb（MS Access）',
+    '252150532D41646F6265': 'ps/eps',
+    '44656C69766572792D646174653A': 'eml'
+}
+max_len = len(max(type_dict, key=len)) // 2
+
+
+def get_filetype(filename):
+    # 读取二进制文件开头一定的长度
+    with open(filename, 'rb') as f:
+        byte = f.read(max_len)
+    # 解析为元组
+    byte_list = struct.unpack('B' * max_len, byte)
+    # 转为16进制
+    code = ''.join([('%X' % each).zfill(2) for each in byte_list])
+    # 根据标识符筛选判断文件格式
+    result = list(filter(lambda x: code.startswith(x), type_dict))
+    if result:
+        return type_dict[result[0]]
+    else:
+        return 'unknown'
+
+
+if __name__ == '__main__':
+    p = 'filename.pdf'
+    print(get_filetype(p))
+```
+
+
 
 
 ## 连接列表
@@ -620,10 +685,8 @@ id()
 
 反射
 ```python
-tmp = 'numpy'
-tmp = 'math'
 
-model = __import__(tmp)
+model = __import__('numpy')
 print(model.sin)
 ```
 
@@ -698,6 +761,24 @@ eps = np.finfo(float).eps
 a = [[1,2,3]]*4
 a[0][0] = 5 # 结果所有子序列都被改了
 ```
+
+## 关于 lazy 的特性
+
+```python
+def create_multipliers():
+    return [lambda x: i * x for i in range(5)]
+
+
+for multiplier in create_multipliers():
+    print(multiplier(2))
+
+# 看起来会打印 0,2,4,6,8
+# 实际上打印 8,8,8,8,8,
+# 由于Python中的“后期绑定”行为——闭包中用到的变量只有在函数被调用的时候才会被赋值。所以，在上面的代码中，任何时候，当返回的函数被调用时，Python会在该函数被调用时的作用域中查找 i 对应的值（这时，循环已经结束，所以 i 被赋上了最终的值——4
+```
+
+
+
 
 ## 参考资料
 

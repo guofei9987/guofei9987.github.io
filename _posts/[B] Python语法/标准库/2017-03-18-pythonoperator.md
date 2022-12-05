@@ -62,7 +62,7 @@ order: 1202
 ```python
 # 这个程序不会报错，因为1/0不运行
 if 1 or 1/0:
-    print("hehe")
+    print("hi")
 ```
 
 
