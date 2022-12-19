@@ -101,7 +101,11 @@ import datetime
 d1 = datetime.datetime.strptime('2015-03-05 17:41:20', '%Y-%m-%d %H:%M:%S')
 d2 = datetime.datetime.strptime('2015-03-02 17:41:20', '%Y-%m-%d %H:%M:%S')
 delta = d1 - d2
-print(delta.days)
+print(delta.days) # 返回整数
+delta.seconds # 也是返回整数
+delta.microseconds
+
+delta.total_seconds() # 返回float
 ```
 
 ## 时区问题
