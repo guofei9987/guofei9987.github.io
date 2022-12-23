@@ -12,7 +12,8 @@ title: 关于
 <a href="https://www.guofei.site/2019/08/31/github_star_counter.html"><img align="right" alt="guofei9987's github stats" width="40%" src="https://github-profile-trophy.vercel.app/?username=guofei9987&title=Stars,Followers&row=1&column=2"></a>
 
 
-- 👯 目前在蚂蚁集团-天堑实验室任算法专家。曾任京东集团-Y事业部任算法专家。
+- 👯 目前在蚂蚁集团-天堑实验室任算法专家。
+- 👆曾任：京东集团-Y事业部算法专家，中体彩彩票运营管理有限公司竞猜类彩票建模师。还在基金、银行工作过。
 - 🧮 热爱算法和开源。2021年，“毅力号”携带的“才智号”在火星起飞，实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，本人因其中的开源贡献被 NASA 授予 [徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
 - 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
 - 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) <img alt="Blog Counts" src="https://www.guofei.site/reading/media/reading_words.svg">，读书 <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg">
