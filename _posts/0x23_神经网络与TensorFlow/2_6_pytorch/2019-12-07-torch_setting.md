@@ -88,7 +88,7 @@ torch.cuda.device_count() # 可用的GPU数量
 ```python
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
+# 'cuda' 等同于 'cuda:X',其中X是torch.cuda.current_device()
 model.to(device) # 模型
 mytensor = my_tensor.to(device) # tensor
 
