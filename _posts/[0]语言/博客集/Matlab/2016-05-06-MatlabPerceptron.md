@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Matlab】自编代码实现感知机
-categories: 趣文
-tags: 
+categories: Matlab
+tags:
 keywords:
 description:
 ---

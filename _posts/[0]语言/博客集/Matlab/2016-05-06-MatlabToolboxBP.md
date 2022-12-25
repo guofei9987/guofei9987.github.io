@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Matlab工具箱】BP神经网络
-categories: 趣文
-tags: 
+categories: Matlab
+tags:
 keywords:
 description:
 ---
