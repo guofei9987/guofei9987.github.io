@@ -38,6 +38,10 @@
           {% continue %}
           {% endif %}
 
+          {% if category[0] == 'Matlab' %}
+          {% continue %}
+          {% endif %}
+
           <li>
             <a href="#{{ category | first }}" data-toggle="tab">
               {{ category[0] }}
