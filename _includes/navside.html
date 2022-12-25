@@ -21,7 +21,7 @@
         </li>
         {% for category in site.categories %}
 
-        <!-- 这两个标签不放侧边栏，而是放到橱窗里面 -->
+        <!-- 这几个标签不放侧边栏，而是放到橱窗里面 -->
           {% if category[0] == '前端' %}
           {% continue %}
           {% endif %}
@@ -62,11 +62,10 @@
               <div class="list-group">
 
                 {% if category[0] == '橱窗' %}
-                <a class="list-group-item-lay pjaxlink" href="/pages/good.html">精选技术博客</a>
+                  <a class="list-group-item-lay pjaxlink" href="/pages/good.html">精选技术博客</a>
 
                   <a class="list-group-item-lay pjaxlink" href="/pages/reading.html">读书笔记库</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/certification.html">证书和著作</a>
-                  <a class="list-group-item-lay pjaxlink" href="/pages/web_design.html">前端笔记集合</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/interesting.html">趣文集合</a>
                   {% for post in category[1] %}
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>

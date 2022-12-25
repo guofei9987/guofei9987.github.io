@@ -37,6 +37,5 @@ active: tags
 
 # 中文本地化
 locals:
-  tags: 算法
+  tags: 精选
   about: 我
-  trythis: 数据清洗
