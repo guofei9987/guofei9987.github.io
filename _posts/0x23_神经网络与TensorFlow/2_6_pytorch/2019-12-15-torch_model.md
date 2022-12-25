@@ -230,16 +230,16 @@ a.logical_not_()
 ## 损失函数
 1. 交叉熵 $H(p,q)=-\sum p(x)\log q(x)$
 ```py
-
+criterion = nn.CrossEntropyLoss()
 ```
 2. MSE $MSE(y,y')=\dfrac{\sum (y-y')^2}{n}$
 ```py
+criterion = nn.MSELoss()
 ```
-3. 自定义例如，预测销量时，多预测一个损失1元，少预测1个损失10元。  
+3. 自定义。例如，预测销量时，多预测一个损失1元，少预测1个损失10元。  
 $Loss(y,y')=\sum f(y_i,y_i')$,  
 其中，$$f(x,y)=\left\{\begin{array}{ccc}a(x-y)&x>y\\
 b(y-x)&x\leq y\end{array}\right.$$
-
 ```py
 ```
 
