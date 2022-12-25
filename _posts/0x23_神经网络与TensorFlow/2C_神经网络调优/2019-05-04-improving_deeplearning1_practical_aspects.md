@@ -2,7 +2,7 @@
 layout: post
 title: Practical aspects of DNN
 categories:
-tags: 0x23_神经网络与TF
+tags: 0x23_深度学习
 keywords:
 description:
 order: 450

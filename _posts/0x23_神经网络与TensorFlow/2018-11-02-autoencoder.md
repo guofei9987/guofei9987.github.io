@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 【AutoEncoder】自编码网络
+title: 【TensorFlow】AutoEncoder
 categories:
-tags: 0x23_神经网络与TF
+tags: 0x23_深度学习
 keywords:
 description:
 order: 331
@@ -135,7 +135,7 @@ with tf.Session() as sess:
 给输入增加一个随机损坏(stochastic corruption)操作. 这个操作可以有很多方式  
 原始的方法是，随机地将一些输入( 多达一半 )置零. 因此, 对于随机选择的丢失了特征的子集, 降噪自动编码器尝试根据未损坏( 即未丢失 )的值来预测损坏( 即丢失 )的值. 注意, 如何能够从剩余集合中预测任意变量的子集, 是完全获得一个集合的变量间的联合分布的充分条件( 这就是吉布斯采样([Gibbs sampling](https://en.wikipedia.org/wiki/Gibbs_sampling))的原理 ).
 
-### 3. 
+### 3.
 
 
 ## 参考资料
