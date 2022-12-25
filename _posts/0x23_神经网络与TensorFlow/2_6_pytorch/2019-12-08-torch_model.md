@@ -25,6 +25,22 @@ torch.from_numpy(np.ones()) #
 ```
 
 
+数据类型转换
+```python
+x.int()
+x.long()
+x.float()
+x.bool()
+x.char() # int8 类型
+x.double()
+
+# 四舍五入
+x.round()
+x.fix()
+x.floor()
+```
+
+
 运算
 ```python
 torch.add(x, y)
@@ -42,12 +58,38 @@ y.add_(x) # 这个会把加法的结果赋值给y
 **注：加下划线后，是替换，很多这样的例子，如x.copy_(y), x.t_()**
 
 
-其它方法
+取数
 ```python
-x.size()
+x.size() # torch.Size([5, 3])
 
 # index 和 Numpy 一样
 x[:, 1]
+
+# 获取某一行
+x.select(dim=1,index=2) # 获取按照 dim 计算的 第 index 组。
+# 例子的 dim=1 表示获取的是列，index=2 表示获取第 2 列
+
+
+# tensor 转其它格式
+x.numpy() # 转 np.array
+x.tolist() # 转 list
+
+# 转 Python 数字，只有单个元素的时候可以用
+x[0][0].item()
+
+# 注意一个特性: 共享内存
+x = torch.ones(2)
+y = x.numpy()
+x += 1
+print(x, y)
+# 打印：tensor([2., 2.]) [2. 2.]
+
+# 值得一提，反过来也是这个特性
+a = np.ones(5)
+b = torch.from_numpy(a)
+a += 1
+print(a, b)
+# [2. 2.] tensor([2., 2.])
 ```
 
 reshape
@@ -58,35 +100,154 @@ y = x.view(16)
 z = x.view(-1, 8)
 ```
 
-tensor 转其它格式
+
+
+
+### 基本运算
 
 ```python
-# 转 Python 数字，只有单个元素的时候可以用
-x[0][0].item()
+x.sqrt()
+x.square()
+x.exp()
 
-# tensor 转 numpy
-x.numpy()
+x.cos()
+x.cosh()
+x.acos()
+x.acosh()
+x.arccos()
+x.arccosh()
 ```
 
-注意一个特性: 共享内存
+矩阵运算
+
+```py
+x = torch.rand(5, 5)
+
+# 矩阵积
+x.matmul(x)
+# 矩阵的点积
+x * x
+
+
+U, S, V = x.svd()
+eigenvalues, eigenvectors = x.eig(eigenvectors=False) # 默认不计算特征向量
+
+
+x1.diag() # 对角线
+```
+
+矩阵变换
+```py
+x.flip(dim) # 按照 dim 确定的维度翻转
+
+x.t() # 转秩
+
+x.chunk(chunks=3) # 分为三份
+
+x.tril(k=0) # 下三角矩阵
+x.triu(k=0) # 上三角矩阵
+```
+
+
+### 统计类运算
+
+```py
+x.mean()
+x.mean(dim=1,keepdim=True)
+
+x.max()
+values, indices = x.max(dim=1, keepdim=True)
+
+x.min()
+x.mode()
+
+values, indices = x.sort(dim=1, descending=False)
+
+x.argmin()
+x.argsort()
+
+x.histc
+x.histogram
+
+x.std
+
+```
+
+
+
+
+### 布尔类型
+
+ByteTensor
 ```python
-x = torch.ones(2)
-y = x.numpy()
-x += 1
-print(x, y)
-# 打印：tensor([2., 2.]) [2. 2.]
-# += 是指针操作内存
-# 转 numpy 时共用内存
+# 转换后是 torch.uint8 数据类型
+torch.ByteTensor([1.1, 2, 3]) # 对于小数，会取整。对于溢出的数（大于255或负的），会舍弃溢出位数
+# 但是，如果输入的是Tensor，会卡死，这么解决：
+torch.tensor([1, 2, 3]).type(torch.int8)
+```
+运算
+```python
+a = torch.ByteTensor([0, 1, 0, 1])
+b = torch.ByteTensor([1, 1, 0, 0])
 
+a & b # logical and
+a|b # logical or
+a^b # logical xor
+~a # 并不是，logical not，而是按位与，你需要 1-a
 
-# 值得一提，反过来也是这个特性
-a = np.ones(5)
-b = torch.from_numpy(a)
-a += 1
-print(a, b)
-# [2. 2.] tensor([2., 2.])
+a.bitwise_and(other)
+a.bitwise_left_shift(other)
 ```
 
+
+BoolTensor
+```python
+torch.BoolTensor([1.1, 2, 0.9, -0.9, 0, True, False])
+# 输出 tensor([ True,  True, False, False, False,  True, False])
+# 绝对值小于1的，都会转成 False, 其它转为 True
+
+# 直接大于、小于、等于都可以
+torch.rand(size=(5, 6)) < 0.5
+
+# 运算
+
+# logic and:
+a * b
+a *= b
+
+# logic or:
+a + b
+a += b
+
+a.logical_xor(b)
+a.logical_xor_(b)
+a.logical_not()
+a.logical_not_()
+```
+
+
+
+## 损失函数
+1. 交叉熵 $H(p,q)=-\sum p(x)\log q(x)$
+```py
+
+```
+2. MSE $MSE(y,y')=\dfrac{\sum (y-y')^2}{n}$
+```py
+```
+3. 自定义例如，预测销量时，多预测一个损失1元，少预测1个损失10元。  
+$Loss(y,y')=\sum f(y_i,y_i')$,  
+其中，$$f(x,y)=\left\{\begin{array}{ccc}a(x-y)&x>y\\
+b(y-x)&x\leq y\end{array}\right.$$
+
+```py
+```
+
+### 正则化项
+写法1
+```py
+待填入
+```
 
 ## AUTOGRAD
 
@@ -149,6 +310,8 @@ y.backward(v)
 # ？？？但我没搞清楚这个对应哪个数学公式
 ```
 
+
+##
 
 ## 案例：分类模型
 
