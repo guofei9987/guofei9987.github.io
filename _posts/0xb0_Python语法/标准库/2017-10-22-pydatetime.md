@@ -152,6 +152,43 @@ ddt1==ddt2
 True
 ```
 
+## calendar
+
+```python
+import calendar
+
+calendar_month = calendar.month(theyear=2022, themonth=10)
+# str 格式，一个月的日历
+print(calendar_month)
+# 输出：
+'''
+    October 2022
+Mo Tu We Th Fr Sa Su
+            1  2
+3  4  5  6  7  8  9
+10 11 12 13 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+31
+'''
+
+
+# 打印一整年的
+calendar_year = calendar.calendar(theyear=2022)
+print(calendar_year)
+```
+
+HTML 格式的日历
+
+```python
+calendar_month_html = calendar.HTMLCalendar(firstweekday=0). \
+    formatmonth(theyear=2022, themonth=10, withyear=True)
+
+一整年的
+calendar_year_html = calendar.HTMLCalendar(firstweekday=0). \
+    formatyear(theyear=2022, width=3)
+```
+
 
 ## 参考文献
 https://docs.python.org/3/

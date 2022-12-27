@@ -290,10 +290,16 @@ torch.nn.Softmax
 - tanh:$g(x)=\dfrac{e^z-e^{-z}}{e^z+e^{-z}},g'(z)=1-(g(z))^2$  
 - ReLU/Leaky RelU： 分段函数，注意0点的情况 does not matter
 
-### 卷积函数
+### 卷积相关
 
 ```py
-torch.nn.conv2d
+torch.nn.Conv2d(in_channels=1  # 灰度图
+                      , out_channels=16, kernel_size=5, stride=1
+                      , padding=2)  # 如果像保持输出的 size 和原来一样，需要 padding = (kernel_size-1)/2 if stride=1
+nn.MaxPool2d(kernel_size=2)
+
+
+
 tf.nn.conv2d(input,filter,strides=[1,1,1,1],padding='SAME')
 # 对四维数据进行二维卷积操作
 # input: [batch, in_height, in_width, in_channels]
@@ -340,11 +346,19 @@ tf.nn.avg_pool3d
 
 ```
 
+## 正则化项
+
+### l1和l2
+
 ### dropout
-用来减轻overfitting
+dropout 用来减轻 overfitting
 ```py
-keep_prob=tf.placeholder(tf.float32) # 训练时小于1，预测时等于1，所以使用placeholder
-hidden1_drop=tf.nn.dropout(hidden1,keep_prob)
+# 定义一个 dropout
+self.dropout = nn.Dropout(config.dropout)
+# config.dropout = 0.5
+
+# 使用 dropout
+out = self.dropout(out)
 ```
 
 
@@ -355,6 +369,14 @@ tf.nn.lrn(pool1,4,bias=1,alpha=0.001/9.0,beta=0.75)
 #可以用于Pooling之后，也可以用于conv之后、Pooling之前
 #适用于ReLu这种没有上界的激活函数，不适合Sigmoid这种有固定边界，或者能抑制过大值得激活函数
 ```
+
+### BN
+Batch Normalization
+```py
+待填入
+```
+
+BN不能紧跟着dropout，否则会抖动严重
 
 
 ## 损失函数
@@ -371,23 +393,6 @@ $Loss(y,y')=\sum f(y_i,y_i')$,
 其中，$$f(x,y)=\left\{\begin{array}{ccc}a(x-y)&x>y\\
 b(y-x)&x\leq y\end{array}\right.$$
 ```py
-```
-
-### 正则化项
-写法1
-```py
-待填入
-```
-
-dropout
-
-```python
-待填入
-```
-
-Batch Normalization
-```py
-待填入
 ```
 
 ## 优化器
