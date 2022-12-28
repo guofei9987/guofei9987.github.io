@@ -163,3 +163,14 @@ a.logical_xor_(b)
 a.logical_not()
 a.logical_not_()
 ```
+
+
+reshape
+```python
+# 修正：新版本已可用
+# reshape 也可以做下面这些事，但不能reshape到1维（？不知道为什么要这么设计）
+
+x = torch.randn(4, 4)
+y = x.view(16)
+z = x.view(-1, 8)
+```

@@ -137,10 +137,27 @@ print(a, b)
 
 reshape
 ```python
+# 修正：新版本已可用
 # reshape 也可以做下面这些事，但不能reshape到1维（？不知道为什么要这么设计）
+
 x = torch.randn(4, 4)
-y = x.view(16)
-z = x.view(-1, 8)
+x.reshape(2, -1)
+x.reshape(-1)
+```
+
+
+GPU
+
+```python
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+# 先生成，再放入 GPU
+x = torch.randn(4, 4).to(device)
+# 或者直接在 GPU 生成
+x = torch.randn(4, 4, device=device)
+# 也可以是字符串
+# device = 'cpu' # device = 'cuda'
+# ...to(device)
 ```
 
 
@@ -185,11 +202,32 @@ x.flip(dim) # 按照 dim 确定的维度翻转
 
 x.t() # 转秩
 
-x.chunk(chunks=3) # 分为三份
 
 x.tril(k=0) # 下三角矩阵
 x.triu(k=0) # 上三角矩阵
+
+# cat
+x1 = torch.rand(3, 2)
+x2 = torch.rand(3, 2)
+
+torch.cat([x1, x2], dim=0)
+
+# 分割
+x = torch.arange(0,12,step=1).reshape(2,6)
+x.chunk(chunks=3, dim=1) # 尽量均匀分为三份
+# 分为3份，大小分别是 1，3，2
+torch.split(x, split_size_or_sections=(1, 3, 2), dim=1)
+# 按 dim=1 分为3份，其大小分别为 1, 3, 2
 ```
+
+where
+
+```py
+torch.where(x1 > 0.5, x1, x2)
+torch.clip(x1, min=0.4, max=0.6)
+```
+
+
 
 按位运算
 ```python
@@ -252,6 +290,7 @@ values, indices = x.sort(dim=1, descending=False)
 
 x.argmin()
 x.argsort()
+x1.argmax(dim=1, keepdim=True)
 
 x.histc
 x.histogram
@@ -259,8 +298,6 @@ x.histogram
 x.std
 
 ```
-
-
 
 
 
