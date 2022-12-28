@@ -303,6 +303,8 @@ x.std
 
 ## 激活函数
 
+- `torch.nn` 中的激活函数是对象的形式，用于在 `__init__` 中定义
+- `torch.nn.functional` 中的激活函数是函数的形式，可以直接在 `forward` 中使用
 
 ### 激活函数
 - ReLU  
@@ -365,8 +367,8 @@ torch.nn.Softmax
 
 ```py
 torch.nn.Conv2d(in_channels=1  # 灰度图
-                      , out_channels=16, kernel_size=5, stride=1
-                      , padding=2)  # 如果像保持输出的 size 和原来一样，需要 padding = (kernel_size-1)/2 if stride=1
+                , out_channels=16, kernel_size=(5, 5), stride=(1, 1)
+                , padding=2)  # 如果像保持输出的 size 和原来一样，需要 padding = (kernel_size-1)/2 if stride=1
 nn.MaxPool2d(kernel_size=2)
 
 
@@ -414,6 +416,11 @@ tf.nn.max_pool_with_argmax
 # 其中output是每个池化区域的最大值。argmax是一个四维 <Targmax> 类型
 
 tf.nn.avg_pool3d
+
+```
+
+## 建立模型
+```
 
 ```
 
@@ -519,6 +526,34 @@ x.is_leaf, y.is_leaf # (True, False)
 要点：
 - `k.backward()` 只能运行一次
 - `k.backward(retain_graph=True)` 可以运行多次，但结果为上一次的累加，（会导致内存占用较多？）
+
+开关梯度计算
+
+```python
+x = torch.ones(2, 2, requires_grad=True)
+
+# 方法1. 使用 with
+with torch.no_grad():
+    y = x + 2
+
+print(y.requires_grad)  # False
+
+# 方法2. 使用装饰器
+@torch.no_grad()
+def func(x):
+    return x + 2
+
+
+y = func(x)
+print(y.requires_grad)  # False
+
+# 相反的运算是 torch.enable_grad()，可以嵌入到 no_grad() 代码块里面
+# 如果 x 本身没有设置 requires_grad=True，那么即使 enable_grad()，它也不生效
+
+# 方法3. 全局打开/关闭
+torch.set_grad_enabled(True)
+torch.set_grad_enabled(False)
+```
 
 
 ```python
@@ -732,3 +767,55 @@ with tf.Session() as sess:
 （另外，还有些鞍点是难以逃离的）
 
 因此，高维空间里（深度学习问题上）真正可怕的不是局部最优也不是鞍点问题，而是一些特殊地形。比如大面积的平坦区域。  
+
+
+## 建立模型
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from collections import OrderedDict
+
+
+class MyNet(nn.Module):
+    def __init__(self):
+        super(MyNet, self).__init__()
+        # 方法1
+        self.fc1 = nn.Linear(10, 10)
+        # 方法2
+        self.add_module("layer2", nn.Linear(10, 10))
+        # 方法3
+        self.layer3 = nn.Sequential(OrderedDict([
+            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
+            ("relu1", nn.ReLU())
+        ]))
+        # 方法4
+        self.add_module("layer4", nn.Sequential(OrderedDict([
+            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
+            ("relu1", nn.ReLU())
+        ])))
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        return x
+
+
+my_net = MyNet()
+print(my_net)
+# 结果：
+# MyNet(
+#   (fc1): Linear(in_features=10, out_features=10, bias=True)
+#   (layer2): Linear(in_features=10, out_features=10, bias=True)
+#   (layer3): Sequential(
+#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
+#     (relu1): ReLU()
+#   )
+#   (layer4): Sequential(
+#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
+#     (relu1): ReLU()
+#   )
+# )
+
+```
