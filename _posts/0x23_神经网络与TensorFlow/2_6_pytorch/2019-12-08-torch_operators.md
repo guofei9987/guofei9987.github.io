@@ -192,6 +192,48 @@ x.triu(k=0) # 上三角矩阵
 ```
 
 按位运算
+```python
+# dtype 必须是 int 类型，最好是 uint8
+x1 = torch.tensor([1, 2, 3], dtype=torch.uint8)
+x2 = torch.tensor([1, 1, 1], dtype=torch.uint8)
+
+
+x1 & x2  # 按位与
+x1 | x2  # 按位或
+~x1  # 按位非
+x1 ^ x2  # 按位异或
+# 以上对应的运算符为：x1.bitwise_or(x2) 等类似的东西
+
+x1 << 1  # 移位运算
+# x1.bitwise_left_shift(1)
+```
+
+逻辑运算
+```python
+# 0 转为 False，别的数字都转为 True
+x1 = torch.tensor([-0.9, 0, True, False], dtype=torch.bool)
+
+# >、<、==、 >=、 <= 都可以
+x2 = torch.rand(size=(4,)) < 0.5
+
+# logic and:
+x1 * x2
+x1 *= x2
+
+# logic or:
+x1 + x2
+x1 += x2
+
+x1.logical_and(x2)
+x1.logical_or(x2)
+x1.logical_xor(x2)
+x1.logical_xor_(x2)
+x1.logical_not()
+x1.logical_not_()
+```
+
+
+
 
 
 ### 统计类运算
@@ -220,55 +262,6 @@ x.std
 
 
 
-
-### 布尔类型
-
-ByteTensor
-```python
-# 转换后是 torch.uint8 数据类型
-torch.ByteTensor([1.1, 2, 3]) # 对于小数，会取整。对于溢出的数（大于255或负的），会舍弃溢出位数
-# 但是，如果输入的是Tensor，会卡死，这么解决：
-torch.tensor([1, 2, 3]).type(torch.int8)
-```
-运算
-```python
-a = torch.ByteTensor([0, 1, 0, 1])
-b = torch.ByteTensor([1, 1, 0, 0])
-
-a & b # logical and
-a|b # logical or
-a^b # logical xor
-~a # 并不是，logical not，而是按位与，你需要 1-a
-
-a.bitwise_and(other)
-a.bitwise_left_shift(other)
-```
-
-
-BoolTensor
-```python
-torch.BoolTensor([1.1, 2, 0.9, -0.9, 0, True, False])
-# 输出 tensor([ True,  True, False, False, False,  True, False])
-# 绝对值小于1的，都会转成 False, 其它转为 True
-
-# 直接大于、小于、等于都可以
-torch.rand(size=(5, 6)) < 0.5
-
-# 运算
-
-# logic and:
-a * b
-a *= b
-
-# logic or:
-a + b
-a += b
-
-a.logical_xor(b)
-a.logical_xor_(b)
-a.logical_not()
-a.logical_not_()
-```
 
 
 ## 激活函数

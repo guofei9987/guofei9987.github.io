@@ -129,3 +129,37 @@ torch.get_default_dtype()
 torch.set_default_dtype(torch.float16)
 
 ```
+
+
+```
+torch.ByteTensor([1.1, 2, 3]) # 对于小数，会取整。对于溢出的数（大于255或负的），会舍弃溢出位数
+# 但是，如果输入的是Tensor，会卡死，这么解决：
+torch.tensor([1, 2, 3]).type(torch.int8)
+```
+
+
+
+BoolTensor
+```python
+torch.BoolTensor([1.1, 2, 0.9, -0.9, 0, True, False])
+# 输出 tensor([ True,  True, False, False, False,  True, False])
+# （新版本已经不对了）绝对值小于1的，都会转成 False, 其它转为 True
+
+# 直接大于、小于、等于都可以
+torch.rand(size=(5, 6)) < 0.5
+
+# 运算
+
+# logic and:
+a * b
+a *= b
+
+# logic or:
+a + b
+a += b
+
+a.logical_xor(b)
+a.logical_xor_(b)
+a.logical_not()
+a.logical_not_()
+```
