@@ -17,15 +17,26 @@ order: 262
 新建
 ```python
 torch.empty(5, 3)
-torch.rand(5, 3)
+torch.ones(3, 3)
+torch.ones_like(...)
 torch.zeros(5, 3, dtype=torch.long)
-# dtype=torch.float, torch.double
+torch.eye(5)
 
+torch.arange(start=0, end=8, step=2) # 含头不含尾
+torch.linspace(start=0, end=9, steps=5) # 均匀的取5个值，含头含尾
+
+
+# 随机生成
+torch.manual_seed(2) # 设置种子
+print(torch.initial_seed()) 查看种子
+torch.rand(5, 3)
+torch.randn(5, 3)
 torch.randn_like(x, dtype=torch.float)
 
+
 # 从其它数据新建
-torch.tensor([5.5, 3])
-torch.from_numpy(np.ones()) #
+torch.tensor([5.5, 3], dtype=torch.float32)
+# torch.from_numpy(np.ones()) # 用上面的也可以
 ```
 
 
@@ -37,6 +48,27 @@ x.float()
 x.bool()
 x.char() # int8 类型
 x.double()
+
+# 有这些类型
+torch.bool
+torch.int
+torch.short
+torch.uint8 # 这个是 ByteTensor
+torch.int
+torch.int8
+torch.int16
+torch.int32
+torch.long
+torch.float
+torch.float16
+torch.float32
+torch.float64
+torch.double
+torch.complex32
+torch.complex64
+# 还有很多其它
+
+
 
 # 四舍五入
 x.round()
@@ -55,16 +87,23 @@ x + y
 result = torch.empty(5, 3)
 torch.add(x, y, out=result)
 
+
+
+
+# 大多数运算符后面可以加个下划线，表示替换运算
 # 替换加
 y.add_(x) # 这个会把加法的结果赋值给y
+# 如 x.copy_(y), x.t_()
+
+
 ```
 
-**注：加下划线后，是替换，很多这样的例子，如x.copy_(y), x.t_()**
 
 
 取数
 ```python
 x.size() # torch.Size([5, 3])
+x.numel() # 共多少个元素
 
 # index 和 Numpy 一样
 x[:, 1]
@@ -151,6 +190,8 @@ x.chunk(chunks=3) # 分为三份
 x.tril(k=0) # 下三角矩阵
 x.triu(k=0) # 上三角矩阵
 ```
+
+按位运算
 
 
 ### 统计类运算

@@ -120,3 +120,12 @@ if torch.cuda.device_count() > 1:
 
 model.to(device)
 ```
+
+## 不太常用的代码
+
+```
+
+torch.get_default_dtype()
+torch.set_default_dtype(torch.float16)
+
+```
