@@ -420,7 +420,53 @@ tf.nn.avg_pool3d
 ```
 
 ## 建立模型
-```
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from collections import OrderedDict
+
+
+class MyNet(nn.Module):
+    def __init__(self):
+        super(MyNet, self).__init__()
+        # 方法1
+        self.fc1 = nn.Linear(10, 10)
+        # 方法2
+        self.add_module("layer2", nn.Linear(10, 10))
+        # 方法3
+        self.layer3 = nn.Sequential(OrderedDict([
+            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
+            ("relu1", nn.ReLU())
+        ]))
+        # 方法4
+        self.add_module("layer4", nn.Sequential(OrderedDict([
+            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
+            ("relu1", nn.ReLU())
+        ])))
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        return x
+
+
+my_net = MyNet()
+print(my_net)
+# 结果：
+# MyNet(
+#   (fc1): Linear(in_features=10, out_features=10, bias=True)
+#   (layer2): Linear(in_features=10, out_features=10, bias=True)
+#   (layer3): Sequential(
+#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
+#     (relu1): ReLU()
+#   )
+#   (layer4): Sequential(
+#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
+#     (relu1): ReLU()
+#   )
+# )
 
 ```
 
@@ -428,30 +474,53 @@ tf.nn.avg_pool3d
 
 ### l1和l2
 
+```python
+# optimizer = torch.optim.SGD(my_net.parameters(), lr=0.001, momentum=0.9)
+# 原来的上面一行代码，替换成下面的多行代码，其它部分不变
+
+weight_p, bias_p = [], []
+for name, p in my_net.named_parameters():
+    if 'bias' in name:
+        bias_p += [p]
+    else:
+        weight_p += [p]
+
+optimizer = torch.optim.SGD([{'params': weight_p, 'weight_decay': 1e-5},
+                             {'params': bias_p, 'weight_decay': 0}],
+                            lr=1e-2,
+                            momentum=0.9)
+
+```
+
 ### dropout
 dropout 用来减轻 overfitting
 ```py
-# 定义一个 dropout
+# torch.nn.functional.dropout
+# torch.nn.functional.dropout1d
+# torch.nn.functional.dropout2d
+# torch.nn.functional.dropout3d
+
+torch.nn.functional.dropout(x, p=0.5, training=True, inplace=False)
+# p是丢弃概率，1表示全部丢弃
+# training=False，表示在训练阶段也不生效
+
+
+# 类的形式定义：
 self.dropout = nn.Dropout(config.dropout)
 # config.dropout = 0.5
-
-# 使用 dropout
-out = self.dropout(out)
 ```
 
 
 
-```py
-tf.nn.lrn(pool1,4,bias=1,alpha=0.001/9.0,beta=0.75)
-#LRN模仿生物的侧抑制机制，对局部神经元创建竞争环境，使其中响应大的值相对更大，并抑制其它反馈小的神经元。从而增强泛化能力
-#可以用于Pooling之后，也可以用于conv之后、Pooling之前
-#适用于ReLu这种没有上界的激活函数，不适合Sigmoid这种有固定边界，或者能抑制过大值得激活函数
-```
 
 ### BN
 Batch Normalization
 ```py
-待填入
+# torch.nn.BatchNorm1d
+# torch.nn.BatchNorm2d
+# torch.nn.BatchNorm3d
+
+
 ```
 
 BN不能紧跟着dropout，否则会抖动严重
@@ -767,55 +836,3 @@ with tf.Session() as sess:
 （另外，还有些鞍点是难以逃离的）
 
 因此，高维空间里（深度学习问题上）真正可怕的不是局部最优也不是鞍点问题，而是一些特殊地形。比如大面积的平坦区域。  
-
-
-## 建立模型
-
-```python
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from collections import OrderedDict
-
-
-class MyNet(nn.Module):
-    def __init__(self):
-        super(MyNet, self).__init__()
-        # 方法1
-        self.fc1 = nn.Linear(10, 10)
-        # 方法2
-        self.add_module("layer2", nn.Linear(10, 10))
-        # 方法3
-        self.layer3 = nn.Sequential(OrderedDict([
-            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
-            ("relu1", nn.ReLU())
-        ]))
-        # 方法4
-        self.add_module("layer4", nn.Sequential(OrderedDict([
-            ("conv1", torch.nn.Conv2d(in_channels=1, out_channels=16, kernel_size=(5, 5))),
-            ("relu1", nn.ReLU())
-        ])))
-
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        return x
-
-
-my_net = MyNet()
-print(my_net)
-# 结果：
-# MyNet(
-#   (fc1): Linear(in_features=10, out_features=10, bias=True)
-#   (layer2): Linear(in_features=10, out_features=10, bias=True)
-#   (layer3): Sequential(
-#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
-#     (relu1): ReLU()
-#   )
-#   (layer4): Sequential(
-#     (conv1): Conv2d(1, 16, kernel_size=(5, 5), stride=(1, 1))
-#     (relu1): ReLU()
-#   )
-# )
-
-```
