@@ -342,7 +342,6 @@ torch.nn.softplus
 ```py
 # 表达式为 (exp(x)+1) if x<0 else x
 torch.nn.ELU
-torch.nn.Softmax
 ```
 
 
@@ -350,6 +349,14 @@ torch.nn.Softmax
 |--|--|--|
 |Sigmoid|不容易出现极端值|收敛速度慢
 |ReLU|收敛速度快|容易出现极端值|
+
+
+```
+torch.nn.Softmax(dim=dim)
+torch.nn.Softmax2d()  # 用于图片
+torch.nn.LogSoftmax()  # 对 softmax 取对数，对应的损失函数是 NLLLoss
+```
+
 
 
 2019年5月22日更新（来自吴恩达的 DeepLearning.ai 课程）：  
@@ -470,6 +477,21 @@ print(my_net)
 
 ```
 
+## 保存和载入模型
+
+```python
+# 存
+torch.save(model.state_dict(),'./model.pkh')
+
+# 读
+model.load_state_dict(torch.load('./model.pkh'))
+
+# GPU：模型保存时，会记录设备序号，如果系统不一致会报错
+# 把 GPU1 的权重加载到 GPU0 上
+troch.load('model.pkh', map_location={"cuda:1":"cuda:0"})
+torch.load('model.pkh',map_location=lambda storage,loc: storage)
+```
+
 ## 正则化项
 
 ### l1和l2
@@ -516,20 +538,43 @@ self.dropout = nn.Dropout(config.dropout)
 ### BN
 Batch Normalization
 ```py
-# torch.nn.BatchNorm1d
-# torch.nn.BatchNorm2d
-# torch.nn.BatchNorm3d
+torch.nn.BatchNorm1d # 针对 2 维或者 3 维，输入是 (N, D), 或者 (N, D, L)
+torch.nn.BatchNorm2d # 针对 2 维，输入 (N, C, H, W)
+torch.nn.BatchNorm3d # 针对 3 维，输入 (N, C, D, H, W)
+# 其中，N 是批次数
+# D是数据个数
+# L是数据长度
+# C是通道，H是高度，W是宽度
+# D是深度
 
+
+torch.nn.BatchNorm1d(num_features=5, eps=1e-5
+                     , momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
+# num_features：二维(N, D) 中的 D，BatchNorm2d 中的 C
+# eps：防治0值导致数据溢出
+# momentum 动态均值和动态方差所用的动量
+# affine 自适应调整 gamma/beta 值，若为 False 则不用它们
+# track_running_stats=True 不但追踪当期的均值和方差，还根据之前批次做调整
 
 ```
+
+$y = \frac{x - \mathrm{E}[x]}{\sqrt{\mathrm{Var}[x] + \epsilon}} * \gamma + \beta$
 
 BN不能紧跟着dropout，否则会抖动严重
 
 
 ## 损失函数
+
+```
+criterion = torch.nn.L1Loss()
+
+
+```
+
 1. 交叉熵 $H(p,q)=-\sum p(x)\log q(x)$
 ```py
 criterion = nn.CrossEntropyLoss()
+torch.nn.CrossEntropyLoss(weight)  # 加权交叉熵
 ```
 2. MSE $MSE(y,y')=\dfrac{\sum (y-y')^2}{n}$
 ```py
@@ -540,6 +585,11 @@ $Loss(y,y')=\sum f(y_i,y_i')$,
 其中，$$f(x,y)=\left\{\begin{array}{ccc}a(x-y)&x>y\\
 b(y-x)&x\leq y\end{array}\right.$$
 ```py
+```
+4. 多标签二分类任务中的损失函数，每个预测值有 n 个 0/1
+```python
+torch.nn.BCELoss
+torch.nn.BCEWithLogitsLoss
 ```
 
 ## 优化器
@@ -653,6 +703,11 @@ tf.train.AdamOptimizer
 tf.train.RMSPropOptimizer # alpha go所使用的优化器
 ```
 
+### torch中的优化器
+```python
+optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
+optimizer = torch.optim.Adam(my_model.parameters(),weight_decay =0.0001) # weight_decay 是 L2 penalty
+```
 
 ### 1. SGD类
 #### 1.1 BGD
@@ -762,58 +817,80 @@ $\hat m_t=\dfrac{m_t}{1-\beta_1^t}$
 $\hat v_t=\dfrac{v_t}{1-\beta_2^t}$  
 $\theta_{t+1}=\theta_t-\dfrac{\alpha}{\sqrt {\hat v_t}+\epsilon} \hat m_t$  
 
+
+
+
 ## 学习率
-`tf.train.exponential_decay` 指数下降法减小学习率  
-decayed_learning_rate=learning_rate * decay_rate ** (global_step/decay_steps)
-```py
-learning_rate=tf.train.exponential_decay(0.01,global_step=10000,decay_steps=100,decay_rate=0.96,staircase=True)
+
+学习率衰减
+```python
+# 等间隔调整
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
+# 按步调整
+torch.optim.lr_scheduler.MultiStepLR
+
+# 指数衰减 lr * (gamma ** step)
+torch.optim.lr_scheduler.ExponentialLR
+
+# 余弦退火，学习率按余弦衰减
+torch.optim.lr_scheduler.CosineAnnealingLR
+
+# 指标在近几次没有变化时，调整学习率，最常用
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau \
+    (optimizer=optimizer
+     , mode='min'
+     , factor=0.5  # gamma
+     , patience=5  # 监控不再减少/增加的次数
+     , verbose=True  # 触发规则后打印
+     , threshold=1e-4  # 触发规则的阈值
+     , threshold_mode='abs'  # 触发规则的计算方法
+     , cooldown=0  # 触发规则后停止监控这么多次
+     , min_lr=0  # lr最小是这么多
+     , eps=1e-8
+     )
+
+# 自定义 学习率衰减
+torch.optim.lr_scheduler.LambdaLR
 ```
-staircase=True时，(global_step/decay_steps)会转化成整数，使得学习率阶梯下降
 
-学习率的图：
-```py
-import tensorflow as tf
-sess=tf.Session()
-
-global_step_=tf.constant(0)
-c=tf.train.exponential_decay(learning_rate=0.01,global_step=global_step_,decay_steps=100,decay_rate=0.96,staircase=False)
-d=tf.train.exponential_decay(learning_rate=0.01,global_step=global_step_,decay_steps=100,decay_rate=0.96,staircase=True)
-steps,learning_rates_c,learning_rates_d=[],[],[]
-for i in range(1000):
-    steps.append(i)
-    learning_rates_c.append(sess.run(c,feed_dict={global_step_:i}))
-    learning_rates_d.append(sess.run(d,feed_dict={global_step_:i}))
-
-
-import matplotlib.pyplot as plt
-plt.plot(steps,learning_rates_c)
-plt.plot(steps,learning_rates_d)
-plt.show()
+如何使用？
+```python
+# 训练阶段，前面一堆代码
+optimizer.step()
+scheduler.step()
+# 后面一堆代码
 ```
+
+画一个学习率衰减图
+
+```python
+optimizer = torch.optim.Adam(my_net.parameters(), lr=0.1)
+# scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=20, gamma=0.5)
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.96)
+
+lr_history = []
+for i in range(100):
+    scheduler.step()
+    lr_history.append(optimizer.state_dict()['param_groups'][0]['lr'])
+```
+
+
+
+
 ![learning_rate1](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/tf/learning_rate1.png?raw=true)
 
 
+## hook
 
-用法案例
-```py
-import tensorflow as tf
-TRAINING_STEPS = 100
-global_step = tf.Variable(0)
-LEARNING_RATE = tf.train.exponential_decay(0.1, global_step, 1, 0.96, staircase=True)
-
-x = tf.Variable(tf.constant(5, dtype=tf.float32), name="x")
-y = tf.square(x)
-train_op = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(y, global_step=global_step)
-
-with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    for i in range(TRAINING_STEPS):
-        sess.run(train_op)
-        if i % 10 == 0:
-            LEARNING_RATE_value = sess.run(LEARNING_RATE)
-            x_value = sess.run(x)
-            print ("After %s iteration(s): x%s is %f, learning rate is %f."% (i+1, i+1, x_value, LEARNING_RATE_value))
+```python
+# 正向时会触发的hook
+def func1(model,input,output):pass
+my_net.register_forward_hook(func1)
+# 反向时会触发的hook
+def func2(model,grad_input,grad_output):pass
+my_net.register_backward_hook(func2)
 ```
+
 
 ## 关于局部最优
 
