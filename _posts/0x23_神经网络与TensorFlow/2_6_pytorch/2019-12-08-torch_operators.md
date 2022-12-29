@@ -377,53 +377,6 @@ torch.nn.Conv2d(in_channels=1  # 灰度图
                 , out_channels=16, kernel_size=(5, 5), stride=(1, 1)
                 , padding=2)  # 如果像保持输出的 size 和原来一样，需要 padding = (kernel_size-1)/2 if stride=1
 nn.MaxPool2d(kernel_size=2)
-
-
-
-tf.nn.conv2d(input,filter,strides=[1,1,1,1],padding='SAME')
-# 对四维数据进行二维卷积操作
-# input: [batch, in_height, in_width, in_channels]
-# filter: [filter_height, filter_width, in_channels, out_channels]
-# strides: [1,stride_horizontal,,stride_vertices,1]
-# padding='SAME'表示边界加上padding，使得卷积的输入和输出保持同样的尺寸
-# padding='VALID' 表示不在边界上加padding
-
-
-tf.nn.convolution(input,filter, padding,strides=None,dilation_rate=None,name=None,data_format=None)
-# N维卷积的和
-
-tf.nn.conv1d(value,filters,stride,padding,use_cudnn_on_gpu=None,data_format=None,name=None)
-# 对三维数据进行一维卷积操作
-# value:[batch,in_width,in_channels]
-# filter:[filter_width,in_channels,out_channels]
-
-tf.nn.conv3d(input, filter, strides, padding)
-# input: [batch,in_depth,in_height,in_width,in_channels]
-# filter: [filter_depth, filter_height, filter_width, in_channels, out_channels]
-# strides: [1,stride1,stride2,stride3,1]
-
-tf.nn.depthwise_conv2d(input, filter, strides, padding, rate=None, name=None, data_format=None)
-# input :[batch,in_height,in_width,in_channels]
-# filter :[filter_height,filter_width,in_channels,channel_multiplier]
-# 输出是[batch, out_height, out_width, in_channels * channel_multiplier]
-
-tf.nn.separable_conv2d(input,depthwise_filter,pointwise_filter,strides,padding,rat,name,data_format)
-
-tf.nn.atrous_conv2d
-tf.nn.conv2d_transpose
-```
-
-池化层
-```py
-tf.nn.max_pool(x,ksize=[1,2,2,1],strides=[1,2,2,1],padding='SAME') #横竖步长为2，
-# 每个输出元素是池化区域的最大值
-tf.nn.avg_pool # 每个输出元素是池化区域的平均值
-tf.nn.max_pool_with_argmax
-# 返回最大值和最大值所在位置 (output,argmax),
-# 其中output是每个池化区域的最大值。argmax是一个四维 <Targmax> 类型
-
-tf.nn.avg_pool3d
-
 ```
 
 ## 建立模型
@@ -879,8 +832,8 @@ for i in range(100):
 
 ![learning_rate1](https://github.com/guofei9987/StatisticsBlog/blob/master/%E9%99%84%E4%BB%B6/tf/learning_rate1.png?raw=true)
 
-
-## hook
+## 其它代码
+### hook
 
 ```python
 # 正向时会触发的hook
@@ -889,6 +842,34 @@ my_net.register_forward_hook(func1)
 # 反向时会触发的hook
 def func2(model,grad_input,grad_output):pass
 my_net.register_backward_hook(func2)
+```
+
+### 显存不够
+
+如果模型太大，一个batch未必能放进去显存。解决：把一个 batch 分割运行，把梯度累积起来，n次后更新一次
+
+```python
+accumulation_steps = 5  # 累积5次，然后更新一次权重
+
+for i in range(1000):
+    loss = loss_func(pred, y)
+    loss = loss / accumulation_steps
+    loss.backward() # 计算 loss
+    if (i + 1) % accumulation_steps == 0:
+        optimizer.step()  # 参数更新
+        optimizer.zero_grad()  # 清空梯度
+```
+
+另一种情况，如果有两个独立的子任务，尽量独自前向传播
+```py
+# 不要这样：
+loss = loss1 + loss2
+loss.backward()
+
+# 而是这样：
+loss = loss1 + loss2
+loss1.backward()
+loss2.backward()
 ```
 
 

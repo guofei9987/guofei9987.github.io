@@ -109,14 +109,7 @@ DataLoader(..., num_workers=args.nThreads)
 
 torch默认不会做多显卡，必须借助`nn.DataParallel`
 
-### 显存不够
 
-如果模型太大，一个batch未必能放进去显存。解决：把一个 batch 分割运行，把梯度累积起来，n次后更新一次
-
-```
-
-
-```
 
 
 ### 性能相关的其它资料

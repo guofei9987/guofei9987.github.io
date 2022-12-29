@@ -113,8 +113,6 @@ class MyDataset(Dataset):
 
 ```
 
-### 3. 用DataLoader把他们组合起来
-
 ```python
 
 transformed_dataset = MyDataset(csv_file='data/faces/face_landmarks.csv',
@@ -126,14 +124,15 @@ transformed_dataset = MyDataset(csv_file='data/faces/face_landmarks.csv',
                                            ]))
 ```
 
+### 3. 用DataLoader把他们组合起来
 
 
+```python
+dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+```
 
 
-
-
-
-dataset_loader 是一个可迭代对象:
+dataloader 是一个可迭代对象:
 ```python
 import torch.optim as optim
 
