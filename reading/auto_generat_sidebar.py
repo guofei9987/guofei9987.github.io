@@ -110,7 +110,7 @@ reading_words = {"reading_words": "{}万字".format(round(total_words / 10000, n
                  "reading_words_accurate": total_words}
 import json
 
-with open('media/book_cnt.json', 'w') as f:
+with open('media/reading_words.json', 'w') as f:
     json.dump(reading_words, f, ensure_ascii=False, indent='')
 
 # %% 读书数量

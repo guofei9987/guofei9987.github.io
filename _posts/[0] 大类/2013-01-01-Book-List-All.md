@@ -1,6 +1,6 @@
 ---
 layout: book_lists
-title: 读完的书单 <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg">
+title: 读完的书单 <img alt="Blog Counts" src="https://www.guofei.site/guofei9987/data/book_cnt.svg">
 category: 橱窗
 keywords: 阅读,书单
 ---
