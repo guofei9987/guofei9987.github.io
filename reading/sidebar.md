@@ -91,7 +91,7 @@
     * [心灵<sup style = "color:red">263字<sup>](docs/8_管理/心灵.md)
     * [投资<sup style = "color:red">1072字<sup>](docs/8_管理/投资.md)
     * [时间管理<sup style = "color:red">1979字<sup>](docs/8_管理/时间管理.md)
-    * [目标管理<sup style = "color:red">3176字<sup>](docs/8_管理/目标管理.md)
+    * [目标管理<sup style = "color:red">5290字<sup>](docs/8_管理/目标管理.md)
     * [詹姆斯柯林斯<sup style = "color:red">3779字<sup>](docs/8_管理/詹姆斯柯林斯.md)
     * [项目管理<sup style = "color:red">5086字<sup>](docs/8_管理/项目管理.md)
 * 9_文学
@@ -115,8 +115,8 @@
 * H_健康
     * [《生而向善》<sup style = "color:red">90字<sup>](docs/H_健康/《生而向善》.md)
     * [人体<sup style = "color:red">1068字<sup>](docs/H_健康/人体.md)
-    * [健康管理<sup style = "color:red">1717字<sup>](docs/H_健康/健康管理.md)
-    * [健康管理师1<sup style = "color:red">11423字<sup>](docs/H_健康/健康管理师1.md)
+    * [健康管理<sup style = "color:red">2725字<sup>](docs/H_健康/健康管理.md)
+    * [健康管理师1<sup style = "color:red">15787字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">428字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
     * [求生<sup style = "color:red">1259字<sup>](docs/H_健康/求生.md)
