@@ -8,5 +8,5 @@
 {% for tag in site.tags %}
     {% blog_good_cnt| plus: tag[1].size %}
 {% endfor %}
-{{ blog_good_cnt }}
+{{% blog_good_cnt %}}
 }
