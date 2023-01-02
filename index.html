@@ -25,7 +25,7 @@ title: 首页
 <table width=100%>
   <tr>
     <th>
-      <a href="/reading/" target="reading">读书 <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg"></a>
+      <a href="/reading/" target="reading">读书 <p id="book_cnt">300</p> <img alt="Blog Counts" src="https://www.guofei.site/reading/media/book_cnt.svg"></a>
     </th>
   </tr>
   <tr>
@@ -38,7 +38,7 @@ title: 首页
 </table>
 
 <br>
-精选技术文章共 <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
+精选技术文章共 <p id="blog_cnt">400</p> <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
 <br>
 
 {% for post in site.posts  %}
@@ -88,3 +88,15 @@ title: 首页
         <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备
             11011202001976号</p></a> -->
 </div>
+
+
+
+<script>
+  $.getJSON('/guofei9987/achievement.json', function (data) {
+    blog_cnt=data['blog_cnt'];
+    book_cnt=data['book_cnt'];
+  });
+  document.getElementById("blog_cnt").innerHTML = blog_cnt;
+  document.getElementById("book_cnt").innerHTML = book_cnt;
+
+</script>
