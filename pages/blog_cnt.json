@@ -6,7 +6,7 @@
 
 {% assign blog_good_cnt = 0 %}
 {% for tag in site.tags %}
-    {{ blog_good_cnt| plus: tag[1].size }}
+    {% assign blog_good_cnt = blog_good_cnt + tag[1].size %}
 {% endfor %}
 {{ blog_good_cnt }}
 }
