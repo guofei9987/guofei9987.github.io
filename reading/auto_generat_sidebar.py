@@ -95,14 +95,24 @@ print(detail)
 total_words = sum(i[2] for i in data)
 print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 
-# %%字数svg
+# %%总字数svg
 
 total_words
+# 写入 svg
 with open('media/reading_words.svg', 'w') as f:
     f.write('''<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="67" height="22" role="img">
   <text x="1" y="20" style="fill:red;">{}万字
   </text>
 </svg>'''.format(round(total_words / 10000, ndigits=1)))
+
+
+# 写入 json
+reading_words = {"reading_words": "{}万字".format(round(total_words / 10000, ndigits=1)),
+                 "reading_words_accurate": total_words}
+import json
+
+with open('media/book_cnt.json', 'w') as f:
+    json.dump(reading_words)
 
 # %% 读书数量
 
