@@ -2,5 +2,13 @@
 ---
 {
 "blog_cnt": {{ site.posts | size }},
-"blog_good_cnt": {{ site.tags | size }}
+"blog_good_cnt":
+
+{% assign blog_good_cnt = 0 %}
+{% for tag in site.tags %}
+  {% for post in  tag[1] %}
+    {% increment blog_good_cnt %}
+  {% endfor %}
+{% endfor %}
+{{ blog_good_cnt }}
 }
