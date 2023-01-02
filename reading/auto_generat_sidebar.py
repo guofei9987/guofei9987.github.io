@@ -105,14 +105,13 @@ with open('media/reading_words.svg', 'w') as f:
   </text>
 </svg>'''.format(round(total_words / 10000, ndigits=1)))
 
-
 # 写入 json
 reading_words = {"reading_words": "{}万字".format(round(total_words / 10000, ndigits=1)),
                  "reading_words_accurate": total_words}
 import json
 
 with open('media/book_cnt.json', 'w') as f:
-    json.dump(reading_words)
+    json.dump(reading_words, f, ensure_ascii=False, indent='')
 
 # %% 读书数量
 
