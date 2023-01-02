@@ -1,3 +1,5 @@
+---
+---
 {
 "blog_cnt": {{ site.posts | size }},
 "blog_good_cnt": {{ site.tags | size }}
