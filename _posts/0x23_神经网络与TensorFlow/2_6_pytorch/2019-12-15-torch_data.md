@@ -129,6 +129,8 @@ class MyDataset(torch.utils.data.Dataset):
             sample = self.transform(sample)
 
         return sample
+        # 另一个源码返回的是这个：
+        # img_data,target
 
 
 my_dataset = MyDataset(
@@ -141,7 +143,25 @@ my_dataset = MyDataset(
 ```python
 from torchvision import datasets
 
-my_dataset = datasets.ImageFolder(filename, transform=my_transformer)
+my_dataset = datasets.ImageFolder('./train', transform=my_transformer)
+
+# 目录格式约定如下：
+# 图片文件名随意，目录名字就是类名
+'''
+.
+├── train
+│   ├── ants
+│   │   └── ant2.jpg
+│   └── bees
+│       ├── a.jpg
+│       └── b.jpg
+└── val
+    ├── ants
+    │   ├── ant8.jpg
+    │   └── ant9.jpg
+    └── bees
+        └── bee3.jpg
+'''
 ```
 
 ### 3. 用DataLoader把他们组合起来
@@ -175,5 +195,4 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
     scheduler.step()
-
 ```
