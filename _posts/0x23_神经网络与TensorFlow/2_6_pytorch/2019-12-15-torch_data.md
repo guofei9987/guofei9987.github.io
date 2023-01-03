@@ -33,18 +33,18 @@ order: 263
 import torch
 from torchvision import transforms, datasets
 
-data_transform = transforms.Compose([
-        transforms.RandomSizedCrop(224),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                             std=[0.229, 0.224, 0.225])
-    ])
-hymenoptera_dataset = datasets.ImageFolder(root='hymenoptera_data/train',
-                                           transform=data_transform)
-dataset_loader = torch.utils.data.DataLoader(hymenoptera_dataset,
-                                             batch_size=4, shuffle=True,
-                                             num_workers=4)
+my_transform = transforms.Compose([
+    transforms.RandomSizedCrop(224),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225])
+])
+my_dataset = datasets.ImageFolder(root='hymenoptera_data/train',
+                                  transform=my_transform)
+my_dataloader = torch.utils.data.DataLoader(
+    my_dataset, batch_size=4, shuffle=True,
+    num_workers=4)
 
 # DataLoader也预提供了不同的用法：
 torch.utils.data.DataLoader
@@ -55,8 +55,16 @@ torch.utils.data.SequentialSampler
 
 ## 自定义
 ### 1. Transformer
+
+
+写法1
 ```python
 # 例如，下面这个对图片做一些操作
+import torch
+from torch.utils.data import DataLoader
+from torchvision import transforms, datasets
+
+
 class MyTransformer(object):
     def __init__(self, output_size):
         assert isinstance(output_size, (int, tuple))
@@ -64,19 +72,30 @@ class MyTransformer(object):
 
     def __call__(self, sample):
         image, landmarks = sample['image'], sample['landmarks']
-        pass # 可以有很复杂的数据预处理逻辑，省略不写了
+        pass  # 可以有很复杂的数据预处理逻辑，省略不写了
         return {'image': image, 'landmarks': landmarks}
 
+my_transformer = MyTransformer(255)
+```
+
+写法2:
+```python
 # 例如，skimage 中有很多现成的，并且可以用 Compose 连接起来，当成一个用
 from skimage import io, transform
 
-composed = transforms.Compose([MyTransformer(256),
-                               RandomCrop(224)])
+my_transformer = transforms.Compose([
+    MyTransformer(256),
+    transforms.RandomCrop(224),
+    transforms.RandomResizedCrop(224),
+    transforms.ToTensor()
+])
 ```
 
 ### 2. Dataset
+
+写法1:
 ```python
-class MyDataset(Dataset):
+class MyDataset(torch.utils.data.Dataset):
     """Face Landmarks dataset."""
 
     def __init__(self, csv_file, root_dir, transform=None):
@@ -111,17 +130,18 @@ class MyDataset(Dataset):
 
         return sample
 
+
+my_dataset = MyDataset(
+    csv_file='data/faces/face_landmarks.csv',
+    root_dir='data/faces/',
+    transform=my_transformer)
 ```
 
+写法2
 ```python
+from torchvision import datasets
 
-transformed_dataset = MyDataset(csv_file='data/faces/face_landmarks.csv',
-                                           root_dir='data/faces/',
-                                           transform=transforms.Compose([
-                                               Rescale(256),
-                                               RandomCrop(224),
-                                               ToTensor()
-                                           ]))
+my_dataset = datasets.ImageFolder(filename, transform=my_transformer)
 ```
 
 ### 3. 用DataLoader把他们组合起来
