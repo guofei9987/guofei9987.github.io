@@ -164,7 +164,7 @@ my_dataset = datasets.ImageFolder('./train', transform=my_transformer)
 '''
 ```
 
-### 3. 用DataLoader把他们组合起来
+### 3. DataLoader
 
 
 ```python
