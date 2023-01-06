@@ -9,72 +9,16 @@ order: 261
 ---
 
 
-## 安装GPU驱动（待续）
-
-参考： https://zhuanlan.zhihu.com/p/366882419
-
-
-```bash
-# 查看电脑的显卡型号
-lspci | grep -i nvidia
-
-# 进入管理员权限
-sudo -s
-```
-
-禁用Nouveau驱动
-
-```bash
-# 禁用Nouveau驱动
-vim /etc/modprobe.d/blacklist-nouveau.conf
-# 在文件最后加入以下内容
-blacklist nouveau
-options nouveau modeset=0
-# 然后保存退出
-
-# 更新并重启
-update-initramfs -u
-reboot
-# 检查是否禁用成功
-lspci | grep nouveau
-# 没有内容输出，说明禁用成功。
-
-
-# 看看gcc和cmake是否已经安装
-gcc --version
-cmake --version
-# 如果没有，旧安装
-apt-get install build-essential
-apt-get install cmake
-```
-
-下载驱动
-```bash
-# 列出可用的驱动
-sudo ubuntu-drivers devices
-# 下载：
-# https://www.nvidia.com/Download/index.aspx?lang=cn
-```
-
-安装驱动
-```bash
-# 关闭显示管理
-service lightdm stop
-# 如果没有的话，需要安装（sudo apt install -y lightdm）
-
-# ctrl+alt+F1 进入
-cd /home/username/Downloads  # 此处的目录为你下载的驱动文件所在目录
-sh NVIDIA-Linux-x86_64-415.27.run --no-opengl-files
-# 一路continue
-
-# 查询驱动是否安装成功
-nvidia-smi
-```
-
 
 ## 安装torch
 
+看CUDA版本
+```
+nvidia-smi
+```
+
 [官网上的安装教程](https://pytorch.org/get-started/locally/)
+
 
 ## GPU
 ```python
