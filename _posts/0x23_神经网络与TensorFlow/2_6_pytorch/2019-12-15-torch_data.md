@@ -139,7 +139,14 @@ my_dataset = MyDataset(
     transform=my_transformer)
 ```
 
-写法2
+简洁写法（通用）
+```python
+my_dataset = TensorDataset(torch.tensor(data), torch.tensor(label))
+```
+
+
+
+简洁写法（图像类）
 ```python
 from torchvision import datasets
 
