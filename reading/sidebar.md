@@ -116,7 +116,7 @@
     * [《生而向善》<sup style = "color:red">90字<sup>](docs/H_健康/《生而向善》.md)
     * [人体<sup style = "color:red">1068字<sup>](docs/H_健康/人体.md)
     * [健康管理<sup style = "color:red">2725字<sup>](docs/H_健康/健康管理.md)
-    * [健康管理师1<sup style = "color:red">15787字<sup>](docs/H_健康/健康管理师1.md)
+    * [健康管理师1<sup style = "color:red">22331字<sup>](docs/H_健康/健康管理师1.md)
     * [外形美<sup style = "color:red">428字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2464字<sup>](docs/H_健康/大脑.md)
     * [求生<sup style = "color:red">1259字<sup>](docs/H_健康/求生.md)
