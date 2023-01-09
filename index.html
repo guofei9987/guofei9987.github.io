@@ -39,7 +39,7 @@ title: 首页
 </table>
 
 <br>
-技术文章共 <strong id="blog_cnt">400</strong> 篇，<a href="/pages/good.html">精选</a>
+技术文章共 <strong id="blog_cnt">{{ site.posts | size }}</strong> 篇，<a href="/pages/good.html">精选</a>
 <br>
 
 {% for post in site.posts  %}
@@ -95,7 +95,7 @@ title: 首页
 <script>
   $.getJSON('/guofei9987/achievement.json', function (data) {
     document.getElementById("reading_words").innerHTML = data['reading_words'];
-    document.getElementById("blog_cnt").innerHTML = data['blog_cnt'];
+    // document.getElementById("blog_cnt").innerHTML = data['blog_cnt'];
     document.getElementById("book_cnt").innerHTML = data['book_cnt'];
   });
 

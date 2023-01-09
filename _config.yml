@@ -39,3 +39,6 @@ active: tags
 locals:
   tags: 精选
   about: 我
+
+plugins:
+  - "jekyll-github-metadata"
