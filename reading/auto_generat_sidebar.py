@@ -123,6 +123,13 @@ with open('media/reading_words.json', 'w') as f:
 #   </text>
 # </svg>'''.format(len(book_list)))
 
+
+import requests
+
+r = requests.get('https://www.guofei.site/pages/book_list.json')
+
+book_list = json.loads(r.content.decode('utf-8'))
+
 # %% 侧边栏
 head = '''
 <a href="http://www.guofei.site" target='blog'>
