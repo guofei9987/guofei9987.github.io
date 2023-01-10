@@ -5,6 +5,62 @@ category: 橱窗
 keywords: 阅读,书单
 ---
 
+[
+
+{% for book in site.data.book_list %}
+{
+  "书名": book.书名,
+  "读完时间": book.读完时间,
+  "作者": book.作者,
+  "出版商": book.出版商,
+  "打分": book.打分,
+  "读书笔记": book.读书笔记,
+  "简评": book.简评
+} {% unless forloop.last %},{% endunless %}
+{% endfor %}
+
+
+{% for book in site.data.book_list %}
+
+<div class="col-md-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">{{ book.书名 }}</div>
+            <div class="panel-body">
+
+                <div class="col-md-8 col-xs-12">
+                  <table class="table table-bordered">
+                    <tbody>
+
+                      <tr><td style="width:80px;">书名</td><td>{{ book.书名 }}</td>
+                      <td style="width:80px;">阅毕时间</td><td>{{ book.读完时间 }}</td>
+                      </tr>
+
+                      <tr><td style="width:40px;">作者</td><td>{{ book.作者 }}</td>
+                      <td style="width:40px;">我的打分</td><td><font color="red">{{ book.打分 }}</font></td>
+                      </tr>
+
+                      <tr><td>出版商</td><td>{{ book.出版商 }}</td>
+
+                      <td>读书笔记</td><td>
+
+
+                        <a href="http://www.guofei.site/reading/#" title="http://www.guofei.site/reading/#">点击查看</a>
+
+                      </td>
+                      </tr>
+
+                      <tr><td>简评</td><td colspan=" 3 ">{{ book.简评 }}</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+          </div>
+        </div>
+
+{% endfor %}
+
+
+-------------------
 
 
 <div class="row" id="book_list"></div>
@@ -75,6 +131,7 @@ tmp=    `
 document.getElementById("book_list").innerHTML += tmp;
 
 }
+
 
 
 
