@@ -27,6 +27,33 @@ title: 关于
 
 -------------------
 
+我的项目：
+
+<table>
+<tr>
+  <th>Project</th>
+  <th>description</th>
+  <th>Star</th>
+  <th>Fork</th>
+  <th>Last Updated</th>
+  <th>language</th>
+</tr>
+
+{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
+{% for repo in sorted_repos | limit: site.side_bar_repo_limit %}
+<tr>
+  <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
+  <td>{{ repo.description | truncate:20 }}</td>
+  <td>{{ repo.stargazers_count }}</td>
+  <td>{{ repo.forks_count }}</td>
+  <td>{{ repo.updated_at | date: '%Y-%m-%d' }}</td>
+  <td>{{ repo.language }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+
 [![scikit-opt](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=scikit-opt&theme=radical)](https://github.com/guofei9987/scikit-opt)
 [![blind_watermark](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=blind_watermark&theme=radical)](https://github.com/guofei9987/blind_watermark)
 [![text_blind_watermark](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=text_blind_watermark&theme=radical)](https://github.com/guofei9987/text_blind_watermark)
