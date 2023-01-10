@@ -1,5 +1,6 @@
 ---
 ---
 {
+"cnt_blog" {{ site.posts.size }} ,
 "cnt_book": {{ site.data.book_list.size }}
 }

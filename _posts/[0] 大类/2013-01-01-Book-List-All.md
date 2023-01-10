@@ -1,7 +1,7 @@
 ---
 layout: book_lists
-title: 读完的书单 {{ site.data.book_list.size }}
-category: 橱窗
+title: 读完的书单
+category:
 keywords: 阅读,书单
 ---
 
