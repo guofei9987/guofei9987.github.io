@@ -5,19 +5,7 @@ category: 橱窗
 keywords: 阅读,书单
 ---
 
-[
 
-{% for book in site.data.book_list %}
-{
-  "书名": book.书名,
-  "读完时间": book.读完时间,
-  "作者": book.作者,
-  "出版商": book.出版商,
-  "打分": book.打分,
-  "读书笔记": book.读书笔记,
-  "简评": book.简评
-} {% unless forloop.last %},{% endunless %}
-{% endfor %}
 
 
 {% for book in site.data.book_list %}
@@ -62,6 +50,7 @@ keywords: 阅读,书单
 
 -------------------
 
+下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，下面是旧版本，
 
 <div class="row" id="book_list"></div>
 
