@@ -5,7 +5,9 @@
 
 {% for book in site.data.book_list %}
 {
-  "书名": {{ book.书名 }},
+  "书名": {{ book.book_name }},
+  "书名2": {{ book.书名 }},
+  "书名3": {{ book.book_name.book_name }},
   "读完时间": {{ book.读完时间 }},
   "作者": {{ book.作者 }},
   "出版商": {{ book.出版商 }},
