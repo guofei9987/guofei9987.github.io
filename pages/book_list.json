@@ -5,13 +5,13 @@
 
 {% for book in site.data.book_list %}
 {
-  "书名": {{ book.name }},
-  "读完时间": {{ book.finish_date }},
-  "作者": {{ book.author }},
-  "出版商": {{ book.publisher }},
-  "打分": {{ book.score }},
-  "读书笔记": {{ book.notes }},
-  "简评": {{ book.comments }}
+  "书名": "{{ book.name }}",
+  "读完时间": "{{ book.finish_date }}",
+  "作者": "{{ book.author }}",
+  "出版商": "{{ book.publisher }}",
+  "打分": "{{ book.score }}",
+  "读书笔记": "{{ book.notes }}",
+  "简评": "{{ book.comments }}"
 } {% unless forloop.last %},{% endunless %}
 {% endfor %}
 

@@ -15,7 +15,7 @@ title: 关于
 - 👯 目前在蚂蚁集团-天堑实验室任算法专家。
 - 👆曾任：京东集团-Y事业部算法专家，中体彩彩票运营管理有限公司竞猜类彩票建模师。还在基金、银行工作过。
 - 🧮 热爱算法和开源。2021年，“毅力号”携带的“才智号”在火星起飞，实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，本人因其中的开源贡献被 NASA 授予 [徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
-- 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 <img alt="Blog Counts" src="https://www.guofei.site/pages/blog_cnt.svg"> 篇
+- 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 {{ site.posts | size }} 篇
 - 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) <img alt="Blog Counts" src="https://www.guofei.site/reading/media/reading_words.svg">，读书 <img alt="Blog Counts" src="https://www.guofei.site/guofei9987/data/book_cnt.svg">
 - 🤔 one of 121 [authors](https://github.com/scipy/scipy/issues/7798) in [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0)
 - 📚 学术期刊 [Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171) **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
