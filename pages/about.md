@@ -32,22 +32,18 @@ title: 关于
 <table>
 <tr>
   <th>Project</th>
-  <th>description</th>
   <th>Star</th>
   <th>Fork</th>
-  <th>Last Updated</th>
-  <th>language</th>
+  <th>description</th>
 </tr>
 
 {% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
 {% for repo in sorted_repos | limit: site.side_bar_repo_limit %}
 <tr>
   <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
-  <td>{{ repo.description | truncate:20 }}</td>
   <td>{{ repo.stargazers_count }}</td>
   <td>{{ repo.forks_count }}</td>
-  <td>{{ repo.updated_at | date: '%Y-%m-%d' }}</td>
-  <td>{{ repo.language }}</td>
+  <td>{{ repo.description | truncate:30 }}</td>
 </tr>
 {% endfor %}
 </table>

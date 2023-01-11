@@ -110,8 +110,64 @@ Batch Normalization 可以减少14倍的训练步骤，就可以达到原有的�
 Adam 是一种优化方式，它只需要一阶梯度和一点儿额外内存。
 
 
-## 待阅读
+### Training very deep networks
 
 - **Training very deep networks** (2015), R. Srivastava et al. [[pdf]](http://papers.nips.cc/paper/5850-training-very-deep-networks.pdf)
+
+神经网络的深度非常重要，但是训练很深的网络比较困难，提出了一个新框架来解决此问题，叫做  highway networks。这从 LSTM 得到的启发，使用 adaptive gating units，使几百层的网络也能用梯度下降来训练。
+
+原本一层是这样的：$y=H(x,w_T)$  
+加入 T （transform gate），C（carry gate），变成这样 $y=H(x,w_T)T(x,w_T)+xC(x,w_C)$  
+本文简化 $C=1-T$，简化为这样：
+
+$$y=\left\{ \begin{array}{ccc}
+x& if&T(x,W_T)=0\\
+H(x,w_T)& if&C(x,W_T)=1
+\end{array}\right.$$
+
+进而，做梯度下降的时候：
+
+
+$$\frac{dy}{dx}=\left\{ \begin{array}{ccc}
+I& if&T(x,W_T)=0\\
+H'(x,w_T)& if&C(x,W_T)=1
+\end{array}\right.$$
+
+
+之后是实验结果
+
+## Delving deep into rectifiers: Surpassing human-level performance on imagenet classification
+
 - **Delving deep into rectifiers: Surpassing human-level performance on imagenet classification** (2015), K. He et al. [[pdf]](http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf)
+
+Rectified activation units 是前沿神经网络的必备部分，这里针对 image classification 任务，研究它
+1. 推广到 Parametric Rectified Linear Unit (PReLU) ，它能够更好的处理 cost 接近 0 的情况
+2. a robust initialization method，可以让我们训练极深的网络
+
+
+CNN在 1000-class ImageNet 上的识别精度上已经超越人类了。  
+过去几年，我们见证了识别任务的巨大进步，它得益于两个方面1）更强大的模型 2）更好的策略去防止 overfitting。最近的一个突破是引入 ReLU
+
+不像传统激活函数，ReLU 不是一个 symmetric function，后果是输出值的平均不小于0，此性质影响
+
+
+PReLU的公式：$$f(y_i)=\left\{ \begin{array}{ll}
+y_i & if & y_i>0\\
+a_i y_i & if & y_i \leq 0
+\end{array}\right.$$
+
+- 如果 $a_i=0$，它就是 ReLU
+- 如果 $a_i$ 固定并且很小，它就是 Leaky ReLU (LReLU)
+- 如果 $a_i$ 是可以训练的参数，它就是 Parametric ReLU (PReLU)
+
+实测：
+- 如果把所有的 ReLU 换成  PReLU，表现提升 1.2%
+- 即使是把参数换成  channel shared （这只引入了13个额外的参数），表现也能提升1.1%
+- 如果用 LReLU，并且 a=0.25，那么表现不会提升
+
+
+## 待阅读
+
+
+
 - **Random search for hyper-parameter optimization** (2012) J. Bergstra and Y. Bengio [[pdf]](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a)
