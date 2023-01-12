@@ -9,8 +9,6 @@ title: 关于
 
 ### Hi there 👋
 
-<a href="https://www.guofei.site/2019/08/31/github_star_counter.html"><img align="right" alt="guofei9987's github stats" width="40%" src="https://github-profile-trophy.vercel.app/?username=guofei9987&title=Stars,Followers&row=1&column=2"></a>
-
 
 - 👯 目前在蚂蚁集团-天堑实验室任算法专家。
 - 👆曾任：京东集团-Y事业部动态定价算法专家。中体彩彩票运营管理有限公司-竞猜类彩票建模师。某私募基金分析员。某银行实习员工。
@@ -22,6 +20,8 @@ title: 关于
 - 🏃 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
 - 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
 
+
+<a href="https://www.guofei.site/2019/08/31/github_star_counter.html"><img  alt="guofei9987's github stats"  src="https://www.guofei.site/pages/trophy.svg"></a>
 
 -------------------
 
@@ -61,7 +61,7 @@ title: 关于
 
 -------------------
 
-I contributed:
+I contributed to:
 
 [![scipy](https://github-readme-stats.vercel.app/api/pin/?username=scipy&repo=scipy&theme=radical)](https://github.com/scipy/scipy)
 [![statsmodels](https://github-readme-stats.vercel.app/api/pin/?username=statsmodels&repo=statsmodels&theme=radical)](https://github.com/guofei9987/statsmodels)
