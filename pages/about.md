@@ -48,14 +48,14 @@ title: 关于
 
 ---------------------
 
-[![scikit-opt](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=scikit-opt&theme=radical)](https://github.com/guofei9987/scikit-opt)
-[![blind_watermark](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=blind_watermark&theme=radical)](https://github.com/guofei9987/blind_watermark)
-[![text_blind_watermark](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=text_blind_watermark&theme=radical)](https://github.com/guofei9987/text_blind_watermark)
-[![guofei9987.github.io](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=guofei9987.github.io&theme=radical)](https://github.com/guofei9987/guofei9987.github.io)
-[![fourier_artist](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=fourier_artist&theme=radical)](https://github.com/guofei9987/fourier_artist)
-[![pyLSHash](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=pyLSHash&theme=radical)](https://github.com/guofei9987/pyLSHash)
-[![github_star_counter](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=github_star_counter&theme=radical)](https://github.com/guofei9987/github_star_counter)
-[![plot2svg](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=plot2svg&theme=radical)](https://github.com/guofei9987/plot2svg)
+[![scikit-opt](https://www.guofei.site/public/icon/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt)
+[![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
+[![text_blind_watermark](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
+[![guofei9987.github.io](https://www.guofei.site/public/icon/guofei9987.github.io.svg)](https://github.com/guofei9987/guofei9987.github.io)
+[![fourier_artist](https://www.guofei.site/public/icon/fourier_artist.svg)](https://github.com/guofei9987/fourier_artist)
+[![pyLSHash](https://www.guofei.site/public/icon/pyLSHash.svg)](https://github.com/guofei9987/pyLSHash)
+[![github_star_counter](https://www.guofei.site/public/icon/github_star_counter.svg)](https://github.com/guofei9987/github_star_counter)
+[![plot2svg](https://www.guofei.site/public/icon/plot2svg.svg)](https://github.com/guofei9987/plot2svg)
 
 --------------------
 
