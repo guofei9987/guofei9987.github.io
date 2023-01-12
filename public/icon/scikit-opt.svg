@@ -1,5 +1,9 @@
 ---
 ---
+
+{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "name", "scikit-opt" %}
+{% for repo in sorted_repos  %}
+
 <svg
   width="400"
   height="150"
@@ -137,3 +141,4 @@ height="16"
 
   </g>
 </svg>
+{% endfor %}

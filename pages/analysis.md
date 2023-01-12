@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 关于
+title: 分析
 ---
 
 
@@ -14,7 +14,7 @@ title: 关于
   <th>description</th>
 </tr>
 
-{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
+{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse %}
 {% for repo in sorted_repos  %}
 <tr>
   <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
