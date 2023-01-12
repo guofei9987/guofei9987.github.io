@@ -104,7 +104,7 @@ to {
 
 
 <text xmlns="http://www.w3.org/2000/svg" class="description" x="25" y="-5">
-<tspan dy="1.2em" x="25">个人博客，欢迎fork</tspan><tspan dy="1.2em" x="25"></tspan>
+<tspan dy="1.2em" x="25">{{ repo.description }}</tspan>
 </text>
 
 <g transform="translate(30, 75)">

@@ -105,7 +105,7 @@ to {
 
 
 <text xmlns="http://www.w3.org/2000/svg" class="description" x="25" y="-5">
-<tspan dy="1.2em" x="25">Genetic Algorithm, Particle Swarm Optimization, Simulated</tspan><tspan dy="1.2em" x="25">Annealing, Ant Colony Optimization Algorithm,Immune</tspan><tspan dy="1.2em" x="25">Algorithm, Artificial Fish Swarm Algorithm, Differential...</tspan>
+<tspan dy="1.2em" x="25">{{ repo.description }}  </tspan>
 </text>
 
 <g transform="translate(30, 75)">
