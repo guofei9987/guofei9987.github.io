@@ -110,7 +110,7 @@ Batch Normalization 可以减少14倍的训练步骤，就可以达到原有的�
 Adam 是一种优化方式，它只需要一阶梯度和一点儿额外内存。
 
 
-### Training very deep networks
+## 5. Training very deep networks
 
 - **Training very deep networks** (2015), R. Srivastava et al. [[pdf]](http://papers.nips.cc/paper/5850-training-very-deep-networks.pdf)
 
@@ -136,7 +136,7 @@ H'(x,w_T)& if&C(x,W_T)=1
 
 之后是实验结果
 
-## Delving deep into rectifiers: Surpassing human-level performance on imagenet classification
+## 6. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification
 
 - **Delving deep into rectifiers: Surpassing human-level performance on imagenet classification** (2015), K. He et al. [[pdf]](http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf)
 
@@ -148,6 +148,7 @@ Rectified activation units 是前沿神经网络的必备部分，这里针对 i
 CNN在 1000-class ImageNet 上的识别精度上已经超越人类了。  
 过去几年，我们见证了识别任务的巨大进步，它得益于两个方面1）更强大的模型 2）更好的策略去防止 overfitting。最近的一个突破是引入 ReLU
 
+### PReLU
 不像传统激活函数，ReLU 不是一个 symmetric function，后果是输出值的平均不小于0，此性质影响
 
 
@@ -155,6 +156,8 @@ PReLU的公式：$$f(y_i)=\left\{ \begin{array}{ll}
 y_i & if & y_i>0\\
 a_i y_i & if & y_i \leq 0
 \end{array}\right.$$
+
+![](/pictures_for_blog/papers/Optimization/prelu.png)
 
 - 如果 $a_i=0$，它就是 ReLU
 - 如果 $a_i$ 固定并且很小，它就是 Leaky ReLU (LReLU)
@@ -166,8 +169,31 @@ a_i y_i & if & y_i \leq 0
 - 如果用 LReLU，并且 a=0.25，那么表现不会提升
 
 
-## 待阅读
+### initialization
+
+Rectifier 比 sigmoid 更容易训练，但是如果初始化没做好，也会陷入到高阶非线性系统中，这里我们提出了robust initialization method.   
+之前用高斯分布做初始化，在 VGG 和我们的模型中，都遇到难以收敛的问题。为解决此问题，可以预训练一个8层卷积层的模型，但这样需要更多的训练时间，而且容易陷入局部最优。  
+基于 “Xavier” 初始化，本文提出了一种新的方法，用于 ReLU 和 PReLU
+
+Xavier 初始化：
+- 目的：使得新号强度不变，也就是说 $DY_i=DX_j$
+- 为了可解，附加假设
+    - $\Delta Y,W$ 两两 iid
+    - $E\Delta Y=E W_{ij}=0$
+- 结果： 如果是正态分布 $W_{ij} \sim N(0,\dfrac{2}{u+d})$；如果是均匀分布 $W_{ij} \sim U(-\sqrt{\dfrac{6}{u+d}},\sqrt{\dfrac{6}{u+d}})$。其中 u 是本层输入值的维度，d 是本层的节点个数
+
+
+Xavier 假设网络中没有激活函数，而 Kaming initialization 考虑激活函数为 ReLU  
+结论：
+- 如果是正态分布 $W_{ij} \sim N(0,\dfrac{2}{u})$；
+- 如果是均匀分布 $W_{ij} \sim U(-\sqrt{\dfrac{6}{u}},\sqrt{\dfrac{6}{u}})$
 
 
 
-- **Random search for hyper-parameter optimization** (2012) J. Bergstra and Y. Bengio [[pdf]](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a)
+
+
+## Random search for hyper-parameter optimization
+
+- **Random search for hyper-parameter optimization** (2012) J. Bergstra and Y. Bengio [[pdf]](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
+
+Grid Search 和手动搜索是用途广泛的超参数优化策略。此文在实践和理论上证明随机法更为有效。
