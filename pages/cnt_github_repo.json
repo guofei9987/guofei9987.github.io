@@ -13,8 +13,7 @@
   "created_at": "{{ repo.created_at }}",
   "updated_at": "{{ repo.updated_at }}",
   "pushed_at": "{{ repo.pushed_at }}",
-  "language": "{{ repo.language }}",
-  "html_url": "{{ repo.html_url }}"
+  "language": "{{ repo.language }}"
 } {% unless forloop.last %},{% endunless %}
 {% endfor %}
 
