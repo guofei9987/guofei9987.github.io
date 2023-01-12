@@ -1,7 +1,7 @@
 ---
 ---
 {
-"cnt_blog" {{ site.posts.size }} ,
+"cnt_blog": {{ site.posts.size }} ,
 "cnt_book": {{ site.data.book_list.size }},
 "cnt_reading_words_precision": {{ site.data.cnt_reading_words.cnt_reading_words_precision }},
 "cnt_reading_words": "{{ site.data.cnt_reading_words.cnt_reading_words }}"
