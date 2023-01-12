@@ -5,16 +5,16 @@
 {% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
 {% for repo in sorted_repos %}
 {
-  "name": {{ repo.name }},
-  "html_url": {{ repo.html_url }},
-  "description": {{ repo.description }},
+  "name": "{{ repo.name }}",
+  "html_url": "{{ repo.html_url }}",
+  "description": "{{ repo.description }}",
   "stargazers_count": {{ repo.stargazers_count }},
   "forks_count": {{ repo.forks_count }},
-  "created_at": {{ repo.created_at }},
-  "updated_at": {{ repo.updated_at }},
-  "pushed_at": {{ repo.pushed_at }},
-  "language": {{ repo.language }},
-  "html_url": {{ repo.html_url }}
+  "created_at": "{{ repo.created_at }}",
+  "updated_at": "{{ repo.updated_at }}",
+  "pushed_at": "{{ repo.pushed_at }}",
+  "language": "{{ repo.language }}",
+  "html_url": "{{ repo.html_url }}"
 } {% unless forloop.last %},{% endunless %}
 {% endfor %}
 
