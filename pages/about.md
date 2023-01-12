@@ -21,7 +21,7 @@ title: 关于
 - 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
 
 
-<a href="https://www.guofei.site/2019/08/31/github_star_counter.html"><img  alt="guofei9987's github stats"  src="https://www.guofei.site/pages/trophy.svg"></a>
+<a href="https://www.guofei.site/"><img  alt="guofei's stats"  src="https://www.guofei.site/pages/trophy.svg"></a>
 
 -------------------
 
