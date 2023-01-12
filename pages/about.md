@@ -39,8 +39,8 @@ title: 关于
 {% for repo in sorted_repos | limit: site.side_bar_repo_limit %}
 <tr>
   <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
-  <td>{{ repo.stargazers_count }}</td>
-  <td>{{ repo.forks_count }}</td>
+  <td>☆{{ repo.stargazers_count }}</td>
+  <td><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/public/icon/fork.svg">{{ repo.forks_count }}</td>
   <td>{{ repo.description | truncate:30 }}</td>
 </tr>
 {% endfor %}
