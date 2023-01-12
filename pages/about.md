@@ -57,6 +57,16 @@ title: 关于
 [![github_star_counter](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=github_star_counter&theme=radical)](https://github.com/guofei9987/github_star_counter)
 [![plot2svg](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=plot2svg&theme=radical)](https://github.com/guofei9987/plot2svg)
 
+--------------------
+
+{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "name", "scikit-opt" %}
+{% for repo in sorted_repos | limit: 1 %}
+<a href="{{ repo.html_url }}">{{ repo.name }}</a>
+{{ repo.stargazers_count }}   
+{{ repo.description }}  
+{{ repo.forks_count }}
+{% endfor %}
+
 
 
 -------------------
