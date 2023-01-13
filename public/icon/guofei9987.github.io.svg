@@ -110,10 +110,10 @@ to {
 <g transform="translate(30, 75)">
 <g transform="translate(0, 0)">
 <g data-testid="primary-lang">
-<circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#3572A5" />
+<circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#f1e05a" />
 <text data-testid="lang-name" class="gray" x="15">{{repo.language}}</text>
 </g>
-</g><g transform="translate(62.275000000000006, 0)"><g transform="translate(0, 0)">
+</g><g transform="translate(80.935000000000006, 0)"><g transform="translate(0, 0)">
 <svg
 class="icon"
 y="-12"

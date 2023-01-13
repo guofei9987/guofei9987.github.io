@@ -20,9 +20,6 @@ title: 关于
 - 🏃 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
 - 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
 
-<img  alt="guofei's stats"  src="https://www.guofei.site/pages/trophy.svg">
-
-
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
 
 -------------------
