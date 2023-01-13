@@ -27,12 +27,3 @@ title: 分析
 </tr>
 {% endfor %}
 </table>
-
------------------------
-
-{% assign total_star=0%}
-{% for repo in sorted_repos  %}
-{% assign total_star= (total_star|plus:  repo.stargazers_count)%}
-{% endfor %}
-
-total_star: {{total_star}}
