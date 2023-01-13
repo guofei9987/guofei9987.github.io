@@ -13,5 +13,5 @@
 {% assign total_star= (total_star|plus:  repo.stargazers_count)%}
 {% endfor %}
 ,"total_star": {{ total_star }}
-,"total_star_str": "{{ total_star | divided_by: 1000.0 | round }}k"
+,"total_star_str": "{{ total_star | divided_by: 1000.0 | round:1 }}k"
 }
