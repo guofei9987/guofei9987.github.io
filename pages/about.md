@@ -27,27 +27,6 @@ title: 关于
 
 我的项目：
 
-<table>
-<tr>
-  <th>Project</th>
-  <th>Star</th>
-  <th>Fork</th>
-  <th>description</th>
-</tr>
-
-{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
-{% for repo in sorted_repos | limit: site.side_bar_repo_limit %}
-<tr>
-  <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
-  <td>☆{{ repo.stargazers_count }}</td>
-  <td><img alt="fork:" src="https://www.guofei.site/public/icon/fork.svg">{{ repo.forks_count }}</td>
-  <td>{{ repo.description | truncate:30 }}</td>
-</tr>
-{% endfor %}
-</table>
-
----------------------
-
 [![scikit-opt](https://www.guofei.site/public/icon/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt)
 [![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
 [![text_blind_watermark](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
