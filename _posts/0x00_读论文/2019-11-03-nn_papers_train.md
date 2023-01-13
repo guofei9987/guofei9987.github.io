@@ -198,4 +198,12 @@ Xavier 假设网络中没有激活函数，而 Kaming initialization 考虑激�
 
 Grid Search 和手动搜索是用途广泛的超参数优化策略。
 
-此文在实践和理论上证明随机法比 grdi search 更为有效。
+此文在实践和理论上证明随机法比 grid search 更为有效。grid search 浪费太多算力在不重要的维度/不重要的区域
+
+Random Search 的优点：
+- 可以随时停下来，之前跑过的 trials 仍然构成一个完整的 Random Search
+- 可以新增trails，与之前的 trials 一起构成一个更大的实验
+- 每个 trials 可以并行运行
+- 任意一个 trial 失败，可以重启或者丢弃，不威胁蒸锅实验
+
+未来：Random Search 策略未考虑结果，也没有自适应。未来的算法可以考虑这一点

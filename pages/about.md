@@ -23,7 +23,7 @@ title: 关于
 <img  alt="guofei's stats"  src="https://www.guofei.site/pages/trophy.svg">
 
 
-<object data="https://www.guofei.site/pages/trophy.svg">
+<object data="https://www.guofei.site/pages/trophy.svg"></object>
 
 -------------------
 
