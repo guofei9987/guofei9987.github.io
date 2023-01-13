@@ -196,4 +196,6 @@ Xavier 假设网络中没有激活函数，而 Kaming initialization 考虑激�
 
 - **Random search for hyper-parameter optimization** (2012) J. Bergstra and Y. Bengio [[pdf]](http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf)
 
-Grid Search 和手动搜索是用途广泛的超参数优化策略。此文在实践和理论上证明随机法更为有效。
+Grid Search 和手动搜索是用途广泛的超参数优化策略。
+
+此文在实践和理论上证明随机法比 grdi search 更为有效。
