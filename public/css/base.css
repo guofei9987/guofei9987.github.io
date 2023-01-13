@@ -172,7 +172,9 @@ blockquote p {
 }
 
 
-
+#page-content td, th{
+  border:1px solid #aaa;
+}
 
 
 
