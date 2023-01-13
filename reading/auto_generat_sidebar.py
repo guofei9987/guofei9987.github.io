@@ -93,19 +93,12 @@ print(detail)
 total_words = sum(i[2] for i in data)
 print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 
-# %%获取：总star数量
-
-
-r = requests.get('https://www.guofei.site/guofei9987/achievement.json')
-achievement = json.loads(r.content.decode('utf-8'))
-
 # %%总字数写入到 _data 里面
 import json
 
 with open('../_data/cnt_reading_words.json', 'w') as f:
     json.dump({"cnt_reading_words_precision": total_words,
-               "cnt_reading_words": "{}万字".format(round(total_words / 10000, ndigits=1)),
-               "github_total_star_str": achievement['github_total_star_str']
+               "cnt_reading_words": "{}万字".format(round(total_words / 10000, ndigits=1))
                }
               , f, ensure_ascii=False, indent='')
 
