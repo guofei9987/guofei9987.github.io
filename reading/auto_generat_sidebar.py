@@ -36,9 +36,6 @@ def word_count(file_name_md):
 
 # %%
 
-
-# %%
-
 path_walker = os.walk('docs', topdown=True)
 path_all = list(path_walker)[1:]
 path_all = sorted(path_all, key=lambda x: x[0])
@@ -102,7 +99,6 @@ with open('../_data/cnt_reading_words.json', 'w') as f:
                }
               , f, ensure_ascii=False, indent='')
 
-
 r = requests.get('https://www.guofei.site/pages/book_list.json')
 
 book_list = json.loads(r.content.decode('utf-8'))
@@ -135,7 +131,7 @@ f.close()
 
 # %% 访问.../reading 时出现封面，访问 .../reading/#/README 出现目录主页
 f = open('README.md', 'w', encoding='utf-8')
-f.write('\n笔记总字数 {} 字，读书 {} 本 \n'.format(total_words, len(book_list)) + detail)
+f.write('\n笔记总字数 **{} 字**，读书 **{} 本** \n'.format(total_words, len(book_list)) + detail)
 f.close()
 
 # %% guofei.site 首页专用，链接到新库
@@ -145,18 +141,17 @@ f.close()
 
 # %% 封面
 
-# coverpage = '''![logo](media/pic.jpg)
-#
-# # 郭飞的知识宝库
-#
-# > By guofei
-#
-# * 人类必将化身为神
-# * (读书笔记累积 {} 字)
-#
-# [GitHub](https://github.com/guofei9987/guofei9987.github.io)
-# [读书](/README)
-# '''.format(total_words)
-#
-# with open('coverpage.md', 'w') as f:
-#     f.write(coverpage)
+coverpage = '''![logo](media/pic.jpg)
+
+# 郭飞的知识宝库
+
+> 人类必将化身为神
+
+* (读书笔记累积 {} 字)
+
+[GitHub](https://github.com/guofei9987/guofei9987.github.io)
+[读书](/README)
+'''.format(total_words)
+
+with open('coverpage.md', 'w') as f:
+    f.write(coverpage)
