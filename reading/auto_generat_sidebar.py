@@ -90,12 +90,13 @@ print(detail)
 total_words = sum(i[2] for i in data)
 print('_' * 10, 'total words = {}'.format(total_words), '_' * 10)
 
+total_words_str = "{} 万".format(round(total_words / 10000, ndigits=1))
 # %%总字数写入到 _data 里面
 import json
 
 with open('../_data/cnt_reading_words.json', 'w') as f:
     json.dump({"cnt_reading_words_precision": total_words,
-               "cnt_reading_words": "{}万字".format(round(total_words / 10000, ndigits=1))
+               "cnt_reading_words": total_words_str
                }
               , f, ensure_ascii=False, indent='')
 
@@ -151,7 +152,7 @@ coverpage = '''![logo](media/pic.jpg)
 
 [GitHub](https://github.com/guofei9987/guofei9987.github.io)
 [读书](/README)
-'''.format(total_words)
+'''.format(total_words_str)
 
 with open('coverpage.md', 'w') as f:
     f.write(coverpage)
