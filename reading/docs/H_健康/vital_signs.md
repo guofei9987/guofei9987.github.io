@@ -1,9 +1,20 @@
 
 
+![已拿证书](https://www.guofei.site/pictures_for_blog/certification/coursera/Vital%20Signs%20Understanding%20What%20the%20Body%20Is.jpg)
+
+
 
 https://www.coursera.org/learn/vital-signs
 
+
+
 ## Pulse Heart Rate
+
+
+
+
+
+
 
 ### Video 1.1: Basic Heart Anatomy
 
@@ -257,7 +268,7 @@ Locations to assess pulse:
         - **bradycardia**= HR \&lt; 60 bpm
 
 
-## Vital Signs 2 :  Blood Pressure
+## Blood Pressure
 
 ### Video 2.1:  Introduction to the Blood Vessels
 
@@ -450,7 +461,7 @@ Factors affecting mean arterial pressure
   - long term mechanisms involving hormonal regulation and kidney function can change blood volume which then lead to changes in blood pressure
 
 
-## Vital Signs:  Metabolism
+## Metabolism
 
 ### Video 3.1:  Introduction to Metabolism
 
@@ -551,7 +562,7 @@ Factors affecting mean arterial pressure
   - respiratory rate increases \&gt; more gas exchange in lungs
 
 
-## Vital Signs:  Body Temperature
+## Body Temperature
 
 ### Video 4.1:  Introduction to Thermoregulation
 
@@ -685,7 +696,7 @@ Reflex arc:
 - important to take a temperature when patient is healthy –then, are able to compare future readings to this baseline temperature
 
 
-## Vital Signs:  Respiration Rate
+## Respiration Rate
 
 ### Video 5.1:  Basic Anatomy of the Respiratory System
 
@@ -876,7 +887,7 @@ Control of respiration rate:
 
 
 
-## Vital Signs:  Pain
+## Pain
 
 ### Video 6.1:  The Anatomy&Physiology of Pain, Part 1
 

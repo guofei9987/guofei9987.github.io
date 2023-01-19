@@ -8,12 +8,12 @@ import requests
 
 # %% 字数统计
 regex_chinese = re.compile('[\u4e00-\u9fa5]')  # 汉字
-regex_English = re.compile('[0-9a-zA_Z]+')  # 数字和英语单词
+regex_English = re.compile('[0-9a-zA-Z]+')  # 数字和英语单词
 # 去掉中文标点和英文标点
 regex_punctuation = re.compile('[!"()*+,./:;<=>?{|}~。；，：“”（）、？《》]')
 
 
-def word_count(file_name_md):
+def get_msg(file_name_md):
     '''
     返回文件的字数，（新增）二级目录
     '''
@@ -24,10 +24,11 @@ def word_count(file_name_md):
         print(file_name_md)
         return
     # word_num = sum([len(passage.replace('\n', '').replace(' ', '')) for passage in passages])
-    word_num = sum([len(regex_chinese.findall(passage))
-                    + len(regex_English.findall(passage))
-                    + len(regex_punctuation.findall(passage))
-                    for passage in passages])
+    word_num = sum([
+        len(regex_chinese.findall(passage))
+        + len(regex_English.findall(passage))
+        # + len(regex_punctuation.findall(passage))
+        for passage in passages])
 
     title_level_2 = [line.replace('## ', '').replace('\n', '') for line in passages if line.startswith('## ')]
     f.close()
@@ -60,7 +61,7 @@ for top, dirs, nondirs in path_all:
 '''.format(block_name=block_name)
 
     for file_name in nondirs:
-        word_num, title_level_2 = word_count(top + os.sep + file_name)
+        word_num, title_level_2 = get_msg(top + os.sep + file_name)
         article = file_name.replace('.md', '')
         sidebar += '    * [{article}<sup style = "color:red">{word_num}字<sup>](docs/{block_name}/{article}.md)\n'. \
             format(article=article, block_name=block_name, word_num=word_num)
@@ -68,8 +69,11 @@ for top, dirs, nondirs in path_all:
             format(article=article,
                    block_name=block_name,
                    word_num=word_num,
-                   title_level_2='，'.join(['[{l2}](docs/{block_name}/{article}.md?id={l2})'.
-                                          format(l2=l2, block_name=block_name, article=article)
+                   title_level_2='，'.join(['[{l2}](docs/{block_name}/{article}.md?id={l2_trim})'.
+                                          format(l2=l2.replace('_', ' ')
+                                                 , l2_trim=l2.replace(' ', '%20'),
+                                                 block_name=block_name,
+                                                 article=article)
                                            for l2 in title_level_2]))
 
         detail_2 += '|<a href="/reading/#/docs/{block_name}/{article}" target="_blank">{article}<sup style = "color:red">{word_num}字<sup></a>|{title_level_2}\n'. \

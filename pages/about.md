@@ -13,10 +13,10 @@ title: 关于
 - 👯 目前在蚂蚁集团-天堑实验室任算法专家。
 - 👆曾任：京东集团-Y事业部动态定价算法专家。中体彩彩票运营管理有限公司-竞猜类彩票建模师。某私募基金分析员。某银行实习员工。
 - 🧮 热爱算法和开源。2021年，“毅力号”携带的“才智号”在火星起飞，实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，本人因其中的开源贡献被 NASA 授予 [徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
-- 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
-- 📖 喜欢读书：[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}，读书 {{ site.data.book_list.size }} 本
 - 🤔 one of 121 [authors](https://github.com/scipy/scipy/issues/7798) in [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0)
-- 📚 学术期刊 [Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171) **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
+- 📚 金融类学术期刊 [Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171) **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
+- 🔭 技术积累：[技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
+- 📖 读书：[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}，读书 {{ site.data.book_list.size }} 本
 - 🏃 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
 - 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
 
