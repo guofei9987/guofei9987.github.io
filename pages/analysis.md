@@ -13,6 +13,12 @@ title: 分析
 
 
 
+<object data="https://github.com/gf99/sn/blob/master/data/text.svg?raw=true"></object>
+<object data="https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true"></object>
+<object data="https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true"></object>
+
+
+
 ![rank](https://github.com/gf99/sn/blob/master/data/text.svg?raw=true)
 
 ![sko](https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true)
