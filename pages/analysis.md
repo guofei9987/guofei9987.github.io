@@ -4,6 +4,26 @@ title: 分析
 ---
 
 
+<object data="https://www.guofei.site/pages/trophy.svg"></object>
+
+
+- [![rank](https://github.com/gf99/sn/blob/master/data/rank.svg?raw=true)](https://gitstar-ranking.com/guofei9987)，![rank](https://github.com/gf99/sn/blob/master/data/star.svg?raw=true)
+- <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
+- <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><object data="https://www.guofei.site/guofei9987/zhihu.svg"></object></a>
+
+
+
+![rank](https://github.com/gf99/sn/blob/master/data/text.svg?raw=true)
+
+![sko](https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true)
+
+![bw](https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true)
+
+库：https://github.com/gf99/sn
+
+
+------------------
+
 <table>
 <tr>
   <th>Project</th>
