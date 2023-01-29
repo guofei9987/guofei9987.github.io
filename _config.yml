@@ -42,3 +42,4 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
+  - jekyll-katex
