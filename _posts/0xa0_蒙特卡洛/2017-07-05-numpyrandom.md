@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】【numpy】random随机数生成
+title: 【Python】【numpy】random随机
 categories:
 tags: 0xa0_蒙特卡洛方法
 keywords:
@@ -8,24 +8,23 @@ description:
 order: 10022
 ---
 
-
+<!--
 ## 最佳实践
 np.random.choice 只能针对规整的数组或矩阵进行choice  
-random.choice 只能每次抽样一个  
 a=random.shuffle;a[:3]会改变原序列  
-下面做了个最佳方案
-- 有放回抽样
+
+
 ```py
+# random 可以针对非矩阵
+# 有放回抽样
 all_papers=[[1,[2]],[3,[4]]]
 random.choices(all_papers,k=2)
 # random.choice(all_papers) # 单个抽样
-```
-- 无放回抽样
-```py
-random.sample(all_papers,k=2)
-```
 
-----------------------------------------
+# 无放回抽样
+random.sample(all_papers,k=2)
+``` -->
+
 
 ## 随机种子
 ```
@@ -38,16 +37,21 @@ state = np.random.get_state()
 np.random.set_state(state)
 ```
 
-## shuffle&permutation重新洗牌
+## shuffle&permutation 洗牌
 ```python
-np.random.shuffle(arr) # 直接改arr，返回none
+np.random.shuffle(arr) # 直接改arr，返回 None
 np.random.permutation(arr) # 不改arr，返回重新洗牌后的
 ```
 
 多维数组：只shuffle第0维
-## choice随机选数
-numpy.random.choice(a, size=None, replace=True, p=None)
 
+
+## choice 随机抽样
+```python
+np.random.choice(a, size=None, replace=True, p=None)
+# replace=True 为有放回抽样，False 为无放回抽样
+# p 是个 array，表示每个元素选中的概率，默认等概率
+```
 
 ## 生成随机数
 ```py

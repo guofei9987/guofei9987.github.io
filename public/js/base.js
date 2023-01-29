@@ -41,6 +41,7 @@ function content_click(is_show){
 
 $(document).ready(function() {
   /* 控制左侧 aside 的动作 */
+  // 点击三横
   $("#nav_btn").on('click', function() {
     isClicked = $(this).data('clicked');
 
@@ -49,6 +50,7 @@ $(document).ready(function() {
     $(this).data('clicked', !isClicked);
   });
 
+  // 点击加号
   $("#content_btn").on('click', function(){
     isClicked = $(this).data('clicked');
 
@@ -80,16 +82,22 @@ $(document).ready(function() {
 function contentEffects(){
   //remove the asidebar
   $('.row-offcanvas').removeClass('active');
+  // 生成目录
   if($("#nav").length > 0){
     $("#content > h2,#content > h3,#content > h4,#content > h5,#content > h6").each(function(i) {
         // i是从0开始的整数，以前是title0这种格式，我给改成标题了
         var current = $(this);
         var title_name=current.html();
+
+        // 下面这两行改正文的目录 id，以达到点击滑动的目的
         current.attr("id", title_name);
         current.html("<a class='title_in_contend' href='#" + title_name + "'>" + title_name + "</a>");
+
         tag = current.prop('tagName').substr(-1);
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
+
+    // ？？下面大概是数学公式？
     document.addEventListener("DOMContentLoaded", function() {
     renderMathInElement(document.body, {
       // customised options
@@ -109,6 +117,8 @@ function contentEffects(){
     prettyPrint();
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
     $('#content_btn').show();
+
+    // 数学公式
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   }else{
     $('#content_btn').hide();

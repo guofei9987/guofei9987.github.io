@@ -42,6 +42,3 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-
-# 只显示6个仓库
-side_bar_repo_limit: 8
