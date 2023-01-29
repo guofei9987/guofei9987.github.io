@@ -97,19 +97,6 @@ function contentEffects(){
         $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
 
-//     // ？？下面大概是数学公式？
-//     document.addEventListener("DOMContentLoaded", function() {
-//     renderMathInElement(document.body, {
-//       delimiters: [
-//           {left: '$$', right: '$$', display: true},
-//           {left: '$', right: '$', display: true},
-//           // {left: '\\(', right: '\\)', display: false},
-//           // {left: '\\[', right: '\\]', display: true}
-//       ],
-//       // • rendering keys, e.g.:
-//       throwOnError : true
-//     });
-// });
 
     $("pre").addClass("prettyprint");
     prettyPrint();
@@ -117,7 +104,7 @@ function contentEffects(){
     $('#content_btn').show();
 
     // 数学公式
-    // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
   }else{
     $('#content_btn').hide();
   }
