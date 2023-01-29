@@ -47,6 +47,9 @@ np.linalg.inv(arr1)
 # 矩阵乘法
 np.dot(arr1, arr2)
 # 注意，这里的a,b必须是多维的，否则返回的是內积（对应项相乘）  
+# python 3.5 以上也可以这样写：
+arr1 @ arr2
+
 
 # 矩阵的点积
 a * b

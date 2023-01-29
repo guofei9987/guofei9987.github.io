@@ -17,25 +17,31 @@ keywords: 阅读,书单
                   <table class="table table-bordered">
                     <tbody>
 
-                      <tr><td style="width:80px;">书名</td><td>{{ book.name }}</td>
+                      <tr>
+                      <td style="width:80px;">书名</td><td>{{ book.name }}</td>
                       <td style="width:80px;">阅毕时间</td><td>{{ book.finish_date }}</td>
                       </tr>
 
-                      <tr><td style="width:40px;">作者</td><td>{{ book.author }}</td>
-                      <td style="width:40px;">我的打分</td><td><font color="red">{{ book.score }}</font></td>
+                      <tr>
+                      <td>作者</td>
+                      <td>{{ book.author }}</td>
+                      <td>我的打分</td>
+                      <td><font color="red">{{ book.score }}</font></td>
                       </tr>
 
-                      <tr><td>出版商</td><td>{{ book.publisher }}</td>
-
-                      <td>读书笔记</td><td>
-
-
-                        <a href="http://www.guofei.site/reading/#" title="http://www.guofei.site/reading/#">点击查看</a>
-
-                      </td>
+                      <tr>
+                      <td>出版商</td>
+                      <td>{{ book.publisher }}</td>
+                      <td>读书笔记</td>
+                      <td><a href="http://www.guofei.site/reading/#" title="http://www.guofei.site/reading/#">点击查看</a></td>
                       </tr>
 
-                      <tr><td>简评</td><td colspan=" 3 ">{{ book.comments }}</td></tr>
+
+                      <tr>
+                      <td>简评</td>
+                      <td colspan=" 3 ">{{ book.comments }}</td>
+                      </tr>
+
                     </tbody>
                   </table>
                 </div>
