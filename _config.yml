@@ -44,4 +44,3 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-  - "kramdown-math-katex"
