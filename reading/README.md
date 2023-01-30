@@ -1,12 +1,12 @@
 
-笔记总字数 **552697 字**，读书 **243 本** 
+笔记总字数 **554525 字**，读书 **243 本** 
 
 ###  1_哲学
 |板块|书目|
 |---|---|
 |[1_西方哲学<sup style = "color:red">43492字<sup>](docs/1_哲学/1_西方哲学.md)|[主要哲学汇总](docs/1_哲学/1_西方哲学.md?id=主要哲学汇总)，[《西方哲学十五讲》](docs/1_哲学/1_西方哲学.md?id=《西方哲学十五讲》)
 |[2_诸子百家<sup style = "color:red">3380字<sup>](docs/1_哲学/2_诸子百家.md)|[诸子百家](docs/1_哲学/2_诸子百家.md?id=诸子百家)
-|[3_佛家<sup style = "color:red">14800字<sup>](docs/1_哲学/3_佛家.md)|[《佛祖都说了些什么》](docs/1_哲学/3_佛家.md?id=《佛祖都说了些什么》)
+|[3_佛学<sup style = "color:red">14800字<sup>](docs/1_哲学/3_佛学.md)|[《佛祖都说了些什么》](docs/1_哲学/3_佛学.md?id=《佛祖都说了些什么》)
 |[5_《哲学家们都干了些什么》<sup style = "color:red">17822字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)|[上：理性的崛起](docs/1_哲学/5_《哲学家们都干了些什么》.md?id=上：理性的崛起)，[下：理性的陨落](docs/1_哲学/5_《哲学家们都干了些什么》.md?id=下：理性的陨落)
 |[《上帝掷骰子吗》<sup style = "color:red">7248字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)|[《上帝掷骰子吗》](docs/1_哲学/《上帝掷骰子吗》.md?id=《上帝掷骰子吗》)
 |[《原则》<sup style = "color:red">13849字<sup>](docs/1_哲学/《原则》.md)|[《原则》](docs/1_哲学/《原则》.md?id=《原则》)
@@ -126,7 +126,7 @@
 |[刘慈欣<sup style = "color:red">6818字<sup>](docs/9_文学/刘慈欣.md)|[《三体》](docs/9_文学/刘慈欣.md?id=《三体》)，[《赡养上帝》](docs/9_文学/刘慈欣.md?id=《赡养上帝》)，[《坍缩》](docs/9_文学/刘慈欣.md?id=《坍缩》)，[《西洋》](docs/9_文学/刘慈欣.md?id=《西洋》)，[《镜子》](docs/9_文学/刘慈欣.md?id=《镜子》)，[《朝闻道》](docs/9_文学/刘慈欣.md?id=《朝闻道》)，[《命运》](docs/9_文学/刘慈欣.md?id=《命运》)，[《山》](docs/9_文学/刘慈欣.md?id=《山》)，[《时间移民》](docs/9_文学/刘慈欣.md?id=《时间移民》)，[《思想者》](docs/9_文学/刘慈欣.md?id=《思想者》)，[《吞食者》](docs/9_文学/刘慈欣.md?id=《吞食者》)，[《微纪元》](docs/9_文学/刘慈欣.md?id=《微纪元》)，[《天使时代》](docs/9_文学/刘慈欣.md?id=《天使时代》)，[《梦之海》](docs/9_文学/刘慈欣.md?id=《梦之海》)，[《微观尽头》](docs/9_文学/刘慈欣.md?id=《微观尽头》)，[《欢乐颂》](docs/9_文学/刘慈欣.md?id=《欢乐颂》)，[《圆圆的肥皂泡》](docs/9_文学/刘慈欣.md?id=《圆圆的肥皂泡》)，[《地火》](docs/9_文学/刘慈欣.md?id=《地火》)，[《月夜》](docs/9_文学/刘慈欣.md?id=《月夜》)，[《鲸歌》](docs/9_文学/刘慈欣.md?id=《鲸歌》)，[《带上她的眼睛》](docs/9_文学/刘慈欣.md?id=《带上她的眼睛》)，[《地球大炮》](docs/9_文学/刘慈欣.md?id=《地球大炮》)，[《信使》](docs/9_文学/刘慈欣.md?id=《信使》)，[《乡村教师》](docs/9_文学/刘慈欣.md?id=《乡村教师》)，[《诗云》](docs/9_文学/刘慈欣.md?id=《诗云》)，[《流浪地球》](docs/9_文学/刘慈欣.md?id=《流浪地球》)，[《赡养人类》](docs/9_文学/刘慈欣.md?id=《赡养人类》)，[《全频带阻塞干扰》](docs/9_文学/刘慈欣.md?id=《全频带阻塞干扰》)
 |[历史小说<sup style = "color:red">3030字<sup>](docs/9_文学/历史小说.md)|[《大明王朝》](docs/9_文学/历史小说.md?id=《大明王朝》)
 |[反乌托邦小说<sup style = "color:red">3858字<sup>](docs/9_文学/反乌托邦小说.md)|[《一九八四》](docs/9_文学/反乌托邦小说.md?id=《一九八四》)，[《美妙的新世界》阅读中](docs/9_文学/反乌托邦小说.md?id=《美妙的新世界》阅读中)，[《动物农场》](docs/9_文学/反乌托邦小说.md?id=《动物农场》)，[《我们》](docs/9_文学/反乌托邦小说.md?id=《我们》)
-|[名著小说<sup style = "color:red">1090字<sup>](docs/9_文学/名著小说.md)|[《骆驼祥子》](docs/9_文学/名著小说.md?id=《骆驼祥子》)
+|[名著小说<sup style = "color:red">1072字<sup>](docs/9_文学/名著小说.md)|[《骆驼祥子》](docs/9_文学/名著小说.md?id=《骆驼祥子》)
 |[名著速读<sup style = "color:red">2720字<sup>](docs/9_文学/名著速读.md)|[速读：《荷马史诗》](docs/9_文学/名著速读.md?id=速读：《荷马史诗》)，[但丁：《神曲》](docs/9_文学/名著速读.md?id=但丁：《神曲》)，[塞万提斯：《堂吉柯德》](docs/9_文学/名著速读.md?id=塞万提斯：《堂吉柯德》)，[莎士比亚《哈姆雷特》](docs/9_文学/名著速读.md?id=莎士比亚《哈姆雷特》)，[速读《鲁滨逊漂流记》](docs/9_文学/名著速读.md?id=速读《鲁滨逊漂流记》)，[速读：《格列佛游记》](docs/9_文学/名著速读.md?id=速读：《格列佛游记》)，[雨果：《悲催世界》](docs/9_文学/名著速读.md?id=雨果：《悲催世界》)，[《普希金诗选》](docs/9_文学/名著速读.md?id=《普希金诗选》)，[速读《三国演义》](docs/9_文学/名著速读.md?id=速读《三国演义》)
 |[杜拉拉<sup style = "color:red">12215字<sup>](docs/9_文学/杜拉拉.md)|[《杜拉拉1》](docs/9_文学/杜拉拉.md?id=《杜拉拉1》)，[杜拉拉的信](docs/9_文学/杜拉拉.md?id=杜拉拉的信)，[《杜拉拉升职记2：华年似水》](docs/9_文学/杜拉拉.md?id=《杜拉拉升职记2：华年似水》)，[《杜拉拉升职记》总结](docs/9_文学/杜拉拉.md?id=《杜拉拉升职记》总结)
 |[科幻小说<sup style = "color:red">1285字<sup>](docs/9_文学/科幻小说.md)|[《消失的殖民星球》](docs/9_文学/科幻小说.md?id=《消失的殖民星球》)，[《异星歧途》](docs/9_文学/科幻小说.md?id=《异星歧途》)
@@ -137,7 +137,7 @@
 |板块|书目|
 |---|---|
 |[摄影<sup style = "color:red">2296字<sup>](docs/A_文艺/摄影.md)|[运镜](docs/A_文艺/摄影.md?id=运镜)，[打击感](docs/A_文艺/摄影.md?id=打击感)
-|[茶<sup style = "color:red">1181字<sup>](docs/A_文艺/茶.md)|[茶叶](docs/A_文艺/茶.md?id=茶叶)
+|[茶<sup style = "color:red">1108字<sup>](docs/A_文艺/茶.md)|[茶叶](docs/A_文艺/茶.md?id=茶叶)
 
 ###  G_沟通
 |板块|书目|
@@ -154,7 +154,7 @@
 |[vital_signs<sup style = "color:red">7120字<sup>](docs/H_健康/vital_signs.md)|[Pulse Heart Rate](docs/H_健康/vital_signs.md?id=Pulse%20Heart%20Rate)，[Blood Pressure](docs/H_健康/vital_signs.md?id=Blood%20Pressure)，[Metabolism](docs/H_健康/vital_signs.md?id=Metabolism)，[Body Temperature](docs/H_健康/vital_signs.md?id=Body%20Temperature)，[Respiration Rate](docs/H_健康/vital_signs.md?id=Respiration%20Rate)，[Pain](docs/H_健康/vital_signs.md?id=Pain)
 |[《生而向善》<sup style = "color:red">76字<sup>](docs/H_健康/《生而向善》.md)|[《生而向善》](docs/H_健康/《生而向善》.md?id=《生而向善》)
 |[人体<sup style = "color:red">920字<sup>](docs/H_健康/人体.md)|[《漫画人体》](docs/H_健康/人体.md?id=《漫画人体》)
-|[健康管理<sup style = "color:red">4695字<sup>](docs/H_健康/健康管理.md)|[《轻断食》](docs/H_健康/健康管理.md?id=《轻断食》)，[《无器械健身》](docs/H_健康/健康管理.md?id=《无器械健身》)，[健康有关的碎片知识](docs/H_健康/健康管理.md?id=健康有关的碎片知识)，[病理学](docs/H_健康/健康管理.md?id=病理学)
+|[健康管理<sup style = "color:red">6614字<sup>](docs/H_健康/健康管理.md)|[《无器械健身》](docs/H_健康/健康管理.md?id=《无器械健身》)，[健康有关的碎片知识](docs/H_健康/健康管理.md?id=健康有关的碎片知识)，[病理学](docs/H_健康/健康管理.md?id=病理学)
 |[健康管理师1<sup style = "color:red">20213字<sup>](docs/H_健康/健康管理师1.md)|[健康管理师概论](docs/H_健康/健康管理师1.md?id=健康管理师概论)，[临床医学](docs/H_健康/健康管理师1.md?id=临床医学)，[预防医学](docs/H_健康/健康管理师1.md?id=预防医学)，[慢性病](docs/H_健康/健康管理师1.md?id=慢性病)，[流行病学](docs/H_健康/健康管理师1.md?id=流行病学)，[医学统计学](docs/H_健康/健康管理师1.md?id=医学统计学)，[健康教育学](docs/H_健康/健康管理师1.md?id=健康教育学)，[营养学（重要）](docs/H_健康/健康管理师1.md?id=营养学（重要）)，[食品安全](docs/H_健康/健康管理师1.md?id=食品安全)，[身体活动](docs/H_健康/健康管理师1.md?id=身体活动)，[中医养生](docs/H_健康/健康管理师1.md?id=中医养生)，[康复医学](docs/H_健康/健康管理师1.md?id=康复医学)
 |[吃<sup style = "color:red">90字<sup>](docs/H_健康/吃.md)|[Stanford Introduction to Food and Health](docs/H_健康/吃.md?id=Stanford%20Introduction%20to%20Food%20and%20Health)
 |[外形美<sup style = "color:red">394字<sup>](docs/H_健康/外形美.md)|[护肤](docs/H_健康/外形美.md?id=护肤)，[穿衣](docs/H_健康/外形美.md?id=穿衣)

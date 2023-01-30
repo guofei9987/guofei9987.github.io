@@ -10,7 +10,7 @@
 * 1_哲学
     * [1_西方哲学<sup style = "color:red">43492字<sup>](docs/1_哲学/1_西方哲学.md)
     * [2_诸子百家<sup style = "color:red">3380字<sup>](docs/1_哲学/2_诸子百家.md)
-    * [3_佛家<sup style = "color:red">14800字<sup>](docs/1_哲学/3_佛家.md)
+    * [3_佛学<sup style = "color:red">14800字<sup>](docs/1_哲学/3_佛学.md)
     * [5_《哲学家们都干了些什么》<sup style = "color:red">17822字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)
     * [《上帝掷骰子吗》<sup style = "color:red">7248字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
     * [《原则》<sup style = "color:red">13849字<sup>](docs/1_哲学/《原则》.md)
@@ -100,7 +100,7 @@
     * [刘慈欣<sup style = "color:red">6818字<sup>](docs/9_文学/刘慈欣.md)
     * [历史小说<sup style = "color:red">3030字<sup>](docs/9_文学/历史小说.md)
     * [反乌托邦小说<sup style = "color:red">3858字<sup>](docs/9_文学/反乌托邦小说.md)
-    * [名著小说<sup style = "color:red">1090字<sup>](docs/9_文学/名著小说.md)
+    * [名著小说<sup style = "color:red">1072字<sup>](docs/9_文学/名著小说.md)
     * [名著速读<sup style = "color:red">2720字<sup>](docs/9_文学/名著速读.md)
     * [杜拉拉<sup style = "color:red">12215字<sup>](docs/9_文学/杜拉拉.md)
     * [科幻小说<sup style = "color:red">1285字<sup>](docs/9_文学/科幻小说.md)
@@ -108,7 +108,7 @@
     * [阿西莫夫<sup style = "color:red">36字<sup>](docs/9_文学/阿西莫夫.md)
 * A_文艺
     * [摄影<sup style = "color:red">2296字<sup>](docs/A_文艺/摄影.md)
-    * [茶<sup style = "color:red">1181字<sup>](docs/A_文艺/茶.md)
+    * [茶<sup style = "color:red">1108字<sup>](docs/A_文艺/茶.md)
 * G_沟通
     * [做<sup style = "color:red">1831字<sup>](docs/G_沟通/做.md)
     * [写<sup style = "color:red">374字<sup>](docs/G_沟通/写.md)
@@ -119,7 +119,7 @@
     * [vital_signs<sup style = "color:red">7120字<sup>](docs/H_健康/vital_signs.md)
     * [《生而向善》<sup style = "color:red">76字<sup>](docs/H_健康/《生而向善》.md)
     * [人体<sup style = "color:red">920字<sup>](docs/H_健康/人体.md)
-    * [健康管理<sup style = "color:red">4695字<sup>](docs/H_健康/健康管理.md)
+    * [健康管理<sup style = "color:red">6614字<sup>](docs/H_健康/健康管理.md)
     * [健康管理师1<sup style = "color:red">20213字<sup>](docs/H_健康/健康管理师1.md)
     * [吃<sup style = "color:red">90字<sup>](docs/H_健康/吃.md)
     * [外形美<sup style = "color:red">394字<sup>](docs/H_健康/外形美.md)
