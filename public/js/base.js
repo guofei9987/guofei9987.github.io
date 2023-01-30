@@ -111,7 +111,7 @@ function contentEffects(){
 }
 
 
-// 代码黏贴板
+// 代码拷贝
 // https://remarkablemark.org/blog/2021/06/01/add-copy-code-to-clipboard-button-to-jeyll-site/
 var codeBlocks = document.querySelectorAll('pre.highlight');
 
