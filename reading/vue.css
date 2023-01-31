@@ -563,11 +563,6 @@ section.cover {
 section.cover.show {
     display: -ms-flexbox;
     display: flex;
-    
-    /* 设定封面背景图片 */
-    background-image: url("media/cover.jpeg");
-    background-repeat: no-repeat;
-    background-size: 100%;
 }
 
 
