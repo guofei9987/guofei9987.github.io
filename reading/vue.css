@@ -641,6 +641,14 @@ section.cover .cover-main > p:last-child a {
     transition: all .15s ease
 }
 
+/* 设定封面背景图片 */
+.cover-main{
+  background-image: url("media/cover.jpeg");
+  background-repeat: no-repeat;
+}
+
+
+
 section.cover .cover-main > p:last-child a:last-child {
     background-color: var(--theme-color, #42b983);
     color: #fff

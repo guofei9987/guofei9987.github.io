@@ -1,4 +1,4 @@
-![logo](media/pic.jpg)
+<!-- ![logo](media/pic.jpg) -->
 
 # 郭飞的知识宝库
 
