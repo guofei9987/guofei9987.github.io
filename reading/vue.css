@@ -562,8 +562,14 @@ section.cover {
 
 section.cover.show {
     display: -ms-flexbox;
-    display: flex
+    display: flex;
+    
+    /* 设定封面背景图片 */
+    background-image: url("media/cover.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
+
 
 section.cover.has-mask .mask {
     background-color: #fff;
@@ -639,12 +645,6 @@ section.cover .cover-main > p:last-child a {
     padding: .75em 2rem;
     text-decoration: none;
     transition: all .15s ease
-}
-
-/* 设定封面背景图片 */
-.cover-main{
-  background-image: url("media/cover.jpeg");
-  background-repeat: no-repeat;
 }
 
 
