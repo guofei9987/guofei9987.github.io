@@ -29,6 +29,11 @@
   z-index: -1;
 }
 
+/* 否则0阶前面有个列表符号 */
+.litree li::marker {
+  content:""
+}
+
 .litree li:before {
   border-top: 1px solid;
   content: "";
