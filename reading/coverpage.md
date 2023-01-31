@@ -8,4 +8,4 @@
 [GitHub](https://github.com/guofei9987/guofei9987.github.io)
 [读书](/README)
 
-![logo](media/pic.jpg)
+![logo](media/cover.jpeg)
