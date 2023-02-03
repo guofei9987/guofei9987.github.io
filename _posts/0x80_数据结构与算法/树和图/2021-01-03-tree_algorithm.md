@@ -1218,8 +1218,9 @@ import collections
 
 class TrieNode:
     def __init__(self):
-        # 如果字符是有限的，这里可以用 list 来存储。然后使用 char - 'a' 来索引
-        # 这里使用 HashMap 来实现的，
+        # 如果字符是有限的，这里可以用 list 来存储，然后使用 char - 'a' 来索引。
+        # list 存储因为不需要做 Hash，因此更快，但内存消耗更大。
+        # 这里使用 HashMap 来实现的
         self.children = collections.defaultdict(TrieNode)
         self.is_word = False
 
@@ -1234,6 +1235,23 @@ class Trie:
         for char in word:
             curr = curr.children[char]
         curr.is_word = True
+
+    def remove(self, word: str) -> bool:
+        raise PermissionError("从 trie 删除 keyword，还没有实现")
+
+    def get_keywords(self):
+        # 获取 keyword
+        res = []
+
+        def dfs(node, word):
+            if node.is_word:
+                res.append(word)
+
+            for char in node.children:
+                dfs(node.children[char], word + char)
+
+        dfs(self.root, '')
+        return res
 
     # 精确全文匹配
     def match(self, word: str) -> bool:
@@ -1276,6 +1294,8 @@ assert not trie.match_start("app is good")
 
 trie.insert("app")
 assert trie.match("app")
+
+trie.get_keywords()
 ```
 
 
