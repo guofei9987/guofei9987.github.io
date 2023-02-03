@@ -1218,7 +1218,8 @@ import collections
 
 class TrieNode:
     def __init__(self):
-        # 如果字符是有限的，这里可以用 list 来存储。不用做hash更快
+        # 如果字符是有限的，这里可以用 list 来存储。然后使用 char - 'a' 来索引
+        # 这里使用 HashMap 来实现的，
         self.children = collections.defaultdict(TrieNode)
         self.is_word = False
 
@@ -1234,7 +1235,8 @@ class Trie:
             curr = curr.children[char]
         curr.is_word = True
 
-    def search(self, word: str) -> bool:
+    # 精确全文匹配
+    def match(self, word: str) -> bool:
         curr = self.root
         for char in word:
             curr = curr.children.get(char)
@@ -1242,7 +1244,8 @@ class Trie:
                 return False
         return curr.is_word
 
-    def startsWith(self, prefix: str) -> bool:
+    def starts_with(self, prefix: str) -> bool:
+        # 判断：prefix 是某个 keyword 的开头
         curr = self.root
         for char in prefix:
             curr = curr.children.get(char)
@@ -1250,7 +1253,8 @@ class Trie:
                 return False
         return True
 
-    def in_start(self, sentence):
+    def match_start(self, sentence) -> bool:
+        # 判断：sentence 的开头是否是某个 keyword
         curr = self.root
         for char in sentence:
             if char not in curr.children:
@@ -1258,16 +1262,20 @@ class Trie:
             curr = curr.children.get(char)
             if curr.is_word:
                 return True
-        return False # 理论上不会执行
+        return False  # 理论上不会执行
 
 
 trie = Trie()
 trie.insert("apple")
-trie.search("apple")  # returns true
-trie.search("app")  # returns false
-trie.startsWith("app")  # returns true
+
+assert trie.match("apple")
+assert not trie.match("app")
+
+assert trie.starts_with("app")
+assert not trie.match_start("app is good")
+
 trie.insert("app")
-trie.search("app")  # returns true
+assert trie.match("app")
 ```
 
 
