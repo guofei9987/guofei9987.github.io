@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【数据结构7】Tree实现
+title: 【数据结构7】【Python】Tree
 categories:
 tags: 0x80_数据结构与算法
 keywords:
@@ -1237,6 +1237,7 @@ class Trie:
         curr.is_word = True
 
     def remove(self, word: str) -> bool:
+      # 删除前，需要用 match 查询是否存在此 word 
         raise PermissionError("从 trie 删除 keyword，还没有实现")
 
     def get_keywords(self):
