@@ -104,7 +104,13 @@ function contentEffects(){
     $('#content_btn').show();
 
     // 数学公式
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    MathJax.typesetPromise().then(() => {
+  // modify the DOM here
+  MathJax.typesetPromise();
+}).catch((err) => console.log(err.message));
+
+
   }else{
     $('#content_btn').hide();
   }
