@@ -19,10 +19,10 @@ title: 关于
 - 📈 懂一点儿金融
     - 📚 金融类学术期刊 *[Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171)* 的 **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
     - 🎓 金融学硕士
-    - 中级经济师
+    - 📝 中级经济师
 - 🔭 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
 - 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}
-- 🏃 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
+- 🤸 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
 - <span class="fa-stack fa-lg" style="color:#16a095;"><i class="fa fa-circle fa-stack-2x"></i><i class="fa  fa-stack-1x fa-inverse">知</i></span> <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><object data="https://www.guofei.site/guofei9987/zhihu.svg"></object></a>
 
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
