@@ -108,10 +108,12 @@ function contentEffects(){
 
 
 // 下面这个是 v3 版本
-    MathJax.typesetPromise().then(() => {
-  MathJax.typesetPromise();
-}).catch((err) => console.log(err.message));
+//     MathJax.typesetPromise().then(() => {
+//   MathJax.typesetPromise();
+// }).catch((err) => console.log(err.message));
 
+// 下面是 KaTex版本
+renderMathInElement(document.body)
 
   }else{
     $('#content_btn').hide();
