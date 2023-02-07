@@ -210,3 +210,9 @@ blockquote p {
  }
 
 /* end:代码黏贴版 */
+
+
+/* 公式底色： */
+.katex {
+  background-color: lightcyan;
+}
