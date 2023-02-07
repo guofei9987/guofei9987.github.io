@@ -117,10 +117,10 @@ function contentEffects(){
 
 // 需要展示单dollar 符号
 renderMathInElement(document.body,{delimiters: [
-    					{left: "$$", right: "$$", display: true},
-					  {left: "$", right: "$", display: false}
+  {left: '$$', right: '$$', display: false},
+    {left: '$', right: '$', display: false},
+    {left: '\\(', right: '\\)', display: false}
 ]});
-
 
   }else{
     $('#content_btn').hide();
