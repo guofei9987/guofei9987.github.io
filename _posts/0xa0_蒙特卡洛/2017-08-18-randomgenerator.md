@@ -135,7 +135,7 @@ plt.show()
 
 ![randomgenerator2.png](/pictures_for_blog/postimg/randomgenerator2.png)  
 
-横、纵坐标分别是\(x_{t-1},x_t\)  
+横、纵坐标分别是 $x_{t-1},x_t$  
 
 ### 统计检验
 
