@@ -104,13 +104,13 @@ function contentEffects(){
     $('#content_btn').show();
 
     // 数学公式
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    // MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 
 // 下面这个是 v3 版本
-//     MathJax.typesetPromise().then(() => {
-//   MathJax.typesetPromise();
-// }).catch((err) => console.log(err.message));
+    MathJax.typesetPromise().then(() => {
+  MathJax.typesetPromise();
+}).catch((err) => console.log(err.message));
 
 
   }else{
