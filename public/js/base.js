@@ -113,7 +113,14 @@ function contentEffects(){
 // }).catch((err) => console.log(err.message));
 
 // 下面是 KaTex版本
-renderMathInElement(document.body)
+// renderMathInElement(document.body)
+
+// 需要展示单dollar 符号
+renderMathInElement(document.body,{delimiters: [
+    					{left: "$$", right: "$$", display: true},
+					  {left: "$", right: "$", display: false}
+]});
+
 
   }else{
     $('#content_btn').hide();
