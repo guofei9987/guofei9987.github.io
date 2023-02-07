@@ -3,7 +3,7 @@ paginate: 10
 markdown: kramdown
 
 kramdown:
-  math_engine: katex
+  math_engine: nil
 
 # 作者信息
 author:
@@ -44,5 +44,3 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-  - "katex"
-  - "kramdown-math-katex"
