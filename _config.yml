@@ -3,7 +3,7 @@ paginate: 10
 markdown: kramdown
 
 kramdown:
-  math_engine: nil
+  math_engine: null
 
 # 作者信息
 author:
