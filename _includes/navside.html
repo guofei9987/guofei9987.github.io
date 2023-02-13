@@ -83,7 +83,7 @@
                 {% if category[0] == '语言' %}
                   {% assign sorted_tag = category[1] | sort:"order" %}
                   {% for post in sorted_tag %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} {{ site.categories[post.title.name].size }}</a>
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} {{ site.categories[post.name].size }}</a>
                   {% endfor %}
                 {% endif %}
 
