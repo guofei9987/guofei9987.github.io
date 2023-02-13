@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【合集】TensorFlow
+title: 【合集】TensorFlow {{ site.categories['TensorFlow'].size }}
 categories: 语言
 tags:
 keywords:
