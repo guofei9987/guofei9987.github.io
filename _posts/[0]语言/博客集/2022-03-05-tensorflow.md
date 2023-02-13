@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 【合集】TensorFlow {{ site.categories['TensorFlow'].size }}
+title: 【合集】TensorFlow
 categories: 语言
 tags:
 keywords:
 description:
+name: TensorFlow
 order: 19007
 ---
 
