@@ -27,6 +27,10 @@ title: 分析
 
 库：https://github.com/gf99/sn
 
+-------------------
+
+
+数量 {{ site.github.public_repositories.size }}
 
 ------------------
 

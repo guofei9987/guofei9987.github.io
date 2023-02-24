@@ -114,7 +114,12 @@ if __name__ == "__main__":
     print(my_linked_list)
 ```
 
-LeetCode 给的格式都是不带头节点的，做个 next 即可
+刷题技巧
+1. 使用带dummy的链表，往往可以使代码更好写。LeetCode 给的格式都是不带头节点的，做个 next 即可
+2. 遇到多链表的时候，你可能需要 `curr = curr.next if curr else curr`，这样 curr 如果为 None，就表示它早已到达终点
+
+
+
 
 
 ### Two Pointer Technique
