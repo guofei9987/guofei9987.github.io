@@ -13,6 +13,7 @@ order: 19007
 
 {% for post in site.categories['TensorFlow'] %}
   <li>
+    <span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
     <a href="{{ post.url }}" class="pjaxlink">{{post.title}}</a>
   </li>
 {% endfor %}
