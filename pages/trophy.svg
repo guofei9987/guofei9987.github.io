@@ -304,7 +304,7 @@ Created by potrace 1.15, written by Peter Selinger 2001-2017
     width: 0px;
   }
   to {
-    width: 35.46666666666667px;
+    width: 35.5px;
   }
 }
 #Followers-rank-progress{
@@ -416,7 +416,7 @@ Created by potrace 1.15, written by Peter Selinger 2001-2017
     width: 0px;
   }
   to {
-    width: 8.266666666666666px;
+    width: 25px;
   }
 }
 #Commits-rank-progress{
