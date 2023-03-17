@@ -34,6 +34,12 @@ class Stack(list):
         return self.pop()
 ```
 
+### 队列：C
+
+不同的实现
+- 链表
+- 两个 stack 可以构造一个 queue：https://leetcode.cn/problems/implement-stack-using-queues/
+- 循环array可以构造一个 queue：https://github.com/guofei9987/c-algorithm/tree/master/DynamicArray
 
 ### 队列
 
