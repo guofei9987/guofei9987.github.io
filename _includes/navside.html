@@ -98,8 +98,8 @@
                   {% for post in category[1] %}
 
                     {% if post.repo_name %}
-{{post.repo_name}}，
-{% assign this_repo = site.github.public_repositories | where: "name", "guofei9987.github.io" %}
+
+                    {% assign this_repo = site.github.public_repositories | where: "name", {{post.repo_name}} %}
 
 {%for repo in this_repo%}
 
