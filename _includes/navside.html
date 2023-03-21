@@ -105,10 +105,11 @@
 
 
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ repo.stargazers_count }}</a>
+{%endfor%}
+                   
                     {% else %}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                     {% endif %}
-{%endfor%}
                     
                   {% endfor %}
                 {% endif %}
