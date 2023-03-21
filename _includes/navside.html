@@ -99,12 +99,16 @@
 
                     {% if post.repo_name %}
 {{post.repo_name}}，
-{this_stars=5}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ this_stars }}</a>
+{% assign this_repo = site.github.public_repositories | where: "name", "guofei9987.github.io" %}
+
+{%for repo in this_repo%}
+
+
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ repo.stargazers_count }}</a>
                     {% else %}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                     {% endif %}
-
+{%endfor%}
                     
                   {% endfor %}
                 {% endif %}
