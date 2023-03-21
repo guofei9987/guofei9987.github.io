@@ -83,7 +83,7 @@
                 {% if category[0] == '语言' %}
                   {% assign sorted_tag = category[1] | sort:"order" %}
                   {% for post in sorted_tag %}
-                  
+
                   {% if site.categories[post.name] %}
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} （{{ site.categories[post.name].size }} 篇）</a>
                   {% else %}
@@ -96,7 +96,15 @@
 
                 {% if category[0] == '开源' %}
                   {% for post in category[1] %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+
+                    {assign this_stars = (site.github.public_repositories | where "name", post.repo_name).first.stargazers_count }
+                    {% if this_stars %}
+                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ this_stars }}</a>
+                    {% else %}
+                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                    {% endif %}
+
+                    
                   {% endfor %}
                 {% endif %}
 
