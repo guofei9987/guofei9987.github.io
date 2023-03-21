@@ -100,7 +100,7 @@
                     {% if post.repo_name %}
 {{post.repo_name}}，
 {this_stars=5}
-{% assign this_stars = (site.github.public_repositories | where "name", post.repo_name) %}
+<!-- {% assign this_stars = (site.github.public_repositories | where "name", post.repo_name) %} -->
 
                     <!-- {% assign this_stars = (site.github.public_repositories | where "name", post.repo_name).first.stargazers_count %} -->
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ this_stars }}</a>
