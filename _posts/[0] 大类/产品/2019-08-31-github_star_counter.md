@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 【小工具】github star数量统计
+title: 【开源】github star数量统计
 categories: 开源
 tags:
 keywords:
 description:
+repo_name: star_counter
 ---
 
 

@@ -1,8 +1,9 @@
 ---
 ---
 
-{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "name", "blind_watermark" %}
-{% for repo in sorted_repos  %}
+
+
+{% assign repo = site.github.public_repositories | where: "name", "blind_watermark" | first%}
 
 <svg
   width="400"
@@ -140,4 +141,3 @@ height="16"
 
   </g>
 </svg>
-{% endfor %}

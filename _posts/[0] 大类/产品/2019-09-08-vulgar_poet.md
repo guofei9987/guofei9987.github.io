@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 【工具】恶俗古风诗歌生成器
+title: 【开源】恶俗古风诗歌生成器
 categories: 开源
 tags:
 keywords:
 description:
+repo_name: vulgar_language_generator
 ---
 
 ## demo
