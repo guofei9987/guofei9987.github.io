@@ -99,13 +99,11 @@
 
                     {% if post.repo_name %}
 
-                    {% assign this_repo = site.github.public_repositories | where: "name", {{post.repo_name}} %}
-
-{%for repo in this_repo%}
+                    {% assign this_repo = site.github.public_repositories | where: "name", {{post.repo_name}} | first%}
 
 
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ repo.stargazers_count }}</a>
-{%endfor%}
+
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} ☆{{ this_repo.stargazers_count }}</a>
                    
                     {% else %}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
