@@ -38,16 +38,15 @@ title: 分析
 
 
 
--------------------
 
 
-数量 {{ site.github.public_repositories.size }}
+
 
 ------------------
 
 <table>
 <tr>
-  <th>Project</th>
+  <th>Project 数量 {{ site.github.public_repositories.size }} </th>
   <th>fork</th>
   <th>Star</th>
   <th>Fork</th>
