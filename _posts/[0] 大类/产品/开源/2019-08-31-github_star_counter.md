@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【开源】github star数量统计
+title: github star数量统计
 categories: 开源
 tags:
 keywords:

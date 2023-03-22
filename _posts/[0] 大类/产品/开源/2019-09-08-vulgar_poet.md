@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【开源】恶俗古风诗歌生成器
+title: 恶俗古风诗歌生成器
 categories: 开源
 tags:
 keywords:

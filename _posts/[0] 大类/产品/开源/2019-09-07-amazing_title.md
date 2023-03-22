@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【开源】震惊体标题生成器
+title: 震惊体标题生成器
 categories: 开源
 tags:
 keywords:
