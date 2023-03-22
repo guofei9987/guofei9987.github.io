@@ -27,6 +27,21 @@ title: 分析
 
 库：https://github.com/gf99/sn
 
+--------
+
+
+{{site.data.my_data.zhihu_agree}}
+{{site.data.my_data.zhihu_like}}
+
+
+{{site.data.my_data}}
+
+
+--------------------
+
+{{site.data}}
+
+
 -------------------
 
 

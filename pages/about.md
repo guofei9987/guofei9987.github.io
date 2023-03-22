@@ -77,7 +77,5 @@ I contributed to:
 ![](http://www.guofei.site/public/donate/qr_wechat.jpg)
 
 
-{{site.data.my_data.zhihu_agree}}
-{{site.data.my_data.zhihu_like}}
 
 
