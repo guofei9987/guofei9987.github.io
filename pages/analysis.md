@@ -37,6 +37,8 @@ title: 分析
 4. {{site.data.foo.bar }}
 5. ？？？：{{site.data.my_data.bar}}
 6. !!!{{ site.data.foo.bar }}
+6. !!!{{ site.data.my_data }}
+
 
 
 ------------------

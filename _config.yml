@@ -47,9 +47,9 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-  - jekyll-get-data-json
+  - "jekyll-get-json"
 
 
-jekyll-get-data-json:
+jekyll-get-json:
   - data: my_data
     json: 'https://www.guofei.site/guofei9987/achievement.json'
