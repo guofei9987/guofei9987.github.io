@@ -47,7 +47,7 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-   - jekyll-get-json
+  - jekyll-get-json
 
 
 jekyll_get_json:
