@@ -30,16 +30,12 @@ title: 分析
 --------
 
 
-{{site.data.my_data.zhihu_agree}}
+{{site.data.my_data.bar}}
 {{site.data.my_data.zhihu_like}}
 
 
 {{site.data.my_data}}
 
-
---------------------
-
-{{site.data}}
 
 
 -------------------
