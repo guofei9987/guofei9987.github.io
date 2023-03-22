@@ -47,10 +47,10 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
-  - jekyll-get-json
+  - jekyll-get-data-json
 
 
-jekyll_get_json:
+jekyll-get-data-json:
   - data: foo
     json: 'https://ilikega.github.io/a.json'
   - data: my_data
