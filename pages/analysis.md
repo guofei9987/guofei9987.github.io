@@ -30,18 +30,12 @@ title: 分析
 --------
 
 
-{{site.data.my_data.bar}}
-{{site.data.my_data.zhihu_like}}
-
-
-{{site.data.my_data}}
-
-
-
-
-？？？：{{site.data.my_data.bar}}
-
-!!!{{ site.data.foo.bar }}
+1. {{site.data.my_data.bar}}
+2. {{site.data.my_data.zhihu_like}}
+3. {{site.data.my_data}}
+4. {{site.data.foo}}
+5. ？？？：{{site.data.my_data.bar}}
+6. !!!{{ site.data.foo.bar }}
 
 
 ------------------

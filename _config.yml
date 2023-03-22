@@ -53,3 +53,5 @@ plugins:
 jekyll_get_json:
   - data: foo
     json: 'https://ilikega.github.io/a.json'
+  - data: my_data
+    json: 'https://www.guofei.site/guofei9987/achievement.json'
