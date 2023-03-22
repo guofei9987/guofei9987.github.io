@@ -39,7 +39,9 @@ title: 分析
 
 
 
+？？？：{{site.data.my_data.bar}}
 
+!!!{{ site.data.foo.bar }}
 
 
 ------------------

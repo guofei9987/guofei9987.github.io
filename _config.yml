@@ -51,5 +51,5 @@ plugins:
 
 
 jekyll_get_json:
-  - data: my_data
+  - data: foo
     json: 'https://ilikega.github.io/a.json'
