@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 【开源】文本盲水印
+title: 文本盲水印
 categories: 开源
 tags:
 keywords:

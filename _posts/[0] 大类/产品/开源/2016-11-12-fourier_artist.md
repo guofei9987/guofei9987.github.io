@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【开源】用几个圆圈画任意图
+title: 用几个圆圈画任意图
 categories: 开源
 tags:
 keywords:
