@@ -30,14 +30,6 @@ title: 分析
 --------
 
 
-1. {{site.data.my_data.bar}}
-2. {{site.data.my_data.zhihu_like}}
-3. {{site.data.my_data}}
-4. {{site.data.foo}}
-4. {{site.data.foo.bar }}
-5. ？？？：{{site.data.my_data.bar}}
-6. !!!{{ site.data.foo.bar }}
-6. !!!{{ site.data.my_data }}
 7. {{site.data.achievement}}
 
 
