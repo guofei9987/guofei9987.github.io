@@ -38,6 +38,8 @@ title: 分析
 5. ？？？：{{site.data.my_data.bar}}
 6. !!!{{ site.data.foo.bar }}
 6. !!!{{ site.data.my_data }}
+7. {{site.data.achievement}}
+
 
 
 
