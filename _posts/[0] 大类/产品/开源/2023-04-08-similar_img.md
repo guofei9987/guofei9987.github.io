@@ -14,7 +14,7 @@ repo_name:
 ## 相似图片算法
 
 
-### 感知哈希算法（Perceptual hash algorithm）
+### 感知哈希算法（Perceptual hash algorithm，Average Hash Method，aHash）
 
 是一种基于指纹的算法，可以用来快速检索
 
