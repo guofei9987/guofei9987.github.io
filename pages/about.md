@@ -28,7 +28,7 @@ title: 关于
 - 🔭 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
 - 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}
 - 🤸 爱好运动，能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>
-- 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree }}次赞同/{{ site.data.achievement.zhihu_collection }}次收藏/ {{ site.data.achievement.zhihu_follows }}个关注
+- 📫 <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}次赞同/{{ site.data.achievement.zhihu_collection_str }}次收藏/ {{ site.data.achievement.zhihu_follows_str }}个关注
 
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
 
