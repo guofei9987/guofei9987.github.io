@@ -44,7 +44,7 @@ data_github['star_cnt_str'] = str(round(total_star / 1000, 1)) + 'k'
 data_github['fork_cnt_str'] = str(round(total_fork / 1000, 1)) + 'k'
 
 # %%
-
+print(data_github)
 
 with open('_data/data_github.json', 'w') as f:
     json.dump(data_github, f, ensure_ascii=False, indent=0)

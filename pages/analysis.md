@@ -47,7 +47,7 @@ title: 分析
   <th>description</th>
 </tr>
 
-{% for repo in site.data.data_github.repo  %}
+{% for repo in site.data.data_github.repo_list  %}
 <tr>
   <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
   <td>{{ repo.is_fork }}</td>
