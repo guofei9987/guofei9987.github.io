@@ -7,11 +7,6 @@
 "cnt_reading_words": "{{ site.data.cnt_reading_words.cnt_reading_words }}",
 "followers": {{ site.github.owner.followers }},
 "following": {{ site.github.owner.following }}
-
-{% assign total_star = 0 %}
-{% for repo in site.github.public_repositories  %}
-{% assign total_star= (total_star|plus:  repo.stargazers_count)%}
-{% endfor %}
-,"total_star": {{ total_star }}
-,"total_star_str": "{{ total_star | divided_by: 1000.0 | round:1 }}k"
+,"total_star": {{ site.data.data_github.star_cnt }}
+,"total_star_str": "{{ site.data.data_github.star_cnt_str }}"
 }

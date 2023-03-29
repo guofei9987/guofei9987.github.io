@@ -39,7 +39,7 @@ title: 分析
 
 <table>
 <tr>
-  <th>Project 数量 {{ site.github.public_repositories.size }} </th>
+  <th>Project 数量 {{ site.data.data_github.repo.size }} </th>
   <th>fork</th>
   <th>Star</th>
   <th>Fork</th>
@@ -47,13 +47,12 @@ title: 分析
   <th>description</th>
 </tr>
 
-{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse %}
-{% for repo in sorted_repos  %}
+{% for repo in site.data.data_github.repo  %}
 <tr>
-  <td><a href="{{ repo.html_url }}">{{ repo.name }}</a></td>
-  <td>{{ repo.fork }}</td>
-  <td>☆{{ repo.stargazers_count }}</td>
-  <td><img alt="fork:" src="https://www.guofei.site/public/icon/fork.svg">{{ repo.forks_count }}</td>
+  <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
+  <td>{{ repo.is_fork }}</td>
+  <td>☆{{ repo.star_cnt }}</td>
+  <td><img alt="fork:" src="https://www.guofei.site/public/icon/fork.svg">{{ repo.fork_cnt }}</td>
   <td>{{repo.language}}</td>
 
   <td>{{ repo.description }}</td>

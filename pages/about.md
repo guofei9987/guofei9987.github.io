@@ -3,12 +3,6 @@ layout: page
 title: 关于
 ---
 
-{% assign total_star = 0 %}
-{% for repo in site.github.public_repositories  %}
-{% assign total_star= (total_star|plus:  repo.stargazers_count)%}
-{% endfor %}
-
-
 
 
 ### Hi there 👋
