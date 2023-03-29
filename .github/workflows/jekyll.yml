@@ -40,6 +40,10 @@ jobs:
       - name: Run Python
         run: |
           python _drafts/get_data.py
+          python _drafts/get_github_data.py
+          cd reading
+          python auto_generat_sidebar.py
+          cd ..
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
