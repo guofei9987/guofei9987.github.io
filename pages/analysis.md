@@ -39,7 +39,7 @@ title: 分析
 
 <table>
 <tr>
-  <th>Project 数量 {{ site.data.data_github.repo.size }} </th>
+  <th>Project 数量 {{ site.data.data_github.repo_list.size }} </th>
   <th>fork</th>
   <th>Star</th>
   <th>Fork</th>

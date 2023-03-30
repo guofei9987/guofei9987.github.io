@@ -6,6 +6,9 @@ import string
 import json
 import requests
 
+with open('../_data/data_github.json', 'r') as f:
+    num_follower = json.load(f)['followers']
+
 # %% 字数统计
 regex_chinese = re.compile('[\u4e00-\u9fa5]')  # 汉字
 regex_English = re.compile('[0-9a-zA-Z]+')  # 数字和英语单词
@@ -61,6 +64,8 @@ for top, dirs, nondirs in path_all:
 '''.format(block_name=block_name)
 
     for file_name in nondirs:
+        if file_name == '.DS_Store':
+            continue
         word_num, title_level_2 = get_msg(top + os.sep + file_name)
         article = file_name.replace('.md', '')
         sidebar += '    * [{article}<sup style = "color:red">{word_num}字<sup>](docs/{block_name}/{article}.md)\n'. \
@@ -107,14 +112,16 @@ with open('../_data/cnt_reading_words.json', 'w') as f:
 r = requests.get('https://www.guofei.site/pages/book_list.json')
 
 book_list = json.loads(r.content.decode('utf-8'))
+print('总字数写入 json')
 
 # %% 侧边栏
-head = '''
+head = f'''
 <a href="http://www.guofei.site" target='blog'>
 <img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
 </a>
 <br>
 <a href="https://github.com/guofei9987/" target='GitHub'>
+❤️ {num_follower}
   <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
 </a>
 
@@ -146,7 +153,7 @@ f.close()
 
 # %% 封面
 
-coverpage = '''![logo](media/pic.jpg)
+coverpage = '''
 
 # 郭飞的知识宝库
 
@@ -156,6 +163,8 @@ coverpage = '''![logo](media/pic.jpg)
 
 [GitHub](https://github.com/guofei9987/guofei9987.github.io)
 [读书](/README)
+
+![logo](media/cover.jpeg)
 '''.format(total_words_str)
 
 with open('coverpage.md', 'w') as f:

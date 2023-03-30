@@ -22,7 +22,7 @@ while True:
 
     for repo in repo_array:
         repo_list.append({
-            'name': repo['name'], 'url': repo['url'], 'is_fork': repo['fork']
+            'name': repo['name'], 'url': repo['html_url'], 'is_fork': repo['fork']
             , 'star_cnt': repo['stargazers_count'], 'fork_cnt': repo['forks_count']
             , 'language': repo['language'], 'description': repo['description']
         })

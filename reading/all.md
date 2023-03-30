@@ -2,13 +2,13 @@
 ###  1_哲学
 |板块|书目|
 |---|---|
-|<a href="/reading/#/docs/1_哲学/1_西方哲学" target="_blank">1_西方哲学<sup style = "color:red">43492字<sup></a>|<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=主要哲学汇总" target="_blank">主要哲学汇总</a>，<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=《西方哲学十五讲》" target="_blank">《西方哲学十五讲》</a>
+|<a href="/reading/#/docs/1_哲学/1_西方哲学" target="_blank">1_西方哲学<sup style = "color:red">45470字<sup></a>|<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=主要哲学汇总" target="_blank">主要哲学汇总</a>，<a href="/reading/#/docs/1_哲学/1_西方哲学.md?id=《西方哲学十五讲》" target="_blank">《西方哲学十五讲》</a>
 |<a href="/reading/#/docs/1_哲学/2_诸子百家" target="_blank">2_诸子百家<sup style = "color:red">3380字<sup></a>|<a href="/reading/#/docs/1_哲学/2_诸子百家.md?id=诸子百家" target="_blank">诸子百家</a>
-|<a href="/reading/#/docs/1_哲学/3_佛学" target="_blank">3_佛学<sup style = "color:red">14800字<sup></a>|<a href="/reading/#/docs/1_哲学/3_佛学.md?id=《佛祖都说了些什么》" target="_blank">《佛祖都说了些什么》</a>
-|<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》" target="_blank">5_《哲学家们都干了些什么》<sup style = "color:red">17822字<sup></a>|<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=上：理性的崛起" target="_blank">上：理性的崛起</a>，<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=下：理性的陨落" target="_blank">下：理性的陨落</a>
-|<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》<sup style = "color:red">7248字<sup></a>|<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》.md?id=《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》</a>
-|<a href="/reading/#/docs/1_哲学/《原则》" target="_blank">《原则》<sup style = "color:red">13849字<sup></a>|<a href="/reading/#/docs/1_哲学/《原则》.md?id=《原则》" target="_blank">《原则》</a>
-|<a href="/reading/#/docs/1_哲学/《苏菲的世界》" target="_blank">《苏菲的世界》<sup style = "color:red">4444字<sup></a>|<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=《苏菲的世界》" target="_blank">《苏菲的世界》</a>，<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=希腊时代" target="_blank">希腊时代</a>
+|<a href="/reading/#/docs/1_哲学/3_佛学" target="_blank">3_佛学<sup style = "color:red">14786字<sup></a>|<a href="/reading/#/docs/1_哲学/3_佛学.md?id=《佛祖都说了些什么》" target="_blank">《佛祖都说了些什么》</a>
+|<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》" target="_blank">5_《哲学家们都干了些什么》<sup style = "color:red">17808字<sup></a>|<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=上：理性的崛起" target="_blank">上：理性的崛起</a>，<a href="/reading/#/docs/1_哲学/5_《哲学家们都干了些什么》.md?id=下：理性的陨落" target="_blank">下：理性的陨落</a>
+|<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》<sup style = "color:red">7234字<sup></a>|<a href="/reading/#/docs/1_哲学/《上帝掷骰子吗》.md?id=《上帝掷骰子吗》" target="_blank">《上帝掷骰子吗》</a>
+|<a href="/reading/#/docs/1_哲学/《原则》" target="_blank">《原则》<sup style = "color:red">13835字<sup></a>|<a href="/reading/#/docs/1_哲学/《原则》.md?id=《原则》" target="_blank">《原则》</a>
+|<a href="/reading/#/docs/1_哲学/《苏菲的世界》" target="_blank">《苏菲的世界》<sup style = "color:red">4430字<sup></a>|<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=《苏菲的世界》" target="_blank">《苏菲的世界》</a>，<a href="/reading/#/docs/1_哲学/《苏菲的世界》.md?id=希腊时代" target="_blank">希腊时代</a>
 
 ###  2_历史
 |板块|书目|
@@ -61,7 +61,7 @@
 |<a href="/reading/#/docs/3_社科/《贫穷的本质》" target="_blank">《贫穷的本质》<sup style = "color:red">590字<sup></a>|<a href="/reading/#/docs/3_社科/《贫穷的本质》.md?id=《贫穷的本质》阅读中" target="_blank">《贫穷的本质》阅读中</a>
 |<a href="/reading/#/docs/3_社科/其它书" target="_blank">其它书<sup style = "color:red">781字<sup></a>|<a href="/reading/#/docs/3_社科/其它书.md?id=《优秀的绵羊》" target="_blank">《优秀的绵羊》</a>，<a href="/reading/#/docs/3_社科/其它书.md?id=经济学科普" target="_blank">经济学科普</a>，<a href="/reading/#/docs/3_社科/其它书.md?id=社会效应" target="_blank">社会效应</a>
 |<a href="/reading/#/docs/3_社科/吴思" target="_blank">吴思<sup style = "color:red">4036字<sup></a>|<a href="/reading/#/docs/3_社科/吴思.md?id=《潜规则》" target="_blank">《潜规则》</a>，<a href="/reading/#/docs/3_社科/吴思.md?id=《血酬定律》" target="_blank">《血酬定律》</a>，<a href="/reading/#/docs/3_社科/吴思.md?id=《我想重新解释历史》（阅读中）" target="_blank">《我想重新解释历史》（阅读中）</a>
-|<a href="/reading/#/docs/3_社科/社会调查" target="_blank">社会调查<sup style = "color:red">17251字<sup></a>|<a href="/reading/#/docs/3_社科/社会调查.md?id=《岂不怀归：三和青年调查》" target="_blank">《岂不怀归：三和青年调查》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=温铁军：《十次危机》" target="_blank">温铁军：《十次危机》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《格调》" target="_blank">《格调》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《民主的细节》（阅读中）" target="_blank">《民主的细节》（阅读中）</a>
+|<a href="/reading/#/docs/3_社科/社会调查" target="_blank">社会调查<sup style = "color:red">17237字<sup></a>|<a href="/reading/#/docs/3_社科/社会调查.md?id=《岂不怀归：三和青年调查》" target="_blank">《岂不怀归：三和青年调查》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=温铁军：《十次危机》" target="_blank">温铁军：《十次危机》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《格调》" target="_blank">《格调》</a>，<a href="/reading/#/docs/3_社科/社会调查.md?id=《民主的细节》（阅读中）" target="_blank">《民主的细节》（阅读中）</a>
 |<a href="/reading/#/docs/3_社科/经济学教材" target="_blank">经济学教材<sup style = "color:red">2814字<sup></a>|<a href="/reading/#/docs/3_社科/经济学教材.md?id=《当代西方经济学主要流派》" target="_blank">《当代西方经济学主要流派》</a>
 
 ###  4_进化论

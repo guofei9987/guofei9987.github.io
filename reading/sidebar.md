@@ -3,17 +3,19 @@
 <img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
 </a>
 <br>
-
-<object data="https://www.guofei.site/follow.svg"></object>
+<a href="https://github.com/guofei9987/" target='GitHub'>
+❤️ 705
+  <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+</a>
 
 * 1_哲学
-    * [1_西方哲学<sup style = "color:red">43492字<sup>](docs/1_哲学/1_西方哲学.md)
+    * [1_西方哲学<sup style = "color:red">45470字<sup>](docs/1_哲学/1_西方哲学.md)
     * [2_诸子百家<sup style = "color:red">3380字<sup>](docs/1_哲学/2_诸子百家.md)
-    * [3_佛学<sup style = "color:red">14800字<sup>](docs/1_哲学/3_佛学.md)
-    * [5_《哲学家们都干了些什么》<sup style = "color:red">17822字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)
-    * [《上帝掷骰子吗》<sup style = "color:red">7248字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
-    * [《原则》<sup style = "color:red">13849字<sup>](docs/1_哲学/《原则》.md)
-    * [《苏菲的世界》<sup style = "color:red">4444字<sup>](docs/1_哲学/《苏菲的世界》.md)
+    * [3_佛学<sup style = "color:red">14786字<sup>](docs/1_哲学/3_佛学.md)
+    * [5_《哲学家们都干了些什么》<sup style = "color:red">17808字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)
+    * [《上帝掷骰子吗》<sup style = "color:red">7234字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
+    * [《原则》<sup style = "color:red">13835字<sup>](docs/1_哲学/《原则》.md)
+    * [《苏菲的世界》<sup style = "color:red">4430字<sup>](docs/1_哲学/《苏菲的世界》.md)
 * 2_历史
     * [1_尤瓦尔赫拉利<sup style = "color:red">38481字<sup>](docs/2_历史/1_尤瓦尔赫拉利.md)
     * [2_吴晓波<sup style = "color:red">38663字<sup>](docs/2_历史/2_吴晓波.md)
@@ -54,7 +56,7 @@
     * [《贫穷的本质》<sup style = "color:red">590字<sup>](docs/3_社科/《贫穷的本质》.md)
     * [其它书<sup style = "color:red">781字<sup>](docs/3_社科/其它书.md)
     * [吴思<sup style = "color:red">4036字<sup>](docs/3_社科/吴思.md)
-    * [社会调查<sup style = "color:red">17251字<sup>](docs/3_社科/社会调查.md)
+    * [社会调查<sup style = "color:red">17237字<sup>](docs/3_社科/社会调查.md)
     * [经济学教材<sup style = "color:red">2814字<sup>](docs/3_社科/经济学教材.md)
 * 4_进化论
     * [《人类鉴定手册》<sup style = "color:red">1074字<sup>](docs/4_进化论/《人类鉴定手册》.md)
