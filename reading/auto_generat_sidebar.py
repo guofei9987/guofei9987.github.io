@@ -122,7 +122,6 @@ head = f'''
 <br>
 <a href="https://github.com/guofei9987/" target='GitHub'>
 ❤️ {num_follower}
-  <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
 </a>
 
 '''

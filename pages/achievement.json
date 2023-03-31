@@ -1,12 +1,28 @@
 ---
 ---
 {
-"cnt_blog": {{ site.posts.size }} ,
-"cnt_book": {{ site.data.book_list.size }},
-"cnt_reading_words_precision": {{ site.data.cnt_reading_words.cnt_reading_words_precision }},
+"cnt_blog": "{{ site.posts.size }}" ,
+"cnt_book": "{{ site.data.book_list.size }}",
+
+"cnt_reading_words_precision": "{{ site.data.cnt_reading_words.cnt_reading_words_precision }}",
 "cnt_reading_words": "{{ site.data.cnt_reading_words.cnt_reading_words }}",
-"followers": {{ site.github.owner.followers }},
-"following": {{ site.github.owner.following }}
-,"total_star": {{ site.data.data_github.star_cnt }}
-,"total_star_str": "{{ site.data.data_github.star_cnt_str }}"
+
+"followers": "{{ site.github.owner.followers }}",
+
+"star_cnt": "{{ site.data.data_github.star_cnt }}",
+"star_cnt": "{{ site.data.data_github.star_cnt_str }}",
+"fork_cnt": "{{ site.data.data_github.fork_cnt }}",
+"fork_cnt_str": "{{ site.data.data_github.fork_cnt_str }}",
+
+
+
+"zhihu_agree": "{{ site.data.achievement.zhihu_agree }}",
+"zhihu_like": "{{ site.data.achievement.zhihu_like }}",
+"zhihu_collection": "{{ site.data.achievement.zhihu_collection }}",
+"zhihu_follows": "{{ site.data.achievement.zhihu_follows }}",
+"zhihu_agree_str": "{{ site.data.achievement.zhihu_agree_str }}",
+"zhihu_like_str": "{{ site.data.achievement.zhihu_like_str }}",
+"zhihu_collection_str": "{{ site.data.achievement.zhihu_collection_str }}",
+"zhihu_follows_str": "{{ site.data.achievement.zhihu_follows_str }}",
+
 }
