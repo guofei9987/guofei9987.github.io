@@ -1,7 +1,7 @@
 import requests
 import json
 
-r = requests.get('https://www.guofei.site/data4blog/achievement.json').text
+r = requests.get('https://www.guofei.site/get_data/achievement.json').text
 
 print(r)
 with open('_data/achievement.json', 'w') as f:
