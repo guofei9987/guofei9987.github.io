@@ -2,7 +2,7 @@
 layout: page
 title: 文本盲水印
 categories: 开源
-tags:
+tags: 0x58_密码学
 keywords:
 description:
 repo_name: text_blind_watermark

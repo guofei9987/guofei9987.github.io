@@ -2,7 +2,7 @@
 layout: post
 title: 相似图片算法
 categories: 开源
-tags:
+tags: 0x58_密码学
 keywords:
 description:
 repo_name: img_similar

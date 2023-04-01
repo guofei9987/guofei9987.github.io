@@ -2,7 +2,7 @@
 layout: post
 title: 【隐写术、盲水印】入门知识体系
 categories:
-tags: 0x59_应用数学
+tags: 0x58_密码学
 keywords:
 description:
 order: 59003
