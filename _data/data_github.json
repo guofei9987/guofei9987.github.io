@@ -1,27 +1,27 @@
 {
-"followers": 705,
+"followers": 708,
 "repo_list": [
 {
 "name": "scikit-opt",
-"url": "https://api.github.com/repos/guofei9987/scikit-opt",
+"url": "https://github.com/guofei9987/scikit-opt",
 "is_fork": false,
-"star_cnt": 3909,
+"star_cnt": 3924,
 "fork_cnt": 864,
 "language": "Python",
 "description": "Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Optimization Algorithm,Immune Algorithm, Artificial Fish Swarm Algorithm, Differential Evolution and TSP(Traveling salesman) "
 },
 {
 "name": "blind_watermark",
-"url": "https://api.github.com/repos/guofei9987/blind_watermark",
+"url": "https://github.com/guofei9987/blind_watermark",
 "is_fork": false,
-"star_cnt": 2959,
-"fork_cnt": 383,
+"star_cnt": 2964,
+"fork_cnt": 385,
 "language": "Python",
 "description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！"
 },
 {
 "name": "text_blind_watermark",
-"url": "https://api.github.com/repos/guofei9987/text_blind_watermark",
+"url": "https://github.com/guofei9987/text_blind_watermark",
 "is_fork": false,
 "star_cnt": 197,
 "fork_cnt": 27,
@@ -30,16 +30,16 @@
 },
 {
 "name": "guofei9987.github.io",
-"url": "https://api.github.com/repos/guofei9987/guofei9987.github.io",
+"url": "https://github.com/guofei9987/guofei9987.github.io",
 "is_fork": false,
-"star_cnt": 45,
+"star_cnt": 46,
 "fork_cnt": 29,
 "language": "JavaScript",
 "description": "个人博客，欢迎fork"
 },
 {
 "name": "fourier_artist",
-"url": "https://api.github.com/repos/guofei9987/fourier_artist",
+"url": "https://github.com/guofei9987/fourier_artist",
 "is_fork": false,
 "star_cnt": 26,
 "fork_cnt": 2,
@@ -48,7 +48,7 @@
 },
 {
 "name": "github_star_counter",
-"url": "https://api.github.com/repos/guofei9987/github_star_counter",
+"url": "https://github.com/guofei9987/github_star_counter",
 "is_fork": false,
 "star_cnt": 20,
 "fork_cnt": 5,
@@ -57,7 +57,7 @@
 },
 {
 "name": "vulgar_language_generator",
-"url": "https://api.github.com/repos/guofei9987/vulgar_language_generator",
+"url": "https://github.com/guofei9987/vulgar_language_generator",
 "is_fork": false,
 "star_cnt": 16,
 "fork_cnt": 3,
@@ -66,34 +66,34 @@
 },
 {
 "name": "pyLSHash",
-"url": "https://api.github.com/repos/guofei9987/pyLSHash",
+"url": "https://github.com/guofei9987/pyLSHash",
 "is_fork": false,
-"star_cnt": 14,
+"star_cnt": 15,
 "fork_cnt": 3,
 "language": "Python",
 "description": "Locality Sensitive Hashing in Python, min-hash"
 },
 {
-"name": "reading",
-"url": "https://api.github.com/repos/guofei9987/reading",
+"name": "get_data",
+"url": "https://github.com/guofei9987/get_data",
 "is_fork": false,
 "star_cnt": 11,
 "fork_cnt": 5,
 "language": "Python",
-"description": "读书笔记，源代码已经迁移到 https://github.com/guofei9987/guofei9987.github.io/tree/master/reading"
+"description": "从知乎获取点赞数、收藏数、关注数，并自动推送，每小时运行"
 },
 {
 "name": "star_counter",
-"url": "https://api.github.com/repos/guofei9987/star_counter",
+"url": "https://github.com/guofei9987/star_counter",
 "is_fork": false,
-"star_cnt": 10,
-"fork_cnt": 1,
+"star_cnt": 11,
+"fork_cnt": 2,
 "language": "JavaScript",
 "description": "Count a GitHub user's stars and forks（在线统计账号star数量）"
 },
 {
 "name": "pygraphs",
-"url": "https://api.github.com/repos/guofei9987/pygraphs",
+"url": "https://github.com/guofei9987/pygraphs",
 "is_fork": false,
 "star_cnt": 9,
 "fork_cnt": 1,
@@ -102,7 +102,7 @@
 },
 {
 "name": "guofei9987",
-"url": "https://api.github.com/repos/guofei9987/guofei9987",
+"url": "https://github.com/guofei9987/guofei9987",
 "is_fork": false,
 "star_cnt": 8,
 "fork_cnt": 6,
@@ -111,7 +111,7 @@
 },
 {
 "name": "chrplotlib",
-"url": "https://api.github.com/repos/guofei9987/chrplotlib",
+"url": "https://github.com/guofei9987/chrplotlib",
 "is_fork": false,
 "star_cnt": 6,
 "fork_cnt": 1,
@@ -120,7 +120,7 @@
 },
 {
 "name": "file2tree",
-"url": "https://api.github.com/repos/guofei9987/file2tree",
+"url": "https://github.com/guofei9987/file2tree",
 "is_fork": false,
 "star_cnt": 5,
 "fork_cnt": 2,
@@ -129,16 +129,16 @@
 },
 {
 "name": "HelloGitHub",
-"url": "https://api.github.com/repos/guofei9987/HelloGitHub",
+"url": "https://github.com/guofei9987/HelloGitHub",
 "is_fork": true,
 "star_cnt": 5,
 "fork_cnt": 0,
-"language": null,
+"language": "Python",
 "description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目（5 周年）"
 },
 {
 "name": "hibird_python",
-"url": "https://api.github.com/repos/guofei9987/hibird_python",
+"url": "https://github.com/guofei9987/hibird_python",
 "is_fork": false,
 "star_cnt": 5,
 "fork_cnt": 0,
@@ -147,7 +147,7 @@
 },
 {
 "name": "python-maze",
-"url": "https://api.github.com/repos/guofei9987/python-maze",
+"url": "https://github.com/guofei9987/python-maze",
 "is_fork": false,
 "star_cnt": 5,
 "fork_cnt": 1,
@@ -156,7 +156,7 @@
 },
 {
 "name": "donate",
-"url": "https://api.github.com/repos/guofei9987/donate",
+"url": "https://github.com/guofei9987/donate",
 "is_fork": false,
 "star_cnt": 4,
 "fork_cnt": 3,
@@ -165,7 +165,7 @@
 },
 {
 "name": "MyKnowledge",
-"url": "https://api.github.com/repos/guofei9987/MyKnowledge",
+"url": "https://github.com/guofei9987/MyKnowledge",
 "is_fork": false,
 "star_cnt": 4,
 "fork_cnt": 1,
@@ -174,7 +174,7 @@
 },
 {
 "name": "pictures_for_blog",
-"url": "https://api.github.com/repos/guofei9987/pictures_for_blog",
+"url": "https://github.com/guofei9987/pictures_for_blog",
 "is_fork": false,
 "star_cnt": 4,
 "fork_cnt": 1,
@@ -183,7 +183,7 @@
 },
 {
 "name": "c-algorithm",
-"url": "https://api.github.com/repos/guofei9987/c-algorithm",
+"url": "https://github.com/guofei9987/c-algorithm",
 "is_fork": false,
 "star_cnt": 2,
 "fork_cnt": 0,
@@ -192,7 +192,7 @@
 },
 {
 "name": "plans",
-"url": "https://api.github.com/repos/guofei9987/plans",
+"url": "https://github.com/guofei9987/plans",
 "is_fork": false,
 "star_cnt": 2,
 "fork_cnt": 1,
@@ -201,7 +201,7 @@
 },
 {
 "name": "plot2svg",
-"url": "https://api.github.com/repos/guofei9987/plot2svg",
+"url": "https://github.com/guofei9987/plot2svg",
 "is_fork": false,
 "star_cnt": 2,
 "fork_cnt": 0,
@@ -210,7 +210,7 @@
 },
 {
 "name": "python-small-examples",
-"url": "https://api.github.com/repos/guofei9987/python-small-examples",
+"url": "https://github.com/guofei9987/python-small-examples",
 "is_fork": true,
 "star_cnt": 2,
 "fork_cnt": 2,
@@ -219,7 +219,7 @@
 },
 {
 "name": "AHP",
-"url": "https://api.github.com/repos/guofei9987/AHP",
+"url": "https://github.com/guofei9987/AHP",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
@@ -227,17 +227,8 @@
 "description": "层次分析法"
 },
 {
-"name": "data4blog",
-"url": "https://api.github.com/repos/guofei9987/data4blog",
-"is_fork": false,
-"star_cnt": 1,
-"fork_cnt": 0,
-"language": "Python",
-"description": null
-},
-{
 "name": "logging4",
-"url": "https://api.github.com/repos/guofei9987/logging4",
+"url": "https://github.com/guofei9987/logging4",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
@@ -246,7 +237,7 @@
 },
 {
 "name": "pybert",
-"url": "https://api.github.com/repos/guofei9987/pybert",
+"url": "https://github.com/guofei9987/pybert",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
@@ -255,7 +246,7 @@
 },
 {
 "name": "spank",
-"url": "https://api.github.com/repos/guofei9987/spank",
+"url": "https://github.com/guofei9987/spank",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
@@ -264,7 +255,7 @@
 },
 {
 "name": "tmp",
-"url": "https://api.github.com/repos/guofei9987/tmp",
+"url": "https://github.com/guofei9987/tmp",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
@@ -272,26 +263,8 @@
 "description": "测试"
 },
 {
-"name": "Chinese-Word-Vectors",
-"url": "https://api.github.com/repos/guofei9987/Chinese-Word-Vectors",
-"is_fork": true,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": null,
-"description": "100+ Chinese Word Vectors 上百种预训练中文词向量 "
-},
-{
-"name": "coincidigits",
-"url": "https://api.github.com/repos/guofei9987/coincidigits",
-"is_fork": false,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": null,
-"description": "巧合数字生成器，what a coincidigits！（coincident digits）"
-},
-{
 "name": "Deep-Learning-Papers-Reading-Roadmap",
-"url": "https://api.github.com/repos/guofei9987/Deep-Learning-Papers-Reading-Roadmap",
+"url": "https://github.com/guofei9987/Deep-Learning-Papers-Reading-Roadmap",
 "is_fork": true,
 "star_cnt": 0,
 "fork_cnt": 0,
@@ -300,16 +273,16 @@
 },
 {
 "name": "faceswap",
-"url": "https://api.github.com/repos/guofei9987/faceswap",
+"url": "https://github.com/guofei9987/faceswap",
 "is_fork": true,
 "star_cnt": 0,
 "fork_cnt": 0,
-"language": null,
+"language": "Python",
 "description": "Deepfakes Software For All"
 },
 {
 "name": "face_recognition",
-"url": "https://api.github.com/repos/guofei9987/face_recognition",
+"url": "https://github.com/guofei9987/face_recognition",
 "is_fork": true,
 "star_cnt": 0,
 "fork_cnt": 0,
@@ -317,26 +290,8 @@
 "description": "The world's simplest facial recognition api for Python and the command line"
 },
 {
-"name": "image-similarity",
-"url": "https://api.github.com/repos/guofei9987/image-similarity",
-"is_fork": true,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": null,
-"description": "计算图片之间的相似度"
-},
-{
-"name": "Learn-to-identify-similar-images",
-"url": "https://api.github.com/repos/guofei9987/Learn-to-identify-similar-images",
-"is_fork": true,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": null,
-"description": "Record my python script about Iearning to identify similar images"
-},
-{
 "name": "leetcode_python",
-"url": "https://api.github.com/repos/guofei9987/leetcode_python",
+"url": "https://github.com/guofei9987/leetcode_python",
 "is_fork": false,
 "star_cnt": 0,
 "fork_cnt": 0,
@@ -344,8 +299,17 @@
 "description": "Leetcode Python"
 },
 {
+"name": "nlp",
+"url": "https://github.com/guofei9987/nlp",
+"is_fork": false,
+"star_cnt": 0,
+"fork_cnt": 0,
+"language": null,
+"description": "nlp相关资料汇总"
+},
+{
 "name": "StatisticsBlog",
-"url": "https://api.github.com/repos/guofei9987/StatisticsBlog",
+"url": "https://github.com/guofei9987/StatisticsBlog",
 "is_fork": false,
 "star_cnt": 0,
 "fork_cnt": 1,
@@ -353,8 +317,8 @@
 "description": "StatisticsBlog,see https://www.guofei.site"
 }
 ],
-"star_cnt": 7276,
-"fork_cnt": 1342,
+"star_cnt": 7298,
+"fork_cnt": 1345,
 "star_cnt_str": "7.3k",
 "fork_cnt_str": "1.3k"
 }
