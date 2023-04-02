@@ -8,8 +8,8 @@ title: 分析
 
 
 - [![rank](https://github.com/gf99/sn/blob/master/data/rank.svg?raw=true)](https://gitstar-ranking.com/guofei9987)，![rank](https://github.com/gf99/sn/blob/master/data/star.svg?raw=true)
-- <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
-- <a href="https://www.zhihu.com/people/guo-fei-16-12/answers/by_votes" target="_blank"><object data="https://www.guofei.site/guofei9987/zhihu.svg"></object></a>
+- <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
+- <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank"><object data="https://www.guofei.site/guofei9987/zhihu.svg"></object></a>
 
 
 
