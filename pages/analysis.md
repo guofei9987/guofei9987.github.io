@@ -18,6 +18,13 @@ title: 分析
 <object data="https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true"></object>
 
 
+<img src="https://github.com/gf99/sn/blob/master/data/text.svg?raw=true"></img>
+<img src="https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true"></img>
+<img src="https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true"></img>
+
+
+
+
 
 ![rank](https://github.com/gf99/sn/blob/master/data/text.svg?raw=true)
 

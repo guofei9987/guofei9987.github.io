@@ -296,6 +296,7 @@ s = '你tst1'
 # 转二进制
 seq = np.array(list(s.encode('utf-8')), dtype=np.uint8)
 content_bits = np.unpackbits(seq)
+# 或者：np.unpackbits(np.frombuffer(s.encode('utf=8'), dtype='>B'))
 
 # 二进制转字符串
 nums = np.packbits(content_bits)
