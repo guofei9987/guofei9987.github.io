@@ -60,12 +60,118 @@ Gauss消元法，适用于
 
 
 
+## 计算特征值
+
+
+
+### 幂法
+
+
+### 求最大特征值的方法
+
+
+1. 定义要求特征值的矩阵 A，大小为 n × n。
+2. 设定一个 n 维的初始向量 x0，可以将其设置为随机值。
+3. 对 x0 进行归一化处理，即将向量除以其长度，得到单位向量 x。
+4. 通过以下迭代过程，更新向量 x ：x = A x / ||A x||
+    - 其中，||A x|| 表示向量 A x 的长度。
+5. 计算向量 x 和 A x 的内积，即 xT A x。
+6. 计算特征值的近似值 λ = xT A x。
+7. 重复步骤 4 至步骤 6，直到 λ 收敛到某一精度。
+8. 将得到的特征值 λ 作为 A 的一个特征值，并将对应的单位向量 x 作为特征向量。
+9. 通过正交化过程，得到 A 的所有特征向量。
+
+需要注意的是，当矩阵 A 不对称时，需要使用雅可比方法或 Householder 方法进行特征值计算。此外，在实际计算中，可能会存在计算误差、收敛速度缓慢等问题，需要进行调优。
+
+
+
+在实际应用中，为了提高计算精度和加速收敛速度，可以对幂法进行改进，例如用反迭代法（Inverse Iteration）或QR分解迭代法（QR Iteration）来代替简单的幂法。
+
+
+代码：
+```python
+import numpy as np
+
+
+def get_eig(A):
+    # 精度
+    loc = 1e-8
+    x = np.random.rand(4, 1)
+    lam_pre = 0
+    for i in range(1000):
+        tmp = A @ x
+        x = tmp / np.linalg.norm(tmp)
+        lam = x.T @ A @ x
+        if abs(lam_pre - lam) < loc:
+            break
+
+        lam_pre = lam
+
+    # 特征值，特征向量，迭代次数
+    return lam[0, 0], x, i
+
+
+# 这里为了生成一个对称矩阵
+A_ = np.random.rand(4, 4) * 255
+A = np.sqrt(A_ @ A_.T)
+
+# 使用数值方法
+lam, x, i = get_eig(A)
+
+
+# 使用 numpy 中的方法
+eig, eig_vec = np.linalg.eig(A)
+
+# 验证特征值正确
+assert abs(lam - eig[0]) < 1e-7
+# 验证特征向量正确。因为允许符号相反，都先调整为正数
+tmp1 = eig_vec[:, 0] if eig_vec[0, 0] > 0 else -eig_vec[:, 0]
+tmp2 = x[:, 0] if x[0, 0] > 0 else -x[:, 0]
+assert (np.abs(tmp1 - tmp2)).max() < 1e-6
+```
+
+如果把循环终止的条件改为：x 不怎么变化了，性能还能提升
+```
+from numba import jit
+
+
+@jit(nopython=True)
+def get_eig(A):
+    # 精度
+    precision = 1e-8
+    x = np.random.rand(4, 1)
+    y_norm_old = 0
+
+    for i in range(1000):
+        y = A @ x
+        y_norm = np.linalg.norm(y)
+        x = y / y_norm
+
+        if -precision < y_norm - y_norm_old < precision:
+            # 特征值，特征向量
+            return (x.T @ A @ x)[0, 0], x
+
+        y_norm_old = y_norm
+
+    return (x.T @ A @ x)[0, 0], x
+```
 
 
 
 
+### QR分解法
 
+QR分解法是一种基于矩阵分解的方法，可以计算矩阵的所有特征值及其对应的特征向量。它的基本思想是将矩阵分解为一个正交矩阵和一个上三角矩阵的乘积，再不断迭代地对上三角矩阵进行QR分解，直到分解的上三角矩阵趋近于一个对角矩阵。
 
+算法步骤：
+
+1）给定矩阵$A$和一个初始的正交矩阵$Q^{(0)}$。
+
+2）计算$A^{(0)}=Q^{(0)}A(Q^{(0)})^{-1}$，得到矩阵$A^{(0)}$的QR分解$A^{(0)}=Q^{(1)}R^{(1)}$。
+
+3）继续迭代计算$A^{(k)}=(Q^{(k)})^{-1}A(Q^{(k)})$和$A^{(k)}=Q^{(k+1)}R^{(k+1)}$，直到得到的上三角矩阵$R^{(k)}$趋近于对角矩阵。
+
+4）得到矩阵$A$的所有特征值为$R^{(k)}$的对角线元素，对应的特征向量为$Q^{(k)}$的列向量。
 
 
 
