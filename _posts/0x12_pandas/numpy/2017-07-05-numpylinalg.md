@@ -60,6 +60,11 @@ np.linalg.matrix_power(arr1, n=3)
 
 # 矩阵的特征值特征向量
 eigenvalues, eigenvectors = np.linalg.eig(arr1)
+np.linalg.eig(A)  # 输入任意方阵，返回特征值+特征向量
+np.linalg.eigvals(A)  # 输入任意矩阵，返回特征值
+np.linalg.eigh(A)  # 输入：实对称或 Hermitian 方阵。返回特征值+特征向量，速度快，精度高
+np.linalg.eigvalsh(A)  # 输入：实对称或 Hermitian 方阵。返回特征值，不计算特征向量，速度更快。不能用于非对称矩阵
+
 
 # 矩阵的秩
 np.linalg.matrix_rank(a)
