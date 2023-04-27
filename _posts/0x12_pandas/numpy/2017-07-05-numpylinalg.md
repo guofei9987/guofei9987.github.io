@@ -64,7 +64,13 @@ np.linalg.eig(A)  # 输入任意方阵，返回特征值+特征向量
 np.linalg.eigvals(A)  # 输入任意矩阵，返回特征值
 np.linalg.eigh(A)  # 输入：实对称或 Hermitian 方阵。返回特征值+特征向量，速度快，精度高
 np.linalg.eigvalsh(A)  # 输入：实对称或 Hermitian 方阵。返回特征值，不计算特征向量，速度更快。不能用于非对称矩阵
-
+scipy.linalg.eigh
+scipy.linalg.eigvals
+scipy.linalg.eigvalsh
+scipy.linalg.eig_banded
+scipy.linalg.eigh_tridiagonal
+scipy.linalg.eigvals_banded
+scipy.linalg.eigvalsh_tridiagonal
 
 # 矩阵的秩
 np.linalg.matrix_rank(a)
