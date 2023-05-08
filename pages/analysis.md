@@ -4,41 +4,24 @@ title: 分析
 ---
 
 
+
+
+- 🔭 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
+- 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}
+- {{site.data.achievement}}
+
+
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
 
 
-- [![rank](https://github.com/gf99/sn/blob/master/data/rank.svg?raw=true)](https://gitstar-ranking.com/guofei9987)，![rank](https://github.com/gf99/sn/blob/master/data/star.svg?raw=true)
-- <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank"><img alt="Blog Counts" src="https://www.guofei.site/guofei9987/zhihu.svg"></a>
-- <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank"><object data="https://www.guofei.site/guofei9987/zhihu.svg"></object></a>
+
+[![rank](https://gf99.github.io/a/data/rank.svg)](https://gitstar-ranking.com/guofei9987)
 
 
-
-<object data="https://github.com/gf99/sn/blob/master/data/text.svg?raw=true"></object>
-<object data="https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true"></object>
-<object data="https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true"></object>
-
-
-<img src="https://github.com/gf99/sn/blob/master/data/text.svg?raw=true"></img>
-<img src="https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true"></img>
-<img src="https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true"></img>
-
-
-
-
-
-![rank](https://github.com/gf99/sn/blob/master/data/text.svg?raw=true)
-
-![sko](https://github.com/gf99/sn/blob/master/data/sko.svg?raw=true)
-
-![bw](https://github.com/gf99/sn/blob/master/data/bw.svg?raw=true)
-
-库：https://github.com/gf99/sn
-
---------
-
-
-7. {{site.data.achievement}}
-
+<img src="https://gf99.github.io/a/data/text.svg"></img>
+<img src="https://gf99.github.io/a/data/sko.svg"></img>
+<img src="https://gf99.github.io/a/data/bw.svg"></img>
+<img src="https://gf99.github.io/a/data/bw.svg"></img>
 
 
 
@@ -48,8 +31,8 @@ title: 分析
 <tr>
   <th>Project 数量 {{ site.data.data_github.repo_list.size }} </th>
   <th>fork</th>
-  <th>Star</th>
-  <th>Fork</th>
+  <th>Star {{ site.data.data_github.star_cnt }}</th>
+  <th>Fork {{ site.data.data_github.fork_cnt }}</th>
   <th>language</th>
   <th>description</th>
 </tr>
