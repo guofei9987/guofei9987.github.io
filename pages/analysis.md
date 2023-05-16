@@ -18,10 +18,10 @@ title: 分析
 [![rank](https://gf99.github.io/a/data/rank.svg)](https://gitstar-ranking.com/guofei9987)
 
 
-<img src="https://gf99.github.io/a/data/text.svg"></img>
-<img src="https://gf99.github.io/a/data/sko.svg"></img>
-<img src="https://gf99.github.io/a/data/bw.svg"></img>
-<img src="https://gf99.github.io/a/data/bw.svg"></img>
+<img src="https://gf99.github.io/a/data/text.svg">
+<img src="https://gf99.github.io/a/data/sko.svg">
+<img src="https://gf99.github.io/a/data/bw.svg">
+
 
 
 
