@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 关于
-permalink: /:title:out_ext
+permalink: /:title:output_ext
 ---
 
 
