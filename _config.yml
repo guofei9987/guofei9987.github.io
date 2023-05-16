@@ -43,7 +43,6 @@ active: tags
 # 中文本地化
 locals:
   tags: 精选
-  about: 我
 
 plugins:
   - "jekyll-github-metadata"
