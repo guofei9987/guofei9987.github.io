@@ -1,8 +1,7 @@
 ---
 layout: page
-title: link1
-permalink: /:title.html
+title: 友链
+permalink: /link.html
 ---
 
 
-友链
