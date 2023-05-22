@@ -15,21 +15,20 @@ layout: base
         &nbsp;&nbsp;
         <i class="fa fa-info" aria-hidden="true"></i>文章编号: {{ page.order }}
       </i>
+      <a href="{{ site.repurl }}{{ page.path }}">
+        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+      </a>
     </p>
   </div>
   <div class="col-md-13 aside3-content">
     <hr>
   <p>版权声明：本文作者是郭飞。转载随意，但需要标明原文链接，并通知本人
     <a href="mailto:{{ site.author.email }}">
-      <i class="fa fa-envelope-o fa-lg" style="color:#16a095;"></i>
+      <span style="color: #16a095;">✉</span>
     </a>
     <br>
     原文链接：<a href="{{ page.url }}">{{ site.url }}{{ page.url }}</a>
   </p>
-  <a href="{{ site.repurl }}{{ page.path }}">
-    Edit
-    <i class="fa fa-edit fa-lg" style="color:#16a095;"></i>
-  </a>
   <hr>
   <br>
     <div id="content">
