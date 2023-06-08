@@ -1,7 +1,25 @@
 [
   {
+    "name": "《打造让孩子自主学习的住宅》",
+    "finish_date": "20023年6月4日",
+    "author": "四十万靖、渡边朗子",
+    "publisher":"清华大学出版社",
+    "score": "❤❤",
+    "notes":"",
+    "comments": "房屋的格局方便孩子和父母的交流"
+  },
+  {
+    "name": "《人生护城河》",
+    "finish_date": "2023年6月3日",
+    "author": "张辉",
+    "publisher":"人民邮电出版社",
+    "score": "❤❤",
+    "notes":"",
+    "comments": "人生有限公司。三种收入。第三空间"
+  },
+  {
     "name": "《改变未来的九大算法》",
-    "finish_date": "",
+    "finish_date": "2023年5月5日",
     "author": "约翰·麦考密克",
     "publisher":"中信出版社",
     "score": "❤❤",
@@ -10,7 +28,7 @@
   },
   {
     "name": "《买房让日本人幸福了吗？》",
-    "finish_date": "",
+    "finish_date": "2023年5月1日",
     "author": "【日】榊淳司",
     "publisher":"上海译文出版社",
     "score": "❤❤❤",
@@ -19,7 +37,7 @@
   },
   {
     "name": "《网络空间安全导论》",
-    "finish_date": "",
+    "finish_date": "2023年4月22日",
     "author": "",
     "publisher":"机械工业出版社",
     "score": "❤❤❤",
@@ -28,7 +46,7 @@
   },
   {
     "name": "《c语言接口与实现》",
-    "finish_date": "",
+    "finish_date": "2023年4月15日",
     "author": "",
     "publisher":"",
     "score": "❤❤❤",
@@ -37,7 +55,7 @@
   },
   {
     "name": "《c和指针》",
-    "finish_date": "",
+    "finish_date": "2023年4月8日",
     "author": "Kenneth Reek",
     "publisher":"",
     "score": "❤❤❤",
