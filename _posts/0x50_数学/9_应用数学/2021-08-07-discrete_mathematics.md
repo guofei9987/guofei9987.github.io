@@ -42,7 +42,7 @@ order: 5901
     - $\lnot(P\land Q) \Leftrightarrow \lnot P \lor \lnot Q$
 8. 同一律和零律
     - $P\lor F \Leftrightarrow P$
-    - $P\land F \Leftrightarrow P$
+    - $P\land T \Leftrightarrow P$
     - $P\land F \Leftrightarrow F$
     - $P\lor T \Leftrightarrow T$
 9. 否定律
