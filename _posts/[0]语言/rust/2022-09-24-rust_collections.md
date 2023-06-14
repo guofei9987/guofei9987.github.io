@@ -186,6 +186,10 @@ v1.retain(|r| tmp.insert(*r));
 // 2. HashSet 在插入已有的值时，会返回 false
 
 
+
+// 二维 vec
+let vec2 = vec![vec![2; 2]; 2];
+println!("{:?}", vec2); // 输出 "[[2, 2], [2, 2]]"
 ```
 
 
@@ -261,7 +265,7 @@ heap 有自己的 iter
 // 如何创建 String
 let mut string1: String = String::new();
 let string1: String = String::with_capacity(10);
-let string1: String = String::from("hello");
+let string1: String = String::from("hello, Rust 语言");
 
 
 // 如何创建2
@@ -306,6 +310,20 @@ string1.pop(); // 1个汉字算成1个整体
 string1.remove(0); // 删除，并且后面的字符往前移动，1个汉字算成1个整体
 string1.clear(); // 清空
 // string1.drain(); //跟其他的一样
+
+
+// 取数
+string1.len(); // 作为 bytes 类型的长度，1个汉字长度为3
+string1.chars().count(); // 作为字符串的长度，1个汉字长度为1
+
+// 取出字符
+// 1） 按照字符个数来取
+string1.chars().nth(2).expect("错误");
+// 2） 按照字节来取
+string1.bytes().nth(7).expect("error");
+
+// 取字符
+string1.chars().skip(1).take(4).collect();
 ```
 
 
@@ -330,12 +348,12 @@ let string2 = string1 + s_append;
 let s = String::from("你好rust语言");
 
 // 遍历字符
-for i in s.chars() {
+for i in s.chars() { // char
     println!("{}", i);
 }
 
 // 这个是遍历 ascii 值，都在 0～255 之间
-for i in s.bytes() {
+for i in s.bytes() { // u8
     println!("{}", i);
 }
 
