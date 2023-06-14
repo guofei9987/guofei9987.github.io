@@ -248,52 +248,75 @@ heap 有自己的 iter
 
 
 
-## String
+## 字符串 String
+
+`String` 和 `&str` 的区别
+- `String` 是动态字符串类型，长度和内容可以动态变化
+- `&str` 是静态字符串类型，指向字符串内容的不可变引用
+- `String` 作为函数入参的时候，会转移所有权（也就是说，会发生拷贝）。 `&str` 作为入参的时候，只需要拷贝指针和长度信息。
+- 如果需要在函数中改变字符串，或者函数内需要拥有字符串的所有权，就只能用 `String` 了
+
 
 ```Rust
-// 如何创建1
-let mut str1: String = String::new();
-let str1 = String::with_capacity(n);
+// 如何创建 String
+let mut string1: String = String::new();
+let string1: String = String::with_capacity(10);
+let string1: String = String::from("hello");
 
 
 // 如何创建2
-let s1: &str = "hello, world!";
-let str1: String = s2_1.to_string();
+let str1: &str = "hello, world!";
 
-// 如何创建3
-let s3: String = String::from("hello");
-// 如何转回去
-let s_str: &str = &*s3;
+// 如何转换
+// String 转 &str
+let str1: &str = string1.as_str();
+let str1: &str = &*string1;
+
+// &str 转 String
+let string1: String = str1.to_string();
+let string1 = String::from(str1);
+
+
+// 得到 Iterator
+string1.chars();
+str1.chars();
+string1.bytes();
+str1.bytes();
 
 
 // 添加
-s1.push('a');
-let s_append = "abb";
-s1.push_str(s_append); // 不获取所有权
-str1.extend(str2.chars()); // 参数是一个 Iterator
-str1.insert(1, 'd'); // 指定位置插入
-str1.insert_str(1, &*str2); // 指定位置插入
-str1 + &str2; // str1 的所有权被移动
+string1.push('a');
+let s_append = "xyz";
+string1.push_str(s_append); // 不获取所有权
+string1.extend(s_append.chars()); // 参数是一个 Iterator
+string1.insert(1, 'd'); // 指定位置插入 char
+string1.insert_str(1, s_append); // 指定位置插入 &str
+
+// 用 format连接，不涉及到所有权转移的问题，并且入参可以是 String 或者 &str
+let s_total: String = format!("{}-{}-{}", string1, s_append, string1);
+
+
 
 // 删除
-str1.shrink_to_fit(); // 清除未用内存
-str1.shrink_to(10); // 内存尽可能缩减到10
-str1.clear(); // 清除变为空字符串
-str1.truncate(n)
-str1.pop();
-str1.remove(0); // 删除，并且后面的字符往前移动
-str1.drain(); 跟其他的一样
-
-
-
-
-
-println!("{}", s1);
-
-// 用 format连接
-let s_total: String = format!("{}-{}-{}", s1, s2, s3);
-println!("{}", s_total);
+let mut string1 = "你好hello你".to_string();
+string1.shrink_to_fit(); // 清除未用内存
+string1.shrink_to(10); // 内存尽可能缩减到10，缩减后的内存大于等于10
+string1.truncate(3); // 取出前3个。按照 byte 计算，汉字算3个。汉字切分不完整将会报错
+string1.pop(); // 1个汉字算成1个整体
+string1.remove(0); // 删除，并且后面的字符往前移动，1个汉字算成1个整体
+string1.clear(); // 清空
+// string1.drain(); //跟其他的一样
 ```
+
+
+不太用得到的
+```Rust
+// 这一行代码，有更好的方法
+// 1）string1 的所有权被移动到 string2
+// 2）String 类型 + &str 类型
+let string2 = string1 + s_append;
+```
+
 
 
 索引
