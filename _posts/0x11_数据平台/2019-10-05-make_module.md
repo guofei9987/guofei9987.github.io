@@ -27,7 +27,7 @@ from setuptools import setup, find_packages
 setup(
     name='scikit-opt',  # 包的名字，也是将来用户使用 pip install scikit-opt 来安装
     version='0.0.1',  # 版本号，每次上传的版本号应当不一样，可以用类似 sko.__version__ 去自动指定
-    packages=find_packages(),
+    packages=find_packages(), # 会寻找每一个带 __init__.py 的文件夹和子文件夹
     python_requires='>=3.5',
     install_requires=['numpy', 'scipy', 'matplotlib', 'pandas'],  # 指定此包的依赖    
     description='Swarm Intelligence in Python',
