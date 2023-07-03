@@ -115,9 +115,9 @@ ext_modules=[
     Extension(
         # 1)my_build.core 对应安装时的目录，不写 so 文件直接生成到包的根目录下。
         # 2）CoreFunction 是生成的so文件名，会自动添加后缀使其符合规范
-        "my_build.core.CoreFunction",
+        name="my_build.core.CoreFunction",
         # 被编译的 c 文件：
-        ['my_build/core/CoreFunction.c'])
+        sources=['my_build/core/CoreFunction.c'])
 ],
 ```
 
@@ -191,7 +191,7 @@ keywords = "hello world example examples"
 
 ### 在本地试一试
 ```bash
-$pip install .
+pip install .
 ```
 这样你就可以在自己的电脑上的任何目录中导入包了
 ```py
@@ -203,13 +203,9 @@ import sko
 ## 打包上传到 PyPI
 step1:更新相关工具
 ```bash
-# 更新 setuptools wheel 这两个工具，用于打包
-python3 -m pip install --user --upgrade setuptools wheel
-
-
-# 上传前，还要先在 https://pypi.org/ 注册个账号
-# 更新 twine 这个工具，用于上传
-$python -m pip install --user --upgrade twine
+python3 -m pip install --user --upgrade setuptools wheel twine
+# setuptools、wheel 用于打包
+# twine 用于上传
 ```
 
 
