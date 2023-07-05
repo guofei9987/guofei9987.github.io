@@ -10,7 +10,7 @@
 "followers": "{{ site.github.owner.followers }}",
 
 "star_cnt": "{{ site.data.data_github.star_cnt }}",
-"star_cnt": "{{ site.data.data_github.star_cnt_str }}",
+"star_cnt_str": "{{ site.data.data_github.star_cnt_str }}",
 "fork_cnt": "{{ site.data.data_github.fork_cnt }}",
 "fork_cnt_str": "{{ site.data.data_github.fork_cnt_str }}",
 
