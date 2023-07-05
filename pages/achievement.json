@@ -1,5 +1,4 @@
 ---
-permalink: /achievement.html
 ---
 {
 "cnt_blog": "{{ site.posts.size }}" ,

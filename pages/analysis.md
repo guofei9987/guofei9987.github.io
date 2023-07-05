@@ -49,3 +49,14 @@ title: 分析
 </tr>
 {% endfor %}
 </table>
+
+
+
+-------------------
+
+
+网站 api：
+- https://www.guofei.site/pages/achievement.json
+- https://www.guofei.site/pages/book_list.json
+- https://www.guofei.site/pages/cnt_github_repo.json
+
