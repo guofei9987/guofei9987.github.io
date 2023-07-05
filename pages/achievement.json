@@ -23,6 +23,5 @@
 "zhihu_agree_str": "{{ site.data.achievement.zhihu_agree_str }}",
 "zhihu_like_str": "{{ site.data.achievement.zhihu_like_str }}",
 "zhihu_collection_str": "{{ site.data.achievement.zhihu_collection_str }}",
-"zhihu_follows_str": "{{ site.data.achievement.zhihu_follows_str }}",
-
+"zhihu_follows_str": "{{ site.data.achievement.zhihu_follows_str }}"
 }
