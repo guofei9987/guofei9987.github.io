@@ -248,10 +248,11 @@ document.getElementById('demo_id1').innerHTML = tag;
 
 ```html
 <div style="width: 500px;border: solid red;">
-    <div id="progress" style="width: 10%;background-color: red;height: 10px;">进度</div>
+    <div id="progress" style="width: 10%;background-color: red;">进度</div>
 </div>
 
 <button type="button" onclick="myFun5()">开启进度条</button>
+<button type="button" onclick="myFun5_2()">重置</button>
 
 <script>
 
@@ -269,17 +270,24 @@ document.getElementById('demo_id1').innerHTML = tag;
 
     }
 
-    function myFun5(){
-      interval = window.setInterval('myFun5_1()', 100);
+    function myFun5_2() {
+        progress = 0;
+        prog_tag.style.width = progress + "%";
+        prog_tag.innerText = progress + '%';
+    }
+
+    function myFun5() {
+        interval = window.setInterval('myFun5_1()', 100);
     }
 </script>
 ```
 
 <div style="width: 500px;border: solid red;">
-    <div id="progress" style="width: 10%;background-color: red;height: 10px;">进度</div>
+    <div id="progress" style="width: 10%;background-color: red;">进度</div>
 </div>
 
 <button type="button" onclick="myFun5()">开启进度条</button>
+<button type="button" onclick="myFun5_2()">重置</button>
 
 <script>
 
@@ -297,8 +305,14 @@ document.getElementById('demo_id1').innerHTML = tag;
 
     }
 
-    function myFun5(){
-      interval = window.setInterval('myFun5_1()', 100);
+    function myFun5_2() {
+        progress = 0;
+        prog_tag.style.width = progress + "%";
+        prog_tag.innerText = progress + '%';
+    }
+
+    function myFun5() {
+        interval = window.setInterval('myFun5_1()', 100);
     }
 </script>
 
