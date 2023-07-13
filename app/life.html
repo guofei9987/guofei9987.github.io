@@ -15,8 +15,8 @@
             border: 1px solid #fff;
         }
 
-        /* 今日剩余 */
-        #progress-bar {
+        /* 进度条 */
+        .progress-bar {
             width: 400px;
             height: 20px;
             background-color: #f5f5f5;
@@ -25,7 +25,7 @@
             overflow: hidden;
         }
 
-        #progress-bar-inner {
+        .progress-bar-inner {
             height: 100%;
             background-color: #4CAF50;
         }
@@ -41,8 +41,8 @@
     <div id="past_text"></div>
     <br>
     <!-- 今日剩余 -->
-    <div id="progress-bar">
-        <div id="progress-bar-inner"></div>
+    <div class="progress-bar" id="today-bar">
+        <div class="progress-bar-inner" id="today-bar-inner"></div>
     </div>
     <br>
     <!-- 人生格子 -->
@@ -134,7 +134,7 @@
             // 今日进度条
             var startOfDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
             var percentLeft = (currentDate - startOfDay) / (24 * 60 * 60 * 1000) * 100;
-            var progressBar = document.getElementById("progress-bar-inner");
+            var progressBar = document.getElementById("today-bar-inner");
             progressBar.style.width = percentLeft + "%";
             progressBar.innerText = "今日已用" + percentLeft.toFixed(4) + '%';
         }
