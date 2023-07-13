@@ -10,7 +10,7 @@ order: 17001
 
 
 
-## JavaScript 代码嵌入html
+## 导入 JavaScript 代码
 3种方法:
 - 引用js文件
 - html中直接写js代码（位置可以是 head/body）
@@ -19,7 +19,8 @@ order: 17001
 ```html
 <html>
 <head>
-    <script src="test.js"></script> <!-- 方法1:引用js文件 -->
+    <!-- 方法1:引用js文件 -->
+    <script src="test.js"></script> 
     <script>
         <!-- 方法2:head 中写 js 代码 -->
     </script>
@@ -35,7 +36,9 @@ order: 17001
 
 
 
-## 按钮控制-简洁版
+## 按钮控制
+
+简洁版
 ```html
 <button type="button"
 onclick="document.getElementById('demo_id').innerHTML = Date()">按钮</button>
@@ -48,7 +51,7 @@ onclick="document.getElementById('demo_id').innerHTML = Date()">按钮</button>
 
 
 
-## 按钮控制-复杂版
+复杂版
 ```html
 <script>
   function myFunction() {
@@ -77,7 +80,7 @@ onclick="document.getElementById('demo_id').innerHTML = Date()">按钮</button>
 ```javascript
 window.alert() // 弹窗
 console.log() // 写入浏览器控制台
-ocument.write() // 写入 HTML 输出（就是整个页面变了）
+document.write() // 写入 HTML 输出（就是整个页面变了）
 ```
 
 改变标签的各种属性：

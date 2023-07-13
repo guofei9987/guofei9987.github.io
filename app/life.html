@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>焦虑放大器</title>
     <style>
         /* 人生格子 */
         #myTable {
@@ -9,16 +10,14 @@
         }
 
         #myTable td {
-            width: 25px;
-            height: 25px;
-            background-color: #ccc;
+            width: 20px;
+            height: 20px;
             border: 1px solid #fff;
         }
 
-
         /* 今日剩余 */
         #progress-bar {
-            width: 500px;
+            width: 400px;
             height: 20px;
             background-color: #f5f5f5;
             border: 1px solid #ccc;
@@ -29,7 +28,6 @@
         #progress-bar-inner {
             height: 100%;
             background-color: #4CAF50;
-            transition: width 0.5s ease-in-out;
         }
     </style>
 
@@ -41,12 +39,12 @@
 <body>
 
     <div id="past_text"></div>
-
+    <br>
     <!-- 今日剩余 -->
     <div id="progress-bar">
         <div id="progress-bar-inner"></div>
     </div>
-
+    <br>
     <!-- 人生格子 -->
     <table id="myTable">
         <tbody></tbody>
@@ -76,16 +74,11 @@
         const birthDay = new Date("1988-02-01");
         const life_span = 80;
 
-
         const endDay = new Date(birthDay.getFullYear() + life_span, birthDay.getMonth(), birthDay.getDate());
         var currentDate = new Date();
-
         // 过去了多久（单位：秒）
         var pastSeconds = (currentDate.getTime() - birthDay.getTime()) / 1000;
 
-
-        // 获取table元素
-        var table = document.getElementById("myTable");
 
         // 80年，分为 20列，20行。每个格子代表0.2年
         let num_cols = 20;
@@ -94,7 +87,7 @@
         // 当前时间对应的格子序号
         currentCellIdx = Math.floor(pastSeconds / 3600 / 24 / 365 / (life_span / num_cols / num_rows));
 
-
+        var table = document.getElementById("myTable");
         const nowCelll = null;
         for (var i = 0; i < num_rows; i++) {
             var newRow = table.insertRow();  // 插入一行
@@ -104,7 +97,6 @@
 
                 // 当前格子序号
                 let newCellIdx = i * num_cols + j;
-
 
                 if (newCellIdx < currentCellIdx) {
                     newCell.style.backgroundColor = "#D2B48C";
@@ -121,9 +113,6 @@
         }
 
 
-
-        // 文本和进度条
-        let flag = 0; // 给人生格子用的闪烁效果
         function myTick() {
             var past_text = document.getElementById("past_text");
 
@@ -133,23 +122,14 @@
 
 
             past_text.innerHTML =
-                "时光已去 " + (daysPast_ / 365).toFixed(8) + " 年/"
+                "时光已去： " + (daysPast_ / 365).toFixed(8) + " 年/"
                 + (daysPast_ / 12).toFixed(8) + " 月/"
                 + daysPast_.toFixed(8) + " 天"
                 + "<br>"
-                + "余生还剩 " + (daysFuture_ / 365).toFixed(8) + " 年/"
+                + "余生还剩： " + (daysFuture_ / 365).toFixed(8) + " 年/"
                 + (daysFuture_ / 12).toFixed(8) + " 月/"
                 + daysFuture_.toFixed(8) + " 天"
                 + "<br>";
-
-            // 当前对应的格子要闪烁
-            if (flag == 0) {
-                nowCell.style.backgroundColor = "#D2B48C";
-                flag = 1;
-            } else {
-                nowCell.style.backgroundColor = "#4CAF50";
-                flag = 0;
-            }
 
             // 今日进度条
             var startOfDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
@@ -159,9 +139,23 @@
             progressBar.innerText = "今日已用" + percentLeft.toFixed(4) + '%';
         }
 
-        setInterval(myTick, 100);
-    </script>
+        // 人生格子用的闪烁效果
+        let flag = 0;
+        function lifeBlink() {
+            // 当前对应的格子要闪烁
+            if (flag == 0) {
+                nowCell.style.backgroundColor = "#D2B48C";
+                flag = 1;
+            } else {
+                nowCell.style.backgroundColor = "#4CAF50";
+                flag = 0;
+            }
+        }
 
+        setInterval(myTick, 50);
+        setInterval(lifeBlink, 300);
+
+    </script>
 </body>
 
 </html>

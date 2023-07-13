@@ -19,7 +19,9 @@ title: 分析
 
 
 <img src="https://gf99.github.io/a/data/text.svg">
+<br>
 <img src="https://gf99.github.io/a/data/sko.svg">
+<br>
 <img src="https://gf99.github.io/a/data/bw.svg">
 
 
