@@ -227,6 +227,11 @@ step3： 享受成功！
 $pip install scikit-opt
 ```
 
+说明：
+- `sdist` 分发的是源代码，格式是 `*.tar.gz` 或者 `*.zip` 文件，包含源文件和 `setup.py`，用户安装时先编译
+- `bdist_wheel` 分发的是二进制 wheel 文件，是 `*.whl` 文件，包含已编译二进制文件和相关元数据。用户安装时不需要编译。
+
+
 
 ### pip命令
 
@@ -240,9 +245,19 @@ pip install --user --upgrade scikit-opt blind_watermark
 - `--no-deps` 不安装依赖的包
 - `-e`, `--editable` editable mode
 
-从 github 安装
-```
+```bash
+# 从 github 安装
 pip install git+git://github.com/guofei9987/blind_watermark.git@master
+
+# 安装 .tar.gz 包 
+pip install dist/pyLSHash-0.1.1.tar.gz
+# 如果引用了第三方库，会自动下载这些依赖库
+
+# 安装 .whl 包
+pip install dist/pyLSHash-0.1.1-py3-none-any.whl
+
+# 按照 requirements.txt 安装
+pip install -r requirements.txt
 ```
 
 
