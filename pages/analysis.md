@@ -26,6 +26,10 @@ title: 分析
 
 
 
+Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=guofei9987/blind_watermark,guofei9987/scikit-opt&type=Date)](https://star-history.com/#guofei9987/blind_watermark&guofei9987/scikit-opt&Date)
+
 
 ------------------
 
