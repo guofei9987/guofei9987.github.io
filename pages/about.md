@@ -5,7 +5,8 @@ permalink: /about.html
 ---
 
 
-![me](https://www.guofei.site/pictures_for_blog/life/me.JPG)
+<img src="https://www.guofei.site/pictures_for_blog/life/me.JPG" display="block"  width="100%" >
+
 
 
 ### Hi there 👋
