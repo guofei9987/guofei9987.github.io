@@ -5,6 +5,9 @@ permalink: /about.html
 ---
 
 
+<img src="https://www.guofei.site/pictures_for_blog/life/me.JPG" display="block"  width="100%" >
+
+
 
 ### Hi there 👋
 
