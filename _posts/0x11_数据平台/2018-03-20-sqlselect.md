@@ -143,17 +143,18 @@ where a.id=b.id and a.id=c.id;
 单行子查询
 ```sql
 SELECT enamel,sal,job
-    from t_employee
-    where(sal,job)=(
-            SELECT sal,job
-                from t_employee
-                where ename='smith');
-```
+FROM t_employee
+-- 多行多列
+WHERE 
+(sal,job) IN (SELECT sal,job FROM t_employee)
+-- NOT IN
+AND (sal,job) NOT IN (SELECT sal,job FROM t_manager)
+;
 
-多行单列
-```sql
-in（select...）
-not in(select...)
+SELECT enamel,sal,job
+FROM t_employee
+WHERE 
+(sal,job) = (SELECT sal,job FROM t_employee);
 ```
 
 
