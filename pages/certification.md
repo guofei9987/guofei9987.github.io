@@ -23,9 +23,9 @@ http://article.sciencepublishinggroup.com/html/10.11648.j.jfa.20150306.12.html#p
 
 |专利名字|公开(公告)号|
 |---|---|---|
-|[概率型对象的统计方法与装置](http://epub.cnipa.gov.cn/patent/CN112948760A) | CN112948760A|
-|[数据的处理方法及装置](http://epub.cnipa.gov.cn/patent/CN116089422A)|CN116089422A|
-| [一种数据分析的方法、装置、设备及存储介质](http://epub.cnipa.gov.cn/patent/CN115757302A)| CN115757302A, CN115757302B
+|[概率型对象的统计方法与装置](https://epub.cnipa.gov.cn/patent/CN112948760A) | CN112948760A|
+|[数据的处理方法及装置](https://epub.cnipa.gov.cn/patent/CN116089422A)|CN116089422A|
+| [一种数据分析的方法、装置、设备及存储介质](https://epub.cnipa.gov.cn/patent/CN115757302A)| CN115757302A, CN115757302B
 |数据处理方法、装置及设备 | CN114638015A
 |用于敏感信息预分类的方法、系统、装置和介质  | CN114254112A
 |用户数据的删除方法、装置和电子设备  | CN113988313A
