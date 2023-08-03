@@ -655,6 +655,47 @@ pyenv global 3.6.5 2.7.14
 echo $PATH # 显示path
 ```
 
+### 运行 python 脚本
+
+除了用 `python file.py` 运行python外，还可以用 `./file.py` 这种命令来直接运行 python，需要进行以下操作：
+
+
+第一步：找到 python 解释器在哪
+```bash
+whereis python
+```
+
+
+第二步：
+如果上面输出为 `/root/miniconda3/bin/python`  
+pytho脚本 `file.py` 这么写：  
+
+```python
+#!/root/miniconda3/bin/python
+print('hello')
+```
+
+第三步：给 `file.py` 添加运行权限
+```bash
+chmod u+x file.py
+```
+
+第四步：运行
+```bash
+./file.py
+```
+
+
+
+额外，一般第一行写解释器，第二行写 `utf-8`，如下：
+
+```python
+#!/root/miniconda3/bin/python
+# coding:utf-8
+print('你好')
+```
+
+
 
 ## 参考资料
 
