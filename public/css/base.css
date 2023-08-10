@@ -93,6 +93,11 @@ body, html {
   padding-right: 30px;
   text-align: center;
   color: #303030;
+  
+  /* 下面的代码让它悬浮在上方 */
+  position: fixed;
+  top:0;
+  width: 100%;
 }
 .aside3-content {
 /*  padding-left: 40px;
