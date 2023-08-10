@@ -89,15 +89,11 @@ body, html {
   background-color: #f5f5f5;
   /*background-image: url(/public/img/bg_grid.jpg);*/
   border-bottom: 1px solid #f5f5f5;
+  padding-top: 1px;
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
   color: #303030;
-  
-  /* 下面的代码让它悬浮在上方 */
-  position: fixed;
-  top:0;
-  width: 100%;
 }
 .aside3-content {
 /*  padding-left: 40px;
