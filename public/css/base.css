@@ -217,8 +217,3 @@ blockquote p {
 .katex {
   background-color: lightcyan;
 }
-
-/* ppt中的样式被影响到了 */
-.reveal * {
-  all: unset; /* 清除所有子元素的样式 */
-}
