@@ -1,0 +1,93 @@
+---
+layout: base
+---
+
+<div class="row">
+  <div class="col-md-13 aside3-title">
+    <br>
+    <h2 id="#identifier">{{ page.title }}</h2>
+    <i class="fa fa-calendar" aria-hidden="true"></i>{{ page.date | date:"%Y年%m月%d日" }}
+    &nbsp;&nbsp;
+    <i class="fa fa-child" aria-hidden="true"></i>Author:<a href="https://github.com/guofei9987">{{ site.author.name }}</a>
+    <p>
+      <a href="{{ site.repurl }}{{ page.path }}"><i class="fa fa-edit fa-lg" aria-hidden="true" style="color: #16a085;"></i></a>
+      <i>
+        <i class="fa fa-sitemap" aria-hidden="true"></i>文章归类: {{ page.tags }} {{ page.categories }}
+        &nbsp;&nbsp;
+        <i class="fa fa-info" aria-hidden="true"></i>文章编号: {{ page.order }}
+      </i>
+    </p>
+  </div>
+  <div class="col-md-13 aside3-content">
+    <hr>
+  <p>版权声明：本文作者是郭飞。转载随意，但需要标明原文链接，并通知本人
+    <a href="mailto:{{ site.author.email }}" style="color: #16a085;font-size:2.5em;">
+      ✉
+    </a>
+    <br>
+    原文链接：<a href="{{ page.url }}">{{ site.url }}{{ page.url }}</a>
+  </p>
+  <hr>
+  <br>
+
+
+  <!-- ppt相关 -->
+    <link rel="stylesheet" href="https://www.guofei.site/slides/dist/reset.css">
+    <link rel="stylesheet" href="https://www.guofei.site/slides/dist/reveal.css">
+    <link rel="stylesheet" href="https://www.guofei.site/slides/dist/theme/black.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="https://www.guofei.site/slides/plugin/highlight/monokai.css">
+<!-- end：ppt相关 -->
+
+    <div id="content">
+      {{ content }}
+    </div>
+
+    <!-- ppt相关 -->
+
+    
+		<script src="https://www.guofei.site/slides/dist/reveal.js"></script>
+		<script src="https://www.guofei.site/slides/plugin/zoom/zoom.js"></script>
+		<script src="https://www.guofei.site/slides/plugin/notes/notes.js"></script>
+		<script src="https://www.guofei.site/slides/plugin/search/search.js"></script>
+		<script src="https://www.guofei.site/slides/plugin/markdown/markdown.js"></script>
+		<script src="https://www.guofei.site/slides/plugin/math/math.js"></script>
+
+
+		<!-- 代码高亮 -->
+		<script src="https://www.guofei.site/slides/plugin/highlight/highlight.js"></script>
+		<script>
+
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				fragments: true, // 启用片段功能
+
+				mathjax2: {
+					config: 'TeX-AMS_HTML-full',
+					TeX: {
+						Macros: {
+							R: '\\mathbb{R}',
+							set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+						}
+					}
+				},
+
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,RevealMath.MathJax2]
+			});
+		</script>
+<!-- endppt相关 -->
+
+    <hr>
+    {% include disqus.html %}
+  </div>
+  <!-- 目录：右上角的加号，点击可以展示或隐藏 -->
+  <div id="content_table" style="position:fixed;right:20px;top:120px;display:none;">
+    <div class="panel panel-success">
+      <div class="panel-body" id="nav"></div>
+    </div>
+  </div>
+</div>

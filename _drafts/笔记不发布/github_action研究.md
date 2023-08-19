@@ -1,55 +1,59 @@
 
 ## GitHub action研究
 
-```
+```yml
 name: CI
+name: Update README
 
-on: [push]
+on:
+  schedule:
+    - cron: '0 20 * * *'
+  watch:
+    types: started
 
 jobs:
-  build:
-
+  top-followers:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Update README
+        run: |
+          python src/get_about.py
+      - name: Commit changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "Update top followers"
+      - name: Pull changes
+        run: git pull -r
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## name
-名字，没什么好说的
 
 ## on
 
-如何触发。  
-可以是string，array，map
 
-例如
-```
-on: push
-
-on: [push, pull_request] # 或者的关系，任意一个满足条件，即可触发
-
+```yml
 on:
   push:
-    branches:
-      - master
-```
+    branches: ["master"]
+  schedule:
+      - cron: '0 23 * * *'
+  watch:
+    types: started
 
-
-
-
-
-### on push
-
-可以设定分支
-
-```
 on:
   push:
     # Sequence of patterns matched against refs/heads
@@ -64,8 +68,16 @@ on:
 ```
 
 
-可以设定路径
+
+
+```yml
+on: [push, pull_request] # 或者的关系，任意一个满足条件，即可触发
 ```
+
+
+
+可以设定路径
+```yml
 # run on pushes which modify at least one file that doesn't have the .js extension
 on:
   push:
@@ -74,25 +86,16 @@ on:
     - '!*.js'
 ```
 
-### 其它 events
-https://help.github.com/en/articles/events-that-trigger-workflows#scheduled-events
 
-摘抄几个常用的
+其它 events：https://help.github.com/en/articles/events-that-trigger-workflows#scheduled-events  
+几个常用的：
 - fork
 - issue_comment
   - created
   - edited
   - deleted
   - 。。。
-- watch
-  - started
 
-```
-on:
-  watch:
-    types: started
-
-```
 
 
 ## job
@@ -147,7 +150,40 @@ jobs:
 - jobs.<job_id>.steps.uses
 
 
+## 发布为 GitHub Pages
 
+
+先上传到 artifact，并且名字命名为 “github-pages”
+
+```
+- name: Upload artifact
+  uses: actions/upload-pages-artifact@v1
+  with:
+    name: github-pages
+    path: ./_site/
+
+```
+
+
+然后部署
+
+```
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+```
 
 
 ## API：图片
