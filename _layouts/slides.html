@@ -17,8 +17,6 @@
 		<link rel="stylesheet" href="https://www.guofei.site/slides/dist/reset.css">
 		<link rel="stylesheet" href="https://www.guofei.site/slides/dist/reveal.css">
 		<link rel="stylesheet" href="https://www.guofei.site/slides/dist/theme/black.css" id="theme">
-
-		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="https://www.guofei.site/slides/plugin/highlight/monokai.css">
 
 		<style>
@@ -48,14 +46,9 @@
 	<body>
 
 		<div class="reveal">
-
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
-        {{ content }}
-
+ 		       {{ content }}
 			</div>
-
 		</div>
 
 		<script src="https://www.guofei.site/slides/dist/reveal.js"></script>
@@ -70,8 +63,6 @@
 		<script src="https://www.guofei.site/slides/plugin/highlight/highlight.js"></script>
 		<script>
 
-			// Also available as an ES module, see:
-			// https://revealjs.com/initialization/
 			Reveal.initialize({
 				controls: true,
 				progress: true,
@@ -89,7 +80,6 @@
 					}
 				},
 
-				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight,RevealMath.MathJax2]
 			});
 		</script>
