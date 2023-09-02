@@ -204,6 +204,18 @@ s_bin = bin(int(s_hex, 16))
 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
 
+bytes 和 int 类型互相转换
+
+```python
+a = 255000
+b = a.to_bytes(length=4, byteorder='big')
+# length 指定输出为多少个字节
+# byteorder 可以是 big 或者 small
+
+int.from_bytes(b, byteorder='big')
+```
+
+
 
 ### 转二进制、十六进制
 
