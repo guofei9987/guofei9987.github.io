@@ -580,10 +580,30 @@ this
 
 
 ## Json
-一般的做法是，把JSON当做文本导入，然后用 `JSON.parse()` 转成 JavaScript 对象
+把JSON当做文本导入，然后用 `JSON.parse()` 转成 JavaScript 对象
 
 ```JavaScript
 var text = '{"employees":[{"firstName":"Bill","lastName":"Gates" },{"firstName":"Steve","lastName":"Jobs" },{"firstName":"Elon","lastName":"Musk" }]}';
 
 obj = JSON.parse(text);
 ```
+
+读取网页上的json
+```javascript
+fetch('https://www.guofei.site/pages/achievement.json')
+  .then(response => response.json())
+  .then(data => {
+    jsonData = data;
+    showData(data);
+  })
+  .catch(error => console.error(error));
+
+function showData(data){
+for(let key in data){
+	console.log('key='+data[key]+ ' val='+data[key])
+	}
+}
+```
+
+
+
