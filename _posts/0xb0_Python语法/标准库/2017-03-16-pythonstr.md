@@ -204,6 +204,8 @@ s_bin = bin(int(s_hex, 16))
 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
 
+### Bytes 类型转二进制、十六进制
+
 bytes 和 int 类型互相转换
 
 ```python
@@ -213,11 +215,12 @@ b = a.to_bytes(length=4, byteorder='big')
 # byteorder 可以是 big 或者 small
 
 int.from_bytes(b, byteorder='big')
+# 255000
 ```
 
 
 
-### 转二进制、十六进制
+### Bytes 和 二进制、十六进制互转
 
 ```python
 s = '这是一个字符串'
@@ -228,6 +231,15 @@ s_hex = s.encode('utf-8').hex()
 # 十六进制转字符串
 bytes.fromhex(s_hex).decode('utf-8')
 # >'这是一个字符串'
+
+# 转2进制
+s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
+s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
+# struct.pack('>B', n) 可以把一个 0～255 的数字转为一个比特的 Bytes 类型
+
+s_bin = ''.join(s_bin)
+s_out = b''.join([struct.pack('>B', int(s_bin[i * 8:i * 8 + 8], base=2)) for i in range(len(s_bin) // 8)])
+
 
 # 转2进制
 s_bin = bin(int(s.encode('utf-8').hex(), base=16))[2:]
