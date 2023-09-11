@@ -195,17 +195,17 @@ vp.reverse_dictionary  # {idx: 'word'}
 ### 词袋介绍
 结果的长度等于字典的长度，结果的元素值是在这句话中单词出现的次数。  
 
-例如，我们的词袋为
+例如，我们的字典为
 ```py
-{'tensorflow': 4, 'makes': 3, 'machine': 2, 'learning': 1, 'easy': 0}
+['document', 'first', 'is', 'second', 'the', 'third', 'this']
 ```
 词袋的计算结果为
 ```py
-sentence1 = 'TensorFlow does make machine learning easy!'
-sentence1_list = [0,1,1,1,1,1]
+count_vectorizer.transform(['This is the first first first document.'])
+# 结果：[[1, 3, 1, 0, 1, 0, 1]]
 
-sentence2 = 'Machine learning is easy'
-sentence2 = [1, 1, 1, 0, 0]
+count_vectorizer.transform(['Is this the third document?'])
+# 结果： [[1, 0, 1, 0, 1, 1, 1]]
 ```
 
 ### 代码实现
@@ -216,31 +216,34 @@ from sklearn.feature_extraction import text
 
 count_vectorizer = text.CountVectorizer()
 # ngram_range
-# max_df : float in range [0.0, 1.0] or int, default=1.0
-# min_df : float in range [0.0, 1.0] or int, default=1
-# max_features : int or None, default=None
-# vocabulary : Mapping or iterable, optional
+# max_df : float in range [0.0, 1.0] or int, default=1.0，浓度超过这个值的单词会被忽略
+# min_df : float in range [0.0, 1.0] or int, default=1，数量低于这个值的单词背忽略
+# max_features : int or None, default=None，选取最高频的 k 个单词
+# vocabulary : Mapping or iterable，允许手动指定单词
 
 
 # 源数据
-sentences = ['This is the first document.',
-     'This is the second second document.',
-     'And the third one.',
-     'Is this the first document?']
+documents = ['This is the first document.',
+             'This is the second second document.',
+             'The third document.',
+             'Is this the first document?']
 
-count_vectorizer.fit(sentences)
-X = count_vectorizer.transform(sentences)
-# 1. 不在vocabulary中的词，在transform阶段被忽略
-# 2. 返回的 numpy 的稀疏矩阵，用 X.toarray() 转换成普通矩阵
+# 训练
+count_vectorizer.fit(documents)
+
+# 预测
+X = count_vectorizer.transform(documents)
+# 1. 不在 vocabulary 中的词，在 transform 阶段被忽略
+# 2. X 是稀疏矩阵，用 X.toarray() 转换成普通矩阵
+# 或者 count_vectorizer.fit_transform(sentences)
 
 X.toarray()  # 是一个shape=(num_sentence,num_words) 的array
 
-# count_vectorizer.fit_transform(sentences) # 合并写法
-
 count_vectorizer.vocabulary_  # vocabulary向量（dict格式，{'word': idx}）
-# {u'and': 0, u'document': 1, u'first': 2, u'is': 3, u'one': 4, u'second': 5, u'the': 6, u'third': 7, u'this': 8}
+# {'this': 6, 'is': 2, 'the': 4, 'first': 1, 'document': 0, 'second': 3, 'third': 5}
 
-count_vectorizer.get_feature_names() # 返回一个list，按照单词的序号排列
+count_vectorizer.get_feature_names_out()
+# ['document', 'first', 'is', 'second', 'the', 'third', 'this']
 ```
 
 ### ngram
