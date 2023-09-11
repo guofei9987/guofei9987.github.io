@@ -71,7 +71,7 @@ sentences_raw = df.sentences.values
 import jieba
 import re
 sentences = [jieba.lcut(sentence, cut_all=False) for sentence in sentences_raw]  # 拆词
-regex = re.compile(u'[\u4e00-\u9fa5]')
+regex = re.compile(u'[\u4e00-\u9fa5]') # 仅保留中文，(剔除 数字、英文)
 sentences = [[word for word in sentence if regex.match(word) is not None] for sentence in sentences]  # jieba 拆开的词，一串数字也作为一个词返回，这里过滤一下
 # sentences=[[word for word in sentence if word not in stops] for sentence in sentences] # 停词
 sentences = [' '.join(sentence) for sentence in sentences]
@@ -189,7 +189,7 @@ vp.reverse_dictionary  # {idx: 'word'}
 ```
 
 
-## 3. CountVectorizer
+## 3. CountVectorizer：词袋
 又叫做词袋（Bag of Words），或者Tf(Text Frequency)
 
 ### 词袋介绍
