@@ -651,6 +651,21 @@ Rust 的迭代器是零开销抽象，性能与for循环一样。
 
 ### 迭代器的开启
 
+
+```rust
+// 对于 Vec<int>
+arr.iter(); // 不拥有所有权
+arr.into_iter(); // 取得所有权
+arr.iter_mut(); // 可修改
+
+// 对于 &str
+s.bytes();
+s.chars();
+
+```
+
+
+
 `drain` 方法：把迭代器分为两部分
 
 ```
@@ -663,10 +678,34 @@ assert_eq!(outer, "Eh");
 assert_eq!(inner, "art");
 ```
 
-这里不写迭代器怎么构造出来，写一下应用
-- map
+### 迭代器的构造
+
+- `arr.into_iter().skip(n)` 跳过 n 个元素，返回剩余元素的迭代器
+- `arr.into_iter().take(n)` 获取前 n 个元素，并返回这些元素的迭代器
+- `arr.into_iter().nth(n)` 返回第 n 个元素（Option）
+
+
+还有：
 - filter
-- flat_map：匿名函数返回的是一个 vec，把这个 vec 摊平，成为最终结果
+- map
+- flat_map： 匿名函数返回的是一个 vec，把这个 vec 摊平，成为最终结果
+
+```rust
+let arr = vec![0, 1, 2, 3, 4, 5, 6];
+let arr1: Vec<i32> = arr.into_iter()
+    .filter(|x| { *x > 4 })
+    .map(|x| { x * x + 1 })
+    .collect();
+println!("{:?}", arr1);
+
+
+let arr = vec![0, 1, 2, 3, 4, 5, 6];
+let arr2: Vec<i32> = arr.into_iter()
+    .flat_map(|x| { vec![x, x + 1] })
+    .collect();
+println!("{:?}", arr2);
+```
+
 
 
 scan 类似 map，但不同的是：
@@ -689,7 +728,8 @@ assert_eq!(iter.collection::<Vec<i32>>(), vec![0, 1, 4, 9, 16]);
 ```
 
 
-- take：接受n个 `v.into_iter().take(3)`
+其它
+
 - take_while：第一次false时，返回None，之后都返回 None `take_while(|item| *item < 3)`
 - skip
 - skip_while
