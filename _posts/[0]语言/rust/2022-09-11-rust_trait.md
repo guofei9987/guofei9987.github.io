@@ -250,12 +250,31 @@ fn main() {
 ## 常用 trait
 
 
-<table><thead><tr><th>特型</th><th>简介</th></tr></thead><tbody><tr><td><code>Drop</code></td><td>解构函数。清除值时 Rust 自动运行的清除代码</td></tr><tr><td><code>Sized</code></td><td>标记特型，针对编译时可以知道大小的类型（而不是像切片那样动态大小的类型）</td></tr><tr><td><code>Clone</code></td><td>针对支持克隆值的类型</td></tr><tr><td><code>Copy</code></td><td>标记特型，针对可以简单地对内存中包含的值进行逐字节复制来克隆的类型</td></tr><tr><td><code>Deref</code> 与 <code>DerefMut</code></td><td>智能指针类型的特型</td></tr><tr><td><code>Default</code></td><td>针对有合理 “默认值” 的类型</td></tr><tr><td><code>AsRef</code> 与 <code>AsMut</code></td><td>转换特型，借用某种类型的引用</td></tr><tr><td><code>Borrow</code> 与 <code>BorrowMut</code></td><td>转换特型，类似 <code>AsRef</code> 与 <code>AsMut</code>，但额外保证一致的散列、顺序和相等</td></tr><tr><td><code>From</code> 与 <code>Into</code></td><td>转换特型，将某种类型的值转换为另一种类型</td></tr><tr><td><code>ToOwned</code></td><td>转换特型，将引用转换为所有值</td></tr></tbody></table>
+|         特型        |                                   简介                                   |
+|:-------------------:|:------------------------------------------------------------------------:|
+| Drop                | 解构函数。清除值时 Rust 自动运行的清除代码                               |
+| Sized               | 标记特型，针对编译时可以知道大小的类型（而不是像切片那样动态大小的类型） |
+| Clone               | Clone                                                 |
+| Copy                | 位 Copy       |
+| Deref 与 DerefMut   | 智能指针类型的特型                                                       |
+| Default             | 针对有合理 “默认值” 的类型                                               |
+| AsRef 与 AsMut      | 转换特型，借用某种类型的引用                                             |
+| Borrow 与 BorrowMut | 转换特型，类似 AsRef 与 AsMut，但额外保证一致的散列、顺序和相等          |
+| From 与 Into        | 转换特型，将某种类型的值转换为另一种类型                                 |
+| ToOwned             | 转换特型，将引用转换为所有值                                             |
+
 
 说明
 - `Drop` 和 `Copy` 只能有一个
 - ??? https://blog.csdn.net/feiyanaffection/article/details/125574787/
 
+Copy 和 Clone
+- Copy 给编译器用，规定了一个对象使用 Copy 而不是 Move
+- Clone 给程序员用，可以自己定义其行为
+- 常见的数字类型、bool类型、共享借用指针&，都是具有 Copy 属性的类型。而 Box、Vec、可写借用指针&mut 等类型都是不具备 Copy 属性的类型。
+- 对于数组类型，如果它内部的元素类型是Copy，那么这个数组也是Copy类型。
+- 对于tuple类型，如果它的每一个元素都是Copy类型，那么这个tuple会自动实现Copy trait。
+- 对于struct和enum类型，不会自动实现Copy trait。而且只有当struct和enum内部每个元素都是Copy类型的时候，编译器才允许我们针对此类型实现Copy trait。
 
 
 ### deref
