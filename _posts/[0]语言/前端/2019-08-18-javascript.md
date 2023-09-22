@@ -578,6 +578,27 @@ this
 <button onclick="this.style.display='none'">单击来删除我！</button>
 ```
 
+## Post
+
+```javascript
+var url = 'https://www.guofei.site/app/some_api'
+var xhr = new XMLHttpRequest();
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        var response = xhr.responseText; // 返回的值（字符串）
+        var response = JSON.parse(xhr.responseText); // 返回的格式如果是 json，可以解析 
+        var content = response.key1; // 取出其某一个值
+        console.log(content)
+    }
+};
+
+// 请求时的 Post 值
+postData = "key1=" + encodeURIComponent("value1") + "&key2=" + encodeURIComponent("value2");
+xhr.send(postData);
+```
+
 
 ## Json
 把JSON当做文本导入，然后用 `JSON.parse()` 转成 JavaScript 对象
