@@ -258,7 +258,7 @@ heap 有自己的 iter
 - `String` 是动态字符串类型，长度和内容可以动态变化
 - `&str` 是静态字符串类型，指向字符串内容的不可变引用
 - `String` 作为函数入参的时候，会转移所有权（也就是说，会发生拷贝）。 `&str` 作为入参的时候，只需要拷贝指针和长度信息。
-- 如果需要在函数中改变字符串，或者函数内需要拥有字符串的所有权，就只能用 `String` 了
+    - 如果需要在函数中改变字符串，或者函数内需要拥有字符串的所有权，就只能用 `String` 了
 
 
 ```Rust
@@ -324,6 +324,20 @@ string1.bytes().nth(7).expect("error");
 
 // 取字符
 string1.chars().skip(1).take(4).collect();
+
+
+// 切片取
+&str1[1..5]
+// 注意：1）必须是借用的形式， 2）序号的标号是按照 bytes 计算的，因此1个汉字对应3个，如果从中文中间切开，会报错
+```
+
+其它
+```rust
+let my_vec = vec!['a', 'b', 'c'];
+
+// 这两个都可以：
+let my_string: String = my_vec.into_iter().collect();
+let my_vec: Vec<char> = my_vec.into_iter().collect();
 ```
 
 
@@ -356,9 +370,6 @@ for i in s.chars() { // char
 for i in s.bytes() { // u8
     println!("{}", i);
 }
-
-// 相当于 enumerate
-str1.char_indices()
 
 // 文本行迭代器，按照\n或者 \r\n 分割
 str1.lines()
@@ -453,6 +464,9 @@ replacen // 功能同上，但最多替换前n个
 // 好像用处不大
 slice.split_terminator(pattern);slice.rsplit_terminator(pattern)
 slice.split_whitespace();
+
+// 从字符串格式的数字，变成数字
+str1.parse()
 ```
 
 
@@ -545,12 +559,12 @@ let hash_map2: HashMap<_, _> = keys.iter().zip(values.iter()).collect();
 println!("{:?}", hash_map2);
 
 
-// 增&改
+// 增&改: insert
 hash_map.insert(String::from("Blue"), 10); // 获取所有权
 // 重复 insert 同一个 key 将覆盖
 
 
-// 查1
+// 查1: get
 let val_opt: Option<&i32> = hash_map.get("Blue"); // 获取引用，而不是所有权
 // 返回一个 Option
 let _b = match val_opt {
@@ -558,17 +572,21 @@ let _b = match val_opt {
     None => println!("None")
 };
 
-// 查2
+// 查2: 
 for (key, val) in &hash_map {
     println!("k:v = {}:{}", key, val);
 }
 
-// 改2：循环中改
-
+// 改1：循环中改
 for (key, val) in &mut hash_map {
     println!("k:v = {}:{}", key, val);
     *val += 100;
 }
+
+// 改2: 如果需要改 value，必须用 get_mut 来获取可变对象：
+let mut hash_map: HashMap<&str, Vec<i32>> = HashMap::new();
+hash_map.insert("1", vec![1, 2, 3]);
+hash_map.get_mut("1").unwrap().push(5);
 
 
 // 删
@@ -576,6 +594,19 @@ hash_map.remove("red1");
 
 
 println!("{:?}", hash_map);
+```
+
+
+其它方法
+```rust
+// 获取所有的 key
+hash_map.keys();
+// 判断是否有
+hash_map.contains(&key);
+
+// 上面写了
+hash_map.get(&key);
+hash_map.get_mut(&key);
 ```
 
 
@@ -651,6 +682,21 @@ Rust 的迭代器是零开销抽象，性能与for循环一样。
 
 ### 迭代器的开启
 
+
+```rust
+// 对于 Vec<int>
+arr.iter(); // 不拥有所有权
+arr.into_iter(); // 取得所有权
+arr.iter_mut(); // 可修改
+
+// 对于 &str
+s.bytes();
+s.chars();
+
+```
+
+
+
 `drain` 方法：把迭代器分为两部分
 
 ```
@@ -663,10 +709,38 @@ assert_eq!(outer, "Eh");
 assert_eq!(inner, "art");
 ```
 
-这里不写迭代器怎么构造出来，写一下应用
-- map
+### 迭代器的构造
+
+- `arr.into_iter().skip(n)` 跳过 n 个元素，返回剩余元素的迭代器
+- `arr.into_iter().take(n)` 获取前 n 个元素，并返回这些元素的迭代器
+- `arr.into_iter().nth(n)` 返回第 n 个元素（Option）
+
+
+还有：
 - filter
-- flat_map：匿名函数返回的是一个 vec，把这个 vec 摊平，成为最终结果
+- map
+- flat_map： 匿名函数返回的是一个 vec，把这个 vec 摊平，成为最终结果
+
+```rust
+let arr = vec![0, 1, 2, 3, 4, 5, 6];
+let arr1: Vec<i32> = arr.into_iter()
+    .filter(|x| { *x > 4 })
+    .map(|x| { x * x + 1 })
+    .collect();
+println!("{:?}", arr1);
+
+
+let arr = vec![0, 1, 2, 3, 4, 5, 6];
+let arr2: Vec<i32> = arr.into_iter()
+    .flat_map(|x| { vec![x, x + 1] })
+    .collect();
+println!("{:?}", arr2);
+
+
+// enumerate
+for (idx,item) in b.into_iter().enumerate(){...}
+```
+
 
 
 scan 类似 map，但不同的是：
@@ -689,14 +763,14 @@ assert_eq!(iter.collection::<Vec<i32>>(), vec![0, 1, 4, 9, 16]);
 ```
 
 
-- take：接受n个 `v.into_iter().take(3)`
+其它
+
 - take_while：第一次false时，返回None，之后都返回 None `take_while(|item| *item < 3)`
 - skip
 - skip_while
 - fuse：使得第一次出现 None后，之后都是强制为 None
 - rev：反转
     - 这个代码相当于头尾双指针：`it=v.iter();it.next_back();it.next()`
-- enumerate：`for (idx,item) in b.into_iter().enumerate(){...}`
 - chain：把两个迭代器横向（按顺序）粘合到一起，形成一条链
 - zip：把两个迭代器纵向粘合到一起，形成一组数据对
     - 结果长度取最少的那个
