@@ -14,7 +14,14 @@ order: 17002
 - JavaScript会忽略空格和换行。所以可以随意使用空格和换行，来提高代码的可读性。
 
 
-
+使用node.js：
+```bash
+node my.js
+npm install <模块名>
+npm install -g <模块名> # 全局安装
+npm uninstall <模块名>
+npm run <脚本名> # 运行脚本， package.json 中定义脚本
+```
 
 
 
