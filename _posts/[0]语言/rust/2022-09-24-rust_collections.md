@@ -687,21 +687,20 @@ Rust 的迭代器是零开销抽象，性能与for循环一样。
 
 ```rust
 // 对于 Vec<int>
-arr.iter(); // 不拥有所有权
-arr.into_iter(); // 取得所有权
+arr.iter(); // 不拥有所有权，其元素是 &T 类型
+arr.into_iter(); // 取得所有权，其元素是 T 类型
 arr.iter_mut(); // 可修改
 
 // 对于 &str
 s.bytes();
 s.chars();
-
 ```
 
 
 
 `drain` 方法：把迭代器分为两部分
 
-```
+```rust
 use std::iter::FromIterator;
 
 let mut outer = "Earth".to_string();
@@ -751,7 +750,7 @@ scan 类似 map，但不同的是：
 - 返回 Option，从而可提前终止迭代
 
 scan 的例子
-```
+```rust
 let iter = (0..10).scan(0, |sum, item| {
     *sum += item;
     if *sum > 10 {
@@ -768,7 +767,6 @@ assert_eq!(iter.collection::<Vec<i32>>(), vec![0, 1, 4, 9, 16]);
 其它
 
 - take_while：第一次false时，返回None，之后都返回 None `take_while(|item| *item < 3)`
-- skip
 - skip_while
 - fuse：使得第一次出现 None后，之后都是强制为 None
 - rev：反转
@@ -855,14 +853,24 @@ assert_eq!(a.iter().fold(i32::min_value(), |m, &i| std::cmp::max(m, i)), 10);//�
 - FromIterator
 - `std::iter::Extend`：一个集合拼接另一个集合
 - partition：把迭代器分成两个集合（注意，不是分成两个迭代器，因为那样有权限问题）
-```
+```rust
 let v: Vec<i32> = (0..10).into_iter().collect();
 let (even, odd): (Vec<i32>, Vec<i32>) = v.into_iter().partition(|item| item % 2 == 0);
 ```
 
+## 所有权相关
+
+```rust
+// vec1.iter() 不获取所有权，但是每个元素是 &T 引用
+// vec1.into_iter() 获取所有权，迭代器产生的是 T 类型
+let vec1 = vec![1, 2, 3];
+
+let iter1 = vec1.iter().map(|x1: &i32| { x1 + 1});
+let iter2 = vec1.into_iter().map(|x1: i32| { x1 +1}); 
+```
 
 ### 应用
 
-可以自定义迭代器，例如自定义一个二叉树伤的迭代器
+可以自定义迭代器，例如自定义一个二叉树上的迭代器
 
 https://blog.csdn.net/feiyanaffection/article/details/125574968
