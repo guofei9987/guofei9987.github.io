@@ -35,7 +35,7 @@ permalink: /about.html
 [![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
 [![text_blind_watermark](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
 [![guofei9987.github.io](https://www.guofei.site/public/icon/guofei9987.github.io.svg)](https://github.com/guofei9987/guofei9987.github.io)
-[![fourier_artist](https://www.guofei.site/public/icon/fourier_artist.svg)](https://github.com/guofei9987/fourier_artist)
+[![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
 [![pyLSHash](https://www.guofei.site/public/icon/pyLSHash.svg)](https://github.com/guofei9987/pyLSHash)
 [![github_star_counter](https://www.guofei.site/public/icon/github_star_counter.svg)](https://github.com/guofei9987/github_star_counter)
 [![plot2svg](https://www.guofei.site/public/icon/plot2svg.svg)](https://github.com/guofei9987/plot2svg)
