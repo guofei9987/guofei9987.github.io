@@ -1,0 +1,23 @@
+---
+layout: post
+title: 【合集】C/C++
+categories: 
+tags:
+keywords:
+description:
+name: C
+permalink: /:title:output_ext
+order: 19007
+---
+
+
+共 {{site.categories['C'].size}} 篇
+
+
+{% assign cates_tmp =  site.categories['C'] |  reverse %}
+{% for post in cates_tmp %}
+  <li>
+    <span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
+    <a href="{{ post.url }}" class="pjaxlink">{{post.title}}</a>
+  </li>
+{% endfor %}
