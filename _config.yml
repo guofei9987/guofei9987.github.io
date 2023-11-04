@@ -46,3 +46,9 @@ locals:
 
 plugins:
   - "jekyll-github-metadata"
+
+
+# 这些不放到侧边栏
+no_category:
+  - "C"
+  - "Matlab"

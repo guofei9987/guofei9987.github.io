@@ -21,6 +21,10 @@
         </li>
         {% for category in site.categories %}
 
+          {% if site.no_category contains category[0]}
+          {% continue %}
+          {% endif %}
+          
         <!-- 这几个标签不放侧边栏，而是放到橱窗里面 -->
           {% if category[0] == '前端' %}
           {% continue %}
