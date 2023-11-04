@@ -21,17 +21,8 @@
         </li>
         {% for category in site.categories %}
 
-          {% assign found = false %}
-          {% for cate in site.no_category %}
-            {% if cate == category[0]%}
-              {% assign found = true %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-
-
-          {% if found %}
-            {% continue %}
+          {% if site.no_category contains category[0] %}
+          {% continue %}
           {% endif %}
 
           <li>
