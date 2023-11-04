@@ -48,7 +48,11 @@ plugins:
   - "jekyll-github-metadata"
 
 
-# 这些不放到侧边栏
+# 这些不放到侧边栏，而是作为一个合集管理
 no_category:
-  - "C"
-  - "Matlab"
+  - 前端
+  - 趣文
+  - 刷题
+  - TensorFlow
+  - Matlab
+  - C
