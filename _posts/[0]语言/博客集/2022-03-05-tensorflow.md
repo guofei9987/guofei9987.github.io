@@ -6,7 +6,7 @@ tags:
 keywords:
 description:
 name: TensorFlow
-permalink: /:title:out_ext
+permalink: /:title:output_ext
 order: 19007
 ---
 
