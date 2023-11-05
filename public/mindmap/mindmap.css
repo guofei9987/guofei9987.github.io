@@ -1,0 +1,86 @@
+/* 把 li 转为层次结构 */
+.litree ul {
+  margin: 0 0 0 15em;
+  padding: 0;
+  list-style: none;
+  color: #369;
+  position: relative;
+}
+
+.litree:before, .litree ul:before {
+  content: "";
+  display: block;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+  background: white;
+  z-index: -1;
+}
+
+.litree li {
+  font-weight: bold;
+  line-height: 3em;
+  margin: 0;
+  padding: 1.5em 0 0 2em;
+  position: relative;
+  z-index: -1;
+}
+
+/* 否则0阶前面有个列表符号 */
+.litree li::marker {
+  content:""
+}
+
+.litree li:before {
+  border-top: 1px solid;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  margin-top: 1em;
+  position: absolute;
+  top: 1.5em;
+  width: 2em;
+}
+
+.litree li:last-child:before {
+  background: white;
+  bottom: 0;
+  height: auto;
+  top: 1.5em;
+}
+
+.litree > li:before {
+  border-top: none !important;
+}
+
+.litree li div {
+  border-radius: 5px;
+  border: 1px solid #afafaf;
+  margin: 0;
+  max-width: 15em;
+  min-width: 15em;
+  padding: 0.25em 0.5em;
+  background: white;
+  box-shadow: 1px 1px 4px #8F949A;
+  color: #369;
+  font-weight: bold;
+}
+
+ul.litree {
+  margin-left: 0px;
+}
+
+ul.litree:before {
+  border-left: none;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+}

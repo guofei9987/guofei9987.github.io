@@ -1,5 +1,5 @@
 ---
-layout: mind
+layout: mindmap
 title: 测试
 ---
 
