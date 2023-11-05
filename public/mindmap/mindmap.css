@@ -1,4 +1,4 @@
-.litree ul {
+.mindmap ul {
   margin: 0 0 0 15em;
   padding: 0;
   list-style: none;
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.litree:before, .litree ul:before {
+.mindmap:before, .mindmap ul:before {
   content: "";
   display: block;
   width: 0px;
@@ -19,7 +19,7 @@
   z-index: -1;
 }
 
-.litree li {
+.mindmap li {
   font-weight: bold;
   line-height: 3em;
   margin: 0;
@@ -29,11 +29,11 @@
 }
 
 /* 否则0阶前面有个列表符号 */
-.litree li::marker {
+.mindmap li::marker {
   content:""
 }
 
-.litree li:before {
+.mindmap li:before {
   border-top: 1px solid;
   content: "";
   display: block;
@@ -45,18 +45,18 @@
   width: 2em;
 }
 
-.litree li:last-child:before {
+.mindmap li:last-child:before {
   background: white;
   bottom: 0;
   height: auto;
   top: 1.5em;
 }
 
-.litree > li:before {
+.mindmap > li:before {
   border-top: none !important;
 }
 
-.litree li div {
+.mindmap li div {
   border-radius: 5px;
   border: 1px solid #afafaf;
   margin: 0;
@@ -69,11 +69,11 @@
   font-weight: bold;
 }
 
-ul.litree {
+ul.mindmap {
   margin-left: 0px;
 }
 
-ul.litree:before {
+ul.mindmap:before {
   border-left: none;
 }
 
