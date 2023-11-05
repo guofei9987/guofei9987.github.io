@@ -1,4 +1,3 @@
-/* 把 li 转为层次结构 */
 .litree ul {
   margin: 0 0 0 15em;
   padding: 0;
@@ -83,4 +82,11 @@ ul.litree:before {
   position: sticky;
   top: 0px;
   width: 100%;
+}
+
+/* 切换按钮 */
+#mindmap-button {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.2rem;
 }

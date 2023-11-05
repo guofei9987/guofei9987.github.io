@@ -16,11 +16,20 @@
 
 </head>
 <body>
+    <button id="mindmap-button" onclick=""></button>
 
 {{ content }}
 
 
 <script src="/public/mindmap/mindmap.js"></script> 
+
+<script>
+    window.onload=function(){
+        addMindmap();
+        addStickyDiv();
+    }
+</script>
+
 
 </body>
 </html>

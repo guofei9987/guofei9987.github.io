@@ -1,10 +1,13 @@
 
-// 最外层 的 ul，增加 mindmap 对象
-const outerUls = document.querySelectorAll('ul:not(ul ul)');
-// 可能有多组
-outerUls.forEach(ul => {
-    ul.classList.add('mindmap');
-});
+function addMindmap() {
+    // 最外层 的 ul，增加 mindmap 对象
+    const outerUls = document.querySelectorAll('ul:not(ul ul)');
+    // 可能有多组
+    outerUls.forEach(ul => {
+        ul.classList.add('mindmap');
+    });
+
+}
 
 
 
@@ -37,10 +40,12 @@ function addStickyDivToText(node) {
     }
 }
 
-// 获取所有的 <li> 元素
-const liElements = document.querySelectorAll('li:not(li li)');
+function addStickyDiv() {
+    // 获取所有的 <li> 元素
+    const liElements = document.querySelectorAll('li:not(li li)');
 
-// 对每个 <li> 元素进行操作
-liElements.forEach((liElement) => {
-    addStickyDivToText(liElement);
-});
+    // 对每个 <li> 元素进行操作
+    liElements.forEach((liElement) => {
+        addStickyDivToText(liElement);
+    });
+}
