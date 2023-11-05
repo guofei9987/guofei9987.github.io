@@ -3,19 +3,24 @@
   width: 100%;
   height: 100%;
 }
-body, html {
+
+body,
+html {
   margin: 0px;
   height: 100%;
   overflow: hidden;
   background-color: #303030;
 }
+
 .row {
   height: 100%;
 }
+
 /* 导航栏 + 目录栏 */
 .aside {
   height: 100%;
 }
+
 /* 左侧导航栏 */
 .aside1 {
   /*background-color: #1f2c39;*/
@@ -27,7 +32,8 @@ body, html {
   text-align: center;
   /*box-shadow: inset -15px 0 20px -15px #77AEF4;*/
 }
-.aside1 > .nav > li > a {
+
+.aside1>.nav>li>a {
   padding-left: 0px;
   padding-right: 0px;
   border-radius: 0px;
@@ -37,12 +43,14 @@ body, html {
 
 }
 
-.aside1> .nav > li > a:hover {
-  color:#fff;
+.aside1>.nav>li>a:hover {
+  color: #fff;
   background-color: #16a085;
 }
 
-.aside1 > .nav-pills>li.active>a ,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus {
+.aside1>.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
   color: #fff;
   /*background-color: #fafaf6;*/
   /*background-image: url(/public/img/body_bg.jpg);*/
@@ -54,15 +62,18 @@ body, html {
   /*height: 90px;*/
   border: 0px solid #fff;
 }
+
 .aside1_bottom {
   width: 100%;
   position: absolute;
   bottom: 0px;
   left: 0px;
 }
-.aside1_bottom > .table {
+
+.aside1_bottom>.table {
   margin-bottom: 0px;
 }
+
 /* 中部目录栏 */
 .aside2 {
   /*background-color: #fafaf6;*/
@@ -85,6 +96,7 @@ body, html {
 
   /*background-image: url(/public/img/bg_lines1.jpg);*/
 }
+
 .aside3-title {
   background-color: #f5f5f5;
   /*background-image: url(/public/img/bg_grid.jpg);*/
@@ -95,77 +107,95 @@ body, html {
   text-align: center;
   color: #303030;
 }
+
 .aside3-content {
-/*  padding-left: 40px;
+  /*  padding-left: 40px;
   padding-right: 40px;
 */
   padding: 0 5% 0 5%;
   color: #656565;
   line-height: 1.42857143;
 }
+
 #content {
   font-size: 18px;
 }
 
-#content h2{
+#content h2 {
   line-height: 2;
-  color:black;
+  color: black;
   font-size: 36px;
   background: #e5f7f3;
 }
 
-#content h3{
+#content h3 {
   font-size: 24px;
 }
-#content h4{
+
+#content h4 {
   font-size: 16px;
 }
-#content h5{
-    font-size: 14px;
-}
-#content h6{
-    font-size: 12px;
+
+#content h5 {
+  font-size: 14px;
 }
 
-#content h3, #content h4, #content h5, #content h6{
+#content h6 {
+  font-size: 12px;
+}
+
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
   background: #f5f5f5;
-  color:black;
+  color: black;
   line-height: 2;
 }
 
-a.title_in_contend{
+a.title_in_contend {
   color: black
 }
 
-#content td, th{
-  border:1px solid #aaa;
+#content td,
+th {
+  border: 1px solid #aaa;
 }
-#content p{
+
+#content p {
   padding-top: 10px;
   margin-top: 10px;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-#content hr{
-  height:10px;
-  border:none;
-  border-top:10px groove skyblue;
+
+#content hr {
+  height: 10px;
+  border: none;
+  border-top: 10px groove skyblue;
 }
-#content strong{
+
+#content strong {
   color: red;
 }
+
 blockquote p {
   font-size: 20px;
   color: #a15a5a;
 }
+
 /* 其他配置 */
 .center {
   text-align: center;
 }
-.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
   color: #fff;
   background-color: #303030;
 }
+
 /* 显示评论按钮 */
 .show-commend {
   width: 100%;
@@ -173,42 +203,45 @@ blockquote p {
 }
 
 
-#page-content td, th{
-  border:1px solid #aaa;
+#page-content td,
+th {
+  border: 1px solid #aaa;
 }
 
 
 
 
- /* 代码黏贴板 */
- pre.highlight{
-   position: relative;
- }
-  pre.highlight > button{
-    position: absolute;
-    right: 1.2rem;
-    top: 1.2rem;
-  }
- /* 鼠标不悬浮时的样子 */
- pre.highlight > button {
-   opacity: 0.7;
-   background: #000000;
-   color: #e5f7f3;
- }
+/* 代码黏贴板 */
+pre.highlight {
+  position: relative;
+}
+
+pre.highlight>button {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.2rem;
+}
+
+/* 鼠标不悬浮时的样子 */
+pre.highlight>button {
+  opacity: 0.7;
+  background: #000000;
+  color: #e5f7f3;
+}
+
 /* 鼠标悬浮 */
- pre.highlight:hover > button {
-   opacity: 1;
-   background: #000000;
+pre.highlight:hover>button {
+  opacity: 1;
+  background: #000000;
+  color: #1abc9c;
+}
 
-   color: #1abc9c;
- }
-
- pre.highlight > button:active,
- pre.highlight > button:focus {
-   opacity: 1;
-   background: #000000;
-   color: #FF0000;
- }
+pre.highlight>button:active,
+pre.highlight>button:focus {
+  opacity: 1;
+  background: #000000;
+  color: #FF0000;
+}
 
 /* end:代码黏贴版 */
 
