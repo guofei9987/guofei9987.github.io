@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>{{ page.title }} | {{ site.title }}</title>
@@ -8,28 +9,30 @@
 
 
     <!-- LaTeX支持 -->
-<link rel="stylesheet" href="/public/katex/katex.min.css">
-<script defer src="/public/katex/katex.min.js"></script>
-<script defer src="/public/katex/auto-render.min.js"  crossorigin="anonymous"
-    onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="/public/katex/katex.min.css">
+    <script defer src="/public/katex/katex.min.js"></script>
+    <script defer src="/public/katex/auto-render.min.js" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
 
 
 </head>
+
 <body>
-    <button id="mindmap-button" onclick="buttonMindmap">↻</button>
+    <button id="mindmap-button" onclick="buttonMindmap()">↻</button>
 
-{{ content }}
+    {{ content }}
 
 
-<script src="/public/mindmap/mindmap.js"></script> 
+    <script src="/public/mindmap/mindmap.js"></script>
 
-<script>
-    window.onload=function(){
-        addMindmap();
-        addStickyDiv();
-    }
-</script>
+    <script>
+        window.onload = function () {
+            addMindmap();
+            addStickyDiv();
+        }
+    </script>
 
 
 </body>
+
 </html>
