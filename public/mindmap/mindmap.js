@@ -6,7 +6,23 @@ function addMindmap() {
     outerUls.forEach(ul => {
         ul.classList.add('mindmap');
     });
+}
 
+function removeMindmap() {
+    const outerUls = document.querySelectorAll('ul:not(ul ul)');
+    outerUls.forEach(ul => {
+        ul.classList.remove(ul.classList.item(0));
+    });
+}
+
+
+function buttonMindmap() {
+    const ul = document.querySelector('ul:not(ul ul)');
+    if (ul.classList.length > 0) {
+        removeMindmap();
+    } else {
+        addMindmap();
+    }
 }
 
 
