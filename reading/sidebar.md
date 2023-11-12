@@ -4,31 +4,25 @@
 </a>
 <br>
 <a href="https://github.com/guofei9987/" target='GitHub'>
-❤️ 705
-  <img src="https://img.shields.io/github/followers/guofei9987?label=%20&logoColor=%231abc9c&style=social"  class="img-ronuded avatar" style="border-width:0px; border-color:#000">
+❤️ 708
 </a>
 
 * 1_哲学
-    * [1_西方哲学<sup style = "color:red">45470字<sup>](docs/1_哲学/1_西方哲学.md)
-    * [2_诸子百家<sup style = "color:red">3380字<sup>](docs/1_哲学/2_诸子百家.md)
-    * [3_佛学<sup style = "color:red">14786字<sup>](docs/1_哲学/3_佛学.md)
+    * [1_西方哲学<sup style = "color:red">49902字<sup>](docs/1_哲学/1_西方哲学.md)
+    * [2_诸子百家与东方哲学<sup style = "color:red">18168字<sup>](docs/1_哲学/2_诸子百家与东方哲学.md)
     * [5_《哲学家们都干了些什么》<sup style = "color:red">17808字<sup>](docs/1_哲学/5_《哲学家们都干了些什么》.md)
     * [《上帝掷骰子吗》<sup style = "color:red">7234字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
-    * [《原则》<sup style = "color:red">13835字<sup>](docs/1_哲学/《原则》.md)
-    * [《苏菲的世界》<sup style = "color:red">4430字<sup>](docs/1_哲学/《苏菲的世界》.md)
+    * [《原则》<sup style = "color:red">13908字<sup>](docs/1_哲学/《原则》.md)
 * 2_历史
     * [1_尤瓦尔赫拉利<sup style = "color:red">38481字<sup>](docs/2_历史/1_尤瓦尔赫拉利.md)
-    * [2_吴晓波<sup style = "color:red">38663字<sup>](docs/2_历史/2_吴晓波.md)
-    * [3_文明演化<sup style = "color:red">5473字<sup>](docs/2_历史/3_文明演化.md)
+    * [2_吴晓波<sup style = "color:red">40365字<sup>](docs/2_历史/2_吴晓波.md)
+    * [3_文明演化<sup style = "color:red">9841字<sup>](docs/2_历史/3_文明演化.md)
     * [4_中国史<sup style = "color:red">2085字<sup>](docs/2_历史/4_中国史.md)
     * [5_世界史<sup style = "color:red">1539字<sup>](docs/2_历史/5_世界史.md)
-    * [6_经济史<sup style = "color:red">2814字<sup>](docs/2_历史/6_经济史.md)
+    * [6_经济史<sup style = "color:red">6348字<sup>](docs/2_历史/6_经济史.md)
     * [7_人物传记<sup style = "color:red">3018字<sup>](docs/2_历史/7_人物传记.md)
-    * [8_企业传记<sup style = "color:red">3033字<sup>](docs/2_历史/8_企业传记.md)
+    * [8_企业传记<sup style = "color:red">7990字<sup>](docs/2_历史/8_企业传记.md)
     * [J_日本专题<sup style = "color:red">7663字<sup>](docs/2_历史/J_日本专题.md)
-    * [《浪潮之巅》<sup style = "color:red">4957字<sup>](docs/2_历史/《浪潮之巅》.md)
-    * [《西方博弈往事》<sup style = "color:red">3534字<sup>](docs/2_历史/《西方博弈往事》.md)
-    * [其它<sup style = "color:red">3815字<sup>](docs/2_历史/其它.md)
 * 3_1_金融学硕士
     * [1_微观经济学<sup style = "color:red">2280字<sup>](docs/3_1_金融学硕士/1_微观经济学.md)
     * [2_宏观经济学<sup style = "color:red">5239字<sup>](docs/3_1_金融学硕士/2_宏观经济学.md)
@@ -51,7 +45,9 @@
     * [5_凯文凯利<sup style = "color:red">15443字<sup>](docs/3_社科/5_凯文凯利.md)
     * [6_博弈论<sup style = "color:red">639字<sup>](docs/3_社科/6_博弈论.md)
     * [7_资本论<sup style = "color:red">2578字<sup>](docs/3_社科/7_资本论.md)
+    * [8_房子<sup style = "color:red">195字<sup>](docs/3_社科/8_房子.md)
     * [9_人口<sup style = "color:red">2055字<sup>](docs/3_社科/9_人口.md)
+    * [《人口大逆转》<sup style = "color:red">628字<sup>](docs/3_社科/《人口大逆转》.md)
     * [《洞穴奇案》<sup style = "color:red">1763字<sup>](docs/3_社科/《洞穴奇案》.md)
     * [《贫穷的本质》<sup style = "color:red">590字<sup>](docs/3_社科/《贫穷的本质》.md)
     * [其它书<sup style = "color:red">781字<sup>](docs/3_社科/其它书.md)
@@ -85,7 +81,7 @@
     * [2_武志红<sup style = "color:red">1206字<sup>](docs/7_心理学/2_武志红.md)
     * [5_心理学读物<sup style = "color:red">759字<sup>](docs/7_心理学/5_心理学读物.md)
     * [《心流》<sup style = "color:red">1581字<sup>](docs/7_心理学/《心流》.md)
-    * [心理学实验<sup style = "color:red">5798字<sup>](docs/7_心理学/心理学实验.md)
+    * [心理学实验<sup style = "color:red">5969字<sup>](docs/7_心理学/心理学实验.md)
     * [情商<sup style = "color:red">1675字<sup>](docs/7_心理学/情商.md)
     * [行为心理学<sup style = "color:red">986字<sup>](docs/7_心理学/行为心理学.md)
 * 8_管理
@@ -97,6 +93,7 @@
     * [目标管理<sup style = "color:red">4701字<sup>](docs/8_管理/目标管理.md)
     * [詹姆斯柯林斯<sup style = "color:red">3386字<sup>](docs/8_管理/詹姆斯柯林斯.md)
     * [项目管理<sup style = "color:red">4683字<sup>](docs/8_管理/项目管理.md)
+    * [鸡汤<sup style = "color:red">104字<sup>](docs/8_管理/鸡汤.md)
 * 9_文学
     * [刘慈欣<sup style = "color:red">6818字<sup>](docs/9_文学/刘慈欣.md)
     * [历史小说<sup style = "color:red">3030字<sup>](docs/9_文学/历史小说.md)
@@ -109,6 +106,8 @@
     * [阿西莫夫<sup style = "color:red">36字<sup>](docs/9_文学/阿西莫夫.md)
 * A_文艺
     * [摄影<sup style = "color:red">2296字<sup>](docs/A_文艺/摄影.md)
+    * [游戏<sup style = "color:red">1808字<sup>](docs/A_文艺/游戏.md)
+    * [电影<sup style = "color:red">316字<sup>](docs/A_文艺/电影.md)
     * [茶<sup style = "color:red">1108字<sup>](docs/A_文艺/茶.md)
 * G_沟通
     * [做<sup style = "color:red">1831字<sup>](docs/G_沟通/做.md)
@@ -124,8 +123,8 @@
     * [健康管理师1<sup style = "color:red">20213字<sup>](docs/H_健康/健康管理师1.md)
     * [吃<sup style = "color:red">90字<sup>](docs/H_健康/吃.md)
     * [外形美<sup style = "color:red">394字<sup>](docs/H_健康/外形美.md)
-    * [大脑<sup style = "color:red">2152字<sup>](docs/H_健康/大脑.md)
-    * [求生<sup style = "color:red">1142字<sup>](docs/H_健康/求生.md)
+    * [大脑<sup style = "color:red">2208字<sup>](docs/H_健康/大脑.md)
+    * [求生<sup style = "color:red">1254字<sup>](docs/H_健康/求生.md)
     * [睡眠<sup style = "color:red">4字<sup>](docs/H_健康/睡眠.md)
     * [锻炼<sup style = "color:red">3374字<sup>](docs/H_健康/锻炼.md)
 * Y_碎片阅读
@@ -133,8 +132,12 @@
     * [大IP<sup style = "color:red">3736字<sup>](docs/Y_碎片阅读/大IP.md)
     * [广播剧<sup style = "color:red">1495字<sup>](docs/Y_碎片阅读/广播剧.md)
     * [文章<sup style = "color:red">3342字<sup>](docs/Y_碎片阅读/文章.md)
-* Z_专业类
-    * [数据安全<sup style = "color:red">2429字<sup>](docs/Z_专业类/数据安全.md)
+* Z_生活
+    * [数据安全<sup style = "color:red">2785字<sup>](docs/Z_生活/数据安全.md)
+    * [整理<sup style = "color:red">286字<sup>](docs/Z_生活/整理.md)
+    * [装修工程<sup style = "color:red">992字<sup>](docs/Z_生活/装修工程.md)
+    * [装修思路<sup style = "color:red">2377字<sup>](docs/Z_生活/装修思路.md)
+    * [驾照考试笔记<sup style = "color:red">4728字<sup>](docs/Z_生活/驾照考试笔记.md)
 
 
 
