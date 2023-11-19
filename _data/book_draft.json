@@ -1,5 +1,14 @@
 [
   {
+    "name": "《美妙的新世界》",
+    "finish_date": "",
+    "author": "",
+    "publisher":"",
+    "score": "❤❤❤",
+    "notes":"",
+    "comments": ""
+  },
+  {
     "name": "《深入浅出密码学》",
     "finish_date": "",
     "author": "",
@@ -7,8 +16,8 @@
     "score": "❤❤❤",
     "notes":"",
     "comments": ""
-  }
-  ,{
+  },
+  {
     "name": "《c缺陷和陷阱》",
     "finish_date": "",
     "author": "",
