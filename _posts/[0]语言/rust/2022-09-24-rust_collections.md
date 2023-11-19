@@ -406,9 +406,10 @@ let str_new: String = str1.chars().filter(|c| c.is_uppercase()).collect();
 
 相互转换：
 ```Rust
-// String::from_utf8(); // 返回 Ok(string)，取得所有权
-String::from_utf8_unchecked() // 要求必须是格式良好的，只能在unsafe中使用
-String::from_utf8_lossy(my_str_u).to_string();
+String::from_utf8(my_str_u.to_vec()); // 接受 Vec<u8>，得到 Result<String, FromUtf8Error>
+String::from_utf8_unchecked(my_str_u.to_vec()) // 接受 Vec<u8>，返回String，只能在unsafe中使用。  
+String::from_utf8_lossy(my_str_u); // 接受 &[u8]，得到 Cow<str>，如果是有效的 utf-8，返回 字符串，否则返回 特殊符号 ？
+
 String::from(my_str);
 // 或者 my_str.to_string
 // 或者 用 format!()，建立新的 String
