@@ -264,23 +264,42 @@ heap 有自己的 iter
 
 
 ```Rust
-// 如何创建 String
+// 创建 String
 let mut string1: String = String::new();
 let string1: String = String::with_capacity(10);
 let string1: String = String::from("hello, Rust 语言");
 
 
-// 如何创建2
+// 创建 &str
 let str1: &str = "hello, world!";
+let str2 = r#"第一行
+第二行
+第三行"#; 
+
+
+// 创建 &[u8] 
+let str_u8: &[u8] = b"hello";
+
 
 // 如何转换
-// String 转 &str
+// String 转 其它格式
 let str1: &str = string1.as_str();
 let str1: &str = &*string1;
+let str1_u8: &[u8] = string1.as_bytes();// 格式良好的 UTF-8
+let str1_vec: Vec<u8> = string1.into_bytes();// 允许格式不良的 UTF-8
+
 
 // &str 转 String
 let string1: String = str1.to_string();
 let string1 = String::from(str1);
+let string1 = format!("{}-{}", str1, str1);
+// &[u8] 转 &str
+let str_u8: &[u8] = str1.as_bytes();
+
+// &[u8] 转 String
+String::from_utf8(str_u8.to_vec()); // 接受 Vec<u8>，得到 Result<String, FromUtf8Error>
+unsafe { String::from_utf8_unchecked(str_u8.to_vec()) } // 接受 Vec<u8>，返回String，只能在unsafe中使用。  
+String::from_utf8_lossy(str_u8); // 接受 &[u8]，得到 Cow<str>，如果是有效的 utf-8，返回 字符串，否则返回 特殊符号 ？
 
 
 // 得到 Iterator
@@ -288,8 +307,10 @@ string1.chars();
 str1.chars();
 string1.bytes();
 str1.bytes();
+```
 
 
+```Rust
 // 添加
 string1.push('a');
 let s_append = "xyz";
@@ -398,32 +419,6 @@ let str_new: String = str1.chars().filter(|c| c.is_uppercase()).collect();
 ```
 
 
-
-不同格式的字符串
-- `String`类型，看上面。
-- `&[u8]`： `let my_str_u: &[u8] = b"hello";`
-- `&str`，字符串切片 : `let my_str: &str = "hello";`
-
-相互转换：
-```Rust
-String::from_utf8(my_str_u.to_vec()); // 接受 Vec<u8>，得到 Result<String, FromUtf8Error>
-String::from_utf8_unchecked(my_str_u.to_vec()) // 接受 Vec<u8>，返回String，只能在unsafe中使用。  
-String::from_utf8_lossy(my_str_u); // 接受 &[u8]，得到 Cow<str>，如果是有效的 utf-8，返回 字符串，否则返回 特殊符号 ？
-
-String::from(my_str);
-// 或者 my_str.to_string
-// 或者 用 format!()，建立新的 String
-
-
-<String>.as_str()
-<String>.as_bytes() // 格式良好的 UTF-8
-<String>.into_bytes() // 允许格式不良的 UTF-8
-
-
-let new_my_str_u: &[u8] = my_str.as_bytes();
-
-// &[u8] 转  &str 不知道咋转
-```
 
 字符串字面量
 

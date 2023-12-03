@@ -57,10 +57,12 @@ Denoise 内部结构：
 
 ![Alt text](/pictures_for_blog/nn/diffusion/6.jpg)
 
-Denoise 内部的结构。它包括3个模块，这3个模块分开训练
+### Denoise 内部的结构
+
+它包括3个模块，这3个模块分开训练
 1. Text Encoder：把一段文字转化为 embedding
 2. Generation Model。
-    - 输入：Text Encoder 产生的 embedding + 杂序
+    - 输入：Text Encoder 产生的 embedding + 杂序图
     - 输出：图片的压缩的版本 latent representation （可以是一个小的缩略图，也可以是一个人看不懂的张量）
 3. Decoder：根据 “图片压缩的版本”，产生一张高清图
     - 如何训练？
