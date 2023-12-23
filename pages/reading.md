@@ -5,6 +5,7 @@ categories:
 tags:
 keywords:
 description:
+permalink: /:title:output_ext
 ---
 
 

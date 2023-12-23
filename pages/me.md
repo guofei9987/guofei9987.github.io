@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 我
-permalink: /about.html
+permalink: /me.html
 ---
 
 ### Hi there 👋
