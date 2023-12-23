@@ -66,6 +66,7 @@ order: 59003
 - 音频水印
 - 视频水印
 - 文本水印
+- 办公软件水印。主要是 Word、Excel、PPT
 - 三维模型：网格水印、3D打印水印
 
 
@@ -76,9 +77,6 @@ order: 59003
 可逆水印
 - 指的是提取水印后，可以无损恢复原始载体
 - 医学、军事、司法图像领域有用。主要用于完整性验证。
-
-
-
 
 ### 从嵌入的通道分类
 
@@ -251,7 +249,12 @@ GIF和BMP的调色板索引是可以随意交换顺序的，如果有N种颜色�
 2. 回声隐藏
 
 
-#### 回声隐藏
+#### 回声水印
+
+项目：
+[![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
+
+
 $f_{new}(t)=f(t)+af(t-\Delta t)$
 - 如果要嵌入0，就取 $\Delta t=k_0$
 - 如果要嵌入1，就取 $\Delta t=k_1$
@@ -317,7 +320,7 @@ Patchwork算法是
 - 水印强度。水印对抗抹除、覆盖的能力。一般与水印的可感知性也是一对 trade off
 - 性能。
 
-鲁棒性，对攻击的鲁棒性，常见攻击：
+鲁棒性，嵌入水印后的载体被攻击后，仍然能提取水印。常见攻击：
 - Geometry Attack 几何攻击
     - Cropping：裁剪
     - Rotation：旋转

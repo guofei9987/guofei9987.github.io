@@ -75,3 +75,108 @@ $$
 
 上面的算式有一项 $u_1xv_1^T$ 实际上就是 $x u_1 v_1^T = x A v_1 v_1^T$ （还要乘以单位化的系数）  
 颠倒过来推导，也可以得到 $u_1u_1^T A$
+
+
+代码
+```
+
+'''
+待替换：
+
+def block_add_wm_slow(self, arg):
+        block, shuffler, i = arg
+        # dct->(flatten->加密->逆flatten)->svd->打水印->逆svd->(flatten->解密->逆flatten)->逆dct
+        wm_1 = self.wm_bit[i % self.wm_size]
+        block_dct = dct(block)
+
+        # 加密（打乱顺序）
+        block_dct_shuffled = block_dct.flatten()[shuffler].reshape(self.block_shape)
+        u, s, v = svd(block_dct_shuffled)
+        s[0] = (s[0] // self.d1 + 1 / 4 + 1 / 2 * wm_1) * self.d1
+        if self.d2:
+            s[1] = (s[1] // self.d2 + 1 / 4 + 1 / 2 * wm_1) * self.d2
+
+        block_dct_flatten = np.dot(u, np.dot(np.diag(s), v)).flatten()
+        block_dct_flatten[shuffler] = block_dct_flatten.copy()
+        return idct(block_dct_flatten.reshape(self.block_shape))
+'''
+
+import numpy as np
+from numpy.linalg import svd
+
+d1 = 36
+
+
+def algo_old(block_dct_shuffled, wm_1):
+    u, s, v = svd(block_dct_shuffled)
+
+    s[0] = (s[0] // d1 + 1 / 4 + 1 / 2 * wm_1) * d1
+    return np.dot(u, np.dot(np.diag(s), v))
+
+
+# %%
+
+
+from numba import jit
+
+# 精度
+precision = 1e-8
+
+
+@jit(nopython=True)
+def get_eig(A):
+    # 精度
+    x = np.random.rand(4, 1)
+    y_norm_old = 0
+
+    for i in range(20):
+        y = A @ x
+        y_norm = np.linalg.norm(y)
+        x = y / y_norm
+
+        if -precision < y_norm - y_norm_old < precision:
+            # 特征值，特征向量
+            return (x.T @ A @ x)[0, 0], x
+
+        y_norm_old = y_norm
+
+    return (x.T @ A @ x)[0, 0], x
+
+
+@jit(nopython=True)
+def block_add_wm3(A, wm_1):
+    lam, u1 = get_eig(A @ A.T)
+    lam = np.sqrt(lam)
+
+    v1 = A.T @ u1
+    v1 = v1 / np.linalg.norm(v1)
+
+    add = (lam // d1 + 1 / 4 + 1 / 2 * wm_1) * d1 - lam
+    return A + (u1 @ v1.T) * add
+
+
+block_dct_shuffled = np.random.rand(4, 4) * 255
+
+wm_1 = 0
+res1 = block_add_wm3(block_dct_shuffled, wm_1)
+res2 = algo_old(block_dct_shuffled, wm_1)
+
+assert (np.abs(res1 - res2)).max() < 1e-6
+
+import datetime
+
+num = 10000
+A_ = np.random.rand(4, 4) * 255
+A = np.sqrt(A_ @ A_.T)
+
+start_time = datetime.datetime.now()
+for i in range(num):
+    block_add_wm3(block_dct_shuffled, wm_1)
+print(datetime.datetime.now() - start_time)
+
+start_time = datetime.datetime.now()
+for i in range(num):
+    algo_old(block_dct_shuffled, wm_1)
+print(datetime.datetime.now() - start_time)
+
+```
