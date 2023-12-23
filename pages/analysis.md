@@ -13,8 +13,6 @@ title: 分析
 
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
 
-[![rank](https://gf99.github.io/a/data/rank.svg)](https://gitstar-ranking.com/guofei9987)
-
 
 [![Star History Chart](https://api.star-history.com/svg?repos=guofei9987/blind_watermark,guofei9987/scikit-opt&type=Date)](https://star-history.com/#guofei9987/blind_watermark&guofei9987/scikit-opt&Date)
 
