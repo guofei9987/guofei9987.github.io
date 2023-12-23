@@ -58,10 +58,9 @@
                 <a class="list-group-item-lay pjaxlink" href="/pages/certification.html">证书和著作</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/reading.html">读书笔记库</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/good.html">精选技术博客</a>
-                  <a class="list-group-item-lay pjaxlink" href="/2013/01/01/Book-List-All.html">读完的书单（{{ site.data.book_list.size }} 本）</a>
                   <a class="list-group-item-lay pjaxlink" href="/pages/slides.html">演示</a>
                   {% for post in category[1] %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{ post.title }}</a>
                   {% endfor %}
                 {% endif %}
 
