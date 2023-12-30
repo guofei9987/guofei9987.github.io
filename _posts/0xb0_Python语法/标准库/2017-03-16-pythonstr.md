@@ -171,14 +171,41 @@ string.replace("o","a")#把string中的o替换成a
 
 ## 编码问题
 ```py
-str(1)#数字转字符
-int('1')#字符转数字
-int('51',base=14)#指定进制字符转十进制
-ord("A")#字符转ascii码
-chr(97)#ascii码转字符
+str(1)  # 数字转字符。返回 "1"
+int('19')  # 字符转数字。返回 19
+int('51', base=14)  # 指定进制字符转十进制。返回 14 进制下的 "51" 对应的值，也就是 71
+
+ord("A")  # 字符的 unicode 码，（小于255 则与 ascii码 一致）。返回 65
+chr(97)  # unicode 转字符。返回 "a"
+
+"你好abc".encode("utf-8") # str 对应的 utf-8 字节码
 ```
 
-### 字符串转 byte 类型（encode & decode）
+关于 **unicode** 和 **utf-8**
+- unicode 是一个字符集，它把全世界所有的字符，每个字符都提供唯一的编码
+- utf-8 是一种编码方案。
+    - 它的值与 unicode 不一样。
+    - 它是 unicode 的一种编码方案。
+    - 它是可变长度的编码方案。使用1到4个字节表示一个 unicode 字符。使得编码兼容 ASCII 字符集
+- utf-8 的填充规则是：
+    - 1字节：表示范围 `U+0000` 至 `U+007F`，字节最高位为 0。它与 ASCII 码一致。包括 基本拉丁字母、数字、符号
+    - 2字节：表示范围 `U+0080` 至 `U+07FF`，第一个字节以 110 开头，第二个字节以 10 开头。表示 补充拉丁字母、希腊字母、西里尔字母等
+    - 3字节：表示范围是 `U+0800` 至 `U+FFFF`，第一个字节以 1110 开头，第二个字节以 10 开头，第三个字节以 10 开头。包括大部分中文、日文、韩文
+    - 4字节：表示范围是 `U+10000` 至 `U+10FFFF`，第一个字节以 11110 开头，第2、3、4 字节以 10 开头。表示少用字符、古文字、表情符号等
+- 以字符 `"中"` 为例
+    - 它的 Unicode 编码是 `U+4E2D`。也就是说，这个字符对应的 Unicode 码的十六进制数为 `0x4E2D`，对应的二进制是 `0100 1110 0010 1101`
+    - 它的范围落在了 3 字节范围内，根据编码规则，它对应的 UTF-8 编码为 `1110xxxx 10xxxxxx 10xxxxxx`
+    - 正好可以填入 16 个空，用二进制填入，得到 `11100100 10111000 10101101`，读经的 bytes 序列为 `b'\xe4\xb8\xad'`
+
+
+
+
+
+
+### bytes 类型
+
+bytes 类型 和 str
+
 ```py
 s = "中文字符串hello"  # 默认是 utf-8 格式
 bs = s.encode(encoding="utf-8", errors='strict')  # utf-8 转为 byte 格式
@@ -188,32 +215,39 @@ bs.decode(encoding="utf-8", errors='strict')  # byte 格式 转为 utf-8
 # encoding 可以是 "utf-8", "utf-16", "ascii", "ISO-8859-1" 等格式
 # errors 默认是 'strict'，代表编码错误抛出错误。'replace' 代表错误的位置换成问号。'ignore' 代表错误的位置跳过去
 
-# 返回byte 格式，print出来类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这样，这是utf-8的样子
+# 返回byte 格式，类似 b'\xe4\xbd\xa0\xe5\xa5\xbd\xe5\x90\x97\xef\xbc\x8c123 hello' 这是utf-8的样子
 # 假如是这样的 '%u8a84%u12bc' 这是 unicode 编码，每段4位16进制数对应ascii码，例如 chr(int('12cd', base=16))
-
-# byte格式转16进制:
-s_hex = bs.hex()
-
-# byte转2进制
-s_bin = bin(int(s_hex, 16))
 ```
-- ascii码 7个二进制位
-- Unicode 每个字符2个字节（4位16进制）
-- UTF-8：可变长度的unicode，英文对应单字节，中文对应3字节
-
-在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
 
 
-### Bytes 类型转二进制、十六进制
+bytes 类型 和 16进制、2进制
+```python
+# bytes -> 16进制（字符串格式）:
+s_hex = bs.hex()
+# 结果："e4b8ade69687e5ad97e7aca6e4b8b268656c6c6f"
 
-bytes 和 int 类型互相转换
+# 16 进制 -> bytes
+bytes.fromhex("e4b8ade69687e5ad97e7aca6e4b8b268656c6c6f")
+
+# (不常用) bytes -> 16进制 -> int -> 2进制
+s_bin = bin(int(s_hex, 16))
+# 不常用的原因是，这里面 int 有可能很大。这对于 python 是可以的，但在别的语言中没有这个
+```
+
+
+
+bytes 和 int
 
 ```python
 a = 255000
-b = a.to_bytes(length=4, byteorder='big')
+# int -> bytes
+b = a.to_bytes(length=4, byteorder='big') 
 # length 指定输出为多少个字节
-# byteorder 可以是 big 或者 small
+# byteorder 可以是 big 或者 little
+# big：二进制高位在前，低位在后。符合阅读习惯
+# little：低位在前，高位在后。历史上某些运算带来效率提升。
 
+# bytes -> int
 int.from_bytes(b, byteorder='big')
 # 255000
 ```
@@ -222,25 +256,59 @@ int.from_bytes(b, byteorder='big')
 
 ### Bytes 和 二进制、十六进制互转
 
+16进制
 ```python
-s = '这是一个字符串'
+s = '中文字符串hello'
 
-# 字符串转十六进制
+# 字符串 -> 16进制
 s_hex = s.encode('utf-8').hex()
 # >'e8bf99e698afe4b880e4b8aae5ad97e7aca6e4b8b2'
-# 十六进制转字符串
+
+# 16进制 -> 字符串
 bytes.fromhex(s_hex).decode('utf-8')
 # >'这是一个字符串'
+```
 
-# 转2进制
-s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
-s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
-# struct.pack('>B', n) 可以把一个 0～255 的数字转为一个比特的 Bytes 类型
+2进制
 
-s_bin = ''.join(s_bin)
+```python
+s = '中文字符串hello'
+
+# str -> 二进制
+s_bin = ''.join([format(i, '08b') for i in s.encode('utf-8')])
+
+# 二进制 -> str
 s_out = b''.join([struct.pack('>B', int(s_bin[i * 8:i * 8 + 8], base=2)) for i in range(len(s_bin) // 8)])
+s_out.decode('utf-8')
 
 
+# 解释：
+s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
+# ['11100100', '10111000', '10101101' ... ]
+
+s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
+# 解释：struct.pack('>B', n) 可以把一个 0～255 的数字转为一个比特的 Bytes 类型
+```
+
+其它方式0：
+```python
+[i for i in s] # 这里面的 i 是字符
+# ['中', '文', '字', '符', '串', 'h', 'e', 'l', 'l', 'o']
+
+[ord(i) for i in s] # unicode 编码，关于 unicode 的解释参考前面
+# [20013, 25991, 23383, 31526, 20018, 104, 101, 108, 108, 111]
+
+[bin(i) for i in s.encode('utf-8')]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
+[format(i, 'b') for i in s.encode('utf-8')]  # 同样长短不齐 ['11100100', '1101']
+
+[i for i in s.encode('utf-8')] #  0-255 组成的列表
+# [228, 184, 173, ... ]
+```
+
+
+
+其它方式1:转为一个大 int，然后转二进制（好像没什么实用场景）
+```python
 # 转2进制
 s_bin = bin(int(s.encode('utf-8').hex(), base=16))[2:]
 # 开头的0会被略去，某些其操作导致错位而出错，用这个补救：
@@ -249,15 +317,9 @@ s_out = bytes.fromhex(hex(int(s_bin, base=2))[2:]).decode('utf-8', errors='repla
 ```
 
 
-
-都需要先把字符串转成 `bytes` 类型，然后转二进制或者转回来
-
-字符串列表转n进制：  
-字符--`ord`-->10进制整型--`bin/hex`-->2/10进制文本
-
-
+其它方式2:用 unicode 编码，而不是 utf-8 编码（好像没什么实用场景）
 ```python
-s = '这是一个字符串'
+s = '中文字符串hello'
 
 # 字符串转10进制列表
 s_dec = [ord(c) for c in s]
@@ -269,38 +331,8 @@ s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 [hex(ord(c)) for c in s]
 ```
 
-
-
-**用 for 循环，原理清晰**
-
-不推荐(不encode的话，遍历的是字符，汉字对应3个字节)
+其它方式3，用 bytes和 bytearray，而不是 struct :
 ```python
-s = '你tst1'
-# 字符串转10进制列表
-s_dec = [ord(c) for c in s]
-# 字符串转16进制列表
-[hex(ord(c)) for c in s]
-# 字符串转2进制列表(不带 0x )
-s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制，!开头的0会被忽略
-```
-
-
-2:所以一定要encode
-```python
-list(s.encode('utf-8'))  # [228, 189, 160, 116, 115, 116, 49]
-
-[bin(i) for i in s.encode('utf-8')]  # 得到二进制list，但是长短不齐，['0b11100100', '0b1101']
-[format(i, 'b') for i in s.encode('utf-8')]  # 同上 ['11100100', '1101']
-
-s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
-s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
-
-s_bin = ''.join(s_bin)
-s_out = b''.join([struct.pack('>B', int(s_bin[i * 8:i * 8 + 8], base=2)) for i in range(len(s_bin) // 8)])
-
-
-# %% 或者不用struct，而是用bytes
-
 a = [int(i, base=2) for i in s_bin]
 
 bytearray(a).decode('utf-8')  # bytearray 是可变类型
@@ -309,7 +341,7 @@ bytes(a).decode('utf-8')  # 是不可变类型
 
 
 
-3借助numpy
+其它方式4:借助numpy
 
 ```python
 import struct
