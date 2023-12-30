@@ -278,6 +278,21 @@ s = '中文字符串hello'
 s_bin = ''.join([format(i, '08b') for i in s.encode('utf-8')])
 
 # 二进制 -> str
+s_out = bytes([int(s_bin[i * 8:i * 8 + 8], base=2) for i in range(len(s_bin) // 8)])
+s_out.decode('utf-8')
+
+# 解释：
+s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
+# ['11100100', '10111000', '10101101' ... ]
+s_out = bytes([int(i, base=2) for i in s_bin])
+# 先转化为 [228, 184, 173, ... ] 这种形式，然后转为 bytes
+
+# bytearray 是可变类型，bytes 是不可变类型
+bytearray([int(i, base=2) for i in s_bin]).decode('utf-8') # 
+```
+
+其它方式1：使用 struct 也可以把 int 转为 bytes
+```python
 s_out = b''.join([struct.pack('>B', int(s_bin[i * 8:i * 8 + 8], base=2)) for i in range(len(s_bin) // 8)])
 s_out.decode('utf-8')
 
@@ -287,10 +302,29 @@ s_bin = [format(i, '08b') for i in s.encode('utf-8')]  # 8位2进制格式
 # ['11100100', '10111000', '10101101' ... ]
 
 s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
-# 解释：struct.pack('>B', n) 可以把一个 0～255 的数字转为一个比特的 Bytes 类型
+# struct.pack('>B', n) 可以把一个 0～255 的数字转为一个比特的 Bytes 类型
 ```
 
-其它方式0：
+其它方式2，借助 numpy 很方便:
+
+```python
+import struct
+import numpy as np
+
+s = '中文字符串hello'
+
+# 转二进制
+seq = np.array(list(s.encode('utf-8')), dtype=np.uint8)  # 0~255 的数列
+content_bits = np.unpackbits(seq)  # 0-1 的数列
+# 或者：np.unpackbits(np.frombuffer(s.encode('utf=8'), dtype='>B'))
+
+# 二进制转字符串
+nums = np.packbits(content_bits)# 0～255 的数列
+content_decode = bytes(nums)
+content_decode.decode('utf-8')
+```
+
+其它方式3：
 ```python
 [i for i in s] # 这里面的 i 是字符
 # ['中', '文', '字', '符', '串', 'h', 'e', 'l', 'l', 'o']
@@ -307,7 +341,7 @@ s_out = b''.join([struct.pack('>B', int(i, base=2)) for i in s_bin])
 
 
 
-其它方式1:转为一个大 int，然后转二进制（好像没什么实用场景）
+其它方式4:转为一个大 int，然后转二进制（好像没什么实用场景）
 ```python
 # 转2进制
 s_bin = bin(int(s.encode('utf-8').hex(), base=16))[2:]
@@ -317,7 +351,7 @@ s_out = bytes.fromhex(hex(int(s_bin, base=2))[2:]).decode('utf-8', errors='repla
 ```
 
 
-其它方式2:用 unicode 编码，而不是 utf-8 编码（好像没什么实用场景）
+其它方式5:用 unicode 编码，而不是 utf-8 编码（好像没什么实用场景）
 ```python
 s = '中文字符串hello'
 
@@ -330,37 +364,6 @@ s_bin = [bin(ord(c))[2:] for c in s]  # 字符串转二进制
 # 字符串转16进制列表
 [hex(ord(c)) for c in s]
 ```
-
-其它方式3，用 bytes和 bytearray，而不是 struct :
-```python
-a = [int(i, base=2) for i in s_bin]
-
-bytearray(a).decode('utf-8')  # bytearray 是可变类型
-bytes(a).decode('utf-8')  # 是不可变类型
-```
-
-
-
-其它方式4:借助numpy
-
-```python
-import struct
-import numpy as np
-
-s = '你tst1'
-
-# 转二进制
-seq = np.array(list(s.encode('utf-8')), dtype=np.uint8)
-content_bits = np.unpackbits(seq)
-# 或者：np.unpackbits(np.frombuffer(s.encode('utf=8'), dtype='>B'))
-
-# 二进制转字符串
-nums = np.packbits(content_bits)
-content_decode = b''.join([struct.pack('>B', n) for n in nums])
-
-content_decode.decode('utf-8')
-```
-
 
 
 ### 字符串压缩
