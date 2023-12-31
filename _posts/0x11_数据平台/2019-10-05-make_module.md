@@ -219,6 +219,17 @@ python setup.py sdist bdist_wheel
 python -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 ```
 
+免密码（按照步骤来）：
+1. 在 pypi.org 生成 api
+2. 编辑 `~/.pypirc`
+```
+[pypi]
+username = __token__
+password = <your token>
+```
+3. `chmod 600 ~/.pypirc` 来更改其权限
+4. 使用 `python -m twine upload dist/*` 发布项目
+
 
 
 step3： 享受成功！

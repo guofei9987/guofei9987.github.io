@@ -288,7 +288,7 @@ s_out = bytes([int(i, base=2) for i in s_bin])
 # 先转化为 [228, 184, 173, ... ] 这种形式，然后转为 bytes
 
 # bytearray 是可变类型，bytes 是不可变类型
-bytearray([int(i, base=2) for i in s_bin]).decode('utf-8') # 
+bytearray([int(i, base=2) for i in s_bin]).decode('utf-8')
 ```
 
 其它方式1：使用 struct 也可以把 int 转为 bytes
