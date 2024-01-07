@@ -242,7 +242,9 @@ $pip install scikit-opt
 - `sdist` 分发的是源代码，格式是 `*.tar.gz` 或者 `*.zip` 文件，包含源文件和 `setup.py`，用户安装时先编译
     - 如何生成 zip 文件 `python setup.py sdist --formats=zip`
     - 如何生成 gz 和 zip 文件 `python setup.py sdist --formats=gztar,zip`
+    - 如果包含 C/Rust 源码，不会在开发者的机器上编译，而是在用户 `pip install xxx` 时编译
 - `bdist_wheel` 分发的是二进制 wheel 文件，是 `*.whl` 文件，包含已编译二进制文件和相关元数据。用户安装时不需要编译。
+    - 如果包含 C/Rust 源码，你必需按照目标用户的操作系统类型编译多份
 
 
 
