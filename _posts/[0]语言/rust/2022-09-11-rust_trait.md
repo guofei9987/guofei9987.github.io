@@ -460,3 +460,45 @@ fn main() {
     }
 }
 ```
+
+
+策略模式：
+
+```
+trait Strategy {
+    fn execute(&self);
+}
+
+struct Strategy1;
+
+impl Strategy for Strategy1 {
+    fn execute(&self) {
+        println!("执行策略1");
+    }
+}
+
+struct Strategy2;
+
+impl Strategy for Strategy2 {
+    fn execute(&self) {
+        println!("执行策略2");
+    }
+}
+
+struct Context {
+    strategy: Box<dyn Strategy>,
+}
+
+impl Context {
+    fn new(strategy: Box<dyn Strategy>) -> Self {
+        Self { strategy }
+    }
+
+    fn set_strategy(&mut self, strategy: Box<dyn Strategy>) {
+        self.strategy = strategy;
+    }
+    fn execute_strategy(&self) {
+        self.strategy.execute();
+    }
+}
+```
