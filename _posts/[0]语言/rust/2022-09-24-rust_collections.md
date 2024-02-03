@@ -846,6 +846,10 @@ assert_eq!(a.iter().fold(i32::min_value(), |m, &i| std::cmp::max(m, i)), 10);//�
 ### collect
 
 - collect
+```
+let hash_set = (1..5).collect::<HashSet<i32>>();
+let hash_map = (1..5).map(|x| (x, x * x)).collect::<HashMap<i32, i32>>();
+```
 - FromIterator
 - `std::iter::Extend`：一个集合拼接另一个集合
 - partition：把迭代器分成两个集合（注意，不是分成两个迭代器，因为那样有权限问题）
