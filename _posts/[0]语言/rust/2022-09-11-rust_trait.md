@@ -390,3 +390,73 @@ let func2 = |num| { num + 1 };
 ```
 
 更多：https://weread.qq.com/web/reader/d733256071eeeed9d7322fd
+
+
+## 单例模式 Singleton
+
+```Rust
+use std::sync::Mutex;
+use lazy_static::lazy_static;
+
+struct Singleton {
+    data: i32,
+}
+
+
+impl Singleton {
+    fn instance() -> &'static Mutex<Singleton> {
+        lazy_static! {
+            static ref INSTANCE: Mutex<Singleton> = Mutex::new(Singleton{data:0});
+        }
+        &INSTANCE
+    }
+}
+
+
+#[test]
+fn test1() {
+    let singleton1 = Singleton::instance();
+    let singleton2 = Singleton::instance();
+
+    singleton1.lock().unwrap().data = 5;
+    println!("{}", singleton2.lock().unwrap().data);
+}
+```
+
+- Mutex 是为了保证线程安全，如果不需要线程安全，也可以不用它
+- 也可以用 `std::sync::Once`，优点是原生，缺点是代码稍复杂
+
+
+
+
+## Box-dyn 把不同的 struct 放到同一个Array中
+
+```rust
+// Box<dyn MyTrait>
+trait MyTrait {
+    fn my_trait_method(&self);
+}
+​
+struct MyStruct1 {}
+impl MyTrait for MyStruct1 {
+    fn my_trait_method(&self) {
+        println!("MyStruct1");
+    }
+}
+​
+struct MyStruct2 {}
+impl MyTrait for MyStruct2 {
+    fn my_trait_method(&self) {
+        println!("MyStruct2");
+    }
+}
+​
+fn main() {
+    let mut vec: Vec<Box<dyn MyTrait>> = Vec::new();
+    vec.push(Box::new(MyStruct1 {}));
+    vec.push(Box::new(MyStruct2 {}));
+    for item in &vec {
+        item.my_trait_method();
+    }
+}
+```
