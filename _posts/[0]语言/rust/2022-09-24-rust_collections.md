@@ -846,7 +846,7 @@ assert_eq!(a.iter().fold(i32::min_value(), |m, &i| std::cmp::max(m, i)), 10);//å
 ### collect
 
 - collect
-```
+```rust
 let hash_set = (1..5).collect::<HashSet<i32>>();
 let hash_map = (1..5).map(|x| (x, x * x)).collect::<HashMap<i32, i32>>();
 ```
