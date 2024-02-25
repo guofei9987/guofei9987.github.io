@@ -335,7 +335,8 @@ string1.clear(); // 清空
 // string1.drain(); //跟其他的一样
 
 
-// 取数
+
+// 获取长度
 string1.len(); // 作为 bytes 类型的长度，1个汉字长度为3
 string1.chars().count(); // 作为字符串的长度，1个汉字长度为1
 
@@ -352,6 +353,23 @@ string1.chars().skip(1).take(4).collect();
 // 切片取
 &str1[1..5]
 // 注意：1）必须是借用的形式， 2）序号的标号是按照 bytes 计算的，因此1个汉字对应3个，如果从中文中间切开，会报错
+
+// 查找
+let string1 = "你好1234".to_string();
+string1.ends_with("34"); // 返回 bool 类型
+string1.starts_with("你"); // 返回 bool 类型
+string1.find("1234"); // 返回 Some(usize) 类型，其值是按照 bytes 计算的索引号。只查找第一个。
+string1.rfind("4"); // 返回类型同上，从右边开始查找
+
+// 插入另一个字符串：插入时，idx 对应的字符和之后的字符都放在后面
+let mut s = "Hello, Rust!".to_string();
+let s2 = "world ";
+let idx = 7;
+// 确保索引在字符边界上
+if s.is_char_boundary(idx) {
+    s.insert_str(idx, s2);
+}
+// 另外， s.insert 是插入一个字符
 ```
 
 其它
