@@ -90,3 +90,24 @@ order: 5131
 - 类似的题目
     - 若 $a_n>0, \lim\limits_{n\to \infty} \frac{a_{n+1}}{a_n} = a$，则 $\lim\limits_{n\to\infty}\sqrt[n]{a_n}=a$
     - $a_n>0, \lim\limits_{n\to \infty} a_{n+1}-a_n = a$，则 $\lim\limits_{n\to\infty}\frac{a_n}{n}=a$ **这个结论可以像洛必达法则一样快速解题**
+
+
+## 连续
+
+**一致连续的定义**。$f(x)$ 定义在 $I$ 上，$\forall \varepsilon >0, \exists \delta>0$， 当 $x_1,x_2\in I, \mid x_1 - x_2\mid<\delta$ 时，有 $\mid f(x_1) - f(x_2)\mid <\varepsilon$，则称 $f(x)$ 在 $I$ 上一致连续
+
+一些定理：
+
+$f(x)$ 在 $I$ 上 **不一致连续的充要条件** 是存在 $I$ 上的两个序列 $x_n,y_n$，满足 $\lim\limits_{n\to+\infty}(x_n-y_n)=0$，但是广义极限 $\lim\limits_{n\to+\infty}(f(x_n)-f(y_n))=A\not=0$
+
+**康托定理**： 闭区间上的连续函数一定一致连续
+
+**介值定理** $f(x):[a,b]$ 连续，$\eta \in R$ 介于 $f(a),f(b)$之间，那么 $\exists \xi$ 使得 $f(\xi)=\eta$
+
+
+**最大（小）值定理** $f(x):[a,b]$ 连续，则 $\exists x_1 \in [a,b]$ 使得 $f(x_1)=\max\limits_{x\in[a,b]}f(x)$；同样，$\exists x_2 \in [a,b]$ 使得 $f(x_1)=\min\limits_{x\in[a,b]}f(x)$
+
+
+例题
+- $f(x):[a,b]$连续，求证：$\exists \xi \in (a,b)$，使 $f(\xi)=\frac{1}{n} \sum\limits_{k=1}^n f(x_k)$
+    - 思路：记 $f(x_a)=\min(f(x_k)),f(x_b)=\max(f(x_k))$，那么根据介值定理 $\exists \xi \in [a,b]$（这之前先分类 $a=b$ 等情况）
