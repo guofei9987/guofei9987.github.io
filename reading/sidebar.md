@@ -15,7 +15,7 @@
     * [《原则》<sup style = "color:red">13908字<sup>](docs/1_哲学/《原则》.md)
 * 2_历史
     * [1_文明演化<sup style = "color:red">9841字<sup>](docs/2_历史/1_文明演化.md)
-    * [2_中国史<sup style = "color:red">18148字<sup>](docs/2_历史/2_中国史.md)
+    * [2_中国史<sup style = "color:red">22205字<sup>](docs/2_历史/2_中国史.md)
     * [3_世界史<sup style = "color:red">1539字<sup>](docs/2_历史/3_世界史.md)
     * [4_经济史<sup style = "color:red">6348字<sup>](docs/2_历史/4_经济史.md)
     * [5_尤瓦尔赫拉利<sup style = "color:red">38481字<sup>](docs/2_历史/5_尤瓦尔赫拉利.md)
@@ -23,7 +23,6 @@
     * [7_人物传记<sup style = "color:red">7069字<sup>](docs/2_历史/7_人物传记.md)
     * [8_企业传记<sup style = "color:red">10430字<sup>](docs/2_历史/8_企业传记.md)
     * [J_日本专题<sup style = "color:red">7663字<sup>](docs/2_历史/J_日本专题.md)
-    * [《叫魂》<sup style = "color:red">4063字<sup>](docs/2_历史/《叫魂》.md)
 * 3_1_金融学硕士
     * [1_微观经济学<sup style = "color:red">5094字<sup>](docs/3_1_金融学硕士/1_微观经济学.md)
     * [2_宏观经济学<sup style = "color:red">5239字<sup>](docs/3_1_金融学硕士/2_宏观经济学.md)
