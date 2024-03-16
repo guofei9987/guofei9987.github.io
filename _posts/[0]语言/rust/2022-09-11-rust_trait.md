@@ -291,7 +291,7 @@ struct Point {
 impl fmt::Debug for Point {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "Point:", self.x, self.y)?;
-        write!(f, "{{ x: {}, y: {} }}", self.x, self.y)?;
+        write!(f, "x: {}, y: {}", self.x, self.y)?;
         Ok(())
     }
 }
