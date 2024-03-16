@@ -193,8 +193,12 @@ $\exists e \in X$，使得$\forall x \in X,e  \star  x=x \star e=x$
 - $\cdot$ 对 + 满足分配率，也就是说$x\cdot (y+z)= x \cdot y +x \cdot z$
 
 
-举例：$(Q,+,\cdot)$是一个域
-
+举例：
+- $(Q,+,\cdot)$是一个域，其中 Q 代表有理数集/实数集/复数集
+- p-adic numbers, p 进制数，也就是整数集对 p 取 mod
+- Finite Field（Galois Field）
+   - 素数的幂取模
+   - 可以实现加减乘除，从而可以实现线性代数的一些操作
 
 
 
