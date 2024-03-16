@@ -98,7 +98,7 @@
 * A_文艺
     * [品茶<sup style = "color:red">1108字<sup>](docs/A_文艺/品茶.md)
     * [摄影<sup style = "color:red">2345字<sup>](docs/A_文艺/摄影.md)
-    * [游戏<sup style = "color:red">5632字<sup>](docs/A_文艺/游戏.md)
+    * [游戏<sup style = "color:red">6283字<sup>](docs/A_文艺/游戏.md)
     * [电影<sup style = "color:red">1818字<sup>](docs/A_文艺/电影.md)
     * [电视剧<sup style = "color:red">638字<sup>](docs/A_文艺/电视剧.md)
     * [读诗<sup style = "color:red">1876字<sup>](docs/A_文艺/读诗.md)
@@ -124,12 +124,11 @@
     * [人类必将化身为神<sup style = "color:red">3598字<sup>](docs/Y_碎片阅读/人类必将化身为神.md)
     * [大IP<sup style = "color:red">3736字<sup>](docs/Y_碎片阅读/大IP.md)
     * [广播剧<sup style = "color:red">1495字<sup>](docs/Y_碎片阅读/广播剧.md)
-    * [文章<sup style = "color:red">4376字<sup>](docs/Y_碎片阅读/文章.md)
+    * [文章<sup style = "color:red">4421字<sup>](docs/Y_碎片阅读/文章.md)
 * Z_生活
     * [数据安全<sup style = "color:red">2785字<sup>](docs/Z_生活/数据安全.md)
     * [整理<sup style = "color:red">286字<sup>](docs/Z_生活/整理.md)
-    * [装修工程<sup style = "color:red">992字<sup>](docs/Z_生活/装修工程.md)
-    * [装修思路<sup style = "color:red">2574字<sup>](docs/Z_生活/装修思路.md)
+    * [装修<sup style = "color:red">4376字<sup>](docs/Z_生活/装修.md)
     * [驾照考试笔记<sup style = "color:red">4728字<sup>](docs/Z_生活/驾照考试笔记.md)
 
 
