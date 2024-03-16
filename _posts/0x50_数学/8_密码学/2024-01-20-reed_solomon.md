@@ -8,27 +8,32 @@ description:
 order: 59003
 ---
 
+相关文章：
+- [擦除码](https://www.guofei.site/2024/01/20/reed_solomon.html)
+- [纠错码](https://www.guofei.site/2024/01/21/reed_solomon2.html)
+
+
 ## 介绍
 
 
 | 算法 | 校验位大小 | 特点 | 功能 |
 |--|--|--|--|
+| 奇偶校验码（Parity Code） | 1个 | 算法最简单 | 只能检测奇数个位的错误，无法纠错。方法：在数据后添加一个校验位，使二进制位1的个数为奇数（或偶数） |
 | 汉明码（Hamming Code） | 1个 | 算法简单 | 检测并修正单个位错误；检测双位错误，但不能修正 |
 | 里德-所罗门码（Reed-Solomon Code） | 多个（取决于配置） | 强大的纠错能力，广泛用于CD和DVD、无线通信和卫星通信 | 纠正多个错误。特别擅长突发错误（就是错误集中在较小的区域） |
-| 奇偶校验码（Parity Code） | 1个 | 算法最简单 | 只能检测奇数个位的错误，无法纠错 |
 | 循环冗余校验（Cyclic Redundancy Check, CRC） | 多个（取决于CRC多项式长度） | 检测随机改变 | 检测数据传输或存储中的错误 |
 | 卷积码（Convolutional Code） | 取决于码率和约束长度 | 用于无线通信 | 错误校正用于连续位流 |
 | 涡轮码（Turbo Code） | 取决于码率和内部组件 | 高效率 | 广泛应用于深空通信和移动通信 |
-| LDPC码（Low-Density Parity-Check Code） | 多个（取决于配置） | 接近香农极限 | 用于高速数据传输和数据广播 |
+| LDPC码（Low-Density Parity-Check Code） | 多个（取决于配置） | 接近香农极限 | 广泛用于高速数据传输和数据广播，如蓝光、Wi-Fi |
 | BCH码（Bose-Chaudhuri-Hocquenghem Code） | 多个（取决于配置） | 多位错误修正 | 适用于控制系统和卫星通信 |
-| 极化码（Polar Code） | 取决于码率和长度 | 实现香农极限的一种方法 | 5G通信标准的控制信道编码 |
+| 极化码（Polar Code） | 取决于码率和长度 | 接近香农极限 | 5G通信标准的控制信道编码 |
 | 字符校验和（Checksum） | 可变 | 简单检测 | 检测数据包或文件的完整性 |
 
 
 
 
 
-分类
+Reed-Solomon 有 2 个分类
 - Erasure 擦除码。
     - 功能：若干数据丢失。或者若干数据错误，但知道是哪些数据错误（其实是一回事） 
     - 原始数据 k 组，加上校验码后为 n 组，传输过程中有丢失，只需要剩下的任意 k 组，就可以还原出结果
@@ -39,6 +44,55 @@ order: 59003
     - 应用：QR码、信息传输
 
 
+
+## checksum 实现
+
+把所有的字节做异或，得到的结果是校验位。
+- 如果数据是类似 `Vec<i32>`，也可以使用加法而不是异或
+
+
+```rust
+pub struct CheckSum {}
+
+impl CheckSum {
+    pub fn new() -> Self { Self {} }
+
+    pub fn encode(&self, msg: &[u8]) -> Vec<u8> {
+        let mut res = Vec::with_capacity(msg.len() + 1);
+        res.extend_from_slice(msg);
+        res.push(get_checksum(msg));
+        res
+    }
+
+    pub fn check(&self, msg_with_checksum: &[u8]) -> bool {
+        get_checksum(&msg_with_checksum[..msg_with_checksum.len() - 1]) == msg_with_checksum[msg_with_checksum.len() - 1]
+    }
+}
+
+
+fn get_checksum(msg: &[u8]) -> u8 {
+    msg.iter().fold(0, |acc, &x| acc ^ x)
+}
+
+
+#[cfg(test)]
+mod tests {
+    use crate::CheckSum;
+
+    #[test]
+    fn test_checksum() {
+        let check_sum = CheckSum::new();
+        let msg = b"12323".to_vec();
+        let mut msg_with_checksum = check_sum.encode(&msg);
+        assert!(check_sum.check(&msg_with_checksum));
+        msg_with_checksum[2] = 93;
+        assert!(!check_sum.check(&msg_with_checksum));
+    }
+}
+```
+
+进一步，我们还希望定位到哪个数字有错
+- 把数字写成 nxm 的矩阵，然后对每行每列做 checksum
 
 
 

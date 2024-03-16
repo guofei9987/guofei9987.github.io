@@ -9,6 +9,10 @@ order: 59003
 ---
 
  
+ 相关文章：
+- [擦除码](https://www.guofei.site/2024/01/20/reed_solomon.html)
+- [纠错码](https://www.guofei.site/2024/01/21/reed_solomon2.html)
+
 
 前一篇文章介绍了 Reed-Solomon 做擦除码，它允许丢失 $n-k$ 个位置，并还原出原始信息。（**original view**）  
 用 Reed-Solomon 做 ECC(Error correction capabilities)，可以纠错 $(n-k)/2$ 个，或者纠删 $n-k$ 个。（**BCH view**）
