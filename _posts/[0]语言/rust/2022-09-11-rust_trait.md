@@ -464,9 +464,9 @@ fn test1() {
 - 也可以用 `std::sync::Once`，优点是原生，缺点是代码稍复杂
 
 
+## 实战
 
-
-## Box-dyn 把不同的 struct 放到同一个Array中
+### 用 Box-dyn 把不同的 struct 放到同一个Array中
 
 ```rust
 // Box<dyn MyTrait>
@@ -499,9 +499,9 @@ fn main() {
 ```
 
 
-策略模式：
+引申：策略模式
 
-```
+```rust
 trait Strategy {
     fn execute(&self);
 }
