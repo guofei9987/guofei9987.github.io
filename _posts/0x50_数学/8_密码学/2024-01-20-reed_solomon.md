@@ -11,15 +11,31 @@ order: 59003
 ## 介绍
 
 
-功能
-- Erasure 擦除码：丢几个数据后可还原。 原始数据 k 组，加上校验码后为 n 组，传输过程中有丢失，只需要剩下的任意 k 组，就可以还原出结果
-    - Encoding：Vandermonde matrix， matrix-vector multiplication
-    - Decoding：Inverse of a matrix， elementary row/column operation
+| 算法 | 校验位大小 | 特点 | 功能 |
+|--|--|--|--|
+| 汉明码（Hamming Code） | 1个 | 算法简单 | 检测并修正单个位错误；检测双位错误，但不能修正 |
+| 里德-所罗门码（Reed-Solomon Code） | 多个（取决于配置） | 强大的纠错能力，广泛用于CD和DVD、无线通信和卫星通信 | 纠正多个错误。特别擅长突发错误（就是错误集中在较小的区域） |
+| 奇偶校验码（Parity Code） | 1个 | 算法最简单 | 只能检测奇数个位的错误，无法纠错 |
+| 循环冗余校验（Cyclic Redundancy Check, CRC） | 多个（取决于CRC多项式长度） | 检测随机改变 | 检测数据传输或存储中的错误 |
+| 卷积码（Convolutional Code） | 取决于码率和约束长度 | 用于无线通信 | 错误校正用于连续位流 |
+| 涡轮码（Turbo Code） | 取决于码率和内部组件 | 高效率 | 广泛应用于深空通信和移动通信 |
+| LDPC码（Low-Density Parity-Check Code） | 多个（取决于配置） | 接近香农极限 | 用于高速数据传输和数据广播 |
+| BCH码（Bose-Chaudhuri-Hocquenghem Code） | 多个（取决于配置） | 多位错误修正 | 适用于控制系统和卫星通信 |
+| 极化码（Polar Code） | 取决于码率和长度 | 实现香农极限的一种方法 | 5G通信标准的控制信道编码 |
+| 字符校验和（Checksum） | 可变 | 简单检测 | 检测数据包或文件的完整性 |
+
+
+
+
+
+分类
+- Erasure 擦除码。
+    - 功能：若干数据丢失。或者若干数据错误，但知道是哪些数据错误（其实是一回事） 
+    - 原始数据 k 组，加上校验码后为 n 组，传输过程中有丢失，只需要剩下的任意 k 组，就可以还原出结果
     - 应用：传输、存储等可能会丢数据的场景
     - 应用2:秘密分享，把一个秘密分享给 n 个人，要求任意 k 个人在场时能够获取秘密。
 - BCH 纠错码（Error Correction Code）
-    - Encoding：Polynomial division and remainder
-    - Verilog：Linear-feedback shift register
+    - 功能：若干数据错误，但不知道具体哪些数据错误。或者有的知道有的不知道。
     - 应用：QR码、信息传输
 
 
@@ -512,4 +528,5 @@ $$
 
 ## 参考文献
 
-https://www.bilibili.com/video/BV1CC4y1S7CL
+https://www.bilibili.com/video/BV1CC4y1S7CL  
+https://github.com/chenshuo/notes  
