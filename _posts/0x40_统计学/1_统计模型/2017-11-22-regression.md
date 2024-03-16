@@ -128,7 +128,7 @@ $Cov(\hat\beta_0,\hat\beta_1)=-\dfrac{\bar x}{l_{xx}}\sigma^2$
 #### 参数的区间估计
 (上面的结论用于显著性检验，下面以$\beta_1$为例)
 $H_0:\beta_1=0,H_1:\beta_1 \not=0$  
-已知$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
+根据上面的推导，$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
 其中$\sigma^2$未知，所以构造t统计量  
 $t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$   
 其中，$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$  
