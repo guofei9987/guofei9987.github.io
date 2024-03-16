@@ -276,6 +276,43 @@ Copy 和 Clone
 - 对于tuple类型，如果它的每一个元素都是Copy类型，那么这个tuple会自动实现Copy trait。
 - 对于struct和enum类型，不会自动实现Copy trait。而且只有当struct和enum内部每个元素都是Copy类型的时候，编译器才允许我们针对此类型实现Copy trait。
 
+### Debug 和 Display
+
+```rust
+use std::fmt;
+
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+
+// println!("{:?}", point) 时的行为
+impl fmt::Debug for Point {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Point:", self.x, self.y)?;
+        write!(f, "{{ x: {}, y: {} }}", self.x, self.y)?;
+        Ok(())
+    }
+}
+
+// println!("{}", point) 时的行为
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+```
+
+也有个更简洁的，
+```rust
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+```
+
 
 ### deref
 
