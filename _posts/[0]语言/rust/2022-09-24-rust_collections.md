@@ -133,15 +133,15 @@ vec.dedup_by_key(func)
 
 合并
 ```Rust
-// concat：发生所有权转移
-let v1: Vec<i32> = vec![1, 2];
-let v2: Vec<i32> = vec![3, 2, 9];
+let v1 = vec![1, 2];
+let v2 = vec![3, 2, 9];
 let v3 = vec![3, 2];
 
+// 以下两个方法都会发生所有权转移，可以用 v1.clone() 来解决
 // 合并1
 let v_concat = [v1, v2, v3].concat();
 // 合并2
-[v1, v2, v3].join(&0)
+let v_concat = [v1, v2, v3].join(&0); // 这个结果是 vec![1, 2, 0, 3, 2, 9, 0, 3, 2]
 ```
 
 
