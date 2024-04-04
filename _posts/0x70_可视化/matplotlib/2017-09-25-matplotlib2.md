@@ -37,7 +37,7 @@ plt.loglog(x,y)
 plt.show()
 ```
 
-![matplotlib3_1.png](/pictures_for_blog/postimg2/matplotlib3_1.png)  
+![matplotlib3_1.png](/pictures_for_blog/data_visualization/matplotlib3_1.png)  
 
 ## 极坐标绘图
 
@@ -56,7 +56,7 @@ plt.subplot(111,polar=True)
 plt.plot(theta,rho)
 plt.show()
 ```
-![matplotlib3_2.png](/pictures_for_blog/postimg2/matplotlib3_2.png)  
+![matplotlib3_2.png](/pictures_for_blog/data_visualization/matplotlib3_2.png)  
 
 ## 统计绘图
 
@@ -77,7 +77,7 @@ plt.show()
 ```
 
 这里做了个小技巧，用width作为偏移，画出多个bar
-![matplotlib3_3.png](/pictures_for_blog/postimg2/matplotlib3_3.png)  
+![matplotlib3_3.png](/pictures_for_blog/data_visualization/matplotlib3_3.png)  
 
 
 ### scatter
@@ -95,7 +95,7 @@ y=rv.rvs(size=100)
 plt.scatter(x,y,s=x*1000,c=y,marker=(5,1))
 plt.show()
 ```
-![matplotlib3_4.jpg](/pictures_for_blog/postimg2/matplotlib3_4.jpg)  
+![matplotlib3_4.jpg](/pictures_for_blog/data_visualization/matplotlib3_4.jpg)  
 
 按照输入顺序，scatter的输入值分别代表：
 1. 每个点的X坐标
@@ -144,7 +144,7 @@ plt.clabel(cs1)  # 在cs1的等高线上添加数字
 plt.show()
 
 ```
-![matplotlib3_5.png](/pictures_for_blog/postimg2/matplotlib3_5.png)  
+![matplotlib3_5.png](/pictures_for_blog/data_visualization/matplotlib3_5.png)  
 
 
 ### 示例2：隐函数的解
@@ -167,7 +167,7 @@ plt.clabel(cs)
 plt.show()
 ```
 
-![matplotlib3_6.png](/pictures_for_blog/postimg2/matplotlib3_6.png)  
+![matplotlib3_6.png](/pictures_for_blog/data_visualization/matplotlib3_6.png)  
 
 
 需要注意的是，由于源数据是离散值，所以等高图在某些区域是离散的片段，但实际上应当是连续值。  
@@ -208,4 +208,4 @@ plt.colorbar()
 plt.show()
 ```
 
-![matplotlib3_7.png](/pictures_for_blog/postimg2/matplotlib3_7.png)  
+![matplotlib3_7.png](/pictures_for_blog/data_visualization/matplotlib3_7.png)  

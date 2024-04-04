@@ -151,5 +151,5 @@ ani.save('pso.gif', writer='pillow') # 或者gif
 ```
 
 效果:  
-<video src="http://www.guofei.site/pictures_for_blog/postimg2/matplotlib4_1.mp4" controls="controls">
+<video src="http://www.guofei.site/pictures_for_blog/data_visualization/matplotlib4_1.mp4" controls="controls">
 </video>

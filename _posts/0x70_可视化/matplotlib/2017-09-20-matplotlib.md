@@ -105,7 +105,7 @@ for font in fonts:
 plt.show()
 ```
 
-![matplotlib.png](/pictures_for_blog/postimg2/matplotlib.png)  
+![matplotlib.png](/pictures_for_blog/data_visualization/matplotlib.png)  
 
 
 
@@ -189,7 +189,7 @@ o = ax.annotate("intersection area",
 plt.show()
 ```
 
-![matplotlib1.png](/pictures_for_blog/postimg2/matplotlib1.png)  
+![matplotlib1.png](/pictures_for_blog/data_visualization/matplotlib1.png)  
 
 
 涉及知识点：  
