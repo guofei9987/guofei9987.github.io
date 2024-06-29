@@ -55,9 +55,6 @@
               <div class="list-group">
 
                 {% if category[0] == '橱窗' %}
-                <a class="list-group-item-lay pjaxlink" href="/pages/certification.html">证书和著作</a>
-                  <a class="list-group-item-lay pjaxlink" href="/reading.html">读书笔记库</a>
-                  <a class="list-group-item-lay pjaxlink" href="/pages/good.html">精选技术博客</a>
                   {% for post in category[1] %}
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{ post.title }}</a>
                   {% endfor %}
