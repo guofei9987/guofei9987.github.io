@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【合集】趣文
+title: 【归档】趣文
 categories: 合集
 tags:
 keywords:
