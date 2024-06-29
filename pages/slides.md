@@ -1,7 +1,7 @@
 ---
 layout: page
 title: slides
-categories:
+categories: 橱窗
 tags:
 keywords:
 description:

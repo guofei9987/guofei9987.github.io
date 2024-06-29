@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【合集】趣文
-categories: 语言
+categories: 合集
 tags:
 keywords:
 description:

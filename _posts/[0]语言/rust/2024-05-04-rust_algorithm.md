@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Rust8】算法
-categories: 语言
+categories: 合集
 tags:
 keywords:
 description:

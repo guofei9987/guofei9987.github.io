@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【合集】TensorFlow
-categories: 语言
+categories: 合集
 tags:
 keywords:
 description:
