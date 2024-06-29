@@ -10,9 +10,11 @@ permalink: /:title:output_ext
 order: 19007
 ---
 
-共 {{site.categories['TensorFlow'].size}} 篇
+{% assign category_name = page.name %}
 
-{% for post in site.categories['TensorFlow'] %}
+共 {{site.categories[category_name].size}} 篇
+
+{% for post in site.categories[category_name] %}
   <li>
     <span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
     <a href="{{ post.url }}" class="pjaxlink">{{post.title}}</a>

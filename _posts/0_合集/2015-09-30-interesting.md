@@ -10,12 +10,15 @@ permalink: /:title:output_ext
 order: 19003
 ---
 
-共 {{site.categories['趣文'].size}} 篇
 
+{% assign category_name = page.name %}
 
-{% for post in site.categories['趣文'] %}
+共 {{site.categories[category_name].size}} 篇
+
+{% for post in site.categories[category_name] %}
   <li>
     <span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
     <a href="{{ post.url }}" class="pjaxlink">{{post.title}}</a>
   </li>
 {% endfor %}
+
