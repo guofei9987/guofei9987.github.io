@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Boltzmann机
-categories:
-tags: 0x22_上世纪神经网络
+categories: old_ann
+tags: 
 keywords:
 description:
 order: 271
