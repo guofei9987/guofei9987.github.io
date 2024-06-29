@@ -1,7 +1,9 @@
 ---
 layout: catalogue
 title: 【精选博客】
-categories:
+categories: 橱窗
+visible: n
+permalink: /:title/
 ---
 
 

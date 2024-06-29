@@ -1,11 +1,9 @@
 ---
 layout: page
 title: 读书笔记库
-categories:
-tags:
-keywords:
-description:
-permalink: /reading.html
+categories: 橱窗
+visible: n
+permalink: /:title/
 ---
 
 
