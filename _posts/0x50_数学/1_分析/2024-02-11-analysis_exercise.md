@@ -53,3 +53,40 @@ order: 5131
 
 例子，证明 $\lim\limits_{n\to\infty}(1+\frac{1}{2^2})(1+\frac{1}{3^2})...(1+\frac{1}{n^2})$ 存在。
 - 使用关于 e 的引理
+
+
+
+## 函数的极限
+
+主要定义
+- 函数极限的定义， $\delta \sim \varepsilon$ 语言
+- 单侧极限、双侧极限
+- 自变量趋于无穷的极限$\lim\limits_{x\to+\infty},\lim\limits_{x\to-\infty},\lim\limits_{x\to\infty}$
+- 广义极限($\lim f(x) =\pm \infty$)
+- 高阶无穷小、高阶无穷大、同阶无穷小（大）、等价无穷小（大）
+- 函数连续、单侧连续、第一类间断点、第二类间断点
+
+
+定理
+- 重要极限 $\lim\limits_{x\to 0}\dfrac{\sin x}{x} =1, \lim\limits_{x\to+\infty} (1+\frac{1}{x})^x=e$
+- 函数极限满足四则运算
+    - 初等函数在其定义域内连续
+- 极限式的变换。如果 $f(t)$ 定义在$\mathring{U}(t_0)$，$t=g(x):\mathring{U}(x_0) \to \mathring{U}(t_0)$ 是一一映射，那么 $\lim\limits_{x\to x_0} f(t_0) = \lim\limits_{t \to t_0} f(g(x))$
+    - $\mathring{U}(x_0)$ 表示去心邻域，它的规范写法是 $N_\epsilon(x_0) \setminus \{x_0\}$，正式场合要用规范写法
+- 归结原理。如果 $f(x)$ 定义在 $\mathring{U}(a)$，则 $\lim\limits_{x\to a} f(x) = A$ 成立的充分必要条件是：对于 $\mathring{U}(a)$ 的任意序列 $$\{ x_n \}$$，都有 $\lim\limits_{n\to\infty} x_n = a \Longrightarrow \lim\limits_{n\to\infty}f(x_n)=f(x_0)$。
+    - 上面的定理对于普通极限和广义极限都成立
+- Cauchy. $\lim\limits_{x\to a} f(x)$ 存在的充分必要条件：$\forall \varepsilon, \exists \delta>0$ 使当 $x_1,x_2 \in \mathring{U}_{\varepsilon}(a)$ 时，有 $|f(x_1)-f(x_2)|<\varepsilon$
+    - 对于自变量趋于无穷的极限也有类似的结论
+
+
+常用的结论
+- 若 $\lim\limits_{n\to\infty} a_n=0$，则 $\lim\limits_{n\to\infty} \dfrac{a_1+a_2+...+a_n}{n}=0$
+    - 证明方法：用定义
+- 若 $\lim\limits_{n\to\infty} a_n=a$，则 $\lim\limits_{n\to\infty} \dfrac{a_1+a_2+...+a_n}{n}=a$
+    - 证明方法：用上面的结论
+    - 对于广义极限 $a=+\infty$，也成立
+- 若 $a_n>0, \lim\limits_{n\to \infty} a_n = a$，那么 $\lim\limits_{n\to\infty}\sqrt[n]{a_1\cdot a_2 \cdot ... \cdot a_n}=a$
+    - 证明方法：用上面的结论
+- 类似的题目
+    - 若 $a_n>0, \lim\limits_{n\to \infty} \frac{a_{n+1}}{a_n} = a$，则 $\lim\limits_{n\to\infty}\sqrt[n]{a_n}=a$
+    - $a_n>0, \lim\limits_{n\to \infty} a_{n+1}-a_n = a$，则 $\lim\limits_{n\to\infty}\frac{a_n}{n}=a$ **这个结论可以像洛必达法则一样快速解题**
