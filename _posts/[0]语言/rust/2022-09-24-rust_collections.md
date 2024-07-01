@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Rust7】collections
-categories: 语言
+categories: 合集
 tags:
 keywords:
 description:

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 竞争神经网络&LVQ
-categories:
-tags: 0x22_上世纪神经网络
+categories: old_ann
+tags: 
 keywords:
 description:
 order: 256

@@ -111,7 +111,7 @@ $\sum a_n$是严格正项级数
 $\dfrac{a_{n+1}}{a_n}\leq r ,\forall n\geq n_0$  
 那么$\sum a_n$收敛
 - 如果存在$n_0\in \mathcal N$,使得  
-$\dfrac{a_{n+1}}{a_n}\geq 1,\foall n\geq n_0$  
+$\dfrac{a_{n+1}}{a_n}\geq 1,\forall n\geq n_0$  
 那么$\sum a_n$发散
 
 #### 2.3 达朗贝尔判别法（极限形式）

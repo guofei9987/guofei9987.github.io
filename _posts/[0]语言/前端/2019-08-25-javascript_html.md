@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【JavaScript】结合html
-categories: 语言
+categories: 合集
 tags:
 keywords:
 description:
