@@ -9,11 +9,57 @@ order: 5131
 ---
 
 
+## 初等数学（常用三角函数）
+
+**积化和差公式**  
+$$\sin \alpha \cos \beta  =\frac{1}{2}[\sin (\alpha+\beta)+\sin(\alpha-\beta)] \\\\
+\cos \alpha \sin \beta  =\frac{1}{2}[\sin (\alpha+\beta)-\sin(\alpha-\beta)]  \\\\
+\cos \alpha \cos \beta  =\frac{1}{2}[\cos (\alpha+\beta)+\cos(\alpha-\beta)]  \\\\
+\sin \alpha \sin \beta  =-\frac{1}{2}[\cos (\alpha+\beta)-\cos(\alpha-\beta)]$$
+
+**和差化积公式**  
+$$
+\sin\alpha+\sin\beta  =2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}  \\[7pt]
+\sin\alpha-\sin\beta  =2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}  \\[7pt]
+\cos\alpha+\cos\beta  =2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}  \\[7pt]
+\cos\alpha-\cos\beta  =-2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2} \\[7pt]
+\tan\alpha+\tan\beta  =\frac{\sin (\alpha+\beta)}{\cos\alpha\cdot\cos \beta}
+$$
+
+**归一化公式**  
+$$
+\sin^2 x+\cos^2x   =1 \\[7pt]
+\sec^2 x-\tan^2x   =1 \\[7pt]
+\cosh^2x-\sinh^2x  =1
+$$
+
+
+**倍(半)角公式，降(升)幂公式**  
+$$
+\sin^2x  =\frac{1}{2}(1-\cos 2x) \\[7pt]
+\cos^2x  =\frac{1}{2}(1+\cos 2x)  \\[7pt]
+\tan^2x  =\frac{1-\cos 2x}{1+\cos 2x} \\[7pt]
+\sin x   =2\sin\frac{x}{2}\cos\frac{x}{2}  \\[7pt]
+\cos x   =2\cos^2\frac{x}{2}-1=1-2\sin^2\frac{x}{2}=\cos^2\frac{x}{2}-\sin^2\frac{x}{2} \\[7pt]
+\tan x   =\frac{2\tan(x/2)}{1-\tan^2(x/2)}$$
+
+
+**万能公式**  
+令$ u=\tan\dfrac{x}{2} $则
+$$\sin x=\frac{2u}{1+u^2} \\[7pt]
+\cos x=\frac{1-u^2}{1+u^2}$$
+
+
+
+
+
 ## 基本知识
 
-函数
+集合与逻辑
 
-## 实数、确界、不等式
+
+
+函数、实数、确界、不等式
 
 ## 序列的极限
 
@@ -132,6 +178,26 @@ $f(x)$ 在 $I$ 上 **不一致连续的充要条件** 是存在 $I$ 上的两个
     - $(\cos x)^{(n)} = \cos(x+\frac{n\pi}{2})$
     - **莱布尼茨公式** $(uv)^{(n)}=\sum\limits_{k=0}^n C_n^k u^{(k)} v^{(n-k)}$
     
+
+
+**常见函数的导数**  
+$$
+(C)'=0 \\
+( x^{\mu})'=\mu x^{\mu-1} \\
+( \sin x)'=\cos x \\
+( \cos x)'=-\sin x \\
+( \tan x)'=\sec^2 x \\
+( \cot x)'=-\csc^2 x \\
+( \sec x)'=\sec x\cdot\tan x \\
+( \csc x)'=-\csc x\cdot\tan x \\
+( a^x)'=a^x\ln a\ (a>0,a\neq1) \\
+( \log_{a}x)'=\frac{1}{x\cdot\ln a}\ (a>0,a\neq1) \\
+( \arcsin x)'=\frac{1}{\sqrt{1-x^2}} \\
+( \arccos x)'=-\frac{1}{\sqrt{1-x^2}} \\
+( \arctan x)'=\frac{1}{1+x^2} \\
+( \mathrm{arccot}\, x)'=-\frac{1}{1+x^2} \\
+$$
+
 
 
 
