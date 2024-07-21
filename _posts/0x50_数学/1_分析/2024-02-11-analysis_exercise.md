@@ -28,7 +28,7 @@ order: 5131
 - 单调有界定理。
     - 单调递增有上界必有极限
     - 单调递减有下界必有极限
-- Cauchy 收敛原理。一个序列 $x_n$ 收敛的 **充分必要条件是** $\forall \varepsilon >0 , \exists N, s.t. m,n>N \Rightarrow |x_n-x_m|< \varepsilon$
+- Cauchy 收敛原理。一个序列 $x_n$ 收敛的 **充分必要条件是** $\forall \varepsilon >0 , \exists N, s.t. m,n>N \Rightarrow \mid x_n-x_m\mid< \varepsilon$
     - 做题时经常用下标 $n,n+p$
 - 区间套定理。若 $[a_{n+1}, b_{n+1}] \subseteq [a_n, b_n]$ 对于 所有 n 都成立，并且 $\lim\limits_{n\to \infty} (b_n-a_n)=0$（称为区间套），则存在一个实数 $\xi$，并且$\lim\limits_{n\to \infty} a_n=\lim\limits_{n\to \infty} b_n=\xi$ 
 - 魏尔施特拉斯定理：任意有界序列至少有一个收敛的子列。
@@ -75,7 +75,7 @@ order: 5131
     - $\mathring{U}(x_0)$ 表示去心邻域，它的规范写法是 $N_\epsilon(x_0) \setminus \{x_0\}$，正式场合要用规范写法
 - 归结原理。如果 $f(x)$ 定义在 $\mathring{U}(a)$，则 $\lim\limits_{x\to a} f(x) = A$ 成立的充分必要条件是：对于 $\mathring{U}(a)$ 的任意序列 $$\{ x_n \}$$，都有 $\lim\limits_{n\to\infty} x_n = a \Longrightarrow \lim\limits_{n\to\infty}f(x_n)=f(x_0)$。
     - 上面的定理对于普通极限和广义极限都成立
-- Cauchy. $\lim\limits_{x\to a} f(x)$ 存在的充分必要条件：$\forall \varepsilon, \exists \delta>0$ 使当 $x_1,x_2 \in \mathring{U}_{\varepsilon}(a)$ 时，有 $|f(x_1)-f(x_2)|<\varepsilon$
+- Cauchy. $\lim\limits_{x\to a} f(x)$ 存在的充分必要条件：$\forall \varepsilon, \exists \delta>0$ 使当 $x_1,x_2 \in \mathring{U}_{\varepsilon}(a)$ 时，有 $\| f(x_1)-f(x_2)\|<\varepsilon$
     - 对于自变量趋于无穷的极限也有类似的结论
 
 
@@ -111,3 +111,38 @@ $f(x)$ 在 $I$ 上 **不一致连续的充要条件** 是存在 $I$ 上的两个
 例题
 - $f(x):[a,b]$连续，求证：$\exists \xi \in (a,b)$，使 $f(\xi)=\frac{1}{n} \sum\limits_{k=1}^n f(x_k)$
     - 思路：记 $f(x_a)=\min(f(x_k)),f(x_b)=\max(f(x_k))$，那么根据介值定理 $\exists \xi \in [a,b]$（这之前先分类 $a=b$ 等情况）
+
+## 一元函数微分学
+
+
+基本内容
+- 导数的定义（某个极限）
+- 导数的几何意义：切线的斜率
+- 左导数/右导数
+- 常见函数的导数
+- 导数的运算法则
+    - 四则运算
+    - 复合函数-链式法则
+    - 反函数的导数(下面写)
+    - 参数方程确定的函数的导数（下面写）
+    - 隐函数的导数
+- n阶导数
+    - $(\exp x)^{(n)}= \exp(x)$
+    - $(\sin x)^{(n)} = \sin(x+\frac{n\pi}{2})$
+    - $(\cos x)^{(n)} = \cos(x+\frac{n\pi}{2})$
+    - **莱布尼茨公式** $(uv)^{(n)}=\sum\limits_{k=0}^n C_n^k u^{(k)} v^{(n-k)}$
+    
+
+
+
+
+**反函数的导数** 如果：$x=\phi(x)$在 $(c,d)$ 上连续、严格单调，值域为 $(a,b)$ ，且 $\phi'(y_0)\not=0$。那么：反函数 $y=f(x)$ 在点 $x_0=\phi(y_0)$ 处可导，且 $f'(x_0)=\dfrac{1}{\phi'(y_0)}$
+
+**参数方程确定的函数的导数** $x=\phi(t),y=\psi(t)$，在 $(\alpha,\beta)$ 上连续，那么 ${dy}/{dx}= \dfrac{dy}{dt}/\dfrac{dx}{dt}$
+
+**隐函数的导数** $F(x,y)=0$ 是 $y=f(x)$ 对应的隐函数
+
+
+典型题目
+
+【证明题】假设 $x(t),y(t)$可微，且 $r=\sqrt{x^2+y^2},\theta=\arctan \frac{y}{x}$，那么 $(dx)^2+(dy)^2=(rd\theta)^2+(dr)^2$
