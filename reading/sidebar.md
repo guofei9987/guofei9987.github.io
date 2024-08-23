@@ -32,8 +32,7 @@
     * [7_金融学<sup style = "color:red">1145字<sup>](docs/3_1_金融学硕士/7_金融学.md)
     * [8_风险管理<sup style = "color:red">1465字<sup>](docs/3_1_金融学硕士/8_风险管理.md)
     * [9_经济学知识补漏<sup style = "color:red">891字<sup>](docs/3_1_金融学硕士/9_经济学知识补漏.md)
-    * [a_电子商务<sup style = "color:red">4028字<sup>](docs/3_1_金融学硕士/a_电子商务.md)
-    * [b_消费者行为学<sup style = "color:red">2888字<sup>](docs/3_1_金融学硕士/b_消费者行为学.md)
+    * [a_市场营销学<sup style = "color:red">7154字<sup>](docs/3_1_金融学硕士/a_市场营销学.md)
     * [c_管理学<sup style = "color:red">1558字<sup>](docs/3_1_金融学硕士/c_管理学.md)
 * 3_2_中级经济师
     * [1_经济师基础知识<sup style = "color:red">6502字<sup>](docs/3_2_中级经济师/1_经济师基础知识.md)
@@ -83,7 +82,7 @@
     * [做<sup style = "color:red">1831字<sup>](docs/8_前进/做.md)
     * [写<sup style = "color:red">521字<sup>](docs/8_前进/写.md)
     * [学<sup style = "color:red">2300字<sup>](docs/8_前进/学.md)
-    * [工作<sup style = "color:red">8147字<sup>](docs/8_前进/工作.md)
+    * [工作<sup style = "color:red">8297字<sup>](docs/8_前进/工作.md)
     * [心灵<sup style = "color:red">238字<sup>](docs/8_前进/心灵.md)
     * [投资<sup style = "color:red">941字<sup>](docs/8_前进/投资.md)
     * [看<sup style = "color:red">675字<sup>](docs/8_前进/看.md)
@@ -92,6 +91,7 @@
     * [说<sup style = "color:red">3144字<sup>](docs/8_前进/说.md)
     * [项目管理<sup style = "color:red">4683字<sup>](docs/8_前进/项目管理.md)
 * 9_小说
+    * [其它小说<sup style = "color:red">83字<sup>](docs/9_小说/其它小说.md)
     * [刘慈欣<sup style = "color:red">6818字<sup>](docs/9_小说/刘慈欣.md)
     * [反乌托邦小说<sup style = "color:red">3855字<sup>](docs/9_小说/反乌托邦小说.md)
     * [名著小说<sup style = "color:red">1072字<sup>](docs/9_小说/名著小说.md)
@@ -104,8 +104,8 @@
     * [摄影<sup style = "color:red">2345字<sup>](docs/A_文艺/摄影.md)
     * [游戏<sup style = "color:red">7974字<sup>](docs/A_文艺/游戏.md)
     * [烹饪<sup style = "color:red">1249字<sup>](docs/A_文艺/烹饪.md)
-    * [电影<sup style = "color:red">4346字<sup>](docs/A_文艺/电影.md)
-    * [电视剧<sup style = "color:red">638字<sup>](docs/A_文艺/电视剧.md)
+    * [电影<sup style = "color:red">4869字<sup>](docs/A_文艺/电影.md)
+    * [电视剧<sup style = "color:red">769字<sup>](docs/A_文艺/电视剧.md)
     * [读诗<sup style = "color:red">1876字<sup>](docs/A_文艺/读诗.md)
 * H_健康
     * [vital_signs<sup style = "color:red">7120字<sup>](docs/H_健康/vital_signs.md)

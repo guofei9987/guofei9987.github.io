@@ -92,6 +92,7 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 |![工信部高级数据分析师](/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg)|![中级经济师](/pictures_for_blog/certification/水证/中级经济师.jpg)|
 |![红十字会急救证](https://www.guofei.site/pictures_for_blog/certification/健康类/急救证.jpg)|![驾驶证](https://www.guofei.site/pictures_for_blog/certification/水证/驾驶证.jpeg)
 |![数据安全](/pictures_for_blog/certification/cs/数据安全.jpg)<br> [link](https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061)|![蚂蚁安全](/pictures_for_blog/certification/cs/蚂蚁安全.jpg)|
+|![gitcode_bwm](/pictures_for_blog/certification/open/gitcode_bwm.jpg)|![gitcode_sko](/pictures_for_blog/certification/open/gitcode_sko.jpg)|
 
 
 
