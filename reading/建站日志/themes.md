@@ -94,36 +94,6 @@
 [更多插件](https://docsify.js.org/#/zh-cn/plugins)
 
 
-## 支持 mermaid
-
-```js
-// Import mermaid
-//  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
-//  <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-
-mermaid.initialize({ startOnLoad: false });
-
-window.$docsify = {
-  markdown: {
-    renderer: {
-      code: function(code, lang) {
-        if (lang === "mermaid") {
-          return (
-            '<div class="mermaid">' + mermaid.render(lang, code) + "</div>"
-          );
-        }
-        return this.origin.code.apply(this, arguments);
-      }
-    }
-  }
-}
-```
-
-```mermaid
-graph LR
-    A-->B
-```
-
 # 代码高亮
 
 内置的代码高亮工具是 [Prism](https://github.com/PrismJS/prism)，默认支持 CSS、JavaScript 和 HTML。如果需要高亮其语言——例如 PHP——可以手动引入代码高亮插件。
