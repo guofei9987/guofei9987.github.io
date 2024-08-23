@@ -203,21 +203,8 @@ chi2测试
 - MBS1和MBS2使用LSB匹配，并保留DCT系数的模型。
 - OutGuess和Steghide保留了一阶统计，Steghide改变系数对。除了OutGuess和F5，所有算法都以JPEG图像为输入，直接调制它们的DCT系数。
 
-#### JPEG压缩算法
 
-原图的某个通道（所以可以处理RGB或YUV等），做以下处理：
-
-![jpeg算法](/pictures_for_blog/digital_image_processing/jpeg.png)
-
-JPEG压缩的流程：
-1. 把图片转成 YCbCr 颜色空间
-2. 按照 8x8 分块，对每个分块做DCT
-3. 根据压缩因子，建立一个定义好的 8x8 的整数矩阵
-4. 对第2步的每个分块进行操作，2的结果关于3的整数取整到最接近整数
-5. 4的效果是，每个分块 DCT 的每个值的可能性就大大减少了
-6. 用 Huffman 编码存下来（或者其他熵编码器）
-
-
+还可以利用 JPEG 压缩算法原理做信息嵌入，JPEG 算法见于另一篇文章
 
 #### DCT 隐写算法
 
