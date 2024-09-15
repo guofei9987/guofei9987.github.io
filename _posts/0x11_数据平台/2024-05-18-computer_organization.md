@@ -88,6 +88,27 @@ order: 173
 
 上图为运算器
 
+运算器要点
+- 运算器用于算术运算和逻辑运算
+    - 常见的算术运算：加减乘除
+    - 常见的逻辑运算：与、或、非
+- 核心部件是 ALU，用于完成算术运算和逻辑运算
+- X、Y、Z 是寄存器
+- F（也是寄存器）用于存放运算结果状态，（零、正负、进位、溢出）
+- R0, R1,..., Rn-1 是通用寄存器，其存放的数据可以来自存储器、也可以来自其它通用寄存器或者 ALU 的输出
+- 内部总线：用于 CPU 内部各个部件之间传递数据
+    - 例如，CPU 可以命令 R0 中的数据传给 X，这就是通过内部总线来传递的
+    - 其电路实现在下面介绍
+
+
+
+关于存储器、控制器、运算器的介绍：https://www.coursera.org/learn/jisuanji-zucheng/lecture/1wVRC/104-ji-suan-ji-jie-gou-de-jian-hua-mo-xing
+
+
+计算机执行指令过程的举例：https://www.coursera.org/learn/jisuanji-zucheng/lecture/8Xyeu/105-ji-suan-ji-zhi-xing-zhi-ling-de-guo-cheng
+- 例子是展示 指令 `ADD R0, [6]` 
+- 指令功能
+
 
 ## 参考资料
 
