@@ -106,8 +106,30 @@ order: 173
 
 
 计算机执行指令过程的举例：https://www.coursera.org/learn/jisuanji-zucheng/lecture/8Xyeu/105-ji-suan-ji-zhi-xing-zhi-ling-de-guo-cheng
+
+
+![一个例子](/pictures_for_blog/computer/computer.jpg)
+
+
+
 - 例子是展示 指令 `ADD R0, [6]` 
-- 指令功能
+- 指令功能：把 R0 存储的内容，加上存储器地址为6的存储单元的内容，然后把结果存放在 R0 中
+
+指令 `ADD R0, [6]` 全部步骤详解
+1. 取址
+    - 控制器中：PC -> 内部总线 -> MAR
+    - 控制器中的 MAR -> 地址总线 -> 存储器中的 MAR
+    - 控制器具发出信号：Read，经过 控制总线 传递给存储器 
+    - 存储器：（控制逻辑操作下），找到 MAR 存放的地址，然后把内容取出来，送到 存储器的 MDR
+    - 存储器：控制逻辑，给控制总线反馈状态： Ready
+    - 存储器的 MDR -> 数据总线 -> 控制器的 MDR
+    - 控制器中：MDR -> 内部总线 -> IR
+    - PC 寄存器自增更新
+2. 译码
+    - IR -> 指令译码
+    - 电路切换到对应的控制状态
+3. 执行
+    - IR 发现需要读取 `[6]`
 
 
 ## 参考资料
