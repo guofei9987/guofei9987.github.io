@@ -281,6 +281,226 @@ x86 体系主要分为 16位、32位、64位
 
 
 
+
+<hr>
+
+一、数据传输指令
+
+ **指令**     | **功能**              | **语法**                  | **示例**               
+------------|---------------------|-------------------------|----------------------
+ **MOV**    | 将数据从源操作数传送到目标操作数    | MOV dest, src           | MOV EAX, EBX         
+ **PUSH**   | 将操作数压入堆栈顶部          | PUSH src                | PUSH EAX             
+ **POP**    | 从堆栈顶部弹出数据到操作数       | POP dest                | POP EBX              
+ **XCHG**   | 交换两个操作数的值           | XCHG operand1, operand2 | XCHG EAX, EBX        
+ **LAHF**   | 加载标志寄存器的低8位到AH      | LAHF                    | LAHF                 
+ **SAHF**   | 将AH的值存入标志寄存器的低8位    | SAHF                    | SAHF                 
+ **LEA**    | 计算源操作数的有效地址并存入目标寄存器 | LEA dest, src           | LEA EAX, [EBX+ECX*4] 
+ **MOVSX**  | 带符号扩展传送             | MOVSX dest, src         | MOVSX EAX, BL        
+ **MOVZX**  | 零扩展传送               | MOVZX dest, src         | MOVZX EAX, BL        
+ **CMOVcc** | 条件传送（当条件满足时）        | CMOVcc dest, src        | CMOVE EAX, EBX       
+
+
+<hr>
+
+二、算术运算指令
+
+ **指令**   | **功能**          | **语法**                 | **示例**       
+----------|-----------------|------------------------|--------------
+ **ADD**  | 执行加法运算          | ADD dest, src          | ADD EAX, EBX 
+ **ADC**  | 带进位的加法，包括进位标志   | ADC dest, src          | ADC EAX, EBX 
+ **SUB**  | 执行减法运算          | SUB dest, src          | SUB EAX, EBX 
+ **SBB**  | 带借位的减法，包括进位标志   | SBB dest, src          | SBB EAX, EBX 
+ **INC**  | 操作数加1           | INC operand            | INC EAX      
+ **DEC**  | 操作数减1           | DEC operand            | DEC EAX      
+ **MUL**  | 无符号乘法           | MUL src                | MUL EBX      
+ **IMUL** | 有符号乘法           | IMUL src               | IMUL EBX     
+ **DIV**  | 无符号除法           | DIV src                | DIV EBX      
+ **IDIV** | 有符号除法           | IDIV src               | IDIV EBX     
+ **NEG**  | 求二进制补码（取负值） | NEG operand            | NEG EAX      
+ **CMP**  | 比较两个操作数，不保存结果，只影响标志位  | CMP operand1, operand2 | CMP EAX, EBX 
+ **CWD**  | AX扩展到DX         | CWD                    | CWD          
+ **CDQ**  | EAX扩展到EDX       | CDQ                    | CDQ          
+ **CQO**  | RAX扩展到RDX       | CQO                    | CQO          
+
+
+
+
+<hr>
+
+
+
+三、逻辑运算指令
+
+ **指令**   | **功能**         | **语法**         | **示例**        
+----------|----------------|----------------|---------------
+ **AND**  | 按位与           | AND dest, src  | AND EAX, EBX  
+ **OR**   | 按位或            | OR dest, src   | OR EAX, EBX   
+ **XOR**  | 按位异或        | XOR dest, src  | XOR EAX, EBX  
+ **NOT**  | 按位取反             | NOT operand    | NOT EAX       
+ **TEST** | 按位与，不保存结果，只影响标志位 | TEST dest, src | TEST EAX, EBX 
+
+
+
+
+
+
+四、移位和旋转指令
+ **指令**      | **功能**      | **语法**          | **示例**     
+-------------|-------------|-----------------|------------
+ **SHL/SAL** | 逻辑左移，右边补0   | SHL dest, count | SHL EAX, 1 
+ **SHR**     | 逻辑右移，左边补0   | SHR dest, count | SHR EAX, 1 
+ **SAR**     | 算术右移，（指的是保留符号的移位） | SAR dest, count | SAR EAX, 1 
+ **ROL**     | 循环左移        | ROL dest, count | ROL EAX, 1 
+ **ROR**     | 循环右移        | ROR dest, count | ROR EAX, 1 
+ **RCL**     | 包括进位位的循环左移  | RCL dest, count | RCL EAX, 1 
+ **RCR**     | 包括进位位的循环右移  | RCR dest, count | RCR EAX, 1 
+
+
+
+<hr>
+
+
+五、控制转移指令
+
+
+ **指令**   | **功能**       | **语法**     | **示例**           
+----------|--------------|------------|------------------
+ **JMP**  | 无条件跳转        | JMP label  | JMP START        
+ **Jcc**  | 条件跳转，根据标志位   | Jcc label  | JE LOOP_START    
+ **LOOP** | 循环，使用计数寄存器   | LOOP label | LOOP LOOP_START  
+ **CALL** | 调用子程序，保存返回地址 | CALL label | CALL SUB_ROUTINE 
+ **RET**  | 从子程序返回       | RET        | RET              
+ **INT**  | 触发软件中断       | INT type   | INT 21h          
+ **IRET** | 从中断服务程序返回    | IRET       | IRET             
+
+
+
+<hr>
+
+
+六、字符串操作指令
+
+
+ **指令**     | **功能**           | **语法**                | **示例**    
+------------|------------------|-----------------------|-----------
+ **MOVS**   | 将数据从源字符串传送到目标字符串 | MOVSB（传送字节） / MOVSW（传送字，通常是2字节） / MOVSD（传送双字，通常是4字节） | MOVSB     
+ **CMPS**   | 字符串比较  | CMPSB / CMPSW / CMPSD | CMPSB     
+ **SCAS**   | 将累加器与目标字符串的数据比较  | SCASB / SCASW / SCASD | SCASB     
+ **LODS**   | 将源字符串的数据装载到累加器   | LODSB / LODSW / LODSD | LODSB     
+ **STOS**   | 将累加器的数据存储到目标字符串  | STOSB / STOSW / STOSD | STOSB     
+ **REP 前缀** | 重复执行字符串指令        | REP instruction       | REP MOVSB 
+
+
+
+<hr>
+
+七、位操作指令
+
+ **指令**    | **功能**       | **语法**                 | **示例**       
+-----------|--------------|------------------------|--------------
+ **BT**    | 测试某个位的值，并将其存在 CF（进位标志） 中          | BT dest, bit_position  | BT EAX, 2    
+ **BTS**   | 测试某个位的值，并将其设置为 1，然后将原值其存在 CF 中      | BTS dest, bit_position | BTS EAX, 2   
+ **BTR**   | 测试某个位的值，并将其设置为 0，然后将原值其存在 CF 中       | BTR dest, bit_position | BTR EAX, 2   
+ **BTC**   | 测试某个位的值，并将其取反，然后将原值其存在 CF 中       | BTC dest, bit_position | BTC EAX, 2   
+ **BSF**   | 找到最低位的1，返回其索引      | BSF dest, src          | BSF EAX, EBX 
+ **BSR**   | 找到最高位的1，返回其索引      | BSR dest, src          | BSR EAX, EBX 
+ **SETcc** | 根据条件码设置字节为0或1 | SETcc dest             | SETZ AL      
+
+
+
+
+
+
+八、标志控制指令
+
+
+ **指令**  | **功能**       | **语法** | **示例** 
+---------|--------------|--------|--------
+ **CLC** | 清除进位标志（CF=0） | CLC    | CLC    
+ **STC** | 设置进位标志（CF=1） | STC    | STC    
+ **CMC** | 取反进位标志       | CMC    | CMC    
+ **CLD** | 清除方向标志（使其自动递增） | CLD    | CLD    
+ **STD** | 设置方向标志（使其自动递减） | STD    | STD    
+ **CLI** | 禁止硬件中断（IF=0） | CLI    | CLI    
+ **STI** | 允许硬件中断（IF=1） | STI    | STI    
+
+
+
+
+<hr>
+
+九、系统指令
+
+
+ **指令**      | **功能**         | **语法**                | **示例**         
+-------------|----------------|-----------------------|----------------
+ **HLT**     | 停止处理器执行，直到收到中断 | HLT                   | HLT            
+ **NOP**     | 空操作，不执行任何操作    | NOP                   | NOP            
+ **WAIT**    | 等待处理器的忙标志被清除   | WAIT                  | WAIT           
+ **LOCK 前缀** | 用于在多处理器环境下，确保指令的原子性       | LOCK instruction      | LOCK INC [EBX] 
+ **CPUID**   | 获取CPU的特性和功能信息  | CPUID                 | CPUID          
+ **IN**      | 从I/O端口读取数据     | IN accumulator, port  | IN AL, DX      
+ **OUT**     | 向I/O端口写入数据     | OUT port, accumulator | OUT DX, AL     
+
+
+
+
+<hr>
+
+十、浮点运算指令
+
+
+ **指令**   | **功能**           | **语法**   | **示例**            
+----------|------------------|----------|-------------------
+ **FLD**  | 将浮点数装载到浮点堆栈      | FLD src  | FLD [EBX]         
+ **FST**  | 将浮点堆栈顶部的值存储到指定位置 | FST dest | FST [EBX]         
+ **FADD** | 浮点加法运算           | FADD src | FADD ST(0), ST(1) 
+ **FSUB** | 浮点减法运算           | FSUB src | FSUB ST(0), ST(1) 
+ **FMUL** | 浮点乘法运算           | FMUL src | FMUL ST(0), ST(1) 
+ **FDIV** | 浮点除法运算           | FDIV src | FDIV ST(0), ST(1) 
+ **FCOM** | 比较浮点堆栈顶部的两个值     | FCOM src | FCOM ST(1)        
+ **FCHS** | 改变浮点堆栈顶部值的符号     | FCHS     | FCHS              
+
+
+
+
+<hr>
+
+十一、SIMD指令（是一种并行处理技术）
+
+SIMD 指令通过在单个指令中指定多个数据元素的位置，允许处理器在一个指令周期内对这些数据元素执行相同的操作。在进行向量运算时，大大减少指令数量，提高执行效率。
+- 有些高级语言，编译器能够自动识别数据并行性，并优化位 SIMD 指令。例如 GCC 和 Clang 都至此自动向量化优化
+- C/C++ 的 intrinsics 也提供了 SIMD 指令集接口
+- Rust编译器也能自动优化，也可以用 `std::arch, std::simd` 访问 SIMD 指令
+
+
+
+ **指令类别**   | **功能**          | **示例**                  
+------------|-----------------|-------------------------
+ **MMX 指令** | 处理并行整数运算，用于多媒体运算  | PADDW MM0, MM1          
+ **SSE, SSE2, SSE3** | 并行浮点运算 | ADDPS XMM0, XMM1        
+ **AVX 指令** | 扩展SSE，支持更宽的寄存器（256位、512位）  | VADDPS YMM0, YMM1, YMM2 
+
+
+
+
+<hr>
+
+十二、其他指令
+
+ **指令**    | **功能**           | **语法**                       | **示例**           
+-----------|------------------|------------------------------|------------------
+ **XLAT**  | 根据累加器的值在查找表中检索数据 | XLAT                         | XLAT             
+ **BOUND** | 检查操作数是否在数组边界内    | BOUND reg, mem               | BOUND EAX, [EBX] 
+ **ENTER** | 为过程建立栈帧          | ENTER nest_level, frame_size | ENTER 0, 10h     
+ **LEAVE** | 从过程栈帧中退出         | LEAVE                        | LEAVE            
+ **UD2**   | 执行时导致无效操作码异常     | UD2                          | UD2              
+
+
+
+
+
+
 ## 参考资料
 
 [Coursera课程：北京大学《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
