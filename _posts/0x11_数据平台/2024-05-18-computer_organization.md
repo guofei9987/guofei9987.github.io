@@ -288,7 +288,7 @@ x86 体系主要分为 16位、32位、64位
 
  **指令**     | **功能**              | **语法**                  | **示例**               
 ------------|---------------------|-------------------------|----------------------
- **MOV**    | 将数据从源操作数传送到目标操作数    | MOV dest, src           | MOV EAX, EBX         
+ **MOV**    | 将数据从源操作数传送到目标操作数    | MOV dest, src           | MOV EAX, EBX <br> MOV EBX, 40：把40这个数字送入 EBX <br> MOV ECX, [1000H] 把内存中的数据读入 EXC <br> MOV [DI], AX 把 AX 写入 一个内存上，这个内存的地址存储在 DI 寄存器 <br> MOV WORD PTR[BX+SI*2+200H], 01H 把一个双字节，存到某个内存单元，这个内存单元地址是计算得到的        
  **PUSH**   | 将操作数压入堆栈顶部          | PUSH src                | PUSH EAX             
  **POP**    | 从堆栈顶部弹出数据到操作数       | POP dest                | POP EBX              
  **XCHG**   | 交换两个操作数的值           | XCHG operand1, operand2 | XCHG EAX, EBX        
@@ -306,12 +306,12 @@ x86 体系主要分为 16位、32位、64位
 
  **指令**   | **功能**          | **语法**                 | **示例**       
 ----------|-----------------|------------------------|--------------
- **ADD**  | 执行加法运算          | ADD dest, src          | ADD EAX, EBX 
- **ADC**  | 带进位的加法，包括进位标志   | ADC dest, src          | ADC EAX, EBX 
+ **ADD**  | 相加，并把结果存在 dst 寄存器         | ADD dst, src          | ADD EAX, EBX 
+ **ADC**  | 带进位的加法， dst := dst + src + CF  | ADC dst, src          | ADC EAX, EBX 
  **SUB**  | 执行减法运算          | SUB dest, src          | SUB EAX, EBX 
- **SBB**  | 带借位的减法，包括进位标志   | SBB dest, src          | SBB EAX, EBX 
- **INC**  | 操作数加1           | INC operand            | INC EAX      
- **DEC**  | 操作数减1           | DEC operand            | DEC EAX      
+ **SBB**  | 带借位的减法   | SBB dest, src          | SBB EAX, EBX 
+ **INC**  | 自加1           | INC operand            | INC EAX      
+ **DEC**  | 自减1           | DEC operand            | DEC EAX      
  **MUL**  | 无符号乘法           | MUL src                | MUL EBX      
  **IMUL** | 有符号乘法           | IMUL src               | IMUL EBX     
  **DIV**  | 无符号除法           | DIV src                | DIV EBX      
@@ -366,12 +366,30 @@ x86 体系主要分为 16位、32位、64位
  **指令**   | **功能**       | **语法**     | **示例**           
 ----------|--------------|------------|------------------
  **JMP**  | 无条件跳转        | JMP label  | JMP START        
- **Jcc**  | 条件跳转，根据标志位   | Jcc label  | JE LOOP_START    
+ **Jcc**  | 条件跳转，包括很多指令，见于下面的表   | Jcc label  | JE LOOP_START    
  **LOOP** | 循环，使用计数寄存器   | LOOP label | LOOP LOOP_START  
  **CALL** | 调用子程序，保存返回地址 | CALL label | CALL SUB_ROUTINE 
  **RET**  | 从子程序返回       | RET        | RET              
  **INT**  | 触发软件中断       | INT type   | INT 21h          
  **IRET** | 从中断服务程序返回    | IRET       | IRET             
+
+
+**Jcc** 指令:
+
+ **指令**      | **功能**                      | **条件**           
+-------------|-----------------------------|------------------
+ **JC**      | 有进位时跳转                      | CF = 1           
+ **JNC**     | 无进位时跳转                      | CF = 0           
+ **JP/JPE**  | 奇偶标志为偶时跳转（Parity Even）      | PF = 1           
+ **JNP/JPO** | 奇偶标志为奇时跳转（Parity Odd）       | PF = 0           
+ **JE/JZ**   | 相等或结果为零时跳转                  | ZF = 1           
+ **JNE/JNZ** | 不相等或结果不为零时跳转                | ZF = 0           
+ **JS**      | 符号标志被置位时跳转（负数）              | SF = 1           
+ **JNS**     | 符号标志未被置位时跳转（非负数）            | SF = 0           
+ **JG/JNLE** | 有符号比较中，第一个操作数大于第二个操作数时跳转    | ZF = 0 且 SF = OF <br> 这是因为 `CMP` 指令实际上是 `SUB` 操作但不保存结果，只更新标志位
+ **JL/JNGE** | 有符号比较中，第一个操作数小于第二个操作数时跳转    | SF ≠ OF          
+ **JGE/JNL** | 有符号比较中，第一个操作数大于或等于第二个操作数时跳转 | SF = OF          
+ **JLE/JNG** | 有符号比较中，第一个操作数小于或等于第二个操作数时跳转 | ZF = 1 或 SF ≠ OF 
 
 
 
@@ -398,7 +416,7 @@ x86 体系主要分为 16位、32位、64位
 
  **指令**    | **功能**       | **语法**                 | **示例**       
 -----------|--------------|------------------------|--------------
- **BT**    | 测试某个位的值，并将其存在 CF（进位标志） 中          | BT dest, bit_position  | BT EAX, 2    
+ **BT**    | 测试某个位的值，并将其存在 CF（标志寄存器中的进位标志） 中          | BT dest, bit_position  | BT EAX, 2    
  **BTS**   | 测试某个位的值，并将其设置为 1，然后将原值其存在 CF 中      | BTS dest, bit_position | BTS EAX, 2   
  **BTR**   | 测试某个位的值，并将其设置为 0，然后将原值其存在 CF 中       | BTR dest, bit_position | BTR EAX, 2   
  **BTC**   | 测试某个位的值，并将其取反，然后将原值其存在 CF 中       | BTC dest, bit_position | BTC EAX, 2   
