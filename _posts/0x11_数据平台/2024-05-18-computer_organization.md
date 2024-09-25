@@ -238,7 +238,7 @@ x86 体系主要分为 16位、32位、64位
 - `IP` 对应“计算机结构简化模型” 中的 PC 寄存器
     - 程序员不能直接读写，只能用自增/转移/返回的方式影响，寻址能力为 `2^16 = 64KB`
 - `FLAGS` 标志寄存器，就是上面 “计算机结构简化模型” 中的 F 寄存器。它存放了 2 类数据：1）状态标志，例如是否产生了进位，结果是否为零；2）控制标志，单步还是连续运行，是否允许响应中断。其 16 个二进制位意义如下：
-    - ![8086_flags](/pictures_for_blog/computer/8086_flags.jpg)
+    - ![8086_flags](/pictures_for_blog/computer/8086_flags.gif)
 - `CS、DS、ES、SS`（Code Segment, Data Segment, Extra Segment, Stack Segment） 是段寄存器
 - 8086 是如何寻址 `2^20 = 1MB` 呢？
     - 采用段寄存器 + `IP`
@@ -249,20 +249,22 @@ x86 体系主要分为 16位、32位、64位
 
 基本情况
 - 是 80x86 系列的第一款 32 位处理器
-- 支持 32 位算术和逻辑运算，提供 32 位 寄存器
-- 地址总线是 32 位，可寻址 `2^32 = 4GB` 内存空间
+- 32位 ALU
+- 32 位 寄存器
+- 地址总线（MAR）是 32 位，可寻址 `2^32 = 4GB` 内存空间
 
 
 ![80386](/pictures_for_blog/computer/80386.jpg)
 
-
-这么做的原因是为了与 8086 向上兼容
+说明
+- 这么做的原因是为了与 8086 向上兼容
+- 新增2个段寄存器 FS，GS
 
 #### x86-64 系列
 
 基本情况
 - 寄存器扩展到 64 位
-- 新增了 8 个通用寄存器（共 16 个）
+- 新增了 8 个通用寄存器（共 16 个），新增的标记为 R8～R15
 
 
 ![x86-64](/pictures_for_blog/computer/x86_64.jpg)
@@ -350,6 +352,8 @@ x86 体系主要分为 16位、32位、64位
 
 
 四、移位和旋转指令
+
+
  **指令**      | **功能**      | **语法**          | **示例**     
 -------------|-------------|-----------------|------------
  **SHL/SAL** | 逻辑左移，右边补0   | SHL dest, count | SHL EAX, 1 
@@ -536,30 +540,27 @@ MIPS（Microprocessor without Interlocked Piped Stages），指导思想是减�
     - 只允许 LOAD 和 STORE 访问存储器
 - MIPS 通用寄存器有 32 个，每个 32bit，且非常规整（相比于x86）
 
-一些指令
+一些 MIPS 指令
 - 算术运算（都是把结果存入 a）
-    - `add a, b, c`
-    - `sub a, b, c`
+    - `add a, b, c`，而 `addu a, b, c` 溢出不报错
+    - 还有对应的 I 指令，`addi a, b, (-50)` 执行的是 `b = a + (-50)` 操作，；`addiu` 对应“溢出不报错”版本。
+    - `sub a, b, c`，而 `subu a, b, c` 溢出不报错
     - `mul a, b, c`
     - `div a, b, c`
 - 逻辑运算
     - `and a, b, c`
     - `or a, b, c`
+    - 也有 I 型指令 `andi a, b, imm`
 - 移位
     - `sll a, b, c`
     - `srl a, b, c`
 
 
-MIPS 指令格式，分为3类
-- R型
-- I型
-- J型
+I 指令中的 immediate 是 16bit，而 ALU 是 32 位的，因此计算之间还有个补位操作，补位操作根据不同的运算还有区别。例如算术运算会根据补码原理把首个数字复制 16 次放到高位，而逻辑运算则是在高位补 16 个 0 
 
 
 
-
-
-不同的归类：，，
+MIPS 指令格式，从指令的分类上分为3类：R型，I型，J型。从功能上分为3类：运算指令、访存指令、分支指令：
 
 | | **R型（Register，寄存器型）** | **I型（Immediate，立即数型）** | **J型（Jump，无条件转移）**|
 |--|--|--|--|
@@ -574,9 +575,9 @@ MIPS 指令格式，分为3类
 | **opcode** | **rs** | **rt** | **rd** | **shamt** | **funct** |
 |---|---|---|---|---|---|
 | 6-bit | 5-bit | 5-bit | 5-bit | 5-bit | 6-bit |
-| 指令类型<br>全0 | 第一个源操作数的寄存器序号<br>5-bit正好表示32个寄存器 | 第二个源操作数的寄存器编号 | 结果存放在的寄存器编号 | 移位操作的位数<br>非移位指令全0 | 指令类型<br>与 opcode 一起判断其类型 |
+| 指令类型<br> R型指令为全0 | 第一个源操作数的寄存器序号<br>5-bit正好表示32个寄存器 | 第二个源操作数的寄存器编号 | 结果存放在的寄存器编号 | 移位操作的位数<br>非移位指令全0 | 指令类型<br>与 opcode 一起判断其类型 |
 
-**I型指令**，有立即数，而立即数常大于 31，因此不能复用 R 型指令，而是使用 16bit 来存放立即数：
+**I型指令**（有立即数就只能用 I 型指令），立即数常大于 31，因此不能复用 R 型指令，而是使用 16bit 来存放立即数：
 
 | **opcode** | **rs** | **rt** | **immediate** |
 |---|---|---|---|
@@ -602,11 +603,53 @@ MIPS 指令格式，分为3类
 - 如何达到更远的地址？两次调用 J 指令，这要求把第二个 J 指令放到远处作为跳板；或者新增一种 R 型指令，把目标地址放入寄存器中
 
 
+## 算术逻辑单元 ALU
+
+这里以 MIPS 为例（MIPS 指令参见上面小节）设计 ALU 。  
+上面章节列了一些 MIPS 指令的功能，还写了这些指令使二进制位变化的结果。  
+这里从物理层面讲解其是如何能够达成这些变化的
+
+### MOS 晶体管
+
+
+
+
+MOS 晶体管（Metal-Oxide-Semiconductor，金属-氧化物-半导体）
+
+MOS晶体管有两种
+- N-MOS。 当 Gate 连接高电平时，Source 和 Drain 是导通的；当 Gate 连接低电平时，Source 和 Drain 是不导通的。
+- P-MOS。 与 N-MOS 相反，当 Gate 连接高电平时，Source 和 Drain 是不导通的；当 Gate 连接低电平时，Source 和 Drain 是不导通的。
+
+
+![mos1](/pictures_for_blog/computer/mos1.gif)
+
+
+以上介绍了 MOS 的功能，那么它是如何设计的呢？参考，[Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
+
+
+![mos2](/pictures_for_blog/computer/mos2.gif)
+
+
+加上电压后，形成导体（通路）
+
+![mos3](/pictures_for_blog/computer/mos3.gif)
+
+
+
+
+下面看看如何用这两种晶体管构建一些 **门电路**
+
+
+### 非门
+
+
+
+
 
 ## 参考资料
 
-[Coursera课程：北京大学《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
+[Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
 
 
 
-![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)
+<!-- ![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73) -->
