@@ -603,7 +603,7 @@ MIPS 指令格式，从指令的分类上分为3类：R型，I型，J型。从�
 - 如何达到更远的地址？两次调用 J 指令，这要求把第二个 J 指令放到远处作为跳板；或者新增一种 R 型指令，把目标地址放入寄存器中
 
 
-## 算术逻辑单元 ALU
+## 算术逻辑单元 ALU 的物理实现
 
 这里以 MIPS 为例（MIPS 指令参见上面小节）设计 ALU 。  
 上面章节列了一些 MIPS 指令的功能，还写了这些指令使二进制位变化的结果。  
@@ -624,7 +624,8 @@ MOS晶体管有两种
 ![mos1](/pictures_for_blog/computer/mos1.gif)
 
 
-以上介绍了 MOS 的功能，那么它是如何设计的呢？参考，[Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
+以上介绍了 MOS 的功能，那么它是如何设计的呢？
+
 
 
 ![mos2](/pictures_for_blog/computer/mos2.gif)
@@ -636,11 +637,261 @@ MOS晶体管有两种
 
 
 
+<!-- 参考 [Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/) -->
+
+
+<!-- 参考，门电路 ：https://www.coursera.org/learn/jisuanji-zucheng/lecture/vc1XB/302-men-dian-lu-de-ji-ben-yuan-li -->
 
 下面看看如何用这两种晶体管构建一些 **门电路**
 
 
-### 非门
+### 门电路
+
+#### 非门
+
+
+非门的真值表：
+
+|A（输入）|Y（输出）
+|--|--|
+|0|1|
+|1|0|
+
+
+非门符号：  
+
+![gate_not_sign](/pictures_for_blog/computer/gate_not_sign.gif)
+
+
+其电路设计如下：
+
+![gate_not](/pictures_for_blog/computer/gate_not.gif)
+
+（自行分析一下，A 为 0 或者 1 的时候，电路的状态）
+
+#### 与非门
+
+与非门 `NOT (A AND B)`，比 与门 电路要简单很多，因此先设计与非门，然后用 `与门 = 非与门 + 非门` 来实现 与门
+
+与非门的真值表：
+
+|A（输入）|B（输入）|Y（输出）
+|--|--|--|
+|0|0|1
+|1|0|1
+|0|1|1
+|1|1|0
+
+与非门符号：
+
+![gate_not_and_sign](/pictures_for_blog/computer/gate_not_and_sign.gif)
+
+与非门电路：
+
+
+![gate_not_and](/pictures_for_blog/computer/gate_not_and.gif)
+
+#### 与门
+
+与门符号：
+
+![gate_and_sign](/pictures_for_blog/computer/gate_and_sign.gif)
+
+与非门电路：
+
+
+![gate_and](/pictures_for_blog/computer/gate_and.gif)
+
+
+#### 或门
+
+
+
+或门的真值表：
+
+|A（输入）|B（输入）|Y（输出）
+|--|--|--|
+|0|0|0
+|0|1|1
+|0|1|1
+|1|1|1
+
+
+![gate_or_sign](/pictures_for_blog/computer/gate_or_sign.gif)
+
+
+（没找到电路图，但是利用 `A OR B = NOT ((NOT A) AND (NOT B)` 即可想到，在与非门的输入A、B前各加一个非门，即可得到一个或门）
+
+
+#### 异或门
+
+![gate_xor_sign](/pictures_for_blog/computer/gate_xor_sign.gif)
+
+
+### 寄存器的物理实现
+
+
+例如，一个 32 位的寄存器，其中包含 32 个基本存储单元，这个存储单元叫做 **D触发器**（D flip-flop，DFF）。  
+D触发器也是由逻辑门组成的（电路图不写了），其符号表示：
+
+![register1](/pictures_for_blog/computer/register1.gif)
+
+
+功能：
+- 在时钟 clock 的上升沿，采样 D 的值，并将其传输到 Q，其余时间保持 Q 的值不变
+- 用照相机的例子形象理解。时钟 clock 的上升沿：是按动快门的动作，每个动作0.1秒。照相机在按动快门时，对景色采样，并输出出来。不按动快门时，保持输出不变。
+
+
+两个D触发器串联：
+
+![register2](/pictures_for_blog/computer/register2.jpg)
+
+这个图索命了：每个时钟周期，只向后传递一格
+
+
+如果把电平时序画出来，如下：
+
+![register3](/pictures_for_blog/computer/register3.gif)
+
+（可以分析一下，时钟上升沿和其它的情况，Q 是如何变化的）
+
+
+
+
+<!--参考： https://www.coursera.org/learn/jisuanji-zucheng/lecture/isrpm/303-ji-cun-qi-de-ji-ben-yuan-li -->
+
+### 逻辑运算的物理实现
+
+
+与运算 `AND rd, rs, rt`:
+
+![alu_and](/pictures_for_blog/computer/alu_and.gif)
+
+
+或运算 `OR rd, rs, rt`:
+
+![alu_or](/pictures_for_blog/computer/alu_or.gif)
+
+
+还包括其它的运算
+
+
+那么，**如何让 ALU 同时支持多种运算呢**？
+- 用并联的方式，把输入并联起来
+- 同时通过所有的运算模块
+- 也就同时输出所有运算的结果
+- 在末尾加上一个 **多选器**，用来选取想要的结果
+- 这个多选器也是由多个门组成的
+- 这个多选器，对应的是上面模型机中的“控制电路”（的一部分）
+
+下图表示支持 4 种运算的 ALU，那么多选器也就用 2-bit 来表示（这个实际上是）
+
+![alu](/pictures_for_blog/computer/alu.jpg)
+
+
+### 加法器的电路实现
+
+先分析二进制位的每一位如何加的
+
+
+如果不考虑前一位的进位，某一个二进制位相 `A + B` 结果如下：
+
+|A|B|S（和）|C（向下一位的进位）|
+|--|--|--|--|
+|0|0|0|0|
+|0|1|1|0|
+|1|0|1|0|
+|1|1|0|1|
+
+分析上表发现，`S = A XOR B, C = A OR B`，于是可以设计出电路图（叫做 **半加器（Half Adder）**）：
+
+![alu_half_adder](/pictures_for_blog/computer/alu_half_adder.gif)
+
+-----------------
+
+现在我们希望设计一个 **全加器**，它可以考虑前一位的进位，也就是计算 `A + B + C_in`，立即想到，**全加器用两个半加器串联得到**
+
+
+![alu_adder](/pictures_for_blog/computer/alu_adder.gif)
+
+
+-----------------
+
+现在我们希望设计一个多bit 的加法器，以 4-bit 为例，把4个全加器串联起来
+
+
+![alu_4adder](/pictures_for_blog/computer/alu_4adder.gif)
+
+如果是 32-bit 的，也是一样的串联
+
+-----------------
+
+加法器的 **溢出** 问题。两种情况
+1. 无符号数加法的溢出：
+    - 定义：当两个无符号数相加的结果超过了加法器的最大表示范围时，就会发生溢出。*这时候 CPU 给出的结果是是真实结果取模*
+    - 示例：假设使用4位二进制表示无符号数，最大值为15（即1111）。如果将两个数相加，例如 `1111 (15) + 0001 (1) = 1 0000 (16)`，结果 `1 0000` 需要5位表示，但加法器只能处理4位，因此发生溢出。
+2. 有符号数加法的溢出：
+    - 定义：在使用补码表示有符号数时，当两个正数相加得到一个负数，或两个负数相加得到一个正数时，就会发生溢出。
+    - 示例：使用4位补码表示有符号数，范围为-8（1000）到+7（0111）。例如，`0111 (+7) + 0001 (+1) = 1000 (-8)`，结果本应是+8，但由于超出表示范围，错误地表示为-8，发生溢出。
+
+溢出的检测
+CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况。加法器在执行运算后会根据结果自动设置或清除该标志位：
+- 无符号数加法：最高位加法电路产生了进位，则设置溢出标志。
+- 有符号数加法：如果两个操作数的符号相同，但结果的符号与操作数不同，则设置溢出标志。或者：“最高位的进位输入” 不等于 “最高位的进位输出” 表示发生了溢出，在电路上表示就是加一个“异或门”
+
+
+如何处理溢出
+- x86 ：把溢出标志写入 OP
+- MIPS：`add` 发生溢出时触发中断和异常。`addu` 则不检测溢出
+
+
+![alu_32adder](/pictures_for_blog/computer/alu_32adder.gif)
+
+
+### 减法器
+
+考虑到 `A - B = A + (-B)`。如果我们能设计一套表示负数的二进制系统，并且保证其遵守加法运算的规则，那么减法就可以复用上面设计好的加法器。这套系统叫做 **补码**。
+- 首先规定全 1 的二进制表示 -1，也就是 `1111 1111 = -1`
+- 然后得出 `X + (~X) = 1111 1111 = -1`
+- 所以 `-X = (~X) + 1`，也就是说，任意负数的补码可以用正数的“按位取反，然后加1”得到
+- 因此，我们实现减法器为 `A - B = A + (~B + 1)`
+
+
+现在我们设计减法器的电路
+
+![alu_sub](/pictures_for_blog/computer/alu_sub.gif)
+
+说明
+- 在加法器的基础上加入了一个选择模块 `2-to-1 Mux`
+- 当计算加法的时候，`2-to-1 Mux` 选择左边线路的数据，整个电路与加法器一致
+    - 当计算减法的时候：
+        - 数据会先通过非门（就是取反）
+        - 然后 `2-to-1 Mux` 选择右边线路的数据（也就是取反后的数据），传给下面的加法器
+        - C0也会被传入1
+        - 以上就实现了“取反加1”的操作，然后通过加法器得到结果
+
+
+
+### 加法器的优化
+
+上面我们设计的加法器叫做 **行波进位加法器**（RCA），其特点是
+- 32个全加器是串联的，每个全加器的进位输出 `C_out`，连接下一个全加器的进位输入 `C_in`
+- 每个全加器都要等待上一个全加器计算完成，并给出进位信息，才能开始运算。
+- 因此信息就像一个行波一样
+- 假设每个门的延迟是 `T`，那么总的延迟就是 `(2n+1)T`
+- 下图画了 4-bit 加法器的串联情况：
+
+
+![alu_rca](/pictures_for_blog/computer/alu_rca.gif)
+
+
+进位值 C 能否快速计算得到呢？注意到进位值 C 的某个递推公式，就可以这样设计电路 ：
+
+
+
+![alu_cla](/pictures_for_blog/computer/alu_cla.gif)
+
+
 
 
 
@@ -648,8 +899,7 @@ MOS晶体管有两种
 
 ## 参考资料
 
-[Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
-
-
+- [Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
+- [Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
 
 <!-- ![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73) -->
