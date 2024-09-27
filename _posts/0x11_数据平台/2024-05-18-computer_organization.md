@@ -697,7 +697,7 @@ MOS晶体管有两种
 
 ![gate_and_sign](/pictures_for_blog/computer/gate_and_sign.gif)
 
-与非门电路：
+与门电路：
 
 
 ![gate_and](/pictures_for_blog/computer/gate_and.gif)
@@ -720,7 +720,7 @@ MOS晶体管有两种
 ![gate_or_sign](/pictures_for_blog/computer/gate_or_sign.gif)
 
 
-（没找到电路图，但是利用 `A OR B = NOT ((NOT A) AND (NOT B)` 即可想到，在与非门的输入A、B前各加一个非门，即可得到一个或门）
+（没找到电路图，它是利用 `A OR B = NOT ((NOT A) AND (NOT B)` 即可想到，在与非门的输入A、B前各加一个非门，即可得到一个或门）
 
 
 #### 异或门
@@ -822,7 +822,7 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 
 ![alu_4adder](/pictures_for_blog/computer/alu_4adder.gif)
 
-如果是 32-bit 的，也是一样的串联
+（如果是 32-bit 的，也是一样的串联）
 
 -----------------
 
@@ -872,7 +872,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 
 
-### 加法器的优化
+### 加法器的性能优化
 
 上面我们设计的加法器叫做 **行波进位加法器**（RCA），其特点是
 - 32个全加器是串联的，每个全加器的进位输出 `C_out`，连接下一个全加器的进位输入 `C_in`
@@ -897,7 +897,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 
 
-参考：https://www.coursera.org/learn/jisuanji-zucheng/lecture/Y1Q3C/306-jia-fa-qi-de-you-hua
+<!-- 参考：https://www.coursera.org/learn/jisuanji-zucheng/lecture/Y1Q3C/306-jia-fa-qi-de-you-hua -->
 
 
 
@@ -926,14 +926,52 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 ![alu_mul2](/pictures_for_blog/computer/alu_mul2.gif)
 
 
+--------------------
+
+**乘法器的优化**
+
+时间上的性能优化
+- 分析时间消耗：每次循环，A 左移需要 1T，B 右移动需要 1T，加法 `P=P + A` 需要 1T。
+- 优化：加法、左移、右移可以并行起来，在同一个时钟周期同时完成。性能提升了3倍
 
 
+晶体管的数量优化
+- 分析浪费：
+    - Multiplicand：只有 4 位，却占了 8 位，这是因为随着循环迭代，会左移 4 次
+    - Multiplier：占了 4 位，但是随着循环迭代，其实际占用依次减一
+    - Product：一开始数量只有 4 位，随着循环迭代，其实际占用依次加一
+    - 8-bit adder：8位宽，但是实际上只进行了 4 位的加法运算
+- 优化：
+    - Multiplicand：原本是 8-bit ，改为 4-bit，并且取消向左移位功能。改为让 Product 右移。
+    - 考虑到 Product 和 Multiplier 都会右移，把 Multiplier 寄存器取消，其值初始化到 Product 的低位。这样就可以节省空间，并且同时右移
+    - 由于把 Multiplier 寄存器取消了，其值放在了 Product 的低位，原本连接在 Multiplier 末尾的 控制逻辑（Control test），改为连接到 Product 的末尾。
+
+优化后的电路：
 
 
+![alu_mul3](/pictures_for_blog/computer/alu_mul3.gif)
 
 
 ### 除法器
 
+先看除法是如何计算的
+
+
+![alu_div1](/pictures_for_blog/computer/alu_div1.gif)
+
+算法步骤（假设被除数是 8bit，除数是 4bit）：
+1. 准备
+    - 需要一个 8bit 余数寄存器，初始化为 被除数。
+    - 需要一个 8bit 寄存器，把除数放入它的高4位，它要有右移的功能。
+    - 需要一个 4bit 商寄存器，初始化为0，它要带左移功能。
+    - 需要一个 8bit ALU，它支持加法和减法运算
+2. 检查 `余数 = 余数 - 除数`。
+3. 判断余树，如果 ≥0 ，则商左移一位，并把末尾设定为1；否则回退（执行 `余数 = 余数 + 除数`），然后商左移1位，并把末尾设定为0
+4. 除数右移一位
+5. 如果执行了 9 次，则结束，否则回到 步骤 2。（如果是除数 32bit，则执行 33 次后结束）
+
+
+ 
 
 ## 参考资料
 
