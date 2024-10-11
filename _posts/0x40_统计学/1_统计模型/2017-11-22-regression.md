@@ -28,16 +28,87 @@ order: 408
 ### 模型和假设
 
 
-**模型**：$Y_i=\alpha + \beta X_i +\varepsilon_i$
+**模型**：$Y_i=\beta_0 + \beta_1 X_i +\varepsilon_i$
 
-1. **零均值假定** $E(\varepsilon_i\mid X_i)=0$
-2. **同方差假定** $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
-3. **无自相关假定** $cov(\varepsilon_i,\varepsilon_j)=E(\varepsilon_i \varepsilon_j)=0$
-4. **解释变量与随机扰动不相关** $cov(\varepsilon_i ,X_i)=E[\varepsilon_i -E\varepsilon_i][\varepsilon_j-E\varepsilon_j]$
-5. **正态性假定** $\varepsilon_i\sim N(0,\sigma^2)$
+**假设** | 数学描述 |
+|--|--|
+|1、 **零均值假定** | $E(\varepsilon_i\mid X_i)=0$
+|2、 **同方差假定** | $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
+|3、 **无自相关假定** | $cov(\varepsilon_i,\varepsilon_j)=E(\varepsilon_i \varepsilon_j)=0  \quad \text{for } i \neq j$
+|4、 **解释变量与随机扰动不相关** | $cov(\varepsilon_i ,X_i)=E[\varepsilon_i -E\varepsilon_i][\varepsilon_j-E\varepsilon_j]=0$
+|5、 **正态性假定** |$\varepsilon_i \overset{\text{i.i.d.}}{\sim} N(0, \sigma^2)$
 
+
+### 一元回归模型的推导
+
+
+为简化记号，记：  
+- $l_{xy}=\sum\limits_{i=1}^n (x_i-\bar x)(y_i-\bar y)=\sum\limits_{i=1}^n x_i y_i-n\bar x\bar y$
+- $l_{xx}=\sum\limits_{i=1}^n(x_i-\bar x)^2=\sum\limits_{i=1}^n x_i^2 -n\bar x^2$
+- $l_{yy}=\sum\limits_{i=1}^n(y_i-\bar y)^2=\sum\limits_{i=1}^n y_i^2-n\bar y^2$
+
+
+另一套简化记法
+- $SST=\sum\limits_{i=1}^n(y_i-\bar y)^2=l_{yy}$，表示总变异量
+- $SSR=\sum\limits_{i=1}^n(\hat y_i-\bar y)^2=\dfrac{l_{xy}^2}{l_{xx}}$，表示可以被模型解释的变异量
+- $SSE=\sum\limits_{i=1}^n(y_i-\hat y_i)^2=l_{yy}-\dfrac{l_{xy}^2}{l_{xx}}$，表示没有被模型解释的变异量
+
+
+结论：  
+$SST=SSR+SSE$  
+$F=\dfrac{SSR/1}{SSE/(n-2)}$
+相关系数$r^2=\dfrac{l_{xy}^2}{l_{xx}l_{yy}}=\dfrac{SSR}{SST}$
+
+
+
+
+
+对于一元线性回归模型:  
+$$\left \{ \begin{array}{l}
+y_i=\beta_0+\beta_1 x_i+\varepsilon_i\\
+\varepsilon_i \overset{\text{i.i.d.}} \sim N(0,\sigma^2)
+\end{array}\right.
+$$
+
+
+用最小二乘法得到：  
+$\hat\beta_1=\dfrac{l_{xy}}{l_{xx}}$  
+$\hat\beta_0=\bar y -\hat\beta_1\bar x$  
+
+
+可以证明：  
+- $\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，（但是方差未知，因此对其检验要用t检验）  
+- $\hat\beta_0 \sim  N(\beta_0, (\dfrac{1}{n} + \dfrac{\bar x^2}{l_{xx}}) \sigma^2)$  
+- $Cov(\hat\beta_0,\hat\beta_1)=-\dfrac{\bar x}{l_{xx}}\sigma^2$  
 
 ### 一元回归的检验
+
+
+| 检验对象 | H0 | 构建随机变量  | 拒绝域 <br>落在拒绝域上，代表方程显著 |
+|---------|----|-------------|-------|
+| 方程显著性-相关系数 <br> 对于一元回归完全等价于 $\beta_1=0$ 的检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
+| 方程显著性-F检验| $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/1}{SSE/(n-2)} \sim F(1,2)$ | $F>F_{1-\alpha}(f_{SSR},f_{SSE})=F(1,n-2)$ |
+
+
+拟合优度（一元回归中，等于相关系数的平方 $R^2=r^2$），$R^2=SSR/SST$
+
+#### 参数的区间估计
+(上面的结论用于显著性检验，下面以$\beta_1$为例)
+$H_0:\beta_1=0,H_1:\beta_1 \not=0$  
+根据上面的推导，$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
+其中$\sigma^2$未知，所以构造t统计量  
+$t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$   
+其中，$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$  
+
+
+#### y的区间估计
+（上面三条结论也可以用来求出预测值的置信区间）  
+（根据正态分布的加法）  
+对 $x=x_0$ 处做预测 $\hat y_0=\beta_1 x_0 +\beta_0\sim N(\beta_1 x_0+\beta_0,(\dfrac{1}{n}+\dfrac{(x_0-\bar x)^2}{l_{xx}})\sigma^2)$  
+得到区间估计$(\hat y-t_{1-\alpha/2}(n-2) s_{\hat y},\hat y+t_{1-\alpha/2}(n-2) s_{\hat y})$  
+其中，$s_{\hat y}=\sqrt{\dfrac{(x_0-\bar x)^2}{l_{xx}})\hat\sigma^2},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$
+
+
 
 
 
@@ -98,62 +169,9 @@ $$
 
 
 
-## 另一种写法
 
 
 
-
-
-
-为简化记号，记：  
-$l_{xy}=\sum\limits_{i=1}^n (x_i-\bar x)(y_i-\bar y)=\sum\limits_{i=1}^n x_i y_i-n\bar x\bar y$  
-$l_{xx}=\sum\limits_{i=1}^n(x_i-\bar x)^2=\sum\limits_{i=1}^n x_i^2 -n\bar x^2$  
-$l_{yy}=\sum\limits_{i=1}^n(y_i-\bar y)^2=\sum\limits_{i=1}^n y_i^2-n\bar y^2$  
-
-
-对于一元线性回归模型:  
-$$\left \{ \begin{array}{l}
-y_i=\beta_0+\beta_1 x_i+\varepsilon_i\\
-\varepsilon_i \sim (i.i.d) N(0,\sigma^2)
-\end{array}\right.
-$$
-
-
-用最小二乘法得到：  
-$\hat\beta_1=\dfrac{l_{xy}}{l_{xx}}$  
-$\hat\beta_0=\bar y -\hat\beta_1\bar x$  
-
-
-可以证明：  
-$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$  
-$\hat\beta_0 \sim  N(\beta_0, (\dfrac{1}{n} + \dfrac{\bar x^2}{l_{xx}}) \sigma^2)$  
-$Cov(\hat\beta_0,\hat\beta_1)=-\dfrac{\bar x}{l_{xx}}\sigma^2$  
-
-#### 参数的区间估计
-(上面的结论用于显著性检验，下面以$\beta_1$为例)
-$H_0:\beta_1=0,H_1:\beta_1 \not=0$  
-根据上面的推导，$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
-其中$\sigma^2$未知，所以构造t统计量  
-$t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$   
-其中，$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$  
-
-
-#### y的区间估计
-（上面三条结论也可以用来求出预测值的置信区间）  
-（根据正态分布的加法）  
-对 $x=x_0$ 处做预测 $\hat y_0=\beta_1 x_0 +\beta_0\sim N(\beta_1 x_0+\beta_0,(\dfrac{1}{n}+\dfrac{(x_0-\bar x)^2}{l_{xx}})\sigma^2)$  
-得到区间估计$(\hat y-t_{1-\alpha/2}(n-2) s_{\hat y},\hat y+t_{1-\alpha/2}(n-2) s_{\hat y})$  
-其中，$s_{\hat y}=\sqrt{\dfrac{(x_0-\bar x)^2}{l_{xx}})\hat\sigma^2},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$
-
-### 另一种写法
-$SST=\sum\limits_{i=1}^n(y_i-\bar y)^2$
-$SSR=\sum\limits_{i=1}^n(\hat y_i-\bar y)^2=\dfrac{l_{xy}}{l_{xx}}$
-$SSE=\sum\limits_{i=1}^n(y_i-\hat y_i)^2$
-
-结论：  
-$SST=SSR+SSE$  
-$F=\dfrac{SSR/1}{SSE/(n-2)}$
-相关系数$r^2=\dfrac{l_{xy}^2}{l_{xx}l_{yy}}=\dfrac{SSR}{SST}$
 ## 正则化方法
 - 岭回归
 - lasso
