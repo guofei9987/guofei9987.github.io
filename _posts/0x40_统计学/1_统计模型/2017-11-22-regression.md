@@ -15,13 +15,7 @@ order: 408
 |连续|ttest<br>ANOVA<br>logit|OLS回归|协方差分析ANCOVA|
 
 
-## 线性回归
-大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
-
-<!-- <iframe src="https://www.guofei.site/StatisticsBlog/regression.htm" width="100%" height="3600em" marginwidth="10%"></iframe> -->
-
-大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
 ## 一元线性模型
 
@@ -32,7 +26,7 @@ order: 408
 
 
 
-| **假设** | 数学描述 |
+| **假设** | **数学描述** |
 |--|--|
 |1、 **零均值假定** | $E(\varepsilon_i\mid X_i)=0$
 |2、 **同方差假定** | $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
@@ -142,20 +136,52 @@ $$
 **模型形式3**： $Y=X\hat\beta+e$，以及 $\hat Y=X\hat \beta$
 
 
+**假设**
+
+
+| **假设** | **数学描述** |
+|--|--|
+| 1、**0均值假设** | $$E(U)=\left[ \begin{array}{l} 0\\ 0\\ ... \\ 0\\ \end{array}\right]$$|
+| 2、**同方差且无自相关** ||
+| 3、**随机扰动项与解释变量不相关** ||
+| 4、**无多重共线性** ||
+| 5、**正态性假定** ||
+
+
+
+大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
+
+（下图，一元回归已经全部重写为 markdown 了，只剩下 多元回归还没重写）
+
+
+<iframe src="https://www.guofei.site/StatisticsBlog/regression.htm" width="100%" height="1600em" marginwidth="10%"></iframe>
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### RESET检验（regresion error specification test）
 检验思路:
-- 如果残差中包含被遗漏变量，那么把此变量引入模型，并检验其参数是否显著
-- 问题是不知道遗漏了哪个变量，因此“虚构一个”
-- “虚构的变量”用 Y 的估计值 $\hat Y$ 的若干次幂
+- 得到了一个回归模型，想检验这个原始的回归模型是否遗漏了重要自变量
+- 问题是不知道遗漏了哪个变量，因此“虚构一些”额外的变量
+- 加上虚构变量后，重新做 OLS，然后构造假设检验，H0 假设是“虚构变量的系数为0”，如果检验后拒绝了这个假设，说明原始模型可能遗漏了重要变量
 
 
 步骤：
-1. OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+u_i$
-2. 再次OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+\delta_1+u_i$
+1. 原始 OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+u_i$
+2. 获取新的“虚构变量”，例如 $\hat Y^2, \hat Y^3$
+2. 再次 OLS：$Y_i=\beta_0+\beta_1 X_{1}+...+\beta_k X_k+\delta_1 \hat Y^2 + \delta_2 \hat Y^3 +u_i$
 3. 假设检验，构造 $H0: \delta_i=0$
-4. 构建F统计量
+4. 构建F统计量 $F=\dfrac{(SSR_R-SSR_{UR})/q}{SSR_{UR}/(n-k-q-1)}$
+    - 这里 q=2
 5. 判断。F较大时拒绝原假设，认为存在设定误差
 
 
@@ -165,6 +191,7 @@ $$
 
 
 ## 正则化方法
+
 - 岭回归
 - lasso
 - 弹性网络
