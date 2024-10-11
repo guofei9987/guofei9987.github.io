@@ -19,19 +19,23 @@ order: 408
 大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
 
-<iframe src="https://www.guofei.site/StatisticsBlog/regression.htm" width="100%" height="3600em" marginwidth="10%"></iframe>
+<!-- <iframe src="https://www.guofei.site/StatisticsBlog/regression.htm" width="100%" height="3600em" marginwidth="10%"></iframe> -->
 
 大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
 
 ## 一元线性模型
 
-### 模型假设
+### 模型和假设
+
+
+**模型**：$Y_i=\alpha + \beta X_i +\varepsilon_i$
 
 1. **零均值假定** $E(\varepsilon_i\mid X_i)=0$
 2. **同方差假定** $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
-3. **无自相关假定** $cov(u_i,u_j)=E(u_i u_j)=0$
+3. **无自相关假定** $cov(\varepsilon_i,\varepsilon_j)=E(\varepsilon_i \varepsilon_j)=0$
 4. **解释变量与随机扰动不相关** $cov(\varepsilon_i ,X_i)=E[\varepsilon_i -E\varepsilon_i][\varepsilon_j-E\varepsilon_j]$
-5. **正态性假定** $u_i\sim N(0,\sigma^2)$，也就是说 $E(Y_i)=\beta_1+\beta_2X_i$
+5. **正态性假定** $\varepsilon_i\sim N(0,\sigma^2)$
+
 
 ### 一元回归的检验
 
