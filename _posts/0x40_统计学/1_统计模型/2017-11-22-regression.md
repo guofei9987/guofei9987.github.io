@@ -12,7 +12,7 @@ order: 408
 |X\ Y|分类|连续|分类+连续|
 |--|--|--|--|
 |分类|列联表分析<br>LR|LR|LR|
-|连续|ttest<br>ANOVA|OLS回归|协方差分析ANCOVA|
+|连续|ttest<br>ANOVA<br>logit|OLS回归|协方差分析ANCOVA|
 
 
 ## 线性回归
@@ -89,42 +89,21 @@ $\hat\beta_0=\bar y -\hat\beta_1\bar x$
 
 | 检验对象 | H0 | 构建随机变量  | 拒绝域 <br>落在拒绝域上，代表方程显著 |
 |---------|----|-------------|-------|
-| **拟合优度 R2** <br> 取值为0到1 <br> 是说明能解释多少的因变量变异 <br> 例如 值为 0.8，说明 80% 的变异可以由模型解释，剩下的 20% 是随机误差+模型外的其它因素。<br>一元回归中$R^2=r^2$ 相关系数的平方 <br> 多元回归通常用用 *Adjusted R2* |  |$R^2=\dfrac{SSR}{SST}$||
+| **拟合优度 R2** <br> 取值为0到1 <br> 模型能解释多少的 Y 变异 <br> 例如 值为 0.8，说明模型能解释 80% 的变异，剩下的 20% 是随机误差+模型外的其它因素。<br>一元回归中$R^2=r^2$ 相关系数的平方 <br> 多元回归通常用用 *Adjusted R2* |  |$R^2=\dfrac{SSR}{SST}$||
 | **方程显著性**-相关系数 <br> 对于一元回归等同于系数显著性检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
 | **方程显著性**-F检验 <br> 对于一元回归，由于分布 F(1,n-2)=t(n-2)，因此也等同于系数显著性检验 | $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/k}{SSE/(n-k-1)} \sim F(k,n-k-1)$ <br> 对于一元回归 $F\sim F(1,n-2)$ | $F>F_{1-\alpha}(1,n-2)$ |
 | **系数显著性** <br> 等价于相关系数检验 | $\beta_1=0$ | $t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$ <br> 其中$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$|
-|**残差**||看残差图|
-|**残差**-自相关性-DW检验|| $DW = \frac{\sum_{i=2}^n (e_i - e_{i-1})^2}{\sum_{i=1}^n e_i^2}$ | d≈2 说明没有自相关性 <br> 0~2 说明有正自相关性，<br> 2～4 说明有负相关性 |
+|**残差**-看残差图-经验判断| 残差应当：<br>服从正态分布<br>均值为0<br>与x无关<br>无自相关性<br>等方差 ||
+|**残差**-自相关性-DW检验|| $DW = \dfrac{\sum\limits_{i=2}^n (e_i - e_{i-1})^2}{\sum\limits_{i=1}^n e_i^2}$ <br>其中，$e_i$ 是 $\varepsilon_i$ 的估计| d≈2 说明没有自相关性 <br> 0~2 说明有正自相关性，<br> 2～4 说明有负相关性 |
+|**残差**-其它方法 <br> |可以用假设检验的方法，例如 SW、JB、KS 检验（参见 [统计推断](https://www.guofei.site/2017/10/27/hypothesistesting.html)）|
 
 
+### y的区间估计
 
-
-$t=\dfrac{\hat \beta_1}{\sigma/\sqrt{\sum(x_i-\bar x)^2}} \sim t(n-2)$
-
-
-
-
-
-#### 参数的区间估计
-(上面的结论用于显著性检验，下面以$\beta_1$为例)
-$H_0:\beta_1=0,H_1:\beta_1 \not=0$  
-根据上面的推导，$\hat\beta_1\sim N(\beta_1,\dfrac{\sigma^2}{l_{xx}})$，  
-其中$\sigma^2$未知，所以构造t统计量  
-$t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$   
-其中，$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$  
-
-
-#### y的区间估计
-（上面三条结论也可以用来求出预测值的置信区间）  
 （根据正态分布的加法）  
 对 $x=x_0$ 处做预测 $\hat y_0=\beta_1 x_0 +\beta_0\sim N(\beta_1 x_0+\beta_0,(\dfrac{1}{n}+\dfrac{(x_0-\bar x)^2}{l_{xx}})\sigma^2)$  
 得到区间估计$(\hat y-t_{1-\alpha/2}(n-2) s_{\hat y},\hat y+t_{1-\alpha/2}(n-2) s_{\hat y})$  
-其中，$s_{\hat y}=\sqrt{\dfrac{(x_0-\bar x)^2}{l_{xx}})\hat\sigma^2},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$
-
-
-
-
-
+其中，$s_{\hat y}=\sqrt{(\dfrac{1}{n}+\dfrac{(x_0-\bar x)^2}{l_{xx}})\hat\sigma^2},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$
 
 
 ## 多元回归模型
@@ -141,7 +120,7 @@ Y_n
 = \left [ \begin{array}{lll}
 1 & X_{21} & X_{31} & ... & X_{k1}\\
 1 & X_{22} & X_{32} & ... & X_{k2}\\
-...
+...\\
 1 & X_{2n} & X_{3n} & ... & X_{kn} \end{array}\right ]
 \left( \begin{array}{lll}
 \beta_1\\
