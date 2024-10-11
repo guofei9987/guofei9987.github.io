@@ -28,9 +28,11 @@ order: 408
 ### 模型和假设
 
 
-**模型**：$Y_i=\beta_0 + \beta_1 X_i +\varepsilon_i$
+**模型**：$Y_i=\beta_0 + \beta_1 X_i +\varepsilon_i$  
 
-**假设** | 数学描述 |
+
+
+| **假设** | 数学描述 |
 |--|--|
 |1、 **零均值假定** | $E(\varepsilon_i\mid X_i)=0$
 |2、 **同方差假定** | $var(\varepsilon_i\mid X_i)=E(\varepsilon_i-E(\varepsilon_i\mid X_i))=E(\varepsilon_i^2)=\sigma^2$
@@ -55,10 +57,11 @@ order: 408
 
 
 结论：  
-$SST=SSR+SSE$  
-$F=\dfrac{SSR/1}{SSE/(n-2)}$
-相关系数$r^2=\dfrac{l_{xy}^2}{l_{xx}l_{yy}}=\dfrac{SSR}{SST}$
-
+1. $SST=SSR+SSE$  
+2. 构造 F 分布 $F=\dfrac{SSR/1}{SSE/(n-2)}$
+3. 相关系数$r^2=\dfrac{l_{xy}^2}{l_{xx}l_{yy}}=\dfrac{SSR}{SST}$，对于一元回归来说，拟合优度等于相关系数 $R^2=r^2$
+4. 拟合优度 $R^2$ ，取值为0到1，是说明能解释多少的因变量变异。例如 值为 0.8，说明 80% 的变异可以由模型解释，剩下的 20% 是随机误差+模型外的其它因素。
+    - 由于多元变量的自变量数量影响，因此通常用 Adjusted R2
 
 
 
@@ -86,11 +89,21 @@ $\hat\beta_0=\bar y -\hat\beta_1\bar x$
 
 | 检验对象 | H0 | 构建随机变量  | 拒绝域 <br>落在拒绝域上，代表方程显著 |
 |---------|----|-------------|-------|
-| 方程显著性-相关系数 <br> 对于一元回归完全等价于 $\beta_1=0$ 的检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
-| 方程显著性-F检验| $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/1}{SSE/(n-2)} \sim F(1,2)$ | $F>F_{1-\alpha}(f_{SSR},f_{SSE})=F(1,n-2)$ |
+| **拟合优度 R2** <br> 取值为0到1 <br> 是说明能解释多少的因变量变异 <br> 例如 值为 0.8，说明 80% 的变异可以由模型解释，剩下的 20% 是随机误差+模型外的其它因素。<br>一元回归中$R^2=r^2$ 相关系数的平方 <br> 多元回归通常用用 *Adjusted R2* |  |$R^2=\dfrac{SSR}{SST}$||
+| **方程显著性**-相关系数 <br> 对于一元回归等同于系数显著性检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
+| **方程显著性**-F检验 <br> 对于一元回归，由于分布 F(1,n-2)=t(n-2)，因此也等同于系数显著性检验 | $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/k}{SSE/(n-k-1)} \sim F(k,n-k-1)$ <br> 对于一元回归 $F\sim F(1,n-2)$ | $F>F_{1-\alpha}(1,n-2)$ |
+| **系数显著性** <br> 等价于相关系数检验 | $\beta_1=0$ | $t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$ <br> 其中$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$|
+|**残差**||看残差图|
+|**残差**-自相关性-DW检验|| $DW = \frac{\sum_{i=2}^n (e_i - e_{i-1})^2}{\sum_{i=1}^n e_i^2}$ | d≈2 说明没有自相关性 <br> 0~2 说明有正自相关性，<br> 2～4 说明有负相关性 |
 
 
-拟合优度（一元回归中，等于相关系数的平方 $R^2=r^2$），$R^2=SSR/SST$
+
+
+$t=\dfrac{\hat \beta_1}{\sigma/\sqrt{\sum(x_i-\bar x)^2}} \sim t(n-2)$
+
+
+
+
 
 #### 参数的区间估计
 (上面的结论用于显著性检验，下面以$\beta_1$为例)
