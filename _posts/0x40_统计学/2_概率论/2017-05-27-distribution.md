@@ -96,12 +96,12 @@ $\int_0^{-\infty}x^{\alpha-1}e^{-x}=\Gamma(\alpha)/\lambda^\alpha$
 
 |名字|表示|分布|特征|性质|
 |---|----|----|----|---|
-|Gamma distribution||$$f(x)=\left \{ \begin{array}{ccc}\dfrac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}&x \geq 0\\0&others \end{array}\right.$$|$EX=\dfrac{\alpha}{\lambda}$ $DX=\dfrac{\alpha}{\lambda^2}$|指数分布 $Ga(1,\lambda)=exp(\lambda)$<br>$Ga(n/2,1/2)=\chi^2(n)$|
 |卡方分布|$\chi^2(n)$|$\sum (N(0,1)^2)$|$E\chi^2=n$<br>$DX=2n$|
-|Beta distribution||$f=\dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}$|$EX^k=\dfrac{\Gamma(\alpha+k)\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\alpha+\beta+k)}$  <br> $EX=\dfrac{\alpha}{\alpha+\beta}$ <br> $DX=\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$|在一些机器学习模型中，有时把先验分布定位beta distribution|
+|t 分布|$t(n)$|$t=\dfrac{N}{\sqrt{\chi^2/n}}$|$Et=0$ <br> $Dt=\dfrac{n}{n-2}$||
+|F分布|$F(n_1,n_2)$|$F=\dfrac{\chi^2(n_1)/n_1}{\chi^2(n_2)/n_2}$|$EF=\dfrac{n_2}{n_2-2}$ <br> $DF=\dfrac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)(n_2-4)}$ (n_2>4)|F分布与t分布有关 $(t(n))^2=F(1,n)$|
+|Gamma distribution||$$f(x)=\left \{ \begin{array}{ccc}\dfrac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}&x \geq 0\\0&others \end{array}\right.$$|$EX=\dfrac{\alpha}{\lambda}$ $DX=\dfrac{\alpha}{\lambda^2}$|指数分布 $Ga(1,\lambda)=exp(\lambda)$<br>$Ga(n/2,1/2)=\chi^2(n)$|
+|Beta distribution||$f=\dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}$|$EX^k=\dfrac{\Gamma(\alpha+k)\Gamma(\alpha+\beta)}{\Gamma(\alpha)+\Gamma(\alpha+\beta+k)}$  <br> $EX=\dfrac{\alpha}{\alpha+\beta}$ <br> $DX=\dfrac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$|某些机器学习模型中，先验分布定为beta distribution|
 |Fisher Z||$f=\dfrac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\dfrac{x^{a-1}}{(1+x)^{a+b}}$|$EX^k=\dfrac{(a+k-1)(a+k-2)...a}{(b-1)(b-2)...(b-k)}$ (k<b) <br>$EX=\dfrac{a}{b-1}$ (b>1) <br> $DX=\dfrac{a(a+b-1)}{(b-1)^2(b-2)}$ (b>2)|$\dfrac{n_2}{n_1}Z(n_1/2,n_2/2)=F(n_1,n_2)$|
-|F分布|$F(n_1,n_2)$|$F=\dfrac{\chi^2(n_1)/n_1}{\chi^2(n_2)/n_2}$|$EF=\dfrac{n_2}{n_2-2}$ <br> $DF=\dfrac{2n_2^2(n_1+n_2-2)}{n_1(n_2-2)(n_2-4)}$ (n_2>4)||
-|t distribution||$t=\dfrac{N}{\sqrt{\chi^2/n}}$|$Et=0$ <br> $Dt=\dfrac{n}{n-2}$||
 |The exponential family||$P(y;\eta)=b(y)exp(\eta^T T(y)-a(\eta))$||以下都是exponential family:<br> Bernoulli distribution <br>Binomial distribution <br> poisson distribution <br> normal distribution|
 ||||||
 

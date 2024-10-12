@@ -83,13 +83,13 @@ $\hat\beta_0=\bar y -\hat\beta_1\bar x$
 
 | 检验对象 | H0 | 构建随机变量  | 拒绝域 <br>落在拒绝域上，代表方程显著 |
 |---------|----|-------------|-------|
-| **拟合优度 R2** <br> 取值为0到1 <br> 模型能解释多少的 Y 变异 <br> 例如 值为 0.8，说明模型能解释 80% 的变异，剩下的 20% 是随机误差+模型外的其它因素。<br>一元回归中$R^2=r^2$ 相关系数的平方 <br> 多元回归通常用用 *Adjusted R2* |  |$R^2=\dfrac{SSR}{SST}$||
-| **方程显著性**-相关系数 <br> 对于一元回归等同于系数显著性检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
-| **方程显著性**-F检验 <br> 对于一元回归，由于分布 F(1,n-2)=t(n-2)，因此也等同于系数显著性检验 | $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/k}{SSE/(n-k-1)} \sim F(k,n-k-1)$ <br> 对于一元回归 $F\sim F(1,n-2)$ | $F>F_{1-\alpha}(1,n-2)$ |
+| **拟合优度 R2** <br> 取值为0到1 <br> 模型能解释多少的 Y 变异 <br><br> 如果值为 0.8，说明模型能解释 80% 的变异<br>剩下的 20% 是其它因素+随机误差 <br><br>一元回归中$R^2=r^2$ 相关系数的平方 <br> 多元回归通常用用 *Adjusted R2* |  |$R^2=\dfrac{SSR}{SST}$||
+| **方程显著性**-相关系数 <br> 对一元回归：等同于系数显著性检验 | $\rho=0$ | $t=\dfrac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$ |$\mid t \mid > t_{\alpha/2}$|
+| **方程显著性**-F检验 <br> 对一元回归，由 F(1,n-2)=t(n-2)，得出结论：其等同于系数显著性检验 | $\beta_1=\beta_2=...=\beta_k=0$ <br> 也就是所有的自变量对因变量的影响都是 0 | $F=\dfrac{SSR/k}{SSE/(n-k-1)} \sim F(k,n-k-1)$ <br> 对于一元回归 $F\sim F(1,n-2)$ | $F>F_{1-\alpha}(1,n-2)$ |
 | **系数显著性** <br> 等价于相关系数检验 | $\beta_1=0$ | $t=\dfrac{\hat \beta_1}{s_{\hat\beta_1}}\sim t(n-2)$ <br> 其中$s_{\hat\beta_1}=\sqrt{\dfrac{\hat\sigma^2}{l_{xx}}},\hat\sigma^2=\dfrac{\sum\limits_{i=1}^n (y_i-\hat y_i)^2}{n-2}$|
-|**残差**-看残差图-经验判断| 残差应当：<br>服从正态分布<br>均值为0<br>与x无关<br>无自相关性<br>等方差 ||
+|**残差**-看残差图-经验判断| 残差应当：<br>1、服从正态分布<br>2、均值为0<br>3、与x无关<br>4、无自相关性<br>5、等方差 ||
 |**残差**-自相关性-DW检验|| $DW = \dfrac{\sum\limits_{i=2}^n (e_i - e_{i-1})^2}{\sum\limits_{i=1}^n e_i^2}$ <br>其中，$e_i$ 是 $\varepsilon_i$ 的估计| d≈2 说明没有自相关性 <br> 0~2 说明有正自相关性，<br> 2～4 说明有负相关性 |
-|**残差**-其它方法 <br> |可以用假设检验的方法，例如 SW、JB、KS 检验（参见 [统计推断](https://www.guofei.site/2017/10/27/hypothesistesting.html)）|
+|**残差**-其它方法 <br> | 对残差做 [统计推断](https://www.guofei.site/2017/10/27/hypothesistesting.html) <br>例如 SW、JB、KS |
 
 
 ### y的区间估计
