@@ -105,27 +105,28 @@ $\hat\beta_0=\bar y -\hat\beta_1\bar x$
 ### 多元回归模型定义
 **模型形式1**:
 
-$$\left ( \begin{array}{lll}
+$$\left( \begin{array}{c}
 Y_1\\
 Y_2\\
-...\\
+\vdots\\
 Y_n
 \end{array}\right)
-= \left [ \begin{array}{lll}
-1 & X_{21} & X_{31} & ... & X_{k1}\\
-1 & X_{22} & X_{32} & ... & X_{k2}\\
-...\\
-1 & X_{2n} & X_{3n} & ... & X_{kn} \end{array}\right ]
-\left( \begin{array}{lll}
+= \left[ \begin{array}{cccc}
+1 & X_{21} & X_{31} & \dots & X_{k1}\\
+1 & X_{22} & X_{32} & \dots & X_{k2}\\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & X_{2n} & X_{3n} & \dots & X_{kn}
+\end{array}\right ]
+\left( \begin{array}{c}
+\beta_0\\
 \beta_1\\
-\beta_2\\
-...\\
-\beta_n
+\vdots\\
+\beta_k
 \end{array}\right)
-+\left( \begin{array}{lll}
++\left( \begin{array}{c}
 u_1\\
 u_2\\
-...\\
+\vdots\\
 u_n
 \end{array}\right)
 $$
@@ -142,10 +143,11 @@ $$
 | **假设** | **数学描述** |
 |--|--|
 | 1、**0均值假设** | $$E(U)=\left[ \begin{array}{l} 0\\ 0\\ ... \\ 0\\ \end{array}\right]$$|
-| 2、**同方差且无自相关** ||
-| 3、**随机扰动项与解释变量不相关** ||
-| 4、**无多重共线性** ||
-| 5、**正态性假定** ||
+| 2、**同方差且无自相关** | $$\left [ \begin{array}{lll} \sigma^2 & 0 & ... & 0\\ 0 & \sigma^2 & ... & 0\\...\\0 & 0 & ... & \sigma^2 \end{array}\right ]$$|
+| 3、**随机扰动项与解释变量不相关** |$\text{Cov}(X_{ji}, u_i) = 0 \quad (j=2,3,\dots,k; \, i=1,2,\dots,n)$|
+| 4、**无多重共线性** | $Rank(X)=k$<br>此时有结论 $Rank(X'X)=k$，进而 $X'X$ 可逆 |
+| 5、**正态性假定** |$u_i \overset{\text{i.i.d.}}{\sim} N(0,\sigma^2)$|
+
 
 
 
