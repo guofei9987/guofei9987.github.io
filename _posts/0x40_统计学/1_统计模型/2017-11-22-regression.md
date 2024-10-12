@@ -149,6 +149,12 @@ $$
 | 5、**正态性假定** |$u_i \overset{\text{i.i.d.}}{\sim} N(0,\sigma^2)$|
 
 
+**一些性质**
+1. 线性变换 $\hat\beta=(X'X)^{(-1)}X'y$
+2. 无偏估计 $E\hat\beta=\beta$
+3. 方差 $D\hat\beta=\sigma^2(X'X)^{(-1)}$
+4. 如果 $y\sim N(X\beta,\sigma^2I)$，那么 $\hat\beta\sim N(\beta,\sigma^2(X'X)^{(-1)})$，并且 $SSE/ \sigma^2=\chi^2(n-k-1)$
+
 
 
 大图见于<a href='https://www.guofei.site/StatisticsBlog/regression.htm' target="HypothesisTesting">这里</a>  
