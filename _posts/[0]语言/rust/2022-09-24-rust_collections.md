@@ -29,6 +29,11 @@ order: 11207
 
 ## Vec
 
+理论篇
+- 栈上存一个三元组：包括 ptr（指向堆上数据的指针）、len（元素个数）、capacity（分配的容量）
+- 堆上存储元素，是连续分配的
+- 如果 capacity 不够用了，会开辟一片更大的连续内存块（容量倍增），然后把旧的数据复制过来
+
 ```Rust
 // 如何创建1
 let mut v1: Vec<i32> = Vec::new(); // 不推荐
@@ -119,7 +124,7 @@ rsplit;rsplit_mut;rsplitn; r_split_mut;  //效果同 split 系列，但是迭代
 v.windows(n) // 迭代器，第一个是 v[0..n]，第二个是 v[1..n+1]，直到 v[(len-n)..len]
 ```
 
-```
+```rust
 // 清除相邻的重复元素
 vec.dedup()
 // 功能类似，但判断标准是一个匿名函数

@@ -21,7 +21,7 @@ $Z=g(X,Y)$，那么
 $EZ=\iint g(x,y) p(x,y) dxdy$
 
 ### 数学期望的性质
-- $E(X+Y)=EX+EY$
+- $E(X+Y)=EX+EY$ 无论是否相互独立都成立
 - 如果相互独立，则 $EXY=EXEY$
 
 定理（柯西不等式）  
@@ -34,6 +34,8 @@ $EZ=\iint g(x,y) p(x,y) dxdy$
 $DX=E[X-EX]^2$
 ### 性质
 $D(aX+b)=a^2DX$
+
+$D(X+Y)=DX+DY+2COV(X,Y)$
 
 ## 协方差
 定义：  
