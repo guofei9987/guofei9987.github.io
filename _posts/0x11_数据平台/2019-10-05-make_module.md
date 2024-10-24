@@ -584,30 +584,28 @@ importlib.reload(scipy)
 
 ## python 环境
 
-创建环境
 ```bash
-conda create -n myenv_py38 python=3.8
-```
 
-激活环境
-```bash
-activate myenv_py38 # for Windows
-source activate myenv_py38 # for Linux & Mac
+# 创建环境
+conda create -n myenv_py38 python=3.8
+
+# 激活环境
+conda activate myenv_py38
 
 # 然后可以在此环境中安装包，例如：
 pip install scikit-opt
 
+# 列出所有的环境
+conda env list
+
 # 反激活环境
 conda deactivate
+
+# 删除环境
+conda remove -n myenv_py38 --all
 ```
 
 
-
-
-删除环境
-```bash
-conda remove --name myenv_py38 --all
-```
 
 显示python路径
 ```bash
