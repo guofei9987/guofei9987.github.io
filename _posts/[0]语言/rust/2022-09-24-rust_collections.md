@@ -375,6 +375,15 @@ if s.is_char_boundary(idx) {
     s.insert_str(idx, s2);
 }
 // 另外， s.insert 是插入一个字符
+
+
+// 两种索引之间的转换：
+// char_idx 转 byte_idx
+let byte_idx = text
+    .char_indices()
+    .nth(idx)
+    .map(|(b, _)| b)
+    .unwrap_or(text.len());
 ```
 
 其它

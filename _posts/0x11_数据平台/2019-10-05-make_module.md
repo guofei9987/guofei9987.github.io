@@ -427,6 +427,24 @@ from tst_pkg.pkg1 import pkg1_file1
 pkg1_file1.func1()
 ```
 
+### pyproject.toml 形式
+
+使用 `setup.py` 是旧的方式
+
+安装必要的包
+```sh
+pip install build twine
+```
+
+构建并上传
+```sh
+# 构建，构建的结果会放到 ./dist 下
+python -m build
+# 上传，（token 设置同上）
+twine upload dist/*
+```
+
+
 ## import 一个 zip 包
 
 ```python
