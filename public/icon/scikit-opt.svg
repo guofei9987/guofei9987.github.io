@@ -11,10 +11,7 @@
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-labelledby="descId"
 >
-  <title id="titleId"></title>
-  <desc id="descId"></desc>
   <style>
     .header {
       font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -114,7 +111,7 @@ to {
 <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#3572A5" />
 <text data-testid="lang-name" class="gray" x="15">{{repo.language}}</text>
 </g>
-</g><g transform="translate(62.275000000000006, 0)"><g transform="translate(0, 0)">
+</g><g transform="translate(62, 0)"><g transform="translate(0, 0)">
 <svg
 class="icon"
 y="-12"
