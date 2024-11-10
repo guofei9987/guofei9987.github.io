@@ -40,7 +40,7 @@ permalink: /me.html
 [![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
 [![pyLSHash](https://www.guofei.site/public/icon/pyLSHash.svg)](https://github.com/guofei9987/pyLSHash)
 [![github_star_counter](https://www.guofei.site/public/icon/github_star_counter.svg)](https://github.com/guofei9987/github_star_counter)
-[![plot2svg](https://www.guofei.site/public/icon/plot2svg.svg)](https://github.com/guofei9987/plot2svg)
+[![hidden_watermark](https://www.guofei.site/public/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)
 
 
 
