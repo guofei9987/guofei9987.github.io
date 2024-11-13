@@ -2,10 +2,10 @@
 layout: post
 title: 【CS】计算机组成
 categories:
-tags: 0x11_算法平台
+tags: 0x10_计算机基础
 keywords:
 description:
-order: 173
+order: 101
 ---
 
 ## 冯诺依曼结构
