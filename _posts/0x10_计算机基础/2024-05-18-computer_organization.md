@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【CS】计算机组成
+title: 【CS】计算机组成原理
 categories:
 tags: 0x10_计算机基础
 keywords:
