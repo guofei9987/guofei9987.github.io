@@ -749,6 +749,7 @@ assert_eq!(inner, "art");
 - filter
 - map
 - flat_map： 匿名函数返回的是一个 vec，把这个 vec 摊平，成为最终结果
+- inspect，在调试中使用，可以调试信息
 
 ```rust
 let arr = vec![0, 1, 2, 3, 4, 5, 6];
@@ -768,6 +769,16 @@ println!("{:?}", arr2);
 
 // enumerate
 for (idx,item) in b.into_iter().enumerate(){...}
+
+// inspect 用于调试
+let arr1: Vec<i32> = arr.into_iter()
+    .inspect(|x| println!("=========="))
+    .inspect(|x| println!("原始数据： {}", x))
+    .filter(|x| { *x > 2 })
+    .inspect(|x| println!("filer 之后：{}", x))
+    .map(|x| { x * x + 1 })
+    .inspect(|x| println!("map之后：{}", x))
+    .collect();
 ```
 
 
