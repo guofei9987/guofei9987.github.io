@@ -1,5 +1,6 @@
 /_site/
 /.idea
+*/.idea
 /pictures_for_blog
 /.jekyll-cache
 */.Ds_Store

@@ -25,6 +25,7 @@ while True:
             'name': repo['name'], 'url': repo['html_url'], 'is_fork': repo['fork']
             , 'star_cnt': repo['stargazers_count'], 'fork_cnt': repo['forks_count']
             , 'language': repo['language'], 'description': repo['description']
+            , 'open_issues_count': repo['open_issues_count']
         })
     page_id += 1
 
