@@ -27,6 +27,7 @@ title: 分析
   <th>fork</th>
   <th>Star {{ site.data.data_github.star_cnt }}</th>
   <th>Fork {{ site.data.data_github.fork_cnt }}</th>
+  <th>open issues</th>
   <th>language</th>
   <th>description</th>
 </tr>
@@ -37,6 +38,7 @@ title: 分析
   <td>{{ repo.is_fork }}</td>
   <td>☆{{ repo.star_cnt }}</td>
   <td><img alt="fork:" src="https://www.guofei.site/public/icon/fork.svg">{{ repo.fork_cnt }}</td>
+  <td>{{ repo.open_issues_count }}</td>
   <td>{{repo.language}}</td>
 
   <td>{{ repo.description }}</td>

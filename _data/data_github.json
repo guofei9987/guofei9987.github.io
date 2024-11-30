@@ -1,194 +1,325 @@
 {
-"followers": 708,
+"followers": 1601,
 "repo_list": [
-{
-"name": "scikit-opt",
-"url": "https://github.com/guofei9987/scikit-opt",
-"is_fork": false,
-"star_cnt": 3924,
-"fork_cnt": 864,
-"language": "Python",
-"description": "Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Optimization Algorithm,Immune Algorithm, Artificial Fish Swarm Algorithm, Differential Evolution and TSP(Traveling salesman) "
-},
 {
 "name": "blind_watermark",
 "url": "https://github.com/guofei9987/blind_watermark",
 "is_fork": false,
-"star_cnt": 2964,
-"fork_cnt": 385,
+"star_cnt": 5972,
+"fork_cnt": 714,
 "language": "Python",
-"description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！"
+"description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！",
+"open_issues_count": 24
+},
+{
+"name": "scikit-opt",
+"url": "https://github.com/guofei9987/scikit-opt",
+"is_fork": false,
+"star_cnt": 5295,
+"fork_cnt": 988,
+"language": "Python",
+"description": "Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Optimization Algorithm,Immune Algorithm, Artificial Fish Swarm Algorithm, Differential Evolution and TSP(Traveling salesman) ",
+"open_issues_count": 67
 },
 {
 "name": "text_blind_watermark",
 "url": "https://github.com/guofei9987/text_blind_watermark",
 "is_fork": false,
-"star_cnt": 197,
-"fork_cnt": 27,
+"star_cnt": 1428,
+"fork_cnt": 139,
 "language": "Python",
-"description": "文本盲水印：把信息隐匿到文本中，put invisible blind watermark into a text. "
+"description": "文本盲水印：把信息隐匿到文本中，put invisible blind watermark into a text. ",
+"open_issues_count": 1
+},
+{
+"name": "HideInfo",
+"url": "https://github.com/guofei9987/HideInfo",
+"is_fork": false,
+"star_cnt": 507,
+"fork_cnt": 47,
+"language": "Python",
+"description": "一些小而美的信息隐藏技术：幻影坦克、藏物于音等",
+"open_issues_count": 0
 },
 {
 "name": "guofei9987.github.io",
 "url": "https://github.com/guofei9987/guofei9987.github.io",
 "is_fork": false,
-"star_cnt": 46,
-"fork_cnt": 29,
+"star_cnt": 107,
+"fork_cnt": 45,
 "language": "JavaScript",
-"description": "个人博客，欢迎fork"
-},
-{
-"name": "fourier_artist",
-"url": "https://github.com/guofei9987/fourier_artist",
-"is_fork": false,
-"star_cnt": 26,
-"fork_cnt": 2,
-"language": "Python",
-"description": "用几个圆画任意图（傅里叶变换）"
-},
-{
-"name": "github_star_counter",
-"url": "https://github.com/guofei9987/github_star_counter",
-"is_fork": false,
-"star_cnt": 20,
-"fork_cnt": 5,
-"language": "Python",
-"description": "Count a GitHub user's total stars and forks"
-},
-{
-"name": "vulgar_language_generator",
-"url": "https://github.com/guofei9987/vulgar_language_generator",
-"is_fork": false,
-"star_cnt": 16,
-"fork_cnt": 3,
-"language": "Python",
-"description": "俗不可耐语言生成器（中文）-俗不可耐的古风诗歌生成器，震惊体生成器"
+"description": "个人博客，欢迎fork",
+"open_issues_count": 8
 },
 {
 "name": "pyLSHash",
 "url": "https://github.com/guofei9987/pyLSHash",
 "is_fork": false,
-"star_cnt": 15,
-"fork_cnt": 3,
-"language": "Python",
-"description": "Locality Sensitive Hashing in Python, min-hash"
-},
-{
-"name": "get_data",
-"url": "https://github.com/guofei9987/get_data",
-"is_fork": false,
-"star_cnt": 11,
+"star_cnt": 53,
 "fork_cnt": 5,
 "language": "Python",
-"description": "从知乎获取点赞数、收藏数、关注数，并自动推送，每小时运行"
+"description": "Locality Sensitive Hashing, fuzzy-hash， min-hash, simhash, aHash, pHash, dHash。基于 Hash值的图片相似度、文本相似度",
+"open_issues_count": 0
+},
+{
+"name": "fourier_artist",
+"url": "https://github.com/guofei9987/fourier_artist",
+"is_fork": false,
+"star_cnt": 42,
+"fork_cnt": 6,
+"language": "Python",
+"description": "用几个圆画任意图（傅里叶变换）",
+"open_issues_count": 1
+},
+{
+"name": "github_star_counter",
+"url": "https://github.com/guofei9987/github_star_counter",
+"is_fork": false,
+"star_cnt": 31,
+"fork_cnt": 7,
+"language": "Python",
+"description": "Count a GitHub user's total stars and forks",
+"open_issues_count": 0
+},
+{
+"name": "vulgar_language_generator",
+"url": "https://github.com/guofei9987/vulgar_language_generator",
+"is_fork": false,
+"star_cnt": 24,
+"fork_cnt": 4,
+"language": "Python",
+"description": "俗不可耐语言生成器（中文）-俗不可耐的古风诗歌生成器，震惊体生成器",
+"open_issues_count": 2
 },
 {
 "name": "star_counter",
 "url": "https://github.com/guofei9987/star_counter",
 "is_fork": false,
-"star_cnt": 11,
-"fork_cnt": 2,
+"star_cnt": 21,
+"fork_cnt": 3,
 "language": "JavaScript",
-"description": "Count a GitHub user's stars and forks（在线统计账号star数量）"
+"description": "Count a GitHub user's stars and forks（在线统计账号star数量）",
+"open_issues_count": 0
+},
+{
+"name": "get_data",
+"url": "https://github.com/guofei9987/get_data",
+"is_fork": false,
+"star_cnt": 19,
+"fork_cnt": 7,
+"language": "Python",
+"description": "从知乎获取点赞数、收藏数、关注数，并自动推送，每小时运行",
+"open_issues_count": 0
 },
 {
 "name": "pygraphs",
 "url": "https://github.com/guofei9987/pygraphs",
 "is_fork": false,
-"star_cnt": 9,
+"star_cnt": 17,
 "fork_cnt": 1,
 "language": "Python",
-"description": "A graph database based on Python，一个轻量级图数据库"
+"description": "A graph database based on Python，一个轻量级图数据库",
+"open_issues_count": 0
 },
 {
-"name": "guofei9987",
-"url": "https://github.com/guofei9987/guofei9987",
+"name": "AHP",
+"url": "https://github.com/guofei9987/AHP",
 "is_fork": false,
-"star_cnt": 8,
-"fork_cnt": 6,
+"star_cnt": 13,
+"fork_cnt": 0,
 "language": "Python",
-"description": null
+"description": "层次分析法",
+"open_issues_count": 0
+},
+{
+"name": "hidden_watermark",
+"url": "https://github.com/guofei9987/hidden_watermark",
+"is_fork": false,
+"star_cnt": 13,
+"fork_cnt": 0,
+"language": "Rust",
+"description": "hidden watermark in rust",
+"open_issues_count": 1
+},
+{
+"name": "hibird_python",
+"url": "https://github.com/guofei9987/hibird_python",
+"is_fork": false,
+"star_cnt": 11,
+"fork_cnt": 0,
+"language": "Python",
+"description": "Python调用C的例子（混合编程）",
+"open_issues_count": 0
 },
 {
 "name": "chrplotlib",
 "url": "https://github.com/guofei9987/chrplotlib",
 "is_fork": false,
-"star_cnt": 6,
+"star_cnt": 10,
 "fork_cnt": 1,
 "language": "Python",
-"description": "plot graphs using chars"
+"description": "plot graphs using chars",
+"open_issues_count": 1
+},
+{
+"name": "guofei9987",
+"url": "https://github.com/guofei9987/guofei9987",
+"is_fork": false,
+"star_cnt": 10,
+"fork_cnt": 6,
+"language": "Python",
+"description": "github profile",
+"open_issues_count": 0
+},
+{
+"name": "python-maze",
+"url": "https://github.com/guofei9987/python-maze",
+"is_fork": false,
+"star_cnt": 9,
+"fork_cnt": 1,
+"language": "Python",
+"description": "Generate a maze using Python",
+"open_issues_count": 0
+},
+{
+"name": "c-algorithm",
+"url": "https://github.com/guofei9987/c-algorithm",
+"is_fork": false,
+"star_cnt": 7,
+"fork_cnt": 0,
+"language": "C",
+"description": "C语言实现动态数组、链表、Hash表、KMP等算法/数据结构",
+"open_issues_count": 0
 },
 {
 "name": "file2tree",
 "url": "https://github.com/guofei9987/file2tree",
 "is_fork": false,
-"star_cnt": 5,
+"star_cnt": 7,
 "fork_cnt": 2,
 "language": "Python",
-"description": "file2tree"
+"description": "file2tree",
+"open_issues_count": 0
+},
+{
+"name": "rust-algo",
+"url": "https://github.com/guofei9987/rust-algo",
+"is_fork": false,
+"star_cnt": 6,
+"fork_cnt": 0,
+"language": "Rust",
+"description": "Rust 实现链表等数据结构",
+"open_issues_count": 0
+},
+{
+"name": "donate",
+"url": "https://github.com/guofei9987/donate",
+"is_fork": false,
+"star_cnt": 5,
+"fork_cnt": 3,
+"language": "CSS",
+"description": "打赏小控件",
+"open_issues_count": 0
+},
+{
+"name": "fuzzy-hash",
+"url": "https://github.com/guofei9987/fuzzy-hash",
+"is_fork": false,
+"star_cnt": 5,
+"fork_cnt": 0,
+"language": "C",
+"description": "fuzzy hash in python (from ssdeep)",
+"open_issues_count": 0
 },
 {
 "name": "HelloGitHub",
 "url": "https://github.com/guofei9987/HelloGitHub",
 "is_fork": true,
 "star_cnt": 5,
-"fork_cnt": 0,
+"fork_cnt": 1,
 "language": "Python",
-"description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目（5 周年）"
+"description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目（5 周年）",
+"open_issues_count": 0
 },
 {
-"name": "hibird_python",
-"url": "https://github.com/guofei9987/hibird_python",
+"name": "plot2svg",
+"url": "https://github.com/guofei9987/plot2svg",
 "is_fork": false,
 "star_cnt": 5,
 "fork_cnt": 0,
 "language": "Python",
-"description": "一个Python混合编程C的例子"
+"description": "A simple plot tool to generate small SVG files",
+"open_issues_count": 0
 },
 {
-"name": "python-maze",
-"url": "https://github.com/guofei9987/python-maze",
+"name": "rs-graphs",
+"url": "https://github.com/guofei9987/rs-graphs",
 "is_fork": false,
 "star_cnt": 5,
-"fork_cnt": 1,
-"language": "Python",
-"description": "Generate a maze using Python"
+"fork_cnt": 0,
+"language": "Rust",
+"description": "Graph algorithms in Rust。用 Rust 实现的图算法",
+"open_issues_count": 0
 },
 {
-"name": "donate",
-"url": "https://github.com/guofei9987/donate",
+"name": "rs_lib",
+"url": "https://github.com/guofei9987/rs_lib",
 "is_fork": false,
-"star_cnt": 4,
-"fork_cnt": 3,
-"language": "CSS",
-"description": "打赏小控件"
+"star_cnt": 5,
+"fork_cnt": 0,
+"language": "Rust",
+"description": "Rust调用C的例子（混合编程）",
+"open_issues_count": 0
 },
 {
-"name": "MyKnowledge",
-"url": "https://github.com/guofei9987/MyKnowledge",
+"name": "a",
+"url": "https://github.com/guofei9987/a",
 "is_fork": false,
 "star_cnt": 4,
 "fork_cnt": 1,
-"language": "Python",
-"description": "笔记记录，已迁移到 https://github.com/guofei9987/guofei9987.github.io"
+"language": "JavaScript",
+"description": "assets of my blog: https://www.guofei.site/",
+"open_issues_count": 0
+},
+{
+"name": "CryptTool",
+"url": "https://github.com/guofei9987/CryptTool",
+"is_fork": false,
+"star_cnt": 3,
+"fork_cnt": 0,
+"language": "Rust",
+"description": "密码学相关算法",
+"open_issues_count": 0
+},
+{
+"name": "python-small-examples",
+"url": "https://github.com/guofei9987/python-small-examples",
+"is_fork": true,
+"star_cnt": 3,
+"fork_cnt": 2,
+"language": null,
+"description": "告别枯燥，致力于打造 Python 实用小例子，更多Python良心教程见 Python中文网 http://www.zglg.work",
+"open_issues_count": 0
+},
+{
+"name": "signal-transforms",
+"url": "https://github.com/guofei9987/signal-transforms",
+"is_fork": false,
+"star_cnt": 3,
+"fork_cnt": 0,
+"language": "Rust",
+"description": "A comprehensive Rust library for discrete and wavelet transforms, including DCT, and more.",
+"open_issues_count": 0
 },
 {
 "name": "pictures_for_blog",
 "url": "https://github.com/guofei9987/pictures_for_blog",
 "is_fork": false,
-"star_cnt": 4,
-"fork_cnt": 1,
-"language": "JavaScript",
-"description": "Pictures in my blog"
-},
-{
-"name": "c-algorithm",
-"url": "https://github.com/guofei9987/c-algorithm",
-"is_fork": false,
 "star_cnt": 2,
-"fork_cnt": 0,
-"language": "C",
-"description": "C语言实现动态数组、链表、Hash表、KMP等算法/数据结构"
+"fork_cnt": 2,
+"language": "JavaScript",
+"description": "Pictures in my blog",
+"open_issues_count": 0
 },
 {
 "name": "plans",
@@ -197,34 +328,48 @@
 "star_cnt": 2,
 "fork_cnt": 1,
 "language": "Python",
-"description": "已废弃"
+"description": "已废弃",
+"open_issues_count": 0
 },
 {
-"name": "plot2svg",
-"url": "https://github.com/guofei9987/plot2svg",
+"name": "pybert",
+"url": "https://github.com/guofei9987/pybert",
 "is_fork": false,
 "star_cnt": 2,
 "fork_cnt": 0,
 "language": "Python",
-"description": "A simple plot tool to generate small SVG files"
+"description": "一行代码实现bert，中文文本分类。基于 torch",
+"open_issues_count": 0
 },
 {
-"name": "python-small-examples",
-"url": "https://github.com/guofei9987/python-small-examples",
+"name": "audiowmark",
+"url": "https://github.com/guofei9987/audiowmark",
 "is_fork": true,
-"star_cnt": 2,
-"fork_cnt": 2,
-"language": null,
-"description": "告别枯燥，致力于打造 Python 实用小例子，更多Python良心教程见 Python中文网 http://www.zglg.work"
-},
-{
-"name": "AHP",
-"url": "https://github.com/guofei9987/AHP",
-"is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
-"language": "Python",
-"description": "层次分析法"
+"language": null,
+"description": "Audio Watermarking",
+"open_issues_count": 0
+},
+{
+"name": "Deep-Learning-Papers-Reading-Roadmap",
+"url": "https://github.com/guofei9987/Deep-Learning-Papers-Reading-Roadmap",
+"is_fork": true,
+"star_cnt": 1,
+"fork_cnt": 0,
+"language": null,
+"description": "Deep Learning papers reading roadmap for anyone who are eager to learn this amazing tech!",
+"open_issues_count": 0
+},
+{
+"name": "face_recognition",
+"url": "https://github.com/guofei9987/face_recognition",
+"is_fork": true,
+"star_cnt": 1,
+"fork_cnt": 0,
+"language": null,
+"description": "The world's simplest facial recognition api for Python and the command line",
+"open_issues_count": 0
 },
 {
 "name": "logging4",
@@ -233,25 +378,18 @@
 "star_cnt": 1,
 "fork_cnt": 0,
 "language": "Python",
-"description": "a tiny logging tool"
+"description": "a tiny logging tool",
+"open_issues_count": 1
 },
 {
-"name": "pybert",
-"url": "https://github.com/guofei9987/pybert",
+"name": "slides",
+"url": "https://github.com/guofei9987/slides",
 "is_fork": false,
 "star_cnt": 1,
 "fork_cnt": 0,
-"language": "Python",
-"description": "一行代码实现bert，中文文本分类。基于 torch"
-},
-{
-"name": "spank",
-"url": "https://github.com/guofei9987/spank",
-"is_fork": false,
-"star_cnt": 1,
-"fork_cnt": 0,
-"language": "Python",
-"description": null
+"language": "JavaScript",
+"description": null,
+"open_issues_count": 0
 },
 {
 "name": "tmp",
@@ -260,34 +398,18 @@
 "star_cnt": 1,
 "fork_cnt": 0,
 "language": "Python",
-"description": "测试"
+"description": "测试",
+"open_issues_count": 1
 },
 {
-"name": "Deep-Learning-Papers-Reading-Roadmap",
-"url": "https://github.com/guofei9987/Deep-Learning-Papers-Reading-Roadmap",
-"is_fork": true,
+"name": "hidden_watermark_web",
+"url": "https://github.com/guofei9987/hidden_watermark_web",
+"is_fork": false,
 "star_cnt": 0,
 "fork_cnt": 0,
-"language": null,
-"description": "Deep Learning papers reading roadmap for anyone who are eager to learn this amazing tech!"
-},
-{
-"name": "faceswap",
-"url": "https://github.com/guofei9987/faceswap",
-"is_fork": true,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": "Python",
-"description": "Deepfakes Software For All"
-},
-{
-"name": "face_recognition",
-"url": "https://github.com/guofei9987/face_recognition",
-"is_fork": true,
-"star_cnt": 0,
-"fork_cnt": 0,
-"language": null,
-"description": "The world's simplest facial recognition api for Python and the command line"
+"language": "JavaScript",
+"description": "A Wasm-based wrapper for hidden_watermark",
+"open_issues_count": 0
 },
 {
 "name": "leetcode_python",
@@ -296,16 +418,28 @@
 "star_cnt": 0,
 "fork_cnt": 0,
 "language": "Python",
-"description": "Leetcode Python"
+"description": "Leetcode Python",
+"open_issues_count": 0
 },
 {
-"name": "nlp",
-"url": "https://github.com/guofei9987/nlp",
+"name": "python_with_rust",
+"url": "https://github.com/guofei9987/python_with_rust",
 "is_fork": false,
 "star_cnt": 0,
 "fork_cnt": 0,
-"language": null,
-"description": "nlp相关资料汇总"
+"language": "Rust",
+"description": "Python 调用 Rust 项目",
+"open_issues_count": 0
+},
+{
+"name": "spank",
+"url": "https://github.com/guofei9987/spank",
+"is_fork": false,
+"star_cnt": 0,
+"fork_cnt": 0,
+"language": "Python",
+"description": null,
+"open_issues_count": 0
 },
 {
 "name": "StatisticsBlog",
@@ -314,11 +448,12 @@
 "star_cnt": 0,
 "fork_cnt": 1,
 "language": "HTML",
-"description": "StatisticsBlog,see https://www.guofei.site"
+"description": "StatisticsBlog,see https://www.guofei.site",
+"open_issues_count": 0
 }
 ],
-"star_cnt": 7298,
-"fork_cnt": 1345,
-"star_cnt_str": "7.3k",
-"fork_cnt_str": "1.3k"
+"star_cnt": 13657,
+"fork_cnt": 1987,
+"star_cnt_str": "13.7k",
+"fork_cnt_str": "2.0k"
 }
