@@ -106,6 +106,9 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 |--|--|--|--|
 |![Deep Learning Specialization](/pictures_for_blog/certification/coursera/Deep%20Learning.jpg) <br> [link1](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[link2](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6) | ![Neural Networks and Deep Learning](/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y)|![Improving Deep Neural Networks](/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA)| ![Structuring Machine Learning Projects](/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
 |![Convolutional Neural Networks](/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8) | ![Sequence Models](/pictures_for_blog/certification/coursera/Sequence%20Models.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73) | ![Learning How to Learn](/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
+| ![操作系统](/pictures_for_blog/certification/coursera/操作系统.jpg)<br>[link](https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH)|||||
+
+
 
 中国大学MOOC
 
