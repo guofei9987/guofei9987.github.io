@@ -5,3 +5,5 @@
 - https://www.icourse163.org/learn/PKU-1205824813?tid=1473258465#/learn/content?type=detail&id=1260663819
 
 
+信息隐藏技术
+- https://www.icourse163.org/learn/SEU-1468757162?tid=1471273451#/learn/content?type=detail&id=1256288199&cid=1289174651&contentid=1220562429
