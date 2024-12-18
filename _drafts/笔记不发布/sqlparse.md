@@ -155,3 +155,6 @@ sqlparse.sql.Statement(tokens=tokens_list[1]).get_type()
 返回这个sql语句的类型，`SELECT`, `UPDATE`, `DELETE` , `CREATE`  ,`INSERT`
 
 ### 案例2
+
+
+也可以用 sqlglot
