@@ -19,10 +19,10 @@ order: 424
 对一个未知参数$\theta$，可以构造很多个估计量，哪一个最好呢？我们需要一套评价标准
 
 $\hat \theta=\psi(X_1,...,X_n)$
-- 无偏性，$E\hat\theta=\theta$
-- 有效性，$Var(\theta_1)\leq Var(\theta_2)$，对一切$\theta$成立，那么$\theta_1$更为有效
+- 无偏性 (bias)，对于有限的样本，估计量所符合的分布之期望等于参数真实值 $E\hat\theta=\theta$
+- 有效性(efficiency)，估计值所满足的分布方差越小越好，$Var(\theta_1)\leq Var(\theta_2)$，对一切$\theta$成立，那么$\theta_1$更为有效
     - 均方误意义下的有效性 $E(\hat\theta_1-\theta)^2\leq E(\hat\theta_2-\theta)^2$
-- 相合性，$\lim\limits_{n\to \infty}P(\mid \hat \theta_n-\theta\mid \geq \varepsilon)=0$
+- **相合性**(consistency)，当样本数量趋于无穷时，估计量收敛于参数真实值 $\lim\limits_{n\to \infty}P(\mid \hat \theta_n-\theta\mid \geq \varepsilon)=0$
 
 
 ## 区间估计

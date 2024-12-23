@@ -11,18 +11,10 @@
 
 ## 正在学习
 
-信息隐藏技术
-- https://www.icourse163.org/learn/SEU-1468757162?tid=1471273451#/learn/content?type=detail&id=1256288199&cid=1289174651&contentid=1220562429
-
-
 
 
 计算机网络原理
-- 计算机网络：https://www.icourse163.org/course/HIT-154005?from=searchPage&outVendor=zw_mooc_pcssjg_
-
-
-
-编译原理
+- 计算机网络：https://www.icourse163.org/course/HIT-154005
 
 
 ## 当前过期，等待开课
@@ -30,16 +22,16 @@
 
 
 软件工程-哈工大
-- https://www.icourse163.org/course/HIT-298007?from=searchPage&outVendor=zw_mooc_pcssjg_
+- https://www.icourse163.org/course/HIT-298007
 
 
 计算机网络-哈工大
-- https://www.icourse163.org/course/HIT-154005?from=searchPage&outVendor=zw_mooc_pcssjg_
+- https://www.icourse163.org/course/HIT-154005
 
 
 
 数据库原理- 陆军工程大学
-- https://www.icourse163.org/course/PAEU-1003647009?from=searchPage&outVendor=zw_mooc_pcssjg_
+- https://www.icourse163.org/course/PAEU-1003647009
 
 
 
@@ -55,3 +47,9 @@
 
 网络攻防技术
 - https://www.icourse163.org/course/ZIIT-1206699813?from=searchPage&outVendor=zw_mooc_pcssjg_
+
+
+## 学完，但是错过开课时机的
+
+信息隐藏技术
+- https://www.icourse163.org/learn/SEU-1468757162

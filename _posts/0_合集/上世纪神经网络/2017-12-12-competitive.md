@@ -61,6 +61,8 @@ $\mid\mid W_j \mid\mid=1$（简单列式可以证明）
 
 ### 代码实现
 
+（应当先做 train-test 分离，这里没做）
+
 ```python
 from sklearn import datasets, metrics
 import numpy as np
