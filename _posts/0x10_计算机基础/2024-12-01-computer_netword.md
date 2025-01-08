@@ -53,44 +53,124 @@ internet 结构
 
 ![switching](/a/computer/network/switching.gif)
 
+## 数据交换
+
 数据交换：如何在多个设备之间传输数据
 - 电路交换（circuit switching）：建立一条专用物理电路。
     - 通信质量稳定、线路利用率低
     - 典型例子：电话网络
     - 典型特点：**独占资源**
-    - 线路 **多路复用**（multiplexing）
-- 报文交换（message switching）：每个报文是一个信息单元（报头+报文主体+报尾），网络中每个中间节点会接收报文，然后根据报头往下转发。报文一个一个发送。延迟大、线路利用率高。
-- 分组交换（packet switching）：目前最常用。数据分成若干个 packet，每个有自己的头，在网络中独立转发，在目的地整合。高效、灵活、充分利用网络资源，需要复杂的协议。
+    - 经常用 **多路复用**（multiplexing）技术 来提高用户容量。
+- 报文交换（message switching）：每个报文是一个信息单元（报头+报文主体+报尾），网络中每个中间节点会接收完整的报文，然后根据报头往下转发。
+    - 延迟大、线路利用率高。
+    - 典型例子：电报
+- 分组交换（packet switching）：报文 分成若干个 packet，每个有自己的头，在网络中独立转发，在目的地整合。高效、灵活、充分利用网络资源，需要复杂的协议。
+    - 目前互联网最常用
+    - 与报文交换相比。每个中间节点无需等待整个报文接收完毕再转发，而是接收每个 packet 后转发，这使得 **交付时间大大减少**，**所需缓存大大减少**
+    - 与电路交换相比。大大提高用户数量。
+        - 例如，链路1Mb/s，每个用户需要 100kb/s，活跃时间10%。如果使用电路交换，不活跃时间内不能解除电路独占，因此一个线路能容纳的用户数量为 10个；如果使用使用分组交换，如果有 35个用户，同时有大于10个活动的概率为万分之四
+        - 分组交换适用于 **突发** 数据传输，这也是现代网络的特点。
+        - 可能产生拥塞（congestion），分组的延迟和丢失
+
+
 
 
 **多路复用**： 把链路划分为“片”，使得可以多路独占“片”进行通信
-- 频分多路复用(frequency division multiplexing，FDM)
+- **频分多路复用**(frequency division multiplexing，FDM)
     - 每个用户占用 **频率带宽（Hz）**，始终用对应的频率来通信
     - 例如有线电视信号
-- 时分多路复用(time division multiplexing，TDM)
+- **时分多路复用**(time division multiplexing，TDM)
     - 按照时间等长划分，称为 **帧**，每个帧等长划分为多个 **时隙**。每个用户占用一个时隙，周期性使用链路
-- 波分多路复用(Wavelength division multiplexing，WDM)
-    - 实际上是一种 FDM，光通信中通常用波长来描述
-- 码分多路复用(Code division multiplexing，CDM)
+- **波分多路复用**(Wavelength division multiplexing，WDM)
+    - 实际上是一种 FDM，光通信中通常用波长来描述，故而另写一类
+- **码分多路复用**(Code division multiplexing，CDM)
     - 广泛用于无线链路共享（蜂窝网络、卫星通信等）
-    - 每个用户分配一个唯一的 m bit **码片序列** (chipping sequence)，各用户之间的 码片序列 相互正交
+    - 每个用户分配一个唯一的 m bit **码片序列** (chipping sequence)，各用户之间的 码片序列 相互 **正交**（orthogonal）
     - 各用户使用相同频率载波，利用各自码片序列编码数据。
-    - 
+    - 信道上各个用户同时发送信息，这些信息会叠加。解码时用对应的码片序列解码即可
     - CDMA
 
 
 
+**码分多路复用** 算法挺有趣，我用python写了一下
+
+![chipping](/a/computer/network/chipping.gif)
 
 
+```python
+import numpy as np
 
 
+def is_orthogonal(chipping1, chipping2) -> bool:
+    # 确保正交
+    dot_sum = np.sum(chipping1 * chipping2)
+    return dot_sum == 0
 
 
+def encode(msg, chipping):
+    res = list()
+    for i in msg:
+        res.extend((i * chipping).tolist())
+
+    return np.array(res)
 
 
+def mix(p1, p2):
+    return p1 + p2
 
 
+def decode(p, chipping):
+    length_chipping = len(chipping)
+    length = len(p) // length_chipping
 
+    res = []
+    for i in range(length):
+        p_slice = p[i * length_chipping:(i + 1) * length_chipping]
+        if np.mean(p_slice * chipping) > 0:
+            p_val = 1
+        elif np.mean(p_slice * chipping) < 0:
+            p_val = -1
+        else:
+            p_val = 0  # 表示没有传递数据
+        res.append(p_val)
+    return res
+
+
+msg1 = [-1, 1, 1, 1, -1]
+msg2 = [1, -1, -1, 1, 1]
+
+chipping1 = np.array([1, 1, 1, -1, 1, -1, -1, -1])
+chipping2 = np.array([1, -1, 1, 1, 1, -1, 1, 1])
+
+assert is_orthogonal(chipping1, chipping2), "两个码片序列必须正交"
+
+print("用户1", msg1)
+print("用户2", msg2)
+
+p1 = encode(msg1, chipping1)
+p2 = encode(msg2, chipping2)
+
+p = mix(p1, p2)
+print("编码后传递的数据=", p)
+
+res1 = decode(p, chipping1)
+res2 = decode(p, chipping2)
+
+print("用户1解码", res1)
+print("用户2解码", msg2)
+```
+
+
+## 计算机网络性能
+
+- **速率**（数据率，data rate，数据传输率，比特率，bit rate）
+    - 每秒传输的信息量。
+    - 单位为 `b/s`, `bps`, `kbs`, `Mbs`, `Gbs`
+- **带宽**（bandwidth）
+    - 原本指最高频率与最低频率之差（单位 Hz）
+    - 网络中，指的是“最高数据率”（单位 bps）
+- **延迟**（时延，delay，latency）
+    - 原因：分组在路由节点到达速率超过容量，分组排队等待。如果缓存满了，分组丢弃，叫做 **丢包**（loss）
 
 
 
