@@ -58,19 +58,6 @@ permalink: /me.html
 
 如何找到我：  
 
-[<i class="fa fa-github fa-lg" style="color:#16a095;font-size:70px;"></i>](https://github.com/guofei9987/)
-
-
-<a href="https://www.zhihu.com/people/guofei9987/answers/by_votes">
-<span class="fa-stack fa-lg" style="color:#16a095;font-size:35px;">
-<i class="fa fa-circle fa-stack-2x"></i>
-<i class="fa  fa-stack-1x fa-inverse">知</i>
-</span>
-</a>
-
-
-![](http://www.guofei.site/public/donate/qr_wechat.jpg)
-
-
-
-
+[![github](https://www.guofei.site/public/logo/github.svg)](https://github.com/guofei9987/)
+[![zhihu](https://www.guofei.site/public/logo/zhihu.svg)](https://www.zhihu.com/people/guofei9987/answers/by_votes)
+[![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
