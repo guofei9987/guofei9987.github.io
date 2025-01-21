@@ -526,13 +526,6 @@ xxx | 2 | c
 
 ```sql
 CREATE TABLE tmp_example_json AS
-SELECT id,json_str FROM
-(SELECT '0' AS id,'[{"name":"王二狗","sex":"男","age":"25"},{"name":"李狗嗨","sex":"男","age":"47"}]' AS json_str)
-UNION
-(SELECT '1' AS id,'[{"name":"王三狗","sex":"女","age":"21"}]' AS json_str)
-
-
-CREATE TABLE tmp_example_json AS
 SELECT id,json_str 
 FROM(VALUES
     ('0', '[{"name":"王二狗","sex":"男","age":"25"},{"name":"李狗嗨","sex":"男","age":"47"}]'),
@@ -563,14 +556,14 @@ FROM tmp_example_json2;
 
 
 
-json_tuple：可以同时提取多个字段，仅用于没有 需要在 LATERAL VIEW 中使用：
+json_tuple：可以同时提取多个字段，仅用于没有 `[]`的情况，需要配合 LATERAL VIEW 中使用：
 ```sql
-SELECT t1,id, t2.name, t2.age
+SELECT t1.id, t2.name, t2.age
 FROM tmp_example_json2 t1
 LATERAL VIEW JSON_TUPLE(json_str, 'name', 'age') t2 AS name, age
 ```
 
-遍历提取。预先不知道 json array 长度，并且提取出所有name，需要手动分割，然后提取。（暂时没找到更优雅的方法）
+遍历提取。预先不知道 json array 长度，并且提取出所有name，需要手动分割，然后提取。（暂时没找到更优雅的纯 SQL 方法，建议还是用 udf 吧
 
 ```sql
 SELECT  id
