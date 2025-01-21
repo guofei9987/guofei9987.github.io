@@ -80,8 +80,8 @@
                   {% for post in category[1] %}
 
                     {% if post.repo_name %}
-                      {% assign this_repo = site.github.public_repositories | where: "name", {{post.repo_name}} | first%}
-                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">【☆{{ this_repo.stargazers_count }}】{{post.title}} </a>
+                      {% assign this_repo = site.data.data_github.repo_list | where: "name", {{post.repo_name}} | first%}
+                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">【☆{{ this_repo.star_cnt }}】{{post.title}} </a>
                     {% else %}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                     {% endif %}
