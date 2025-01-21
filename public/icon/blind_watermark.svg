@@ -1,8 +1,6 @@
 ---
 ---
 
-
-
 {% assign repo = site.data.data_github.repo_list | where: "name", "blind_watermark" | first%}
 
 <svg
