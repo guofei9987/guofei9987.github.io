@@ -2,17 +2,14 @@
 ---
 [
 
-{% assign sorted_repos = (site.github.public_repositories | sort: 'stargazers_count') | reverse | where: "fork", "false" %}
+{% assign sorted_repos = (site.data.data_github.repo_list | sort: 'star_cnt') | reverse | where: "is_fork", false %}
 {% for repo in sorted_repos %}
 {
   "name": "{{ repo.name }}",
-  "html_url": "{{ repo.html_url }}",
+  "html_url": "{{ repo.url }}",
   "description": "{{ repo.description }}",
-  "stargazers_count": {{ repo.stargazers_count }},
-  "forks_count": {{ repo.forks_count }},
-  "created_at": "{{ repo.created_at }}",
-  "updated_at": "{{ repo.updated_at }}",
-  "pushed_at": "{{ repo.pushed_at }}",
+  "stargazers_count": {{ repo.star_cnt }},
+  "forks_count": {{ repo.fork_cnt }},
   "language": "{{ repo.language }}"
 } {% unless forloop.last %},{% endunless %}
 {% endfor %}
