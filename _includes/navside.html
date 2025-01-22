@@ -16,20 +16,13 @@
       </table>
       <!-- 下面是一级侧边栏 -->
       <ul class="nav nav-pills nav-stacked">
-        <li>
-          <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a>
-        </li>
+        <li> <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a> </li>
         {% for category in site.categories %}
 
           {% if site.no_category contains category[0] %}
           {% continue %}
           {% endif %}
-
-          <li>
-            <a href="#{{ category | first }}" data-toggle="tab">
-              {{ category[0] }}
-            </a>
-          </li>
+          <li> <a href="#{{ category | first }}" data-toggle="tab"> {{ category[0] }} </a> </li>
         {% endfor %}
         <li>
           <a class="pjaxlink" href="/reading.html">读书</a>
@@ -109,9 +102,7 @@
                   <div id="{{ tag[0] }}" class="panel-collapse collapse">
                     {% assign sorted_tag = tag[1] | sort:"order" %}
                     {% for post in sorted_tag %}
-                      <a  href='{{ post.url }}' class="list-group-item pjaxlink">
-                        {{post.title}}
-                      </a>
+                      <a  href='{{ post.url }}' class="list-group-item pjaxlink"> {{post.title}} </a>
                     {% endfor %}
                   </div>
                 </div>
