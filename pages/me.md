@@ -61,3 +61,7 @@ permalink: /me.html
 [![github](https://www.guofei.site/public/logo/github.svg)](https://github.com/guofei9987/)
 [![zhihu](https://www.guofei.site/public/logo/zhihu.svg)](https://www.zhihu.com/people/guofei9987/answers/by_votes)
 [![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
+<a href="mailto:{{ site.author.email }}" style="color: #16a085;width:40px; 
+          height:40px;">
+✉
+</a>

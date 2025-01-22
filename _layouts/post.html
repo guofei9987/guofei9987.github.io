@@ -10,19 +10,16 @@ layout: base
   <div class="col-md-13 aside3-content">
     <br><br>
     🗓 {{ page.date | date:"%Y年%m月%d日" }}
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     ✍️ 作者:<a href="https://github.com/guofei9987">{{ site.author.name }}</a>
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     <a href="{{ site.repurl }}{{ page.path }}">📝编辑</a>
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     📁 文章归类: {{ page.tags }} {{ page.categories }}
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;
     ℹ️ 文章编号: {{ page.order }}
 
-    <p>版权声明：本文作者是郭飞。转载随意，标明原文链接即可。本人邮箱 
-      <a href="mailto:{{ site.author.email }}" style="color: #16a085;font-size:2.5em;">
-        ✉
-      </a>
+    <p>版权声明：本文作者是郭飞。转载随意，标明原文链接即可。
       <br>
       原文链接：<a href="{{ page.url }}">{{ site.url }}{{ page.url }}</a>
     </p>
