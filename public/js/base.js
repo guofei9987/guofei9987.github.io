@@ -96,7 +96,7 @@ function contentEffects(){
         current.html("<a class='title_in_contend' href='#" + title_name + "'>" + title_name + "</a>");
 
         tag = current.prop('tagName').substr(-1);
-        $("#nav").append("<div style='margin-left:"+15*(tag-1)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
+        $("#nav").append("<div style='margin-left:"+15*(tag-2)+"px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
 
 
