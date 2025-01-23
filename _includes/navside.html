@@ -18,21 +18,14 @@
       <ul class="nav nav-pills nav-stacked">
         <li> <a href="#tags" data-toggle="tab">{{ site.locals.tags }}</a> </li>
         {% for category in site.categories %}
-
           {% if site.no_category contains category[0] %}
           {% continue %}
           {% endif %}
           <li> <a href="#{{ category | first }}" data-toggle="tab"> {{ category[0] }} </a> </li>
         {% endfor %}
-        <li>
-          <a class="pjaxlink" href="/reading.html">读书</a>
-        </li>
-        <li>
-          <a class="pjaxlink" href="/all_slides.html">演示</a>
-        </li>
-        <li>
-          <a class="pjaxlink" href="/me.html">我</a>
-        </li>
+        <li><a class="pjaxlink" href="/reading.html">读书</a></li>
+        <li><a class="pjaxlink" href="/all_slides.html">演示</a></li>
+        <li><a class="pjaxlink" href="/me.html">我</a></li>
       </ul>
       <div class="aside1_bottom">
         <!-- 这里是一级侧边栏的底部，目前放空 -->
@@ -46,39 +39,32 @@
           {% for category in site.categories %}
             <div class="tab-pane" id="{{ category[0] }}">
               <div class="list-group">
-
                 {% if category[0] == '橱窗' %}
                 {% assign sorted_tag = category[1] | sort:"order" %}
                 {% for post in sorted_tag %}
                     <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{ post.title }}</a>
                   {% endfor %}
                 {% endif %}
-
-
                 {% if category[0] == '合集' %}
                   {% assign sorted_tag = category[1] | sort:"order" %}
                   {% for post in sorted_tag %}
-
-                  {% if site.categories[post.name] %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} （{{ site.categories[post.name].size }} 篇）</a>
-                  {% else %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
-                  {% endif %}
-
-                    {% endfor %}
+                    {% if site.categories[post.name] %}
+                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} （{{ site.categories[post.name].size }} 篇）</a>
+                    {% else %}
+                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                    {% endif %}
+                  {% endfor %}
                 {% endif %}
 
 
                 {% if category[0] == '开源' %}
                   {% for post in category[1] %}
-
                     {% if post.repo_name %}
                       {% assign this_repo = site.data.data_github.repo_list | where: "name", {{post.repo_name}} | first%}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">【☆{{ this_repo.star_cnt }}】{{post.title}} </a>
                     {% else %}
                       <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
                     {% endif %}
-                    
                   {% endfor %}
                 {% endif %}
 
