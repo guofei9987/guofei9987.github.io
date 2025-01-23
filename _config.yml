@@ -33,9 +33,6 @@ ga:
   id: UA-98406918-1
   url: www.guofei.site
 
-# disqus 设置
-disqus:
-  shortname: guofei9987
 
 # 主题设置，自动激活某个标签
 active: tags
