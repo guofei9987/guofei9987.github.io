@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_pure
 title: 【归档】TensorFlow
 categories: 合集
 tags:
