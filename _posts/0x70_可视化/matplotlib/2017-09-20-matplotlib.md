@@ -35,9 +35,11 @@ plt.rcParams['savefig.dpi'] = 100
 plt.rcParams['font.sans-serif'] = ['SimHei'] # 中文支持
 plt.rcParams['axes.unicode_minus'] = False # 解决中文支持时，负号为方块的问题
 ```
+
 保存已经plot过的图像：
 ```py
 plt.savefig('test.png',dpi=120)  # 自动根据扩展名推断文件类型，svg,png，pdf等
+plt.savefig('a.svg') # 保持为 svg
 ```
 
 

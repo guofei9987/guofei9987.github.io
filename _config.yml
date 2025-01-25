@@ -37,13 +37,8 @@ ga:
 # 主题设置，自动激活某个标签
 active: tags
 
-# 中文本地化
 locals:
   tags: 精选
-
-plugins:
-  - "jekyll-github-metadata"
-
 
 # 这些不放到侧边栏，而是作为一个合集管理
 no_category:
