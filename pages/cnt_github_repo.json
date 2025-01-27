@@ -2,7 +2,7 @@
 ---
 [
 
-{% assign sorted_repos = (site.data.data_github.repo_list | sort: 'star_cnt') | reverse | where: "is_fork", false %}
+{% assign sorted_repos = site.data.data_github.repo_list | sort: 'star_cnt' | reverse | where: "is_fork", false %}
 {% for repo in sorted_repos %}
 {
   "name": "{{ repo.name }}",
