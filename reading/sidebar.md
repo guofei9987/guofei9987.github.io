@@ -4,7 +4,7 @@
 </a>
 <br>
 <a href="https://github.com/guofei9987/" target='GitHub'>
-❤️ 708
+❤️ 1601
 </a>
 
 * 1_哲学
@@ -14,29 +14,15 @@
     * [《上帝掷骰子吗》<sup style = "color:red">7234字<sup>](docs/1_哲学/《上帝掷骰子吗》.md)
     * [《原则》<sup style = "color:red">13908字<sup>](docs/1_哲学/《原则》.md)
 * 2_历史
-    * [1_文明演化<sup style = "color:red">9841字<sup>](docs/2_历史/1_文明演化.md)
+    * [1_文明演化<sup style = "color:red">12582字<sup>](docs/2_历史/1_文明演化.md)
     * [2_中国史<sup style = "color:red">22262字<sup>](docs/2_历史/2_中国史.md)
-    * [3_世界史<sup style = "color:red">1539字<sup>](docs/2_历史/3_世界史.md)
+    * [3_世界史<sup style = "color:red">1587字<sup>](docs/2_历史/3_世界史.md)
     * [4_经济史<sup style = "color:red">6348字<sup>](docs/2_历史/4_经济史.md)
     * [5_尤瓦尔赫拉利<sup style = "color:red">38481字<sup>](docs/2_历史/5_尤瓦尔赫拉利.md)
     * [6_吴晓波<sup style = "color:red">40084字<sup>](docs/2_历史/6_吴晓波.md)
     * [7_人物传记<sup style = "color:red">7069字<sup>](docs/2_历史/7_人物传记.md)
     * [8_企业传记<sup style = "color:red">10427字<sup>](docs/2_历史/8_企业传记.md)
     * [J_日本专题<sup style = "color:red">7663字<sup>](docs/2_历史/J_日本专题.md)
-* 3_1_金融学硕士
-    * [1_微观经济学<sup style = "color:red">5094字<sup>](docs/3_1_金融学硕士/1_微观经济学.md)
-    * [2_宏观经济学<sup style = "color:red">5239字<sup>](docs/3_1_金融学硕士/2_宏观经济学.md)
-    * [3_国际经济学<sup style = "color:red">2364字<sup>](docs/3_1_金融学硕士/3_国际经济学.md)
-    * [5_财政学<sup style = "color:red">5627字<sup>](docs/3_1_金融学硕士/5_财政学.md)
-    * [6_产业经济学<sup style = "color:red">3479字<sup>](docs/3_1_金融学硕士/6_产业经济学.md)
-    * [7_金融学<sup style = "color:red">1145字<sup>](docs/3_1_金融学硕士/7_金融学.md)
-    * [8_风险管理<sup style = "color:red">1465字<sup>](docs/3_1_金融学硕士/8_风险管理.md)
-    * [9_经济学知识补漏<sup style = "color:red">891字<sup>](docs/3_1_金融学硕士/9_经济学知识补漏.md)
-    * [a_市场营销学<sup style = "color:red">7154字<sup>](docs/3_1_金融学硕士/a_市场营销学.md)
-    * [c_管理学<sup style = "color:red">1558字<sup>](docs/3_1_金融学硕士/c_管理学.md)
-* 3_2_中级经济师
-    * [1_经济师基础知识<sup style = "color:red">6502字<sup>](docs/3_2_中级经济师/1_经济师基础知识.md)
-    * [2_经济法<sup style = "color:red">6057字<sup>](docs/3_2_中级经济师/2_经济法.md)
 * 3_社科
     * [1_经济学科普<sup style = "color:red">4083字<sup>](docs/3_社科/1_经济学科普.md)
     * [2_认知升级<sup style = "color:red">415字<sup>](docs/3_社科/2_认知升级.md)
@@ -48,6 +34,18 @@
     * [吴思<sup style = "color:red">4042字<sup>](docs/3_社科/吴思.md)
     * [法律<sup style = "color:red">1763字<sup>](docs/3_社科/法律.md)
     * [社会调查<sup style = "color:red">17237字<sup>](docs/3_社科/社会调查.md)
+* 3_经济与金融
+    * [1_微观经济学<sup style = "color:red">5094字<sup>](docs/3_经济与金融/1_微观经济学.md)
+    * [2_宏观经济学<sup style = "color:red">5239字<sup>](docs/3_经济与金融/2_宏观经济学.md)
+    * [3_国际经济学<sup style = "color:red">2364字<sup>](docs/3_经济与金融/3_国际经济学.md)
+    * [5_财政学<sup style = "color:red">5627字<sup>](docs/3_经济与金融/5_财政学.md)
+    * [6_产业经济学<sup style = "color:red">3420字<sup>](docs/3_经济与金融/6_产业经济学.md)
+    * [7_金融学<sup style = "color:red">2612字<sup>](docs/3_经济与金融/7_金融学.md)
+    * [9_经济学知识补漏<sup style = "color:red">891字<sup>](docs/3_经济与金融/9_经济学知识补漏.md)
+    * [a_市场营销学<sup style = "color:red">7154字<sup>](docs/3_经济与金融/a_市场营销学.md)
+    * [c_管理学<sup style = "color:red">1531字<sup>](docs/3_经济与金融/c_管理学.md)
+    * [d_中级经济师_基础<sup style = "color:red">6502字<sup>](docs/3_经济与金融/d_中级经济师_基础.md)
+    * [d_中级经济师_经济法<sup style = "color:red">6057字<sup>](docs/3_经济与金融/d_中级经济师_经济法.md)
 * 4_进化论
     * [《人类鉴定手册》<sup style = "color:red">1074字<sup>](docs/4_进化论/《人类鉴定手册》.md)
     * [《机器人叛乱》<sup style = "color:red">567字<sup>](docs/4_进化论/《机器人叛乱》.md)
@@ -102,9 +100,9 @@
 * A_文艺
     * [品茶<sup style = "color:red">1108字<sup>](docs/A_文艺/品茶.md)
     * [摄影<sup style = "color:red">2345字<sup>](docs/A_文艺/摄影.md)
-    * [游戏<sup style = "color:red">7974字<sup>](docs/A_文艺/游戏.md)
-    * [烹饪<sup style = "color:red">1249字<sup>](docs/A_文艺/烹饪.md)
-    * [电影<sup style = "color:red">4869字<sup>](docs/A_文艺/电影.md)
+    * [游戏<sup style = "color:red">10808字<sup>](docs/A_文艺/游戏.md)
+    * [玩乐<sup style = "color:red">852字<sup>](docs/A_文艺/玩乐.md)
+    * [电影<sup style = "color:red">5606字<sup>](docs/A_文艺/电影.md)
     * [电视剧<sup style = "color:red">769字<sup>](docs/A_文艺/电视剧.md)
     * [读诗<sup style = "color:red">1876字<sup>](docs/A_文艺/读诗.md)
 * H_健康
@@ -116,9 +114,9 @@
     * [吃<sup style = "color:red">90字<sup>](docs/H_健康/吃.md)
     * [外形美<sup style = "color:red">571字<sup>](docs/H_健康/外形美.md)
     * [大脑<sup style = "color:red">2208字<sup>](docs/H_健康/大脑.md)
-    * [求生<sup style = "color:red">1254字<sup>](docs/H_健康/求生.md)
+    * [求生<sup style = "color:red">2082字<sup>](docs/H_健康/求生.md)
     * [睡眠<sup style = "color:red">4字<sup>](docs/H_健康/睡眠.md)
-    * [锻炼<sup style = "color:red">4101字<sup>](docs/H_健康/锻炼.md)
+    * [锻炼<sup style = "color:red">4117字<sup>](docs/H_健康/锻炼.md)
 * Y_碎片阅读
     * [人类必将化身为神<sup style = "color:red">3598字<sup>](docs/Y_碎片阅读/人类必将化身为神.md)
     * [大IP<sup style = "color:red">3736字<sup>](docs/Y_碎片阅读/大IP.md)
