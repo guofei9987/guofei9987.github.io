@@ -347,7 +347,7 @@ body.sticky .sidebar{
 }
 
 .content {
-    padding-top: 60px;
+    /* padding-top: 60px; */
     position: absolute;
     top: 0;
     right: 0;
@@ -357,10 +357,9 @@ body.sticky .sidebar{
 }
 
 .markdown-section {
-    /*margin: 0 auto;*/
-    margin: 1em auto;
+    margin: 0 auto;
     max-width: 1300px;
-    padding: 30px 0 40px 0;
+    padding: 0 0 40px 0;
     position: relative
 }
 
