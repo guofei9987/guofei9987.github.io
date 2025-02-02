@@ -141,11 +141,6 @@ f = open('README.md', 'w', encoding='utf-8')
 f.write('\n读书 **{} 本**，笔记总字数 **{} 字**\n'.format(len(book_list), total_words) + detail)
 f.close()
 
-# %% guofei.site 首页专用，链接到新库
-f = open('all.md', 'w', encoding='utf-8')
-f.write(detail_2)
-f.close()
-
 # %% 封面
 
 coverpage = '''
