@@ -457,7 +457,8 @@ body.close .sidebar {
 }
 
 body.close .sidebar-toggle {
-    width: auto
+    width: auto;
+    color:#42b983;
 }
 
 body.close .content {
@@ -516,10 +517,11 @@ body.close .content {
     }
 
     body.close .sidebar-toggle {
-        background-color: hsla(0, 0%, 100%, .8);
+        /* background-color: hsla(0, 0%, 100%, .8);
         transition: background-color 1s;
         width: 284px;
-        padding: 10px
+        padding: 10px */
+        color:#42b983;
     }
 
     body.close .content {

@@ -21,23 +21,13 @@ title: 首页
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
     {% capture next_month %}{{ post.previous.date | date: "%m" }}{% endcapture %}
 
+    {% if post.visible == 'n' %}<!-- 不显示 -->{% continue %}{% endif %}
     {% if forloop.first %}
       <legend id="{{this_year}}-{{this_month}}">{{this_year}}年-{{this_month}}月</legend>
       <ul>
     {% endif %}
-
-
-    <!-- 不显示 -->
-      {% if post.visible == 'n' %}
-      {% continue %}
-      {% endif %}
-
-    <li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
-      <a class="pjaxlink" href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-
-    {% if forloop.last %}
-      </ul>
+    <li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;<a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% if forloop.last %}</ul>
     {% else %}
       {% if this_year != next_year %}
         </ul>
@@ -57,8 +47,4 @@ title: 首页
 <div style="width:300px;margin:0 auto; padding:20px 0;">
     <a href="https://beian.miit.gov.cn">豫ICP备19040059号</a>
     <br>
-    <!-- <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202001976"
-       style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src=""  style="float:left;"/>
-        <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">京公网安备
-            11011202001976号</p></a> -->
 </div>
