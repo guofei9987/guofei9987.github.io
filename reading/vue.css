@@ -313,7 +313,7 @@ main.hidden {
     background: hsla(0, 0%, 53%, .1)
 }
 
-.sidebar-toggle {
+/* .sidebar-toggle {
     background-color: transparent;
     background-color: hsla(0, 0%, 100%, .8);
     border: 0;
@@ -326,21 +326,23 @@ main.hidden {
     transition: opacity .3s;
     width: 284px;
     z-index: 4
-}
+} */
 
-.sidebar-toggle .sidebar-toggle-button:hover {
+/* 鼠标悬停时的透明度 */
+/* .sidebar-toggle .sidebar-toggle-button:hover {
     opacity: .4
-}
+} */
 
+/* 这是原来的 sidebar，先把大小都设置为0（隐藏）。之后慢慢解耦 */
 .sidebar-toggle span {
     background-color: var(--theme-color, #42b983);
     display: block;
-    margin-bottom: 4px;
-    width: 16px;
-    height: 2px
+    margin-bottom: 0px;
+    width: 0px;
+    height: 0px
 }
 
-body.sticky .sidebar, body.sticky .sidebar-toggle {
+body.sticky .sidebar{
     position: fixed
 }
 
@@ -470,7 +472,7 @@ body.close .content {
 }
 
 @media screen and (max-width: 768px) {
-    .github-corner, .sidebar, .sidebar-toggle {
+    .github-corner, .sidebar {
         position: fixed
     }
 
@@ -504,11 +506,11 @@ body.close .content {
         transition: transform .25s ease-out
     }
 
-    .sidebar-toggle {
+    /* .sidebar-toggle {
         background-color: transparent;
         width: auto;
         padding: 30px 30px 10px 10px
-    }
+    } */
 
     body.close .sidebar {
         transform: translateX(300px)

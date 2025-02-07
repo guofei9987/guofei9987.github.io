@@ -12,10 +12,40 @@
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css"> -->
 
 
+  <link rel="stylesheet" href="/public/css/banner.css">
+
 
 </head>
 <body>
-  <div id="app"></div>
+
+  <header class="top-banner">
+    <div class="banner-container">
+
+        <!-- 左侧边栏 -->
+        <div class="banner-left">
+            <button class="sidebar-toggle" id="nav_btn" aria-label="切换侧边栏">☰</button>
+        </div>
+
+        <!-- 中间 Logo：点击返回首页 -->
+        <div class="banner-center">
+            <a href="/" class="logo" title="返回首页">首页</a>
+        </div>
+
+        <!-- 读书 -->
+        <div class="banner-center">
+          <a href="/reading/#/" class="logo" title="返回首页">读书</a>
+        </div>
+
+        <!-- 右侧 TOC 按钮，暂无功能，隐藏 -->
+        <div class="banner-right">
+            <button id="toc_btn" aria-label="显示目录" style="visibility: hidden;">+</button>
+        </div>
+
+    </div>
+</header>
+
+  <div id="app"></div>  <!-- 页面内容会注入到这里 -->
+  
   <!-- <script>
     window.$docsify = {
       name: '',
@@ -28,11 +58,8 @@
 
   window.$docsify = {
     subMaxLevel: 2,
-
     loadSidebar: 'sidebar.md', // 左边的侧边栏
-    loadNavbar: 'navbar.md', // 右上角的小下拉图标
     homepage: 'README.md', // 首页，默认是 README.md
-    coverpage: 'coverpage.md', // 封面
     notFoundPage: 'README.md', // 404
 
     // 切换页面后，自动滚动到顶部

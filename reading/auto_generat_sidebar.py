@@ -116,10 +116,6 @@ print('总字数写入 json')
 
 # %% 侧边栏
 head = f'''
-<a href="http://www.guofei.site" target='blog'>
-<img src="https://www.guofei.site/public/about/me.png"  alt="回到blog" height="64" width="64">
-</a>
-<br>
 <a href="https://github.com/guofei9987/" target='GitHub'>
 ❤️ {num_follower}
 </a>
