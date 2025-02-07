@@ -19,9 +19,9 @@
           {% endif %}
           <li> <a href="#{{ category | first }}" data-toggle="tab"> {{ category[0] }} </a> </li>
         {% endfor %}
-        <li><a class="pjaxlink" href="/all_slides.html">演示</a></li>
-        <li><a class="pjaxlink" href="/link.html">友链</a></li>
-        <li><a class="pjaxlink" href="/me.html">我</a></li>
+        <li><a href="/all_slides.html">演示</a></li>
+        <li><a href="/link.html">友链</a></li>
+        <li><a href="/me.html">我</a></li>
       </ul>
       <div class="aside1_bottom">
         <!-- 这里是一级侧边栏的底部，目前放空 -->
@@ -38,16 +38,16 @@
                 {% if category[0] == '橱窗' %}
                 {% assign sorted_tag = category[1] | sort:"order" %}
                 {% for post in sorted_tag %}
-                    <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{ post.title }}</a>
+                    <a href="{{ post.url }}" class="list-group-item-lay">{{ post.title }}</a>
                   {% endfor %}
                 {% endif %}
                 {% if category[0] == '合集' %}
                   {% assign sorted_tag = category[1] | sort:"order" %}
                   {% for post in sorted_tag %}
                     {% if site.categories[post.name] %}
-                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}} （{{ site.categories[post.name].size }} 篇）</a>
+                      <a href="{{ post.url }}" class="list-group-item-lay">{{post.title}} （{{ site.categories[post.name].size }} 篇）</a>
                     {% else %}
-                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                      <a href="{{ post.url }}" class="list-group-item-lay">{{post.title}}</a>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
@@ -57,9 +57,9 @@
                   {% for post in category[1] %}
                     {% if post.repo_name %}
                       {% assign this_repo = site.data.data_github.repo_list | where: "name", {{post.repo_name}} | first%}
-                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">【☆{{ this_repo.star_cnt }}】{{post.title}} </a>
+                      <a href="{{ post.url }}" class="list-group-item-lay">【☆{{ this_repo.star_cnt }}】{{post.title}} </a>
                     {% else %}
-                      <a href="{{ post.url }}" class="list-group-item-lay pjaxlink">{{post.title}}</a>
+                      <a href="{{ post.url }}" class="list-group-item-lay">{{post.title}}</a>
                     {% endif %}
                   {% endfor %}
                 {% endif %}
@@ -84,7 +84,7 @@
                   <div id="{{ tag[0] }}" class="panel-collapse collapse">
                     {% assign sorted_tag = tag[1] | sort:"order" %}
                     {% for post in sorted_tag %}
-                      <a  href='{{ post.url }}' class="list-group-item pjaxlink"> {{post.title}} </a>
+                      <a  href='{{ post.url }}' class="list-group-item"> {{post.title}} </a>
                     {% endfor %}
                   </div>
                 </div>
