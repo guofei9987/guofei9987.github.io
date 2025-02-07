@@ -4,10 +4,10 @@
 function content_click(is_show) {
     if (is_show) {
       $('#content_toc').show();
-      $('#toc_btn').text('-');
+      $('#toc_btn').text('▲');
     } else {
       $('#content_toc').hide();
-      $('#toc_btn').text('+');
+      $('#toc_btn').text('▼');
     }
   }
   
