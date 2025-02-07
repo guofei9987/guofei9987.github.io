@@ -44,6 +44,12 @@
     padding-top: 40px; /* 这个值需要等于 banner 高度 */
   }
   
+/* 同样的问题，使得点击标题时，标题会被覆盖 */
+  h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 40px; /* 根据 banner 高度调整 */
+  }
+
+  
   /* 以上是 banner 对应的 css */
   
   
