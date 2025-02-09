@@ -1,9 +1,7 @@
 ---
 layout: page
 title: 我
-category: 橱窗
 permalink: /me.html
-order: 6
 ---
 
 ### Hi there 👋

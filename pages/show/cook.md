@@ -1,10 +1,7 @@
 ---
 layout: post
 title: 烹饪
-categories: 橱窗
-visible: n
-permalink: /:title:output_ext
-order: 5
+permalink: /cook.html
 ---
 
 

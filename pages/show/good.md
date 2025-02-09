@@ -1,10 +1,7 @@
 ---
 layout: catalogue
 title: 精选技术博客
-categories: 橱窗
-visible: n
-permalink: /:title:output_ext
-order: 3
+permalink: /good.html
 ---
 
 

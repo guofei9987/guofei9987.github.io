@@ -46,6 +46,15 @@
   background-color: rgba(240, 240, 240, 0.8);
 }
 
+/* show内容 */
+#show_content {
+  position: fixed;
+  left: 0;
+  top: 40px;
+  display: none;
+  background-color: rgba(240, 240, 240, 0.8);
+}
+
 /* 由于 top-banner 的 position:fixed，所以会覆盖原内容，而不是让原内容下移，这里调整一下 */
 body {
   padding-top: 40px; /* 这个值需要等于 banner 高度 */

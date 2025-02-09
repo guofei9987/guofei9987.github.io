@@ -1,10 +1,7 @@
 ---
 layout: book_lists
 title: 读完的书单
-category: 橱窗
-keywords: 阅读,书单
-permalink: /:title:output_ext
-order: 6
+permalink: /BookList.html
 ---
 
 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}字

@@ -1,10 +1,7 @@
 ---
 layout: post
 title: 运动
-categories: 橱窗
-visible: n
-permalink: /:title:output_ext
-order: 5
+permalink: /sports.html
 ---
 
 ## 单手俯卧撑
