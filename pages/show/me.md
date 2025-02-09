@@ -2,7 +2,7 @@
 layout: page
 title: 我
 category: 橱窗
-permalink: /:title:output_ext
+permalink: /me.html
 order: 6
 ---
 
