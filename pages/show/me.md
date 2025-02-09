@@ -1,7 +1,9 @@
 ---
 layout: page
 title: 我
-permalink: /me.html
+category: 橱窗
+permalink: /:title:output_ext
+order: 6
 ---
 
 ### Hi there 👋
