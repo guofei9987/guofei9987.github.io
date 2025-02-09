@@ -1,13 +1,51 @@
 ---
-layout: base
 ---
 
 <!-- 不含标题、版权声明、右侧加号、评论 -->
 <!-- 给开源文档、about用 -->
-<div class="row">
-  <div class="col-md-13 aside3-content">
-    <div id="page-content">
-      {{ content }}
+
+<!doctype html>
+<html>
+
+<head>
+  {% include header.html %}
+</head>
+
+<body>
+  {% include banner.html %}
+
+
+  <!-- <div class="container"> -->
+
+  <!-- 左侧侧边栏 -->
+  <div class="sidebar">
+    <ul id="sidebar-list">
+      <!-- 动态生成侧边栏内容 -->
+    </ul>
+  </div>
+
+
+
+  <!-- <div class="aside3"> -->
+  <!-- <div id="container"> -->
+
+
+
+  <!-- <div class="aside3-title main-content"> -->
+  <div class="main-content">
+    <div class="aside3-content">
+      <div>
+
+        <div id="page-content">
+          {{ content }}
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+  <!-- </div> -->
+  {% include footer.html %}
+  {% include googleanalytics.html %}
+</body>
+
+</html>

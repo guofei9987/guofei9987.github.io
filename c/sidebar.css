@@ -1,0 +1,139 @@
+/* 确保 html 和 body 占满全屏 */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* 使用 flex 布局，固定整体高度 */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* 左侧侧边栏 */
+.sidebar {
+    width: 200px;
+    background-color: #777;
+    padding: 0;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+    /* 左侧区域独立滚动 */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 5px 0;
+}
+
+details {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+details summary {
+    cursor: pointer;
+    padding: 5px;
+    background-color: #E5F7F3;
+    border: 1px solid #ccc;
+    color: #1b6183;
+    font-weight: bold;
+    /* margin: 2px 0; */
+    user-select: none;
+    border-radius: 5px;
+    /* 4个角变成小圆角 */
+}
+
+/* 去掉三角符号 */
+details summary {
+    list-style: none;
+}
+
+/* 去掉三角符号(针对 Chrome 和 Safari)，额外去除伪元素 */
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details[open] summary {
+    background-color: #62d7d7;
+    color: #0d1ebe
+}
+
+details>ul>li {
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #111;
+}
+
+/* 鼠标悬浮在 a 上 */
+/* .sidebar a:hover {
+text-decoration: underline;
+} */
+/* 鼠标悬浮在 <a> 时，使所在的整个 li 改变背景色 */
+#sidebar-list ul li a {
+    display: block;
+    padding: 5px;
+}
+
+#sidebar-list ul li:hover {
+    background-color: #bce8f1;
+    /* 根据需要调整背景色 */
+}
+
+
+/* summary 靠右显示数字计数（采用 flex 布局） */
+details summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-count {
+    background-color: #31708f;
+    /* 数字背景色，可自行调整 */
+    color: #fff;
+    /* 数字文字颜色 */
+    border-radius: 12px;
+    /* 圆弧包裹效果 */
+    padding: 2px 8px;
+    /* 内边距调整数字的大小 */
+    font-size: 0.8em;
+    /* 根据需要调整字体大小 */
+}
+
+
+/* 当 body 带有 .sidebar-hidden 类时，隐藏左侧侧边栏 */
+.sidebar-hidden .sidebar {
+    display: none;
+}
+
+/* 高亮当前页面对应的 li */
+.sidebar li.active {
+    background-color: #d0ebff;
+    /* 可根据需要调整高亮颜色 */
+}
+
+/* 右侧主内容区域 */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    /* 主内容区域独立滚动 */
+  overflow-x: hidden;
+
+}

@@ -1,31 +1,54 @@
 ---
-layout: base
 ---
 <!-- 不含版权声明，不含评论 -->
 <!-- 用于：证书、精选页用 -->
 
-<div class="row">
-  <div class="col-md-13 aside3-title">
-    <br>
-    <h2 id="#identifier">{{ page.title }}</h2>
+<!doctype html>
+<html>
 
+<head>
+  {% include header.html %}
+</head>
+
+<body>
+  {% include banner.html %}
+
+
+  <!-- <div class="container"> -->
+
+  <!-- 左侧侧边栏 -->
+  <div class="sidebar">
+    <ul id="sidebar-list">
+      <!-- 动态生成侧边栏内容 -->
+    </ul>
   </div>
-  <div class="col-md-13 aside3-content">
-    <hr>
 
-  <br>
-    <div id="content">
-      {{ content }}
+
+
+  <!-- <div class="aside3"> -->
+  <!-- <div id="container"> -->
+
+
+
+  <!-- <div class="aside3-title main-content"> -->
+  <div class="main-content">
+    <div class="aside3-title">
+      <h2>{{ page.title }}</h2>
     </div>
 
-    <hr>
-  </div>
-  <!-- 目录：右上角的加号，点击可以展示或隐藏 -->
-  <div id="content_toc" style="position:fixed;right:20px;top:120px;display:none;">
-    <div class="panel panel-success">
-      <div class="panel-body" id="nav"></div>
+    <div class="aside3-content">
+      <div>
+
+        <div id="content">
+          {{ content }}
+        </div>
+      </div>
+
     </div>
   </div>
+  <!-- </div> -->
+  {% include footer.html %}
+  {% include googleanalytics.html %}
+</body>
 
-
-</div>
+</html>
