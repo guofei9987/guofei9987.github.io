@@ -85,10 +85,24 @@ color: #a15a5a;
 }
 
 
+
+#content img {
+    padding: 4px;
+    background-color: #fff;
+    border: 0px solid #ddd;
+    display: inline-block;
+    width: 100% \9;
+    max-width: 100%;
+    height: auto
+}
+
+
 #page-content td,
 th {
 border: 1px solid #aaa;
 }
+
+
 
 
 

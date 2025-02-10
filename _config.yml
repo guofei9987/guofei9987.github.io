@@ -1,6 +1,8 @@
 ﻿permalink: /:year/:month/:day/:title.html
 paginate: 10
 markdown: kramdown
+highlighter: rouge
+
 
 kramdown:
   math_engine: null

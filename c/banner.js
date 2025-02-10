@@ -42,9 +42,9 @@ if($("#nav").length > 0){
 
     // ???是否可删去
     // 对代码块和图片做样式处理
-    $("pre").addClass("prettyprint");
-    prettyPrint();
-    $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
+
+    // $("pre").addClass("prettyprint");
+    // prettyPrint();
 
     // 如果生成的导航内容为空，则隐藏 TOC 按钮，否则显示
     if ($("#nav").children().length === 0) {
