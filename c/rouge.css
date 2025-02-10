@@ -1,0 +1,97 @@
+/* Rouge Monokai Theme CSS */
+/* 参考自社区整理的 Monokai 主题样式 */
+
+.highlight {
+    background: #272822;
+    color: #f8f8f2;
+    overflow: auto;
+    padding: 1em;
+    font-size: 0.9em;
+    line-height: 1.45;
+  }
+  
+  /* 高亮当前行 */
+  .highlight .hll { background-color: #49483e; }
+  
+  /* 注释 */
+  .highlight .c, 
+  .highlight .cm, 
+  .highlight .c1, 
+  .highlight .cs {
+    color: #75715e;
+    font-style: italic;
+  }
+  
+  /* 错误 */
+  .highlight .err {
+    color: #960050;
+    background-color: #1e0010;
+  }
+  
+  /* 关键字 */
+  .highlight .k, 
+  .highlight .kd, 
+  .highlight .kn, 
+  .highlight .kp, 
+  .highlight .kr, 
+  .highlight .kt {
+    color: #f92672;
+  }
+  
+  /* 常量/数字 */
+  .highlight .m, 
+  .highlight .mf, 
+  .highlight .mh, 
+  .highlight .mi, 
+  .highlight .mo, 
+  .highlight .il {
+    color: #ae81ff;
+  }
+  
+  /* 字符串 */
+  .highlight .s, 
+  .highlight .sb, 
+  .highlight .sc, 
+  .highlight .sd, 
+  .highlight .s2, 
+  .highlight .se, 
+  .highlight .sh, 
+  .highlight .si, 
+  .highlight .sx, 
+  .highlight .sr, 
+  .highlight .s1, 
+  .highlight .ss {
+    color: #e6db74;
+  }
+  
+  /* 内置函数/变量 */
+  .highlight .na, 
+  .highlight .nb, 
+  .highlight .nc, 
+  .highlight .no, 
+  .highlight .nd, 
+  .highlight .ni, 
+  .highlight .ne, 
+  .highlight .nf, 
+  .highlight .nl, 
+  .highlight .nn, 
+  .highlight .nt, 
+  .highlight .nv, 
+  .highlight .ow, 
+  .highlight .w {
+    color: #f8f8f2;
+  }
+  
+  /* 其他名称 */
+  .highlight .bp, 
+  .highlight .vc, 
+  .highlight .vg, 
+  .highlight .vi {
+    color: #f8f8f2;
+  }
+  
+  /* 额外样式 */
+  .highlight .o {
+    color: #f92672;
+  }
+  
