@@ -102,7 +102,7 @@ document.body.classList.toggle('sidebar-hidden');
 
 // 在 DOM 加载完毕后，生成侧边栏、绑定 toggle 事件后，再调用高亮函数
 document.addEventListener('DOMContentLoaded', function() {
-fetch('https://www.guofei.site/tags.json')
+fetch('/tags.json')
   .then(response => {
     if (!response.ok) {
       throw new Error('网络响应错误：' + response.status);

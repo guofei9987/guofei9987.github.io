@@ -1,6 +1,5 @@
 /* 确保 html 和 body 占满全屏 */
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
@@ -134,6 +133,5 @@ details summary {
     box-sizing: border-box;
     overflow-y: auto;
     /* 主内容区域独立滚动 */
-  overflow-x: hidden;
-
+    overflow-x: hidden;
 }

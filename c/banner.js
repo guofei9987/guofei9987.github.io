@@ -1,5 +1,3 @@
-/* TOC 相关功能 */
-
 // 控制“橱窗”的显示与隐藏
 function banner_show_click(is_show) {
   if (is_show) {

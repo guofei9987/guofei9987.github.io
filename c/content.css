@@ -1,0 +1,134 @@
+.main-title {
+background-color: #f5f5f5;
+border-bottom: 1px solid #f5f5f5;
+padding-top: 1px;
+padding-left: 30px;
+padding-right: 30px;
+text-align: center;
+color: #303030;
+}
+
+
+.main-content-content {
+padding: 0 3px 0 0;
+color: #656565;
+line-height: 1.42857143;
+}
+
+
+#content {
+font-size: 18px;
+}
+
+#content h2 {
+line-height: 2;
+color: black;
+font-size: 36px;
+background: #e5f7f3;
+}
+
+#content h3 {
+font-size: 24px;
+}
+
+#content h4 {
+font-size: 16px;
+}
+
+#content h5 {
+font-size: 14px;
+}
+
+#content h6 {
+font-size: 12px;
+}
+
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+background: #f5f5f5;
+color: black;
+line-height: 2;
+}
+
+/* 右边的目录 */
+a.title_in_contend {
+color: black
+}
+
+#content td,
+th {
+border: 1px solid #aaa;
+}
+
+#content p {
+padding-top: 10px;
+margin-top: 10px;
+padding-bottom: 0;
+margin-bottom: 0;
+}
+
+#content hr {
+height: 10px;
+border: none;
+border-top: 10px groove skyblue;
+}
+
+#content strong {
+color: red;
+}
+
+blockquote p {
+font-size: 20px;
+color: #a15a5a;
+}
+
+
+#page-content td,
+th {
+border: 1px solid #aaa;
+}
+
+
+
+
+/* 代码黏贴板 */
+pre.highlight {
+position: relative;
+}
+
+pre.highlight>button {
+position: absolute;
+right: 1.2rem;
+top: 1.2rem;
+}
+
+/* 鼠标不悬浮时的样子 */
+pre.highlight>button {
+opacity: 0.7;
+background: #000000;
+color: #e5f7f3;
+}
+
+/* 鼠标悬浮 */
+pre.highlight:hover>button {
+opacity: 1;
+background: #000000;
+color: #1abc9c;
+}
+
+pre.highlight>button:active,
+pre.highlight>button:focus {
+opacity: 1;
+background: #000000;
+color: #FF0000;
+}
+
+/* end:代码黏贴版 */
+
+
+/* 公式底色： */
+.katex {
+background-color: lightcyan;
+}
