@@ -8,10 +8,10 @@ permalink: /me.html
 
 
 - 👯 工作经历
-    - 2020 - 今，蚂蚁集团-天堑实验室，*算法专家*
-    - 2018 - 2020，京东集团-Y事业部-动态定价 *算法专家*
-    - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞猜彩票-赔率动态定价 *算法工程师*
-    - 2015 - 2016，某私募基金 *金融分析师*
+    - 2020 - 今，蚂蚁集团-天堑实验室，**算法专家**
+    - 2018 - 2020，京东集团-Y事业部-动态定价 **算法专家**
+    - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞猜彩票-赔率动态定价 **算法工程师**
+    - 2015 - 2016，某私募基金 **金融分析师**
 - 🧮 热爱算法、数学和开源。
     - 🚀  我的开源贡献用在了“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，并因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
     - 🤔 [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0) 的 121 位 [作者](https://github.com/scipy/scipy/issues/7798) 之一

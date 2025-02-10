@@ -36,12 +36,12 @@ body {
     margin: 5px 0;
 }
 
-details {
+.sidebar details {
     background-color: #fff;
     border-radius: 5px;
 }
 
-details summary {
+.sidebar details summary {
     cursor: pointer;
     padding: 5px;
     background-color: #E5F7F3;
@@ -55,21 +55,21 @@ details summary {
 }
 
 /* 去掉三角符号 */
-details summary {
+.sidebar details summary {
     list-style: none;
 }
 
 /* 去掉三角符号(针对 Chrome 和 Safari)，额外去除伪元素 */
-details summary::-webkit-details-marker {
+.sidebar details summary::-webkit-details-marker {
     display: none;
 }
 
-details[open] summary {
+.sidebar details[open] summary {
     background-color: #62d7d7;
     color: #0d1ebe
 }
 
-details>ul>li {
+.sidebar details>ul>li {
     border-bottom: 1px solid #ddd;
 }
 
@@ -90,12 +90,11 @@ text-decoration: underline;
 
 #sidebar-list ul li:hover {
     background-color: #bce8f1;
-    /* 根据需要调整背景色 */
 }
 
 
 /* summary 靠右显示数字计数（采用 flex 布局） */
-details summary {
+.sidebar details summary {
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -46,14 +46,7 @@
   background-color: rgba(240, 240, 240, 0.8);
 }
 
-/* show内容 */
-#show_content {
-  position: fixed;
-  left: 0;
-  top: 40px;
-  display: none;
-  background-color: rgba(240, 240, 240, 0.8);
-}
+
 
 /* 由于 top-banner 的 position:fixed，所以会覆盖原内容，而不是让原内容下移，这里调整一下 */
 body {
@@ -63,4 +56,38 @@ body {
 /* 同样的问题，使得点击标题时，标题会被覆盖 */
 h1, h2, h3, h4, h5, h6 {
   scroll-margin-top: 40px; /* 根据 banner 高度调整 */
+}
+
+
+/* show内容 */
+#show_content {
+  position: fixed;
+  left: 10px;
+  top: 40px;
+  display: none;
+  background-color: #ddd;
+  font-size: 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+}
+
+#show_content ul li:hover{
+  background-color: #bce8f1;
+}
+
+#show_content ul{
+  padding-left: 3px;
+  list-style: none;
+}
+#show_content>ul>li{
+  border-bottom: 1px solid #eee;
+}
+
+#show_content a{
+  display: block;
+  text-decoration: none;
+  color: #111;
+  width: 100%;
+  height: 100%;
 }

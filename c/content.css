@@ -97,13 +97,15 @@ color: #a15a5a;
 }
 
 
-#page-content td,
-th {
-border: 1px solid #aaa;
+#page-content td, th {
+  border: 1px solid #aaa;
 }
 
 
-
+#page-content>ul {
+  padding-left: 20px;
+}
+    
 
 
 
