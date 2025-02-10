@@ -119,6 +119,11 @@ details summary {
 .sidebar-hidden .sidebar {
     display: none;
 }
+/* 并且按钮变为蓝色 */
+body.sidebar-hidden .sidebar-toggle{
+    color:#42b983;
+}
+
 
 /* 高亮当前页面对应的 li */
 .sidebar li.active {
@@ -134,4 +139,10 @@ details summary {
     overflow-y: auto;
     /* 主内容区域独立滚动 */
     overflow-x: hidden;
+}
+
+
+/* 用于隐藏某些元素 */
+.hidden {
+  visibility: hidden;
 }

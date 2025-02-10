@@ -113,6 +113,8 @@ fetch('/tags.json')
     generateSidebar(data);    // 生成 sidebar
     attachToggleHandlers();   // 绑定点击后只展开一个的功能
     highlightCurrentLink();   // 自动展开并高亮当前页面对应的链接
+    document.getElementById('nav_btn').click(); //加载完毕后自动点击一次，使其被显示
+    document.getElementById('nav_btn').classList.remove('hidden'); // 按钮解除隐藏
   })
   .catch(error => {
     console.error('加载 JSON 数据出错：', error);

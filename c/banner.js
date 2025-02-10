@@ -12,14 +12,14 @@ function banner_show_click(is_show) {
 
 /* 控制文章章节列表按钮：显示或隐藏 TOC */
 function content_click(is_show) {
-    if (is_show) {
-      $('#content_toc').show();
-      $('#toc_btn').text('▲');
-    } else {
-      $('#content_toc').hide();
-      $('#toc_btn').text('▼');
-    }
+  if (is_show) {
+    $('#content_toc').show();
+    $('#toc_btn').text('▲');
+  } else {
+    $('#content_toc').hide();
+    $('#toc_btn').text('▼');
   }
+}
   
 /* 生成文章目录 TOC 的函数 */
 function contentEffects(){
@@ -46,17 +46,13 @@ if($("#nav").length > 0){
     prettyPrint();
     $('#content img').addClass('img-thumbnail').parent('p').addClass('center');
 
-    // 显示 TOC 按钮（如果之前隐藏）
-    $('#toc_btn').show();
+    // 如果生成的导航内容为空，则隐藏 TOC 按钮，否则显示
+    if ($("#nav").children().length === 0) {
+      document.getElementById('toc_btn').classList.add('hidden'); // 按钮解除隐藏
+    } else {
+      document.getElementById('toc_btn').classList.remove('hidden'); // 按钮解除隐藏
+    }
 
-    // // 渲染数学公式（使用 renderMathInElement 函数，确保已经加载相应的数学渲染库）
-    // renderMathInElement(document.body, {
-    // delimiters: [
-    //     {left: '$$', right: '$$', display: false},
-    //     {left: '$', right: '$', display: false},
-    //     {left: '\\(', right: '\\)', display: false}
-    // ]
-    // });
 
 } else {
     // 如果没有目录容器，则隐藏 TOC 按钮
