@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【小实验】有偏分布下的均值、中位数、众数之间的关系.
+title: 【小实验】有偏分布下的均值、中位数、众数之间的关系
 categories: 趣文
 tags: 
 keywords:

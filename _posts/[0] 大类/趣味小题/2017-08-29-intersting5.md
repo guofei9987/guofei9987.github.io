@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【算法题】马踏棋盘问题.
+title: 【算法题】马踏棋盘问题
 categories: 趣文
 tags: 
 keywords:

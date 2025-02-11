@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【算法题】24点问题.
+title: 【算法题】24点问题
 categories: 趣文
 tags:
 keywords:

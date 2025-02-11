@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【读后感】《奇点临近》.
+title: 【读后感】《奇点临近》
 categories: 趣文
 ---
 

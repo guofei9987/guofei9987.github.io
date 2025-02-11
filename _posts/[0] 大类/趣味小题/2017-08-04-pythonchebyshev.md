@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Python】2 examples of Chebyshev inequality.
+title: 【Python】2 examples of Chebyshev inequality
 categories: 趣文
 tags:
 keywords:

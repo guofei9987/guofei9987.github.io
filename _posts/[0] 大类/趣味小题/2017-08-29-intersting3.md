@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【算法题】破碎的砝码.
+title: 【算法题】破碎的砝码
 categories: 趣文
 tags:
 keywords:

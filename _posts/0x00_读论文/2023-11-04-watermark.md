@@ -42,3 +42,54 @@ order: 9
 - 为了限制编码块和封面块的差异，设计了两个指标，MSE控制像素级别修改，MSSSIM 控制不同尺度下的结构棉花
 
 之后是效果实验数据
+
+
+
+
+
+## 使用深度学习构建的水印
+
+### 《A Survey of Text Watermarking in the Era of Large Language Models》
+
+
+https://dl.acm.org/doi/pdf/10.1145/3691626
+
+
+一个 survey，原因是
+- 水印有助于 LLM
+    - 恶意用户可能利用大语言模型生成 misinformation 或 harmful content，并在网上传播
+    - LLM可能受 extraction attacks，就是攻击者用 LLM 生成的内容去训练一个新的 LLM
+- LLM 有助于水印
+    - 文本水印的一个关键挑战在于如何在不扭曲原始文本含义或降低可读性的前提下嵌入水印。传统方法往往无法在修改文本的同时保证其语义不变。
+    - 这要求算法既要理解文本的语义，又要能够精细地控制文本内容。LLM 改变了这一局面。
+
+
+第二节介绍文本水印的定义和关键算法特性；  
+第三节和第四节分别讨论两大主要类别的文本水印方法——针对已有文本的水印和针对大语言模型生成文本的水印；  
+第五节讨论这些算法的评估指标，包括可检测性、对文本质量的影响以及在水印攻击下的鲁棒性；  
+第六节探讨应用场景，主要是版权保护和 AI 生成文本的检测；第七节则考察当前面临的挑战和未来研究方向；  
+第八节为综述结论。
+
+第二节
+- text watermarking algorithms
+    - $A$ 是
+
+
+
+
+
+
+
+## 水印技术与深度学习中的安全
+
+### 《SPY-WATERMARK: ROBUST INVISIBLE WATERMARKING FOR BACKDOOR ATTACK》
+
+
+
+Wang R, Wan R, Guo Z, Guo Q, Huang R. SPY-Watermark: Robust Invisible Watermarking for Backdoor Attack. InICASSP 2024-2024 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) 2024 Apr 14 (pp. 2700-2704). IEEE.
+
+
+
+提出 Spy-Watermark（一种 Backdoor attack 方法），嵌入不可见水印（trigger），使其输入 CNN 模型时能误导模型，输出你想要的 tag
+
+[https://arxiv.org/pdf/2401.02031](https://arxiv.org/pdf/2401.02031)

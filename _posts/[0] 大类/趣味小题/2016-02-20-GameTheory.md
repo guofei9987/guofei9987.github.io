@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【随机模拟试验】枪手博弈问题（一）.
+title: 【随机模拟试验】枪手博弈问题（一）
 categories: 趣文
 tags: 
 keywords: Game Theory

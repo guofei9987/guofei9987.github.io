@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Monte】马尔科夫链问题.
+title: 【Monte】马尔科夫链问题
 categories: 趣文
 tags:
 keywords:
