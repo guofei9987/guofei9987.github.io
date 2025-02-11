@@ -76,7 +76,7 @@ macrodata.to_csv('d:/foo.csv')
 ### to_json
 
 生成数据
-```Python
+```python
 import pandas as pd
 a=pd.DataFrame({"col1":['str1','str2','str3'],"col2":[1,2,3]},index=["idx1","idx2","idx3"])
 ```
@@ -93,45 +93,45 @@ out:
 
 
 - orient='index'
-```Python
+```python
 a.to_json('a.json',orient='index')
 ```
     - out:
-```Json
+```json
 {"idx1":{"col1":"str1","col2":1},"idx2":{"col1":"str2","col2":2},"idx3":{"col1":"str3","col2":3}}
 ```
 
 - orient='columns'
-```Python
+```python
 a.to_json('a.json',orient='columns')
 ```
     - out:  
-```Json
+```json
 {"col1":{"idx1":"str1","idx2":"str2","idx3":"str3"},"col2":{"idx1":1,"idx2":2,"idx3":3}}
 ```
 - orient='records'
-```Python
+```python
 a.to_json('a.json',orient='records')
 ```
     - out:  
-```Json
+```json
 [{"col1":"str1","col2":1},{"col1":"str2","col2":2},{"col1":"str3","col2":3}]
 ```
 - orient='split'
-```Python
+```python
 a.to_json('a.json',orient='split')
 ```
     - out:
-```Json
+```json
 {"columns":["col1","col2"],"index":["idx1","idx2","idx3"],"data":[["str1",1],["str2",2],["str3",3]]}
 ```
 
 - orient='values'
-```Python
+```python
 a.to_json('ax1.json', orient='values')
 ```
     - out:
-```Json
+```json
 [["str1",1],["str2",2],["str3",3]]
 ```
 

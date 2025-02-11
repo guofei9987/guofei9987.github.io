@@ -1,13 +1,18 @@
 /* Rouge Monokai Theme CSS */
 /* 参考自社区整理的 Monokai 主题样式 */
 
+div.highlight{
+  margin-bottom: 10px;
+}
+
 .highlight {
   background: #272822;
   color: #f8f8f2;
   overflow: auto;
-  padding: 1em;
+  padding: 0.5em;
   font-size: 0.9em;
   line-height: 1.45;
+  white-space: pre-wrap;
 }
 
 /* 高亮当前行 */
@@ -94,4 +99,33 @@
 .highlight .o {
   color: #f92672;
 }
-  
+
+/* 额外 */
+
+pre {
+  overflow: auto;
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px
+}

@@ -1,3 +1,78 @@
+
+
+/* 以下是一些通用样式 */
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%
+}
+
+
+.main-content-content a {
+  background: transparent;
+  color: #428bca;
+  text-decoration: none;
+}
+
+.main-content-content a:hover, .main-content-content a:focus{
+  color: #2a6496;
+  text-decoration: underline
+}
+
+.main-content-content a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px
+}
+
+.main-content-content a:active, .main-content-content a:hover {
+  outline: 0
+}
+
+
+.main-content-content pre {
+  overflow: auto
+}
+
+
+.main-content-content p {
+  margin: 0 0 10px
+}
+
+
+
+table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+table caption{
+  color: #303030;
+  background-color: #f5f5f5;
+  border-color: #f5f5f5;
+  font-size: 20px;
+  padding-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.book_list{
+  border-color: #f5f5f5;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee
+}
+
+/* 以上是一些通用样式 */
+
 .main-title {
 background-color: #f5f5f5;
 border-bottom: 1px solid #f5f5f5;
@@ -6,6 +81,11 @@ padding-left: 30px;
 padding-right: 30px;
 text-align: center;
 color: #303030;
+}
+
+
+.post-info{
+  font-size: 13px;
 }
 
 
@@ -116,8 +196,8 @@ position: relative;
 
 pre.highlight>button {
 position: absolute;
-right: 1.2rem;
-top: 1.2rem;
+right: 1rem;
+top: 0rem;
 }
 
 /* 鼠标不悬浮时的样子 */
