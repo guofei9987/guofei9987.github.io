@@ -190,7 +190,7 @@ color: #a15a5a;
 
 
 /* 代码黏贴板 */
-pre.highlight {
+/* pre.highlight {
 position: relative;
 }
 
@@ -198,30 +198,79 @@ pre.highlight>button {
 position: absolute;
 right: 1rem;
 top: 0rem;
+} */
+  
+  /* 鼠标不悬浮时的样子 */
+  /* pre.highlight>button {
+  opacity: 0.7;
+  background: #000000;
+  color: #e5f7f3;
+  } */
+  
+  /* 鼠标悬浮 */
+  /* pre.highlight:hover>button {
+  opacity: 1;
+  background: #000000;
+  color: #1abc9c;
+  } */
+  
+  /* pre.highlight>button:active,
+  pre.highlight>button:focus {
+  opacity: 1;
+  background: #000000;
+  color: #FF0000;
+  }  */
+  
+  /* end:代码黏贴版 */
+
+
+
+/* 代码黏贴板（v2） */
+/* 确保 .highlight 内部可以使用绝对定位 */
+.highlight {
+  position: relative;
 }
 
-/* 鼠标不悬浮时的样子 */
-pre.highlight>button {
-opacity: 0.7;
-background: #000000;
-color: #e5f7f3;
+/* 语言标签样式：显示在左上角 */
+.code-language-label {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: #272822;
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 0.75em;
+  border-radius: 3px;
+  pointer-events: none; /* 避免遮挡鼠标操作 */
 }
 
-/* 鼠标悬浮 */
-pre.highlight:hover>button {
-opacity: 1;
-background: #000000;
-color: #1abc9c;
+/* 复制按钮样式：显示在右上角 */
+.copy-code {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #000;
+  color: #e5f7f3;
+  opacity: 0.7;
+  padding: 2px 6px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.75em;
+  transition: opacity 0.2s;
 }
 
-pre.highlight>button:active,
-pre.highlight>button:focus {
-opacity: 1;
-background: #000000;
-color: #FF0000;
+.highlight:hover .copy-code {
+  opacity: 1;
 }
 
-/* end:代码黏贴版 */
+.copy-code:active,
+.copy-code:focus {
+  opacity: 1;
+  background-color: #000;
+  color: #ff0000;
+}
+
 
 
 /* 公式底色： */
