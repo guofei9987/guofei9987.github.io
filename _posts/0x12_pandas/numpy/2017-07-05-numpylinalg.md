@@ -2,7 +2,7 @@
 layout: post
 title: 【numpy】linalg线性代数
 categories:
-tags: 0x12_Pandas与numpy
+tags: 0x12_numpy与pd
 keywords:
 description:
 order: 1101

@@ -2,7 +2,7 @@
 layout: post
 title: 【pandas】合并数据表
 categories:
-tags: 0x12_Pandas与numpy
+tags: 0x12_numpy与pd
 keywords:
 description:
 order: 107
