@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Real analysis(4)】级数，巴拿赫空间与希尔伯特空间
+title: 【实分析4】级数，巴拿赫空间与希尔伯特空间
 categories:
 tags: 0x51_代数与分析
 keywords:

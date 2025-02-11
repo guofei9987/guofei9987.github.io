@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 读完的书单
-permalink: /BookList2.html
+permalink: /BookList.html
 ---
 
 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}字

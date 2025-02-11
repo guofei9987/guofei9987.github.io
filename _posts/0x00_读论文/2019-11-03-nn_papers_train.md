@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【论文笔记7篇】Optimization/Training Techniques
+title: 【论文笔记】Optimization/Training Techniques
 categories:
 tags: 0x00_读论文
 keywords:

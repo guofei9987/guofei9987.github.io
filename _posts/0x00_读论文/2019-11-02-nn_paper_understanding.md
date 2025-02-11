@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【论文学习7篇】Understanding/Generalization/Transfer
+title: 【论文学习】Understanding/Generalization/Transfer
 categories:
 tags: 0x00_读论文
 keywords:
