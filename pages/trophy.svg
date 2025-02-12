@@ -71,7 +71,7 @@
     width: 0;
   }
   to {
-    width: var(--target-width, 80px); /* 如果没有设置变量，默认80px */
+    width: var(--target-width, 80px);
   }
 }
 
@@ -94,21 +94,8 @@
 <text x="50%" y="18" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="13" fill="#000">技术博客</text>
 <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="#666">博客数量</text>
 <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="#666">{{ site.posts.size }}篇</text>
-<style>
-@keyframes MultiLanguageRankAnimation {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 80px;
-  }
-}
-#MultiLanguage-rank-progress{
-  animation: MultiLanguageRankAnimation 1s forwards ease-in-out;
-}
-</style>
+
 <rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<!-- <rect id="MultiLanguage-rank-progress" x="15" y="101" rx="1" height="3.2" fill="#0366d6"/> -->
 <rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:80px;"/>
 
 </svg>
@@ -143,22 +130,8 @@
 <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="#666">共获得 star </text>
 <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="#666">{{ site.data.data_github.star_cnt }}</text>
 
-<style>
-@keyframes StarsRankAnimation {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 80px;
-  }
-}
-#Stars-rank-progress{
-  animation: StarsRankAnimation 1s forwards ease-in-out;
-}
-</style>
-
 <rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect id="Stars-rank-progress" x="15" y="101" rx="1" height="3.2" fill="#0366d6"/>
+<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:80px;"/>
 </svg>
 
 
@@ -184,22 +157,8 @@
 <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="#666"> Followers </text>
 <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="#666">{{ site.data.data_github.followers }}</text>
 
-<style>
-@keyframes FollowersRankAnimation {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 35.5px;
-  }
-}
-#Followers-rank-progress{
-  animation: FollowersRankAnimation 1s forwards ease-in-out;
-}
-</style>
-
 <rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect id="Followers-rank-progress" x="15" y="101" rx="1" height="3.2" fill="#0366d6"/>
+<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:36px;"/>
 </svg>
 
 
@@ -226,21 +185,8 @@
 <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="#666">读书</text>
 <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="#666">{{ site.data.book_list.size }}本</text>
 
-<style>
-@keyframes CommitsRankAnimation {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 25px;
-  }
-}
-#Commits-rank-progress{
-  animation: CommitsRankAnimation 1s forwards ease-in-out;
-}
-</style>
 <rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect id="Commits-rank-progress" x="15" y="101" rx="1" height="3.2" fill="#0366d6"/>
+<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:30px;"/>
 </svg>
 
 
@@ -272,21 +218,8 @@
 <text x="50%" y="85" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10.5" fill="#666">读书笔记</text>
 <text x="50%" y="97" text-anchor="middle" font-family="Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji" font-weight="bold" font-size="10" fill="#666">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
 
-<style>
-@keyframes PullRequestRankAnimation {
-  from {
-    width: 0px;
-  }
-  to {
-    width: 35.2px;
-  }
-}
-#PullRequest-rank-progress{
-  animation: PullRequestRankAnimation 1s forwards ease-in-out;
-}
-</style>
 <rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect id="PullRequest-rank-progress" x="15" y="101" rx="1" height="3.2" fill="#0366d6"/>
+<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:36px;"/>
 </svg>
 
 </svg>
