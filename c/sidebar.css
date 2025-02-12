@@ -16,7 +16,7 @@ body {
 .sidebar {
     width: 200px;
     background-color: #777;
-    padding: 0;
+    padding: 0 0 30px 0;
     box-sizing: border-box;
     border-right: 1px solid #ccc;
     overflow-y: auto;
@@ -133,7 +133,7 @@ body.sidebar-hidden .sidebar-toggle{
 /* 右侧主内容区域 */
 .main-content {
     flex: 1;
-    padding: 20px;
+    padding: 10px 10px 10px 50px;
     box-sizing: border-box;
     overflow-y: auto;
     /* 主内容区域独立滚动 */

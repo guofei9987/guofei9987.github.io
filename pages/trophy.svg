@@ -1,36 +1,10 @@
 ---
 ---
 
-<svg
-  width="550"
-  height="110"
-  viewBox="0 0 550 110"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
+<svg width="550" height="110" viewBox="0 0 550 110" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-    <svg
-      x="0"
-      y="0"
-      width="110"
-      height="110"
-      viewBox="0 0 110 110"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect
-        x="0.5"
-        y="0.5"
-        rx="4.5"
-        width="109"
-        height="109"
-        stroke="#e1e4e8"
-        fill="#FFF"
-        stroke-opacity="1"
-        fill-opacity="1"
-      />
-
-
+  <svg x="0" y="0" width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.5" y="0.5" rx="4.5" width="109" height="109" stroke="#e1e4e8" fill="#FFF" stroke-opacity="1" fill-opacity="1"/>
 
 <defs>
 <linearGradient id="SECRET" gradientTransform="rotate(45)">
@@ -71,15 +45,7 @@
   animation: MultiLanguageRankAnimation 1s forwards ease-in-out;
 }
 </style>
-<rect
-  x="15"
-  y="101"
-  rx="1"
-  width="80"
-  height="3.2"
-  opacity="0.3"
-  fill="#0366d6"
-/>
+<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
 <rect
   id="MultiLanguage-rank-progress"
   x="15"
