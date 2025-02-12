@@ -79,6 +79,8 @@ h1, h2, h3, h4, h5, h6 {
 #show_content ul{
   padding-left: 3px;
   list-style: none;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 #show_content>ul>li{
   border-bottom: 1px solid #eee;

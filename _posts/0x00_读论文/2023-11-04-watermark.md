@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【论文学习】水印类算法
+title: 【读论文】水印
 categories:
 tags: 0x00_读论文
 keywords:
@@ -72,12 +72,22 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
 
 第二节
 - text watermarking algorithms
-    - $A$ 是
+    - $A(x,w)=t$, 其中 $A$:watermark generator,  $x$: text, $w$:watermark message, $t$: watermarked text
+    - $D(t)=w$, 其中 $D$: watermark detector
+- 相关概念
+    - 隐写术（Steganography）更看重隐秘信息的容量，而watermark更看重 robustness
+    - LLM watermarking，包含各种 LLM+watermarking 的概念，例如 **把水印嵌入到parameter、output embedding、output text**，此论文只讨论 output text 的情况
+- text watermarking 的特点：对 text quality 影响低、robust
+    - 对 text quality 影响低：$A(x,0)$表示不加水印的输出，那么 $\forall w_i ,R(A(x,0),A(x,w_i))<\delta$
+    - robust：某种攻击后，提取率大于 $\beta$
+- watermarking algorithm 分为两种：
+    - watermarking for existing text
+    - watermarking for LLMs，涉及到修改 LLMs，既可以是train阶段，也可以是 inference 阶段
+
+【图】
 
 
-
-
-
+第三节 watermarking for existing text
 
 
 ## 水印技术与深度学习中的安全

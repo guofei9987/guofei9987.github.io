@@ -133,7 +133,7 @@ body.sidebar-hidden .sidebar-toggle{
 /* 右侧主内容区域 */
 .main-content {
     flex: 1;
-    padding: 10px 10px 10px 50px;
+    padding: 10px 10px 50px 10px;
     box-sizing: border-box;
     overflow-y: auto;
     /* 主内容区域独立滚动 */
@@ -141,7 +141,6 @@ body.sidebar-hidden .sidebar-toggle{
 }
 
 
-/* 用于隐藏某些元素 */
 .hidden {
   visibility: hidden;
 }
