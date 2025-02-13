@@ -4,6 +4,12 @@ markdown: kramdown
 highlighter: rouge
 
 
+collections:
+  reading:
+    output: true
+    permalink: /reading/:title:output_ext
+
+
 kramdown:
   math_engine: null
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【计算机组成原理】知识体系
+title: 🔥计算机组成原理
 categories:
 tags: 0x10_计算机基础
 keywords:

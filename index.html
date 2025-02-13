@@ -19,7 +19,7 @@ title: 首页
   <legend id="{{ group.name }}">{{ parts[0] }}年-{{ parts[1] }}月</legend>
   <ul>
     {% for post in group.items %}
-    {% if post.visible != 'n' %}<li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;<a href="{{ post.url }}">{{ post.title }}</a></li>{% endif %}
+    {% if post.visible != 'n' %}<li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>{% endif %}
     {% endfor %}
   </ul>
 {% endfor %}

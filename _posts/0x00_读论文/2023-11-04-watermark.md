@@ -65,7 +65,8 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
 
 
 第二节介绍文本水印的定义和关键算法特性；  
-第三节和第四节分别讨论两大主要类别的文本水印方法——针对已有文本的水印和针对大语言模型生成文本的水印；  
+第三节：针对已有文本的水印
+第四节：针对大语言模型生成文本的水印  
 第五节讨论这些算法的评估指标，包括可检测性、对文本质量的影响以及在水印攻击下的鲁棒性；  
 第六节探讨应用场景，主要是版权保护和 AI 生成文本的检测；第七节则考察当前面临的挑战和未来研究方向；  
 第八节为综述结论。
@@ -87,7 +88,41 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
 【图】
 
 
-第三节 watermarking for existing text
+第三节 watermarking for existing text，分为4种：
+1. format-based，例如，line-shift，word-shift coding，通过改变行、字的垂直间距和水平间距来嵌入信息。（Jack T. Brassil, 1995）。
+    - 隐藏的信息依赖图像形式的文本，而不是字符串本身
+    - 作为改进，用相似unicode做，例如 : U+0043和U+216d分别是：C和Ⅽ；U+004c和U+216c分别是 L和Ⅼ
+    - Easymark：零宽字符之类的
+2. Lexical-Based ：换词，例如用 WordNet&Word2Vec 做近义词替换，缺点是可能影响语义。有用 BERT 来保持语义合理的
+3. Syntactic-Based：三种方式，附加成分移动（Adjunct Movement）、分裂句（Clefting）以及被动化（Passivization）
+    - 每种定义为1个bit，Adjunct Movement：0，Clefting：1，Passivization：2
+    - 提取时，先把原文和嵌入后的文本都转为语法树（syntax trees），然后比较。
+    - 之后，又新增两种句法转换方式：激活化（Activization）和主题化（Topicalization）
+    - 之后，研究从英语扩展到了土耳其语
+    - 此种方法严重依赖语法，需要根据语言定制
+4. Generation-Based 
+    - Abdelnabi开发了 end-to-end 神经网络 encoder
+    - Zhang 做了改进，REMARK-LLM，使用 pre-trained LLM
+
+
+第四节：针对LLM的水印
+
+第五节：评估指标
+- 可检测性（detectablility）
+    - 对 zero-bit watermark：z-score，p-value，...
+    - multi-bit: BER, payload
+    - watermark size
+- quality impact
+- robustness under attack
+    - ...
+
+
+
+
+（未完）
+
+
+
 
 
 ## 水印技术与深度学习中的安全
