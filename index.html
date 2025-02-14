@@ -16,11 +16,9 @@ title: 首页
 {% assign posts_by_month = site.posts | group_by_exp:"post", "post.date | date: '%Y-%m'" %}
 {% for group in posts_by_month %}
   {% assign parts = group.name | split: '-' %}
-  <legend id="{{ group.name }}">{{ parts[0] }}年-{{ parts[1] }}月</legend>
+  <legend>{{ parts[0] }}年-{{ parts[1] }}月</legend>
   <ul>
-    {% for post in group.items %}
-    {% if post.visible != 'n' %}<li><span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>{% endif %}
-    {% endfor %}
+    {% for post in group.items %}<li>{{ post.date | date: "%Y年-%m月-%d日" }} &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>{% endfor %}
   </ul>
 {% endfor %}
 
