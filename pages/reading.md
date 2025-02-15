@@ -4,7 +4,10 @@ title: 读书
 permalink: /reading.html
 ---
 
-<!-- HTML 页面中预留一个容器 -->
+
+读书 **267 本**，笔记总字数 **626504 字**
+
+
 <div id="all_books"></div>
 
 <script>
