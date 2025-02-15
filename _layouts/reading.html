@@ -13,7 +13,7 @@
   {% include banner.html %}
   <!-- 左侧侧边栏 -->
   <div class="sidebar">
-    <ul id="sidebar-list">
+    <ul id="sidebar-list" data-sidebar-type="reading"></ul>
       <!-- 动态生成侧边栏内容 -->
     </ul>
   </div>
@@ -28,16 +28,8 @@
     <div class="main-content-content">
       <div>
         <div class="post-info">
-          <br><br>
-          🗓 {{ page.date | date:"%Y年%m月%d日" }}
-          &nbsp;&nbsp;&nbsp;
-          📁 文章归类: {{ page.tags }} {{ page.categories }}
-          &nbsp;&nbsp;&nbsp;
+          <br>
           <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
-          <p>版权声明：本文作者是<a href="https://github.com/guofei9987">郭飞</a>。转载随意，标明原文链接即可。
-            <br>
-            原文链接：<a href="{{ page.url }}">{{ site.url }}{{ page.url }}</a>
-          </p>
           <br>
         </div>
 
@@ -46,8 +38,6 @@
         </div>
 
         <hr>
-        {% include comment.html %}
-        {% include donate.html %}
 
       </div>
 
@@ -58,7 +48,7 @@
 <script src="/c/sidebar.js"></script>
 <script src="/c/content.js"></script>
 
-  {% include googleanalytics.html %}
+  <!-- {% include googleanalytics.html %} -->
 </body>
 
 </html>

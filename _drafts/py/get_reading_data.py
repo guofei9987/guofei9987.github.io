@@ -33,6 +33,8 @@ def get_msg(text):
 
 work_path = './reading/docs/'
 
+work_path = './_reading/'
+
 path_walker = os.walk(work_path, topdown=True)
 path_all = list(path_walker)[1:]
 path_all = sorted(path_all, key=lambda x: x[0])
@@ -41,8 +43,8 @@ path_all = [(top, sorted(filename)) for top, dirs, filename in path_all]
 total_words = 0
 res_json = []
 for path, filenames in path_all:
+    res_json_1 = []
     for filename in filenames:
-        pass
         if not filename.endswith('.md'):
             continue
         with open(os.path.join(path, filename), 'r') as f:
@@ -51,13 +53,13 @@ for path, filenames in path_all:
         word_cnt, all_h2 = get_msg(text)
         total_words += word_cnt
 
-        res_1 = {'l3': filename, 'cnt': word_cnt, 'h2': all_h2}
+        res_json_1.append({'l3': filename.replace('.md', ''), 'cnt': word_cnt, 'h2': all_h2})
 
     res_json.append({
         "l1": path.replace(work_path, ''),
-        "l2": res_1})
+        "l2": res_json_1})
 
-with open('./pages/posts/reading.json', 'w') as f:
+with open('./pages/reading.json', 'w') as f:
     json.dump(res_json, f, ensure_ascii=False)
 
 total_words_str = "{} 万".format(round(total_words / 10000, ndigits=1))
