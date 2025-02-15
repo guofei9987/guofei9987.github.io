@@ -55,9 +55,9 @@ fetch('/pages/reading.json')
         // 将每个 h2 标题生成链接，使用 encodeURIComponent 编码参数
         const h2Links = subItem.h2.map(h2 => {
           // 可选：将下划线替换为空格显示
-          const displayText = h2.replace('_', ' ');
+          // const displayText = h2.replace('_', ' ');
           // return `<a href="docs/${item.l1}/${article}.md?id=${encodeURIComponent(h2)}">${displayText}</a>`;
-          return `<a href="/reading/${article}.html#${encodeURIComponent(h2)}"></a>`;
+          return `<a href="/reading/${article}.html#${encodeURIComponent(h2)}">${h2}</a>`;
         }).join('，');
         td2.innerHTML = h2Links;
         tr.appendChild(td2);
