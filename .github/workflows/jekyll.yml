@@ -40,9 +40,7 @@ jobs:
         run: |
           python _drafts/get_data.py
           python _drafts/get_github_data.py
-          cd reading
-          python auto_generat_sidebar.py
-          cd ..
+          python _drafts/py/get_reading_data.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build with Jekyll
