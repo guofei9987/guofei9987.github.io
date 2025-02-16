@@ -62,3 +62,8 @@ permalink: /me.html
 [![zhihu](https://www.guofei.site/public/logo/zhihu.svg)](https://www.zhihu.com/people/guofei9987/answers/by_votes)
 [![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
 [![email](https://www.guofei.site/public/logo/email.svg)](mailto:me@guofei.site)
+<a href="https://www.guofei.site/" target="_blank">
+  <img class="logo" src="https://www.guofei.site/public/about/me.png" alt="我的网站" width="40" height="40" style="vertical-align: middle;">
+</a>
+
+<br>

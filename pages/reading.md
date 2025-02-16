@@ -44,7 +44,7 @@ fetch('/pages/reading.json')
         // 第一列：文章链接及字数
         const td1 = document.createElement('td');
         const a1 = document.createElement('a');
-        a1.href = `docs/${item.l1}/${article}.html`;
+        a1.href = `/reading/${article}.html`;
         // 使用 innerHTML 来包含 sup 标签
         a1.innerHTML = `${article}<sup style="color:red">${cnt}字</sup>`;
         td1.appendChild(a1);
