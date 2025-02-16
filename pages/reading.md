@@ -5,7 +5,7 @@ permalink: /reading.html
 ---
 
 
-读书 <a href="/BookList.html">**{{ site.data.book_list.size }}本**</a>，笔记共 **{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字**
+读书 **{{ site.data.book_list.size }}本**（<a href="/BookList.html">书单</a>），笔记共 **{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字**
 
 
 <div id="all_books"></div>
