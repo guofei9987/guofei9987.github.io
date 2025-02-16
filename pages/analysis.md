@@ -55,4 +55,5 @@ title: 分析
 - https://www.guofei.site/pages/achievement.json
 - https://www.guofei.site/pages/book_list.json
 - https://www.guofei.site/pages/cnt_github_repo.json
-
+- https://www.guofei.site/tags.json
+- https://www.guofei.site/pages/reading.json

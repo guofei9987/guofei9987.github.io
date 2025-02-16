@@ -3,19 +3,17 @@
 <head>
   {% include header.html %}
 </head>
-<body>
-{% include banner.html %}
-  <div class="container">
-    <div class="row">
-      {% include navside.html %}
-      <div class="col-md-13 col-lg-13 col-sm-13 col-xs-13 aside3">
-        <div id="container">
-            {{ content }}
-        </div>
-      </div>
-    </div>
+
+<body class="sidebar-hidden">
+  {% include banner.html %}
+  {% include sidebar.html%}
+
+  <div class="main-content">
+    {{ content }}
   </div>
+
   {% include footer.html %}
   {% include googleanalytics.html %}
 </body>
+
 </html>
