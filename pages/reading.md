@@ -5,7 +5,7 @@ permalink: /reading.html
 ---
 
 
-读书 **267 本**，笔记总字数 **626504 字**
+读书 **{{ site.data.book_list.size }}本**，笔记共 **{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字**
 
 
 <div id="all_books"></div>

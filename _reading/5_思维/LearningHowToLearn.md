@@ -70,8 +70,8 @@ overlearning
 
 
 
-## procrastination(拖延)&memory
-### zombies
+### procrastination(拖延)&memory
+#### zombies
 - minimizing your use of willpower
 - chucking is related to habit. habit is an energy saver for us.
 
@@ -88,11 +88,11 @@ habits have 4 parts:
     1.
 4. belief
 
-### Process vs product
+#### Process vs product
 - focus on process  not on product
 - The product triggers the pain that causes you to procrastinate
 
-### juggling life and learning
+#### juggling life and learning
 
 1. weekly list of key tasks
 2. Daily to do list: write it down the evening before
@@ -100,14 +100,14 @@ write down : free your working memory
 - plan your quitting time
 - do most difficult and most dislike first
 
-## long term memory
+### long term memory
 
 - glial cell(胶质细胞)
     - astrocytes(星形胶质细胞)（最多）
 
 - memory palace technique
 
-## week4:Renaissance Learning and Unlocking Your Potential
+### week4:Renaissance Learning and Unlocking Your Potential
 how to more profitably interact with fellow learners, how to recognize your own strengths, and how to avoid the 'imposter syndrome.'（冒名顶替综合征）
 - physical exercise
 - 大脑发展的黄金时期
@@ -119,5 +119,5 @@ how to more profitably interact with fellow learners, how to recognize your own 
 - work profitably with teammates
 - perform well on tests
 
-## week4-2
+### week4-2
 - right hemisphere help us step back and put our work into big picture perspective
