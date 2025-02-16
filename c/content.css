@@ -300,7 +300,7 @@ background-color: lightcyan;
 
 
 /* me.html上的显示，否则无法对齐 */
-img.logo {
+img.me {
   display: inline-block;
   vertical-align: middle;
   margin-top: -30px;

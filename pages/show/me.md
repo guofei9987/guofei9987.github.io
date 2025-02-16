@@ -63,7 +63,7 @@ permalink: /me.html
 [![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
 [![email](https://www.guofei.site/public/logo/email.svg)](mailto:me@guofei.site)
 <a href="https://www.guofei.site/" target="_blank">
-  <img class="logo" src="https://www.guofei.site/public/about/me.png" alt="我的网站" width="40" height="40" style="vertical-align: middle;">
+  <img class="me" src="https://www.guofei.site/public/about/me2.png" alt="me" width="40" height="40" style="vertical-align: middle;">
 </a>
 
 <br>
