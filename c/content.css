@@ -299,7 +299,7 @@ background-color: lightcyan;
 }
 
 
-/* me.html上的显示，否则无法对齐 */
+/* me.html上的自己就头像，默认没有上下对齐 */
 img.me {
   display: inline-block;
   vertical-align: middle;

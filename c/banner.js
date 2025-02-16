@@ -40,12 +40,6 @@ if($("#nav").length > 0){
     $("#nav").append("<div style='margin-left:" + (15 * (tag - 2)) + "px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
     });
 
-    // ???是否可删去
-    // 对代码块和图片做样式处理
-
-    // $("pre").addClass("prettyprint");
-    // prettyPrint();
-
     // 如果生成的导航内容为空，则隐藏 TOC 按钮，否则显示
     if ($("#nav").children().length === 0) {
       document.getElementById('toc_btn').classList.add('hidden'); // 按钮解除隐藏
@@ -95,37 +89,6 @@ renderMathInElement(document.body,{delimiters: [
       {left: '$', right: '$', display: false},
       {left: '\\(', right: '\\)', display: false}
   ]});
-
-
-
-// // 代码拷贝
-// // https://remarkablemark.org/blog/2021/06/01/add-copy-code-to-clipboard-button-to-jeyll-site/
-// var codeBlocks = document.querySelectorAll('pre.highlight');
-
-// codeBlocks.forEach(function (codeBlock) {
-//   var copyButton = document.createElement('button');
-//   copyButton.className = 'copy';
-//   copyButton.type = 'button';
-//   copyButton.ariaLabel = 'Copy code to clipboard';
-//   copyButton.innerText = 'Copy';
-
-//   codeBlock.append(copyButton);
-
-
-//   copyButton.addEventListener('click', function () {
-//     var code = codeBlock.querySelector('code').innerText.trim();
-//     window.navigator.clipboard.writeText(code);
-
-//     copyButton.innerText = 'Copied';
-//     var fourSeconds = 4000;
-
-//     setTimeout(function () {
-//       copyButton.innerText = 'Copy';
-//     }, fourSeconds);
-//   });
-// });
-
-
 });
   
 
