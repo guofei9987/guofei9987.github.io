@@ -175,6 +175,10 @@ border-top: 10px groove skyblue;
 color: red;
 }
 
+#content ol,ul{
+  margin-top: 5px;
+}
+
 blockquote p {
 font-size: 20px;
 color: #a15a5a;
