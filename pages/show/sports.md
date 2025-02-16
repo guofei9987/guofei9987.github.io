@@ -4,6 +4,10 @@ title: 运动
 permalink: /sports.html
 ---
 
+## 跑步
+
+![](/a/sports/my/run.PNG)
+
 ## 单手俯卧撑
 
 
@@ -11,7 +15,7 @@ permalink: /sports.html
 
 <iframe src="//player.bilibili.com/player.html?aid=770367964&bvid=BV1zr4y1g7te&cid=754450618&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
-## 跑步
+## 跑步-历史
 
 2018-现在，跑步机跑步
 
