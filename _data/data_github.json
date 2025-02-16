@@ -1,32 +1,32 @@
 {
-"followers": 1601,
+"followers": 1642,
 "repo_list": [
 {
 "name": "blind_watermark",
 "url": "https://github.com/guofei9987/blind_watermark",
 "is_fork": false,
-"star_cnt": 5972,
-"fork_cnt": 714,
+"star_cnt": 6212,
+"fork_cnt": 732,
 "language": "Python",
 "description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！",
-"open_issues_count": 24
+"open_issues_count": 26
 },
 {
 "name": "scikit-opt",
 "url": "https://github.com/guofei9987/scikit-opt",
 "is_fork": false,
-"star_cnt": 5295,
-"fork_cnt": 988,
+"star_cnt": 5414,
+"fork_cnt": 998,
 "language": "Python",
 "description": "Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Optimization Algorithm,Immune Algorithm, Artificial Fish Swarm Algorithm, Differential Evolution and TSP(Traveling salesman) ",
-"open_issues_count": 67
+"open_issues_count": 68
 },
 {
 "name": "text_blind_watermark",
 "url": "https://github.com/guofei9987/text_blind_watermark",
 "is_fork": false,
-"star_cnt": 1428,
-"fork_cnt": 139,
+"star_cnt": 1470,
+"fork_cnt": 142,
 "language": "Python",
 "description": "文本盲水印：把信息隐匿到文本中，put invisible blind watermark into a text. ",
 "open_issues_count": 1
@@ -35,18 +35,18 @@
 "name": "HideInfo",
 "url": "https://github.com/guofei9987/HideInfo",
 "is_fork": false,
-"star_cnt": 507,
-"fork_cnt": 47,
+"star_cnt": 537,
+"fork_cnt": 50,
 "language": "Python",
 "description": "一些小而美的信息隐藏技术：幻影坦克、藏物于音等",
-"open_issues_count": 0
+"open_issues_count": 1
 },
 {
 "name": "guofei9987.github.io",
 "url": "https://github.com/guofei9987/guofei9987.github.io",
 "is_fork": false,
-"star_cnt": 107,
-"fork_cnt": 45,
+"star_cnt": 108,
+"fork_cnt": 46,
 "language": "JavaScript",
 "description": "个人博客，欢迎fork",
 "open_issues_count": 8
@@ -55,8 +55,8 @@
 "name": "pyLSHash",
 "url": "https://github.com/guofei9987/pyLSHash",
 "is_fork": false,
-"star_cnt": 53,
-"fork_cnt": 5,
+"star_cnt": 57,
+"fork_cnt": 6,
 "language": "Python",
 "description": "Locality Sensitive Hashing, fuzzy-hash， min-hash, simhash, aHash, pHash, dHash。基于 Hash值的图片相似度、文本相似度",
 "open_issues_count": 0
@@ -75,7 +75,7 @@
 "name": "github_star_counter",
 "url": "https://github.com/guofei9987/github_star_counter",
 "is_fork": false,
-"star_cnt": 31,
+"star_cnt": 32,
 "fork_cnt": 7,
 "language": "Python",
 "description": "Count a GitHub user's total stars and forks",
@@ -95,7 +95,7 @@
 "name": "star_counter",
 "url": "https://github.com/guofei9987/star_counter",
 "is_fork": false,
-"star_cnt": 21,
+"star_cnt": 22,
 "fork_cnt": 3,
 "language": "JavaScript",
 "description": "Count a GitHub user's stars and forks（在线统计账号star数量）",
@@ -112,6 +112,16 @@
 "open_issues_count": 0
 },
 {
+"name": "hidden_watermark",
+"url": "https://github.com/guofei9987/hidden_watermark",
+"is_fork": false,
+"star_cnt": 17,
+"fork_cnt": 1,
+"language": "Rust",
+"description": "hidden watermark in rust",
+"open_issues_count": 1
+},
+{
 "name": "pygraphs",
 "url": "https://github.com/guofei9987/pygraphs",
 "is_fork": false,
@@ -125,21 +135,21 @@
 "name": "AHP",
 "url": "https://github.com/guofei9987/AHP",
 "is_fork": false,
-"star_cnt": 13,
+"star_cnt": 14,
 "fork_cnt": 0,
 "language": "Python",
 "description": "层次分析法",
 "open_issues_count": 0
 },
 {
-"name": "hidden_watermark",
-"url": "https://github.com/guofei9987/hidden_watermark",
+"name": "guofei9987",
+"url": "https://github.com/guofei9987/guofei9987",
 "is_fork": false,
-"star_cnt": 13,
-"fork_cnt": 0,
-"language": "Rust",
-"description": "hidden watermark in rust",
-"open_issues_count": 1
+"star_cnt": 12,
+"fork_cnt": 6,
+"language": "Python",
+"description": "github profile",
+"open_issues_count": 0
 },
 {
 "name": "hibird_python",
@@ -160,16 +170,6 @@
 "language": "Python",
 "description": "plot graphs using chars",
 "open_issues_count": 1
-},
-{
-"name": "guofei9987",
-"url": "https://github.com/guofei9987/guofei9987",
-"is_fork": false,
-"star_cnt": 10,
-"fork_cnt": 6,
-"language": "Python",
-"description": "github profile",
-"open_issues_count": 0
 },
 {
 "name": "python-maze",
@@ -202,10 +202,20 @@
 "open_issues_count": 0
 },
 {
+"name": "rs_lib",
+"url": "https://github.com/guofei9987/rs_lib",
+"is_fork": false,
+"star_cnt": 7,
+"fork_cnt": 1,
+"language": "Rust",
+"description": "Rust调用C的例子（混合编程）",
+"open_issues_count": 0
+},
+{
 "name": "rust-algo",
 "url": "https://github.com/guofei9987/rust-algo",
 "is_fork": false,
-"star_cnt": 6,
+"star_cnt": 7,
 "fork_cnt": 0,
 "language": "Rust",
 "description": "Rust 实现链表等数据结构",
@@ -262,22 +272,12 @@
 "open_issues_count": 0
 },
 {
-"name": "rs_lib",
-"url": "https://github.com/guofei9987/rs_lib",
-"is_fork": false,
-"star_cnt": 5,
-"fork_cnt": 0,
-"language": "Rust",
-"description": "Rust调用C的例子（混合编程）",
-"open_issues_count": 0
-},
-{
 "name": "a",
 "url": "https://github.com/guofei9987/a",
 "is_fork": false,
 "star_cnt": 4,
 "fork_cnt": 1,
-"language": "JavaScript",
+"language": "HTML",
 "description": "assets of my blog: https://www.guofei.site/",
 "open_issues_count": 0
 },
@@ -286,7 +286,7 @@
 "url": "https://github.com/guofei9987/CryptTool",
 "is_fork": false,
 "star_cnt": 3,
-"fork_cnt": 0,
+"fork_cnt": 1,
 "language": "Rust",
 "description": "密码学相关算法",
 "open_issues_count": 0
@@ -406,7 +406,7 @@
 "url": "https://github.com/guofei9987/hidden_watermark_web",
 "is_fork": false,
 "star_cnt": 0,
-"fork_cnt": 0,
+"fork_cnt": 1,
 "language": "JavaScript",
 "description": "A Wasm-based wrapper for hidden_watermark",
 "open_issues_count": 0
@@ -432,6 +432,26 @@
 "open_issues_count": 0
 },
 {
+"name": "reading",
+"url": "https://github.com/guofei9987/reading",
+"is_fork": false,
+"star_cnt": 0,
+"fork_cnt": 0,
+"language": null,
+"description": null,
+"open_issues_count": 0
+},
+{
+"name": "reading_old",
+"url": "https://github.com/guofei9987/reading_old",
+"is_fork": false,
+"star_cnt": 0,
+"fork_cnt": 0,
+"language": "JavaScript",
+"description": "使用 docsify的读书笔记框架，已迁移到新的框架",
+"open_issues_count": 0
+},
+{
 "name": "spank",
 "url": "https://github.com/guofei9987/spank",
 "is_fork": false,
@@ -452,8 +472,8 @@
 "open_issues_count": 0
 }
 ],
-"star_cnt": 13657,
-"fork_cnt": 1987,
-"star_cnt_str": "13.7k",
+"star_cnt": 14105,
+"fork_cnt": 2027,
+"star_cnt_str": "14.1k",
 "fork_cnt_str": "2.0k"
 }
