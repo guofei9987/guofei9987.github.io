@@ -1,43 +1,23 @@
 ---
+layout: base
 ---
 <!-- 不含版权声明，不含评论 -->
 <!-- 用于：证书、精选页用 -->
 
-<!doctype html>
-<html>
 
-<head>
-  {% include header.html %}
-</head>
+<div class="main-title">
+  <h2>{{ page.title }}</h2>
+</div>
 
-<body class="sidebar-hidden">
-  {% include banner.html %}
+<div class="main-content-content">
+  <div>
 
-  <!-- 左侧侧边栏 -->
-  <div class="sidebar">
-    <ul id="sidebar-list">
-      <!-- 动态生成侧边栏内容 -->
-    </ul>
-  </div>
-
-
-  <div class="main-content">
-    <div class="main-title">
-      <h2>{{ page.title }}</h2>
-    </div>
-
-    <div class="main-content-content">
-      <div>
-
-        <div id="content">
-          {{ content }}
-        </div>
-      </div>
-
+    <div id="content">
+      {{ content }}
     </div>
   </div>
-  {% include footer.html %}
-  {% include googleanalytics.html %}
-</body>
 
-</html>
+</div>
+
+
+

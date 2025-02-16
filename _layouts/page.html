@@ -1,40 +1,16 @@
 ---
+layout: base
 ---
 
 <!-- 不含标题、版权声明、评论 -->
 <!-- 给开源文档、about用 -->
 
-<!doctype html>
-<html>
+<div class="main-content-content">
+  <div>
 
-<head>
-  {% include header.html %}
-</head>
-
-<body class="sidebar-hidden">
-  {% include banner.html %}
-  <!-- 左侧侧边栏 -->
-  <div class="sidebar">
-    <ul id="sidebar-list">
-      <!-- 动态生成侧边栏内容 -->
-    </ul>
-  </div>
-
-
-
-  <div class="main-content">
-    <div class="main-content-content">
-      <div>
-
-        <div id="page-content">
-          {{ content }}
-        </div>
-      </div>
-
+    <div id="page-content">
+      {{ content }}
     </div>
   </div>
-  {% include footer.html %}
-  {% include googleanalytics.html %}
-</body>
 
-</html>
+</div>
