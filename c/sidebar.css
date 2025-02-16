@@ -5,11 +5,11 @@ html, body {
     overflow: hidden;
 }
 
-/* 使用 flex 布局，固定整体高度 */
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
+    height: -webkit-fill-available;
 }
 
 /* 左侧侧边栏 */
@@ -34,7 +34,7 @@ body {
 }
 
 .sidebar li {
-    margin: 5px 0;
+    margin: 3px 0;
 }
 
 .sidebar details {
