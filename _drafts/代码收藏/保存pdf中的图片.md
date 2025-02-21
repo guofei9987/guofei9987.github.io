@@ -1,5 +1,5 @@
 
-```
+```py
 # pip install PyMuPDF
 
 # 保存pdf的所有图片
