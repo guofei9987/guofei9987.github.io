@@ -2,7 +2,7 @@
 layout: post
 title: 【Complex Analysis5】级数、留数
 categories:
-tags: 0x53_复分析与积分变换
+tags: 0x53_复变与积分变换
 keywords:
 description:
 order: 92510
