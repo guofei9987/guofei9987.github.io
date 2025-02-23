@@ -26,8 +26,9 @@ permalink: /me.html
     - 📝 中级经济师
 - ❤️ 有一些爱好
     - 📖 读书 [{{ site.data.book_list.size }} 本](https://www.guofei.site/BookList.html)，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}字
-    - 🤸 爱好运动。能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>，近3年跑步 <a href="/sports.html">1300公里</a>
-- 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}次赞同/{{ site.data.achievement.zhihu_collection_str }}次收藏/ {{ site.data.achievement.zhihu_follows_str }}个关注
+    - 🤸 爱好运动。能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>，近3年跑步 <b><a href="/sports.html">1300公里</a></b>
+    - 📜 拿下几十个各领域的[证书](https://www.guofei.site/certification.html)，例如美国心脏协会（AHA）的急救证书、北京红十字协会的救护技能证
+    - 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}次赞同/{{ site.data.achievement.zhihu_collection_str }}次收藏/ {{ site.data.achievement.zhihu_follows_str }}个关注
 
 <object data="https://www.guofei.site/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
 
