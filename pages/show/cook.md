@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_pure
 title: 烹饪
 permalink: /cook.html
 ---

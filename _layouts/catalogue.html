@@ -18,21 +18,21 @@ categories:
 
 <table>
   <tr>
-    <th>文章编号</th><th>日期</th><th>文章题目</th>
+    <th>编号</th><th>日期</th><th>文章题目</th>
   </tr>
 
   {% assign sorted_tag = tag[1] | sort:"order" %}
   {% for post in sorted_tag %}
   <tr>
-    <th><font color="#FF9224">{{post.order}}</font></th>
+    <td><font color="#FF9224">{{post.order}}</font></td>
 
-    <th>{{ post.date | date: "%Y年-%m月-%d日" }}</th>
+    <td>{{ post.date | date: "%Y年-%m月-%d日" }}</td>
 
-    <th>
+    <td>
       <a href="{{ site.url }}{{ post.url }}">
         {{post.title}}
       </a>
-    </th>
+    </td>
 
   </tr>
   {% endfor %}

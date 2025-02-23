@@ -8,8 +8,7 @@ html, body {
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    /* height: 100vh; */
-    height: -webkit-fill-available;
+    height: 100vh;
 }
 
 /* 左侧侧边栏 */
@@ -24,7 +23,7 @@ body {
 }
 
 .sidebar h2 {
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 0;
 }
 

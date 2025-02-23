@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_pure
 title: 运动
 permalink: /sports.html
 ---

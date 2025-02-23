@@ -189,7 +189,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   };
-
- 
-
 });
