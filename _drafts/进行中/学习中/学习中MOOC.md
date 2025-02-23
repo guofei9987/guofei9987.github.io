@@ -10,7 +10,6 @@
 
 - 数据库原理 https://www.icourse163.org/course/PAEU-1003647009
 - （2/24开课）计算机网络：https://www.icourse163.org/course/HIT-154005
-- 宝石鉴赏（快学完了）
 - 网络技术与应用：https://www.icourse163.org/course/NJUPT-1001639008
 
 
@@ -29,6 +28,10 @@
 
 
 
+学完，等待成绩
+- 宝石鉴赏
+
+
 
 
 ## 等待开课
@@ -43,13 +46,6 @@
 编译原理（二选一）
 - 哈工大：https://www.icourse163.org/course/HIT-1002123007?from=searchPage&outVendor=zw_mooc_pcssjg_
 - 国防科技大：https://www.icourse163.org/course/NUDT-1003101005?from=searchPage&outVendor=zw_mooc_pcssjg_
-
-
-
-## 马上开课
-
-
-
 
 
 
