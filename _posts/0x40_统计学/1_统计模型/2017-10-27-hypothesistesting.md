@@ -71,7 +71,8 @@ sm.stats.anova_lm(ols('target ~ C(motor) + C(screw)',data=df).fit())
 带交互项：<br> ana = ols('target ~ C(motor) + C(screw) +C(motor)*C(screw)', data= df).fit()
 sm.stats.anova_lm(ana)
 ```
-## 实践篇  
+
+## 实践篇
 
 大网页见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%AE%A1%E6%8E%A8%E6%96%AD%E5%9F%BA%E7%A1%80.html' target="HypothesisTesting">这里</a>  
 

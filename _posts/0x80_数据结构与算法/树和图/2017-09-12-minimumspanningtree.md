@@ -27,7 +27,7 @@ order: 572
 
 
 
-## Python实现：Kruskal算法朴素版  
+## Python实现：Kruskal算法朴素版
 
 ### step1：Kruskal
 

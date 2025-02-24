@@ -8,7 +8,7 @@ description:
 order: 1201
 ---
 
-## 数字类型  
+## 数字类型
 - int
 - long
 - float

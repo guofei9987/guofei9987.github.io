@@ -43,7 +43,7 @@ pass
 ## IPython.display
 https://ipython.readthedocs.io/en/stable/api/generated/IPython.display.html#module-IPython.display
 
-### 音频  
+### 音频
 
 IPython.display.Audio
 ### 图片
