@@ -9,7 +9,7 @@
 
 
 - 数据库原理 https://www.icourse163.org/course/PAEU-1003647009
-- （2/24开课）计算机网络：https://www.icourse163.org/course/HIT-154005
+- 计算机网络：https://www.icourse163.org/course/HIT-154005
 - 网络技术与应用：https://www.icourse163.org/course/NJUPT-1001639008
 
 
@@ -44,16 +44,15 @@
 
 
 编译原理（二选一）
-- 哈工大：https://www.icourse163.org/course/HIT-1002123007?from=searchPage&outVendor=zw_mooc_pcssjg_
-- 国防科技大：https://www.icourse163.org/course/NUDT-1003101005?from=searchPage&outVendor=zw_mooc_pcssjg_
-
+- 哈工大：https://www.icourse163.org/course/HIT-1002123007
+- 国防科技大：https://www.icourse163.org/course/NUDT-1003101005
 
 
 
 ## 其它可能学
 
 网络攻防技术
-- https://www.icourse163.org/course/ZIIT-1206699813?from=searchPage&outVendor=zw_mooc_pcssjg_
+- https://www.icourse163.org/course/ZIIT-1206699813
 
 
 ## 学完，但是错过开课时机的

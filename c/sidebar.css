@@ -78,10 +78,7 @@ body {
     color: #111;
 }
 
-/* 鼠标悬浮在 a 上 */
-/* .sidebar a:hover {
-text-decoration: underline;
-} */
+
 /* 鼠标悬浮在 <a> 时，使所在的整个 li 改变背景色 */
 #sidebar-list ul li a {
     display: block;
@@ -176,7 +173,7 @@ body.sidebar-hidden .sidebar-toggle{
     text-decoration: none;
     font-size: 14px;
     padding: 8px;
-    background-color: #fff;
+    background-color: #E5F7F3;
     border: 1px solid #ccc;
     border-radius: 4px;
     transition: background-color 0.3s, border-color 0.3s;
@@ -216,6 +213,10 @@ body.sidebar-hidden .sidebar-toggle{
     color: #1b6183;
     font-weight: bold;
     cursor: pointer;
+}
+
+.dropdown-button:hover{
+    background-color: #bce8f1;
 }
 
 .dropdown-list {
