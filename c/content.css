@@ -179,9 +179,14 @@ color: red;
   margin-top: 5px;
 }
 
-blockquote p {
-font-size: 20px;
-color: #a15a5a;
+
+blockquote {
+  border-left: 4px solid #ccc;  /* 左侧边框作为引用标识 */
+  margin: 1.5em 10px;           /* 上下外边距适当，左右稍小 */
+  padding: 0.5em 10px;          /* 内边距保证文本不紧贴边框 */
+  color: #666;                 /* 文本颜色较浅，区分普通文本 */
+  font-style: italic;          /* 倾斜字体，常用于引用 */
+  background-color: #f9f9f9;   /* 背景颜色，突出引用块 */
 }
 
 
@@ -304,4 +309,38 @@ img.me {
   display: inline-block;
   vertical-align: middle;
   margin-top: -30px;
+}
+
+/* 定义型列表 */
+/* 定义列表容器 */
+dl {
+  margin: 20px 0;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* 定义项（标题） */
+dt {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 定义描述 */
+dd {
+  font-size: 14px;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: #666;
+}
+
+/* 移除最后一个 dd 的下边框 */
+dl dd:last-of-type {
+  border-bottom: none;
 }
