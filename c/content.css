@@ -191,7 +191,7 @@ color: #a15a5a;
     background-color: #fff;
     border: 0px solid #ddd;
     display: inline-block;
-    width: 100%;
+    /* width: 100%; */
     max-width: 100%;
     height: auto
 }

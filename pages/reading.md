@@ -28,7 +28,7 @@ fetch('/pages/reading.json')
         <thead>
           <tr>
             <th>板块</th>
-            <th>书目</th>
+            <th>条目</th>
           </tr>
         </thead>
       `;

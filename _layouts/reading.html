@@ -1,55 +1,25 @@
 ---
-
+layout: base
 ---
 
-<!doctype html>
-<html>
+<div id="sidebar_type" class="reading"></div>
 
-<head>
-  {% include header.html %}
-</head>
+<br>
+<br>
+<br>
+<br>
 
-<body class="sidebar-hidden">
-  {% include banner.html %}
-  <!-- 左侧侧边栏 -->
-  <div class="sidebar">
-    <ul id="sidebar-list" data-sidebar-type="reading"></ul>
-      <!-- 动态生成侧边栏内容 -->
-    </ul>
-  </div>
-
-
-
-  <div class="main-content">
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="main-content-content">
-      <div>
-        <div class="post-info">
-          <br>
-          <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
-          <br>
-        </div>
-
-        <div id="content">
-          {{ content }}
-        </div>
-
-        <hr>
-
-      </div>
-
+<div class="main-content-content">
+  <div>
+    <div class="post-info">
+      <br>
+      <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
+      <br>
     </div>
+
+    <div id="content">
+      {{ content }}
+    </div>
+    <hr>
   </div>
-
-<script type="text/javascript" src="/public/js/jquery.js"></script>
-<script src="/c/sidebar.js"></script>
-<script src="/c/content.js"></script>
-
-  <!-- {% include googleanalytics.html %} -->
-</body>
-
-</html>
+</div>

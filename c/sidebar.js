@@ -150,8 +150,8 @@ document.body.classList.toggle('sidebar-hidden');
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  const sidebarList = document.getElementById('sidebar-list');
-  const sidebarType = sidebarList.getAttribute('data-sidebar-type');
+  const sidebarTypeElement = document.getElementById('sidebar_type');
+  const sidebarType = sidebarTypeElement ? sidebarTypeElement.classList[0] : null;
 
   if (sidebarType === 'reading'){
     fetch('/pages/reading.json')
