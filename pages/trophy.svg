@@ -69,23 +69,6 @@
 </defs>
 
 
-<!-- 进度条动画 -->
-<style>
-@keyframes progressAnim {
-  from {
-    width: 0;
-  }
-  to {
-    width: var(--target-width, 80px);
-  }
-}
-
-.progress-bar {
-  animation: progressAnim 1s forwards ease-in-out;
-}
-</style>
-
-
 
 <svg x="0" y="0" width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="0.5" y="0.5" rx="4.5" width="109" height="109" stroke="#e1e4e8" fill="#FFF" stroke-opacity="1" fill-opacity="1"/>
@@ -97,11 +80,8 @@
 </svg>
 </a>
 <text x="50%" y="18" class="common-text" font-size="13" fill="#000">技术博客</text>
-<text x="50%" y="85" class="common-text" font-size="10.5" fill="#666">博客数量</text>
-<text x="50%" y="97" class="common-text" font-size="10" fill="#666">{{ site.posts.size }}篇</text>
-
-<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:80px;"/>
+<text x="50%" y="90" class="common-text" font-size="10.5" fill="#666">博客数量</text>
+<text x="50%" y="102" class="common-text" font-size="10" fill="#666">{{ site.posts.size }}篇</text>
 
 </svg>
 
@@ -132,11 +112,9 @@
 </a>
 
 <text x="50%" y="18" class="common-text" font-size="13" fill="#000">Stars</text>
-<text x="50%" y="85" class="common-text" font-size="10.5" fill="#666">共获得 star </text>
-<text x="50%" y="97" class="common-text" font-size="10" fill="#666">{{ site.data.data_github.star_cnt }}</text>
+<text x="50%" y="90" class="common-text" font-size="10.5" fill="#666">共获得 star </text>
+<text x="50%" y="102" class="common-text" font-size="10" fill="#666">{{ site.data.data_github.star_cnt }}</text>
 
-<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:80px;"/>
 </svg>
 
 
@@ -159,11 +137,9 @@
 </a>
 
 <text x="50%" y="18" class="common-text" font-size="13" fill="#000">Followers</text>
-<text x="50%" y="85" class="common-text" font-size="10.5" fill="#666"> Followers </text>
-<text x="50%" y="97" class="common-text" font-size="10" fill="#666">{{ site.data.data_github.followers }}</text>
+<text x="50%" y="90" class="common-text" font-size="10.5" fill="#666"> Followers </text>
+<text x="50%" y="102" class="common-text" font-size="10" fill="#666">{{ site.data.data_github.followers }}</text>
 
-<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:36px;"/>
 </svg>
 
 
@@ -187,11 +163,9 @@
 </a>
 
 <text x="50%" y="18" class="common-text" font-size="13" fill="#000">终生阅读者</text>
-<text x="50%" y="85" class="common-text" font-size="10.5" fill="#666">读书</text>
-<text x="50%" y="97" class="common-text" font-size="10" fill="#666">{{ site.data.book_list.size }}本</text>
+<text x="50%" y="90" class="common-text" font-size="10.5" fill="#666">读书</text>
+<text x="50%" y="102" class="common-text" font-size="10" fill="#666">{{ site.data.book_list.size }}本</text>
 
-<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:30px;"/>
 </svg>
 
 
@@ -217,11 +191,9 @@
 </a>
 
 <text x="50%" y="18" class="common-text" font-size="13" fill="#000">读书笔记</text>
-<text x="50%" y="85" class="common-text" font-size="10.5" fill="#666">读书笔记</text>
-<text x="50%" y="97" class="common-text" font-size="10" fill="#666">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
+<text x="50%" y="90" class="common-text" font-size="10.5" fill="#666">读书笔记</text>
+<text x="50%" y="102" class="common-text" font-size="10" fill="#666">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
 
-<rect x="15" y="101" rx="1" width="80" height="3.2" opacity="0.3" fill="#0366d6"/>
-<rect x="15" y="101" rx="1" height="3.2" fill="#0366d6" class="progress-bar" style="--target-width:36px;"/>
 </svg>
 
 </svg>
