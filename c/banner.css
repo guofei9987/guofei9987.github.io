@@ -14,7 +14,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  height: 40px; /* 统一的高度 */
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,9 +49,9 @@
 
 
 /* 由于 top-banner 的 position:fixed，所以会覆盖原内容，而不是让原内容下移，这里调整一下 */
-body {
-  padding-top: 40px; /* 这个值需要等于 banner 高度 */
-}
+/* body {
+  padding-top: 40px;
+} */
 
 /* 同样的问题，使得点击标题时，标题会被覆盖 */
 h1, h2, h3, h4, h5, h6 {
@@ -69,4 +69,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #2a6496;
   text-decoration: underline;
   outline: 0
+}
+
+/* 放置一个占位元素元素，防止别的内容被 banner 挡住 */
+.banner-placeholder {
+  height: 40px;
+  width: 100%;
 }
