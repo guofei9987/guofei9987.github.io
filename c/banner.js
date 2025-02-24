@@ -1,14 +1,3 @@
-// 控制“橱窗”的显示与隐藏
-function banner_show_click(is_show) {
-  if (is_show) {
-    $('#show_content').show();
-    $('#show_btn').text('✨');
-  } else {
-    $('#show_content').hide();
-    $('#show_btn').text('🌟');
-  }
-}
-
 
 /* 控制文章章节列表按钮：显示或隐藏 TOC */
 function content_click(is_show) {
@@ -56,16 +45,6 @@ if($("#nav").length > 0){
 
 /* 初始化：绑定 TOC 按钮点击事件，并在文档加载完成后生成 TOC */
 $(document).ready(function() {
-  
-    // 为“橱窗”按钮绑定点击事件
-    $("#show_btn").on('click', function() {
-      // 这里使用 data 属性存储当前状态，初始为 false（隐藏）
-      var is_show = $(this).data('clicked') || false;
-      // 根据当前状态调用 banner_show_click 函数（取反，进行切换）
-      banner_show_click(!is_show);
-      // 更新状态
-      $(this).data('clicked', !is_show);
-    });
 
 
 // 点击右上角的 TOC 按钮
