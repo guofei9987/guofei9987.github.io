@@ -11,6 +11,7 @@
 - 数据库原理 https://www.icourse163.org/course/PAEU-1003647009
 - 计算机网络：https://www.icourse163.org/course/HIT-154005
 - 网络技术与应用：https://www.icourse163.org/course/NJUPT-1001639008
+- 软件工程：https://www.icourse163.org/course/PKU-1003177002
 
 
 
