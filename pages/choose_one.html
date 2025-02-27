@@ -1,0 +1,92 @@
+---
+layout: post_pure
+title: 随机文章选择
+---
+
+
+<div>
+  <label for="articleType">选择板块：</label>
+  <select id="articleType">
+    <option value="tech">技术文章</option>
+    <option value="reading">视野文章</option>
+  </select>
+  <button id="randomBtn">随机获取文章</button>
+</div>
+<div id="result" style="margin-top:20px;"></div>
+
+<script>
+  document.getElementById('randomBtn').addEventListener('click', function(){
+    // 清空结果区域
+    document.getElementById('result').textContent = '加载中...';
+
+    // 根据下拉框的选择确定 JSON 地址
+    var type = document.getElementById('articleType').value;
+    var url = type === 'tech'
+              ? 'https://www.guofei.site/tags.json'
+              : 'https://www.guofei.site/pages/reading.json';
+
+    fetch(url)
+      .then(function(response){
+        if (!response.ok) {
+          throw new Error('网络错误：' + response.status);
+        }
+        return response.json();
+      })
+      .then(function(data){
+        var posts = [];
+        if (type === 'tech'){
+          // tags.json 是一个数组，每个元素包含 tagName 和 posts 数组
+          data.forEach(function(category){
+            if (category.posts && Array.isArray(category.posts)) {
+              posts = posts.concat(category.posts);
+            }
+          });
+        } else {
+          // reading.json 是一个数组，每个对象包含 l1 和 l2 数组
+          data.forEach(function(category){
+            if (category.l2 && Array.isArray(category.l2)) {
+              posts = posts.concat(category.l2);
+            }
+          });
+        }
+        
+        if (posts.length === 0) {
+          document.getElementById('result').textContent = '未找到文章数据';
+          return;
+        }
+        
+        // 随机选择一篇文章
+        var randomIndex = Math.floor(Math.random() * posts.length);
+        var post = posts[randomIndex];
+        var title = '';
+        var link = '';
+        
+        if (type === 'tech'){
+          title = post.title || '无标题';
+          link = post.url || '#';
+        } else {
+          // 视野文章：l3 为文件名，需去掉 .md
+          if (post.l3) {
+            title = post.l3.replace('.md', '');
+            link = '/reading/' + title + '.html';
+            // 如果存在章节信息，则随机选取一个章节作为锚点，同时在标题中展示
+            if (post.h2 && Array.isArray(post.h2) && post.h2.length > 0) {
+              var randomH2 = post.h2[Math.floor(Math.random() * post.h2.length)];
+              title += '#' + randomH2;
+              link += '#' + encodeURIComponent(randomH2);
+            }
+          } else {
+            title = '无标题';
+            link = '#';
+          }
+        }
+        
+        // 显示随机选中的文章（链接文本中包含随机章节信息）
+        document.getElementById('result').innerHTML = '<a href="' + link + '" target="_blank">' + title + '</a>';
+      })
+      .catch(function(error){
+        console.error(error);
+        document.getElementById('result').textContent = '加载文章数据失败：' + error.message;
+      });
+  });
+</script>
