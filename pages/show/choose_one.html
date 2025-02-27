@@ -1,8 +1,20 @@
 ---
 layout: post_pure
 title: 随机文章选择
+permalink: /choose_one.html
 ---
 
+
+<style>
+  #result a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #007acc;
+  }
+  #result a:hover {
+    text-decoration: underline;
+  }
+</style>
 
 <div>
   <label for="articleType">选择板块：</label>
@@ -10,7 +22,7 @@ title: 随机文章选择
     <option value="tech">技术文章</option>
     <option value="reading">视野文章</option>
   </select>
-  <button id="randomBtn">随机获取文章</button>
+  <button id="randomBtn">随机获取一篇文章</button>
 </div>
 <div id="result" style="margin-top:20px;"></div>
 

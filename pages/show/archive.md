@@ -6,7 +6,7 @@ name: 合集
 ---
 
 
-
+<ul>
 {% for category in site.categories %}
 {% if category[0] == '合集' %}
 {% assign sorted_tag = category[1] | sort:"order" %}
