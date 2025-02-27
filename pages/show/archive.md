@@ -6,9 +6,6 @@ name: 合集
 ---
 
 
-<ul>
-<li><a href="/ing.html">创作中...（{{ site.categories["学习中"].size }} 篇）</a></li>
-
 
 {% for category in site.categories %}
 {% if category[0] == '合集' %}
