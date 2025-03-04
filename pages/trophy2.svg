@@ -1,0 +1,79 @@
+---
+---
+
+<svg width="496px" height="62px" fill="none" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 880 110">
+<metadata>github.com/guofei9987</metadata>
+<style>
+.common-text {
+  text-anchor: middle;
+  font-family: "Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-weight: bold;
+}
+</style>
+
+<linearGradient id="SP" gradientTransform="rotate(45)">
+<stop offset="0%" stop-color="red"/>
+<stop offset="50%" stop-color="fuchsia"/>
+<stop offset="100%" stop-color="blue"/>
+</linearGradient>
+
+<linearGradient id="SSS" gradientTransform="rotate(45)">
+<stop offset="0%" stop-color="#FAD200"/>
+<stop offset="70%" stop-color="#D88F02"/>
+<stop offset="100%" stop-color="#C8A090"/>
+</linearGradient>
+
+<symbol id="laurelWreath" viewBox="0 0 7.7 16">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.99785 1.43415C6.34552 1.08647 6.56282 0.608425 6.64973 0C6.04131 0.0869179 5.56326 0.304213 5.21559 0.651884C4.86792 0.999556 4.65062 1.4776 4.56371 2.08603C5.17213 1.99911 5.65018 1.78182 5.99785 1.43415ZM2.85948 0.34668C3.22824 0.838362 3.41262 1.33004 3.41262 1.82173C3.41262 2.31341 3.22824 2.80509 2.85948 3.29677C2.49072 2.80509 2.30634 2.31341 2.30634 1.82173C2.30634 1.33004 2.49072 0.838362 2.85948 0.34668ZM4.93297 4.02584C5.41718 3.94046 5.86937 3.6735 6.28955 3.22496C5.7413 2.94718 5.22507 2.85098 4.74086 2.93636C4.25665 3.02174 3.80445 3.2887 3.38428 3.73724C3.93252 4.01502 4.44875 4.11122 4.93297 4.02584ZM1.14332 2.92772C1.59186 3.3479 1.85882 3.80009 1.9442 4.28431C2.02958 4.76852 1.93338 5.28475 1.6556 5.83299C1.20706 5.41282 0.9401 4.96062 0.85472 4.47641C0.76934 3.9922 0.86554 3.47597 1.14332 2.92772ZM3.82412 6.19128C4.28615 6.02311 4.68511 5.68169 5.02102 5.167C4.43287 4.98864 3.90777 4.98355 3.44574 5.15171C2.98371 5.31988 2.58475 5.6613 2.24884 6.17599C2.83699 6.35435 3.36209 6.35944 3.82412 6.19128ZM0.139887 6.24609C0.705085 6.48752 1.1106 6.82114 1.35644 7.24695C1.60229 7.67276 1.68845 8.19076 1.61493 8.80095C1.04973 8.55952 0.644216 8.2259 0.398375 7.80009C0.152534 7.37428 0.0663711 6.85628 0.139887 6.24609ZM3.77505 8.39629C4.1517 8.08024 4.40984 7.62295 4.54945 7.02441C3.93577 7.05797 3.4406 7.23278 3.06395 7.54882C2.6873 7.86487 2.42917 8.32216 2.28955 8.9207C2.90324 8.88714 3.3984 8.71233 3.77505 8.39629ZM4.46058 9.35059C4.48063 9.96486 4.34965 10.4734 4.06764 10.8761C3.78562 11.2789 3.35257 11.5759 2.76848 11.7672C2.74842 11.1529 2.8794 10.6444 3.16142 10.2416C3.44344 9.83884 3.87649 9.54183 4.46058 9.35059ZM1.43415 10.3931C1.08647 10.0454 0.608425 9.8281 0 9.74119C0.0869179 10.3496 0.304213 10.8277 0.651884 11.1753C0.999556 11.523 1.4776 11.7403 2.08603 11.8272C1.99911 11.2188 1.78182 10.7407 1.43415 10.3931ZM5.46899 10.6719C5.74677 11.2201 5.84297 11.7364 5.75759 12.2206C5.67221 12.7048 5.40525 13.157 4.95671 13.5771C4.67893 13.0289 4.58273 12.5127 4.66811 12.0285C4.75349 11.5442 5.02045 11.0921 5.46899 10.6719ZM6.96995 12.1465C7.38017 12.6042 7.6067 13.0779 7.64955 13.5677C7.6924 14.0575 7.55158 14.5634 7.22707 15.0853C6.81686 14.6277 6.59033 14.1539 6.54748 13.6641C6.50462 13.1743 6.64545 12.6684 6.96995 12.1465ZM5.32144 14.8903C5.81126 14.9332 6.285 15.1597 6.74267 15.5699C6.22072 15.8944 5.71484 16.0352 5.22503 15.9924C4.73521 15.9495 4.26147 15.723 3.8038 15.3128C4.32575 14.9883 4.83163 14.8475 5.32144 14.8903ZM4.36343 13.9192C4.02752 13.4045 3.62855 13.063 3.16652 12.8949C2.70449 12.7267 2.1794 12.7318 1.59125 12.9102C1.92715 13.4249 2.32612 13.7663 2.78815 13.9344C3.25018 14.1026 3.77527 14.0975 4.36343 13.9192Z"></path>
+</symbol>
+
+<symbol id="github" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+</symbol>
+
+<svg x="0" y="0" width="190" height="110" viewBox="0 0 190 110" fill="url(#SP)">
+<a href="https://www.guofei.site/">
+<rect x="0" y="0" width="190" height="110" fill="transparent"/>
+<use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
+<use href="#github" x="55" y="7" width="26px" height="26px"/>
+<text x="110" y="30" class="common-text" font-size="23">Star</text>
+<text x="50%" y="75" class="common-text" font-size="30">{{ site.data.data_github.star_cnt }}个</text>
+<use href="#laurelWreath" width="48px" height="100px" x="-190px" y="5px" transform="scale(-1, 1)"/>
+</a>
+</svg>
+
+
+<svg x="210" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SSS)">
+<a href="https://www.github.com/guofei9987">
+<rect x="0" y="0" width="210" height="110" fill="transparent"/>
+<use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
+<text x="50%" y="30" class="common-text" font-size="23">技术文章</text>
+<text x="50%" y="75" class="common-text" font-size="35">{{ site.posts.size }}篇</text>
+<use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
+</a>
+</svg>
+
+
+<svg x="440" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SP)">
+<a href="https://www.guofei.site/BookList.html">
+<rect x="0" y="0" width="210" height="110" fill="transparent"/>
+<use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
+<text x="50%" y="30" class="common-text" font-size="23">读书 </text>
+<text x="50%" y="75" class="common-text" font-size="35">{{ site.data.book_list.size }}本</text>
+<use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
+</a>
+</svg>
+
+
+<svg x="670" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SSS)">
+<a href="https://www.guofei.site/reading.html">
+<rect x="0" y="0" width="210" height="110" fill="transparent"/>
+<use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
+<text x="50%" y="30" class="common-text" font-size="23">读书笔记</text>
+<text x="50%" y="75" class="common-text" font-size="35">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
+<use href="#laurelWreath" width="48px" height="100px" x="-210" y="5px" transform="scale(-1, 1)"/>
+</a>
+</svg>
+
+</svg>

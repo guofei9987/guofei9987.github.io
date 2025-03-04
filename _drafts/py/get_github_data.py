@@ -34,8 +34,6 @@ repo_list = sorted(repo_list, key=lambda x: x['star_cnt'], reverse=True)
 
 # %%
 
-data_github['repo_list'] = repo_list
-
 total_star = sum(i['star_cnt'] for i in repo_list)
 total_fork = sum(i['fork_cnt'] for i in repo_list)
 
@@ -43,6 +41,8 @@ data_github['star_cnt'] = total_star
 data_github['fork_cnt'] = total_fork
 data_github['star_cnt_str'] = str(round(total_star / 1000, 1)) + 'k'
 data_github['fork_cnt_str'] = str(round(total_fork / 1000, 1)) + 'k'
+
+data_github['repo_list'] = repo_list
 
 # %%
 print(data_github)

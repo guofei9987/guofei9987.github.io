@@ -62,7 +62,7 @@ for path, filenames in path_all:
 with open('./pages/reading.json', 'w') as f:
     json.dump(res_json, f, ensure_ascii=False)
 
-total_words_str = "{} 万".format(round(total_words / 10000, ndigits=1))
+total_words_str = "{}万".format(round(total_words / 10000, ndigits=1))
 
 # %%总字数写入到 _data 里面
 with open('./_data/cnt_reading_words.json', 'w') as f:
