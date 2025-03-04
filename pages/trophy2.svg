@@ -21,7 +21,7 @@ viewBox="0 0 880 110">
 <linearGradient id="SSS" gradientTransform="rotate(45)">
 <stop offset="0%" stop-color="#FAD200"/>
 <stop offset="70%" stop-color="#D88F02"/>
-<stop offset="100%" stop-color="#C8A090"/>
+<stop offset="100%" stop-color="#C8A010"/>
 </linearGradient>
 
 <symbol id="laurelWreath" viewBox="0 0 7.7 16">
@@ -38,7 +38,7 @@ viewBox="0 0 880 110">
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <use href="#github" x="55" y="7" width="26px" height="26px"/>
 <text x="110" y="30" class="common-text" font-size="23">Star</text>
-<text x="50%" y="75" class="common-text" font-size="30">{{ site.data.data_github.star_cnt }}个</text>
+<text x="50%" y="75" class="common-text" font-size="30">{{ site.data.data_github.star_cnt_str }}个</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-190px" y="5px" transform="scale(-1, 1)"/>
 </a>
 </svg>

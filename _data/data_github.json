@@ -1,22 +1,26 @@
 {
-"followers": 1642,
+"followers": 1647,
+"star_cnt": 14168,
+"fork_cnt": 2028,
+"star_cnt_str": "14.2k",
+"fork_cnt_str": "2.0k",
 "repo_list": [
 {
 "name": "blind_watermark",
 "url": "https://github.com/guofei9987/blind_watermark",
 "is_fork": false,
-"star_cnt": 6212,
+"star_cnt": 6248,
 "fork_cnt": 732,
 "language": "Python",
 "description": "Blind&Invisible Watermark ，图片盲水印，提取水印无须原图！",
-"open_issues_count": 26
+"open_issues_count": 27
 },
 {
 "name": "scikit-opt",
 "url": "https://github.com/guofei9987/scikit-opt",
 "is_fork": false,
-"star_cnt": 5414,
-"fork_cnt": 998,
+"star_cnt": 5433,
+"fork_cnt": 999,
 "language": "Python",
 "description": "Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, Ant Colony Optimization Algorithm,Immune Algorithm, Artificial Fish Swarm Algorithm, Differential Evolution and TSP(Traveling salesman) ",
 "open_issues_count": 68
@@ -25,7 +29,7 @@
 "name": "text_blind_watermark",
 "url": "https://github.com/guofei9987/text_blind_watermark",
 "is_fork": false,
-"star_cnt": 1470,
+"star_cnt": 1476,
 "fork_cnt": 142,
 "language": "Python",
 "description": "文本盲水印：把信息隐匿到文本中，put invisible blind watermark into a text. ",
@@ -35,7 +39,7 @@
 "name": "HideInfo",
 "url": "https://github.com/guofei9987/HideInfo",
 "is_fork": false,
-"star_cnt": 537,
+"star_cnt": 538,
 "fork_cnt": 50,
 "language": "Python",
 "description": "一些小而美的信息隐藏技术：幻影坦克、藏物于音等",
@@ -45,7 +49,7 @@
 "name": "guofei9987.github.io",
 "url": "https://github.com/guofei9987/guofei9987.github.io",
 "is_fork": false,
-"star_cnt": 108,
+"star_cnt": 109,
 "fork_cnt": 46,
 "language": "JavaScript",
 "description": "个人博客，欢迎fork",
@@ -471,9 +475,5 @@
 "description": "StatisticsBlog,see https://www.guofei.site",
 "open_issues_count": 0
 }
-],
-"star_cnt": 14105,
-"fork_cnt": 2027,
-"star_cnt_str": "14.1k",
-"fork_cnt_str": "2.0k"
+]
 }
