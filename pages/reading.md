@@ -1,10 +1,9 @@
 ---
-layout: reading
+layout: reading_index
 title: 读书
 permalink: /reading.html
 ---
 
-<object data="https://www.guofei.site/pages/trophy2.svg" style="width: 100%;max-width: 550px;"></object>
 
 
 读书 **{{ site.data.book_list.size }}本**（<a href="/BookList.html">书单</a>），笔记共 **{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字**

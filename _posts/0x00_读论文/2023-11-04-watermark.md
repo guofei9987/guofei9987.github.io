@@ -64,14 +64,9 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
     - 这要求算法既要理解文本的语义，又要能够精细地控制文本内容。LLM 改变了这一局面。
 
 
-第二节介绍文本水印的定义和关键算法特性；  
-第三节：针对已有文本的水印
-第四节：针对大语言模型生成文本的水印  
-第五节讨论这些算法的评估指标，包括可检测性、对文本质量的影响以及在水印攻击下的鲁棒性；  
-第六节探讨应用场景，主要是版权保护和 AI 生成文本的检测；第七节则考察当前面临的挑战和未来研究方向；  
-第八节为综述结论。
 
-第二节
+
+第二节，介绍文本水印的定义和关键算法特性
 - text watermarking algorithms
     - $A(x,w)=t$, 其中 $A$:watermark generator,  $x$: text, $w$:watermark message, $t$: watermarked text
     - $D(t)=w$, 其中 $D$: watermark detector
@@ -86,6 +81,7 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
     - watermarking for LLMs，涉及到修改 LLMs，既可以是train阶段，也可以是 inference 阶段
 
 【图】
+
 
 
 第三节 watermarking for existing text，分为4种：
@@ -118,8 +114,12 @@ https://dl.acm.org/doi/pdf/10.1145/3691626
 
 
 
+第六节探讨应用场景，主要是版权保护和 AI 生成文本的检测；
 
-（未完）
+第七节考察当前面临的挑战和未来研究方向；  
+
+第八节为综述结论。
+
 
 
 
