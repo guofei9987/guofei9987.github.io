@@ -33,7 +33,7 @@ viewBox="0 0 880 110">
 </symbol>
 
 <svg x="0" y="0" width="190" height="110" viewBox="0 0 190 110" fill="url(#SP)">
-<a href="https://www.guofei.site/">
+<a href="https://www.guofei.site/" target="_blank">
 <rect x="0" y="0" width="190" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <use href="#github" x="55" y="7" width="26px" height="26px"/>
@@ -45,7 +45,7 @@ viewBox="0 0 880 110">
 
 
 <svg x="210" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SSS)">
-<a href="https://www.github.com/guofei9987">
+<a href="https://www.github.com/guofei9987" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <text x="50%" y="30" class="common-text" font-size="23">技术文章</text>
@@ -56,7 +56,7 @@ viewBox="0 0 880 110">
 
 
 <svg x="440" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SP)">
-<a href="https://www.guofei.site/BookList.html">
+<a href="https://www.guofei.site/BookList.html" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <text x="50%" y="30" class="common-text" font-size="23">读书 </text>
@@ -67,7 +67,7 @@ viewBox="0 0 880 110">
 
 
 <svg x="670" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#SSS)">
-<a href="https://www.guofei.site/reading.html">
+<a href="https://www.guofei.site/reading.html" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <text x="50%" y="30" class="common-text" font-size="23">读书笔记</text>
