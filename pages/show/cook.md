@@ -11,7 +11,7 @@ permalink: /cook.html
 
 |蒜蓉鲍鱼|大闸蟹|蒸虾|
 |--|--|--|
-|![蒜蓉鲍鱼](/a/cook/蒜蓉鲍鱼.jpeg)|![大闸蟹](/pictures_for_blog/cook/大闸蟹.jpg)|![蒸虾](/a/cook/蒸虾.jpeg)
+|![蒜蓉鲍鱼](/a/life/cook/蒜蓉鲍鱼.jpeg)|![大闸蟹](/pictures_for_blog/cook/大闸蟹.jpg)|![蒸虾](/a/life/cook/蒸虾.jpeg)
 
 
 
@@ -78,7 +78,7 @@ permalink: /cook.html
 |--|--|--|--|
 |![红烧萝卜](/pictures_for_blog/cook/红烧萝卜.jpeg)|![煎蛋](/pictures_for_blog/cook/煎蛋.jpeg)|![炒西葫芦](/pictures_for_blog/cook/炒西葫芦.JPG)|![炒洋葱](/pictures_for_blog/cook/炒洋葱.JPG)|
 |炒青菜|炒白菜|菜心|杏鲍菇|
-|![炒青菜](/pictures_for_blog/cook/炒青菜.jpeg)|![炒白菜](/pictures_for_blog/cook/炒白菜.jpeg)|![炒青菜2](/pictures_for_blog/cook/炒青菜2.jpeg)|![](/a/cook/杏鲍菇.jpeg)|
+|![炒青菜](/pictures_for_blog/cook/炒青菜.jpeg)|![炒白菜](/pictures_for_blog/cook/炒白菜.jpeg)|![炒青菜2](/pictures_for_blog/cook/炒青菜2.jpeg)|![](/a/life/cook/杏鲍菇.jpeg)|
 
 
 
