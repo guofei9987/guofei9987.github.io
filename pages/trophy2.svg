@@ -5,11 +5,13 @@
 viewBox="0 0 900 110">
 <metadata>github.com/guofei9987</metadata>
 <style>
-.common-text {
+.text {
   text-anchor: middle;
   font-family: "Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   font-weight: bold;
 }
+.text1{font-size:23px;}
+.text2{font-size:35px;}
 </style>
 
 <linearGradient id="golden" gradientTransform="rotate(45)">
@@ -31,8 +33,8 @@ viewBox="0 0 900 110">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
 <use href="#github" x="65" y="7" width="26px" height="26px"/>
-<text x="120" y="30" class="common-text" font-size="23">Star</text>
-<text x="50%" y="75" class="common-text" font-size="35">{{ site.data.data_github.star_cnt_str }}个</text>
+<text x="120" y="30" class="text text1">Star</text>
+<text x="50%" y="75" class="text text2">{{ site.data.data_github.star_cnt_str }}个</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
 </a>
 </svg>
@@ -42,8 +44,8 @@ viewBox="0 0 900 110">
 <a href="https://www.github.com/guofei9987" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
-<text x="50%" y="30" class="common-text" font-size="23">技术文章</text>
-<text x="50%" y="75" class="common-text" font-size="35">{{ site.posts.size }}篇</text>
+<text x="50%" y="30" class="text text1">技术文章</text>
+<text x="50%" y="75" class="text text2">{{ site.posts.size }}篇</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
 </a>
 </svg>
@@ -53,8 +55,8 @@ viewBox="0 0 900 110">
 <a href="https://www.guofei.site/BookList.html" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
-<text x="50%" y="30" class="common-text" font-size="23">读书 </text>
-<text x="50%" y="75" class="common-text" font-size="35">{{ site.data.book_list.size }}本</text>
+<text x="50%" y="30" class="text text1">读书 </text>
+<text x="50%" y="75" class="text text2">{{ site.data.book_list.size }}本</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
 </a>
 </svg>
@@ -64,8 +66,8 @@ viewBox="0 0 900 110">
 <a href="https://www.guofei.site/reading.html" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
-<text x="50%" y="30" class="common-text" font-size="23">读书笔记</text>
-<text x="50%" y="75" class="common-text" font-size="35">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
+<text x="50%" y="30" class="text text1">读书笔记</text>
+<text x="50%" y="75" class="text text2">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-210" y="5px" transform="scale(-1, 1)"/>
 </a>
 </svg>
