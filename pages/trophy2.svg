@@ -1,8 +1,8 @@
 ---
 ---
 
-<svg width="496px" height="62px" fill="none" xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 880 110">
+<svg width="491px" height="60px" fill="none" xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 900 110">
 <metadata>github.com/guofei9987</metadata>
 <style>
 .common-text {
@@ -30,8 +30,8 @@ viewBox="0 0 880 110">
 <a href="https://www.guofei.site/" target="_blank">
 <rect x="0" y="0" width="210" height="110" fill="transparent"/>
 <use href="#laurelWreath" width="48px" height="100px" x="0" y="5px"/>
-<use href="#github" x="55" y="7" width="26px" height="26px"/>
-<text x="110" y="30" class="common-text" font-size="23">Star</text>
+<use href="#github" x="65" y="7" width="26px" height="26px"/>
+<text x="120" y="30" class="common-text" font-size="23">Star</text>
 <text x="50%" y="75" class="common-text" font-size="35">{{ site.data.data_github.star_cnt_str }}个</text>
 <use href="#laurelWreath" width="48px" height="100px" x="-210px" y="5px" transform="scale(-1, 1)"/>
 </a>
