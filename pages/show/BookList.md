@@ -4,7 +4,7 @@ title: 读完的书单
 permalink: /BookList.html
 ---
 
-📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}字
+📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading.html) {{ site.data.cnt_reading_words.cnt_reading_words }}字
 
 <br>
 <hr>
@@ -30,7 +30,7 @@ permalink: /BookList.html
       </tr>
       <tr>
         <td>读书笔记</td>
-        <td colspan="3"><a href="http://www.guofei.site/reading/#" title="http://www.guofei.site/reading/#">点击查看</a></td>
+        <td colspan="3"><a href="https://www.guofei.site/reading.html" title="https://www.guofei.site/reading.html">点击查看</a></td>
       </tr>
       <tr>
         <td>简评</td>

@@ -7,7 +7,7 @@ title: 分析
 
 
 - 🔭 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
-- 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading/#/) {{ site.data.cnt_reading_words.cnt_reading_words }}
+- 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading.html) {{ site.data.cnt_reading_words.cnt_reading_words }}
 - {{site.data.achievement}}
 
 
