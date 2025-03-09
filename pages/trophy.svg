@@ -35,7 +35,7 @@ viewBox="0 0 900 110">
 </symbol>
 
 <svg x="0" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.guofei.site/" target="_blank">
+<a href="https://www.github.com/guofei9987/" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <use href="#github" x="65" y="7" width="26px" height="26px"/>
 <text x="120" y="30" class="text text1">Star</text>
@@ -45,7 +45,7 @@ viewBox="0 0 900 110">
 
 
 <svg x="230" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.github.com/guofei9987" target="_blank">
+<a href="https://www.guofei.site/" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">技术文章</text>
 <text x="50%" y="75" class="text text2">{{ site.posts.size }}篇</text>
