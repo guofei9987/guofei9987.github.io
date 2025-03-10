@@ -634,4 +634,4 @@ fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transD
 fig.text(x,y,string,fontname='STKaiti',fontsize=20,color='r',transform=ax.transAxes) # Figure内坐标，左下是(0,0)，右上是(1,1)
 ```
 
-- fontname：字体，参见[这里](http://www.guofei.site/2017/09/20/matplotlib.html#title4)
+- fontname：字体，参见[这里](https://www.guofei.site/2017/09/20/matplotlib.html#字体支持)
