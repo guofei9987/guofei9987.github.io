@@ -52,11 +52,8 @@ body {
     user-select: none;
     border-radius: 5px;
     /* 4个角变成小圆角 */
-}
-
-/* 去掉三角符号 */
-.sidebar details summary {
     list-style: none;
+    /* 去掉三角符号 */
 }
 
 /* 去掉三角符号(针对 Chrome 和 Safari)，额外去除伪元素 */
@@ -67,6 +64,10 @@ body {
 .sidebar details[open] summary {
     background-color: #62d7d7;
     color: #0d1ebe
+}
+
+#sidebar-list summary:hover{
+    background-color: #D5E7E3;
 }
 
 .sidebar details>ul>li {
@@ -252,4 +253,9 @@ body.sidebar-hidden .sidebar-toggle{
 /* 隐藏下拉菜单 */
 .hidden1 {
     display: none;
+}
+
+sup.wordcnt{
+    color: #1b6183;
+    font-weight: normal;
 }

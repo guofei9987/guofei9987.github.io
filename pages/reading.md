@@ -4,9 +4,14 @@ title: 读书
 permalink: /reading.html
 ---
 
+ <style>
+  .bold-black-text {
+      font-weight: bold;
+      color: #000;
+  }
+</style>
 
-
-读书 **{{ site.data.book_list.size }}本**（<a href="/BookList.html">书单</a>），笔记共 **{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字**
+读书 <span class="bold-black-text">{{ site.data.book_list.size }}本</span>（<a href="/BookList.html">书单</a>），笔记共 <span class="bold-black-text">{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字</span>
 
 
 <div id="all_books"></div>
@@ -47,7 +52,7 @@ fetch('/pages/reading.json')
         const a1 = document.createElement('a');
         a1.href = `/reading/${article}.html`;
         // 使用 innerHTML 来包含 sup 标签
-        a1.innerHTML = `${article}<sup style="color:red">${cnt}字</sup>`;
+        a1.innerHTML = `${article}<sup class="wordcnt">${cnt}字</sup>`;
         td1.appendChild(a1);
         tr.appendChild(td1);
 

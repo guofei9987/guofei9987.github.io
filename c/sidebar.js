@@ -65,7 +65,7 @@ function generateReadingSidebar(data) {
       // 如果需要默认展开，可以设置：detailsElem.setAttribute('open', '');
 
       const summaryElem = document.createElement('summary');
-      summaryElem.innerHTML = `${post.l3.replace('.md', '')}<sup style="color:red">${post.cnt}字</sup>`;
+      summaryElem.innerHTML = `${post.l3}<sup class="wordcnt">${post.cnt}字</sup>`;
       detailsElem.appendChild(summaryElem);
 
       // 如果该帖子下有 h2（三级导航），生成子列表
@@ -75,7 +75,7 @@ function generateReadingSidebar(data) {
           const subLi = document.createElement('li');
           const subLink = document.createElement('a');
 
-          subLink.href = `/reading/${post.l3.replace('.md', '')}.html#${encodeURIComponent(subTitle)}`;
+          subLink.href = `/reading/${post.l3}.html#${encodeURIComponent(subTitle)}`;
           // 显示时将下划线替换为空格
           subLink.textContent = subTitle.replace('_', ' ');
           subLi.appendChild(subLink);
