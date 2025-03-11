@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【统计推断】理论与实现
+title: 🔥【统计推断】理论与实现
 categories:
 tags: 0x41_统计模型
 keywords:
@@ -21,6 +21,9 @@ jupyter原文见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%
 - 第一类错误$\alpha=P(x \in w \mid H_0)$
 - 第二类错误$\beta=P(x \in w \mid H_1)$
 
+统计推断一般使用 $\alpha$，例如：
+- 如果 $\alpha$ 很小（比如小于0.05），就意味着有充分理由拒绝 $H_0$
+
 
 大图见于<a href='https://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
 
@@ -38,7 +41,7 @@ jupyter原文见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%
 
 |名字|H0|前提条件|构建随机变量|服从分布|代码|备注|
 |--|--|--|--|--|--|--|
-|单因子方差分析 ANOVA|u1=u2=...=ur|独立、正态、等方差<br>$X_{ij}=u_i+\varepsilon_{ij}$<br>$\varepsilon_{ij} \sim N(0,\sigma^2)$|$SST=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar{\bar x})^2$<br>$=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar x_i)+\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(\bar x_i-\bar{\bar x})^2$<br>=SSE(组内误差)+SSA(组间误差)|$F=\dfrac{SSA/\sigma^2/(r-1)}{SSE/\sigma^2/(n-r)}\sim F(r-1,n-r)$|tstat, pvalue = stats.f_oneway(data1, data2, data3) <br> from statsmodels.formula.api import ols <br> sm.stats.anova_lm(ols('target ~ C(motor)',data=df).fit())||
+| **单因子方差分析** <br> **ANOVA** | $\mu_1=\mu_2=...=\mu_r$ | 独立、正态、等方差<br> $X_{ij}=u_i+\varepsilon_{ij}$<br>$\varepsilon_{ij} \sim N(0,\sigma^2)$|$SST=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar{\bar x})^2$<br>$=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar x_i)+\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(\bar x_i-\bar{\bar x})^2$<br>=SSE(组内误差)+SSA(组间误差)|$F=\dfrac{SSA/\sigma^2/(r-1)}{SSE/\sigma^2/(n-r)}\sim F(r-1,n-r)$|tstat, pvalue = stats.f_oneway(data1, data2, data3) <br> from statsmodels.formula.api import ols <br> sm.stats.anova_lm(ols('target ~ C(motor)',data=df).fit())||
 
 #### 双因子方差分析带交叉项
 [参考](https://wenku.baidu.com/view/3cda71e75727a5e9846a616b.html)  
