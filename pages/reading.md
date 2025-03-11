@@ -1,8 +1,13 @@
 ---
-layout: reading_index
+layout: page
 title: 读书
 permalink: /reading.html
 ---
+
+<div id="sidebar_type" class="reading"></div>
+<br>
+<object data="/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
+<br>
 
  <style>
   .bold-black-text {

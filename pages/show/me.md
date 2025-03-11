@@ -9,11 +9,11 @@ permalink: /me.html
 
 - 💼 工作经历
     - 2020 - 今，蚂蚁集团-天堑实验室，**算法专家**
-    - 2018 - 2020，京东集团-Y事业部-动态定价 **算法专家**
-    - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞猜彩票-赔率动态定价 **算法工程师**
+    - 2018 - 2020，京东集团-Y事业部-动态定价，**算法专家**，
+    - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞彩赔率动态定价 **算法工程师**
     - 2015 - 2016，某私募基金 **金融分析师**
 - 🧮 热爱算法、数学和开源。
-    - 🚀 我的开源贡献用在了“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，并因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
+    - 🚀 我的开源贡献用在了“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，我因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
     - 🤔 [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0) 的 121 位 [作者](https://github.com/scipy/scipy/issues/7798) 之一
     <!-- - 📃 CDA 持证人 -->
     - ⭐ 发起的开源项目在 GitHub 共获得 Star {{ site.data.data_github.star_cnt_str }}
@@ -26,8 +26,8 @@ permalink: /me.html
     - 📝 中级经济师
 - ❤️ 有一些爱好
     - 📖 读书 [{{ site.data.book_list.size }} 本](https://www.guofei.site/BookList.html)，[读书笔记](https://www.guofei.site/reading.html) {{ site.data.cnt_reading_words.cnt_reading_words }}字
-    - 🤸 爱好运动。能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>，近3年跑步 <b><a href="/sports.html">1300公里</a></b>
-    - 📜 拿下几十个各领域的[证书](https://www.guofei.site/certification.html)，例如美国心脏协会（AHA）急救证书、北京红十字协会救护技能证、证券从业、期货从业、会计从业等
+    - 🤸 爱好运动。能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>，近3年跑步 <b><a href="/sports.html">1300公里</a></b>，臂围39cm
+    - 📜 拿下几十个各领域的[证书](https://www.guofei.site/certification.html)，例如美国心脏协会（AHA）急救证书、北京红十字协会救护技能证、证券从业、期货从业、会计从业、CDA数据分析师等
     - 🍳 偶尔[烹饪](https://www.guofei.site/cook.html)
     - 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}次赞同/{{ site.data.achievement.zhihu_collection_str }}次收藏/ {{ site.data.achievement.zhihu_follows_str }}个关注
 
