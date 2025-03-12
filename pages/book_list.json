@@ -12,7 +12,7 @@
   "打分": "{{ book.score }}",
   "读书笔记": "{{ book.notes }}",
   "简评": "{{ book.comments }}"
-} {% unless forloop.last %},{% endunless %}
+}{% unless forloop.last %},{% endunless %}
 {% endfor %}
 
 ]

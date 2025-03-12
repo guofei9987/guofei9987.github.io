@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 🔥【统计推断】理论与实现
+title: 🔥 统计推断
 categories:
 tags: 0x41_统计模型
 keywords:
