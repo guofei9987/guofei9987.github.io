@@ -29,13 +29,14 @@ permalink: /ing.html
 
 ！网易公开课也能用
 
-
-
-- 数据库原理 https://www.icourse163.org/course/PAEU-1003647009
 - 计算机网络：https://www.icourse163.org/course/HIT-154005
-- 网络技术与应用：https://www.icourse163.org/course/NJUPT-1001639008
+    - 3-5小时/周
+- 编译原理：https://www.icourse163.org/course/NUDT-1003101005
+    - 3-5小时/周
+- 数据库原理： https://www.icourse163.org/course/PAEU-1003647009
+    - 3-5小时/周
 - 软件工程：https://www.icourse163.org/course/PKU-1003177002
-
+    - 3-5小时/周
 - 音乐鉴赏：https://www.icourse163.org/course/XJTU-1002530012
 
 
@@ -45,6 +46,9 @@ permalink: /ing.html
 **学完，等待成绩**
 - 宝石鉴赏：https://www.icourse163.org/course/ZGDZDXBJ-1206419805
 
+
+没时间了，下个学期学习：
+- 网络技术与应用：https://www.icourse163.org/course/NJUPT-1001639008
 
 ## 学完，但未开课
 
