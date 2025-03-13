@@ -1,0 +1,13 @@
+table {
+    display: block; /* 让 table 变为 block，支持 overflow */
+    width: max-content; /* 让表格根据内容扩展 */
+    overflow-x: auto; /* 让 table 具备横向滚动 */
+    border-collapse: collapse;
+    max-width: 100%;
+}
+
+td, th {
+    white-space: nowrap; /* 确保内容不换行 */
+    padding: 10px;
+    border: 1px solid black;
+}

@@ -9,6 +9,9 @@ order: 406
 ---
 
 
+<link rel="stylesheet" href="/c/wide_table.css">
+
+
 理论篇大图见于<a href='https://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
 jupyter原文见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%AE%A1%E6%8E%A8%E6%96%AD%E5%9F%BA%E7%A1%80.html' target="HypothesisTesting">这里</a>  
 
@@ -32,6 +35,19 @@ jupyter原文见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%
 
 
 大图见于<a href='https://www.guofei.site/StatisticsBlog/HypothesisTesting.htm' target="HypothesisTesting">这里</a>  
+
+
+## 对均值的检验
+
+| 条件 | H0 | 检验名字 | 构建随机变量 | 服从分布 | Python(scipy.stats as stats, statsmodel.api as sm) | 备注 |
+|--|--|--|--|--|--|--|
+| 方差已知 | u<=u0 <br> u>=u0 <br> u==u0 |z检验| $Z=\dfrac{\bar X-\mu}{\sigma/\sqrt{n}}$|N(0,1)| ds1=sm.stats.DescrStatsW(data1) <br> tstat, pvalue = ds1.ztest_mean(value=2, alternative='two-sided') <br> ds1.zconfint_mean(alpha=0.05,alternative='larger')|"two-sided" <br> "larger" <br> "smaller"
+||||||||
+||||||||
+||||||||
+
+
+
 
 ## 额外
 
@@ -96,3 +112,6 @@ kstest 不但可以传入指定的分布字符串（上文），也可以传入�
 stats.kstest(rvs=[1, 2, 3, 4, 5], cdf='norm')
 stats.kstest(rvs=[1, 2, 3, 4, 5], cdf=stats.norm(loc=0, scale=1).cdf)
 ```
+
+
+
