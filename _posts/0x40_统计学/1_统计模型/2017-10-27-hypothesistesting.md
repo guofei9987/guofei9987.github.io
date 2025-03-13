@@ -202,9 +202,9 @@ step6：卡方检验
 
 |相关系数|定义|描述|H0|统计量|代码
 |-------|---|---|---|----|---|
-| Pearson | $r=\dfrac{cov(x,y)}{\sqrt{DxDy}}$ | 成对的连续数据<br>接近正态的单峰分布 | $r=0$ | $t=\dfrac{r\sqrt{n-2}}{1-r^2}\sim t(n-2)$ | r, p_value <br> = stats.pearsonr |
+| Pearson | $r=\dfrac{cov(x,y)}{\sqrt{DxDy}}$ | 成对的连续数据<br>接近正态的单峰分布 | r=0 | $t=\dfrac{r\sqrt{n-2}}{1-r^2}\sim t(n-2)$ | r, p_value <br> = stats.pearsonr |
 | Spearman | 计算秩的pearson，等价于：<br>$r=1-\dfrac{6\sum d_i^2}{n(n^2-1)}$<br>$d_i=R_i-Q_i$|成对的等级数据<br>无论分布|r=0 | 小样本：参数为n-2的 Spearman 分布<br> 大样本：$t=\dfrac{r\sqrt{n-2}}{1-r^2}\sim t(n-2)$|stats.spearmanr |
-| Kendall | $\tau_a=2(C-D)/(n(n-1))$<br>$\tau_b = (P - Q) / \sqrt{(P + Q + T) * (P + Q + U)}$ | | | 小样本：Kendall分布<br>大样本$U=3\tau\sqrt{\dfrac{n(n-1)}{2(2n-5)}}$ | stats.kendalltau<br>stats.weightedtau |
+| Kendall | （公式在下面）| 小样本 | r=0 | 小样本：Kendall分布<br>大样本$U=3\tau\sqrt{\dfrac{n(n-1)}{2(2n-5)}}$ | stats.kendalltau<br>stats.weightedtau |
 
 
 
@@ -214,9 +214,13 @@ step6：卡方检验
     - $\mid r\mid \in [0.5,0.8]$表示两个变量中度相关  
     - $\mid r\mid \in [0.3,0.5]$表示两个变量低度相关  
     - $\mid r\mid \in [0,0.3]$表示两个变量几乎不相关  
-- Kendall  
-This is the 1945 "tau-b" version of Kendall's tau $\tau = (P - Q) / sqrt((P + Q + T) * (P + Q + U))$ where P is the number of concordant pairs, Q the number of discordant pairs, T the number of ties only in `x`, and U the number of ties only in `y`.  If a tie occurs for the same pair in both `x` and `y`, it is not added to either T or U.  
-（1938 "tau-a" version）
+- Kendall 有两个版本
+    - tau-a (1938 版本): $\tau_a=2(C-D)/(n(n-1))$
+        - 不考虑数据中可能的并列关系。
+    - tau-b (1945 版本)：$\tau_b = (P - Q) / \sqrt{(P + Q + T) * (P + Q + U)}$
+        - 考虑了有并列值的数据
+        - P is the number of concordant pairs, Q the number of discordant pairs, T the number of ties only in `x`, and U the number of ties only in `y`.  If a tie occurs for the same pair in both `x` and `y`, it is not added to either T or U.  
+
 
 **相关性代码** 
 ```python
