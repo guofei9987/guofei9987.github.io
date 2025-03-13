@@ -2,13 +2,16 @@
 layout: post
 title: Unbalanced Data
 categories:
-tags: 0x13_特征工程
+tags: 0x12_特征工程
 keywords:
 description:
 order: 100
 ---
 
-背景就不说了，数据不均衡是常态，做分类模型时不得不认真处理。  
+## 数据不均衡
+
+
+**Unbalanced Data** 背景就不说了，数据不均衡是常态，做分类模型时不得不认真处理。  
 基本上有这几个策略：
 1. 增加数据。很多其它问题也都能用这个方法解决，但成本太高，不多提了。
 2. Oversampling，有很多变种
