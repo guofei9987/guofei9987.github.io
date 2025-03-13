@@ -47,10 +47,31 @@ jupyter原文见于<a href='https://www.guofei.site/StatisticsBlog/%E7%BB%9F%E8%
 | 两独立样本<br>方差未知 | u1-u2<=delta <br> u1-u2>=delta <br> u1-u2==delta | t检验 | 方差齐性：<br> $t=\dfrac{\bar X-\bar Y-(u_X-u_Y)}{\sqrt{\frac{1}{n_X}+\dfrac{1}{n_Y}} \sqrt{\dfrac{(n_X-1)S_X^2+(n_Y-1)S_Y^2}{n_X+n_Y-2}}}$ <br><br> 方差不齐：<br> $t=\dfrac{\bar X-\bar Y -(u_X-u_Y)}{\sqrt{S_X^2/n_X+S_Y^2/n_Y}}$| $t(n_X+n_Y-2)$ <br><br> 方差不齐 <br>用 Welch–Satterthwaite 公式<br>近似得到t分布<br> $t(\frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1-1} + \frac{(s_2^2/n_2)^2}{n_2-1}})$ | cm = sm.stats.CompareMeans(ds1, ds2) <br> tstat, pvalue, df = cm.ttest_ind(alternative='two-sided', usevar='pooled', value=0) |  "two-sided" <br> "larger" <br> "smaller" <br> <br> "pooled" <br> "unequal" <br><br> 标准流程：<br>1. 检验正太性(ks,sw) <br> 2. 方差齐型检验(F) <br> 3. `ttest_ind`|
 | 两配对样本 |  | t检验 | $d_i=X_i-Y_i$ <br> $S_d = \dfrac{\sum(d_i-\bar d)^2}{n-1}$ <br> $t=\dfrac{\bar d -(u_x-u_y)}{\bar S_d/\sqrt n}$|  | stats.ttest_rel(a,b)	 |  |
 | 三组以上样本 <br> 单因素 | $\mu_1=\mu_2=...=\mu_r$ | 单因素方差分析 <br>One-Way ANOVA| $SST=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar{\bar x})^2$<br>$=\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(x_{ij}-\bar x_i)+\sum\limits_{i=1}^r\sum\limits_{j=1}^{n_i}(\bar x_i-\bar{\bar x})^2$<br>=SSE(组内误差)+SSA(组间误差) <br><br> $F=\dfrac{SSA/\sigma^2/(r-1)}{SSE/\sigma^2/(n-r)}$ | $F(r-1,n-r)$ | tstat, pvalue = stats.f_oneway(data1, data2, data3) <br><br> from statsmodels.formula.api import ols <br> sm.stats.anova_lm(ols('target ~ C(motor)',data=df).fit()) | 前提:<br> 独立、正态、等方差<br> $X_{ij}=u_i+\varepsilon_{ij}$<br>$\varepsilon_{ij} \sim N(0,\sigma^2)$ |
-| 三组以上样本<br>双因素 | $$\left\{ \begin{array}{l} X_{ij}=u+a_i+b_j+\varepsilon_{ij} \\ \varepsilon_{ij}\sim(i.i.d) N(0,\sigma^2) \end{array}\right.$$ <br><br>  $$\left\{ \begin{array}{l} H_{0a}:a_1=a_2=...=a_r=0 \\ H_{0b}:b_1=b_2=...=b_k=0  \end{array} \right.$$ | 双因素方差分析 <br> ANOVA2| SST=SSA+SSB+SSE <br>...<br> 比较复杂，单独写 |  | sm.stats.anova_lm(ols('target ~ C(motor) + C(screw)',data=df).fit()) <br><br> 带交互项：<br> ana = ols('target ~ C(motor) + C(screw) +C(motor)*C(screw)', data= df).fit() <br> sm.stats.anova_lm(ana) |  |
+| 三组以上样本<br>双因素 | $$\left\{ \begin{array}{l} X_{ij}=u+a_i+b_j+\varepsilon_{ij} \\ \varepsilon_{ij}\sim(i.i.d) N(0,\sigma^2) \end{array}\right.$$ <br><br>  $H_{0a}:a_1=a_2=...=a_r=0$ <br> $H_{0b}:b_1=b_2=...=b_k=0$ | 双因素方差分析 <br> ANOVA2| SST=SSA+SSB+SSE <br>...<br> 比较复杂，单独写 |  | sm.stats.anova_lm(ols('target ~ C(motor) + C(screw)',data=df).fit()) <br><br> 带交互项：<br> ana = ols('target ~ C(motor) + C(screw) +C(motor)*C(screw)', data= df).fit() <br> sm.stats.anova_lm(ana) |  |
+
+
+
+双因素ANOVA2:
+
+| 方差来源 | 平方和 | 公式 | 自由度 | 均方差 | F值 |
+|---------|-------|-----|-------|-------|-----|
+| 因子A | SSA | $na\sum\limits_j(\bar Y_j -\bar Y_{total})^2$ | $f_A=r-1$ | $SSA/f_A$ | $F_A\dfrac{SSA/f_A}{SSE/f_E}$ |
+| 因子B | SSB | $nb\sum\limits_i(\bar Y_i -\bar Y_{total})^2$ | $f_B=s-1$ | $SSA/f_B$ | $F_B\dfrac{SSB/f_B}{SSE/f_E}$ |
+| 因子AxB | SSAB | $n\sum\limits_i \sum\limits_j(\bar Y_{ij}-\bar Y_i-\bar Y_j +\bar Y_{total})^2$ | $f_{AB}=(r-1)(s-1)$ | $SSAB/f_{AB}$ | $F_{AB}=\dfrac{SSAB/f_{AB}}{SSE/f_E}$ |
+| 组内误差 | SSE | $\sum\limits_i \sum\limits_j \sum\limits_z (Y_{ijz}-\bar Y_{total})^2$ | $f_E=rs(n-1)$ | $SSE/f_A$ |  |
+| 总和 | SST | $\sum\limits_i \sum\limits_j \sum\limits_z (Y_{ijz}-\bar Y_{ij})^2$ | $f_T=rsn-1$ |  |  |  |
+
+
+
+### 对方差的检验
+
+| 条件 | H0 | 检验名字 | 构建随机变量 | 服从分布 | Python(scipy.stats as stats, statsmodel.api as sm) | 备注 |
+|--|--|--|--|--|--|--|
 |  |  |  |  |  |  |  |
-
-
+|  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |
 
 
 ## 额外
