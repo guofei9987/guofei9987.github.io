@@ -11,3 +11,8 @@ td, th {
     padding: 10px;
     border: 1px solid black;
 }
+
+th{
+    /* 标题单元格为红色 */
+    color: red;
+}
