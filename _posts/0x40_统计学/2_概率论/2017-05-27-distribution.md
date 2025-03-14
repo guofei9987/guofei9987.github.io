@@ -8,13 +8,15 @@ description:
 order: 421
 ---
 
+<link rel="stylesheet" href="/c/wide_table.css">
+
 ## 离散分布
 
 |名称|概率分布与特征|性质|
 |--|--|--|
 |0-1分布 <br> Bernoulli distribution|
 |二项分布 <br> Binomial distribution <br> $X \sim b(n,p)$|$P(X=k)=\dbinom{n}{k}p^k(1-p)^{n-k}$ <br>  $EX=np$ <br> $DX=np(1-p)$|可加性：$b(n_1,p)+b(n_2,p)=b(n_1+n_2,p)$ <br> 0-1分布是一种特殊的二项分布 <br> 二项分布是n个独立同分布的0-1分布的加和|
-|负二项分布 <br> 帕斯卡分布 | $P(X=x,r,p)=\dbinom{x-1}{r-1}p^r(1-p)^{x-r}$<br>$x \in [r,r+1,r+2,...,\infty]$ | 如果r=1，就是几何分布 <br> 对于一系列独立同分布的实验，每次实验成功概率为p，实验直到r次成功为止，总实验次数的概率分布。|
+|负二项分布 <br> 帕斯卡分布 | $P(X=x,r,p)=\dbinom{x-1}{r-1}p^r(1-p)^{x-r}$<br>$x \in [r,r+1,r+2,...,\infty]$ | 如果r=1，就是几何分布 <br><br> 一系列独立同分布的实验，每次实验成功概率为p<br>实验直到r次成功为止，总实验次数的概率分布。|
 |泊松分布 <br> $X\sim \pi(\lambda)$|$P(X=k)=\dfrac{\lambda^k e^{-\lambda}}{k!}$<br>$(k=0,1,2,...)$ <br> $EX=\lambda$ <br> $DX=\lambda$ | 可加性：$\pi(\lambda_1)+\pi(\lambda_2)=\pi(\lambda_1+\lambda_2)$ <br> <br> 泊松分布有广泛的应用，<br>某一服务设施一定时间内到达的人数<br>电话交换机接到的呼叫次数<br>汽车站台的后可人数<br>机器出现的故障数<br>自然灾害发生的次数<br>一块产品上的缺陷数<br>显微镜下单位分区内的细菌数<br>某放射性物质单位时间发射的粒子数|
 
 

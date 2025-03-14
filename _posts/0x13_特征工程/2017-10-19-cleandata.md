@@ -32,7 +32,8 @@ order: 100
     - 用5倍std检查
 - 解决方法
     - 盖帽法。把3sigma之外的数据定为sigma
-    - 取ln。有些异常值是因为它服从对数正态分布，这样取对数就能解决了。
+    - **取ln**。有些异常值是因为此变量服从对数正态分布，直接取对数就能解决。
+        - 现实中的对数正态分布也很广泛（可能仅次于正态分布）
     - 分类建模。把干扰变量变成分类变量（异常为1，不异常为0）  
     - 离散化。例如做成 高、中、低，三种字段。  
     - 剔除
@@ -41,6 +42,55 @@ order: 100
 
 **冗余值**
 - drop_duplicates
+
+
+
+## 描述性统计
+
+| 名称 | 特点 |
+|------|-----|
+| 众数 | 不受极端值影响、不唯一、可用于分布有偏的情况 |
+| 中位数 | 不受极端值影响、可用于分布有偏的情况 |
+| 平均值 | 易受极端值影响、数学性质较好、适用于无偏的情况 |
+
+<br>
+
+
+| 数据类型 | 适用哪些 |
+|---------|---------|
+| 分类数据 | **众数** |
+| 顺序数据 | **中位数**、四分位数、众数|
+| 间隔数据 | **平均数**、四分位数、众数|
+| 连续数据 | **平均数**、调和平均、几何平均、中位数、四分位数、众数|
+
+其它
+- 全距
+- 四分位距
+- 方差
+- 标准差
+- 偏度
+- 峰度
+- 变异系数
+
+
+### 描述性绘图
+
+**单变量**
+
+| 数据类型 | 适用哪些 |
+|---------|---------|
+| 分类数据 | **饼图** |
+| 顺序数据 | **条形图** |
+| 间隔数据 | **条形图** |
+| 连续数据 | **直方图**、**箱图**|
+
+
+**双变量X-Y**
+
+|X\Y|多分类|连续 |
+|---|-----|----|
+|多分类|矩形图|箱图|
+|连续|箱图|scatter|
 
 
 ## 模型反馈
@@ -153,6 +203,7 @@ Counter(y_resampled)
 
 
 ## 标准化
+
 标准化是对列操作  
 
 数据准备：
@@ -161,7 +212,8 @@ import pandas as pd
 import numpy as np
 df = pd.DataFrame(np.random.uniform(size=(20, 3)), columns=list('abc'))
 ```
-### StandardScaler
+
+**StandardScaler**
 ```py
 # （Z-Score）
 # 公式为：(X-mean)/std 计算时对每个属性/每列分别进行。
@@ -172,11 +224,13 @@ standard_scaler.fit_transform(df)
 standard_scaler.fit(df)
 standard_scaler.transform(df)
 ```
-### MinMaxScaler
-0-1标准化  
-使用这种方法的目的包括：  
-1. 对于方差非常小的 feature 可以增强其稳定性。
-2. 如果是正的稀疏矩阵，可以维持为0的条目。
+
+
+
+**MinMaxScaler** 0-1标准化  
+- 使用这种方法的目的包括：  
+    1. 对于方差非常小的 feature 可以增强其稳定性。
+    2. 如果是正的稀疏矩阵，可以维持为0的条目。
 
 
 ```py
@@ -187,8 +241,7 @@ min_max_scaler.fit(df)
 min_max_scaler.transform(df)
 ```
 
-### MaxAbsScaler
-列除以该列的最大值。优点是可以保持稀疏矩阵中的0不变。
+**MaxAbsScaler** 列除以该列的最大值。优点是可以保持稀疏矩阵中的0不变。
 ```py
 from sklearn import preprocessing
 max_abs_scaler = preprocessing.MaxAbsScaler()
@@ -197,8 +250,7 @@ max_abs_scaler.fit(df)
 max_abs_scaler.transform(df)
 ```
 
-### RobustScaler
-一种可以防止异常值的Scaler。算法是减去0.5分位数，然后除以0.75-0.25极差。
+**RobustScaler** 一种可以防止异常值的Scaler。算法是减去0.5分位数，然后除以0.75-0.25极差。
 ```py
 from sklearn import preprocessing
 robust_scaler=preprocessing.RobustScaler(with_centering=True, with_scaling=True, quantile_range=(25.0, 75.0))
@@ -206,6 +258,13 @@ robust_scaler.fit_transform(df)
 robust_scaler.fit(df)
 robust_scaler.transform(df)
 ```
+
+**其它**
+- 秩标准化：把数据排序，然后记下其序号，然后转化到 `[0,1]` 的数据
+- 函数标准化：用 $x'=1/x$、$x=log(x)$ 等转化。适用于你知道其分布/数据情况
+- 
+
+
 ## 正则化（Normalization）
 每个样本变成单位范数
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【回归分析】理论与实现
+title: 🔥 回归分析
 categories:
 tags: 0x41_统计模型
 keywords:
