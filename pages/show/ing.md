@@ -62,6 +62,9 @@ permalink: /ing.html
 - https://www.icourse163.org/course/BSU-1207419808
 
 
+弓箭
+- 【传统弓箭、认证】https://www.icourse163.org/course/scnu-1464095164
+- 弓箭（没有证书）https://www.icourse163.org/learn/SEU-1468560167
 
 
 

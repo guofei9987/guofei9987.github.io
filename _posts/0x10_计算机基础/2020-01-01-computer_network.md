@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【计算机网络】知识体系
+title: 【学习中】计算机网络
 categories: 学习中
 tags: 
 keywords:
@@ -380,6 +380,227 @@ print("用户2解码", msg2)
 
 ![5layer_model](/a/computer/network/5layer_model.gif)
 
+## 应用层
+
+**网络应用的体系结构**
+- **C/S**（客户机/服务器，Client-Server）
+    - 服务器：1）7x24小时提供服务、2）永久性访问地址/域名、3）利用大量服务器实现可扩展性
+    - 客户机：1）与服务器通信，使用服务器的服务，2）间歇性接入网络，3）可能使用动态IP，4）不与其它客户机直接通信
+    - 典型例子是 Web：服务器运行Web服务，客户机上运行游览器
+- P2P（点对点结构，Peer-to-Peer）
+    - 没有永远在线的服务器
+    - 任意端/节点之间可以直接通讯
+    - 节点间歇性接入网络
+    - 节点可能改变IP地址
+    - 典型例子：BT下载
+    - 优点：高度可伸缩。缺点：难以管理
+- 混合结构（Hybrid）。 C/S和P2P的混合
+    - 典型例子：Napster，文件传输用P2P，文件搜索用C/S
+
+
+
+进程通信
+- 同一主机上运行的进程之间的通信。**进程间通信**，操作系统提供了各种方式。
+- 不同主机上运行的进程之间：消息交换（报文交换）
+    - 客户机进程：发起通信的进程
+    - 服务器进程：等待通信请求的进程
+    - P2P也有以上进程
+
+
+**socket**：一种编程接口（API），为网络通信提供一种抽象的数据通道
+- 操作系统提供
+- 可用于同一个主机、不同主机之间的通信
+
+
+
+不同主机之间的进程间通信需要 **标识符**：IP地址+端口号
+- HTTP Server：80
+- Mail Server：25
+
+
+**应用层协议**
+- 公开协议
+    - 由 RFC（Request For Comments）定义
+    - 允许互操作
+    - 例如：HTTP，SMTP，...
+- 私有协议
+    - P2P 文件共享应用
+    - 可以自己设计协议
+
+
+**应用层协议** 的内容
+- 消息的类型(type)
+    - 请求消息
+    - 响应消息
+- 消息的语法(syntax)/格式
+    - 消息中有哪些字段(field)？
+    - 每个字段如何描述
+- 字段的语义(semantics)
+    - 字段中信息的含义
+- 规则(rules)
+    - 进程何时发送/响应消息
+    - 进程如何发送/响应消息
+
+
+**网络应用的需求与传输层服务**
+
+
+
+
+
+
+
+**网络应用的服务需求**
+- 数据丢失(data loss)/可靠性(reliability)
+    - 某些网络应用能够容忍一定的数据丢失：网络电话、在线视频
+    - 某些网络应用要求100%可靠的数据传输：文件传输，telnet、网上银行
+- 时间(timing)/延迟(delay)
+    - 有些应用只有在延迟足够低时才“有效”
+    - 网络电话/网络游戏
+- 带宽(bandwidth)
+    - 某些应用只有在带宽达到最低要求时才“有效”：在线视频
+    - 某些应用能够适应任何带宽：email、文件下载
+- 其它需求
+    - 安全等
+
+
+Internet传输层服务模型
+- **TCP服务**
+    - 面向连接: 客户机/服务器进程间
+        - 需要建立连接
+        - 双工
+    - 可靠的传输
+    - 流量控制: 发送方不会发送速度过快，超过接收方的处理能力
+    - 拥塞控制: 当网络负载过重时能够限制发送方的发送速度
+    - 不提供：
+        - 时间/延迟保障
+        - 最小带宽保障
+- **UDP服务**
+    - 无连接
+    - 不可靠的数据传输，不提供：
+        - 可靠性保障
+        - 流量控制
+        - 拥塞控制
+        - 延迟保障
+        - 带宽保障
+    - 例子：网络电话、网络视频
+
+### Web 应用
+
+- Word Wide Web
+- 网页（Web page）包含多个对象（Objects）
+    - HTML文件、JPEG图片、动态脚本等
+- 对象的寻址
+   - URL（Uniform Recourse Locator）：统一资源定位器 RFC1738
+   - `Scheme://host:port/path` 
+       - scheme:协议
+- **HTTP协议**（超文本传输协议，Hyper Text Transfer Protocol）
+    - C/S结构
+       - S端一般用 Apache Web
+       - C端可以是各种浏览器
+    - HTTP协议版本：1.0:RFC1945，1.1:RFC2068
+- HTTP依赖 TCP 
+    - 服务器在80端口等待客户请求
+    - 浏览器发起到服务器的TCP连接（创建 Socket）
+    - 服务器接受来自浏览器的TCP连接
+    - 浏览器与Web服务器交换HTTP消息
+    - 关闭TCP连接
+- **无状态**（stateless）：服务器不维护任何有关客户端过去发送的请求
+
+
+
+
+**HTTP连接**
+- **非持久性连接**(NonpersistentHTTP)
+    - 每个TCP连接最多允许传输一个对象
+    - HTTP 1.0版本
+- **持久性连接**(Persistent HTTP)
+    - 每个TCP连接允许传输多个对象
+    - HTTP 1.1版本默认
+
+
+![http1](/a/computer/network/http1.gif)
+
+缺点：
+- 响应时间
+    - 定义 RTT（Round Trip Time）：客户端发送极小数据，然后服务器返回数据所用的时间
+    - 每个对象的响应时间 = 2RTT+文件传输时间
+    - 如果有10个jpeg，还额外需要 20RTT + 文件传输时间
+- TCP 连接过多
+    - 服务器需要为每个 TCP 连接开销资源
+    - 浏览器为了提高性能会并行打开多个 TCP 连接，导致服务器性能消耗很大
+- 解决：持久性连接
+
+
+持久性连接
+- 发送响应后，服务器保持 TCP 连接的打开
+- 后续的 HTTP 消息继续使用这个连接发送
+- 每个对象时间消耗只有 1RTT+件传输时间
+    - 无pipelining：串行，每个对象1个 RTT
+    - 带pipeline：并行，所有耗时1RTT
+
+
+**HTTP消息**
+
+HTTP消息分为两种：
+- **request**
+- **response**
+
+
+
+![http_request1](/a/computer/network/http_request1.gif)
+
+
+
+![http_request2](/a/computer/network/http_request2.gif)
+
+
+
+上传数据的方法
+- POST
+    - 例如：表格（form）
+    - 方法：在请求消息的消息体（entity body）上传
+- GET
+    - 方法：把数据放到 URL 字段
+    - 适用于数据量较少的情况
+
+
+方法类型
+- HTTP/1.0
+    - GET
+    - POST
+    - HEAD：不要把请求的对象放入响应消息中。往往用来做测试。
+- HTTP/1.1
+    - GET、POST、HEAD
+    - PUT：把消息体中的文件传到URL字段所指定的路径。用于上传文件。
+    - DELETE：删除URL字段路径对应的文件
+
+
+
+![http_response](/a/computer/network/http_response.gif)
+
+其中的 **响应状态码**：
+- 200 OK
+- 301 Moved Permanently
+- 400 Bad Request
+- 404 Not Found
+- 505 HTTP Version Not Supported
+
+**Cookie技术**
+
+
+**Web缓存**
+
+
+特定网络应用及协议
+- HTTP
+- SMTP, POP, IMAP
+- DNS
+- P2P应用
+
+Socket编程
+- TCP
+- UDP
 
 
 
@@ -389,11 +610,6 @@ print("用户2解码", msg2)
 
 
 
-
-第2周 计算机网络概述（下）（2h12m56s）
-
-
-1.6 计算机网络发展历史（23m06s）
 
 第3周 网络应用（上）（3h41m13s）
 
