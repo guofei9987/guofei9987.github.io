@@ -1,8 +1,8 @@
 ---
 layout: open_source
-title: 文本盲水印
+title: 【改进】文本盲水印
 categories: 开源
-tag: tools
+tag: 备忘与构想
 order: 720
 repo_name: text_blind_watermark
 ---

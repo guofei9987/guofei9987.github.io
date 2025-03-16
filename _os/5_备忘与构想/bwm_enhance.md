@@ -2,7 +2,7 @@
 layout: open_source
 title: 【改进】blind_watermark
 categories: 开源
-tag: Watermark
+tag: 备忘与构想
 order: 209
 repo_name: blind_watermark
 ---

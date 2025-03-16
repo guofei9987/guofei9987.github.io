@@ -25,7 +25,7 @@ order: 101
 - 主存：货架。货架上的格子上面放着食材和任务单
 - CPU：厨师。取出货架上的任务单、食材。厨师的动作非常快
 
-![caption: cpu](/pictures_for_blog/computer/computer_analogy.jpg)
+![caption: 用餐馆类比CPU的运行](/pictures_for_blog/computer/computer_analogy.jpg)
 
 执行一条命令的过程如下
 1. 取址 fetch
@@ -108,7 +108,7 @@ order: 101
 计算机执行指令过程的举例：https://www.coursera.org/learn/jisuanji-zucheng/lecture/8Xyeu/105-ji-suan-ji-zhi-xing-zhi-ling-de-guo-cheng
 
 
-![caption: 一个例子](/pictures_for_blog/computer/computer.jpg)
+![caption: 存储器+CPU](/pictures_for_blog/computer/computer.jpg)
 
 
 
@@ -145,7 +145,7 @@ IO 设备（现代往往把 输入设备 和 输出设备  划在一起，例如
 - 现代计算机，把各种输入输出设备都统一用 **南桥芯片** 来管理。不过图形计算比较复杂，还是用独立的显卡来处理。
 
 
-![caption: IO](/pictures_for_blog/computer/io.jpg)
+![caption: 存储器+CPU+IO](/pictures_for_blog/computer/io.jpg)
 
 ### 南北桥结构的演变
 
@@ -165,7 +165,7 @@ IO 设备（现代往往把 输入设备 和 输出设备  划在一起，例如
 - 手机、平板电脑等
 
 
-![caption: computer2](/pictures_for_blog/computer/computer2.png)
+![caption: CPU的演变](/pictures_for_blog/computer/computer2.png)
 
 
 这种演变得益于芯片技术的进步（摩尔定律）
@@ -207,7 +207,7 @@ JMP L
 以上程序在内存中，以及如何执行的，见于下图：
 
 
-![caption: instruction](/pictures_for_blog/computer/instruction.jpg)
+![caption: 计算机指令](/pictures_for_blog/computer/instruction.jpg)
 
 
 ### x86 体系结构
@@ -238,7 +238,7 @@ x86 体系主要分为 16位、32位、64位
 - `IP` 对应“计算机结构简化模型” 中的 PC 寄存器
     - 程序员不能直接读写，只能用自增/转移/返回的方式影响，寻址能力为 `2^16 = 64KB`
 - `FLAGS` 标志寄存器，就是上面 “计算机结构简化模型” 中的 F 寄存器。它存放了 2 类数据：1）状态标志，例如是否产生了进位，结果是否为零；2）控制标志，单步还是连续运行，是否允许响应中断。其 16 个二进制位意义如下：
-    - ![8086_flags](/pictures_for_blog/computer/8086_flags.gif)
+    - ![caption: 8086的flags](/pictures_for_blog/computer/8086_flags.gif)
 - `CS、DS、ES、SS`（Code Segment, Data Segment, Extra Segment, Stack Segment） 是段寄存器
 - 8086 是如何寻址 `2^20 = 1MB` 呢？
     - 采用段寄存器 + `IP`
@@ -621,19 +621,19 @@ MOS晶体管有两种
 - P-MOS。 与 N-MOS 相反，当 Gate 连接高电平时，Source 和 Drain 是不导通的；当 Gate 连接低电平时，Source 和 Drain 是不导通的。
 
 
-![caption: mos1](/pictures_for_blog/computer/mos1.gif)
+![caption: mos晶体管](/pictures_for_blog/computer/mos1.gif)
 
 
 以上介绍了 MOS 的功能，那么它是如何设计的呢？
 
 
 
-![caption: mos2](/pictures_for_blog/computer/mos2.gif)
+![caption: mos晶体管的结构](/pictures_for_blog/computer/mos2.gif)
 
 
 加上电压后，形成导体（通路）
 
-![caption: mos3](/pictures_for_blog/computer/mos3.gif)
+![caption: mos晶体管加上电压](/pictures_for_blog/computer/mos3.gif)
 
 
 
@@ -658,14 +658,11 @@ MOS晶体管有两种
 |1|0|
 
 
-非门符号：  
 
-![caption: gate_not_sign](/pictures_for_blog/computer/gate_not_sign.gif)
+![caption: 非门符号](/pictures_for_blog/computer/gate_not_sign.gif)
 
 
-其电路设计如下：
-
-![caption: gate_not](/pictures_for_blog/computer/gate_not.gif)
+![caption: 非门的电路设计](/pictures_for_blog/computer/gate_not.gif)
 
 （自行分析一下，A 为 0 或者 1 的时候，电路的状态）
 
@@ -684,23 +681,23 @@ MOS晶体管有两种
 
 与非门符号：
 
-![caption: gate_not_and_sign](/pictures_for_blog/computer/gate_not_and_sign.gif)
+![caption: 与非门符号](/pictures_for_blog/computer/gate_not_and_sign.gif)
 
 与非门电路：
 
 
-![caption: gate_not_and](/pictures_for_blog/computer/gate_not_and.gif)
+![caption: 与非门的电路设计](/pictures_for_blog/computer/gate_not_and.gif)
 
 #### 与门
 
 与门符号：
 
-![caption: gate_and_sign](/pictures_for_blog/computer/gate_and_sign.gif)
+![caption: 与门符号](/pictures_for_blog/computer/gate_and_sign.gif)
 
 与门电路：
 
 
-![caption: gate_and](/pictures_for_blog/computer/gate_and.gif)
+![caption: 与门的电路设计](/pictures_for_blog/computer/gate_and.gif)
 
 
 #### 或门
@@ -717,7 +714,7 @@ MOS晶体管有两种
 |1|1|1
 
 
-![caption: gate_or_sign](/pictures_for_blog/computer/gate_or_sign.gif)
+![caption: 或门](/pictures_for_blog/computer/gate_or_sign.gif)
 
 
 （没找到电路图，它是利用 `A OR B = NOT ((NOT A) AND (NOT B)` 即可想到，在与非门的输入A、B前各加一个非门，即可得到一个或门）
@@ -725,7 +722,7 @@ MOS晶体管有两种
 
 #### 异或门
 
-![caption: gate_xor_sign](/pictures_for_blog/computer/gate_xor_sign.gif)
+![caption: 异或门](/pictures_for_blog/computer/gate_xor_sign.gif)
 
 
 ### 寄存器的物理实现
@@ -734,7 +731,7 @@ MOS晶体管有两种
 例如，一个 32 位的寄存器，其中包含 32 个基本存储单元，这个存储单元叫做 **D触发器**（D flip-flop，DFF）。  
 D触发器也是由逻辑门组成的（电路图不写了），其符号表示：
 
-![caption: register1](/pictures_for_blog/computer/register1.gif)
+![caption: 寄存器中的D触发器](/pictures_for_blog/computer/register1.gif)
 
 
 功能：
@@ -742,16 +739,14 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 - 用照相机的例子形象理解。时钟 clock 的上升沿：是按动快门的动作，每个动作0.1秒。照相机在按动快门时，对景色采样，并输出出来。不按动快门时，保持输出不变。
 
 
-两个D触发器串联：
-
-![caption: register2](/pictures_for_blog/computer/register2.jpg)
+![caption: 两个D触发器的串联](/pictures_for_blog/computer/register2.jpg)
 
 上图说明了：每个时钟周期，只向后传递一格
 
 
 如果把电平时序画出来，如下：
 
-![caption: register3](/pictures_for_blog/computer/register3.gif)
+![caption: D触发器串联的时序图](/pictures_for_blog/computer/register3.gif)
 
 （可以分析一下，时钟上升沿和其它的情况，Q 是如何变化的）
 
@@ -761,11 +756,11 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 <!--参考： https://www.coursera.org/learn/jisuanji-zucheng/lecture/isrpm/303-ji-cun-qi-de-ji-ben-yuan-li -->
 
 
-#### 寄存器堆
+#### 寄存器堆和存储器
 
 把 32 个寄存器看成一个整体，其输入输出如下：
 
-![caption: register_file](/pictures_for_blog/computer/register_file.gif)
+![caption: 寄存器堆](/pictures_for_blog/computer/register_file.gif)
 
 组成部分
 - 内部是 32 个 32 位寄存器
@@ -774,9 +769,7 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 - 写：Rw 用开指定要写入哪个寄存器。BusW 指定了写入的值。WriteEnable=1 时才允许写。只有时钟上升沿才会写入。
 
 
-#### 存储器
-
-底层原理类似于寄存器堆，其结构在上面的简化模型中有
+**存储器**：底层原理类似于寄存器堆，其结构在上面的简化模型中有
 
 
 ### 逻辑运算的电路实现
@@ -784,12 +777,12 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 
 与运算 `AND rd, rs, rt`:
 
-![caption: alu_and](/pictures_for_blog/computer/alu_and.gif)
+![caption: alu的and](/pictures_for_blog/computer/alu_and.gif)
 
 
 或运算 `OR rd, rs, rt`:
 
-![caption: alu_or](/pictures_for_blog/computer/alu_or.gif)
+![caption: alu的or](/pictures_for_blog/computer/alu_or.gif)
 
 
 还包括其它的运算
@@ -803,9 +796,9 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 - 这个多选器也是由多个门组成的
 - 这个多选器，对应的是上面模型机中的“控制电路”（的一部分）
 
-下图表示支持 4 种运算的 ALU，那么多选器也就用 2-bit 来表示（这个实际上是）
+下图表示支持 4 种运算的 ALU，那么多选器也就用 2-bit 来表示
 
-![caption: alu](/pictures_for_blog/computer/alu.jpg)
+![caption: alu支持4种运算](/pictures_for_blog/computer/alu.jpg)
 
 
 ### 加法器的电路实现
@@ -824,14 +817,14 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 
 分析上表发现，`S = A XOR B, C = A OR B`，于是可以设计出电路图（叫做 **半加器（Half Adder）**）：
 
-![caption: alu_half_adder](/pictures_for_blog/computer/alu_half_adder.gif)
+![caption: alu 半加器](/pictures_for_blog/computer/alu_half_adder.gif)
 
 -----------------
 
 现在我们希望设计一个 **全加器**，它可以考虑前一位的进位，也就是计算 `A + B + C_in`，立即想到，**全加器用两个半加器串联得到**
 
 
-![caption: alu_adder](/pictures_for_blog/computer/alu_adder.gif)
+![caption: alu 全加器](/pictures_for_blog/computer/alu_adder.gif)
 
 
 -----------------
@@ -839,9 +832,9 @@ D触发器也是由逻辑门组成的（电路图不写了），其符号表示�
 现在我们希望设计一个多bit 的加法器，以 4-bit 为例，把4个全加器串联起来
 
 
-![caption: alu_4adder](/pictures_for_blog/computer/alu_4adder.gif)
+![caption: alu 支持4bit的全加器](/pictures_for_blog/computer/alu_4adder.gif)
 
-（如果是 32-bit 的，也是一样的串联）
+（如果是 32-bit 的，就串联32个全加器）
 
 -----------------
 
@@ -864,7 +857,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 - MIPS：`add` 发生溢出时触发中断和异常。`addu` 则不检测溢出
 
 
-![caption: alu_32adder](/pictures_for_blog/computer/alu_32adder.gif)
+![caption: alu 32位加法器](/pictures_for_blog/computer/alu_32adder.gif)
 
 
 ### 减法器的电路实现
@@ -878,7 +871,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 现在我们设计减法器的电路
 
-![caption: alu_sub](/pictures_for_blog/computer/alu_sub.gif)
+![caption: alu 减法器](/pictures_for_blog/computer/alu_sub.gif)
 
 说明
 - 在加法器的基础上加入了一个选择模块 `2-to-1 Mux`
@@ -901,14 +894,14 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 - 下图画了 4-bit 加法器的串联情况：
 
 
-![caption: alu_rca](/pictures_for_blog/computer/alu_rca.gif)
+![caption: ALU 行波进位加法器](/pictures_for_blog/computer/alu_rca.gif)
 
 
 进位值 C 能否快速计算得到呢？注意到进位值 C 的某个递推公式，就可以这样设计电路：**超前进位加法器（CLA）** ：
 
 
 
-![caption: alu_cla](/pictures_for_blog/computer/alu_cla.gif)
+![caption: ALU 超前进位加法器](/pictures_for_blog/computer/alu_cla.gif)
 
 说明
 - 计算进位数只需要通过3个门电路，因此整个加法器只需要4个门电路。并且无论是多少位的加法器，都只要4个门电路。而不是像 RCA 一样需要 `2n+1` 个。例如 32 位加法器，RCA 需要 65 个门延迟，CLA 需要 4 个门延迟。
@@ -924,7 +917,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 先看一下我们是如何手算乘法的：
 
-![caption: alu_mul1](/pictures_for_blog/computer/alu_mul1.gif)
+![caption: 手动如何计算二进制乘法](/pictures_for_blog/computer/alu_mul1.gif)
 
 
 我们发现一个规律：
@@ -942,7 +935,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 根据上面的算法步骤，硬件实现如下：
 
-![caption: alu_mul2](/pictures_for_blog/computer/alu_mul2.gif)
+![caption: ALU 乘法器的设计](/pictures_for_blog/computer/alu_mul2.gif)
 
 
 --------------------
@@ -968,7 +961,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 优化后的电路：
 
 
-![caption: alu_mul3](/pictures_for_blog/computer/alu_mul3.gif)
+![caption: ALU 优化后的乘法器](/pictures_for_blog/computer/alu_mul3.gif)
 
 
 ### 除法器的电路实现
@@ -976,7 +969,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 先看除法是如何计算的
 
 
-![caption: alu_div1](/pictures_for_blog/computer/alu_div1.gif)
+![caption: 手动如何计算二进制除法](/pictures_for_blog/computer/alu_div1.gif)
 
 算法步骤（假设被除数是 8bit，除数是 4bit）：
 1. 准备
@@ -991,7 +984,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 电路设计如下：
 
-![caption: alu_div2](/pictures_for_blog/computer/alu_div2.gif)
+![caption: ALU 除法器](/pictures_for_blog/computer/alu_div2.gif)
  
 --------------
 
@@ -1003,7 +996,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 空间上的优化的结果：
 
-![caption: alu_div3](/pictures_for_blog/computer/alu_div3.gif)
+![caption: alu 优化后的除法器](/pictures_for_blog/computer/alu_div3.gif)
 
 
 
@@ -1038,12 +1031,12 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 - 为此，需要在每一步中间添加 **流水线寄存器**，以保证数据传递的正确性。这额外花费一些时间
 - 这提升了整个程序的执行速度，但是降低了单条指令的处理速度，所以本质上是提高 **指令的吞吐率**
 
-![caption: pipeline1](/pictures_for_blog/computer/pipeline1.gif)
+![caption: 流水线的可能性](/pictures_for_blog/computer/pipeline1.gif)
 
 优化前后的性能比较：
 
 
-![caption: pipeline2](/pictures_for_blog/computer/pipeline2.gif)
+![caption: 流水线时序](/pictures_for_blog/computer/pipeline2.gif)
 
 流水线的优化
 - 以上假定了每个阶段的耗时都一样，实际上是不一样的，这就是 **不平衡的流水线**，它。假设单周期处理器，处理单条指令时间消耗是 `1s + 1s + 3s + 1s +1s = 7s`，那么流水线处理器，处理单条指令的时间消耗是 `3s * 5 = 15s`，多条指令也没有快多少
@@ -1055,7 +1048,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 **超标量流水线**，把流水线上一些步骤，设定为多个模块并行。
 
-![caption: superscalar](/pictures_for_blog/computer/superscalar.gif)
+![caption: 超标量流水线](/pictures_for_blog/computer/superscalar.gif)
 
 **多核CPU**，每个核里有一个超标量流水线
 
@@ -1132,7 +1125,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 **DRAM**
 
 
-![caption: dram](/pictures_for_blog/computer/dram.gif)
+![caption: DRAM](/pictures_for_blog/computer/dram.gif)
 
 
 1. 上图是一个 DRAM 芯片。一个内存条（内存模组）由一块电路板和几个 DRAM 芯片构成。多个 DRAM 是并行工作的，例如，每个地址同时传入到 8 个 DRAM，每个返回 8bit，它们组合返回一个 64bit
@@ -1161,7 +1154,7 @@ SDRAM 的性能
 
 **SRAM**
 
-![caption: sram](/pictures_for_blog/computer/sram.gif)
+![caption: SRAM](/pictures_for_blog/computer/sram.gif)
 
 
 1. 上图是一个 SRAM 芯片的一个存储单元，它用来存储 1bit。
@@ -1320,7 +1313,7 @@ IO控制方式
 - [Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
 - [Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
 
-![caption: Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)
+[![caption: Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg)](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)
 
 
 
