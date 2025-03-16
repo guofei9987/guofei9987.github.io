@@ -31,10 +31,10 @@ order: 103
 物理介质
 - DSL：电话线
     - 50kHz-1MHz 用于下行
-    - 4kHx-50kHx 用于上行
+    - 4kHz-50kHz 用于上行
     - 0kHz-4kHz 用于传统电话
 - 电缆网络（电视线）
-    - HFC（混合黄线同轴电缆，hybrid fiber coax）
+    - HFC（混合光纤同轴电缆，hybrid fiber coaxial）
     - 下行 30Mbps，上行 2Mbps
 - 光纤
 - 移动网络（4G/5G）
@@ -272,7 +272,7 @@ print("用户2解码", msg2)
 解释
 - 每一步都增加 **控制信息**，包括
     - **地址**（Address）：标识发送端/接收端
-    - **差错检测**（Error- detecting code）
+    - **差错检测**（Error-detecting code）
     - **协议控制**（Protocol control）：协议中的附加信息，例如优先级、服务质量、安全控制等
 
 
@@ -336,12 +336,11 @@ print("用户2解码", msg2)
 
 **5.会话层**
 - **对话控制**（dialog controlling）：建立、维护、拆除
-- **同步**（synchronization）：
-    - 在数据中插入n个“同步点”。一旦传输中断，可以从上一个“同步点”继续传输。
+- **同步**（synchronization）：在数据中插入n个“同步点”。一旦传输中断，可以从上一个“同步点”继续传输。
 - 功能最少的一层。实际应用中，这一层不是单独存在的。
 
 
-**6.标识层**：处理两个系统见交换信息的 **语法和语义**（syntax and semantics）问题
+**6.表示**：处理两个系统见交换信息的 **语法和语义**（syntax and semantics）问题
 - **数据表示转化**，例如大端数/小端数
     - 转换为主机独立的编码，接收端再解码
 - **加密/解密**
@@ -387,7 +386,7 @@ print("用户2解码", msg2)
     - 服务器：1）7x24小时提供服务、2）永久性访问地址/域名、3）利用大量服务器实现可扩展性
     - 客户机：1）与服务器通信，使用服务器的服务，2）间歇性接入网络，3）可能使用动态IP，4）不与其它客户机直接通信
     - 典型例子是 Web：服务器运行Web服务，客户机上运行游览器
-- P2P（点对点结构，Peer-to-Peer）
+- **P2P**（点对点结构，Peer-to-Peer）
     - 没有永远在线的服务器
     - 任意端/节点之间可以直接通讯
     - 节点间歇性接入网络
@@ -491,14 +490,14 @@ Internet传输层服务模型
 - 网页（Web page）包含多个对象（Objects）
     - HTML文件、JPEG图片、动态脚本等
 - 对象的寻址
-   - URL（Uniform Recourse Locator）：统一资源定位器 RFC1738
+   - URL（Uniform Recourse Locator）：统一资源定位器 *RFC1738*
    - `Scheme://host:port/path` 
        - scheme:协议
 - **HTTP协议**（超文本传输协议，Hyper Text Transfer Protocol）
     - C/S结构
        - S端一般用 Apache Web
        - C端可以是各种浏览器
-    - HTTP协议版本：1.0:RFC1945，1.1:RFC2068
+    - HTTP协议版本：1.0:*RFC1945*，1.1:*RFC2068*
 - HTTP 依赖 TCP 
     - 服务器在80端口等待客户请求
     - 浏览器发起到服务器的TCP连接（创建 Socket）
@@ -529,7 +528,7 @@ Internet传输层服务模型
 - TCP 连接过多
     - 服务器需要为每个 TCP 连接开销资源
     - 浏览器为了提高性能会并行打开多个 TCP 连接，导致服务器性能消耗很大
-- 解决：持久性连接
+- 解决：**持久性连接**
 
 
 持久性连接
@@ -579,18 +578,22 @@ HTTP消息分为两种：
 
 ![http_response](/a/computer/network/http_response.gif)
 
-其中的 **响应状态码**：
-- 200 OK
-- 301 Moved Permanently
-- 400 Bad Request
-- 404 Not Found
-- 505 HTTP Version Not Supported
+其中常见的 **响应状态码**：
+- `200 OK`
+- `301 Moved Permanently`
+- `400 Bad Request`
+- `403 Forbidden`: 无权限访问
+- `404 Not Found`
+- `500 Internal Server Error`: 服务器内部错误
+- `505 HTTP Version Not Supported`
+
+
 
 **Cookie技术**
 - HTTP 是无状态的
 - 但很多网站需要辨别用户身份、进行session跟踪
 - Cookie 是储存在用户本地终端上的数据（通常经过加密）。
-- RFC6265
+- *RFC6265*
 
 Cookie的组件
 - HTTP响应消息的cookie头部行
@@ -621,7 +624,7 @@ Cookie 的缺点：隐私问题
 
 一致性问题：缓存服务器如何判断原始服务器的内容是不是变了？
 - 缓存服务器发送 `If-modified-since:<data>`
-- 服务器：如果缓存的版本是最新的，则response 不包含对象 `HTTP/1.0 304 Not Modified`，这就极大节省了流量/时间。
+- 服务器：如果缓存的版本是最新的，则response 不包含对象的 `HTTP/1.0 304 Not Modified`，这就极大节省了流量/时间。
 
 
 ### Email应用
@@ -722,7 +725,7 @@ HELO qq.com
 
 
 SMTP 与 HTTP 对比
-- HTTP 用 pull，SMTP 用 push
+- HTTP：客户端主动拉取（pull）数据。SMTP：客户端主动推送（push）数据到服务器。
 - 都是 request/response 交互模式
 - 命令和状态码都是 ASCII 码
 - HTTP：每个对象封装在独立的响应消息中
@@ -730,10 +733,10 @@ SMTP 与 HTTP 对比
 
 
 SMTP 和 POP3
-- RFC 822:邮件基本格式
+- *RFC822*:邮件基本格式
     - **header**，包含 To、From、Subject
     - **body**，消息本身（只能是 ASCII 字符）
-- MIME：多媒体邮件扩展 RFC 2045, 2056
+- MIME：多媒体邮件扩展 *RFC2045, 2056*
     - 在 header 增加额外的行以声明MIME的内容类型
 
 
@@ -865,28 +868,305 @@ DNS协议：
 ![DNS消息格式](/a/computer/network/dns4.gif)
 
 
+--------------------------
 
 ### P2P应用
 
+Peer-to-pear
+- 没有服务器
+- 任意端系统之间直接通信
+- 节点阶段性接入Internet
+- 节点可能更换IP地址
+
+
+![P2P耗时计算](/a/computer/network/p2p1.gif)
+
+
+C/S 和 P2P 分发总时间
+- C/S架构下，
+    - 服务器需要发送N个副本，用时 $NF/u_s$
+    - 客户机i下载需要 $f/\min(d_i)$
+    - 总耗时：$\max \{ NF/u_s,f/\min(d_i)） \}$
+    - **N较大时线性增长**
+- P2P架构下，
+    - 服务器需要发送1个副本，用时 $F/u_s$
+    - 客户机i需要 $F/d_i$ 下载时间
+    - 整个网络的总上传速度为 $u_s+\sum u_i$
+    - 总耗时 $\max \{ F/u_s, F/\min(d_i), NF/(u_s+\sum u_i)    \}$
+    - **N足够大时，耗时增长很慢**
+
+
+![CS与P2P比较](/a/computer/network/p2p2.gif)
+
+
+BitTorrent
+- 文件划分为 256KB 的chunk
+- 节点加入torrent
+- 下载的同时，节点需要向其他节点上传
+chunk
+- 节点可能加入或离开，所以是动态的
+- 一旦节点获得完整的文件，它可能（自私地）离开或（无私地）留下
+- 获取chunk
+    - 给定任一时刻，不同的节点持有文件的不同chunk集合
+    - 节点(Alice)定期查询每个邻居所持有的chunk列表
+    - 节点发送请求，请求获取缺失的chunk
+        - 稀缺优先。例如，某个chunk有3个提供，另一个chuck有100个节点提供，则会优先获取前者，防止3个节点都下线。
+- 发送chunk: tit-for-tat
+    - Alice向4个邻居发送chunk：正在向其发送Chunk，速率最快的4个
+        - 每10秒重新评估top 4
+    - 每30秒随机选择一个其他节点，向其发送chunk
+        -  新选择节点可能加入top 4
+        - “optimistically unchoke”
+    - 因此，最终效果是，上传的越快，下载的也快
+
+
+#### P2P的索引技术
+
+**索引** 是信息到节点位置（IP+端口号）的映射
+- 文件共享(电驴)
+    - 索引动态跟踪节点所共享的文件
+    - 节点告诉索引它拥有哪些文件
+    - 节点询问索引，从而获知能够得到哪些文件
+- 即时消息(QQ)
+    - 索引负责将用户名映射到位置
+    - 当用户开启IM应用时，需要通知索引它的位置
+    - 节点检索索引，确定用户的IP地址
+
+
+方案1：**集中式索引**（Napster最早采用这种设计）
+- 节点加入时，通知中央服务器：IP地址、内容
+- Alice 查找 “xx.avi”
+- Alice 从 Bob 处请求文件
+
+特点：内容和文件传输是分布式的，但是内容定位是高度集中式的
+- 单点失效问题。中央服务器崩了，整个服务就会失败
+- 性能瓶颈。节点的动态更新、查找都向中央服务器报告，
+- 版权问题。
+
+
+
+方案2:**洪泛式查询**: Query flooding
+- 完全分布式架构
+- Gnutella采用这种架构
+- 每个节点对它共享的文件进行索引，且只对它共享的文件进行索引
+- 覆盖网络(overlay network): Graph
+    - 节点X与Y之间如果有TCP连接，那么构成一个边
+    - 所有的活动节点和边构成覆盖网络
+    - 边：虚拟链路
+    - 节点一般邻居数少于10个
+
+
+查询方法：
+- A节点向邻居发送查询消息
+- 每个邻居转发查询消息
+- 如果查询命中，则利用反向路径发回查询节点
+
+缺点：
+1. 消息泛滥，给网络带来很大的负担
+2. 节点刚加入时，有很多需要处理的消息
+
+
+![洪泛式](/a/computer/network/p2p_flooding.gif)
+
+
+
+
+方案3:**层次式覆盖网络**。集中式索引和洪泛查询的结合
+- 节点分为两种：普通节点、超级节点
+- 节点和超级节点间维持TCP连接
+- 某些超级节点对之间维持TCP连接
+- 超级节点负责跟踪子节点的内容
+- 一旦完成查询，仍然是点对点的传输
+- 例子：Skype
+
+
+![层次式覆盖网络](/a/computer/network/p2p3.gif)
+
+
+
 ### Socket编程
 
+![端上的网络开发](/a/computer/network/socket1.gif)
 
-特定网络应用及协议
-- HTTP
-- SMTP, POP, IMAP
-- DNS
-- P2P应用
+应用编程接口API（Application Programming Interface）
+- 传输层、网络层、数据链路层、物理层是由操作系统提供的
+- Socket API 是事实上的工业标准，绝大多数操作系统都支持
+- 是Internet网络应用最常用的 API
+- 通信模型：客户/服务器（C/S）
+- Socket 提供了应用进程间通信的抽象机制
 
-Socket编程
-- TCP
-- UDP
+
+Socket 定位
+- 对外，IP+端口号
+- 操作系统/进程，使用 **socket descriptor**（一个小整数）
+
+Socket 抽象
+- 类似文件的抽象
+- 进程创建 Socket 时候，操作系统分配一个数据结构存储相关信息
+```c
+struct sockaddr_in
+{
+u_char sin_len; /*地址长度 */
+u_char sin_family; /*地址族(TCP/IP：AF_INET；非TCP/IP则是其他值) */
+u_short sin_port; /*端口号 */
+struct in_addr sin_addr; /*IP地址 */
+char sin_zero[8]; /*未用(置0) */
+}
+```
+
+Socket API（WinSock）
+- 初始化 `WSAStartup`
+    - 参数1:WinSock版本
+    - 参数2:指向WSDATA的指针
+- 释放 `WSACleanup`
+- 创建 `sd = socket(protofamily,type,proto);`
+    - protofamily:协议族。如果是 TCP/IP，则 `protofamily = AF_INET`
+    - type:类型
+        - `SOCK_STREAM` TCP协议
+        - `SOCK_DGRAM` UDP 协议
+        - `SOCK_RAW` 直接向网络层（需要root权限）
+    - proto：协议号，默认0
+    - 创建流式 Socket
+    ```c
+    struct protoent *p;
+    p=getprotobyname("tcp");
+    SOCKET sd=socket(PF_INET,SOCK_STREAM,p->p_proto);
+    ```
+    - TCP：可靠、有连接、字节流传输、点对点
+    - UDP：不可靠、无连接（不用连接直接发送）、数据报传输
+- 关闭 `closesocket`
+    - 如果多个进程共享一个 socket，引用计数减1，减到0才关闭
+    - 一个进程的多线程共享一个 socket，引用计数算成1
+- socket 绑定本地端点地址（IP+端口号）`bind(sd,localaddr,addrlen)`
+    - 客户端不用调用，会在 `connect()` 时自动分配端口
+    - 服务器端，可以用地址通配符 `INADDR_ANY`，来指定任意IP
+- `listen(sd,queuesize)` 置 socket 为监听状态
+    - 仅用于服务端，仅用于 TCP
+    - queuesize，请求队列大小
+- `connect(sd,saddr,saddrlen)`
+    - 仅用于客户端
+    - saddr：目的主机的端口
+    - 可用于 TCP/UDP
+- `accept(sd,caddr,caddrlen)` 从监听队列中取出一个
+    - 仅用于 TCP
+    - 仅用于服务器
+    - 会创建一个新的 Socket，接下来用新的 socket 与该客户机通信。（目的是实现并发为多个客户机服务）
+- 发送数据 `send(sd,*buf,len,flags);`，`sendto(sd,*buf,len,flags,destaddr,addrlen)`
+    - `send` 用于 TCP，或者调用了 connect 的 UDP
+    - `sendto` 用于 UDP 服务器端 socket，或者 未调用 connect 的客户端 socket
+- 接收数据 `recv(sd,*buffer,len,flags);` 和 `recvfrom(sd,*buf,len,flags,senderaddr,saddrlen);`
+    - `recv` 从 TCP 接收数据，或者 调用了 connect 的 UDP 客户端
+    - `recvfrom` 从 UDP 服务器端接收，或者 未调用 connect 的 UDP 客户端接收
+- `setsocketopt` 和 `getsocketopt` 设置和获取 socket 参数
+
+
+字节格式转化
+- “表示层”处理字节顺序（例如大端、小端），但 TCP/IP 协议也规定了标准。
+- 因此在使用 socket 的时候可以把本地字节顺序转换为网络字节顺序。socket 提供了一系列的转换函数。
+
+
+
+
+![Socket API（TCP）调用流程](/a/computer/network/socket2.gif)
+
+
+### Socket编程-客户端软件设计
+
+- 解析服务器IP地址
+    - 客户端可能使用 **域名** 或 **IP地址** 标识服务器
+    - `inet_addr()` IP地址的进制转换 
+    - `gethostbyname()` 域名到IP的转换
+- 解析端口号
+    - 客户端可能使用 **服务名** 标识服务器端口号
+    - 例如 HTTP 对应 80
+    - 函数 `getservbyname()` 从服务名获取端口号
+- 解析协议号
+    - 例如 TCP 对应 6
+    - `getprotobyname()` 从协议名获取端口号
+
+
+
+TCP 客户端软件流程
+1. 确定服务器IP地址与端口号
+2. 创建 socket
+3. 分配本地端点地址（IP地址+端口号）。
+    - 自动完成
+    - IP通常是内网（192.168.x.x）或者公网IP
+    - 端口号是操作系统临时分配的，通常在 49152~65535 之间
+4. 连接服务器（socket）
+5. 遵循应用层协议进行通信
+6. 关闭/释放连接
+
+UDP 客户端软件流程
+1. 确定服务器IP地址与端口号
+2. 创建 socket
+3. 分配本地端点地址（IP地址+端口号）
+4. 指定服务器端点地址，构造UDP数据报
+5. 遵循应用层协议进行通信
+6. 关闭/释放 socket
+
+### Socket编程-服务器软件设计
+
+4种类型
+- **循环无连接**(Iterative connectionless) 服务器
+    - 顺序处理客户请求，无并发
+- **循环面向连接**(Iterative connection-oriented) 服务器
+- **并发无连接**(Concurrent connectionless) 服务器
+- **并发面向连接**(Concurrent connection-oriented) 服务器
+
+
+
+**循环无连接**
+1. 创建 socket
+2. 绑定端点地址（INADDR_ANY+端口号）
+3. 反复接收来自客户端的请求
+4. 遵循应用层协议，构造响应报文，发送给客户 （使用 `sendto`）。回到3，处理下一个客户请求。
+
+
+**循环面向连接**
+1. 创建（主）socket，并绑定熟知端口号(`bind()`)；
+2. 设置（主）socket为被动监听模式(`listen()`)，准备用于服务器；
+3. 调用 `accept()` 函数接收下一个连接请求（通过主socket），创建新socket用于与该客户建立连接；
+4. 遵循应用层协议，反复接收客户请求，构造并发送响应(通过新socket)；
+5. 完成为特定客户服务后，关闭与该客户之间的连接，返回步骤3.
+
+
+**并发无连接**
+- 主线程:
+    1. 创建socket，并绑定熟知端口号；  
+    2. 反复调用 `recvfrom()` 函数，接收下一个客户请求，并创建新线程处理该客户响应；
+- 子线程
+    1. 接收一个特定请求；
+    2. 依据应用层协议构造响应报文，并调用sendto()发送；
+    3. 退出(一个子线程处理一个请求后即终止)。
+
+
+
+**并发面向连接**
+- 主线程
+    1. 创建（主）socket，并绑定熟知端口号；
+    2. 设置（主）socket为被动监听模式，准备用于服务器；
+    3. 反复调用 `accept()` 函数接收下一个连接请求（通过主socket），并创建一个新的子线程处理该客户响应；
+- 子线程
+    1. 接收一个客户的服务请求（通过新创建的socket）；
+    2. 遵循应用层协议与特定客户进行交互；
+    3. 关闭/释放连接并退出（线程终止）.
+
+
+
+
+
+
+
+
+
 
 
 
 ## 参考资料
 
-李全龙 、聂兰顺：《计算机网络》课程，哈尔滨工业大学，中国大学MOOC [https://www.icourse163.org/course/HIT-154005](https://www.icourse163.org/course/HIT-154005)
-
+- 李全龙 、聂兰顺：《计算机网络》课程，哈尔滨工业大学，中国大学MOOC [https://www.icourse163.org/course/HIT-154005](https://www.icourse163.org/course/HIT-154005)
+- 本文的一些 [素材](/a/computer/network/计算机网络-素材.pptx)
 
 第5周 传输层（上）（2h50m27s）
 
@@ -990,7 +1270,7 @@ Socket编程
 
 8.1 安全电子邮件（39m54s）
 
-8.2 安全套接字层（SSL）（1h07m58s）
+8.2 安全socket层（SSL）（1h07m58s）
 
 8.3 IP安全（IPsec）（1h31m06s）
 
