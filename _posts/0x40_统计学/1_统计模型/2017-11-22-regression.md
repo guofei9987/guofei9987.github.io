@@ -401,6 +401,5 @@ $AIC=-2\ln L(\theta,x)+2p$
 
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
-[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
 [^EM]: 我的另一篇博客[EM算法理论篇](http://www.guofei.site/2017/11/09/em.html)  
 [^AppliedRegression]: 《应用回归分析》，人民大学出版社  

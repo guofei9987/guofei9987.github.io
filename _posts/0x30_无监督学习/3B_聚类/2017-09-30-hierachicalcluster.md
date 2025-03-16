@@ -24,7 +24,7 @@ step3：反复执行step2
 step4：根据需要，或根据距离临界值（阈值）确定分类数和分类结果  
 
 ## 特点
-计算量巨大，例如，100个样本点，第一轮要计算$C_{100}^2$次，第二轮$C_{99}^2$次（如果第1轮的没出现2个相等的最小距离）[^wangxiaochuan]
+计算量巨大，例如，100个样本点，第一轮要计算$C_{100}^2$次，第二轮$C_{99}^2$次（如果第1轮的没出现2个相等的最小距离）
 
 ## sklearn实现
 ### 1. 数据准备
@@ -130,7 +130,3 @@ plt.show()
 
 ![hierachicalcluster.png](/pictures_for_blog/postimg/hierachicalcluster.png)  
 
-
-## 参考文献：
-
-[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  

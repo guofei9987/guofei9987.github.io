@@ -425,7 +425,4 @@ metrics.roc_auc_score(y_train==0, y_train_proba_predict), metrics.roc_auc_score(
 
 ## 参考文献
 
-
-[王小川授课内容](https://weibo.com/hgsz2003)    
-
 Wikipedia

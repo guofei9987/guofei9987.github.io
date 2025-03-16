@@ -158,6 +158,3 @@ random forest accuracy:
 ```
 
 
-## 参考文献：
-
-[王小川授课内容](https://weibo.com/hgsz2003)  

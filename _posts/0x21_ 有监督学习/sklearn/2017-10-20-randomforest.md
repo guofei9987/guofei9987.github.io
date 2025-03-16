@@ -85,6 +85,4 @@ clf.score(dataset.data,dataset.target)#准确率
 
 ## 参考文献：
 
-[王小川授课内容](https://weibo.com/hgsz2003)  
-
 http://www.cnblogs.com/hqqxyy/articles/3753026.html

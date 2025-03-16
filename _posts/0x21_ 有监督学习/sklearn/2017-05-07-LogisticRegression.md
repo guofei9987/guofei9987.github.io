@@ -125,7 +125,7 @@ for 第i次迭代
 
 ## Python实现（sklearn）
 
-step1:建立模型[^wangxiaochuan]  
+step1:建立模型
 ```py
 from sklearn.datasets import load_iris
 dataset=load_iris()
@@ -178,5 +178,4 @@ print('模型的平均正确率为：%s' % lr.score(x_new, y)) #给出模型的�
 
 ## 参考文献
 
-[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)
 [^sklearnLR]: [sklearn官网](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)  

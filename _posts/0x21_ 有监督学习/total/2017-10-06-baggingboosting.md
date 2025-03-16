@@ -17,7 +17,7 @@ order: 203
 
 ### 打个比方
 
-考虑25个分类器的组合，其中每个分类器的误差均为0.35，并且 **相互独立**[^wangxiaochuan] 。  
+考虑25个分类器的组合，其中每个分类器的误差均为0.35，并且 **相互独立**。  
 
 那么组合算法的误差是：  
 
@@ -149,5 +149,4 @@ fpr_test_rfc, tpr_test_rfc, th_test_rfc = metrics.roc_curve(test_target, test_es
 
 
 ## 参考文献：
-[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
