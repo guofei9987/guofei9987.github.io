@@ -66,9 +66,6 @@ body {
     color: #0d1ebe
 }
 
-#sidebar-list summary:hover{
-    background-color: #bce8f1;
-}
 
 .sidebar details>ul>li {
     border-bottom: 1px solid #ddd;
@@ -86,9 +83,6 @@ body {
     padding: 5px;
 }
 
-#sidebar-list ul li:hover {
-    background-color: #bce8f1;
-}
 
 
 /* summary 靠右显示数字计数（采用 flex 布局） */
@@ -186,10 +180,7 @@ body.sidebar-hidden .sidebar-toggle{
     margin-right: 4px;
 }
 
-.header-top a:hover {
-    background-color: #bce8f1;
-    border-color: #999;
-}
+
 
 .header-top .line1 {
     font-weight: bold;
@@ -216,9 +207,7 @@ body.sidebar-hidden .sidebar-toggle{
     cursor: pointer;
 }
 
-.dropdown-button:hover{
-    background-color: #bce8f1;
-}
+
 
 .dropdown-list {
     position: absolute;
@@ -246,9 +235,6 @@ body.sidebar-hidden .sidebar-toggle{
     text-decoration: none;
 }
 
-.dropdown-list li a:hover {
-    background-color: #bce8f1;
-}
 
 /* 隐藏下拉菜单 */
 .hidden1 {
@@ -259,3 +245,16 @@ sup.wordcnt{
     color: #1b6183;
     font-weight: normal;
 }
+
+.dropdown-list li a:hover,
+.dropdown-button:hover,
+.header-top a:hover,
+#sidebar-list summary:hover,
+#sidebar-list ul li:hover {
+    background-color: #bce8f1;
+    border-color: #999;
+    transform: scale(1.05);
+}
+
+
+
