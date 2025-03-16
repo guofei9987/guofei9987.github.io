@@ -629,31 +629,23 @@ Cookie 的缺点：隐私问题
 
 Email应用的构成组件
 - 邮件客户端(user agent)
-- 邮件服务器
+    - 读、写Email消息
+    - 与服务器交互，收、发Email消息
+    - Outlook, Foxmail, Thunderbird
+    - Web客户端
+- 邮件服务器(Mail Server)
+    - 邮箱：存储发给该用户的Email
+    - 消息队列(message queue)：存储等待发送的Email
 - SMTP协议(Simple Mail Transfer Protocol)
-
-
-邮件客户端
-- 读、写Email消息
-- 与服务器交互，收、发Email消息
-- Outlook, Foxmail, Thunderbird
-- Web客户端
-
-
-邮件服务器(Mail Server)
-- 邮箱：存储发给该用户的Email
-- 消息队列(message queue)：存储等待发送的Email
-
-SMTP协议
-- 邮件服务器之间传递消息所使用的协议
-- 客户端：发送消息的服务器
-- 服务器：接收消息的服务器
+    - 邮件服务器之间传递消息所使用的协议
+    - 客户端：发送消息的服务器
+    - 服务器：接收消息的服务器
 
 
 SMTP协议: RFC 2821
 - 使用TCP进行email消息的可靠传输
 - 端口 25
--传输过程的三个阶段
+- 传输过程的三个阶段
     - 握手
     - 消息的传输
     - 关闭
@@ -661,12 +653,65 @@ SMTP协议: RFC 2821
     - 命令(command): ASCII文本
     - 响应(response): 状态代码和语句
 - Email消息只能包含7位ASCII码
+    - 利用 回车+换行+句号 `CRLF.CRLF` 确定消息的结束
 
 
 
 
+![smtp](/a/computer/network/smtp.gif)
 
 
+SMTP 交互示例
+
+```sh
+S: 220 hamburger.edu
+C: HELO crepes.fr
+S: 250 Hello crepes.fr, pleased to meet you
+C: MAIL FROM: <alice@crepes.fr>
+S: 250 alice@crepes.fr... Sender ok
+C: RCPT TO: <bob@hamburger.edu>
+S: 250 bob@hamburger.edu ... Recipient ok
+C: DATA
+S: 354 Enter mail, end with "." on a line by itself
+C: Do you like ketchup?
+C: How about pickles?
+C: .
+S: 250 Message accepted for delivery
+C: QUIT
+S: 221 hamburger.edu closing connection
+```
+
+
+安装telnet
+
+```bash
+sudo apt update
+sudo apt install telnet
+
+# 现代都强制用 SSL 加密传输
+sudo apt install openssl
+
+```
+
+
+
+用 telnet 发送邮件
+```
+
+telnet smtp.qq.com 25
+
+HELO qq.com
+
+```
+
+
+
+SMTP 与 HTTP 对比
+- HTTP 用 pull，SMTP 用 push
+- 都是 request/response 交互模式
+- 命令和状态码都是 ASCII 码
+- HTTP：每个对象封装在独立的响应消息中
+- SMTP：多个对象由多个部分构成的消息中发送
 
 
 
@@ -695,10 +740,6 @@ Socket编程
 ## 参考资料
 
 李全龙 、聂兰顺：《计算机网络》课程，哈尔滨工业大学，中国大学MOOC [https://www.icourse163.org/course/HIT-154005](https://www.icourse163.org/course/HIT-154005)
-
-
-
-
 
 
 第5周 传输层（上）（2h50m27s）
