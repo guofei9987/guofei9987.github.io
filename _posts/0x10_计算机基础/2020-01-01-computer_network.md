@@ -843,6 +843,26 @@ DNS查询有两种：**迭代查询** 和 **递归查询**
 
 
 缓存
+- 一段时间后，缓存失效
+- Local DNS server 会缓存顶级域名服务器的映射
+    - 因此根域名服务器不经常被访问
+
+**DNS的格式**
+- DNS的记录是 **资源记录**（RR，resource records），是一个四元组，（name，value，type，ttl）
+- `Type=A`，Name:主机域名，Value：IP地址
+- `Type=NS`，Name：域（edu.cn），Value：域权威域名解析服务器的主机域名。就是，根据域给出对应能解析的服务器。
+- `Type=CNAME`，Name：别名，Value：真实域名。实现别名服务。
+- `Type=MX`，Value是Name对应的邮件服务器
+
+
+
+DNS协议：
+- **查询**(query)和 **回复**(reply消息)
+- 两则格式相同
+- 消息头部
+
+
+![DNS消息格式](/a/computer/network/dns4.gif)
 
 
 
