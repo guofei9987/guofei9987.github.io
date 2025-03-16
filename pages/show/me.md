@@ -21,7 +21,7 @@ permalink: /me.html
     - 🏆 曾获全国数学建模大赛一等奖
     - 💻 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
 - 📈 懂一点儿金融
-    - 📚 金融类学术期刊 *[Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171)* 的 **[审稿员](https://www.guofei.site/pages/certification.html#Reviewer)**
+    - 📚 金融类学术期刊 *[Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171)* 的 **[审稿员](https://www.guofei.site/certification.html#学术方面)**
     - 🎓 金融学硕士
     - 📝 中级经济师
 - ❤️ 有一些爱好
