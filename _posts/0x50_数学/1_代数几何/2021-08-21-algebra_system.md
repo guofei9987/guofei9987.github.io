@@ -18,11 +18,11 @@ order: 5105
 - **封闭性** $\forall x,y \in A $，有 $x\star y \in A$
 - **可交换性** $\forall x,y \in A $，有 $x\star y = y\star x$
 - **可结合性** $\forall x,y,z \in A $，有 $(x\star y)\star z = x\star (y\star z)$
-- 另外还有可分配性、吸收律、等幂，等等。就不多写了。
+- 另外还有**可分配性**、**吸收律**、**等幂**，等等。就不多写了。
 
 **【定义】幺元**
-- 对于 $e_l\in A$，如果有 $\forall x \in A \to e_l\star x \in A$，叫做 $e_l$ 是关于 $\star$ 的 **左幺元**
-- 对于 $e_r\in A$，如果有 $\forall x \in A \to x\star e_r \in A$，叫做 $e_l$ 是关于 $\star$ 的 **右幺元**
+- 对于 $e_l\in A$，如果有 $\forall x \in A \to e_l\star x = x$，叫做 $e_l$ 是关于 $\star$ 的 **左幺元**
+- 对于 $e_r\in A$，如果有 $\forall x \in A \to x\star e_r = x$，叫做 $e_l$ 是关于 $\star$ 的 **右幺元**
 
 
 **【定理】** 如果 $(A,\star)$ 存在左幺元 $e_l$ 和右幺元 $e_r$，那么 $e_l=e_r$ 且 A 上的幺元唯一。  
