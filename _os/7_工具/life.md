@@ -40,6 +40,10 @@ order: 701
     #myTable td.now {
     animation: smooth-blink 500ms linear infinite;
     }
+
+    #explain td{
+        border: 1px solid #fff;
+    }
     
 
     /* 进度条 */
@@ -122,7 +126,7 @@ order: 701
     <tbody></tbody>
 </table>
 
-<table>
+<table id="explain">
     <caption>说明</caption>
     <tbody>
         <tr>
