@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 信息嵌入技术【2】
-categories:
-tags: 0x58_密码学
+categories: 开源
+tags: 备忘与构想
 keywords:
 description:
 order: 59003
