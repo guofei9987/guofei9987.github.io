@@ -53,33 +53,18 @@ Input github id: <input name="user" value="guofei9987" type="text" id="user">
 
 
 
-## 源码
+## Source Code
 
-
-### star_counter（Javascript）
-
-[![stars](https://img.shields.io/github/stars/guofei9987/star_counter.svg?style=social)](https://github.com/guofei9987/star_counter/)
-[![fork](https://img.shields.io/github/forks/guofei9987/star_counter?style=social)](https://github.com/guofei9987/star_counter/fork)
-
-
-
-### github_star_counter（Python）
+| language | description | links |
+|----------|-------------|-------|
+| Javascript | [![star_counter](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=star_counter&theme=radical)](https://github.com/guofei9987/star_counter/) | [star_counter](https://github.com/guofei9987/star_counter/) |
+| Python | [![github_star_counter](https://github-readme-stats.vercel.app/api/pin/?username=guofei9987&repo=github_star_counter&theme=radical)](https://github.com/guofei9987/github_star_counter/) | [github_star_counter](https://github.com/guofei9987/github_star_counter/) |
 
 
 
-[![stars](https://img.shields.io/github/stars/guofei9987/github_star_counter.svg?style=social)](https://github.com/guofei9987/github_star_counter/)
-[![fork](https://img.shields.io/github/forks/guofei9987/github_star_counter?style=social)](https://github.com/guofei9987/github_star_counter/fork)
+### How to import
 
 
-**Source code:** [https://github.com/guofei9987/github_star_counter](https://github.com/guofei9987/github_star_counter)
-
-
-### 极简 demo
-
-极简 demo：[https://www.guofei.site/star_counter/main.html](https://www.guofei.site/star_counter/main.html)
-
-## 如何部署到你的网站
-把这个copy到你的网页里
 ```html
 <script src="http://www.guofei.site/star_counter/star_counter.js"></script> <!--引用js代码-->
 <script>

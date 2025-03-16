@@ -7,6 +7,7 @@ order: 210
 repo_name: HideInfo
 ---
 
+## HideInfo
 
 [![](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
 
