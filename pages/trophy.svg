@@ -12,6 +12,14 @@ viewBox="0 0 900 110">
 }
 .text1{font-size:23px;}
 .text2{font-size:35px;}
+.patch {
+  transition: transform 0.3s ease-out,  filter 0.3s;
+  filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+}
+.patch:hover{
+  transform: translate(-6px, -6px) scale(1.05) rotateX(5deg) rotateY(-5deg);
+  filter: drop-shadow(8px 8px 2px rgba(0,0,0,0.2));
+}
 </style>
 
 <linearGradient id="golden" gradientTransform="rotate(45)">
@@ -35,7 +43,7 @@ viewBox="0 0 900 110">
 </symbol>
 
 <svg x="0" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.github.com/guofei9987/" target="_blank">
+<a class="patch" href="https://www.github.com/guofei9987/" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <use href="#github" x="65" y="7" width="26px" height="26px"/>
 <text x="120" y="30" class="text text1">Star</text>
@@ -45,7 +53,7 @@ viewBox="0 0 900 110">
 
 
 <svg x="230" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.guofei.site/" target="_blank">
+<a  class="patch" href="https://www.guofei.site/" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">技术文章</text>
 <text x="50%" y="75" class="text text2">{{ site.posts.size }}篇</text>
@@ -54,7 +62,7 @@ viewBox="0 0 900 110">
 
 
 <svg x="460" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.guofei.site/BookList.html" target="_blank">
+<a  class="patch" href="https://www.guofei.site/BookList.html" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">读书 </text>
 <text x="50%" y="75" class="text text2">{{ site.data.book_list.size }}本</text>
@@ -63,7 +71,7 @@ viewBox="0 0 900 110">
 
 
 <svg x="690" y="0" width="210" height="110" viewBox="0 0 210 110" fill="url(#golden)">
-<a href="https://www.guofei.site/reading.html" target="_blank">
+<a  class="patch" href="https://www.guofei.site/reading.html" target="_blank">
 <use href="#lw2" width="210" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">读书笔记</text>
 <text x="50%" y="75" class="text text2">{{ site.data.cnt_reading_words.cnt_reading_words }}字</text>
