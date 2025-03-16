@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【论文笔记】Optimization/Training Techniques
+title: 【读论文】神经网络的训练
 categories:
 tags: 0x00_读论文
 keywords:
