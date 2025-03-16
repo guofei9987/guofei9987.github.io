@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【pytorch】基本语法
-categories:
-tags: 0x26_torch
+categories: torch
+tags: 
 keywords:
 description:
 order: 262
