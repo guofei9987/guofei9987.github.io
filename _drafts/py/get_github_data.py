@@ -1,3 +1,8 @@
+"""
+获取自己的 GitHub 数据
+包括总的 star/fork 数量，每个公开库的基本信息
+"""
+
 import requests
 import json
 

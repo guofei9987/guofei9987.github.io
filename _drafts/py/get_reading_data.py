@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+"""
+获取 reading 下的“书目”、字数等信息
+"""
+
+
 import os
 import re
 import json
