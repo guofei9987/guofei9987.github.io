@@ -664,7 +664,7 @@ SMTP协议: RFC 2821
 |------------|----------|------------|
 | **SMTP** (Simple Mail Transfer Protocol) | 客户端→服务器，服务器→服务器 | RFC 2821 (被 RFC 5322 取代)
 | **POP**(Post Office Protocol) | 服务器→客户端<br>将服务器上的邮件下载到本地，然后在服务器上删除 | RFC 1939 <br> 最成熟、最普及的是 POP3 <br> IMAP 是其替代者
-|**IMAP**(Internet Mail Access Protocol) | 服务器↔ 客户端 <br>在服务器上管理和同步邮件<br> 更多功能、更加复杂、能够操纵服务器上存储的消息 | RFC 1730
+|**IMAP**(Internet Mail Access Protocol) | 服务器↔客户端 <br>在服务器上管理和同步邮件<br> 更多功能、更加复杂、能够操纵服务器上存储的消息 | RFC 1730
 | HTTP | 网页客户端 |
 | RFC 822     | 定义邮件基本格式（头+体） | 被 RFC 5322 取代 |
 | RFC 2045    | 定义 MIME 类型和编码 | 活跃 |
