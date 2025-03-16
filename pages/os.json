@@ -7,20 +7,29 @@ permalink: /os.json
 {% assign os_posts = site.os | sort: "order" %}
 {% assign grouped = os_posts | group_by: "tag" %}
 
-{% assign sorted_grouped = grouped | sort: "items[0].order" %}
+{% assign group_list = "" | split: "" %}
+{% for group in grouped %}
+  {% assign sorted_posts = group.items | sort: "order" %}
+  {% assign min_order = sorted_posts[0].order %}
+  {% capture group_json %}
+    {
+      "tagName": "{{ group.name }}",
+      "posts": [
+        {% for post in sorted_posts %}
+        {
+          "title": "{{ post.title | escape }}",
+          "url": "{{ post.url }}"
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  {% endcapture %}
+  {% assign group_list = group_list | push: group_json %}
+{% endfor %}
 
-{% for group in sorted_grouped %}
-  {
-    "tagName": "{{ group.name }}",
-    "posts": [
-      {% assign sorted_posts = group.items | sort: "order" %}
-      {% for post in sorted_posts %}
-      {
-        "title": "{{ post.title }}",
-        "url": "{{ post.url }}"
-      }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ]
-  }{% unless forloop.last %},{% endunless %}
+{% assign sorted_groups = group_list | sort: "order" %}
+
+{% for group in sorted_groups %}
+{{ group }}{% unless forloop.last %},{% endunless %}
 {% endfor %}
 ]
