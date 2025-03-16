@@ -104,7 +104,7 @@ repo_name: blind_watermark
 
 
 <script type="module">
-    import init, { Watermarker } from "./pkg/wasm_text_watermark.js";
+    import init, { Watermarker } from "/a/app/hidden_watermark/pkg/wasm_text_watermark.js";
 
     async function run() {
         await init();
