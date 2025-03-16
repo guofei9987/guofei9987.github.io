@@ -82,27 +82,24 @@ document.querySelectorAll('.highlighter-rouge').forEach(function(container) {
 //   });
 // });
 
-
-// 修改 content 下的图片，把 alt 内容复制到图片注释，
-// 只对 content>p>img, content>p>a>img 起作用
+// 修改 content 下的图片，把 alt 内容复制到图片注释
+// 仅对以"caption:" 开头的内容生效
 document.addEventListener("DOMContentLoaded", () => {
-  const content = document.getElementById('content');
-  if (!content) return;
+  document.querySelectorAll('#content img').forEach(img => {
+    const alt = img.getAttribute('alt') || '';
+    const match = alt.match(/^caption:\s*(.+)/i);
+    if (!match) return;
 
-  content.querySelectorAll(':scope > p').forEach(p => {
-    const el = p.firstElementChild;
-    if (!el) return;
-
-    const isImg = el.tagName === 'IMG';
-    const isLinkWithImg = el.tagName === 'A' && el.firstElementChild?.tagName === 'IMG';
-    const img = isImg ? el : isLinkWithImg ? el.firstElementChild : null;
-
-    if (!img) return;
-    const alt = img.getAttribute('alt');
-    if (!alt || alt.startsWith('_')) return;
+    const caption = match[1].trim();
 
     const figure = document.createElement('figure');
-    figure.innerHTML = p.outerHTML + `<figcaption>${alt}</figcaption>`;
-    p.replaceWith(figure);
+    const figcaption = document.createElement('figcaption');
+    figcaption.innerText = caption;
+
+    const parent = img.parentNode;
+    figure.appendChild(img.cloneNode(true));
+    figure.appendChild(figcaption);
+    parent.replaceChild(figure, img);
   });
 });
+

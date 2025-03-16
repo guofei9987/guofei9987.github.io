@@ -42,7 +42,7 @@ order: 103
 
 internet 结构
 
-![internet](/a/computer/network/internet.gif)
+![caption: internet](/a/computer/network/internet.gif)
 
 
 两两相连是不可能的
@@ -50,7 +50,7 @@ internet 结构
 - 每台机器需要连接 N-1 条线路，不可能
 
 
-![switching](/a/computer/network/switching.gif)
+![caption: switching](/a/computer/network/switching.gif)
 
 ## 数据交换
 
@@ -93,7 +93,7 @@ internet 结构
 
 **码分多路复用** 算法挺有趣，我用python写了一下
 
-![chipping](/a/computer/network/chipping.gif)
+![caption: chipping](/a/computer/network/chipping.gif)
 
 
 ```python
@@ -1428,6 +1428,36 @@ SR 的某个困境：假设窗口尺寸为 N，使用的序列号为 0~N-1，那
 - 解决：假设序号空间为 k，发送方和接收方窗口大小为 $N_S,S_R$，那么必须满足 $N_S+N_R\leq 2^k$
 
 
+
+### TCP
+
+TCP *RFC793, 1122, 1323, 2018, 2581*
+- 点对点
+    - 一个发送方，一个接收方
+可靠的、按序的字节流
+流水线机制
+ TCP拥塞控制和流量控制机制
+设置窗口尺寸
+发送方/接收方缓存
+全双工(full-duplex)
+ 同一连接中能够传输双向数据流
+面向连接
+ 通信双方在发送数据之前必须建
+立连接。
+ 连接状态只在连接的两端中维护
+，在沿途节点中并不维护状态。
+ TCP连接包括：两台主机上的缓
+存、连接状态变量、socket等
+流量控制机制
+
+
+
+
+
+
+
+
+
 ## 参考资料
 
 - 李全龙 、聂兰顺：《计算机网络》课程，哈尔滨工业大学，中国大学MOOC [https://www.icourse163.org/course/HIT-154005](https://www.icourse163.org/course/HIT-154005)
@@ -1437,8 +1467,6 @@ SR 的某个困境：假设窗口尺寸为 N，使用的序列号为 0~N-1，那
 
 
 
-
-3.5 滑动窗口协议（43m44s）
 
 第6周 传输层（下）（2h05m14s）
 
