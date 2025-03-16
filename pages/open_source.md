@@ -16,6 +16,7 @@ name: 开源
 | [![scikit-opt](https://www.guofei.site/public/icon/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt)| [Documentation](https://www.guofei.site/os/sko_en.html) <br> [中文文档](https://www.guofei.site/os/sko_zh.html) |
 | [![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark) | [Documentation](https://www.guofei.site/os/bw_en.html) <br> [中文文档](https://www.guofei.site/os/bw_zh.html)
 | [![](https://www.guofei.site/public/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)  <br> [![](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)| [文档](https://www.guofei.site/os/text_wm.html) |
+| [![](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo) | [文档](https://www.guofei.site/os/hide_info.html) |
 
 
 
