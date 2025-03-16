@@ -14,18 +14,33 @@ repo_name: star_counter
 输入账号，然后点击`Calculate` 按钮  
 
 
+<style>
+  .blinking {
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% { opacity: 0.3; }
+  }
+</style>
+
 <script src="https://www.guofei.site/star_counter/star_counter.js"></script>
 
 
 <script>
     function func_1() {
-        document.getElementById("star_counter").innerHTML = 'Loading...';
+        const output = document.getElementById("star_counter");
+        output.classList.add("blinking");
+        output.innerHTML = '🌀 Loading...';
+
         github_id = document.getElementById("user").value;
 
         setTimeout(() => {
             const result = cal_github_star(github_id);
+            output.classList.remove("blinking");
             document.getElementById("star_counter").innerHTML = result;
         }, 100);
+
     }
 </script>
 
@@ -35,6 +50,8 @@ Input github id: <input name="user" value="guofei9987" type="text" id="user">
 
 <p id="star_counter"></p>
 
+
+## 源码
 
 
 
@@ -61,5 +78,3 @@ Input github id: <input name="user" value="guofei9987" type="text" id="user">
 
 [源代码地址](https://github.com/guofei9987/star_counter)，star一下，我就很开心啦  
 
-
-其它：https://www.guofei.site/2019/08/31/github_star_counter.html （已无用）

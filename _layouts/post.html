@@ -14,7 +14,6 @@ layout: base
       &nbsp;&nbsp;&nbsp;
       📁 文章归类: {{ page.tags }} {{ page.categories }}
       &nbsp;&nbsp;&nbsp;
-      <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
       <p>版权声明：本文作者是<a href="https://github.com/guofei9987">郭飞</a>。转载随意，标明原文链接即可。
         <br>
         原文链接：<a href="{{ page.url }}">{{ site.url }}{{ page.url }}</a>
@@ -29,8 +28,10 @@ layout: base
     <hr>
     {% include comment.html %}
     {% include donate.html %}
-
   </div>
 
 </div>
   
+<p class="logo edit">
+  <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
+</p>

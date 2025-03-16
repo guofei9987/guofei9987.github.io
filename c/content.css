@@ -185,6 +185,13 @@ blockquote {
 }
 
 
+#content img.icon{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  padding: 0;
+}
+
 #page-content td, th {
   border: 1px solid #aaa;
 }
@@ -292,4 +299,10 @@ dd {
 /* 移除最后一个 dd 的下边框 */
 dl dd:last-of-type {
   border-bottom: none;
+}
+
+
+/* 底部的编辑按钮 */
+.edit {
+  text-align: center;
 }

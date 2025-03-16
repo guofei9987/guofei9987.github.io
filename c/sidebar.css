@@ -250,7 +250,8 @@ sup.wordcnt{
 .dropdown-button:hover,
 .header-top a:hover,
 #sidebar-list summary:hover,
-#sidebar-list ul li:hover {
+#sidebar-list ul li:hover,
+.edit a:hover {
     background-color: #bce8f1;
     border-color: #999;
     transform: scale(1.05);

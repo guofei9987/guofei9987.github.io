@@ -37,7 +37,7 @@ title: 分析
   <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
   <td>{{ repo.is_fork }}</td>
   <td>☆{{ repo.star_cnt }}</td>
-  <td><img alt="fork:" src="https://www.guofei.site/public/logo/fork.svg">{{ repo.fork_cnt }}</td>
+  <td><img alt="fork:" src="/public/logo/fork.svg">{{ repo.fork_cnt }}</td>
   <td>{{ repo.open_issues_count }}</td>
   <td>{{repo.language}}</td>
 

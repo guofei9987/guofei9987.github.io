@@ -10,12 +10,6 @@ layout: base
 
 <div class="main-content-content">
   <div>
-    <div class="post-info">
-      <br>
-      <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
-      <br>
-    </div>
-
     <div id="content">
       {{ content }}
     </div>
@@ -23,6 +17,9 @@ layout: base
 
     {% include comment.html %}
     {% include donate.html %}
-    
   </div>
 </div>
+
+<p class="logo edit">
+  <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
+</p>
