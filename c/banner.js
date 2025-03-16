@@ -35,8 +35,6 @@ if($("#nav").length > 0){
     } else {
       document.getElementById('toc_btn').classList.remove('hidden'); // 按钮解除隐藏
     }
-
-
 } else {
     // 如果没有目录容器，则隐藏 TOC 按钮
     $('#toc_btn').hide();
