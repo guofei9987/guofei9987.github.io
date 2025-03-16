@@ -86,3 +86,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+
+
+.active-logo  {
+  border-bottom: 3px solid #62d7d7;
+}

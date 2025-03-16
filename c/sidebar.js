@@ -147,6 +147,28 @@ document.body.classList.toggle('sidebar-hidden');
 });
 
 
+// 高亮 banner 中对应的 logo
+function activeTop(sidebarType){
+  let targetHref = '';
+  if (sidebarType === 'reading') {
+    targetHref = '/reading.html';
+  } else if (sidebarType === 'open_source') {
+    targetHref = '/open_source.html';
+  } else if (sidebarType === 'post') {
+    targetHref = '/';
+  }else{
+    targetHref = '/';
+  }
+
+  const navLinks = document.querySelectorAll('.top-banner .logo a');
+  navLinks.forEach(link => {
+    const linkUrl = new URL(link.href, window.location.origin);
+    if (linkUrl.pathname === targetHref) {
+      link.classList.add('active-logo');
+    }
+  });
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const sidebarTypeElement = document.getElementById('sidebar_type');
@@ -173,8 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
       return response.json();
     })
     .then(data => {
-      sidebarGenerator(data);  
-      attachToggleHandlers();     
+      activeTop(sidebarType);
+      sidebarGenerator(data);
+      attachToggleHandlers();   
       highlightCurrentLink();     
       document.getElementById('nav_btn').click(); 
       document.getElementById('nav_btn').classList.remove('hidden'); 

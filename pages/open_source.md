@@ -5,11 +5,9 @@ permalink: /open_source.html
 name: 开源
 ---
 
+<br>
+
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
-
-
-## Open Source(我的开源)
-
 
 
 <table>
