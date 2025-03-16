@@ -1,10 +1,9 @@
 ---
-layout: page
+layout: open_source
 title: 【工具】清爽搜索
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 703
 ---
 
 

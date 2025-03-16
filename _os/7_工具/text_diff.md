@@ -1,10 +1,9 @@
 ---
-layout: page
+layout: open_source
 title: 【工具】在线文本比较工具
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 701
 ---
 
 

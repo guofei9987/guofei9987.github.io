@@ -1,10 +1,10 @@
 ---
-layout: page
+layout: open_source
 title: 【en】scikit-opt
 categories: 开源
-tags:
+tag: scikit-opt
 keywords:
-description:
+order: 101
 repo_name: scikit-opt
 ---
 

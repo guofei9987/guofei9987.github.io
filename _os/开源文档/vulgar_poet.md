@@ -1,10 +1,9 @@
 ---
-layout: post
+layout: open_source
 title: 恶俗古风诗歌生成器
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 720
 repo_name: vulgar_language_generator
 ---
 

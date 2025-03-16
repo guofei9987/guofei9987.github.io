@@ -1,9 +1,12 @@
 ---
-layout: post_pure
+layout: open_source
 title: Open Source/开源
 permalink: /open_source.html
 name: 开源
 ---
+
+<object data="https://www.guofei.site/pages/trophy.svg"></object>
+
 
 ## Open Source(我的开源)
 
@@ -28,7 +31,6 @@ name: 开源
 
 
 
-<object data="https://www.guofei.site/pages/trophy.svg"></object>
 
 
 

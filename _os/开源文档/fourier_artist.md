@@ -1,10 +1,9 @@
 ---
-layout: post
+layout: open_source
 title: 用几个圆圈画任意图
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 720
 repo_name: fourier_artist
 ---
 

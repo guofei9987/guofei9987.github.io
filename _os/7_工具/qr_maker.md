@@ -1,10 +1,9 @@
 ---
-layout: page
+layout: open_source
 title: 【工具】二维码生成器
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 704
 ---
 
 

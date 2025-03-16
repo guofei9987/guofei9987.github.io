@@ -94,8 +94,7 @@ function generateReadingSidebar(data) {
 
 
 /**
- * 为侧边栏中所有一级 details 元素绑定 toggle 事件，
- * 保证同一层级下只能展开一个
+ 事件：同一层级下只能展开一个
  */
 function attachToggleHandlers() {
   const sidebar = document.querySelector('.sidebar');
@@ -153,42 +152,36 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebarTypeElement = document.getElementById('sidebar_type');
   const sidebarType = sidebarTypeElement ? sidebarTypeElement.classList[0] : null;
 
-  if (sidebarType === 'reading'){
-    fetch('/pages/reading.json')
-    .then(response => {
-      if (!response.ok) throw new Error('读取 reading.json 失败');
-      return response.json();
-    })
-    .then(data => {
-      generateReadingSidebar(data);
-       attachToggleHandlers();   // 绑定点击后只展开一个的功能
-  highlightCurrentLink();   // 自动展开并高亮当前页面对应的链接
-  document.getElementById('nav_btn').click(); //加载完毕后自动点击一次，使其被显示
-  document.getElementById('nav_btn').classList.remove('hidden'); // 按钮解除隐藏
-    })
-    .catch(error => {
-      console.error('加载新侧边栏数据出错：', error);
-    });
-  }  else{
-    fetch('/tags.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('网络响应错误：' + response.status);
-      }
-      return response.json();
-    })
-    .then(data => {
-      generateSidebar(data);    // 生成 sidebar
-      attachToggleHandlers();   // 绑定点击后只展开一个的功能
-      highlightCurrentLink();   // 自动展开并高亮当前页面对应的链接
-      document.getElementById('nav_btn').click(); //加载完毕后自动点击一次，使其被显示
-      document.getElementById('nav_btn').classList.remove('hidden'); // 按钮解除隐藏
-    })
-    .catch(error => {
-      console.error('加载 JSON 数据出错：', error);
-    });
 
-  };
+  let jsonURL = '';
+  let sidebarGenerator = null;
+
+  if (sidebarType === 'reading') {
+    jsonURL = '/pages/reading.json';
+    sidebarGenerator = generateReadingSidebar;
+  } else if (sidebarType === 'open_source') {
+    jsonURL = '/os.json';
+    sidebarGenerator = generateSidebar;
+  } else {
+    jsonURL = '/tags.json';
+    sidebarGenerator = generateSidebar;
+  }
+
+  fetch(jsonURL)
+    .then(response => {
+      if (!response.ok) throw new Error(`加载 ${jsonURL} 失败`);
+      return response.json();
+    })
+    .then(data => {
+      sidebarGenerator(data);  
+      attachToggleHandlers();     
+      highlightCurrentLink();     
+      document.getElementById('nav_btn').click(); 
+      document.getElementById('nav_btn').classList.remove('hidden'); 
+    })
+    .catch(error => {
+      console.error('加载侧边栏数据出错：', error);
+    });
 });
 
 

@@ -2,9 +2,8 @@
 layout: open_source
 title: github star数量统计
 categories: 开源
-tags:
-keywords:
-description:
+tag: tools
+order: 710
 repo_name: star_counter
 ---
 

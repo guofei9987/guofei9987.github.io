@@ -1,10 +1,9 @@
 ---
-layout: post
+layout: open_source
 title: 【PyLSHash】局部敏感哈希
 categories: 开源
-tags: 0x58_密码学
-keywords:
-description:
+tag: tools
+order: 730
 repo_name: pyLSHash
 ---
 

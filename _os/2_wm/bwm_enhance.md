@@ -1,10 +1,9 @@
 ---
-layout: post
+layout: open_source
 title: 【改进】blind_watermark
 categories: 开源
-tags: 0x58_密码学
-keywords:
-description:
+tag: Watermark
+order: 209
 repo_name: blind_watermark
 ---
 
