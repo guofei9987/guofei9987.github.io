@@ -69,3 +69,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 40px;
   width: 100%;
 }
+
+.banner-left:hover,
+.banner-center:hover,
+.banner-right:hover{
+  transform: scale(1.2);
+}
