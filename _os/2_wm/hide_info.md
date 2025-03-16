@@ -58,7 +58,7 @@ pip install HideInfo
 - 已支持彩色图片
 - 一般情况下，手机/浏览器的预览和点击大图分别使黑色背景和白色背景，因此有"预览和点击是两张不通的图"的效果
 - 视频展示：[B站](https://www.bilibili.com/video/BV1DF41117c7/)
-- 代码：[example/example_mirage_tank.py](example/example_mirage_tank.py)
+- 代码：[example/example_mirage_tank.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_mirage_tank.py)
 
 
 ```python
@@ -79,7 +79,7 @@ mirage_tank.mirage_tank('图片.png', 'img2.jpeg', '幻影坦克.png')
 - RGB 3个通道都用来存放数据，但不使用透明通道
 - 使用前4个字节记录数据的大小，因此要求总的数据量小于 4G
 - 可以存放文件、文本、字节等类型的数据，把它转化为一张图片
-- 代码：[example_hide_as_img.py](example/example_hide_as_img.py)
+- 代码：[example_hide_as_img.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_as_img.py)
 
 ```python
 from hide_info import hide_as_img
@@ -105,7 +105,7 @@ hide_as_img.file_decode(filename='化物为图-解出来的文件.zip', img_file
 - 使用前4个字节存放数据的大小
 - 使用位运算，提高一定的性能
 - LSB算法对压缩、转格式等攻击脆弱
-- 例子：[example_hide_in_img.py](example/example_hide_in_img.py)
+- 例子：[example_hide_in_img.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_in_img.py)
 
 ```python
 from hide_info import hide_in_img
@@ -140,7 +140,7 @@ img_watermark.file_decode(img_filename="图片_打入水印.png", wm_extract="�
 
 功能：把图片和文件连接起来，以图片的形式存下来（目前还不完善）
 
-- 例子：[example/example_img_seed.py](example/example_img_seed.py)
+- 例子：[example/example_img_seed.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_img_seed.py)
 
 原理
 - jpg 的内容结束标志为 FF D9，它不关心之后的内容
@@ -150,14 +150,14 @@ img_watermark.file_decode(img_filename="图片_打入水印.png", wm_extract="�
 
 功能：把信息隐藏在图片的 EXIF 中，从而获得隐蔽信息、传输隐蔽信息的能力
 
-- 例子：[example/example_img_exif.py](example/example_img_exif.py)
+- 例子：[example/example_img_exif.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_img_exif.py)
 
 ## hide_in_music: 藏物于音
 
 功能：把一段信息（文件/文本/bytes），藏进一个音乐文件中
 
 例子：
-- [example_hide_in_music.py](example/example_hide_in_music.py)
+- [example_hide_in_music.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_in_music.py)
 
 ```python
 from hide_info import hide_in_music
@@ -178,7 +178,7 @@ hide_in_music.file_decode(filename="藏物于音-解出的文件.zip", music_fil
     
 
 说明
-- 例子：[hide_as_music.py](example/example_hide_as_music.py)
+- 例子：[hide_as_music.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_as_music.py)
 
 ```python
 from hide_info import hide_as_music
@@ -237,7 +237,7 @@ evaluate.get_error_rate(wm_extract, wm_bits)
 
 说明
 - 实测在苹果设备 Macbook、IOS 上，隐藏前后的文本看不出区别。但是 Windows 和某些安卓系统上，会有空格
-- 例子：[hide_in_txt.py](example/example_hide_in_txt.py)
+- 例子：[hide_in_txt.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_in_txt.py)
 
 ```python
 from hide_info import hide_in_txt
@@ -254,7 +254,7 @@ hide_in_txt.file_decode(filename='藏物于文-解出的文件.zip', text_filena
 
 说明
 - 使用的是 base85 算法
-- 例子：[hide_as_txt.py](example/example_hide_as_txt.py)
+- 例子：[hide_as_txt.py](https://github.com/guofei9987/HideInfo/blob/main/example/example_hide_as_txt.py)
 
 ```python
 from hide_info import hide_as_txt

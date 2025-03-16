@@ -110,82 +110,6 @@ pip install HideInfo
  
 
 
-
-
-## hide_as_img:化物为图
-
-功能：把文件/文本/bytes 类数据，转换为图片  
-原理：图片 1 个像素的 1 个通道可以存放 0-255 的数字，也就是一个字节。因此可以用来存放数据。
-使用场景：
-    - 信息隐藏、隐蔽传输
-    - 在只能发送图片的场景下（例如社交软件），发送任意信息
-
-说明
-- RGB 3个通道都用来存放数据
-- 使用前4个字节记录数据的大小，因此要求总的数据量小于 4G
-
-- 代码：[example_hide_as_img.py](example/example_hide_as_img.py)
-
-## hide_in_img：藏物于图
-
-功能：文件/文本/bytes 类数据，藏进一个 PNG 图片中，并且用肉眼无法看出区别
-原理：（LSB算法）根据信息的二进制形式，改变像素数据的最低位，肉眼是无法察觉
-使用场景：
-    - 信息隐藏、隐蔽传输
-    - 在只能发送图片的场景下（例如社交软件），发送任意信息
-    - 盲水印、图片溯源、版权保护
-
-说明
-- 使用 LSB 算法
-- 解原始数据时，无需原图参与，只看最低位
-- 使用前4个字节存放数据的大小
-- 使用位运算，提高一定的性能
-- LSB算法对压缩、转格式等攻击脆弱
-- 例子：[example_hide_in_img.py](example/example_hide_in_img.py)
-
-
-## img_seed:图种
-
-功能：把图片和文件连接起来，以图片的形式存下来（目前还不完善）
-
-- 例子：[example/example_img_seed.py](example/example_img_seed.py)
-
-## img_exif:把信息隐藏在图片的EXIF中
-
-功能：把图片和文件连接起来，以图片的形式存下来（目前还不完善）
-
-- 例子：[example/example_img_exif.py](example/example_img_exif.py)
-
-## hide_in_music: 藏物于音
-
-功能：把一段信息（文件/文本/bytes），藏进一个音乐文件中
-
-例子：
-- [example_hide_in_music.py](example/example_hide_in_music.py)
-
-## hide_as_music：化物为音
-
-功能：把一段信息（文件/文本/bytes），转为声音
-
-说明
-- 用 16 种音表示四进制。每个音持续 0.05 秒，因此每秒对应 10 字节。
-- 例子：[hide_as_music.py](clockware/hide_as_music.py)
-
-## hide_in_text：藏物于文
-
-功能：把一段信息（文件/文本/bytes），藏进一段文本中
-
-说明
-- 实测在苹果设备 Macbook、IOS 上，隐藏前后的文本看不出区别。但是 Windows 和某些安卓系统上，会有空格
-- 例子：[hide_in_text.py](clockware/hide_in_text.py)
-
-
-
-
-
-
-
-
 ## 缩放藏图
 
 
@@ -198,7 +122,7 @@ pip install HideInfo
 
 
 限制：
-- 必须是 PNG，不能是JPG格式
+- 必须是 PNG，不能是 JPG 格式
 - 缩放后的大小是确定的，才能显示图片B
 - 缩放算法必须是近邻法
 - 操作系统自带的缩放算法未必和嵌入算法一致，因此最好用代码来统一（这样做这算法好像使用范围很窄了）
