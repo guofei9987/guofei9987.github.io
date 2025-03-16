@@ -55,3 +55,29 @@ document.querySelectorAll('.highlighter-rouge').forEach(function(container) {
 });
 });
   
+
+// 修改 content 下的图片，把 alt 内容复制到图片注释
+document.addEventListener("DOMContentLoaded", function () {
+  const content = document.getElementById('content');
+  if (!content) return;  // 若没有content区域则跳过
+
+  content.querySelectorAll('img').forEach(img => {
+    const alt = img.getAttribute('alt');
+    
+    // 如果 alt 为空或以 '_' 开头，则跳过
+    if (!alt || alt.startsWith('_')) return;
+
+    // 如果图片已经在figure中，则跳过
+    if (img.parentNode.tagName.toLowerCase() === 'figure') return;
+
+    // 创建figure和figcaption标签
+    const figure = document.createElement('figure');
+    const figcaption = document.createElement('figcaption');
+    figcaption.innerText = alt;
+
+    // 插入DOM中
+    img.parentNode.insertBefore(figure, img);
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+  });
+});

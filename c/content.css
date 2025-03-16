@@ -171,26 +171,6 @@ blockquote {
   background-color: #f9f9f9;   /* 背景颜色，突出引用块 */
 }
 
-
-
-#content img {
-    padding: 4px;
-    background-color: #fff;
-    border: 0px solid #ddd;
-    display: inline-block;
-    /* width: 100%; */
-    max-width: 100%;
-    height: auto
-}
-
-
-#content img.icon{
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-  padding: 0;
-}
-
 #page-content td, th {
   border: 1px solid #aaa;
 }
@@ -304,4 +284,36 @@ dl dd:last-of-type {
 /* 底部的编辑按钮 */
 .edit {
   text-align: center;
+}
+
+
+#content img {
+  padding: 4px;
+  background-color: #fff;
+  border: 0px solid #ddd;
+  display: inline-block;
+  /* width: 100%; */
+  max-width: 100%;
+  height: auto
+}
+
+#content img.icon{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  padding: 0;
+}
+
+/* 把 图片 alt 变成图片注释 */
+#content figure {
+  display: inline-block;
+  text-align: center;
+  margin: 1.5em auto;
+  max-width: 100%;  /* 防止图片超出容器 */
+}
+
+#content figcaption {
+  font-size: 0.9em;
+  color: #666;
+  line-height: 0.5;
 }
