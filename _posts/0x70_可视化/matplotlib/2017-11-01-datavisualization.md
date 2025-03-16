@@ -144,7 +144,7 @@ sns.regplot(x=df.x, y=df.y,
 # 另一种用法
 # sns.regplot(x='x', y='y', data=df)
 ```
-![regplot.png](/pictures_for_blog/postimg/regplot.png)  
+![regplot.png](/a/plot/regplot.png)  
 
 还有些其它用法：
 - order=2, 多项式回归
