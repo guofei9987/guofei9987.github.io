@@ -1,10 +1,9 @@
 ---
 layout: post
 title: 【轮子】带约束的岭回归
-categories: 
-tags:
-keywords:
-description:
+categories: 开源
+tag: tools
+order: 710
 ---
 
 
