@@ -51,11 +51,32 @@ Input github id: <input name="user" value="guofei9987" type="text" id="user">
 <p id="star_counter"></p>
 
 
+
+
 ## 源码
 
 
+### star_counter（Javascript）
+
+[![stars](https://img.shields.io/github/stars/guofei9987/star_counter.svg?style=social)](https://github.com/guofei9987/star_counter/)
+[![fork](https://img.shields.io/github/forks/guofei9987/star_counter?style=social)](https://github.com/guofei9987/star_counter/fork)
 
 
+
+### github_star_counter（Python）
+
+
+
+[![stars](https://img.shields.io/github/stars/guofei9987/github_star_counter.svg?style=social)](https://github.com/guofei9987/github_star_counter/)
+[![fork](https://img.shields.io/github/forks/guofei9987/github_star_counter?style=social)](https://github.com/guofei9987/github_star_counter/fork)
+
+
+**Source code:** [https://github.com/guofei9987/github_star_counter](https://github.com/guofei9987/github_star_counter)
+
+
+### 极简 demo
+
+极简 demo：[https://www.guofei.site/star_counter/main.html](https://www.guofei.site/star_counter/main.html)
 
 ## 如何部署到你的网站
 把这个copy到你的网页里
@@ -76,5 +97,4 @@ Input github id: <input name="user" value="guofei9987" type="text" id="user">
 <p id="star_counter"></p>
 ```
 
-[源代码地址](https://github.com/guofei9987/star_counter)，star一下，我就很开心啦  
 

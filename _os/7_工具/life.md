@@ -7,7 +7,6 @@ order: 701
 ---
 
 
-
 <style>
     #myTable {
         border-collapse: collapse;
@@ -17,36 +16,48 @@ order: 701
         width: 20px;
         height: 20px;
         border: 1px solid #fff;
+        position: relative;
     }
 
     #myTable td.past {
-        background-color:#D2B48C
+        background-color:#D2B48C;
     }
 
     #myTable td.future {
-        background-color:#4CAF50
+        background-color:#4CAF50;
     }
 
     #myTable td.old {
-        background-color:#C0C0C0
-    }
-
-
-    @keyframes smooth-blink {
-      0%, 100% { background-color: #D2B48C; }
-      50% { background-color: #4CAF50; }
+        background-color:#C0C0C0;
     }
 
     #myTable td.now {
-    animation: smooth-blink 500ms linear infinite;
+        animation: smooth-blink 500ms linear infinite;
+    }
+
+    #myTable td.event::after {
+        content: attr(data-label);
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 10px;
+        padding: 2px 5px;
+        border-radius: 3px;
+        white-space: nowrap;
+    }
+
+    @keyframes smooth-blink {
+        0%, 100% { background-color: #D2B48C; }
+        50% { background-color: #4CAF50; }
     }
 
     #explain td{
         border: 1px solid #fff;
     }
-    
 
-    /* 进度条 */
     .progress-bar {
         width: 400px;
         background-color: #f5f5f5;
@@ -54,6 +65,7 @@ order: 701
         border-radius: 10px;
         overflow: hidden;
         background-color: #4CAF50;
+        position: relative;
     }
 
     .progress-bar-inner {
@@ -69,57 +81,47 @@ order: 701
         height: 75px;
     }
 
+    #life-bar {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
 
+    .time-stats {
+        position: absolute;
+        width: 200px;
+        padding: 0 10px;
+        font-size: 12px;
+        line-height: 1.3;
+    }
 
-    /* 新增样式 */
-#life-bar {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+    .left-stats {
+        text-align: left;
+        left: 0;
+    }
 
-.time-stats {
-    position: absolute;
-    width: 200px;
-    padding: 0 10px;
-    font-size: 12px;
-    line-height: 1.3;
-}
+    .right-stats {
+        text-align: right;
+        right: 0;
+    }
 
-.left-stats {
-    text-align: left;
-    left: 0;
-}
-
-.right-stats {
-    text-align: right;
-    right: 0;
-}
 </style>
 
-<div id="past_text"></div>
 <br/>
-
 
 <!-- 今日剩余 -->
 <div class="progress-bar bar1" id="today-bar">
     <div class="progress-bar-inner" id="today-bar-inner"></div>
 </div>
 
-<br/>
-<br/>
-<br/>
+
+<br/><br/><br/>
 
 <div class="progress-bar bar2" id="life-bar">
     <div class="time-stats left-stats"></div>
     <div class="progress-bar-inner" id="life-bar-inner"></div>
     <div class="time-stats right-stats"></div>
 </div>
-
-
-
-
-
 
 <table id="myTable">
     <caption>人生格子</caption>
@@ -147,117 +149,70 @@ order: 701
 <script>
 const birthDay = new Date("1988-02-16");
 const life_span = 80;
-
 const endDay = new Date(birthDay.getFullYear() + life_span, birthDay.getMonth(), birthDay.getDate());
-var currentDate = new Date();
-// 过去了多久（单位：秒）
-var pastSeconds = (currentDate.getTime() - birthDay.getTime()) / 1000;
+const num_cols = 20;
+const num_rows = 20;
+const table = document.getElementById("myTable");
+const currentDate = new Date();
+const pastSeconds = (currentDate.getTime() - birthDay.getTime()) / 1000;
+const currentCellIdx = Math.floor(pastSeconds / 3600 / 24 / 365 / (life_span / num_cols / num_rows));
 
+// 人生关键节点（按0.2年一个格子）
+const events = {
+    [Math.floor((18 / 80) * 400)]: "🎓18岁",
+    [Math.floor((27 / 80) * 400)]: "👶工作-中体彩",
+    [Math.floor((30 / 80) * 400)]: "💼工作-京东",
+    [Math.floor((32.2 / 80) * 400)]: "🔥工作-蚂蚁"
+};
 
-// 80年，分为 20列，20行。每个格子代表0.2年
-let num_cols = 20;
-let num_rows = 20;
+for (let i = 0; i < num_rows; i++) {
+    const newRow = table.insertRow();
+    for (let j = 0; j < num_cols; j++) {
+        const newCell = newRow.insertCell();
+        const newCellIdx = i * num_cols + j;
 
-// 当前时间对应的格子序号
-currentCellIdx = Math.floor(pastSeconds / 3600 / 24 / 365 / (life_span / num_cols / num_rows));
-
-var table = document.getElementById("myTable");
-const nowCelll = null;
-for (var i = 0; i < num_rows; i++) {
-    var newRow = table.insertRow();  // 插入一行
-    // 在新行中插入单元格
-    for (var j = 0; j < num_cols; j++) {
-        var newCell = newRow.insertCell();
-        // 当前格子序号
-        let newCellIdx = i * num_cols + j;
         if (newCellIdx < currentCellIdx) {
             newCell.classList.add("past");
-        } else if (newCellIdx == currentCellIdx) {
+        } else if (newCellIdx === currentCellIdx) {
             newCell.classList.add("now");
         } else if (newCellIdx <= 65 * 5) {
             newCell.classList.add("future");
         } else {
             newCell.classList.add("old");
         }
+
+        if (events[newCellIdx]) {
+            newCell.classList.add("event");
+            newCell.setAttribute("data-label", events[newCellIdx]);
+        }
     }
 }
 
-
 function tickDay(){
-    // 今日进度条
-    var now = new Date();
-    // var startOfDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
-
+    const now = new Date();
     const startOfDay = new Date(now);
     startOfDay.setHours(0, 0, 0, 0);
-
-    var percentLeft = (now - startOfDay) / (24 * 60 * 60 * 1000) * 100;
-    var progressBar = document.getElementById("today-bar-inner");
+    const percentLeft = (now - startOfDay) / (24 * 60 * 60 * 1000) * 100;
+    const progressBar = document.getElementById("today-bar-inner");
     progressBar.style.width = percentLeft + "%";
     progressBar.innerText = "今日已用" + percentLeft.toFixed(4) + '%';
 }
-
 
 function tickLife() {
     const leftStats = document.querySelector('.left-stats');
     const rightStats = document.querySelector('.right-stats');
-    
-    // 计算时间差
-    var currentDate = new Date();
-    var daysPassed = (currentDate - birthDay) / (1000 * 3600 * 24);
-    var daysRemaining = (endDay - currentDate) / (1000 * 3600 * 24);
+    const currentDate = new Date();
+    const daysPassed = (currentDate - birthDay) / (1000 * 3600 * 24);
+    const daysRemaining = (endDay - currentDate) / (1000 * 3600 * 24);
 
+    leftStats.innerHTML = `时光已去：<br>${(daysPassed / 365).toFixed(8)} 年<br>${(daysPassed / 12).toFixed(8)} 月<br>${daysPassed.toFixed(8)} 天<br>`;
+    rightStats.innerHTML = `余生还剩：<br>${(daysRemaining / 365).toFixed(8)} 年<br>${(daysRemaining / 12).toFixed(8)} 月<br>${daysRemaining.toFixed(8)} 天<br>`;
 
-    // 左边4行：已过去的时间
-    leftStats.innerHTML = `
-        时光已去：<br>
-        ${(daysPassed / 365).toFixed(8)} 年<br>
-        ${(daysPassed / 12).toFixed(8)} 月<br>
-        ${daysPassed.toFixed(8)} 天<br>`;
-
-    // 右边4行：剩余时间
-    rightStats.innerHTML = `
-        余生还剩：<br>
-        ${(daysRemaining / 365).toFixed(8)} 年<br>
-        ${(daysRemaining / 12).toFixed(8)} 月<br>
-        ${daysRemaining.toFixed(8)} 天<br>`;
-
-    // 进度条
-    var percentLeft = daysPassed / (daysPassed + daysRemaining) * 100;
-    var progressBar = document.getElementById("life-bar-inner");
+    const percentLeft = daysPassed / (daysPassed + daysRemaining) * 100;
+    const progressBar = document.getElementById("life-bar-inner");
     progressBar.style.width = percentLeft + "%";
 }
-
-
-function myTick() {
-    var past_text = document.getElementById("past_text");
-
-    var currentDate = new Date();
-    var daysPast_ = (currentDate - birthDay) / (1000 * 3600 * 24);
-    var daysFuture_ = (endDay - currentDate) / (1000 * 3600 * 24);
-
-
-    past_text.innerHTML =
-        "时光已去： " + (daysPast_ / 365).toFixed(8) + " 年/"
-        + (daysPast_ / 12).toFixed(8) + " 月/"
-        + daysPast_.toFixed(8) + " 天"
-        + "<br>"
-        + "余生还剩： " + (daysFuture_ / 365).toFixed(8) + " 年/"
-        + (daysFuture_ / 12).toFixed(8) + " 月/"
-        + daysFuture_.toFixed(8) + " 天"
-        + "<br>";
-
-    // 今日进度条
-    var startOfDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0);
-    var percentLeft = (currentDate - startOfDay) / (24 * 60 * 60 * 1000) * 100;
-    var progressBar = document.getElementById("today-bar-inner");
-    progressBar.style.width = percentLeft + "%";
-    progressBar.innerText = "今日已用" + percentLeft.toFixed(4) + '%';
-}
-
 
 setInterval(tickLife, 50);
 setInterval(tickDay, 50);
-
-
 </script>
