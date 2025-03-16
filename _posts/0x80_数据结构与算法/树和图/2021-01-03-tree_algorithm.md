@@ -42,7 +42,7 @@ left 和 right 都是指针，指向下一个节点
 用一个 list 存放二叉树的每一个结点  
 
 
-[heapq](http://www.guofei.site/2017/09/11/heapq.html)就是以这种方式存储二叉树的  
+heapq 就是以这种方式存储二叉树的  
 
 
 

@@ -9,7 +9,7 @@ order: 280
 ---
 
 
-*阅读本文前，请先保证已经了解[马尔科夫过程](http://www.guofei.site/2017/07/09/markov.html)、[graph](http://www.guofei.site/2017/05/18/algorithm2.html)*  
+*阅读本文前，请先保证已经了解[马尔科夫过程](http://www.guofei.site/2017/07/09/markov.html)、[graph](https://www.guofei.site/2017/05/18/graph.html)*  
 
 ## 模型介绍
 条件随机场(conditional random field， CRF)[^zhihu]  
