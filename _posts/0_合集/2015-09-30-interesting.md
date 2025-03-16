@@ -1,6 +1,6 @@
 ---
 layout: post_pure
-title: 【归档】趣文
+title: 【归档】趣文(16篇)
 categories: 合集
 tags:
 keywords:

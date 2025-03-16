@@ -31,8 +31,6 @@ def get_msg(text):
 
 # %%
 
-work_path = './reading/docs/'
-
 work_path = './_reading/'
 
 path_walker = os.walk(work_path, topdown=True)

@@ -43,7 +43,7 @@ where,
 叫做X服从p元正态分布， 记为$X \sim N_p(u,\Sigma)$
 
 ### 多元正态分布的性质
-如果$X=(X_1,X2,...X_p) \sim N_p(u,\Sigma)$  
+如果$X=(X_1,X_2,...X_p) \sim N_p(u,\Sigma)$  
 ### 性质1：均值和方差
 $EX=u$  
 $Var(X)=\Sigma$  
