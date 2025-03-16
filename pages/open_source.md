@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: open_source
 title: Open Source/开源
 permalink: /open_source.html
 name: 开源

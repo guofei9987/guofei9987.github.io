@@ -8,6 +8,9 @@ repo_name: HideInfo
 ---
 
 
+[![](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
+
+
 一些小而美的信息隐藏方法  
 
 
