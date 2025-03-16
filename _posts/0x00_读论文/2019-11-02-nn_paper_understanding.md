@@ -22,7 +22,7 @@ order: 1
 ## 1. Distilling the Knowledge in a Neural Network
 
 - Distilling the knowledge in a neural network (2015), G. Hinton et al. [pdf](https://arxiv.org/pdf/1503.02531.pdf)
-- 镜像地址 [pdf](/pictures_for_blog/papers/Understanding_Generalization_Transfer/Distilling%20the%20Knowledge%20in%20a%20Neural%20Network.pdf)
+
 
 ### abstract&introduction
 
