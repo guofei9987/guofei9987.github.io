@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: open_source
 title: 【轮子】带约束的岭回归
 categories: 开源
 tag: tools

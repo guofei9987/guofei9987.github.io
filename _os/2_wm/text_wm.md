@@ -170,7 +170,13 @@ repo_name: blind_watermark
 </script>
 
 
-## 说明
+## 源码
 
-- 源码分别有 [Rust版本](https://github.com/guofei9987/hidden_watermark)、[Python 版本](https://github.com/guofei9987/text_blind_watermark)、[Javascript 版本](https://www.guofei.site/pictures_for_blog/app/text_watermark/v1.html)
-- 使用方法介绍：[https://www.bilibili.com/video/BV1m3411s7kT](https://www.bilibili.com/video/BV1m3411s7kT)
+|Rust|Python|Javascript|
+|--|--|--|
+|[![](https://www.guofei.site/public/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)|[![](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark) | [javascript](https://www.guofei.site/pictures_for_blog/app/text_watermark/v1.html)
+
+
+## 使用方法介绍
+
+[https://www.bilibili.com/video/BV1m3411s7kT](https://www.bilibili.com/video/BV1m3411s7kT)

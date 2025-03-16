@@ -57,27 +57,52 @@ document.querySelectorAll('.highlighter-rouge').forEach(function(container) {
   
 
 // 修改 content 下的图片，把 alt 内容复制到图片注释
-document.addEventListener("DOMContentLoaded", function () {
-  const content = document.getElementById('content');
-  if (!content) return;  // 若没有content区域则跳过
+// document.addEventListener("DOMContentLoaded", function () {
+//   const content = document.getElementById('content');
+//   if (!content) return;  // 若没有content区域则跳过
 
-  content.querySelectorAll('img').forEach(img => {
-    const alt = img.getAttribute('alt');
+//   content.querySelectorAll('img').forEach(img => {
+//     const alt = img.getAttribute('alt');
     
-    // 如果 alt 为空或以 '_' 开头，则跳过
+//     // 如果 alt 为空或以 '_' 开头，则跳过
+//     if (!alt || alt.startsWith('_')) return;
+
+//     // 如果图片已经在figure中，则跳过
+//     if (img.parentNode.tagName.toLowerCase() === 'figure') return;
+
+//     // 创建figure和figcaption标签
+//     const figure = document.createElement('figure');
+//     const figcaption = document.createElement('figcaption');
+//     figcaption.innerText = alt;
+
+//     // 插入DOM中
+//     img.parentNode.insertBefore(figure, img);
+//     figure.appendChild(img);
+//     figure.appendChild(figcaption);
+//   });
+// });
+
+
+// 修改 content 下的图片，把 alt 内容复制到图片注释，
+// 只对 content>p>img, content>p>a>img 起作用
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.getElementById('content');
+  if (!content) return;
+
+  content.querySelectorAll(':scope > p').forEach(p => {
+    const el = p.firstElementChild;
+    if (!el) return;
+
+    const isImg = el.tagName === 'IMG';
+    const isLinkWithImg = el.tagName === 'A' && el.firstElementChild?.tagName === 'IMG';
+    const img = isImg ? el : isLinkWithImg ? el.firstElementChild : null;
+
+    if (!img) return;
+    const alt = img.getAttribute('alt');
     if (!alt || alt.startsWith('_')) return;
 
-    // 如果图片已经在figure中，则跳过
-    if (img.parentNode.tagName.toLowerCase() === 'figure') return;
-
-    // 创建figure和figcaption标签
     const figure = document.createElement('figure');
-    const figcaption = document.createElement('figcaption');
-    figcaption.innerText = alt;
-
-    // 插入DOM中
-    img.parentNode.insertBefore(figure, img);
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
+    figure.innerHTML = p.outerHTML + `<figcaption>${alt}</figcaption>`;
+    p.replaceWith(figure);
   });
 });
