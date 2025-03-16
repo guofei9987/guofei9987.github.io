@@ -499,7 +499,7 @@ Internet传输层服务模型
        - S端一般用 Apache Web
        - C端可以是各种浏览器
     - HTTP协议版本：1.0:RFC1945，1.1:RFC2068
-- HTTP依赖 TCP 
+- HTTP 依赖 TCP 
     - 服务器在80端口等待客户请求
     - 浏览器发起到服务器的TCP连接（创建 Socket）
     - 服务器接受来自浏览器的TCP连接
@@ -587,9 +587,97 @@ HTTP消息分为两种：
 - 505 HTTP Version Not Supported
 
 **Cookie技术**
+- HTTP 是无状态的
+- 但很多网站需要辨别用户身份、进行session跟踪
+- Cookie 是储存在用户本地终端上的数据（通常经过加密）。
+- RFC6265
 
+Cookie的组件
+- HTTP响应消息的cookie头部行
+- HTTP请求消息的cookie头部行
+- 保存在客户端主机上的cookie文件，由浏览器管理
+- Web服务器端的后台数据库
+
+Cookie 的用途
+- 身份认证
+- 购物车
+- 推荐
+
+
+Cookie 的缺点：隐私问题
 
 **Web缓存**
+
+优点：
+- 减少响应时间
+- 减少组织的流量
+
+
+如何做？
+- 用户不访问原始服务器，而是向缓存/代理服务器发送所有HTTP请求
+    - 如果请求对象在缓存服务器中，则直接返回给用户
+    - 否则，缓存服务器向原始服务器发送 HTTP 请求，然后返回给用户。（同时缓存服务器保存对象）
+- 一般 ISP 架设
+
+一致性问题：缓存服务器如何判断原始服务器的内容是不是变了？
+- 缓存服务器发送 `If-modified-since:<data>`
+- 服务器：如果缓存的版本是最新的，则response 不包含对象 `HTTP/1.0 304 Not Modified`，这就极大节省了流量/时间。
+
+
+### Email应用
+
+
+Email应用的构成组件
+- 邮件客户端(user agent)
+- 邮件服务器
+- SMTP协议(Simple Mail Transfer Protocol)
+
+
+邮件客户端
+- 读、写Email消息
+- 与服务器交互，收、发Email消息
+- Outlook, Foxmail, Thunderbird
+- Web客户端
+
+
+邮件服务器(Mail Server)
+- 邮箱：存储发给该用户的Email
+- 消息队列(message queue)：存储等待发送的Email
+
+SMTP协议
+- 邮件服务器之间传递消息所使用的协议
+- 客户端：发送消息的服务器
+- 服务器：接收消息的服务器
+
+
+SMTP协议: RFC 2821
+- 使用TCP进行email消息的可靠传输
+- 端口 25
+-传输过程的三个阶段
+    - 握手
+    - 消息的传输
+    - 关闭
+- 命令/响应交互模式
+    - 命令(command): ASCII文本
+    - 响应(response): 状态代码和语句
+- Email消息只能包含7位ASCII码
+
+
+
+
+
+
+
+
+
+
+
+
+### DNS应用
+
+### P2P应用
+
+### Socket编程
 
 
 特定网络应用及协议
@@ -611,25 +699,7 @@ Socket编程
 
 
 
-第3周 网络应用（上）（3h41m13s）
 
-2.1 网络应用（层）内容概述（3m10s）
-
-2.2 网络应用的基本原理（54m26s）
-
-2.3 Web应用（1h24m13s）
-
-2.4 Email应用（37m24s）
-
-2.5 DNS应用（42m00s）
-
-第4周 网络应用（下）（2h53m36s）
-
-2.6 P2P应用（41m23s）
-
-2.7 Socket编程（2h12m13s）
-
-第一单元测验
 
 第5周 传输层（上）（2h50m27s）
 
