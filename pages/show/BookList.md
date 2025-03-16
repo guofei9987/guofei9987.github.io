@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: reading
 title: 读完的书单
 permalink: /BookList.html
 ---

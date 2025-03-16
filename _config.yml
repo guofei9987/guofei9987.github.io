@@ -8,6 +8,9 @@ collections:
     output: true
     permalink: /reading/:title:output_ext
 
+  os:
+    output: true
+    permalink: /os/:title:output_ext
 
 kramdown:
   math_engine: null
@@ -44,8 +47,6 @@ ga:
 # 主题设置，自动激活某个标签
 active: tags
 
-locals:
-  tags: 精选
 
 # 这些不放到侧边栏，而是作为一个合集管理
 no_category:
