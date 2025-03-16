@@ -1,10 +1,11 @@
 ---
-layout: open_source
+layout: page
 title: Open Source/开源
 permalink: /open_source.html
 name: 开源
 ---
 
+<div id="sidebar_type" class="open_source"></div>
 <br>
 <object data="https://www.guofei.site/pages/trophy.svg"></object>
 
