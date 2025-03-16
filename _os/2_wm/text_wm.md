@@ -59,7 +59,7 @@ repo_name: blind_watermark
 
 <hr>
 
-<h4 class="top">2. 提取隐水印</h4>
+<h4 class="middle">2. 提取隐水印</h4>
 
 <table>
   <tr>
