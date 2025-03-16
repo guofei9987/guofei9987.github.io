@@ -17,7 +17,7 @@ viewBox="0 0 920 110">
   filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
 }
 .patch:hover{
-  transform: translate(-6px, -6px) scale(1.05) rotateX(5deg) rotateY(-5deg);
+  transform: translate(-6px, -6px) scale(1.05) rotateX(7deg) rotateY(-7deg);
   filter: drop-shadow(8px 8px 2px rgba(0,0,0,0.2));
 }
 </style>
@@ -34,8 +34,8 @@ viewBox="0 0 920 110">
 
 <symbol id="lw2" viewBox="0 0 230 110">
 <rect x="0" y="0" width="230" height="110" fill="transparent"/>
-<use href="#laurelWreath" width="48px" height="100px" x="10" y="5px"/>
-<use href="#laurelWreath" width="48px" height="100px" x="-220px" y="5px" transform="scale(-1, 1)"/>
+<use href="#laurelWreath" width="48px" height="100px" x="10" y="10px"/>
+<use href="#laurelWreath" width="48px" height="100px" x="-220px" y="10px" transform="scale(-1, 1)"/>
 </symbol>
 
 <symbol id="github" viewBox="0 0 16 16">
@@ -44,7 +44,7 @@ viewBox="0 0 920 110">
 
 <svg x="0" y="0" width="230" height="110" viewBox="0 0 230 110" fill="url(#golden)">
 <a class="patch" href="https://www.github.com/guofei9987/" target="_blank">
-<use href="#lw2" width="210" height="110" x="0" y="0"/>
+<use href="#lw2" width="230" height="110" x="0" y="0"/>
 <use href="#github" x="75" y="7" width="26px" height="26px"/>
 <text x="130" y="30" class="text text1">Star</text>
 <text x="50%" y="75" class="text text2">{{ site.data.data_github.star_cnt_str }}个</text>
@@ -53,7 +53,7 @@ viewBox="0 0 920 110">
 
 
 <svg x="230" y="0" width="230" height="110" viewBox="0 0 230 110" fill="url(#golden)">
-<a  class="patch" href="https://www.guofei.site/" target="_blank">
+<a class="patch" href="https://www.guofei.site/" target="_blank">
 <use href="#lw2" width="230" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">技术文章</text>
 <text x="50%" y="75" class="text text2">{{ site.posts.size }}篇</text>
@@ -62,7 +62,7 @@ viewBox="0 0 920 110">
 
 
 <svg x="460" y="0" width="230" height="110" viewBox="0 0 230 110" fill="url(#golden)">
-<a  class="patch" href="https://www.guofei.site/BookList.html" target="_blank">
+<a class="patch" href="https://www.guofei.site/BookList.html" target="_blank">
 <use href="#lw2" width="230" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">读书 </text>
 <text x="50%" y="75" class="text text2">{{ site.data.book_list.size }}本</text>
