@@ -73,7 +73,6 @@ Hammersley-Clifford定理：对于任意概率无向图，都可以做上述因�
 
 ## 参考资料
 [^lihang]: [李航：《统计学习方法》](https://www.weibo.com/u/2060750830?refer_flag=1005055013_)  
-[^wangxiaochuan]: [王小川授课内容](https://weibo.com/hgsz2003)  
 [^EM]: 我的另一篇博客[EM算法理论篇](http://www.guofei.site/2017/11/09/em.html)
 [^zhihu]: https://www.zhihu.com/question/35866596
 [^1]: http://blog.csdn.net/a819825294/article/details/53893231

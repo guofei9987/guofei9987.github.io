@@ -248,7 +248,7 @@ print("用户2解码", msg2)
 
 
 
-![architecture](/a/computer/network/architecture.gif)
+![体系结构](/a/computer/network/architecture.gif)
 
 
 ### OSI模型
@@ -260,13 +260,13 @@ print("用户2解码", msg2)
 - 功能上划分 **7层**，每层完成特定的网络功能
 
 
-![osi1](/a/computer/network/osi1.gif)
+![OSI模型](/a/computer/network/osi1.gif)
 
 解释
 - 上面的实线表示物理层面上数据的流动，虚线表示逻辑层面上的数据流动
 - 前4个层次，不需要中间系统实现，叫做 **end-end层**
 
-![osi2](/a/computer/network/osi2.gif)
+![OSI模型2](/a/computer/network/osi2.gif)
 
 
 解释
@@ -325,14 +325,14 @@ print("用户2解码", msg2)
 
 
 **4.传输层**
-- 完成端到端的、完整报文的传输。接受：来自会话层的完整报文；完成：完成报文的传输。
+- 完成端到端的、完整报文的传输。接受：来自会话层的完整报文；完成：报文的传输。
 - **分段和重组**，发送端：把报文分割为段；接收端：把段重新组合成完整的报文
 - **SAP寻址**
     - 确保把完整报文提交给正确的 **进程**（例如端口号）
 - 端到端的 **连接控制**，建立、维护、拆除。这里的连接是逻辑上的连接
 - 端到端的 **流量控制**
 - **差错控制**
-
+- 例如：**TCP**、**UDP**
 
 **5.会话层**
 - **对话控制**（dialog controlling）：建立、维护、拆除
@@ -348,7 +348,7 @@ print("用户2解码", msg2)
 - 实际应用中。这一层也不是独立存在的。
 
 
-**7.应用层**：不同的应用对应不同的应用层协议，例如：HTTP、FTP、SMTP
+**7.应用层**：不同的应用对应不同的应用层协议，例如：**HTTP**、**FTP**、**SMTP**
 - 支持用户使用用户代理（如浏览器、邮箱软件）或网络接口使用网络
 
 
@@ -362,7 +362,7 @@ print("用户2解码", msg2)
 - 网络接口层没有定义具体协议，只要求其能够封装 IP分组，使其能在结点间传输
 
 
-![tcp_ip_model](/a/computer/network/tcp_ip_model.gif)
+![TCP/IP模型](/a/computer/network/tcp_ip_model.gif)
 
 
 
@@ -377,7 +377,7 @@ print("用户2解码", msg2)
     - 以太网（Ethernet）、802.11 (WiFi)、PPP
 - **物理层** : 比特传输
 
-![5layer_model](/a/computer/network/5layer_model.gif)
+![5层模型](/a/computer/network/5layer_model.gif)
 
 ## 应用层
 
@@ -518,7 +518,7 @@ Internet传输层服务模型
     - HTTP 1.1版本默认
 
 
-![http1](/a/computer/network/http1.gif)
+![HTTP非持久性链接](/a/computer/network/http1.gif)
 
 缺点：
 - 响应时间
@@ -547,11 +547,11 @@ HTTP消息分为两种：
 
 
 
-![http_request1](/a/computer/network/http_request1.gif)
+![HTTP的request](/a/computer/network/http_request1.gif)
 
 
 
-![http_request2](/a/computer/network/http_request2.gif)
+![HTTP的request通用格式](/a/computer/network/http_request2.gif)
 
 
 
@@ -576,7 +576,7 @@ HTTP消息分为两种：
 
 
 
-![http_response](/a/computer/network/http_response.gif)
+![HTTP的response](/a/computer/network/http_response.gif)
 
 其中常见的 **响应状态码**：
 - `200 OK`
@@ -676,7 +676,7 @@ SMTP协议: RFC 2821
 
 
 
-![smtp](/a/computer/network/smtp.gif)
+![SMTP](/a/computer/network/smtp.gif)
 
 
 SMTP 交互示例
@@ -702,7 +702,7 @@ S: 221 hamburger.edu closing connection
 
 安装telnet
 
-```bash
+```sh
 sudo apt update
 sudo apt install telnet
 
@@ -715,11 +715,8 @@ sudo apt install openssl
 
 用 telnet 发送邮件
 ```
-
 telnet smtp.qq.com 25
-
 HELO qq.com
-
 ```
 
 
@@ -836,13 +833,10 @@ DNS的层级
 DNS查询有两种：**迭代查询** 和 **递归查询**
 
 
-**迭代查询：**
 ![迭代查询](/a/computer/network/dns2.gif)
 
 
-**递归查询：**
 ![迭代查询](/a/computer/network/dns3.gif)
-递归查询
 
 
 缓存
@@ -853,7 +847,7 @@ DNS查询有两种：**迭代查询** 和 **递归查询**
 **DNS的格式**
 - DNS的记录是 **资源记录**（RR，resource records），是一个四元组，（name，value，type，ttl）
 - `Type=A`，Name:主机域名，Value：IP地址
-- `Type=NS`，Name：域（edu.cn），Value：域权威域名解析服务器的主机域名。就是，根据域给出对应能解析的服务器。
+- `Type=NS`，Name：域（edu.cn），Value：域权威域名解析服务器的主机域名。功能：根据域给出对应能解析的服务器。
 - `Type=CNAME`，Name：别名，Value：真实域名。实现别名服务。
 - `Type=MX`，Value是Name对应的邮件服务器
 
@@ -885,7 +879,7 @@ C/S 和 P2P 分发总时间
 - C/S架构下，
     - 服务器需要发送N个副本，用时 $NF/u_s$
     - 客户机i下载需要 $f/\min(d_i)$
-    - 总耗时：$\max \{ NF/u_s,f/\min(d_i)） \}$
+    - 总耗时：$\max \{ NF/u_s,f/\min(d_i) \}$
     - **N较大时线性增长**
 - P2P架构下，
     - 服务器需要发送1个副本，用时 $F/u_s$
@@ -895,7 +889,7 @@ C/S 和 P2P 分发总时间
     - **N足够大时，耗时增长很慢**
 
 
-![CS与P2P比较](/a/computer/network/p2p2.gif)
+![CS与P2P耗时比较](/a/computer/network/p2p2.gif)
 
 
 BitTorrent
@@ -1136,7 +1130,7 @@ UDP 客户端软件流程
     2. 反复调用 `recvfrom()` 函数，接收下一个客户请求，并创建新线程处理该客户响应；
 - 子线程
     1. 接收一个特定请求；
-    2. 依据应用层协议构造响应报文，并调用sendto()发送；
+    2. 依据应用层协议构造响应报文，并调用 `sendto()` 发送；
     3. 退出(一个子线程处理一个请求后即终止)。
 
 
@@ -1156,11 +1150,119 @@ UDP 客户端软件流程
 -------------------
 
 
+## 传输层
+
+主要内容
+- 复用/分用
+- 可靠数据传输机制
+- 流量控制机制
+- 拥塞控制机制
+
+传输层协议
+- UDP：无连接传输服务
+- TCP：面向连接的传输服务
+- TCP拥塞控制
+
+
+传输层vs网络层
+- 网络层：提供主机之间的逻辑通信机制
+- 传输层：提供应用进程之间的逻辑通信机制
+
+
+可靠、按序的交付服务(TCP)
+- 拥塞控制
+- 流量控制
+- 连接建立
+
+不可靠的交付服务(UDP)
+- 基于“尽力而为(Best-effort)”的网络层，没有做（可靠性方面的）扩展
+
+两种服务均不保证：
+- 延迟
+- 带宽
+
+### 多路复用和多路分用
+
+- 接收端 **多路分用**。传输层依据头部信息将收到的 Segment 交给正确的 Socket，即不同的进程
+- 发送端 **多路复用**。从多个Socket接收数据，为每块数据封装上头部信息，生成 Segment，交给网络层
+
+
+![TCP/UDP的1个segment](/a/computer/network/segment.gif)
+
+
+
+字段名	作用
+源端口号	哪个应用发来的
+目的端口号	发给哪个应用（比如 80）
+序号 (Sequence Number)	该段数据在整个字节流中的起始字节号
+确认号 (Acknowledgement Number)	用于确认收到对方的序号
+数据偏移（Header Length）	表示 header 有多长
+标志位（URG, ACK, PSH, RST, SYN, FIN）	连接控制和数据传输标识
+窗口大小	告诉对方我还能接收多少数据
+校验和	检查 segment 是否损坏
+紧急指针	与 URG 位配合使用
+可选项（Options）	比如最大报文段 MSS，窗口扩大因子等
+
+
+
+复用/分用时，靠二元组/四元组来判断 segment 对应的 socket 
+- UDP socket 用二元组（目的 IP、目的端口）
+- TCP socket 用四元组（客户端 IP、客户端端口、服务器 IP、服务器端口）
 
 
 
 
+### UDP
 
+
+**UDP** （User Datagram Protocol） **RFC 768** 
+
+- UDP 基于 IP 协议，（只）做这些：
+    1. 复用/分用
+    2. 简单的错误校验
+        - 虽然链路层也有 ECC，但是 1）做为一个抽象层，下一层可能使用不同的协议、物理链路，未必都有 ECC；2）即时链路器有 ECC，存储转发时也可能出错。
+- “Best effort”服务，UDP段可能
+    - 丢失
+    - 非按序到达
+- 无连接
+    - UDP发送方和接收方之间不需要握手
+    - 每个UDP段的处理独立于其他段
+- **优点**
+    - 无须建立连接：延迟小
+    - 无须维护连接状态：实现简单
+    - 头部开销少
+    - 没有拥塞机制：可以更好地控制发送时间和速率
+- 常用于
+    - 流媒体：容忍丢失，但速率敏感
+    - DNS
+    - SNMP
+- 在 UDP 上实现可靠数据传输？
+    - 在应用层增加可靠性机制
+    - 应用特定的错误恢复机制
+
+
+![UDP的1个Segment](/a/computer/network/udp_segment.gif)
+
+
+checksum 算法（见于 [擦除码-checksum](https://www.guofei.site/2024/01/20/reed_solomon.html#checksum%20%E5%AE%9E%E7%8E%B0)）
+
+
+### 可靠数据传输Rdt
+
+- 什么是可靠？不错、不丢、不乱
+- 信道的不可靠特性决定了 **可靠数据传输协议**（rdt）的复杂性
+- 应用层看来，它所使用的是一个可靠的信道；但是从物理层看来，整个是建立在不可靠信道上的。
+
+可靠数据传输协议
+- 渐进设计
+- 只考虑单向传输（因为双向传输在单向传输上x2即可）
+    - 但是控制信息是双向流动的
+- 利用 **有限状态机**（Finite State Machine，FSM）刻画传输协议
+
+
+Rdt 1.0：可靠信道上的可靠数据传输
+- 底层可靠：不错、不丢
+- 发送方和接收方的 FSM 独立
 
 
 

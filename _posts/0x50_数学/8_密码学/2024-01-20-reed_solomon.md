@@ -34,16 +34,16 @@ order: 59003
 
 | 算法 | 校验位大小 | 特点 | 功能 |
 |--|--|--|--|
-| 奇偶校验码（Parity Code） | 1个 | 算法最简单 | 只能检测奇数个位的错误，无法纠错。方法：在数据后添加一个校验位，使二进制位1的个数为奇数（或偶数） |
+| 奇偶校验码（Parity Code） | 1个 | 算法最简单 | 检测奇数个位的错误，无法纠错<br>方法：在数据后添加一个校验位，使二进制位1的个数为奇数（或偶数）<br>用途：内存、串口传输 |
 | 汉明码（Hamming Code） | 1个 | 算法简单 | 检测并修正单个位错误；检测双位错误，但不能修正 |
 | 里德-所罗门码（Reed-Solomon Code） | 多个（取决于配置） | 强大的纠错能力，广泛用于CD和DVD、无线通信和卫星通信 | 纠正多个错误。特别擅长突发错误（就是错误集中在较小的区域） |
-| 循环冗余校验（Cyclic Redundancy Check, CRC） | 多个（取决于CRC多项式长度） | 检测随机改变 | 检测数据传输或存储中的错误 |
+| 循环冗余校验（Cyclic Redundancy Check, CRC） | 多个（取决于CRC多项式长度） | 检测随机改变<br>硬件高效实现 | 检测数据传输或存储中的错误 |
 | 卷积码（Convolutional Code） | 取决于码率和约束长度 | 用于无线通信 | 错误校正用于连续位流 |
 | 涡轮码（Turbo Code） | 取决于码率和内部组件 | 高效率 | 广泛应用于深空通信和移动通信 |
 | LDPC码（Low-Density Parity-Check Code） | 多个（取决于配置） | 接近香农极限 | 广泛用于高速数据传输和数据广播，如蓝光、Wi-Fi |
 | BCH码（Bose-Chaudhuri-Hocquenghem Code） | 多个（取决于配置） | 多位错误修正 | 适用于控制系统和卫星通信 |
 | 极化码（Polar Code） | 取决于码率和长度 | 接近香农极限 | 5G通信标准的控制信道编码 |
-| 字符校验和（Checksum） | 可变 | 简单检测 | 检测数据包或文件的完整性 |
+| 字符校验和（Checksum） | 可变 | 简单检测 | 检测数据包或文件的完整性<br> TCP/IP/UDP |
 
 
 
@@ -67,48 +67,56 @@ Reed-Solomon 有 2 个分类
 - 如果数据是类似 `Vec<i32>`，也可以使用加法而不是异或
 
 
+异或校验：性能极高，但偶数个同位置的 bit 错误就无法检测到。
+
 ```rust
-pub struct CheckSum {}
-
-impl CheckSum {
-    pub fn new() -> Self { Self {} }
-
-    pub fn encode(&self, msg: &[u8]) -> Vec<u8> {
-        let mut res = Vec::with_capacity(msg.len() + 1);
-        res.extend_from_slice(msg);
-        res.push(get_checksum(msg));
-        res
-    }
-
-    pub fn check(&self, msg_with_checksum: &[u8]) -> bool {
-        get_checksum(&msg_with_checksum[..msg_with_checksum.len() - 1]) == msg_with_checksum[msg_with_checksum.len() - 1]
-    }
-}
-
-
-fn get_checksum(msg: &[u8]) -> u8 {
+fn xor_check(msg: &[u8]) -> u8 {
     msg.iter().fold(0, |acc, &x| acc ^ x)
-}
-
-
-#[cfg(test)]
-mod tests {
-    use crate::CheckSum;
-
-    #[test]
-    fn test_checksum() {
-        let check_sum = CheckSum::new();
-        let msg = b"12323".to_vec();
-        let mut msg_with_checksum = check_sum.encode(&msg);
-        assert!(check_sum.check(&msg_with_checksum));
-        msg_with_checksum[2] = 93;
-        assert!(!check_sum.check(&msg_with_checksum));
-    }
 }
 ```
 
-进一步，我们还希望定位到哪个数字有错
+
+进一步，如果我们还希望定位到哪个数字有错：
 - 把数字写成 nxm 的矩阵，然后对每行每列做 checksum
+
+
+checksum：性能较快。特定的模式可能绕过，但非常少见
+
+
+```rust
+// UDP/TCP/IP 标准 checksum 算法
+pub fn checksum(data: &[u8]) -> u16 {
+    let mut sum: u32 = 0; // u32 是防止溢出
+
+    // 每2个字节组成一个 16 位整数
+    let mut chunks = data.chunks_exact(2);
+    for chunk in &mut chunks {
+        // from_be_bytes：大端序
+        let word = u16::from_be_bytes([chunk[0], chunk[1]]) as u32;
+        sum += word;
+    }
+
+    // 如果是奇数长度，最后一字节补0成16位
+    if let Some(&[last]) = chunks.remainder().first().map(|b| [*b]) {
+        sum += (u16::from_be_bytes([last, 0])) as u32;
+    }
+
+    // 回卷进位，：把溢出的高 16 位加回来，直到没有进位为止
+    while (sum >> 16) != 0 {
+        sum = (sum & 0xffff) + (sum >> 16);
+    }
+
+    // 取反，符合 TCP/UDP checksum 要求
+    !(sum as u16)
+}
+
+fn main() {
+    let data = b"123ABCxyz";  // 任意字节流
+    let sum = checksum(data);
+    println!("checksum = 0x{:04x}", sum);
+}
+```
+
 
 
 
@@ -559,7 +567,7 @@ $$
 $$
 
 
-#### decode 阶段
+#### decode 阶段:
 
 
 参考上面的 decode 部分，同样写成矩阵形式，同样假设 2、3、7 行丢失
