@@ -1,6 +1,6 @@
 ---
 layout: post
-title: law of large numbers
+title: 大数定律
 categories:
 tags: 0x42_概率论
 keywords:

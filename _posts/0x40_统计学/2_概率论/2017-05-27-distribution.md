@@ -34,30 +34,31 @@ order: 421
 
 
 ## 多元正态分布
-$f(x_1,x_2,...x_p)=\dfrac{1}{(2\pi)^{p/2} \mid \Sigma \mid ^{1/2}} exp[-\dfrac{1}{2} (x-u)'\Sigma^{-1}(x-u)]$
-where,  
+
+多元正态分布
+:    $f(x_1,x_2,...x_p)=\dfrac{1}{(2\pi)^{p/2} \mid \Sigma \mid ^{1/2}} exp[-\dfrac{1}{2} (x-u)'\Sigma^{-1}(x-u)]$  
+其中,  
 - u是p阶向量
 - $\Sigma$是p阶正定矩阵
-
-
 叫做X服从p元正态分布， 记为$X \sim N_p(u,\Sigma)$
 
-### 多元正态分布的性质
+**多元正态分布的性质**
 如果$X=(X_1,X_2,...X_p) \sim N_p(u,\Sigma)$  
-### 性质1：均值和方差
-$EX=u$  
-$Var(X)=\Sigma$  
 
-
-当$\mid\Sigma \mid =0 $,不存在密度函数。 当然可以给出一些形式上的表达式，使得可以统一处理。  
-
-
-### 性质2：独立性
+- **性质1：均值和方差**
+    - $EX=u$  
+    - $Var(X)=\Sigma$  
+- 当$\mid\Sigma \mid =0 $,不存在密度函数。 当然可以给出一些形式上的表达式，使得可以统一处理。  
+- **性质2：独立性**
 如果$\Sigma$是对角阵，那么$X_1,X_2,...,X_p$相互独立  
+- **性质3：线性组合**
+    - 如果$A_{s\times p},d_{s\times 1}$都是常数矩阵，  
+    - 那么$AX+d\sim N_s(Au+d,A\Sigma A')$  
+- **性质4：分块矩阵**
+    - 做如下拆分：  
 
 
-### 性质3：分块矩阵
-做如下拆分：  
+
 $$X=\left [\begin{array}{ccc}X^{(1\sim q)}\\ X^{(q+1 \sim p)} \end{array}\right],
 u=\left [\begin{array}{ccc}u^{(1\sim q)}\\ u^{(q+1 \sim p)} \end{array}\right],
 \Sigma=\left [\begin{array}{ccc}\Sigma_{11}&\Sigma_{12}\\ \Sigma_{21}&\Sigma_{22} \end{array}\right]$$,  
@@ -71,9 +72,6 @@ $X^{(1\sim q)}\sim N_q(u^{1\sim q},\Sigma_{11}), X^{(q+1 \sim p)} \sim N_q(u^{q+
 - 两个正态分布不相关，不一定独立。只有是多元正态分布时，不相关才推出独立。  
 
 
-### 性质4：线性组合
-如果$A_{s\times p},d_{s\times 1}$都是常数矩阵，  
-那么$AX+d\sim N_s(Au+d,A\Sigma A')$  
 
 ## 正态分布的乘法
 *参见[Products and Convolutions of Gaussian Probability
