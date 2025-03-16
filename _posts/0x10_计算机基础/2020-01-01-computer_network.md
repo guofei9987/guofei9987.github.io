@@ -248,7 +248,7 @@ print("用户2解码", msg2)
 
 
 
-![体系结构](/a/computer/network/architecture.gif)
+![caption: 体系结构](/a/computer/network/architecture.gif)
 
 
 ### OSI模型
@@ -260,13 +260,13 @@ print("用户2解码", msg2)
 - 功能上划分 **7层**，每层完成特定的网络功能
 
 
-![OSI模型](/a/computer/network/osi1.gif)
+![caption: OSI模型](/a/computer/network/osi1.gif)
 
 解释
 - 上面的实线表示物理层面上数据的流动，虚线表示逻辑层面上的数据流动
 - 前4个层次，不需要中间系统实现，叫做 **end-end层**
 
-![OSI模型2](/a/computer/network/osi2.gif)
+![caption: OSI模型2](/a/computer/network/osi2.gif)
 
 
 解释
@@ -317,7 +317,7 @@ print("用户2解码", msg2)
 
 
 
-![osi3](/a/computer/network/osi3.gif)
+![caption: osi3](/a/computer/network/osi3.gif)
 
 图片解释：
 1. 上面分组中的 S 和 D 是网络层添加的。它标记了源主机/目的主机的地址
@@ -362,7 +362,7 @@ print("用户2解码", msg2)
 - 网络接口层没有定义具体协议，只要求其能够封装 IP分组，使其能在结点间传输
 
 
-![TCP/IP模型](/a/computer/network/tcp_ip_model.gif)
+![caption: TCP/IP模型](/a/computer/network/tcp_ip_model.gif)
 
 
 
@@ -377,7 +377,7 @@ print("用户2解码", msg2)
     - 以太网（Ethernet）、802.11 (WiFi)、PPP
 - **物理层** : 比特传输
 
-![5层模型](/a/computer/network/5layer_model.gif)
+![caption: 5层模型](/a/computer/network/5layer_model.gif)
 
 ## 应用层
 
@@ -518,7 +518,7 @@ Internet传输层服务模型
     - HTTP 1.1版本默认
 
 
-![HTTP非持久性链接](/a/computer/network/http1.gif)
+![caption: HTTP非持久性链接](/a/computer/network/http1.gif)
 
 缺点：
 - 响应时间
@@ -547,11 +547,11 @@ HTTP消息分为两种：
 
 
 
-![HTTP的request](/a/computer/network/http_request1.gif)
+![caption: HTTP的request](/a/computer/network/http_request1.gif)
 
 
 
-![HTTP的request通用格式](/a/computer/network/http_request2.gif)
+![caption: HTTP的request通用格式](/a/computer/network/http_request2.gif)
 
 
 
@@ -576,7 +576,7 @@ HTTP消息分为两种：
 
 
 
-![HTTP的response](/a/computer/network/http_response.gif)
+![caption: HTTP的response](/a/computer/network/http_response.gif)
 
 其中常见的 **响应状态码**：
 - `200 OK`
@@ -676,7 +676,7 @@ SMTP协议: RFC 2821
 
 
 
-![SMTP](/a/computer/network/smtp.gif)
+![caption: SMTP](/a/computer/network/smtp.gif)
 
 
 SMTP 交互示例
@@ -803,7 +803,7 @@ DNS服务
 
 DNS采用 分布式、层次式数据库
 
-![DNS](/a/computer/network/dns1.gif)
+![caption: DNS](/a/computer/network/dns1.gif)
 
 
 
@@ -833,10 +833,10 @@ DNS的层级
 DNS查询有两种：**迭代查询** 和 **递归查询**
 
 
-![迭代查询](/a/computer/network/dns2.gif)
+![caption: 迭代查询](/a/computer/network/dns2.gif)
 
 
-![迭代查询](/a/computer/network/dns3.gif)
+![caption: 迭代查询](/a/computer/network/dns3.gif)
 
 
 缓存
@@ -859,7 +859,7 @@ DNS协议：
 - 消息头部
 
 
-![DNS消息格式](/a/computer/network/dns4.gif)
+![caption: DNS消息格式](/a/computer/network/dns4.gif)
 
 
 
@@ -872,7 +872,7 @@ Peer-to-peer
 - 节点可能更换IP地址
 
 
-![P2P耗时计算](/a/computer/network/p2p1.gif)
+![caption: P2P耗时计算](/a/computer/network/p2p1.gif)
 
 
 C/S 和 P2P 分发总时间
@@ -889,7 +889,7 @@ C/S 和 P2P 分发总时间
     - **N足够大时，耗时增长很慢**
 
 
-![CS与P2P耗时比较](/a/computer/network/p2p2.gif)
+![caption: CS与P2P耗时比较](/a/computer/network/p2p2.gif)
 
 
 BitTorrent
@@ -959,7 +959,7 @@ chunk
 2. 节点刚加入时，有很多需要处理的消息
 
 
-![洪泛式](/a/computer/network/p2p_flooding.gif)
+![caption: 洪泛式](/a/computer/network/p2p_flooding.gif)
 
 
 
@@ -973,13 +973,13 @@ chunk
 - 例子：Skype
 
 
-![层次式覆盖网络](/a/computer/network/p2p3.gif)
+![caption: 层次式覆盖网络](/a/computer/network/p2p3.gif)
 
 
 
 ### Socket编程
 
-![端上的网络开发](/a/computer/network/socket1.gif)
+![caption: 端上的网络开发](/a/computer/network/socket1.gif)
 
 应用编程接口API（Application Programming Interface）
 - 传输层、网络层、数据链路层、物理层是由操作系统提供的
@@ -1060,7 +1060,7 @@ Socket API（WinSock）
 
 
 
-![Socket API（TCP）调用流程](/a/computer/network/socket2.gif)
+![caption: Socket API（TCP）调用流程](/a/computer/network/socket2.gif)
 
 
 ### Socket编程-客户端软件设计
@@ -1187,7 +1187,7 @@ UDP 客户端软件流程
 - 发送端 **多路复用**。从多个Socket接收数据，为每块数据封装上头部信息，生成 Segment，交给网络层
 
 
-![TCP/UDP的1个segment](/a/computer/network/segment.gif)
+![caption: TCP/UDP的1个segment](/a/computer/network/segment.gif)
 
 
 
@@ -1241,7 +1241,7 @@ UDP 客户端软件流程
     - 应用特定的错误恢复机制
 
 
-![UDP的1个Segment](/a/computer/network/udp_segment.gif)
+![caption: UDP的1个Segment](/a/computer/network/udp_segment.gif)
 
 
 checksum 算法（见于 [擦除码-checksum](https://www.guofei.site/2024/01/20/reed_solomon.html#checksum%20%E5%AE%9E%E7%8E%B0)）
@@ -1254,7 +1254,7 @@ checksum 算法（见于 [擦除码-checksum](https://www.guofei.site/2024/01/20
 - 信道的不可靠特性决定了 **可靠数据传输协议**（**Rdt**，reliable data transfer protocol）的复杂性
 
 
-![Rdt基本形态](/a/computer/network/rdt.gif)
+![caption: Rdt基本形态](/a/computer/network/rdt.gif)
 
 Rdt 的设计思路
 - **渐进设计**
@@ -1264,7 +1264,7 @@ Rdt 的设计思路
 
 
 
-![Rdt的渐进设计](/a/computer/network/rdt_version.gif)
+![caption: Rdt的渐进设计](/a/computer/network/rdt_version.gif)
 
 
 
@@ -1273,7 +1273,7 @@ Rdt 的设计思路
 - 底层可靠：不错、不丢
 - 因此，发送方和接收方的 FSM 独立
 
-![Rdt 1.0 的 FSM](/a/computer/network/rdt1.0.gif)
+![caption: Rdt 1.0 的 FSM](/a/computer/network/rdt1.0.gif)
 
 
 **Rdt2.0：只可能产生位错误的信道**
@@ -1289,7 +1289,7 @@ Rdt 的设计思路
     - 重传
 
 
-![Rdt 2.0 的 FSM](/a/computer/network/rdt2.0.gif)
+![caption: Rdt 2.0 的 FSM](/a/computer/network/rdt2.0.gif)
 
 **Rdt2.0的缺陷**
 - 如果 ACK/NAK 被破坏，怎么办
@@ -1304,7 +1304,7 @@ Rdt 的设计思路
 
 
 
-![Rdt2.1 的 FSM](/a/computer/network/rdt2.1.gif)
+![caption: Rdt2.1 的 FSM](/a/computer/network/rdt2.1.gif)
 
 
 - **发送方**
@@ -1319,7 +1319,7 @@ Rdt 的设计思路
 - 在 ACK 消息中 **显式地加入被确认分组的序列号**
 - 发送方收到重复ACK之后，采取与收到NAK消息相同的动作：重传当前分组
     
-![Rdt2.2 的 FSM](/a/computer/network/rdt2.2.gif)
+![caption: Rdt2.2 的 FSM](/a/computer/network/rdt2.2.gif)
 
     
 
@@ -1331,14 +1331,14 @@ Rdt 的设计思路
 
 
 
-![Rdt3.0 发送方的 FSM](/a/computer/network/rdt3.0.gif)
+![caption: Rdt3.0 发送方的 FSM](/a/computer/network/rdt3.0.gif)
 
 
 Rdt3.0 工作时的时序如下（有4种情况）：
 
-![Rdt3.0 的时序情况1](/a/computer/network/rdt3_1.gif)
+![caption: Rdt3.0 的时序情况1](/a/computer/network/rdt3_1.gif)
 
-![Rdt3.0 的时序情况2](/a/computer/network/rdt3_2.gif)
+![caption: Rdt3.0 的时序情况2](/a/computer/network/rdt3_2.gif)
 
 
 共有4种情况
@@ -1359,7 +1359,7 @@ Rdt3.0 工作时的时序如下（有4种情况）：
 - 每个分组的发送时间为 30.008 ms，也就是说，实际带宽仅为 33KB/s
 
 
-![Rdt3.0 的性能分析](/a/computer/network/rdt3_time.gif)
+![caption: Rdt3.0 的性能分析](/a/computer/network/rdt3_time.gif)
 
 
 
@@ -1368,10 +1368,10 @@ Rdt3.0 工作时的时序如下（有4种情况）：
 - 发送方/接收方 需要更大空间以 **缓存分组**
 - 为了控制，需要 **滑动窗口协议**：**GBN**、**SR**
 
-![流水线协议](/a/computer/network/rdt_pipeline.gif)
+![caption: 流水线协议](/a/computer/network/rdt_pipeline.gif)
 
 
-![流水线协议](/a/computer/network/rdt_pipeline2.gif)
+![caption: 流水线协议](/a/computer/network/rdt_pipeline2.gif)
 
 
 **GBN协议** (Go-Back-N)
@@ -1390,12 +1390,12 @@ Rdt3.0 工作时的时序如下（有4种情况）：
     
 
 
-![GBN 窗口](/a/computer/network/rdt_window.gif)
+![caption: GBN 窗口](/a/computer/network/rdt_window.gif)
 
-![GBN 的 FSM](/a/computer/network/rdt_gbn.gif)
+![caption: GBN 的 FSM](/a/computer/network/rdt_gbn.gif)
 
 
-![GBN 的时序情况](/a/computer/network/rdt_gbn_2.gif)
+![caption: GBN 的时序情况](/a/computer/network/rdt_gbn_2.gif)
 
 
 GBN的例子：
@@ -1415,13 +1415,13 @@ GBN的例子：
     - 发送方窗口，最大为 N
 
 
-![SR的发送方和接收方窗口](/a/computer/network/rdt_sr.gif)
+![caption: SR的发送方和接收方窗口](/a/computer/network/rdt_sr.gif)
 
 
-![SR的发送方和接收方算法](/a/computer/network/rdt_sr_algo.gif)
+![caption: SR的发送方和接收方算法](/a/computer/network/rdt_sr_algo.gif)
 
 
-![SR的时序](/a/computer/network/rdt_sr_timeline.gif)
+![caption: SR的时序](/a/computer/network/rdt_sr_timeline.gif)
 
 
 SR 的某个困境：假设窗口尺寸为 N，使用的序列号为 0~N-1，那么由于有很多空中的包，因此序号容易搞混
