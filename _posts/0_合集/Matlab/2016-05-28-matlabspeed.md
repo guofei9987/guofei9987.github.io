@@ -7,10 +7,56 @@ keywords:
 description:
 ---
 
-*此博客中的内容由本人(guofei)发表于新浪博客，2017年7月1日迁移到个人博客*  
+*此博客中的内容由本人在2012-2017年期间陆续发表于新浪博客，2017年7月1日迁移到个人博客*  
 
 用Matlab做好模型后，在部署时，要深刻思考代码运行效率问题。  
 这里写上一些提高代码运行效率的技巧或思路  
+
+## 矢量化
+
+Matlab 非常适合矢量化计算，而不很适合 for 循环。
+
+原代码：
+```matlab
+clear;clc
+tic
+x=[];
+for i=10:99
+    mark=0
+    for j=2:i-1
+       if mod(i,j)==0
+           mark=1;
+           break
+       end
+
+    end
+    if mark==0
+        x=[x;i];
+    end
+end
+toc
+```
+
+>Elapsed time is 0.006814 seconds.
+
+
+
+由于 mod 支持矢量化运算，可以优化：
+
+```matlab
+tic
+y=10:100;
+mark1=[];
+for i=y
+    if ~any(mod(i,[2:i-1])==0)
+       mark1=[mark1;i];
+    end
+end
+toc
+```
+
+>Elapsed time is 0.004686 seconds.
+
 
 ## 1. 高次方运行效率研究
 ```
