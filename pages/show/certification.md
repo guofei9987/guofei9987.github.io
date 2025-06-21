@@ -117,6 +117,6 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 
 其它
 
-|||
-|--|--|
-| ![](/a/certificate/uncc_food_waste_prevention.gif) <br> [联合国气候变化组织](https://unccelearn.org/)颁发的 “食品浪费防治”证书 | ![](/a/certificate/unesco_oer.jpg)<br>[联合国教科文组织](https://unesco.org/)颁发的[“开放教育资源开发”证书](https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2) |
+||||
+|--|--|--|
+| ![](/a/certificate/uncc_food_waste_prevention.gif) <br> [联合国气候变化组织](https://unccelearn.org/)颁发的 “食品浪费防治”证书 | ![](/a/certificate/unesco_oer.jpg)<br>[联合国教科文组织](https://unesco.org/)颁发的[“开放教育资源开发”证书](https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2) | ![中国科教电影电视协会个人会员证书](/a/certificate/中国科教电影电视协会个人会员证书.jpg) <br> [中国科教电影电视协会](https://www.csfva.org.cn/)颁发的会员证书
