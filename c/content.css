@@ -249,10 +249,12 @@ blockquote {
 
 
 /* 公式底色： */
-.katex {
+/* .katex {
+background-color: lightcyan;
+} */
+.katex span.base{
 background-color: lightcyan;
 }
-
 
 /* me.html上的自己就头像，默认没有上下对齐 */
 img.me {
