@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Rust7】collections
-categories: 合集
+categories: rust
 tags:
 keywords:
 description:

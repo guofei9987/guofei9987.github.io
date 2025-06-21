@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【Rust4】trait
-categories: 合集
+categories: rust
 tags:
 keywords:
 description:
