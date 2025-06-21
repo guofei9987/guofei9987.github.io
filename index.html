@@ -8,8 +8,7 @@ title: 首页
 
 <br>
 
-<script async src="https://cse.google.com/cse.js?cx=b6983bc30483d4337"></script>
-<div class="gcse-search"></div>
+
 
 {% assign posts_by_month = site.posts | group_by_exp:"post", "post.date | date: '%Y-%m'" %}
 {% for group in posts_by_month %}
