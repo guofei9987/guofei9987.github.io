@@ -6,7 +6,7 @@ permalink: /microblog.html
 
 
 <style>
-body {max-width: 800px; margin: auto; padding: 20px; }
+/* body {max-width: 800px; margin: auto; padding: 20px; } */
 .entry { border-bottom: 1px solid #eee; padding: 10px 0; opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
 .entry.show { opacity: 1; transform: translateY(0); }
 .time { color: #888; font-size: 16px; margin-bottom: 5px; }
@@ -24,32 +24,27 @@ body {max-width: 800px; margin: auto; padding: 20px; }
 <script>
 const entriesContainer = document.getElementById('entries');
 const loadMoreBtn = document.getElementById('loadMore');
-
 let pageSize = 30;
 let loadCount = 0;
 let dataPrimary = [];
 let dataSecondary = [];
 let index = 0;
 let secondaryLoaded = false;
-
 async function loadJson(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error('无法加载数据');
     return await response.json();
 }
-
 async function init() {
     // 加载首屏 json
     dataPrimary = await loadJson('/pages/weibo/part1.json');
     renderEntries();
-
     // 预加载第二个 json
     loadJson('/pages/weibo/part2.json').then(data => {
     dataSecondary = data;
     secondaryLoaded = true;
     }).catch(() => console.log('未加载 part2.json'));
 }
-
 function renderEntries() {
     let count = 0;
     while (index < dataPrimary.length && count < pageSize) {
@@ -72,7 +67,6 @@ function renderEntries() {
     loadMoreBtn.disabled = true;
     }
 }
-
 loadMoreBtn.addEventListener('click', async () => {
     loadMoreBtn.disabled = true;
     loadMoreBtn.textContent = '加载中...';
@@ -88,6 +82,5 @@ loadMoreBtn.addEventListener('click', async () => {
     loadMoreBtn.textContent = '查看更多';
     }
 });
-
 init();
 </script>
