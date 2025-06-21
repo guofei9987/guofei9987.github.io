@@ -21,6 +21,8 @@ permalink: /microblog.html
 
 <div id="entries"></div>
 <button id="loadMore">查看更多</button>
+
+
 <script>
 const entriesContainer = document.getElementById('entries');
 const loadMoreBtn = document.getElementById('loadMore');
@@ -30,11 +32,13 @@ let dataPrimary = [];
 let dataSecondary = [];
 let index = 0;
 let secondaryLoaded = false;
+
 async function loadJson(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error('无法加载数据');
     return await response.json();
 }
+
 async function init() {
     // 加载首屏 json
     dataPrimary = await loadJson('/pages/weibo/part1.json');
@@ -45,6 +49,7 @@ async function init() {
     secondaryLoaded = true;
     }).catch(() => console.log('未加载 part2.json'));
 }
+
 function renderEntries() {
     let count = 0;
     while (index < dataPrimary.length && count < pageSize) {
@@ -67,6 +72,7 @@ function renderEntries() {
     loadMoreBtn.disabled = true;
     }
 }
+
 loadMoreBtn.addEventListener('click', async () => {
     loadMoreBtn.disabled = true;
     loadMoreBtn.textContent = '加载中...';
