@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【numpy-financial】金融计算模块
-categories:
-tags: 0xb0_Python语法
+categories: python
+tags: 
 keywords:
 description:
 order: 1269

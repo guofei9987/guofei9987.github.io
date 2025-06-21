@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【Python】异常和错误
-categories:
-tags: 0xb0_Python语法
+categories: python
+tags: 
 keywords:
 description:
 order: 1207

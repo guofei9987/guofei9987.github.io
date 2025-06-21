@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【加速】multiprocessing多线程、多进程、并行、numba
-categories:
-tags: 0xb0_Python语法
+categories: python
+tags: 
 keywords:
 description:
 order: 1208
