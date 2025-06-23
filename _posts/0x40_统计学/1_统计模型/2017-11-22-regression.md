@@ -315,7 +315,7 @@ step2 又有一些不同的方法
 
 2. $H_0: \rho_1 = \rho_2 = \dots = \rho_p = 0$，即假设不存在自相关
 3. 求残差 $e_t$
-4. 辅助回归：$e_t = \alpha_1 + \alpha_2 X_{2t} + \alpha_3 X_{3t} + \dots + \alpha_k X_{kt} + \hat{\rho}_1 e_{t-1} + \hat{\rho}_2 e_{t-2} + \dots + \hat{\rho}_p e_{t-p} + v_t$  
+4. 辅助回归：$e_t = \alpha_1 + \alpha_2 X_{2t} + \alpha_3 X_{3t} + \dots + \alpha_k X_{kt} + \hat\rho_1 e_{t-1} + \hat\rho_2 e_{t-2} + \dots + \hat\rho_p e_{t-p} + v_t$  
 5. 计算LM统计量 $LM = T \times R^2 \sim \chi^2(p)$，其中，$T$为样本量，$R^2$为辅助回归的决定系数。
 6. 决策。如果 $LM$ 值过大，则拒绝 $H_0$，表明存在自相关。
 
