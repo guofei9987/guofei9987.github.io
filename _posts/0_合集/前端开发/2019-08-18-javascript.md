@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 【JavaScript】全笔记
-categories: 合集
+categories: 前端
 tags:
 keywords:
 description:

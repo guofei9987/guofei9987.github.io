@@ -1,0 +1,23 @@
+---
+layout: post_pure
+title: 【合集】前端开发(18篇)
+categories: 合集
+tags: 0x10_计算机基础
+keywords:
+description:
+name: 前端
+permalink: /:title:output_ext
+order: 19008
+---
+
+
+{% assign category_name = page.name %}
+
+共 {{site.categories[category_name].size}} 篇
+
+{% for post in site.categories[category_name] %}
+  <li>
+    <span>{{ post.date | date: "%Y年-%m月-%d日" }}</span> &raquo;
+    <a href="{{ post.url }}">{{post.title}}</a>
+  </li>
+{% endfor %}
