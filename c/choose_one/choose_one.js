@@ -73,5 +73,5 @@ window.addEventListener('sidebarDataLoaded', function() {
   container.style.display = 'flex';
 
   // 初始化 randomResult 提示
-  randomResult.textContent = '点击 🎲 随机选取一篇';
+  randomResult.textContent = '点击左边的 🎲 随机选取一篇';
 });
