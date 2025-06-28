@@ -4,7 +4,6 @@
 获取 reading 下的“书目”、字数等信息
 """
 
-
 import os
 import re
 import json
@@ -56,16 +55,32 @@ for path, filenames in path_all:
         word_cnt, all_h2 = get_msg(text)
         total_words += word_cnt
 
-        res_json_1.append({'l3': filename.replace('.md', ''), 'cnt': word_cnt, 'h2': all_h2})
-
-    res_json.append({
-        "l1": path.replace(work_path, ''),
-        "l2": res_json_1})
-
-with open('./pages/reading.json', 'w') as f:
-    json.dump(res_json, f, ensure_ascii=False)
+        # res_json_1.append({'l3': filename.replace('.md', ''), 'cnt': word_cnt, 'h2': all_h2})
+        res_json_1.append([filename.replace('.md', ''), word_cnt, all_h2])
+    # res_json.append({
+    #     "l1": path.replace(work_path, ''),
+    #     "l2": res_json_1})
+    res_json.append([path.replace(work_path, ''), res_json_1])
 
 total_words_str = "{}万".format(round(total_words / 10000, ndigits=1))
+
+# %%
+# with open('./pages/reading.json', 'w') as f:
+#     json.dump(res_json, f, ensure_ascii=False)
+
+# %%
+
+a = json.dumps(res_json, ensure_ascii=False)
+
+print(a)
+a2 = '''---
+layout: null
+permalink: /reading.json
+---
+''' + a
+
+with open('./p/index/reading.json', 'w') as f:
+    f.write(a2)
 
 # %%总字数写入到 _data 里面
 with open('./_data/cnt_reading_words.json', 'w') as f:
