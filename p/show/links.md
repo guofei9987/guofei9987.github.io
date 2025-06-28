@@ -10,10 +10,9 @@ permalink: /links.html
 
 ## 友链申请
 
-欢迎申请友链，请在留言板留言。
+欢迎申请友链，请在下方的留言板留言（如果留言板没有出现可以 [手动跳转](https://github.com/guofei9987/guofei9987.github.io/issues/25)
 
-但请先确认以下要求：
-
+请先确认以下要求：
 1. 仅限非组织性质的个人博客
 2. 内容健康，符合相关法律法规
 3. 至少5篇原创文章
@@ -22,10 +21,10 @@ permalink: /links.html
 
 
 
-以下是本站的部分信息：
+以下是本站的部分信息：  
 名称：郭飞的笔记  
 地址：https://www.guofei.site/  
-头像：https://www.guofei.site/p/me/me2.png  
+头像：https://www.guofei.site/p/me/me.png  
 
 
 
