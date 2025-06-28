@@ -64,11 +64,6 @@ for path, filenames in path_all:
 
 total_words_str = "{}万".format(round(total_words / 10000, ndigits=1))
 
-# %%
-# with open('./pages/reading.json', 'w') as f:
-#     json.dump(res_json, f, ensure_ascii=False)
-
-# %%
 
 a = json.dumps(res_json, ensure_ascii=False)
 
