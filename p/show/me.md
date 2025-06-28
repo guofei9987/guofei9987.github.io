@@ -10,7 +10,7 @@ permalink: /me.html
 - 💼 工作经历
     - （兼任）某高校 **专业学位硕士研究生行业指导老师**
     - 2020 - 今，蚂蚁集团-天堑实验室，**算法专家**
-    - 2018 - 2020，京东集团-Y事业部-动态定价，**算法专家**，
+    - 2018 - 2020，京东集团-Y事业部-动态定价，**算法专家**
     - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞彩赔率动态定价 **算法工程师**
     - 2015 - 2016，某私募基金 **金融分析师**
 - 🧮 热爱算法、数学和开源。
@@ -66,7 +66,7 @@ permalink: /me.html
 [![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
 [![email](https://www.guofei.site/public/logo/email.svg)](mailto:me@guofei.site)
 <a href="https://www.guofei.site/" target="_blank">
-  <img class="me" src="https://www.guofei.site/public/about/me2.png" alt="me" width="40" height="40" style="vertical-align: middle;">
+  <img class="me" src="https://www.guofei.site/p/me/me2.png" alt="me" width="40" height="40" style="vertical-align: middle;">
 </a>
 
 <br>

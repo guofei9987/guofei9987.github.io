@@ -35,8 +35,8 @@ repurl: https://github.com/guofei9987/guofei9987.github.io/blob/master/
 # rss_url: /pages/atom.xml
 
 # gavatar头像及Favicon
-gavatar: /public/about/me.png
-favicon: /public/about/me2.png
+gavatar: /p/me/me.png
+favicon: /p/me/me2.png
 
 # google analytics 设置
 ga:
