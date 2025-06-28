@@ -9,6 +9,97 @@ title: 首页
 <br>
 
 
+<!-- ✅ 随机文章模块开始 -->
+<style>
+#randomResult {
+  background: #f9f9f9;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+#randomResult a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#randomResult a:hover {
+  text-decoration: underline;
+}
+
+.random-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.95em;
+}
+
+.random-btn:hover {
+  background-color: #005fa3;
+}
+</style>
+
+<div id="randomResult">随机文章加载中...</div>
+<button class="random-btn" onclick="window.dispatchEvent(new Event('sidebarDataLoaded'))">再来一篇</button>
+
+<script>
+window.addEventListener('sidebarDataLoaded', function() {
+  const type = window.guofei.sidebarType;
+  const data = window.guofei.sidebarData;
+  let posts = [];
+
+  if (type === 'reading') {
+    data.forEach(cat => {
+      if (cat.l2 && Array.isArray(cat.l2)) {
+        posts = posts.concat(cat.l2);
+      }
+    });
+  } else {
+    data.forEach(cat => {
+      if (cat.posts && Array.isArray(cat.posts)) {
+        posts = posts.concat(cat.posts);
+      }
+    });
+  }
+
+  if (posts.length === 0) {
+    document.getElementById('randomResult').textContent = '未找到文章';
+    return;
+  }
+
+  const post = posts[Math.floor(Math.random() * posts.length)];
+  let title = '';
+  let link = '';
+
+  if (type === 'reading') {
+    title = post.l3.replace('.md', '');
+    link = '/reading/' + title + '.html';
+    if (post.h2 && post.h2.length > 0) {
+      const randomH2 = post.h2[Math.floor(Math.random() * post.h2.length)];
+      title += ' #' + randomH2;
+      link += '#' + encodeURIComponent(randomH2);
+    }
+  } else {
+    title = post.title || '无标题';
+    link = post.url || '#';
+  }
+
+  document.getElementById('randomResult').innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+});
+</script>
+<!-- ✅ 随机文章模块结束 -->
+
+
+<br>
+
 
 {% assign posts_by_month = site.posts | group_by_exp:"post", "post.date | date: '%Y-%m'" %}
 {% for group in posts_by_month %}

@@ -201,6 +201,13 @@ document.addEventListener('DOMContentLoaded', function() {
       highlightCurrentLink();     
       document.getElementById('nav_btn').click(); 
       document.getElementById('nav_btn').classList.remove('hidden'); 
+
+      // 🚀🚀 将数据挂载到 window 上
+      window.guofei.sidebarType=sidebarType;
+      window.guofei.sidebarData = data;
+      window.dispatchEvent(new Event('sidebarDataLoaded'));
+      
+
     })
     .catch(error => {
       console.error('加载侧边栏数据出错：', error);
