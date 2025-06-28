@@ -74,7 +74,6 @@ permalink: /reading.html
   <div id="randomResult">随机文章加载中...</div>
 </div>
 
-
 <script>
 function rollDiceAndRandom() {
   const btn = document.querySelector('.random-btn');
@@ -96,14 +95,16 @@ window.addEventListener('sidebarDataLoaded', function() {
 
   if (type === 'reading') {
     data.forEach(cat => {
-      if (cat.l2 && Array.isArray(cat.l2)) {
-        posts = posts.concat(cat.l2);
+      const [l1, l2List] = cat; // 解构一级类名和二级列表
+      if (Array.isArray(l2List)) {
+        posts = posts.concat(l2List);
       }
     });
   } else {
     data.forEach(cat => {
-      if (cat.posts && Array.isArray(cat.posts)) {
-        posts = posts.concat(cat.posts);
+      const [tagName, postList] = cat; // 解构 tagName 和 posts 列表
+      if (Array.isArray(postList)) {
+        posts = posts.concat(postList);
       }
     });
   }
@@ -118,21 +119,25 @@ window.addEventListener('sidebarDataLoaded', function() {
   let link = '';
 
   if (type === 'reading') {
-    title = post.l3.replace('.md', '');
+    const [l3, cnt, h2List] = post; // 解构二级类名、计数、h2列表
+    title = l3.replace('.md', '');
     link = '/reading/' + title + '.html';
-    if (post.h2 && post.h2.length > 0) {
-      const randomH2 = post.h2[Math.floor(Math.random() * post.h2.length)];
+
+    if (h2List && h2List.length > 0) {
+      const randomH2 = h2List[Math.floor(Math.random() * h2List.length)];
       title += ' #' + randomH2;
       link += '#' + encodeURIComponent(randomH2);
     }
   } else {
-    title = post.title || '无标题';
-    link = post.url || '#';
+    const [postTitle, url] = post; // 解构 title 和 url
+    title = postTitle || '无标题';
+    link = url || '#';
   }
 
   document.getElementById('randomResult').innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
 });
 </script>
+
 
 <!-- ✅ 随机文章模块结束 -->
 
@@ -147,9 +152,11 @@ fetch('/pages/reading.json')
     const container = document.getElementById('all_books');
 
     data.forEach(item => {
+      const [l1, l2List] = item; // 解构一级分类名和二级列表
+
       // 一级导航标题（板块）
       const h3 = document.createElement('h3');
-      h3.textContent = item.l1;
+      h3.textContent = l1;
       container.appendChild(h3);
 
       // 创建表格
@@ -165,29 +172,28 @@ fetch('/pages/reading.json')
       const tbody = document.createElement('tbody');
 
       // 遍历二级数据，每个子项对应一行
-      item.l2.forEach(subItem => {
-        const article = subItem.l3;
-        const cnt = subItem.cnt;
+      l2List.forEach(subItem => {
+        const [l3, cnt, h2List] = subItem; // 解构二级类名、字数、三级标题列表
 
         const tr = document.createElement('tr');
 
         // 第一列：文章链接及字数
         const td1 = document.createElement('td');
         const a1 = document.createElement('a');
-        a1.href = `/reading/${article}.html`;
+        a1.href = `/reading/${l3}.html`;
         // 使用 innerHTML 来包含 sup 标签
-        a1.innerHTML = `${article}<sup class="wordcnt">${cnt}字</sup>`;
+        a1.innerHTML = `${l3}<sup class="wordcnt">${cnt}字</sup>`;
         td1.appendChild(a1);
         tr.appendChild(td1);
 
         // 第二列：h2标题列表，每个标题生成一个链接
         const td2 = document.createElement('td');
         // 将每个 h2 标题生成链接，使用 encodeURIComponent 编码参数
-        const h2Links = subItem.h2.map(h2 => {
+        const h2Links = (h2List || []).map(h2 => {
           // 可选：将下划线替换为空格显示
           // const displayText = h2.replace('_', ' ');
-          // return `<a href="docs/${item.l1}/${article}.md?id=${encodeURIComponent(h2)}">${displayText}</a>`;
-          return `<a href="/reading/${article}.html#${encodeURIComponent(h2)}">${h2}</a>`;
+          // return `<a href="docs/${l1}/${l3}.md?id=${encodeURIComponent(h2)}">${displayText}</a>`;
+          return `<a href="/reading/${l3}.html#${encodeURIComponent(h2)}">${h2}</a>`;
         }).join('，');
         td2.innerHTML = h2Links;
         tr.appendChild(td2);

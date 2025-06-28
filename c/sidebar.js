@@ -57,32 +57,35 @@ function generateReadingSidebar(data) {
   sidebarList.innerHTML = '';
 
   data.forEach(category => {
+    const [l1, l2List] = category; // 解构一级分类名和二级列表
     // 每个 category 对象对应一个一级分类，使用 l1 作为标题，放入一个 li 中
     const li = document.createElement('li');
 
     // 创建一级标题 <h2>，放入 li 内
     const h2Title = document.createElement('h2');
-    h2Title.textContent = category.l1;
+    h2Title.textContent = l1;
     li.appendChild(h2Title);
     sidebarList.appendChild(li);
 
-    category.l2.forEach(post => {
+    l2List.forEach(post => {
+      const [l3, cnt, h2List] = post; // 解构二级类名、字数、三级标题列表
+
       const li = document.createElement('li');
       const detailsElem = document.createElement('details');
       // 如果需要默认展开，可以设置：detailsElem.setAttribute('open', '');
 
       const summaryElem = document.createElement('summary');
-      summaryElem.innerHTML = `${post.l3}<sup class="wordcnt">${post.cnt}字</sup>`;
+      summaryElem.innerHTML = `${l3}<sup class="wordcnt">${cnt}字</sup>`;
       detailsElem.appendChild(summaryElem);
 
       // 如果该帖子下有 h2（三级导航），生成子列表
-      if (post.h2 && post.h2.length > 0) {
+      if (h2List && h2List.length > 0) {
         const subUl = document.createElement('ul');
-        post.h2.forEach(subTitle => {
+        h2List.forEach(subTitle => {
           const subLi = document.createElement('li');
           const subLink = document.createElement('a');
 
-          subLink.href = `/reading/${post.l3}.html#${encodeURIComponent(subTitle)}`;
+          subLink.href = `/reading/${l3}.html#${encodeURIComponent(subTitle)}`;
           // 显示时将下划线替换为空格
           subLink.textContent = subTitle.replace('_', ' ');
           subLi.appendChild(subLink);
@@ -91,13 +94,12 @@ function generateReadingSidebar(data) {
         detailsElem.appendChild(subUl);
       }
 
-    li.appendChild(detailsElem);
-    sidebarList.appendChild(li);
-
+      li.appendChild(detailsElem);
+      sidebarList.appendChild(li);
     });
-
   });
 }
+
 
 
 /**
@@ -186,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let sidebarGenerator = null;
 
   if (sidebarType === 'reading') {
-    jsonURL = '/pages/reading.json';
+    jsonURL = '/reading.json';
     sidebarGenerator = generateReadingSidebar;
   } else if (sidebarType === 'open_source') {
     jsonURL = '/os.json';

@@ -57,4 +57,4 @@ title: 分析
 - https://www.guofei.site/api/cnt_github_repo.json
 - https://www.guofei.site/tags.json
 - https://www.guofei.site/os.json
-- https://www.guofei.site/pages/reading.json
+- https://www.guofei.site/reading.json
