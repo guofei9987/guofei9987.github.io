@@ -1,72 +1,76 @@
-
 /* 控制文章章节列表按钮：显示或隐藏 TOC */
 function content_click(is_show) {
+  const content_toc = document.getElementById('content_toc');
+  const toc_btn = document.getElementById('toc_btn');
   if (is_show) {
-    $('#content_toc').show();
-    $('#toc_btn').text('▲');
+    content_toc.style.display = 'block';
+    toc_btn.textContent = '▲';
   } else {
-    $('#content_toc').hide();
-    $('#toc_btn').text('▼');
+    content_toc.style.display = 'none';
+    toc_btn.textContent = '▼';
   }
 }
-  
+
 /* 生成文章目录 TOC 的函数 */
-function contentEffects(){
-// 如果存在导航容器则生成目录
-if($("#nav").length > 0){
-    // 遍历文章内容中所有标题（h2～h6）
-    $("#content > h2, #content > h3, #content > h4, #content > h5, #content > h6").each(function(i) {
-    var current = $(this);
-    var title_name = current.html();
+function contentEffects() {
+  const nav = document.getElementById('nav');
+  const toc_btn = document.getElementById('toc_btn');
 
-    // 为标题元素设置 id 以便锚点定位
-    current.attr("id", title_name);
-    // 修改标题内容为一个链接，点击后可以跳转到自身位置
-    current.html("<a class='title_in_contend' href='#" + title_name + "'>" + title_name + "</a>");
+  if (nav) {
+    const headings = document.querySelectorAll("#content > h2, #content > h3, #content > h4, #content > h5, #content > h6");
+    headings.forEach((current, i) => {
+      const title_name = current.innerHTML;
 
-    // 根据标题的级别计算缩进（例如 h2 无缩进，h3 缩进 15px，依此类推）
-    var tag = current.prop('tagName').substr(-1);
-    $("#nav").append("<div style='margin-left:" + (15 * (tag - 2)) + "px'><a id='link" + i + "' href='#" + title_name + "'>" + title_name + "</a></div>");
+      // 为标题元素设置 id 以便锚点定位
+      current.id = title_name;
+
+      // 修改标题内容为一个链接，点击后可以跳转到自身位置
+      current.innerHTML = `<a class='title_in_contend' href='#${title_name}'>${title_name}</a>`;
+
+      // 根据标题级别计算缩进
+      const tag = current.tagName.substr(-1);
+      const div = document.createElement('div');
+      div.style.marginLeft = (15 * (tag - 2)) + 'px';
+      div.innerHTML = `<a id='link${i}' href='#${title_name}'>${title_name}</a>`;
+      nav.appendChild(div);
     });
 
     // 如果生成的导航内容为空，则隐藏 TOC 按钮，否则显示
-    if ($("#nav").children().length === 0) {
-      document.getElementById('toc_btn').classList.add('hidden'); // 按钮解除隐藏
+    if (nav.children.length === 0) {
+      toc_btn.classList.add('hidden');
     } else {
-      document.getElementById('toc_btn').classList.remove('hidden'); // 按钮解除隐藏
+      toc_btn.classList.remove('hidden');
     }
-} else {
+  } else {
     // 如果没有目录容器，则隐藏 TOC 按钮
-    $('#toc_btn').hide();
-}
+    toc_btn.style.display = 'none';
+  }
 }
 
 /* 初始化：绑定 TOC 按钮点击事件，并在文档加载完成后生成 TOC */
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', () => {
+  const toc_btn = document.getElementById('toc_btn');
+  if (toc_btn) {
+    toc_btn.addEventListener('click', function() {
+      const isClicked = this.dataset.clicked === 'true';
+      content_click(!isClicked);
+      this.dataset.clicked = (!isClicked).toString();
+    });
+  }
 
+  // 页面加载完后生成文章目录
+  contentEffects();
 
-// 点击右上角的 TOC 按钮
-$("#toc_btn").on('click', function(){
-    var isClicked = $(this).data('clicked');
-    content_click(!isClicked);
-    $(this).data('clicked', !isClicked);
+  // Latex 支持
+  // 下面是 KaTex版本
+  // renderMathInElement(document.body)
+
+  // 需要展示单 dollar 符号
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: '$$', right: '$$', display: false },
+      { left: '$', right: '$', display: false },
+      { left: '\\(', right: '\\)', display: false }
+    ]
+  });
 });
-
-// 页面加载完后生成文章目录
-contentEffects();
-
-
-// Latex 支持
-// 下面是 KaTex版本
-// renderMathInElement(document.body)
-
-// 需要展示单dollar 符号
-renderMathInElement(document.body,{delimiters: [
-    {left: '$$', right: '$$', display: false},
-      {left: '$', right: '$', display: false},
-      {left: '\\(', right: '\\)', display: false}
-  ]});
-});
-  
-
-
