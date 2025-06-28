@@ -9,18 +9,18 @@ permalink: /certification.html
 ## 学术方面
 
 
-Reviewer for [SPG](http://www.sciencepublishinggroup.com/)' *Journal of Finance and Accounting*
-(SPG期刊金融和会计板块的审稿员)
 
 <!-- <table >
 <tr><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2016.jpg"></td><td>  <img width="600" height="800" src="http://www.guofei.site/public/img/2017.jpg"></td></tr>
 </table> -->
 
 
-|2016年|2017年|
-|--|--|
-|![2016](/pictures_for_blog/certification/spg/2016.jpg)|![2017](/pictures_for_blog/certification/spg/2017.jpg)|
+| Reviewer for [SPG](http://www.sciencepublishinggroup.com/)' *Journal of Finance and Accounting* <br> SPG期刊金融和会计板块的审稿人 | 浙江万里学院硕导 |
+|--------|--------|
+| ![SPG审稿人](/a/certificate/学术/SPG审稿人.jpg) | ![](/a/certificate/学术/万里学院硕导.jpg) |
 
+
+<!-- ![2017](/pictures_for_blog/certification/spg/2017.jpg) -->
 
 论文（第一作者）
 - “Research on the Connection relationship between Private Offering Fund and Share Price Index Futures” (2015) Atlantis Press Journal (ISSN 2352-5398)（ISTP检索）  
@@ -30,6 +30,10 @@ http://article.sciencepublishinggroup.com/html/10.11648.j.jfa.20150306.12.html#p
 *Journal of Finance and Accounting Volume 3, Issue 6, November 2015, Pages: 177-183*  
 - *中外企业家* 上发表文章[如何提高小额贷款公司的风险控制能力](http://www.cnki.net/KCMS/detail/detail.aspx?QueryID=6&CurRec=1&recid=&filename=ZWQY201430051&dbname=CJFDLAST2015&dbcode=CJFQ&pr=&urlid=&yx=&uid=WEEvREcwSlJHSldSdnQ1YWloVytWUUFXNXMwSnYzeDdLUFNXMnU1ZXlJa1pqTW5la093SEwwTlNFV0dNeXFQRE13PT0=$9A4hF_YAuvQ5obgVAq)  
 （第一作者）(中国知网，中国期刊网，万方数据库，维普资讯网收录)
+
+
+
+
 
 
 ## 专利
