@@ -8,17 +8,17 @@ permalink: /me.html
 
 
 - 💼 工作经历
+    - （兼任）某高校 **专业学位硕士研究生行业指导老师**
     - 2020 - 今，蚂蚁集团-天堑实验室，**算法专家**
     - 2018 - 2020，京东集团-Y事业部-动态定价，**算法专家**，
     - 2016 - 2018，中体彩彩票运营管理有限公司-体育竞彩赔率动态定价 **算法工程师**
     - 2015 - 2016，某私募基金 **金融分析师**
 - 🧮 热爱算法、数学和开源。
-    - 🚀 我的开源贡献用在了“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，我因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
+    - 🚀 我的开源贡献用于“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，我因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
     - 🤔 [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0) 的 121 位 [作者](https://github.com/scipy/scipy/issues/7798) 之一
-    <!-- - 📃 CDA 持证人 -->
     - ⭐ 发起的开源项目在 GitHub 共获得 Star {{ site.data.data_github.star_cnt_str }}
     - 📑 授权算法相关专利 7 篇
-    - 🏆 曾获全国数学建模大赛一等奖
+    - 🏆 获全国数学建模大赛一等奖
     - 💻 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
 - 📈 懂一点儿金融
     - 📚 金融类学术期刊 *[Journal of Finance and Accounting](http://www.sciencepublishinggroup.com/journal/index?journalid=171)* 的 **[审稿员](https://www.guofei.site/certification.html#学术方面)**
@@ -27,9 +27,9 @@ permalink: /me.html
 - ❤️ 有一些爱好
     - 📖 读书 [{{ site.data.book_list.size }} 本](https://www.guofei.site/BookList.html)，[读书笔记](https://www.guofei.site/reading.html) {{ site.data.cnt_reading_words.cnt_reading_words }}字
     - 🤸 爱好运动。能做 30 个 <b><a href="https://www.bilibili.com/video/BV1L64y1t7Ef/" target="_blank">单手俯卧撑</a></b>，近3年跑步 <b><a href="/reading/运动记录.html">1700公里</a></b>，臂围39cm
-    - 📜 拿下几十个各领域的[证书](https://www.guofei.site/certification.html)，例如美国心脏协会（AHA）急救证书、北京红十字协会救护技能证、证券从业、期货从业、会计从业、CDA数据分析师等
-    - 🍳 偶尔 <a href="https://www.guofei.site/reading/烹饪.html">烹饪</a>
-    - 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}次赞同/{{ site.data.achievement.zhihu_collection_str }}次收藏/ {{ site.data.achievement.zhihu_follows_str }}个关注
+    - 📜 收集几十个各领域的[证书](https://www.guofei.site/certification.html)，例如美国心脏协会（AHA）急救证书、北京红十字协会救护技能证、证券从业、期货从业、会计从业、工信部高级数据分析师等
+    - 🍳 经常 <a href="https://www.guofei.site/reading/烹饪.html">烹饪</a>
+    - 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}赞同/{{ site.data.achievement.zhihu_collection_str }}收藏/ {{ site.data.achievement.zhihu_follows_str }}关注
 
 <object data="https://www.guofei.site/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
 
