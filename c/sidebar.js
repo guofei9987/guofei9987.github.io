@@ -1,3 +1,6 @@
+// 初始化一个数据空间
+window.guofei = window.guofei || {};
+
 
 function generateSidebar(data) {
   const sidebarList = document.getElementById('sidebar-list');
@@ -206,8 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
       window.guofei.sidebarType=sidebarType;
       window.guofei.sidebarData = data;
       window.dispatchEvent(new Event('sidebarDataLoaded'));
-      
-
     })
     .catch(error => {
       console.error('加载侧边栏数据出错：', error);
