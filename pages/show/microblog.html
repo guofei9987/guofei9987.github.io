@@ -40,19 +40,20 @@ async function loadJson(url) {
 }
 
 async function init() {
-    // 加载首屏 json
-    dataPrimary = await loadJson('/pages/weibo/part1.json');
-    renderEntries();
-    // 预加载第二个 json
-    loadJson('/pages/weibo/part2.json').then(data => {
+  dataPrimary = await loadJson('/pages/weibo/part1.json');
+  renderEntries();
+
+  // 预加载 part2.json
+  loadJson('/pages/weibo/part2.json').then(data => {
     dataSecondary = data;
     secondaryLoaded = true;
-    }).catch(() => console.log('未加载 part2.json'));
+  }).catch(() => console.log('未加载 part2.json'));
 }
 
 function renderEntries() {
-    let count = 0;
-    while (index < dataPrimary.length && count < pageSize) {
+  if (dataPrimary.length === 0) return;
+  let count = 0;
+  while (index < dataPrimary.length && count < pageSize) {
     const entry = dataPrimary[index];
     const div = document.createElement('div');
     div.className = 'entry';
@@ -61,16 +62,17 @@ function renderEntries() {
     setTimeout(() => div.classList.add('show'), 10);
     index++;
     count++;
-    }
-    if (index >= dataPrimary.length && dataSecondary.length > 0) {
-    // 切换到 secondary data
+  }
+
+  if (index >= dataPrimary.length && dataSecondary.length > 0) {
     dataPrimary = dataSecondary;
     index = 0;
     dataSecondary = [];
-    } else if (index >= dataPrimary.length && !secondaryLoaded) {
+  } else if (index >= dataPrimary.length && !secondaryLoaded) {
+    console.log("没有2")
     loadMoreBtn.textContent = '没有更多了';
     loadMoreBtn.disabled = true;
-    }
+  }
 }
 
 loadMoreBtn.addEventListener('click', async () => {
