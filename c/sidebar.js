@@ -102,9 +102,7 @@ function generateReadingSidebar(data) {
 
 
 
-/**
- 事件：同一层级下只能展开一个
- */
+/*事件：同一层级下只能展开一个*/
 function attachToggleHandlers() {
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
@@ -206,10 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       activeTop(sidebarType);
       sidebarGenerator(data);
-      attachToggleHandlers();   
-      highlightCurrentLink();     
-      document.getElementById('nav_btn').click(); 
-      document.getElementById('nav_btn').classList.remove('hidden'); 
+      attachToggleHandlers();
+      highlightCurrentLink();
+      document.getElementById('nav_btn').click();
+      document.getElementById('nav_btn').classList.remove('hidden');
 
       // 🚀🚀 将数据挂载到 window 上
       window.guofei.sidebarType=sidebarType;
@@ -222,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// 点击“更多链接”
+// 点击“探索...”
 document.addEventListener('DOMContentLoaded', function() {
   const dropdown = document.querySelector('.dropdown');
   const dropdownButton = document.querySelector('.dropdown-button');
