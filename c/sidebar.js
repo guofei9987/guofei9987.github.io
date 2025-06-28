@@ -8,6 +8,8 @@ function generateSidebar(data) {
   sidebarList.innerHTML = '';
 
   data.forEach(category => {
+  const [tagName, posts] = category; // 解构数组
+
   // 创建一个 li 元素用来包装当前分类
   const li = document.createElement('li');
 
@@ -17,12 +19,12 @@ function generateSidebar(data) {
 
   // 用一个 span 存放分类名称
   const textSpan = document.createElement('span');
-  textSpan.textContent = category.tagName;
+  textSpan.textContent = tagName;
   summary.appendChild(textSpan);
 
   // 用另一个 span 显示数据数量，并加上自定义类以便样式控制
   const countSpan = document.createElement('span');
-  countSpan.textContent = category.posts.length;
+  countSpan.textContent = posts.length;
   countSpan.className = 'summary-count';
   summary.appendChild(countSpan);
 
@@ -30,11 +32,12 @@ function generateSidebar(data) {
 
   // 创建 posts 列表
   const postsUl = document.createElement('ul');
-  category.posts.forEach(post => {
+  posts.forEach(post => {
+    const [title, url] = post; // 解构 title 和 url
     const postLi = document.createElement('li');
     const link = document.createElement('a');
-    link.textContent = post.title;
-    link.href = post.url;
+    link.textContent = title;
+    link.href = url;
     postLi.appendChild(link);
     postsUl.appendChild(postLi);
   });
@@ -42,8 +45,9 @@ function generateSidebar(data) {
   details.appendChild(postsUl);
   li.appendChild(details);
   sidebarList.appendChild(li);
-});
+  });
 }
+
 
 
 // “读书”

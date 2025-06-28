@@ -63,7 +63,6 @@ title: 首页
   <div id="randomResult">随机文章加载中...</div>
 </div>
 
-
 <script>
 function rollDiceAndRandom() {
   const btn = document.querySelector('.random-btn');
@@ -85,14 +84,16 @@ window.addEventListener('sidebarDataLoaded', function() {
 
   if (type === 'reading') {
     data.forEach(cat => {
-      if (cat.l2 && Array.isArray(cat.l2)) {
-        posts = posts.concat(cat.l2);
+      const [l1, l2List] = cat; // 解构一级类名和二级列表
+      if (Array.isArray(l2List)) {
+        posts = posts.concat(l2List);
       }
     });
   } else {
     data.forEach(cat => {
-      if (cat.posts && Array.isArray(cat.posts)) {
-        posts = posts.concat(cat.posts);
+      const [tagName, postList] = cat; // 解构 tagName 和 posts 列表
+      if (Array.isArray(postList)) {
+        posts = posts.concat(postList);
       }
     });
   }
@@ -107,21 +108,25 @@ window.addEventListener('sidebarDataLoaded', function() {
   let link = '';
 
   if (type === 'reading') {
-    title = post.l3.replace('.md', '');
+    const [l3, cnt, h2List] = post; // 解构二级类名、计数、h2列表
+    title = l3.replace('.md', '');
     link = '/reading/' + title + '.html';
-    if (post.h2 && post.h2.length > 0) {
-      const randomH2 = post.h2[Math.floor(Math.random() * post.h2.length)];
+
+    if (h2List && h2List.length > 0) {
+      const randomH2 = h2List[Math.floor(Math.random() * h2List.length)];
       title += ' #' + randomH2;
       link += '#' + encodeURIComponent(randomH2);
     }
   } else {
-    title = post.title || '无标题';
-    link = post.url || '#';
+    const [postTitle, url] = post; // 解构 title 和 url
+    title = postTitle || '无标题';
+    link = url || '#';
   }
 
   document.getElementById('randomResult').innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
 });
 </script>
+
 
 <!-- ✅ 随机文章模块结束 -->
 
