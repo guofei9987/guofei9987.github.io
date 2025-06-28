@@ -1,4 +1,5 @@
 ---
+permalink: /api/achievement.json
 ---
 {
 "cnt_blog": "{{ site.posts.size }}",

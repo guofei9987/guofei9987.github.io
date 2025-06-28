@@ -52,8 +52,9 @@ title: 分析
 
 
 网站 api：
-- https://www.guofei.site/pages/achievement.json
-- https://www.guofei.site/pages/book_list.json
-- https://www.guofei.site/pages/cnt_github_repo.json
+- https://www.guofei.site/api/achievement.json
+- https://www.guofei.site/api/book_list.json
+- https://www.guofei.site/api/cnt_github_repo.json
 - https://www.guofei.site/tags.json
+- https://www.guofei.site/os.json
 - https://www.guofei.site/pages/reading.json

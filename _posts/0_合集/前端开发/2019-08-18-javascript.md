@@ -619,7 +619,7 @@ obj = JSON.parse(text);
 
 读取网页上的json
 ```javascript
-fetch('https://www.guofei.site/pages/achievement.json')
+fetch('https://www.guofei.site/api/achievement.json')
   .then(response => response.json())
   .then(data => {
     jsonData = data;

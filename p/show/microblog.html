@@ -40,11 +40,11 @@ async function loadJson(url) {
 
 async function init() {
     // 1. 加载 part1.json 并全量渲染
-    const dataPart1 = await loadJson('/pages/weibo/part1.json');
+    const dataPart1 = await loadJson('/p/weibo/part1.json');
     dataPart1.forEach(entry => renderEntry(entry));
 
     // 2. 预加载 part2.json
-    loadJson('/pages/weibo/part2.json').then(data => {
+    loadJson('/p/weibo/part2.json').then(data => {
     dataPart2 = data;
     part2Loaded = true;
     }).catch(() => console.log('未加载 part2.json'));
