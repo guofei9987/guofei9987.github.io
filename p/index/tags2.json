@@ -6,10 +6,10 @@ permalink: /tags2.json
 [
   {% assign sorted_tags = site.tags | sort %}
   {% for tag in sorted_tags %}
-{"tagName": {{ tag[0] | jsonify }}, 
-"posts": [ {% assign sorted_posts = tag[1] | sort: "order" %}
-{% for post in sorted_posts %}{"{{ post.title | jsonify }}":"{{ post.url | jsonify }}"}{% unless forloop.last %}, {% endunless %}{% endfor %}
-      ]
-}{% unless forloop.last %},{% endunless %}
+[{{ tag[0] | jsonify }}, 
+[ {% assign sorted_posts = tag[1] | sort: "order" %}
+{% for post in sorted_posts %}["{{ post.title | jsonify }}","{{ post.url | jsonify }}"]{% unless forloop.last %}, {% endunless %}{% endfor %}
+]
+]{% unless forloop.last %},{% endunless %}
   {% endfor %}
 ]
