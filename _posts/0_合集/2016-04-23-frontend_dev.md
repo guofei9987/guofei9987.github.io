@@ -1,6 +1,6 @@
 ---
 layout: post_pure
-title: 【合集】前端开发(18篇)
+title: 【合集】前端开发(6篇)
 categories: 合集
 tags: 0x10_计算机基础
 keywords:
