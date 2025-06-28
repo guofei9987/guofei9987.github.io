@@ -31,7 +31,7 @@ permalink: /me.html
     - 🍳 经常 <a href="https://www.guofei.site/reading/烹饪.html">烹饪</a>
     - 📫 <a href="https://www.zhihu.com/people/guofei9987/answers/by_votes" target="_blank">知乎</a> 获得{{ site.data.achievement.zhihu_agree_str }}赞同/{{ site.data.achievement.zhihu_collection_str }}收藏/ {{ site.data.achievement.zhihu_follows_str }}关注
 
-<object data="https://www.guofei.site/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
+<object data="https://www.guofei.site/trophy.svg" style="width: 100%;max-width: 550px;"></object>
 
 
 

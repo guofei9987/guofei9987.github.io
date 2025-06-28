@@ -11,7 +11,7 @@ title: 分析
 - {{site.data.achievement}}
 
 
-<object data="https://www.guofei.site/pages/trophy.svg"></object>
+<object data="https://www.guofei.site/trophy.svg"></object>
 
 
 

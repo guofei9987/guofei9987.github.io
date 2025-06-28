@@ -7,7 +7,7 @@ name: 开源
 
 <div id="sidebar_type" class="open_source"></div>
 <br>
-<object data="/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
+<object data="/trophy.svg" style="width: 100%;max-width: 550px;"></object>
 <br>
 
 

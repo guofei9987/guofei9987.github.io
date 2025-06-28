@@ -6,7 +6,7 @@ permalink: /reading.html
 
 <div id="sidebar_type" class="reading"></div>
 <br>
-<object data="/pages/trophy.svg" style="width: 100%;max-width: 550px;"></object>
+<object data="/trophy.svg" style="width: 100%;max-width: 550px;"></object>
 <br>
 
 <style>
@@ -38,15 +38,16 @@ permalink: /reading.html
   color: white;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.2em;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5em;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .random-btn:hover {
   background-color: #005fa3;
+  transform: scale(1.1);
 }
 
 .random-btn.spin {
