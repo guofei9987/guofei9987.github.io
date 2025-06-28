@@ -1,7 +1,7 @@
 // 初始化一个数据空间
 window.guofei = window.guofei || {};
 
-
+// “技术”
 function generateSidebar(data) {
   const sidebarList = document.getElementById('sidebar-list');
   // 清空原有内容
