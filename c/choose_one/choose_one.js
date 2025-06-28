@@ -7,14 +7,19 @@ function rollDiceAndRandom() {
     btn.classList.remove('spin');
   }, { once: true });
 
-  // 触发 random
-  window.dispatchEvent(new Event('sidebarDataLoaded'));
+  // 随机选取
+  randomSelectPost();
 }
 
-window.addEventListener('sidebarDataLoaded', function() {
+function randomSelectPost() {
   const type = window.guofei.sidebarType;
   const data = window.guofei.sidebarData;
   let posts = [];
+
+  if (!data || data.length === 0) {
+    document.getElementById('randomResult').textContent = '未找到文章';
+    return;
+  }
 
   if (type === 'reading') {
     data.forEach(cat => {
@@ -58,4 +63,15 @@ window.addEventListener('sidebarDataLoaded', function() {
   }
 
   document.getElementById('randomResult').innerHTML = `<a href="${link}" target="_blank">${title}</a>`;
+}
+
+window.addEventListener('sidebarDataLoaded', function() {
+  const container = document.querySelector('.random-container');
+  const randomResult = document.getElementById('randomResult');
+
+  // 显示 random-container
+  container.style.display = 'flex';
+
+  // 初始化 randomResult 提示
+  randomResult.textContent = '点击 🎲 随机选取一篇';
 });

@@ -1,5 +1,5 @@
 .random-container {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 10px;
   background: #f9f9f9;
@@ -14,15 +14,16 @@
   color: white;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.2em;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5em;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
 .random-btn:hover {
   background-color: #005fa3;
+  transform: scale(1.1);
 }
 
 .random-btn.spin {
