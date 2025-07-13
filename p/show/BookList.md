@@ -6,9 +6,7 @@ permalink: /BookList.html
 
 📖 读书 {{ site.data.book_list.size }} 本，[读书笔记](https://www.guofei.site/reading.html) {{ site.data.cnt_reading_words.cnt_reading_words_precision }}字
 
-<br>
 <hr>
-<br>
 
 {% for book in site.data.book_list %}
   
