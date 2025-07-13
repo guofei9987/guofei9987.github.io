@@ -113,7 +113,7 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 
 中国大学MOOC
 
-|[![C语言](/pictures_for_blog/certification/coursera/mooc_C语言.webp)](https://www.icourse163.org/cert/downCert.htm?termId=1001614008#/)||
+|[![C语言](/pictures_for_blog/certification/coursera/mooc_C语言.webp)](https://www.icourse163.org/cert/downCert.htm?termId=1001614008#/)| [![宝石鉴定与欣赏](/a/certificate/宝石鉴定与欣赏证书.jpg)](http://www.icourse163.org/verify/V242132000042#/verifyResult)|
 |--|--|
 |||
 
