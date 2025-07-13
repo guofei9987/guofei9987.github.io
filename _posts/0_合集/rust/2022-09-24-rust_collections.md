@@ -34,7 +34,7 @@ order: 11207
 - 堆上存储元素，是连续分配的
 - 如果 capacity 不够用了，会开辟一片更大的连续内存块（容量倍增），然后把旧的数据复制过来
 
-```Rust
+```rust
 // 如何创建1
 let mut v1: Vec<i32> = Vec::new(); // 不推荐
 let mut v1: Vec<i32> = Vec::with_capacity(128); //推荐
@@ -87,7 +87,7 @@ println!("{:?}", v1);
 ```
 
 内存相关
-```Rust
+```rust
 // 创建容量为n的vec
 Vec::with_capacity(n);
 // 返回容量，usize
@@ -102,7 +102,7 @@ v.shrink_to_fit();
 
 
 裁剪类
-```Rust
+```rust
 //用 val 填充，直到长度为 new_len
 v.resize(new_len, val);
 // 裁剪，使得长度为 new_len
@@ -137,7 +137,7 @@ vec.dedup_by_key(func)
 ```
 
 合并
-```Rust
+```rust
 let v1 = vec![1, 2];
 let v2 = vec![3, 2, 9];
 let v3 = vec![3, 2];
@@ -151,7 +151,7 @@ let v_concat = [v1, v2, v3].join(&0); // 这个结果是 vec![1, 2, 0, 3, 2, 9, 
 
 
 其它
-```Rust
+```rust
 v.swap(idx1, idx2); // 交换元素
 
 // 移除，但不是移动内存，而是把最后一个元素移动到最前面
@@ -182,7 +182,7 @@ v1.ends_with(&v2);
 
 
 案例：
-```Rust
+```rust
 // 去重案例
 let mut v1 = vec![1, 2, 3, 2, 1];
 let mut tmp = HashSet::new();
@@ -206,7 +206,7 @@ println!("{:?}", vec2); // 输出 "[[2, 2], [2, 2]]"
 - 其它操作变慢
 - 不能切片
 
-```Rust
+```rust
 let mut deque =VecDeque::new();
 
 deque.push_back(6);
@@ -221,7 +221,7 @@ deque.back(); deque.back_mut();
 
 ## LinkedList
 
-```Rust
+```rust
 linked_list.append(list2)
 ```
 
@@ -268,7 +268,7 @@ heap 有自己的 iter
     - `&str` 作为函数返回值的话，只能使用 `static` 类型。（否则要使用更复杂的 Cow）
 
 
-```Rust
+```rust
 // 创建 String
 let mut string1: String = String::new();
 let string1: String = String::with_capacity(10);
@@ -315,7 +315,7 @@ str1.bytes();
 ```
 
 
-```Rust
+```rust
 // 添加
 string1.push('a');
 let s_append = "xyz";
@@ -397,7 +397,7 @@ let my_vec: Vec<char> = my_vec.into_iter().collect();
 
 
 不太用得到的
-```Rust
+```rust
 // 这一行代码，有更好的方法
 // 1）string1 的所有权被移动到 string2
 // 2）String 类型 + &str 类型
@@ -455,7 +455,7 @@ let str_new: String = str1.chars().filter(|c| c.is_uppercase()).collect();
 字符串字面量
 
 
-```Rust
+```rust
 // 1. 前面加r，使得转义字符不转义
 let str1 = r"C:\files";
 
@@ -474,7 +474,7 @@ let str1 = r###"多行文本
 ```
 
 其它
-```Rust
+```rust
 str1.len()
 str1.is_empty()
 str1.split_at()
@@ -503,7 +503,7 @@ str1.parse()
 
 ### 与hex的互相转
 
-```Rust
+```rust
 // data-encoding = "*"
 
 use data_encoding::{HEXUPPER, DecodeError};
@@ -522,7 +522,7 @@ println!("{:?}", my_string_back);
 
 ### 与 base64 互转
 
-```Rust
+```rust
 use base64;
 
 // 转base64
@@ -545,7 +545,7 @@ UTF-8 的特点
 - 字符串首字节可以指定文字方向是从左到右还是从右到左
 
 
-```Rust
+```rust
 ch.is_numeric() // 数值类，还包括 ², ⅓ 这种
 ch.is_alphabetic() // 字母，也包括 unicode 重的派生字符
 ch.is_alphanumeric() // 字母+数值，以上两个的集合
@@ -562,7 +562,7 @@ ch.to_uppercase()
 98 as char // ascii 值转字符
 ```
 
-```Rust
+```rust
 ch.is_digit(radix) // 是否是 radix 进制下的数字
 ch.to_digit(20) // 在20进制的 ch 代表十进制的多少
 std::char::from_digit(15, 20) // 把15 转换为 20进制下的数字表示。 返回 Some('f')
@@ -575,7 +575,7 @@ std::char::from_digit(15, 20) // 把15 转换为 20进制下的数字表示。 �
 
 
 
-```Rust
+```rust
 use std::collections::HashMap;
 
 // 新建
@@ -643,7 +643,7 @@ hash_map.get_mut(&key);
 
 ## HashSet
 
-```Rust
+```rust
 let mut hash_set = HashSet::new();
 // 或者 HashSet::from([1,2,3,4])
 
@@ -842,7 +842,7 @@ assert_eq!(v, vec![0, 'A'], [1, 'B'], (2, 'C'), (3, 'D'));
     - `f32,f64` 只实现了 `std::cmp::PartialOrd`，没有实现 `std::cmp::Ord`，因此不能使用上述两个方法
     - 作用于 HashMap 类型时，最值的标准按照 key 来，而不是 value
 - max_by/min_by：后接一个函数
-```Rust
+```rust
 use std::cmp::{PartialOrd, Ordering};
 // 这里的双引用，是因为 num.iter() 会产生引用，然后 max_by 又会产生一次引用
 fn cmp(lhs: &&f64, rhs: &&f64) -> Ordering {

@@ -12,7 +12,7 @@ order: 11207
 
 ## LinkedLists
 
-```Rust
+```rust
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
@@ -140,7 +140,7 @@ fn main() {
 
 这里是另一种写法，用的是 `curr: &mut Option<Box<ListNode>>`，但似乎没什么优势？
 
-```Rust
+```rust
 impl LinkedList {
     // curr: &mut Option<Box<ListNode>>
     // 优点是可以使用 *curr = Some(new_node); 但似乎代码会变复杂？

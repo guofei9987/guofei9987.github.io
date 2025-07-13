@@ -14,7 +14,7 @@ order: 11204
 
 参考 https://rustwiki.org/zh-CN/book/ch10-02-traits.html
 
-```Rust
+```rust
 use std::time::SystemTime;
 
 pub trait MyTrait {
@@ -167,7 +167,7 @@ pub trait MyTrait2: MyTrait {
 
 下面这个例子，可以让每个i是一个字符串格式的数字
 
-```Rust
+```rust
 use std::fmt::format;
 use std::iter::Iterator;
 
@@ -218,7 +218,7 @@ fn main() {
 举例
 
 
-```Rust
+```rust
 // 代码效果：自定义 -obj 是个什么逻辑
 struct MyClass {
     data: Vec<i32>,
@@ -316,7 +316,7 @@ struct Point {
 
 ### deref
 
-```Rust
+```rust
 use std::ops::Deref;
 
 
@@ -346,7 +346,7 @@ fn main() {
 
 ### Drop
 
-```Rust
+```rust
 struct MyStruct {
     data: String,
 }
@@ -371,7 +371,7 @@ let b = MyStruct { data: String::from("data2") };
 ### derive：快速的操作符重载
 
 
-```Rust
+```rust
 #[derive(Debug, PartialEq)]
 struct Rectangle {
     width: u32,
@@ -416,7 +416,7 @@ false
 
 ## 匿名函数
 
-```Rust
+```rust
 let func = |num: i32| -> i32{
     println!("{}", num);
     return num + 5;
@@ -431,7 +431,7 @@ let func2 = |num| { num + 1 };
 
 ## 单例模式 Singleton
 
-```Rust
+```rust
 use std::sync::Mutex;
 use lazy_static::lazy_static;
 
