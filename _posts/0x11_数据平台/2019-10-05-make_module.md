@@ -427,9 +427,132 @@ from tst_pkg.pkg1 import pkg1_file1
 pkg1_file1.func1()
 ```
 
-### pyproject.toml 形式
+## pyproject.toml
 
-使用 `setup.py` 是旧的方式
+比 `setup.py` 更现代的打包方案。来自 PEP621 规范
+
+
+新建 `pyproject.toml`
+
+```yml
+[build-system]
+requires = ["setuptools>=69", "wheel", "setuptools-scm[toml]>=8"]
+# ↑ 构建时（build）需要提前安装的工具包：
+#   - setuptools：最常用的构建后端
+#   - wheel：产出 .whl 包
+#   - setuptools-scm[toml]：从 Git tag 自动生成版本号；[toml] 表示支持在 pyproject.toml 里配置
+build-backend = "setuptools.build_meta"         # 指定构建后端：setuptools 的 PEP 517 接口
+
+[project]
+# 发行包名（pip install 的名字）
+name = "blind_watermark"
+# 动态版本号：来自 git tag（例如 v0.4.2 -> 0.4.2），由构建后端（setuptools-scm）提供
+dynamic = ["version"]
+# 简短描述（展示在 PyPI 概览）
+description = "Blind Watermark in Python"
+# 长描述
+readme = { file = "docs/en/README.md", content-type = "text/markdown" }
+
+license = { file = "LICENSE" }
+
+# 运行时 Python 最低版本
+requires-python = ">=3.6"
+
+# 作者信息，可列多位
+authors = [{ name = "Guo Fei", email = "me@guofei.site" }]
+
+
+# 运行依赖（安装本包时会被一起装）
+dependencies = [
+  "numpy>=1.17.0",
+  "opencv-python",
+  "PyWavelets"
+]
+
+
+
+keywords = ["watermark", "dwt", "dct", "svd", "blind-watermark"]
+# ↑ 关键词有助于检索
+
+# 标签，用于 pypi 的搜索、展示、分类
+classifiers = [
+  "License :: OSI Approved :: MIT License",     # 许可证分类
+  "Programming Language :: Python",             # 语言分类
+  "Programming Language :: Python :: 3",        # 支持 Python3
+  "Programming Language :: Python :: 3 :: Only", # 仅支持 Python3，不支持 Python2
+
+  "Programming Language :: Python :: 3.6",      # 细项版本支持（越具体越好）
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+
+  "Operating System :: OS Independent",
+  # 跨平台，可在 Windows、Linux、Mac 等平台使用
+
+  "Topic :: Multimedia :: Graphics",
+  # 主题分类
+
+  "Topic :: Software Development :: Libraries :: Python Modules"
+  # 这是一个 Python 模块   
+]
+
+
+[project.urls]
+# 项目的主页，可以是仓库首页、项目官网
+Homepage = "https://github.com/guofei9987/blind_watermark"
+# 文档地址
+Documentation = "https://blindwatermark.github.io/blind_watermark"
+# 仓库地址
+Source = "https://github.com/guofei9987/blind_watermark"
+Issues = "https://github.com/guofei9987/blind_watermark/issues"
+
+
+
+[project.optional-dependencies]
+# 服务器/CI 场景可选无 GUI 的 OpenCV
+server = ["opencv-python-headless"]
+# ↑ 可选依赖组（extras）。安装方式：pip install blind_watermark[server]
+
+[project.scripts]
+blind_watermark = "blind_watermark.cli_tools:main"
+# ↑ 安装后生成同名命令行入口：执行时相当于运行
+#   from blind_watermark.cli_tools import main; main()
+
+[tool.setuptools]
+# 如果你是平铺式结构（包目录与 pyproject.toml 同级），自动发现：
+packages = { find = {} }                        # 自动发现包（等价于 setup.py 里的 find_packages()）
+include-package-data = true                     # 打包时包含包内声明的数据文件（配合 MANIFEST.in 或 setuptools-scm）
+
+[tool.setuptools.packages.find]
+# 如需排除测试等目录，可用：
+exclude = ["tests*", "docs*"]                   # 自动发现时要排除的路径通配
+
+[tool.setuptools_scm]
+# 从 git tag 推导版本；无 tag 时可给出本地版本后缀
+version_scheme = "post-release"                 # 正式版本号的生成策略（如 0.4.2.postN）
+local_scheme = "node-and-date"                  # 本地版本后缀策略（含提交哈希/日期，便于区分私有构建）
+# 可选：生成一个 _version.py，供运行时读取
+write_to = "blind_watermark/_version.py"        # 构建时把推导出的版本写入该文件
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 安装必要的包
 ```sh
