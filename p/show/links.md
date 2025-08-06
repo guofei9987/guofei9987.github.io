@@ -6,6 +6,7 @@ permalink: /links.html
 
 ## 友链
 
+
 <style>
     .link_logo {
         width: 100px;
@@ -13,7 +14,12 @@ permalink: /links.html
     }
 </style>
 
-<p><a href="https://opsnote.top/"><figure><img src="https://opsnote.top/upload/images/87372796AD7582ED9B90DC1574C3BD62.jpg" class="link_logo"><figcaption>运维小记:聚沙成塔，集腋成裘</figcaption></figure></a></p>
+<p><figure><a href="https://opsnote.top/"><img src="https://opsnote.top/upload/images/87372796AD7582ED9B90DC1574C3BD62.jpg" class="link_logo"></a><figcaption>运维小记:聚沙成塔，集腋成裘</figcaption></figure></p>
+
+<hr>
+
+<p><figure><a href="https://suroy.cn/"><img src="https://suroy.cn/usr/themes/Sunshine/images/Sunshine.png" class="link_logo"></a><figcaption>Suroy's Blog:Carpe Diem</figcaption></figure></p>
+
 
 ## 友链申请
 
