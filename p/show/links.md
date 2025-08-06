@@ -6,7 +6,8 @@ permalink: /links.html
 
 ## 友链
 
-
+[![caption: 运维小记:聚沙成塔，集腋成裘](https://opsnote.top/upload/images/87372796AD7582ED9B90DC1574C3BD62.jpg
+)](https://opsnote.top/)
 
 ## 友链申请
 
