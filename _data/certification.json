@@ -12,7 +12,6 @@
       "org": "人力资源和社会保障局",
       "cat": "金融",
       "date": "2015-11-07",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/中级经济师.jpg",
       "link": []
     },
@@ -30,7 +29,6 @@
       "org": "证券业协会",
       "cat": "金融",
       "date": "2013-11-30",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券基础.jpg",
       "link": []
     },
@@ -39,7 +37,6 @@
       "org": "证券业协会",
       "cat": "金融",
       "date": "2013-11-30",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券交易.jpg",
       "link": []
     },
@@ -48,7 +45,6 @@
       "org": "证券业协会",
       "cat": "金融",
       "date": "2014-08-17",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券发行与承销.jpg",
       "link": []
     },
@@ -57,7 +53,6 @@
       "org": "证券业协会",
       "cat": "金融",
       "date": "2014-02-23",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券投资基金.jpg",
       "link": []
     },
@@ -66,7 +61,6 @@
       "org": "证券业协会",
       "cat": "金融",
       "date": "2014-02-23",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券投资分析.jpg",
       "link": []
     },
@@ -75,7 +69,6 @@
       "org": "期货业协会",
       "cat": "金融",
       "date": "2014-07",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/期货从业.jpg",
       "link": []
     },
@@ -84,7 +77,6 @@
       "org": "期货业协会",
       "cat": "金融",
       "date": "2014-11",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/期货投资分析.jpg",
       "link": []
     },
@@ -93,7 +85,6 @@
       "org": "财政局",
       "cat": "金融",
       "date": "2015-08",
-      "ts": 20150801,
       "image": "",
       "link": []
     },
@@ -178,7 +169,6 @@
       "cat": "其它",
       "date": "2015-08",
       "image": "/pictures_for_blog/certification/水证/驾驶证.jpeg",
-      "license": "",
       "link": []
     },
     {
@@ -224,7 +214,7 @@
     {
       "title": "Vital Signs: Understanding What the Body Is Telling Us",
       "platform": "Coursera",
-      "org": "Coursera",
+      "org": "Penn",
       "cat": "健康",
       "date": "2018-10-15",
       "image": "/pictures_for_blog/certification/coursera/Vital%20Signs%20Understanding%20What%20the%20Body%20Is.jpg",
@@ -249,10 +239,10 @@
       "link": ["https://www.coursera.org/account/accomplishments/certificate/MCDR2YTFGH4R"]
     },
     {
-      "title": "Learning How to Learn",
+      "title": "Introduction to Complex Analysis",
       "platform": "Coursera",
       "org": "Wesleyan",
-      "cat": "通识",
+      "cat": "计算机",
       "date": "2017-05",
       "image": "/pictures_for_blog/certification/coursera/Introduction%20to%20Complex%20Analysis.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5"]
@@ -262,60 +252,60 @@
       "platform": "Coursera",
       "org": "deeplearning.ai",
       "cat": "计算机",
-      "date": "2017-05",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Deep%20Learning.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6"]
     },
     {
       "title": "Neural Networks and Deep Learning",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y"]
     },
     {
       "title": "Improving Deep Neural Networks",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA"]
     },
     {
       "title": "Structuring Machine Learning Projects",
       "platform": "Coursera",
-      "org": "Stanford",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ"]
     },
     {
       "title": "Convolutional Neural Networks",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8"]
     },
     {
       "title": "Sequence Models",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Sequence%20Models.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF"]
     },
     {
       "title": "Computer Organization",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
+      "org": "北京大学",
+      "cat": "计算机",
       "date": "2017-05",
       "image": "/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73"]
@@ -325,34 +315,34 @@
       "platform": "Coursera",
       "org": "xxx",
       "cat": "通识",
-      "date": "2017-05",
+      "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9"]
     },
     {
-      "title": "操作系统",
+      "title": "操作系统原理",
       "platform": "Coursera",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "北京大学",
+      "cat": "计算机",
+      "date": "2024-11",
       "image": "/pictures_for_blog/certification/coursera/操作系统.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH"]
     },
     {
       "title": "C语言",
       "platform": "中国大学MOOC",
-      "org": "xxx",
-      "cat": "通识",
-      "date": "2017-05",
+      "org": "北京理工大学",
+      "cat": "计算机",
+      "date": "2016-08",
       "image": "/pictures_for_blog/certification/coursera/mooc_C语言.webp",
       "link": ["https://www.icourse163.org/cert/downCert.htm?termId=1001614008#/"]
     },
     {
       "title": "宝石鉴定与欣赏",
       "platform": "中国大学MOOC",
-      "org": "Stanford",
+      "org": "中国地址大学",
       "cat": "通识",
-      "date": "2017-05",
+      "date": "2025-06",
       "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
       "link": ["http://www.icourse163.org/verify/V242132000042#/verifyResult"]
     }

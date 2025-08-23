@@ -79,7 +79,7 @@ permalink: /certification2.html
     </div>
 
     {% assign pro_sorted = site.data.certification.professional %}
-    <div class="cert-grid cols-3" id="pro-grid">
+    <div class="cert-grid cols-2" id="pro-grid">
       {% for it in pro_sorted %}
         {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
         <article class="cert-card pro-item" data-cat="{{ it.cat | default: '其它' }}">
@@ -117,15 +117,13 @@ permalink: /certification2.html
         <span class="cert-chip active" data-cat="all">全部 <span class="num">0</span></span>
         <span class="cert-chip" data-cat="计算机">计算机/AI <span class="num">0</span></span>
         <span class="cert-chip" data-cat="健康">健康/医学 <span class="num">0</span></span>
-        <span class="cert-chip" data-cat="创业">创业/管理 <span class="num">0</span></span>
         <span class="cert-chip" data-cat="通识">学习与通识 <span class="num">0</span></span>
         <span class="cert-chip" data-cat="鉴赏">鉴赏/兴趣 <span class="num">0</span></span>
-        <span class="cert-chip" data-cat="国际">联合国/国际 <span class="num">0</span></span>
       </div>
       <div class="cert-count" id="mooc-count">共 0 门 | 当前筛选 0 门</div>
     </div>
 
-    {% assign mooc_sorted = site.data.certification.mooc | sort: "ts" | reverse %}
+    {% assign mooc_sorted = site.data.certification.mooc%}
     <div class="cert-grid cols-2" id="mooc-grid">
       {% for it in mooc_sorted %}
         {% assign img = it.image | default: "/assets/img/placeholder.svg" %}
