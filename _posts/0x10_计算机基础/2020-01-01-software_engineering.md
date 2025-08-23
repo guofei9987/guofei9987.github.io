@@ -489,7 +489,7 @@ DFD分为2种：变换型、事务型。
 - PAD图（Problem Analysis Diagram）
     - 优点：支持自顶向下逐步细化。
     - 每个细化都有竖线，使其有层次
-- NS图
+- N-S图
     - 支持自顶向下逐步细化
     - 严格限制转移
 - 判定表和判定树
@@ -802,6 +802,69 @@ PS：现代编程语言不推荐继承，原因：
 
 **用况图**，包括：
 - 主题、用况、参与者、依赖、泛化、关联
+
+
+![caption: UML-顺序图](/a/computer/software_engineering/uml_seq.gif)
+
+
+**顺序图**
+- 包含内容
+    - 交互各方：角色、对象
+    - 交互方式：同步、异步
+    - 交互内容：消息
+- 一些说明
+    - 对象生命线
+    - 消息
+        - 异步消息：枝形箭头
+        - 同步消息：实心三角箭头
+        - 同步消息的回复：枝形虚线箭头
+    - 控制结构：选择执行（opt）、条件执行（alt）、并发执行（par）、迭代执行（loop），等等
+
+![caption: UML-顺序图-控制结构](/a/computer/software_engineering/uml_seq2.gif)
+
+
+----------------------
+
+**状态图**（State Machine Diagram）
+
+![caption: UML-状态机图](/a/computer/software_engineering/uml_state_machine_diagram.gif)
+
+
+![caption: UML-状态](/a/computer/software_engineering/uml_state.gif)
+
+
+![caption: UML-状态转移](/a/computer/software_engineering/uml_state1.gif)
+
+
+
+状态可以嵌套
+
+正交子状态：并发执行的子状态
+- 分岔：转移到“正交区域”时，控制流分为多个并发流
+- 汇合：从“正交区域”离开时，它们汇合
+
+
+![caption: UML-正交子状态](/a/computer/software_engineering/uml_state2.gif)
+
+
+UML中，可模型化的4种事件
+1. 信号 signal
+2. 调用 call
+3. 时间事件和变化事件
+4. 发送事件和接受事件
+
+
+![caption: UML-信号](/a/computer/software_engineering/uml_signal.gif)
+
+
+
+![caption: UML-调用、事件](/a/computer/software_engineering/uml_state3.gif)
+
+
+**状态转移**
+
+
+![caption: UML-状态转移](/a/computer/software_engineering/uml_state4.gif)
 
 
 ## 参考资料
