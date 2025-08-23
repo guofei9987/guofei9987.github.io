@@ -525,8 +525,9 @@ RSA 的加密和解密过程
     2. 两个运算正好是逆运算，这个可以证明
     3. p, q 要足够大，否则容易通过公开的 n 计算出来
     4. **模指数运算** ($m = (c^d) \mod n$) 是有算法优化的（下面）
-- 公钥解密 $y = (x^E)%N$
-- 私钥加密 $x1 = (y^D)%N$
+    5. 必须满足 $m<n$，否则的话要对 m 进行分组
+- 公钥解密 $m = (c^e) \mod n$
+- 私钥加密 $c = (m^D) \mod n$
 
 
 ```python
@@ -535,6 +536,7 @@ RSA 的加密和解密过程
 
 from math import gcd
 
+
 def egcd(a, b):
     """扩展欧几里得算法，返回 (g, x, y) 使得 ax + by = g = gcd(a,b)"""
     if b == 0:
@@ -542,12 +544,14 @@ def egcd(a, b):
     g, x1, y1 = egcd(b, a % b)
     return (g, y1, x1 - (a // b) * y1)
 
+
 def modinv(a, m):
     """模逆：返回 a 在模 m 下的乘法逆元（若存在）"""
     g, x, _ = egcd(a, m)
     if g != 1:
         raise ValueError("inverse does not exist")
     return x % m
+
 
 # 1) 选两个素数（示例用小素数）
 p, q = 61, 53
@@ -567,78 +571,57 @@ d = modinv(e, phi)
 print("Public Key (PK) =", (e, n))
 print("Private Key (SK) =", (d, n))
 
+
 # 5) 演示加解密（m 必须小于 n）
+def encrypt(m, e, n):
+    """RSA 加密：c = m^e mod n"""
+    return pow(m, e, n)
+
+
+def decrypt(c, d, n):
+    """RSA 解密：m = c^d mod n"""
+    return pow(c, d, n)
+
+
 m = 42
-c = pow(m, e, n)      # 加密：c = m^e mod n
-m_dec = pow(c, d, n)  # 解密：m = c^d mod n
+c = encrypt(m, e, n)
+m_dec = decrypt(c, d, n)
 
-print("Message m     =", m)
-print("Ciphertext c  =", c)
-print("Decrypted m   =", m_dec)
+print("\nPlaintext  m =", m)
+print("Ciphertext c =", c)
+print("Decrypted  m =", m_dec)
 ```
 
+返回：
+>Public Key (PK) = (17, 3233)  
+Private Key (SK) = (2753, 3233)  
+Plaintext  m = 42  
+Ciphertext c = 2557  
+Decrypted  m = 42
 
 
 
 
+关于 **模指数运算** 的优化：
+- 假设要计算 $11^{23} \mod 187$
+- 先得到 $11^{23} \mod 187 = [(11^{1} \mod 187) * (11^{2} \mod 187) * (11^{4} \mod 187) * (11^{8} \mod 187) * (11^{8} \mod 187) * ] \mod 187$
+- 然后递归计算：
+    - $11^{1} \mod 187 = 11$
+    - $11^{2} \mod 187 = (11*11) \mod 187 = 121$
+    - $11^{4} \mod 187 = (121*121) \mod 187 = 55$
+    - $11^{8} \mod 187 = (55*55) \mod 187 = 33$
 
 
 
+**RSA算法的评价**
+- 取决于模n分解的困难性，目前最快的算法复杂性为 $O(\exp(\sqrt{\ln(n)\ln\ln n}))$
+- 但是并没有证明分解大整数是 NP 问题。
+- 也没哟证明对 RSA 的攻击难度与分解大整数等价
+- 目前，RSA 的一些变种算法已被证明等价于大数分解
+- 由于有很多大数运算，因此性能较慢，一般只用于少量数据加密
+- RSA 被研究的最为广泛，普遍认为是目前最优秀的公钥方案之一
 
 
-RSA 的加密和解密过程
-- 公钥为 (E, N)，私钥为 (D, N)
-- 假设明文为数字 x
-- 公钥加密 $y = (x^E)%N$
-- 私钥解密 $x1 = (y^D)%N$
-- 公钥解密 $y = (x^E)%N$
-- 私钥加密 $x1 = (y^D)%N$
-
-示意代码如下：
-```py
-# 私钥是 (E, N)，公钥为 (D, N)
-# 可以私钥加密、公钥解密。也可以公钥解密、私钥加密
-E = 3
-N = 33
-D = 7
-
-
-# 工具：字符串转array
-def str2arr(text):
-    return [ord(i) - ord('A') for i in text]
-
-
-# 工具：array转字符串
-def arr2str(arr):
-    return ''.join(chr(i + ord('A')) for i in arr)
-
-
-# 私钥加密/解密
-def encryption(x):
-    return (x ** E) % N
-
-
-# 公钥解密/加密
-def decryption(y):
-    return (y ** D) % N
-
-
-text = 'HELLO'
-cipher_arr = [encryption(x) for x in str2arr(text)]
-ciphertext = arr2str(cipher_arr)
-print('私钥加密后：', ciphertext)
-
-decrypted_arr = [decryption(y) for y in str2arr(ciphertext)]
-print('公钥解密后：', arr2str(decrypted_arr))
-```
-
-
-如何选择 E，D？
-- 任意取两个大素数，例如 `p=3;q=11`
-- `N=p*q=33`
-- 欧拉函数 `T=(p-1)(q-1)=2*10=20`
-- 随机选择公钥 E，使其满足：1）E为素数 2）`1<E<T` 3）E 不是 T 的因子。这里选择 E=3
-- 选择私钥 D，使其满足 `(DE)%T == 1` （欧几里得算法）
 
 
 ## 参考
