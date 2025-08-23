@@ -236,6 +236,7 @@ body.sidebar-hidden .sidebar-toggle{
     text-decoration: none;
 }
 
+.dropdown.open .dropdown-list,
 .dropdown:hover .dropdown-list,
 .dropdown:focus-within .dropdown-list {
     display: block;
@@ -256,5 +257,4 @@ sup.wordcnt{
     border-color: #999;
     transform: scale(1.05);
 }
-
 

@@ -154,6 +154,62 @@ document.body.classList.toggle('sidebar-hidden');
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdown = document.querySelector('.dropdown');
+  const dropdownButton = document.querySelector('.dropdown-button');
+  const dropdownList = document.querySelector('.dropdown-list');
+
+  if (!dropdown || !dropdownButton || !dropdownList) {
+    return;
+  }
+
+  const closeDropdown = ({ blurButton = false } = {}) => {
+    if (!dropdown.classList.contains('open')) {
+      return;
+    }
+
+    dropdown.classList.remove('open');
+    dropdownButton.setAttribute('aria-expanded', 'false');
+
+    if (blurButton) {
+      dropdownButton.blur();
+    }
+  };
+
+  dropdownButton.addEventListener('click', function() {
+    const isOpen = dropdown.classList.toggle('open');
+    dropdownButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+    if (!isOpen) {
+      dropdownButton.blur();
+    }
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!dropdown.contains(event.target)) {
+      closeDropdown({ blurButton: true });
+    }
+  });
+
+  document.addEventListener('focusin', function(event) {
+    if (!dropdown.contains(event.target)) {
+      closeDropdown();
+    }
+  });
+
+  dropdown.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      closeDropdown();
+      dropdownButton.focus();
+    }
+  });
+
+  dropdownList.addEventListener('click', function() {
+    closeDropdown();
+  });
+});
+
+
 // 高亮 banner 中对应的 logo
 function activeTop(sidebarType){
   let targetHref = '';
@@ -218,4 +274,3 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('加载侧边栏数据出错：', error);
     });
 });
-
