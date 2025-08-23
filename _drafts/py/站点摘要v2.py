@@ -3,6 +3,7 @@
 data_source_list=[
     'https://www.guofei.site/tags.json',
     'https://www.guofei.site/reading.json',
+    'https://www.guofei.site/os.json',
     'https://www.guofei.site/me.html',
     "https://www.guofei.site/api/book_list.json",
     "https://www.guofei.site/api/certification.json",

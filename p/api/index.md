@@ -21,12 +21,13 @@ order: 9999
 
 | 文件 | 说明 | 主要字段 |
 |------|------|----------|
-| [`/tags.json`](https://www.guofei.site/tags.json) | 技术文章索引，按标签分类，每个标签包含若干 `[标题, URL]` | `[[tag_name, [[title, url], … ]], …]` |
-| [`/reading.json`](https://www.guofei.site/reading.json) | 阅读笔记索引，分领域、子领域及条目 | `[[领域, [[子领域, 字数, [条目] ], …]], …]` |
+| [`/tags.json`](https://www.guofei.site/tags.json) | **技术** 目录索引，按标签分类，每个标签包含若干 `[标题, URL]` | `[[tag_name, [[title, url], … ]], …]` |
+| [`/reading.json`](https://www.guofei.site/reading.json) | **视野** 目录索引，分领域、子领域及条目 | `[[领域, [[子领域, 字数, [条目] ], …]], …]` |
+| [`/os.json`](https://www.guofei.site/os.json) | **开源** 目录索引 |  |
 | [`/api/book_list.json`](https://www.guofei.site/api/book_list.json) | 阅读书单，含评分与简评 | `title`, `author`, `publisher`, `finish_date`, `rating`, `comment`, `note` |
 | [`/api/cnt_github_repo.json`](https://www.guofei.site/api/cnt_github_repo.json) | GitHub 仓库统计信息 | `repo`, `stars`, `forks`, `language`, … |
-| [`/api/achievement.json`](https://www.guofei.site/api/achievement.json) | 综合统计数据：博客数、读书数、知乎赞同数、Star 数等 | 各项计数值 |
 | [`/api/certification.json`](https://www.guofei.site/api/certification.json) | 职业与专业证书 | `category`, `title`, `organization`, `link`, `image` |
+| [`/api/achievement.json`](https://www.guofei.site/api/achievement.json) | 其它统计数据，如文章数、读书数、知乎赞同数、GitHub 的 Star 数等 | 各项计数值 |
 
 
 #### 三、示例用法

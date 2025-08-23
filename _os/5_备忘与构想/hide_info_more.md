@@ -2,7 +2,7 @@
 layout: post
 title: 信息嵌入技术【2】
 categories: 开源
-tag: 备忘与构想
+tag: DevNotes
 keywords:
 description:
 order: 59003
