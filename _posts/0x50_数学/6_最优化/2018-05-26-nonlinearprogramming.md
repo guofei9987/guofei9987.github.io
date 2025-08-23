@@ -62,10 +62,10 @@ $x_{k+1}=x_k-\rho_k \nabla f(x_k)$
 算法：  
 step1：取初始值$x_0,k=0$  
 step2: 计算$f(x_k)$  
-step3: 计算$g_k=g(x_k)$, 如果$\mid \mid g_k \mid\mid <\epsilon$,$x^* =x_k$ 算法终止。否则求出：  
+step3: 计算$g_k=g(x_k)$, 如果$\lVert g_k \rVert <\epsilon$,$x^* =x_k$ 算法终止。否则求出：  
 $\lambda_k=\arg\min\limits_{\lambda \geq 0}f(x_k-\lambda g(x_k))$  
 step4: $x_{k+1}=x_k-\lambda_k g(x_k)$  
-如果$\mid\mid f(x_{k+1})-f(x_k)\mid\mid <\epsilon$或者$\mid\mid x_{k+1}-x_k\mid\mid<\epsilon$$x^* =x_k$，算法终止  
+如果$\lVert f(x_{k+1})-f(x_k)\rVert <\epsilon$或者$\lVert x_{k+1}-x_k\rVert < \epsilon$，那么$x^* =x_k$，并且算法终止  
 step5: k=k+1，转到3  
 
 
@@ -101,7 +101,7 @@ $\lambda_k=\dfrac{p_k^T Q\nabla f(x^{(k+1)})}{p_k^T Q p_k}$
 对于一般二阶可谓函数$f(x)$，在每个局部  
 $f(x) \thickapprox f(x^{(x)})^T(x-x^{(k)})+\dfrac{1}{2}(x-x^{(k)})\nabla^2 f(x^{(k)})(x-x^{(k)})$  
 用Hesse矩阵来作为二次函数中的Q是合理的。  
-进一步说，Hesse矩阵计算量巨大，考虑进一步优化，幸运的是这个成立：$\lambda_k=\dfrac{\mid\mid \nabla f(x^{(k+1)})\mid\mid^2}{\mid\mid \nabla f(x^{(k)})\mid\mid^2}$  
+进一步说，Hesse矩阵计算量巨大，考虑进一步优化，幸运的是这个成立：$\lambda_k=\dfrac{\lVert \nabla f(x^{(k+1)})\rVert^2}{\lVert \nabla f(x^{(k)})\rVert^2}$  
 
 
 算法如下  
@@ -110,7 +110,7 @@ $f(x) \thickapprox f(x^{(x)})^T(x-x^{(k)})+\dfrac{1}{2}(x-x^{(k)})\nabla^2 f(x^{
 $x^{(k+1)}=x^{(k)}+\alpha_k d_k$  
 $\alpha_k=\arg\min f(x^{(k)}+\alpha d_k)$  
 $d_{k+1}=-\nabla f(x^{(k+1)})+\lambda_kd_k$  
-$\lambda_k=\dfrac{\mid\mid \nabla f(x^{(k+1)})\mid\mid^2}{\mid\mid \nabla f(x^{(k)})\mid\mid^2}$  
+$\lambda_k=\dfrac{\lVert \nabla f(x^{(k+1)})\rVert^2}{\lVert \nabla f(x^{(k)})\rVert^2}$  
 **step3**：k=k+1，返回step2  
 
 

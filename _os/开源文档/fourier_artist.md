@@ -18,7 +18,7 @@ repo_name: fourier_artist
 先复习一下离散傅立叶变换
 
 如果：  
-$\{ f_0,f_1,...f_{N-1}  \}$满足$\sum\limits_{n=0}^{N-1}|f_n|<\infty$
+$\{ f_0,f_1,...f_{N-1}  \}$满足$\sum\limits_{n=0}^{N-1} \lvert f_n\rvert < \infty$
 
 
 傅里叶变换：
