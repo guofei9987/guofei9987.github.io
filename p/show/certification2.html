@@ -79,7 +79,7 @@ permalink: /certification2.html
     </div>
 
     {% assign pro_sorted = site.data.certification.professional %}
-    <div class="cert-grid cols-2" id="pro-grid">
+    <div class="cert-grid cols-3" id="pro-grid">
       {% for it in pro_sorted %}
         {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
         <article class="cert-card pro-item" data-cat="{{ it.cat | default: '其它' }}">
@@ -136,8 +136,7 @@ permalink: /certification2.html
           <div class="cert-body">
             <div class="cert-title">{{ it.title }}</div>
             <div class="cert-meta">
-              平台：{{ it.platform | default: it.org }}
-              {% if it.cat %}　|　类别：{{ it.cat }}{% endif %}
+              机构：{{ it.org}}
               {% if it.date %}　|　时间：{{ it.date }}{% endif %}
             </div>
             {% if it.link and it.link.size > 0 %}

@@ -222,24 +222,139 @@
   ],
   "mooc": [
     {
-      "title": "Deep Learning Specialization",
+      "title": "Vital Signs: Understanding What the Body Is Telling Us",
       "platform": "Coursera",
       "org": "Coursera",
-      "cat": "计算机",
+      "cat": "健康",
       "date": "2018-10-15",
-      "ts": 20181015,
-      "image": "/pictures_for_blog/certification/coursera/Deep%20Learning.jpg",
-      "link": ["https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6"]
+      "image": "/pictures_for_blog/certification/coursera/Vital%20Signs%20Understanding%20What%20the%20Body%20Is.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/4H9SD5AFRPYG"]
+    },
+    {
+      "title": "Stanford Introduction to Food and Health",
+      "platform": "Coursera",
+      "org": "Stanford",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Stanford%20Introduction%20to%20Food%20and%20Health.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/86PSBYQZR36N"]
+    },
+    {
+      "title": "真格—北大在线创业课堂",
+      "platform": "Coursera",
+      "org": "北京大学",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/%E7%9C%9F%E6%A0%BC%E2%80%94%E5%8C%97%E5%A4%A7%E5%9C%A8%E7%BA%BF%E5%88%9B%E4%B8%9A%E8%AF%BE%E5%A0%82.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/MCDR2YTFGH4R"]
     },
     {
       "title": "Learning How to Learn",
       "platform": "Coursera",
-      "org": "Coursera",
+      "org": "Wesleyan",
       "cat": "通识",
       "date": "2017-05",
-      "ts": 20170501,
-      "image": "",
+      "image": "/pictures_for_blog/certification/coursera/Introduction%20to%20Complex%20Analysis.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5"]
+    },
+    {
+      "title": "Deep Learning Specialization",
+      "platform": "Coursera",
+      "org": "deeplearning.ai",
+      "cat": "计算机",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Deep%20Learning.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6"]
+    },
+    {
+      "title": "Neural Networks and Deep Learning",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y"]
+    },
+    {
+      "title": "Improving Deep Neural Networks",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA"]
+    },
+    {
+      "title": "Structuring Machine Learning Projects",
+      "platform": "Coursera",
+      "org": "Stanford",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ"]
+    },
+    {
+      "title": "Convolutional Neural Networks",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8"]
+    },
+    {
+      "title": "Sequence Models",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Sequence%20Models.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF"]
+    },
+    {
+      "title": "Computer Organization",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73"]
+    },
+    {
+      "title": "Learning How to Learn",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9"]
+    },
+    {
+      "title": "操作系统",
+      "platform": "Coursera",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/操作系统.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH"]
+    },
+    {
+      "title": "C语言",
+      "platform": "中国大学MOOC",
+      "org": "xxx",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/mooc_C语言.webp",
+      "link": ["https://www.icourse163.org/cert/downCert.htm?termId=1001614008#/"]
+    },
+    {
+      "title": "宝石鉴定与欣赏",
+      "platform": "中国大学MOOC",
+      "org": "Stanford",
+      "cat": "通识",
+      "date": "2017-05",
+      "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
+      "link": ["http://www.icourse163.org/verify/V242132000042#/verifyResult"]
     }
   ]
 }
