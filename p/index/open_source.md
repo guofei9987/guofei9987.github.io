@@ -41,8 +41,8 @@ name: 开源
 {% for repo in filtered_repos %}
 <tr>
   <td><a href="{{ repo.url }}">{{ repo.name }}</a></td>
-  <td><img class="icon" src="/public/logo/star.svg">{{ repo.star_cnt }}</td>
-  <td><img class="icon" src="/public/logo/fork.svg">{{ repo.fork_cnt }}</td>
+  <td><img class="icon" src="/p/logo/star.svg">{{ repo.star_cnt }}</td>
+  <td><img class="icon" src="/p/logo/fork.svg">{{ repo.fork_cnt }}</td>
   <td>{{ repo.description }}</td>
 </tr>
 {% endfor %}

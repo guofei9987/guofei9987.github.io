@@ -61,10 +61,10 @@ permalink: /me.html
 
 如何找到我：  
 
-[![github](https://www.guofei.site/public/logo/github.svg)](https://github.com/guofei9987/)
-[![zhihu](https://www.guofei.site/public/logo/zhihu.svg)](https://www.zhihu.com/people/guofei9987/answers/by_votes)
-[![wechat](https://www.guofei.site/public/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
-[![email](https://www.guofei.site/public/logo/email.svg)](mailto:me@guofei.site)
+[![github](https://www.guofei.site/p/logo/github.svg)](https://github.com/guofei9987/)
+[![zhihu](https://www.guofei.site/p/logo/zhihu.svg)](https://www.zhihu.com/people/guofei9987/answers/by_votes)
+[![wechat](https://www.guofei.site/p/logo/wechat.svg)](http://www.guofei.site/public/donate/qr_wechat.jpg)
+[![email](https://www.guofei.site/p/logo/email.svg)](mailto:me@guofei.site)
 <a href="https://www.guofei.site/" target="_blank">
   <img class="me" src="https://www.guofei.site/p/me/me2.png" alt="me" width="40" height="40" style="vertical-align: middle;">
 </a>
