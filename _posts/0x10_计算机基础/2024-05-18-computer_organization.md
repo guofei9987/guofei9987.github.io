@@ -64,8 +64,7 @@ order: 101
 
 
 
-![caption: 控制器](/pictures_for_blog/computer/cpu.jpg)  
-上图为控制器（CPU）
+![caption: 控制器（CPU）](/pictures_for_blog/computer/cpu.jpg)  
 
 
 控制器要点：
