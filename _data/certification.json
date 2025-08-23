@@ -25,6 +25,14 @@
       "link": []
     },
     {
+      "title": "中国科教电影电视协会个人会员",
+      "org": "中国科教电影电视协会",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/中国科教电影电视协会个人会员证书.jpg",
+      "link": ["https://www.csfva.org.cn/"]
+    },
+    {
       "title": "证券从业-基础",
       "org": "证券业协会",
       "cat": "金融",
@@ -199,14 +207,6 @@
       "date": "2025",
       "image": "/a/certificate/unesco_oer.jpg",
       "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unesco.org/"]
-    },
-    {
-      "title": "中国科教电影电视协会个人会员",
-      "org": "中国科教电影电视协会",
-      "cat": "其它",
-      "date": "2025",
-      "image": "/a/certificate/中国科教电影电视协会个人会员证书.jpg",
-      "link": ["https://www.csfva.org.cn/"]
     }
   ],
   "mooc": [
@@ -223,7 +223,7 @@
       "title": "Stanford Introduction to Food and Health",
       "platform": "Coursera",
       "org": "Stanford",
-      "cat": "通识",
+      "cat": "健康",
       "date": "2017-05",
       "image": "/pictures_for_blog/certification/coursera/Stanford%20Introduction%20to%20Food%20and%20Health.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/86PSBYQZR36N"]
@@ -232,7 +232,7 @@
       "title": "真格—北大在线创业课堂",
       "platform": "Coursera",
       "org": "北京大学",
-      "cat": "通识",
+      "cat": "其它",
       "date": "2017-05",
       "image": "/pictures_for_blog/certification/coursera/%E7%9C%9F%E6%A0%BC%E2%80%94%E5%8C%97%E5%A4%A7%E5%9C%A8%E7%BA%BF%E5%88%9B%E4%B8%9A%E8%AF%BE%E5%A0%82.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/MCDR2YTFGH4R"]
@@ -313,7 +313,7 @@
       "title": "Learning How to Learn",
       "platform": "Coursera",
       "org": "UC San Diego",
-      "cat": "通识",
+      "cat": "其它",
       "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9"]
@@ -340,7 +340,7 @@
       "title": "宝石鉴定与欣赏",
       "platform": "中国大学MOOC",
       "org": "中国地址大学",
-      "cat": "通识",
+      "cat": "其它",
       "date": "2025-06",
       "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
       "link": ["http://www.icourse163.org/verify/V242132000042#/verifyResult"]
