@@ -9,42 +9,40 @@ permalink: /certification2.html
   --bd:#e7e7e7; --muted:#666; --chip:#f6f8fa; --chip-active:#eaf3ff; --link:#0b76da;
   --shadow:0 1px 2px rgba(0,0,0,.04);
 }
-/* 统一卡片/网格基础样式 */
-.grid{ display:grid; gap:14px; }
-.grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-.grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-@media (max-width: 900px){ .grid.cols-3{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 640px){ .grid, .grid.cols-2, .grid.cols-3{ grid-template-columns: 1fr; } }
+/* 统一组件：卡片/缩略图/正文 */
+.cert-grid{ display:grid; gap:14px; }
+.cert-grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+.cert-grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+@media (max-width: 900px){ .cert-grid.cols-3{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 700px){ .cert-grid.cols-2{ grid-template-columns: 1fr; } }
+@media (max-width: 640px){ .cert-grid, .cert-grid.cols-2, .cert-grid.cols-3{ grid-template-columns: 1fr; } }
 
-.card{
+.cert-card{
   border:1px solid var(--bd); border-radius:12px; background:#fff; box-shadow:var(--shadow);
   overflow:hidden; display:flex; gap:12px; padding:10px; min-height:98px;
 }
-.thumb, .mooc-thumb{ width:140px; flex:0 0 140px; height:100px; border-radius:8px; overflow:hidden; background:#f3f5f7; }
-.thumb img, .mooc-thumb img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
-.body, .mooc-body{ min-width:0; }
-.title, .mooc-title{ margin:.1rem 0 .25rem; font-size:1rem; font-weight:600; line-height:1.35; }
-.meta, .mooc-meta{ color:var(--muted); font-size:.9rem; margin-bottom:.15rem; }
-.links a, .mooc-links a{ color:#8aa8c9; text-decoration:none; margin-right:10px; opacity:.95; }
-.links a::after, .mooc-links a::after{ content:" ↗"; opacity:.7; }
-.links a:hover, .mooc-links a:hover{ color:var(--link); text-decoration:underline; opacity:1; }
-figcaption{ font-size:.92rem; color:#333; }
-figcaption .meta{ color:var(--muted); }
+.cert-thumb{ width:140px; flex:0 0 140px; height:100px; border-radius:8px; overflow:hidden; background:#f3f5f7; }
+.cert-thumb img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
+.cert-body{ min-width:0; }
+.cert-title{ margin:.1rem 0 .25rem; font-size:1rem; font-weight:600; line-height:1.35; }
+.cert-meta{ color:var(--muted); font-size:.9rem; margin-bottom:.15rem; }
+.cert-links a{ color:#8aa8c9; text-decoration:none; margin-right:10px; opacity:.95; }
+.cert-links a::after{ content:" ↗"; opacity:.7; }
+.cert-links a:hover{ color:var(--link); text-decoration:underline; opacity:1; }
+.figcaption{ font-size:.92rem; color:#333; }
+.figcaption .meta{ color:var(--muted); }
 
-/* MOOC 顶部筛选条 */
-.mooc-wrap{ max-width: 960px; margin: 0 auto; }
-.mooc-topbar{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin:.5rem 0 1rem; }
-.mooc-count{ font-size:.92rem; color:var(--muted); }
-.mooc-filter{ display:flex; flex-wrap:wrap; gap:8px; }
-.mooc-chip{
+/* 统一筛选条（可复用） */
+.cert-wrap{ max-width: 960px; margin: 0 auto; }
+.cert-topbar{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin:.5rem 0 1rem; }
+.cert-count{ font-size:.92rem; color:var(--muted); }
+.cert-filter{ display:flex; flex-wrap:wrap; gap:8px; }
+.cert-chip{
   border:1px solid #e6e6e6; background:var(--chip); border-radius:999px;
   padding:4px 10px; font-size:.9rem; cursor:pointer; user-select:none; display:inline-flex; gap:6px; align-items:center;
 }
-.mooc-chip .num{ font-size:.78rem; color:#555; background:#eef1f4; padding:1px 6px; border-radius:999px; }
-.mooc-chip.active{ background:var(--chip-active); border-color:#c7e1ff; }
-.mooc-grid{ display:grid; gap:14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (max-width: 700px){ .mooc-grid{ grid-template-columns:1fr; } }
-.mooc-card{ border:1px solid var(--bd); border-radius:12px; background:#fff; overflow:hidden; box-shadow:var(--shadow); display:flex; gap:12px; padding:10px; }
+.cert-chip .num{ font-size:.78rem; color:#555; background:#eef1f4; padding:1px 6px; border-radius:999px; }
+.cert-chip.active{ background:var(--chip-active); border-color:#c7e1ff; }
 
 /* 灯箱（全局共享，支持点击空白关闭、左右/Esc） */
 .lb::backdrop{ background: rgba(0,0,0,.5); }
@@ -60,73 +58,91 @@ figcaption .meta{ color:var(--muted); }
   pointer-events:auto; border:none; background:rgba(0,0,0,.35); color:#fff; font-size:20px; width:42px; height:42px; border-radius:50%;
   margin:0 10px; cursor:pointer;
 }
+.section h2{ margin: .8rem 0 .6rem; }
+.section .hint{ color:var(--muted); font-size:.9rem; }
 </style>
 
-<!-- ====================== 职业与专业证书 ====================== -->
+<!-- ====================== 职业与专业证书（带分类筛选） ====================== -->
 <section class="section" id="pro">
-  <h2>🎓 职业与专业证书 <span class="meta">（数据源：_data/certification.json）</span></h2>
+  <h2>🎓 职业与专业证书</h2>
 
-  {% assign pro_sorted = site.data.certification.professional | sort: "ts" | reverse %}
-  <div class="grid cols-3" id="pro-cards">
-    {% for it in pro_sorted %}
-      {% assign img = it.image | default: "/assets/img/cert-placeholder.svg" %}
-      <figure class="card item-pro" data-cat="{{ it.cat | default: '职业证书' }}">
-        <div class="thumb">
-          <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">
-        </div>
-        <figcaption>
-          {{ it.title }}
-          {% if it.date %}（{{ it.date }}）{% endif %}
-          {% if it.license %}<span class="meta"> · {{ it.license }}</span>{% endif %}
-          {% if it.org %}<span class="meta"> · {{ it.org }}</span>{% endif %}
-          {% if it.link and it.link.size > 0 %}
-            <span class="meta">
-            {% for href in it.link %}
-              · <a href="{{ href }}" target="_blank" rel="noopener noreferrer">链接{{ forloop.index }}</a>
-            {% endfor %}
-            </span>
-          {% endif %}
-        </figcaption>
-      </figure>
-    {% endfor %}
+  <div class="cert-wrap">
+    <div class="cert-topbar">
+      <div class="cert-filter" id="pro-filter">
+        <span class="cert-chip active" data-cat="all">全部 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="金融">金融 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="计算机">计算机 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="健康">健康 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="其它">其它 <span class="num">0</span></span>
+      </div>
+      <div class="cert-count" id="pro-count">共 0 张 | 当前筛选 0 张</div>
+    </div>
+
+    {% assign pro_sorted = site.data.certification.professional | sort: "ts" | reverse %}
+    <div class="cert-grid cols-2" id="pro-grid">
+      {% for it in pro_sorted %}
+        {% assign img = it.image | default: "/assets/img/cert-placeholder.svg" %}
+        <article class="cert-card pro-item" data-cat="{{ it.cat | default: '其它' }}">
+          <div class="cert-thumb">
+            <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">
+          </div>
+          <div class="cert-body">
+            <div class="cert-title">{{ it.title }}</div>
+            <div class="cert-meta">
+              {% if it.org %}机构：{{ it.org }}　{% endif %}
+              {% if it.cat %}类别：{{ it.cat }}　{% endif %}
+              {% if it.date %}时间：{{ it.date }}{% endif %}
+            </div>
+            <div class="cert-links">
+              {% if it.license %}<span class="meta">编号：{{ it.license }}</span>{% endif %}
+              {% if it.link and it.link.size > 0 %}
+                {% for href in it.link %}
+                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">相关链接</a>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
-<!-- ====================== MOOC 课程证书 ====================== -->
+<!-- ====================== MOOC 课程证书（带分类筛选） ====================== -->
 <section class="section" id="mooc">
-  <h2>🎓 MOOC 课程证书 <span class="meta">弱化外链 · 分类筛选</span></h2>
+  <h2>🎓 MOOC 课程证书 <span class="hint">弱化外链 · 分类筛选</span></h2>
 
-  <div class="mooc-wrap">
-    <div class="mooc-topbar">
-      <div class="mooc-filter" id="mooc-filter">
-        <span class="mooc-chip active" data-cat="all">全部 <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="计算机">计算机/AI <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="健康">健康/医学 <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="创业">创业/管理 <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="通识">学习与通识 <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="鉴赏">鉴赏/兴趣 <span class="num">0</span></span>
-        <span class="mooc-chip" data-cat="国际">联合国/国际 <span class="num">0</span></span>
+  <div class="cert-wrap">
+    <div class="cert-topbar">
+      <div class="cert-filter" id="mooc-filter">
+        <span class="cert-chip active" data-cat="all">全部 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="计算机">计算机/AI <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="健康">健康/医学 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="创业">创业/管理 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="通识">学习与通识 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="鉴赏">鉴赏/兴趣 <span class="num">0</span></span>
+        <span class="cert-chip" data-cat="国际">联合国/国际 <span class="num">0</span></span>
       </div>
-      <div class="mooc-count" id="mooc-count">共 0 门 | 当前筛选 0 门</div>
+      <div class="cert-count" id="mooc-count">共 0 门 | 当前筛选 0 门</div>
     </div>
 
     {% assign mooc_sorted = site.data.certification.mooc | sort: "ts" | reverse %}
-    <div class="mooc-grid" id="mooc-grid">
+    <div class="cert-grid cols-2" id="mooc-grid">
       {% for it in mooc_sorted %}
         {% assign img = it.image | default: "/assets/img/cert-placeholder.svg" %}
-        <article class="mooc-card mooc-item" data-cat="{{ it.cat | default: '其它' }}" data-platform="{{ it.platform | default: it.org }}">
-          <div class="mooc-thumb">
+        <article class="cert-card mooc-item" data-cat="{{ it.cat | default: '其它' }}" data-platform="{{ it.platform | default: it.org }}">
+          <div class="cert-thumb">
             <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">
           </div>
-          <div class="mooc-body">
-            <div class="mooc-title">{{ it.title }}</div>
-            <div class="mooc-meta">
+          <div class="cert-body">
+            <div class="cert-title">{{ it.title }}</div>
+            <div class="cert-meta">
               平台：{{ it.platform | default: it.org }}
               {% if it.cat %}　|　类别：{{ it.cat }}{% endif %}
               {% if it.date %}　|　时间：{{ it.date }}{% endif %}
             </div>
             {% if it.link and it.link.size > 0 %}
-            <div class="mooc-links">
+            <div class="cert-links">
               {% for href in it.link %}
                 <a href="{{ href }}" target="_blank" rel="noopener noreferrer">查看证书</a>
               {% endfor %}
@@ -154,61 +170,80 @@ figcaption .meta{ color:var(--muted); }
 
 <script>
 (function(){
-  // ========== MOOC 筛选 + 计数 ==========
-  const chips = Array.from(document.querySelectorAll('#mooc-filter .mooc-chip'));
-  const moocItems = Array.from(document.querySelectorAll('#mooc-grid .mooc-item'));
-  const countEl = document.getElementById('mooc-count');
+  // 通用绑定：筛选 + 计数 + hash
+  function bindFilter(section){
+    const chips = Array.from(document.querySelectorAll(section.filterSel));
+    const items = Array.from(document.querySelectorAll(section.gridSel + ' ' + section.itemCls));
+    const countEl = document.querySelector(section.countSel);
 
-  function updateMoocCounts(active='all'){
-    const total = moocItems.length;
-    const visible = moocItems.filter(it => active==='all' || it.dataset.cat===active).length;
-    if (countEl) countEl.textContent = `共 ${total} 门 | 当前筛选 ${visible} 门`;
-    // 更新芯片上的数量
-    const cats = {};
-    moocItems.forEach(it => { cats[it.dataset.cat] = (cats[it.dataset.cat]||0) + 1; });
-    chips.forEach(ch => {
-      const cat = ch.dataset.cat;
-      const numEl = ch.querySelector('.num');
-      if (!numEl) return;
-      numEl.textContent = (cat==='all') ? total : (cats[cat]||0);
-    });
-  }
-  if (chips.length) {
-    updateMoocCounts();
-    chips.forEach(ch => ch.addEventListener('click', () => {
-      chips.forEach(c=>c.classList.remove('active'));
-      ch.classList.add('active');
-      const cat = ch.dataset.cat;
-      moocItems.forEach(it => { it.style.display = (cat==='all' || it.dataset.cat===cat) ? '' : 'none'; });
-      updateMoocCounts(cat);
-      // 将筛选写入 hash，便于分享
-      location.hash = '#mooc-' + encodeURIComponent(cat);
-    }));
-    // 根据 hash 还原筛选
-    if (location.hash.startsWith('#mooc-')){
-      const cat = decodeURIComponent(location.hash.replace('#mooc-',''));
-      const chip = chips.find(c=>c.dataset.cat===cat);
-      if (chip) chip.click();
+    function updateCounts(active='all'){
+      const total = items.length;
+      const visible = items.filter(it => active==='all' || it.dataset.cat===active).length;
+      if (countEl) countEl.textContent = section.countText(total, visible);
+      const cats = {};
+      items.forEach(it => { cats[it.dataset.cat] = (cats[it.dataset.cat]||0) + 1; });
+      chips.forEach(ch => {
+        const cat = ch.dataset.cat;
+        const numEl = ch.querySelector('.num');
+        if (!numEl) return;
+        numEl.textContent = (cat==='all') ? total : (cats[cat]||0);
+      });
+    }
+
+    if (chips.length){
+      updateCounts();
+      chips.forEach(ch => ch.addEventListener('click', () => {
+        chips.forEach(c=>c.classList.remove('active'));
+        ch.classList.add('active');
+        const cat = ch.dataset.cat;
+        items.forEach(it => { it.style.display = (cat==='all' || it.dataset.cat===cat) ? '' : 'none'; });
+        updateCounts(cat);
+        if (section.hashPrefix) location.hash = section.hashPrefix + encodeURIComponent(cat);
+      }));
+      // hash 恢复
+      if (section.hashPrefix && location.hash.startsWith(section.hashPrefix)){
+        const cat = decodeURIComponent(location.hash.replace(section.hashPrefix,''));
+        const chip = chips.find(c=>c.dataset.cat===cat);
+        if (chip) chip.click();
+      }
     }
   }
 
-  // ========== 全局图片灯箱（职业证书 + MOOC 都能用） ==========
+  // 绑定职业证书筛选
+  bindFilter({
+    filterSel: '#pro-filter .cert-chip',
+    gridSel: '#pro-grid',
+    itemCls: '.pro-item',
+    countSel: '#pro-count',
+    countText: (t,v)=>`共 ${t} 张 | 当前筛选 ${v} 张`,
+    hashPrefix: '#pro-'
+  });
+
+  // 绑定 MOOC 筛选
+  bindFilter({
+    filterSel: '#mooc-filter .cert-chip',
+    gridSel: '#mooc-grid',
+    itemCls: '.mooc-item',
+    countSel: '#mooc-count',
+    countText: (t,v)=>`共 ${t} 门 | 当前筛选 ${v} 门`,
+    hashPrefix: '#mooc-'
+  });
+
+  // ========== 全局图片灯箱（两块都能用） ==========
   const dlg = document.getElementById('lightbox');
   const lbImg = document.getElementById('lb-img');
   const btnPrev = document.getElementById('lb-prev');
   const btnNext = document.getElementById('lb-next');
   const btnClose = document.getElementById('lb-close');
 
-  // 收集所有缩略图（两类选择器）
-  const allImgs = Array.from(document.querySelectorAll('.thumb img, .mooc-thumb img'));
+  const allImgs = Array.from(document.querySelectorAll('.cert-thumb img'));
   let current = -1;
 
   function openAt(idx){
     current = idx;
     const src = allImgs[current].getAttribute('data-full') || allImgs[current].src;
     lbImg.src = src;
-    if (dlg && dlg.showModal) dlg.showModal();
-    else window.open(src, '_blank');
+    if (dlg && dlg.showModal) dlg.showModal(); else window.open(src, '_blank');
   }
   allImgs.forEach((img, idx)=> img.addEventListener('click', ()=> openAt(idx)));
 

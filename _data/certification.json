@@ -3,6 +3,7 @@
     {
       "title": "【全国大学生数学建模竞赛】上海赛区一等奖",
       "org": "",
+      "cat": "计算机",
       "date": "2007-08",
       "ts": 20070801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -11,6 +12,7 @@
     },
     {
       "title": "工信部数据分析师（高级）",
+      "cat": "计算机",
       "org": "",
       "date": "2017-08",
       "ts": 20170801,
@@ -21,6 +23,7 @@
     {
       "title": "中级经济师",
       "org": "人力资源和社会保障局",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -30,6 +33,7 @@
     {
       "title": "证券从业-基础",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -48,6 +52,7 @@
     {
       "title": "证券从业-发行与承销",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -57,14 +62,17 @@
     {
       "title": "证券从业-证券投资基金",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
       "license": "160050940300397",
       "link": []
-    },    {
+    },
+    {
       "title": "证券从业-证券投资分析",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -74,6 +82,7 @@
     {
       "title": "期货从业",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -83,6 +92,7 @@
     {
       "title": "期货投资分析",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -92,6 +102,7 @@
     {
       "title": "会计从业",
       "org": "财政局",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -101,6 +112,7 @@
     {
       "title": "计算机二级",
       "org": "",
+      "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -110,6 +122,7 @@
     {
       "title": "职称计算机",
       "org": "",
+      "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -129,6 +142,7 @@
     {
       "title": "CAD培训证书",
       "org": "",
+      "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -138,6 +152,7 @@
     {
       "title": "【红十字协会】急救证",
       "org": "",
+      "cat": "健康",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -147,6 +162,7 @@
     {
       "title": "【美国心脏协会】急救证",
       "org": "",
+      "cat": "健康",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
@@ -156,6 +172,7 @@
     {
       "title": "机动车驾驶证",
       "org": "",
+      "cat": "其它",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
