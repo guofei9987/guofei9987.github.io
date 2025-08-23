@@ -16,7 +16,7 @@ permalink: /api/achievement.json
 "fork_cnt_str": "{{ site.data.data_github.fork_cnt_str }}",
 
 
-
+"zhihu_url": "https://www.zhihu.com/people/guofei9987/answers/by_votes",
 "zhihu_agree": "{{ site.data.achievement.zhihu_agree }}",
 "zhihu_like": "{{ site.data.achievement.zhihu_like }}",
 "zhihu_collection": "{{ site.data.achievement.zhihu_collection }}",
