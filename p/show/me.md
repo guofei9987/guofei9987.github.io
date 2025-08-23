@@ -39,14 +39,14 @@ permalink: /me.html
 
 我发起的开源项目：
 
-[![scikit-opt](https://www.guofei.site/public/icon/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt)
-[![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
-[![text_blind_watermark](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
-[![guofei9987.github.io](https://www.guofei.site/public/icon/guofei9987.github.io.svg)](https://github.com/guofei9987/guofei9987.github.io)
-[![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
-[![pyLSHash](https://www.guofei.site/public/icon/pyLSHash.svg)](https://github.com/guofei9987/pyLSHash)
-[![github_star_counter](https://www.guofei.site/public/icon/github_star_counter.svg)](https://github.com/guofei9987/github_star_counter)
-[![hidden_watermark](https://www.guofei.site/public/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)
+[![scikit-opt](https://www.guofei.site/p/icon/scikit-opt.svg)](https://github.com/guofei9987/scikit-opt)
+[![blind_watermark](https://www.guofei.site/p/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
+[![text_blind_watermark](https://www.guofei.site/p/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
+[![guofei9987.github.io](https://www.guofei.site/p/icon/guofei9987.github.io.svg)](https://github.com/guofei9987/guofei9987.github.io)
+[![HideInfo](https://www.guofei.site/p/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
+[![pyLSHash](https://www.guofei.site/p/icon/pyLSHash.svg)](https://github.com/guofei9987/pyLSHash)
+[![github_star_counter](https://www.guofei.site/p/icon/github_star_counter.svg)](https://github.com/guofei9987/github_star_counter)
+[![hidden_watermark](https://www.guofei.site/p/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)
 
 
 

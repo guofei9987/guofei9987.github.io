@@ -114,7 +114,7 @@ order: 59003
 
 参考项目：
 
-[![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
+[![HideInfo](https://www.guofei.site/p/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
 
 项目实现了2种 LSB
 - 把待嵌入的数据变成 bit 类数据，然后用 LSB 算法
@@ -191,7 +191,7 @@ chi2测试
 ### 2.2 图片频域隐写技术
 
 参考项目：
-[![blind_watermark](https://www.guofei.site/public/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
+[![blind_watermark](https://www.guofei.site/p/icon/blind_watermark.svg)](https://github.com/guofei9987/blind_watermark)
 
 
 
@@ -244,7 +244,7 @@ GIF和BMP的调色板索引是可以随意交换顺序的，如果有N种颜色�
 #### 回声水印
 
 项目：
-[![HideInfo](https://www.guofei.site/public/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
+[![HideInfo](https://www.guofei.site/p/icon/HideInfo.svg)](https://github.com/guofei9987/HideInfo)
 
 
 $f_{new}(t)=f(t)+af(t-\Delta t)$
@@ -271,7 +271,7 @@ $f_{new}(t)=f(t)+af(t-\Delta t)$
 
 ### 文本隐水印：不可见字符
 
-[![text_blind_watermark](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
+[![text_blind_watermark](https://www.guofei.site/p/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark)
 
 
 ### 文本隐水印：自然语言替换

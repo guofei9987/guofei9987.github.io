@@ -174,7 +174,7 @@ repo_name: blind_watermark
 
 |Rust|Python|Javascript|
 |--|--|--|
-|[![](https://www.guofei.site/public/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)|[![](https://www.guofei.site/public/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark) | [javascript](https://www.guofei.site/pictures_for_blog/app/text_watermark/v1.html)
+|[![](https://www.guofei.site/p/icon/hidden_watermark.svg)](https://github.com/guofei9987/hidden_watermark)|[![](https://www.guofei.site/p/icon/text_blind_watermark.svg)](https://github.com/guofei9987/text_blind_watermark) | [javascript](https://www.guofei.site/pictures_for_blog/app/text_watermark/v1.html)
 
 
 ## How to use
