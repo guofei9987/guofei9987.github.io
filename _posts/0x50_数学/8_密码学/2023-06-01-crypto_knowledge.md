@@ -11,7 +11,7 @@ order: 59003
 相关书目：
 《深入浅出密码学》
 
-## 0 一些概念
+## 一些概念
 
 
 密码学要解决的问题
@@ -496,7 +496,7 @@ RC4、ChaCha20 等
 - 基于数论的论断：两个大素数相乘很容易，但是分解计算上不可能
 
 
-RSA 密钥生成
+**RSA 密钥生成算法**
 - 生成两个大素数 $p$, $q$
     - 100位（十进制）以上
     - 有一些算法，复杂度是概率多项式。常见的：
@@ -509,10 +509,73 @@ RSA 密钥生成
     - 算法复杂度为多项式。
     - 算法：找一个素数 e，并且它与 $\phi(n)$ 互素
 - 解方程 $e\times d \equiv 1(\mod \phi(n))$，求出 d
-    - 辗转相除法
+    - 辗转相除法（欧几里得算法）
 - 保密 $d$, 销毁 $p,q$，公开 $n,e$
 - 公钥 PK = $(e,n)$
 - 私钥 SK = $(d,n)$
+
+
+**RSA加密算法**
+RSA 的加密和解密过程
+- 公钥为 (e, n)，私钥为 (d, n)
+- 假设明文为数字 m
+- 公钥加密 $c = (m^e) \mod n$ (必须满足 $m<n$，否则的话要对 m 进行分组)
+- 私钥解密 $m = (c^d) \mod n$
+    1. 发现加密算法和解密算法完全一样，因此可以用同一套硬件。（所以 RSA 是一个优秀的算法）
+    2. 两个运算正好是逆运算，这个可以证明
+    3. p, q 要足够大，否则容易通过公开的 n 计算出来
+    4. **模指数运算** ($m = (c^d) \mod n$) 是有算法优化的（下面）
+- 公钥解密 $y = (x^E)%N$
+- 私钥加密 $x1 = (y^D)%N$
+
+
+```python
+# RSA key generation — toy example (DO NOT use in production)
+# p, q are small primes just for demonstration
+
+from math import gcd
+
+def egcd(a, b):
+    """扩展欧几里得算法，返回 (g, x, y) 使得 ax + by = g = gcd(a,b)"""
+    if b == 0:
+        return (a, 1, 0)
+    g, x1, y1 = egcd(b, a % b)
+    return (g, y1, x1 - (a // b) * y1)
+
+def modinv(a, m):
+    """模逆：返回 a 在模 m 下的乘法逆元（若存在）"""
+    g, x, _ = egcd(a, m)
+    if g != 1:
+        raise ValueError("inverse does not exist")
+    return x % m
+
+# 1) 选两个素数（示例用小素数）
+p, q = 61, 53
+
+# 2) 计算 n 和 φ(n)
+n = p * q
+phi = (p - 1) * (q - 1)
+
+# 3) 选择 e，满足 1 < e < φ(n) 且 gcd(e, φ(n)) = 1
+#    经典选择是 65537；这里为了示例取更小的 17
+e = 17
+assert 1 < e < phi and gcd(e, phi) == 1
+
+# 4) 计算 d，使 e*d ≡ 1 (mod φ(n))
+d = modinv(e, phi)
+
+print("Public Key (PK) =", (e, n))
+print("Private Key (SK) =", (d, n))
+
+# 5) 演示加解密（m 必须小于 n）
+m = 42
+c = pow(m, e, n)      # 加密：c = m^e mod n
+m_dec = pow(c, d, n)  # 解密：m = c^d mod n
+
+print("Message m     =", m)
+print("Ciphertext c  =", c)
+print("Decrypted m   =", m_dec)
+```
 
 
 
