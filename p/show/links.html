@@ -40,7 +40,9 @@ permalink: /links.html
       <a href="{{ l.url }}" target="_blank" rel="noopener">
         <img src="{{ l.logo }}" alt="">
       </a>
-      <figcaption>{{ l.title }}：{{ l.intro }}</figcaption>
+      <figcaption>
+        {{ l.title }}{% if _intro != '' %}：{{ _intro }}{% endif %}
+      </figcaption>
     </figure>
   {% endfor %}
 </section>
