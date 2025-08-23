@@ -134,3 +134,22 @@ pip install HideInfo
 
 代码示例：https://github.com/3150601355/SimpleScaleDown
 
+## 化物为文：更简单的命令行实现
+
+
+加密并转 Base64
+
+```bash
+openssl enc -aes-256-cbc -pbkdf2 -salt \
+  -in input.txt \
+  -out >(base64 > output.b64.txt) \
+  -pass pass:"YourPassword"
+```
+
+解密
+```bash
+base64 -d output.b64.txt | \
+openssl enc -d -aes-256-cbc -pbkdf2 -salt \
+  -out recovered.txt \
+  -pass pass:"YourPassword"
+```
