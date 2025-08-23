@@ -559,6 +559,28 @@ write_to = "blind_watermark/_version.py"        # 构建时把推导出的版本
 pip install build twine
 ```
 
+本地构建并测试
+```sh
+python -m pip install --upgrade build twine
+python -m build
+# 这样就生成了构建的包，sdist 和 wheel
+
+# 测试
+twine check dist/*
+```
+
+发布到 TestPyPI
+```sh
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+# 或者：twine upload -r testpypi dist/*
+
+# 本地试安装
+python -m venv /tmp/v
+/tmp/v/bin/pip install --index-url https://test.pypi.org/simple --extra-index-url https://pypi.org/simple your-package-name
+/tmp/v/bin/python -c "import your_package; print(your_package.__version__)"
+```
+
+
 构建并上传
 ```sh
 # 构建，构建的结果会放到 ./dist 下
