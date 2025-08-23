@@ -95,7 +95,7 @@ permalink: /certification2.html
               {% if it.license %}　|　编号：{{ it.license }}{% endif %}
               {% if it.link and it.link.size > 0 %}　|　
                 {% for href in it.link %}
-                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">相关链接{{ forloop.index }}</a>{% unless forloop.last %}、{% endunless %}
+                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">相关链接</a>{% unless forloop.last %}、{% endunless %}
                 {% endfor %}
               {% endif %}
             </div>
@@ -136,7 +136,7 @@ permalink: /certification2.html
               {% if it.date %}时间：{{ it.date }}{% endif %}
               {% if it.link and it.link.size > 0 %}　|　
                 {% for href in it.link %}
-                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">查看证书{{ forloop.index }}</a>{% unless forloop.last %}、{% endunless %}
+                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">查看证书</a>{% unless forloop.last %}、{% endunless %}
                 {% endfor %}
               {% endif %}
             </div>

@@ -211,6 +211,24 @@
   ],
   "mooc": [
     {
+      "title": "计算机组成",
+      "platform": "Coursera",
+      "org": "北京大学",
+      "cat": "计算机",
+      "date": "2017-05",
+      "image": "/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73"]
+    },
+    {
+      "title": "操作系统原理",
+      "platform": "Coursera",
+      "org": "北京大学",
+      "cat": "计算机",
+      "date": "2024-11",
+      "image": "/pictures_for_blog/certification/coursera/操作系统.jpg",
+      "link": ["https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH"]
+    },
+    {
       "title": "Vital Signs: Understanding What the Body Is Telling Us",
       "platform": "Coursera",
       "org": "Penn",
@@ -247,7 +265,7 @@
       "link": ["https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5"]
     },
     {
-      "title": "Deep Learning Specialization",
+      "title": "Deep Learning",
       "platform": "Coursera",
       "org": "deeplearning.ai",
       "cat": "计算机",
@@ -301,15 +319,6 @@
       "link": ["https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF"]
     },
     {
-      "title": "Computer Organization",
-      "platform": "Coursera",
-      "org": "北京大学",
-      "cat": "计算机",
-      "date": "2017-05",
-      "image": "/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg",
-      "link": ["https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73"]
-    },
-    {
       "title": "Learning How to Learn",
       "platform": "Coursera",
       "org": "UC San Diego",
@@ -317,15 +326,6 @@
       "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9"]
-    },
-    {
-      "title": "操作系统原理",
-      "platform": "Coursera",
-      "org": "北京大学",
-      "cat": "计算机",
-      "date": "2024-11",
-      "image": "/pictures_for_blog/certification/coursera/操作系统.jpg",
-      "link": ["https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH"]
     },
     {
       "title": "C语言",
@@ -339,7 +339,7 @@
     {
       "title": "宝石鉴定与欣赏",
       "platform": "中国大学MOOC",
-      "org": "中国地址大学",
+      "org": "中国地质大学",
       "cat": "其它",
       "date": "2025-06",
       "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
