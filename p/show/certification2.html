@@ -25,7 +25,8 @@ permalink: /certification2.html
 .cert-thumb img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
 .cert-body{ min-width:0; }
 .cert-title{ margin:.1rem 0 .25rem; font-size:1rem; font-weight:600; line-height:1.35; }
-.cert-meta{ color:var(--muted); font-size:.9rem; margin-bottom:.15rem; }
+.cert-org{ font-size: .98rem; font-weight: 500; color: #444; margin: .05rem 0 .2rem;}
+.cert-meta{ color:var(--muted); font-size:.9rem; margin-bottom:.15rem; margin-top:.05rem; }
 .cert-links a{ color:#8aa8c9; text-decoration:none; margin-right:10px; opacity:.95; }
 .cert-links a::after{ content:" ↗"; opacity:.7; }
 .cert-links a:hover{ color:var(--link); text-decoration:underline; opacity:1; }
@@ -88,15 +89,13 @@ permalink: /certification2.html
           </div>
           <div class="cert-body">
             <div class="cert-title">{{ it.title }}</div>
+            {% if it.org %}<div class="cert-org">机构：{{ it.org }}</div>{% endif %}
             <div class="cert-meta">
-              {% if it.org %}机构：{{ it.org }}　{% endif %}
               {% if it.date %}时间：{{ it.date }}{% endif %}
-            </div>
-            <div class="cert-links">
-              {% if it.license %}<span class="meta">编号：{{ it.license }}</span>{% endif %}
-              {% if it.link and it.link.size > 0 %}
+              {% if it.license %}　|　编号：{{ it.license }}{% endif %}
+              {% if it.link and it.link.size > 0 %}　|　
                 {% for href in it.link %}
-                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">相关链接</a>
+                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">相关链接{{ forloop.index }}</a>{% unless forloop.last %}、{% endunless %}
                 {% endfor %}
               {% endif %}
             </div>
@@ -126,24 +125,22 @@ permalink: /certification2.html
     {% assign mooc_sorted = site.data.certification.mooc%}
     <div class="cert-grid cols-2" id="mooc-grid">
       {% for it in mooc_sorted %}
-        {% assign img = it.image | default: "/assets/img/placeholder.svg" %}
+        {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
         <article class="cert-card mooc-item" data-cat="{{ it.cat | default: '其它' }}" data-platform="{{ it.platform | default: it.org }}">
           <div class="cert-thumb">
             <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">
           </div>
           <div class="cert-body">
             <div class="cert-title">{{ it.title }}</div>
+            <div class="cert-org">机构：{{ it.org}}</div>
             <div class="cert-meta">
-              机构：{{ it.org}}
-              {% if it.date %}　|　时间：{{ it.date }}{% endif %}
+              {% if it.date %}时间：{{ it.date }}{% endif %}
+              {% if it.link and it.link.size > 0 %}　|　
+                {% for href in it.link %}
+                  <a href="{{ href }}" target="_blank" rel="noopener noreferrer">查看证书{{ forloop.index }}</a>{% unless forloop.last %}、{% endunless %}
+                {% endfor %}
+              {% endif %}
             </div>
-            {% if it.link and it.link.size > 0 %}
-            <div class="cert-links">
-              {% for href in it.link %}
-                <a href="{{ href }}" target="_blank" rel="noopener noreferrer">查看证书</a>
-              {% endfor %}
-            </div>
-            {% endif %}
           </div>
         </article>
       {% endfor %}

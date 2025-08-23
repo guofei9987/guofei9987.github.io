@@ -26,7 +26,7 @@ order: 9999
 | [`/api/book_list.json`](https://www.guofei.site/api/book_list.json) | 阅读书单，含评分与简评 | `title`, `author`, `publisher`, `finish_date`, `rating`, `comment`, `note` |
 | [`/api/cnt_github_repo.json`](https://www.guofei.site/api/cnt_github_repo.json) | GitHub 仓库统计信息 | `repo`, `stars`, `forks`, `language`, … |
 | [`/api/achievement.json`](https://www.guofei.site/api/achievement.json) | 综合统计数据：博客数、读书数、知乎赞同数、Star 数等 | 各项计数值 |
-| [`/api/certification.json`](https://www.guofei.site/api/certification.json)（规划中） | 职业与专业证书 | `category`, `title`, `organization`, `link`, `image` |
+| [`/api/certification.json`](https://www.guofei.site/api/certification.json) | 职业与专业证书 | `category`, `title`, `organization`, `link`, `image` |
 
 
 #### 三、示例用法

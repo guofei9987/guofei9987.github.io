@@ -122,7 +122,6 @@
       "title": "CET-6",
       "date": "2014-08",
       "image": "",
-      "license": "",
       "link": []
     },
     {
@@ -313,7 +312,7 @@
     {
       "title": "Learning How to Learn",
       "platform": "Coursera",
-      "org": "xxx",
+      "org": "UC San Diego",
       "cat": "通识",
       "date": "2019-05",
       "image": "/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg",
