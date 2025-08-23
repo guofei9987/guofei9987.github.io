@@ -56,7 +56,7 @@ Dropout可以被看成一种 regularize 方法，因为它给节点带来 noise.
 Dropout 已经大大提升效果了，它还可以配合 max-norm regularization, large decaying learning rates and high momentum  
 构建一个在固定球内的 weight vector，可以使得学习率非常大的情况下，不让 weight 飙升。进而 dropout 带来的 noise 可以让优化器探索更多的 weight space
 
-max-norm regularization：限制 $\mid\mid w \mid\mid_2 \leq c$
+max-norm regularization：限制 $\lVert w \rVert_2 \leq c$
 
 ### 比较
 Bayesian neural networks (Neal, 1996)是一个做模型平均的正确方式，

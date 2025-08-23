@@ -35,7 +35,7 @@ order: 204
 
 数学表示：  
 给定$$D_l=\{ (x_1,y_1),(x_2,y_2),...,(x_k,y_k)\},$$  
-$\min\limits_{w,b,\hat y,\xi} \dfrac{1}{2}\mid\mid w\mid\mid_2^2 + C_l\sum\limits_{i \in labeled}\xi_i+C_u\sum\limits_{i \in unlabeled}\xi_i$  
+$\min\limits_{w,b,\hat y,\xi} \dfrac{1}{2}\lVert w \rVert _2^2 + C_l\sum\limits_{i \in labeled}\xi_i+C_u\sum\limits_{i \in unlabeled}\xi_i$  
 s.t.  
 $y_i(w^Tx_i+b)\geq 1-\xi_i,i \in labeled$  
 $\hat y_i(w^Tx_i+b)\geq1-\xi_i,i \in unlabeled$  
@@ -48,7 +48,7 @@ $\xi_i\geq,i\in labeled \cup unlabeled$
 ## 图半监督学习
 思路是把数据集映射成一个图，然后用图的分割算法。
 
-step1：把数据集映射成一个图。其中给每个样本是一个节点，边的权重可以用样本间的相似度来体现，例如，$W_{ij}=\exp(\dfrac{-\mid\mid x_i-x_j\mid\mid_2^2}{2\sigma^2}),i\not=j$  
+step1：把数据集映射成一个图。其中给每个样本是一个节点，边的权重可以用样本间的相似度来体现，例如，$W_{ij}=\exp(\dfrac{-\lVert x_i-x_j \rVert _2^2}{2\sigma^2}),i\not=j$  
 step2：使用LP算法，以$W_{ij}$为概率执行标签传播，并保持 labeled data 的标签不变。  
 step3：重复执行step2，直到满足停止条件。
 

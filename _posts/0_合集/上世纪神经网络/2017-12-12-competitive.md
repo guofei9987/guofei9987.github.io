@@ -20,15 +20,15 @@ WTA学习法则
 
 输入层记为第I层，输出层记为第J层
 ### 1. 归一化
-$\hat X =\dfrac{X}{\mid \mid X \mid \mid}, \hat W_j=\dfrac{W_j}{\mid\mid W_j\mid\mid}$
+$\hat X =\dfrac{X}{\lVert X \rVert}, \hat W_j=\dfrac{W_j}{\lVert W_j \rVert}$
 
 ### 2. 寻找获胜神经元
 寻找获胜神经元，编号为$j^* $  
 所谓获胜神经元，指的是 **最相似** 的神经元。  
-最相似神经元的编号j满足$$j^* =\arg\min\limits_{j\in \{1,2,...n\}}\mid\mid\hat X-\hat W_j\mid\mid$$  
+最相似神经元的编号j满足$$j^* =\arg\min\limits_{j\in \{1,2,...n\}}\lVert\hat X-\hat W_j\rVert$$  
 
 
-又因为$\mid\mid \hat X-\hat W_j\mid\mid=\sqrt {(\hat X-\hat W_j)(\hat X-\hat W_j)^T}=\sqrt{2(1-\hat W\hat X^T)}$  
+又因为$\lVert \hat X-\hat W_j \rVert = \sqrt {(\hat X-\hat W_j)(\hat X-\hat W_j)^T}=\sqrt{2(1-\hat W\hat X^T)}$  
 所以，**最相似** 的神经元等价于使得$\hat W\hat X^T$最大的神经元  
 
 
@@ -51,7 +51,7 @@ W_j(t)&j\neq j^*
 
 
 这样的学习规则下，权重始终满足这个性质：  
-$\mid\mid W_j \mid\mid=1$（简单列式可以证明）  
+$\lVert W_j \rVert=1$（简单列式可以证明）  
 
 ### 其它trick
 整个学习过程中，可能出现这种情况：  
