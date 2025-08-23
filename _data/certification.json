@@ -9,7 +9,7 @@
       "link": []
     },
     {
-      "title": "中级经济师",
+      "title": "（中级职称）中级经济师",
       "org": "人力资源和社会保障局",
       "cat": "金融",
       "date": "2015-11-07",
@@ -33,7 +33,6 @@
       "date": "2013-11-30",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券基础.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -43,7 +42,6 @@
       "date": "2013-11-30",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券交易.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -53,7 +51,6 @@
       "date": "2014-08-17",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券发行与承销.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -63,7 +60,6 @@
       "date": "2014-02-23",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券投资基金.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -73,7 +69,6 @@
       "date": "2014-02-23",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券投资分析.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -83,7 +78,6 @@
       "date": "2014-07",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/期货从业.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -93,7 +87,6 @@
       "date": "2014-11",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/期货投资分析.jpg",
-      "license": "",
       "link": []
     },
     {
@@ -106,31 +99,43 @@
       "link": []
     },
     {
+      "title": "CDA数据分析师",
+      "org": "",
+      "cat": "计算机",
+      "date": "2017-12",
+      "image": "/pictures_for_blog/certification/水证/CDA二级中文.jpg",
+      "link": ["/pictures_for_blog/certification/水证/CDA二级英文.jpg"]
+    },
+    {
       "title": "计算机二级",
       "org": "",
       "cat": "计算机",
       "date": "2014-12",
-      "ts": 20150801,
       "image": "",
       "license": "6541110108001269",
-      "link": []
+      "link": ["http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi"]
     },
     {
       "title": "职称计算机",
       "org": "",
       "cat": "计算机",
       "date": "2015-08",
-      "ts": 20150801,
       "image": "",
       "license": "201412th",
       "link": ["http://www.bjrbj.gov.cn/kwscore/login/notsign.htm"]
     },
-
     {
       "title": "职称外语",
       "org": "",
       "date": "2015-08",
-      "ts": 20150801,
+      "image": "",
+      "license": "203003th",
+      "link": []
+    },
+    {
+      "title": "CET-6",
+      "org": "",
+      "date": "2014-08",
       "image": "",
       "license": "",
       "link": []
@@ -139,8 +144,7 @@
       "title": "CAD培训证书",
       "org": "",
       "cat": "计算机",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2008",
       "image": "",
       "license": "08027100423",
       "link": ["http://www.cadnet.cn/"]
@@ -149,40 +153,32 @@
       "title": "【红十字协会】急救证",
       "org": "",
       "cat": "健康",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2020-12",
       "image": "/a/certificate/health/急救证.jpg",
-      "license": "",
       "link": []
     },
     {
       "title": "【美国心脏协会】急救证",
       "org": "",
       "cat": "健康",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2024-09",
       "image": "/a/certificate/health/aha_first_aid.jpg",
-      "license": "",
       "link": []
     },
     {
       "title": "数据安全",
-      "org": "",
+      "org": "计算机行业协会",
       "cat": "计算机",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2023-07",
       "image": "/pictures_for_blog/certification/cs/数据安全.jpg",
-      "license": "",
       "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
     },
     {
       "title": "蚂蚁安全",
       "org": "",
       "cat": "计算机",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2023-06",
       "image": "/pictures_for_blog/certification/cs/蚂蚁安全.jpg",
-      "license": "",
       "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
     },
     {
@@ -190,7 +186,6 @@
       "org": "",
       "cat": "其它",
       "date": "2015-08",
-      "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/驾驶证.jpeg",
       "license": "",
       "link": []
@@ -199,20 +194,16 @@
       "title": "gitcode_bwm",
       "org": "",
       "cat": "计算机",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_bwm.jpg",
-      "license": "",
       "link": []
     },
     {
       "title": "gitcode_sko",
       "org": "",
       "cat": "计算机",
-      "date": "2015-08",
-      "ts": 20150801,
+      "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_sko.jpg",
-      "license": "",
       "link": []
     }
   ],
