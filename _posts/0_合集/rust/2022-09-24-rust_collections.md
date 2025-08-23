@@ -268,6 +268,8 @@ heap 有自己的 iter
     - `&str` 作为函数返回值的话，只能使用 `static` 类型。（否则要使用更复杂的 Cow）
 
 
+
+
 ```rust
 // 创建 String
 let mut string1: String = String::new();
@@ -277,9 +279,17 @@ let string1: String = String::from("hello, Rust 语言");
 
 // 创建 &str
 let str1: &str = "hello, world!";
+// 前面加r，使得转义字符不转义
+let str1 = r"C:\files";
 let str2 = r#"第一行
 第二行
+带井号后，可以塞入 "引号"，不会导致冲突
 第三行"#; 
+
+let str3 = r###"多用三个井号
+使得更复杂的字符也不会冲突，例如：
+用 'r###"'开头
+"###;
 
 
 // 创建 &[u8] 
@@ -312,6 +322,8 @@ string1.chars();
 str1.chars();
 string1.bytes();
 str1.bytes();
+// bytes_idx 是按照字节的index，c 是 char：
+for (bytes_idx, c) in str1.char_indices() {}
 ```
 
 
@@ -452,27 +464,6 @@ let str_new: String = str1.chars().filter(|c| c.is_uppercase()).collect();
 
 
 
-字符串字面量
-
-
-```rust
-// 1. 前面加r，使得转义字符不转义
-let str1 = r"C:\files";
-
-// 2. 前面加b，是 `[u8]` 切片类型
-
-// 3. 也可以前面加 br
-
-
-// 4. 多行
-let str1 = r###"多行文本
-用 'r###"'开头
-"###;
-
-// 5. 支持比较运算符 `<,<=,>,>=,==,!=`，
-"abc" > "aar"
-```
-
 其它
 ```rust
 str1.len()
@@ -497,6 +488,9 @@ slice.split_whitespace();
 
 // 从字符串格式的数字，变成数字
 str1.parse()
+
+// 支持比较运算符 `<,<=,>,>=,==,!=`，
+"abc" > "aar"
 ```
 
 
