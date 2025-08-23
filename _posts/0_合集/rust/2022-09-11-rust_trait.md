@@ -22,7 +22,7 @@ pub trait MyTrait {
     fn my_func1(&self) -> String;
     // 2. 下面这个是具体的方法，继承的时候无需再实现一遍
     fn my_func2(&self) -> String {
-        format!("Running my func2 in Mytrait")
+        "Running my func2 in Mytrait".to_string()
     }
 }
 
@@ -33,8 +33,9 @@ pub struct MyClass1 {
 }
 
 impl MyTrait for MyClass1 {
+    // 由于 MyTrait 只实现了抽象的 my_func1，因此在类中必须实现它
     fn my_func1(&self) -> String {
-        format!("Running my_func1 in Myclass1")
+        "Running my_func1 in Myclass1".to_string()
     }
 }
 
@@ -132,7 +133,7 @@ fn run_query<M: Mapper + Serialize, R: Reducer + Serialize>(data: &DataSet, map:
 
 ## 可以给已有的类增加特型
 
-```
+```rust
 trait MyTrait {
     fn is_a_to_t(&self) -> bool;
 }
