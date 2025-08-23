@@ -219,29 +219,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// 点击“探索...”
-document.addEventListener('DOMContentLoaded', function() {
-  const dropdown = document.querySelector('.dropdown');
-  const dropdownButton = document.querySelector('.dropdown-button');
-  const dropdownList = document.querySelector('.dropdown-list');
-
-  // 点击按钮时，切换下拉菜单的显示状态，并阻止冒泡
-  dropdownButton.addEventListener('click', function(e) {
-    e.stopPropagation();
-    dropdownList.classList.toggle('hidden1');
-  });
-
-  // 点击下拉菜单内部时，阻止冒泡，避免触发 document 的点击事件
-  dropdownList.addEventListener('click', function(e) {
-    e.stopPropagation();
-  });
-
-  // 点击页面其他区域时，隐藏下拉菜单
-  document.addEventListener('click', function(e) {
-    // 如果点击目标不在 dropdown 内，则隐藏下拉菜单
-    if (!dropdown.contains(e.target)) {
-      dropdownList.classList.add('hidden1');
-    }
-  });
-});
+// 鼠标悬停由 CSS 控制显示下拉菜单

@@ -210,6 +210,7 @@ body.sidebar-hidden .sidebar-toggle{
 
 
 .dropdown-list {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -235,10 +236,9 @@ body.sidebar-hidden .sidebar-toggle{
     text-decoration: none;
 }
 
-
-/* 隐藏下拉菜单 */
-.hidden1 {
-    display: none;
+.dropdown:hover .dropdown-list,
+.dropdown:focus-within .dropdown-list {
+    display: block;
 }
 
 sup.wordcnt{
@@ -256,6 +256,5 @@ sup.wordcnt{
     border-color: #999;
     transform: scale(1.05);
 }
-
 
 
