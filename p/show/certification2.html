@@ -78,7 +78,7 @@ permalink: /certification2.html
       <div class="cert-count" id="pro-count">共 0 张 | 当前筛选 0 张</div>
     </div>
 
-    {% assign pro_sorted = site.data.certification.professional | sort: "ts" | reverse %}
+    {% assign pro_sorted = site.data.certification.professional %}
     <div class="cert-grid cols-2" id="pro-grid">
       {% for it in pro_sorted %}
         {% assign img = it.image | default: "/assets/img/cert-placeholder.svg" %}
@@ -90,7 +90,6 @@ permalink: /certification2.html
             <div class="cert-title">{{ it.title }}</div>
             <div class="cert-meta">
               {% if it.org %}机构：{{ it.org }}　{% endif %}
-              {% if it.cat %}类别：{{ it.cat }}　{% endif %}
               {% if it.date %}时间：{{ it.date }}{% endif %}
             </div>
             <div class="cert-links">
@@ -110,7 +109,7 @@ permalink: /certification2.html
 
 <!-- ====================== MOOC 课程证书（带分类筛选） ====================== -->
 <section class="section" id="mooc">
-  <h2>🎓 MOOC 课程证书 <span class="hint">弱化外链 · 分类筛选</span></h2>
+  <h2>🎓 MOOC 课程证书</h2>
 
   <div class="cert-wrap">
     <div class="cert-topbar">

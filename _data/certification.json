@@ -6,8 +6,8 @@
       "cat": "计算机",
       "date": "2007-08",
       "ts": 20070801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
       "link": []
     },
     {
@@ -26,7 +26,7 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
+      "image": "/pictures_for_blog/certification/水证/中级经济师.jpg",
       "license": "160050940300397",
       "link": []
     },
@@ -36,8 +36,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/证券基础.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -45,8 +45,8 @@
       "org": "证券业协会",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/证券交易.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -55,8 +55,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/证券发行与承销.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -65,8 +65,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/证券投资基金.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -75,8 +75,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/证券投资分析.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -85,8 +85,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/期货从业.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -95,8 +95,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/pictures_for_blog/certification/从业证/期货投资分析.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -105,8 +105,8 @@
       "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
       "link": []
     },
     {
@@ -115,8 +115,8 @@
       "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
       "link": []
     },
     {
@@ -125,8 +125,8 @@
       "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
       "link": []
     },
 
@@ -135,8 +135,8 @@
       "org": "",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
       "link": []
     },
     {
@@ -145,9 +145,9 @@
       "cat": "计算机",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
-      "link": []
+      "image": "",
+      "license": "08027100423",
+      "link": ["http://www.cadnet.cn/"]
     },
     {
       "title": "【红十字协会】急救证",
@@ -155,8 +155,8 @@
       "cat": "健康",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/a/certificate/health/急救证.jpg",
+      "license": "",
       "link": []
     },
     {
@@ -165,9 +165,29 @@
       "cat": "健康",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "/a/certificate/health/aha_first_aid.jpg",
+      "license": "",
       "link": []
+    },
+    {
+      "title": "数据安全",
+      "org": "",
+      "cat": "计算机",
+      "date": "2015-08",
+      "ts": 20150801,
+      "image": "/pictures_for_blog/certification/cs/数据安全.jpg",
+      "license": "",
+      "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
+    },
+    {
+      "title": "蚂蚁安全",
+      "org": "",
+      "cat": "计算机",
+      "date": "2015-08",
+      "ts": 20150801,
+      "image": "/pictures_for_blog/certification/cs/蚂蚁安全.jpg",
+      "license": "",
+      "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
     },
     {
       "title": "机动车驾驶证",
@@ -175,8 +195,28 @@
       "cat": "其它",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
-      "license": "160050940300397",
+      "image": "",
+      "license": "",
+      "link": []
+    },
+    {
+      "title": "gitcode_bwm",
+      "org": "",
+      "cat": "计算机",
+      "date": "2015-08",
+      "ts": 20150801,
+      "image": "/pictures_for_blog/certification/open/gitcode_bwm.jpg",
+      "license": "",
+      "link": []
+    },
+    {
+      "title": "gitcode_sko",
+      "org": "",
+      "cat": "计算机",
+      "date": "2015-08",
+      "ts": 20150801,
+      "image": "/pictures_for_blog/certification/open/gitcode_sko.jpg",
+      "license": "",
       "link": []
     }
   ],
