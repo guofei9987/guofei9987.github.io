@@ -99,7 +99,7 @@
       "link": []
     },
     {
-      "title": "CDA数据分析师",
+      "title": "CDA数据分析师（中级）",
       "org": "",
       "cat": "计算机",
       "date": "2017-12",
@@ -171,7 +171,7 @@
       "cat": "计算机",
       "date": "2023-07",
       "image": "/pictures_for_blog/certification/cs/数据安全.jpg",
-      "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
+      "link": []
     },
     {
       "title": "蚂蚁安全",
@@ -205,6 +205,30 @@
       "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_sko.jpg",
       "link": []
+    },
+    {
+      "title": "食品浪费防治",
+      "org": "联合国气候变化组织",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/uncc_food_waste_prevention.gif",
+      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unccelearn.org/"]
+    },
+    {
+      "title": "开放教育资源开发",
+      "org": "联合国教科文组织",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/unesco_oer.jpg",
+      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unesco.org/"]
+    },
+    {
+      "title": "中国科教电影电视协会个人会员",
+      "org": "中国科教电影电视协会",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/中国科教电影电视协会个人会员证书.jpg",
+      "link": ["https://www.csfva.org.cn/"]
     }
   ],
   "mooc": [
