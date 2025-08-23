@@ -17,7 +17,7 @@ permalink: /me.html
     - 🚀 我的开源贡献用于“机智号”火星直升机项目，此项目实现了[人类首次在另一个星球的动力飞行](https://github.com/readme/featured/nasa-ingenuity-helicopter)，我因此被 NASA 授予 [荣誉徽章](https://github.com/guofei9987?achievement=mars-2020-contributor&tab=achievements)
     - 🤔 [scipy 1.0.0](https://github.com/scipy/scipy/releases/tag/v1.0.0) 的 121 位 [作者](https://github.com/scipy/scipy/issues/7798) 之一
     - ⭐ 发起的开源项目在 GitHub 共获得 Star {{ site.data.data_github.star_cnt_str }}
-    - 📑 授权算法相关专利 7 篇
+    - 💡 授权算法相关专利 7 篇
     - 🏆 获全国数学建模大赛一等奖
     - 💻 [技术博客](https://www.guofei.site/) 累积 {{ site.posts.size }} 篇
 - 📈 懂一点儿金融

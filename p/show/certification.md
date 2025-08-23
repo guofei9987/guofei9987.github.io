@@ -6,7 +6,7 @@ permalink: /certification.html
 
 
 
-## 学术方面
+## 🧠 学术方面
 
 
 
@@ -36,7 +36,7 @@ http://article.sciencepublishinggroup.com/html/10.11648.j.jfa.20150306.12.html#p
 
 
 
-## 专利
+## 💡 专利成果
 
 
 
@@ -68,7 +68,7 @@ http://www.innojoy.com/   郭飞+支付宝
 
 
 
-## 证书
+## 🎓 职业与专业证书
 
 - 2007年【全国大学生数学建模竞赛】上海赛区一等奖
 - 工信部数据分析师（高级）*License 160050940300397*
@@ -94,7 +94,7 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 |![CDA二级英文](/pictures_for_blog/certification/水证/CDA二级英文.jpg)|![CDA二级中文](/pictures_for_blog/certification/水证/CDA二级中文.jpg)|
 |![工信部高级数据分析师](/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg)|![中级经济师](/pictures_for_blog/certification/水证/中级经济师.jpg)|
 |![红十字会急救证](/a/certificate/health/急救证.jpg)|![美国心脏协会急救证](/a/certificate/health/aha_first_aid.jpg)
-|![数据安全](/pictures_for_blog/certification/cs/数据安全.jpg)<br> [link](https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061)|![蚂蚁安全](/pictures_for_blog/certification/cs/蚂蚁安全.jpg)|
+|![数据安全](/pictures_for_blog/certification/cs/数据安全.jpg)<br> [查看证书](https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061)|![蚂蚁安全](/pictures_for_blog/certification/cs/蚂蚁安全.jpg)|
 |![gitcode_bwm](/pictures_for_blog/certification/open/gitcode_bwm.jpg)|![gitcode_sko](/pictures_for_blog/certification/open/gitcode_sko.jpg)|
 |![驾驶证](https://www.guofei.site/pictures_for_blog/certification/水证/驾驶证.jpeg)
 
@@ -103,11 +103,11 @@ http://chaxun.neea.edu.cn/examcenter/query.cn?op=doQueryResults&pram=certi)
 
 [Coursera.com](https://www.coursera.com)
 
-|![Vital Signs: Understanding What the Body Is Telling Us](/pictures_for_blog/certification/coursera/Vital%20Signs%20Understanding%20What%20the%20Body%20Is.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/4H9SD5AFRPYG) | ![Stanford Introduction to Food and Health](/pictures_for_blog/certification/coursera/Stanford%20Introduction%20to%20Food%20and%20Health.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/86PSBYQZR36N)|![真格—北大在线创业课堂](/pictures_for_blog/certification/coursera/%E7%9C%9F%E6%A0%BC%E2%80%94%E5%8C%97%E5%A4%A7%E5%9C%A8%E7%BA%BF%E5%88%9B%E4%B8%9A%E8%AF%BE%E5%A0%82.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/MCDR2YTFGH4R) | ![Learning How to Learn](/pictures_for_blog/certification/coursera/Introduction%20to%20Complex%20Analysis.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5)|
+|![Vital Signs: Understanding What the Body Is Telling Us](/pictures_for_blog/certification/coursera/Vital%20Signs%20Understanding%20What%20the%20Body%20Is.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/4H9SD5AFRPYG) | ![Stanford Introduction to Food and Health](/pictures_for_blog/certification/coursera/Stanford%20Introduction%20to%20Food%20and%20Health.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/86PSBYQZR36N)|![真格—北大在线创业课堂](/pictures_for_blog/certification/coursera/%E7%9C%9F%E6%A0%BC%E2%80%94%E5%8C%97%E5%A4%A7%E5%9C%A8%E7%BA%BF%E5%88%9B%E4%B8%9A%E8%AF%BE%E5%A0%82.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/MCDR2YTFGH4R) | ![Learning How to Learn](/pictures_for_blog/certification/coursera/Introduction%20to%20Complex%20Analysis.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/C9N6QDM5PUN5)|
 |--|--|--|--|
-|![Deep Learning Specialization](/pictures_for_blog/certification/coursera/Deep%20Learning.jpg) <br> [link1](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[link2](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6) | ![Neural Networks and Deep Learning](/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y)|![Improving Deep Neural Networks](/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA)| ![Structuring Machine Learning Projects](/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
-|![Convolutional Neural Networks](/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8) | ![Sequence Models](/pictures_for_blog/certification/coursera/Sequence%20Models.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73) | ![Learning How to Learn](/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg) <br> [link](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
-| ![操作系统](/pictures_for_blog/certification/coursera/操作系统.jpg)<br>[link](https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH)|||||
+|![Deep Learning Specialization](/pictures_for_blog/certification/coursera/Deep%20Learning.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/specialization/HGTDUMAQ3TC6)<br>[查看证书](https://www.coursera.org/account/accomplishments/specialization/certificate/HGTDUMAQ3TC6) | ![Neural Networks and Deep Learning](/pictures_for_blog/certification/coursera/Neural%20Networks%20and%20Deep%20Learning.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/ZAGDZZ7EJY2Y)|![Improving Deep Neural Networks](/pictures_for_blog/certification/coursera/Improving%20Deep%20Neural%20Networks.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/T7UFHTHW2RPA)| ![Structuring Machine Learning Projects](/pictures_for_blog/certification/coursera/Structuring%20Machine%20Learning%20Projects.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/PWFAKV2QD8PZ)|
+|![Convolutional Neural Networks](/pictures_for_blog/certification/coursera/Convolutional%20Neural%20Networks.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/3JVLNYUUTXE8) | ![Sequence Models](/pictures_for_blog/certification/coursera/Sequence%20Models.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/GXE8MPPVW2EF)|![Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73) | ![Learning How to Learn](/pictures_for_blog/certification/coursera/Learning%20How%20to%20Learn.jpg) <br> [查看证书](https://www.coursera.org/account/accomplishments/certificate/H8J86CNTB9P9)|
+| ![操作系统](/pictures_for_blog/certification/coursera/操作系统.jpg)<br>[查看证书](https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH)|||||
 
 
 
