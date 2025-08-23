@@ -29,7 +29,7 @@ order: 710
 
 带约束的岭回归
 
-$C=\mid\mid Xw-y\mid\mid_2^2+\alpha \mid\mid w\mid\mid_2^2$  
+$C=\lVert Xw-y\rVert_2^2+\alpha \lVert w\rVert_2^2$  
 s.t.$w\in \Sigma$  
 
 
