@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# 博客文章列表，
+# 列出如下信息：1、标题 2、文件大小 3、Tags 4、H2（二级标题）
+# 暂时不启用，
 
 import os
 import re
