@@ -649,8 +649,7 @@ PS：现代编程语言不推荐继承，原因：
 
 
 
-**UML**
-UML
+### 基本类目
 
 
 
@@ -658,7 +657,7 @@ UML
 
 
 
-**类**
+**类**（class）
 - 类名：
     - 首字母大写
     - 居中
@@ -681,10 +680,128 @@ UML
 
 -------------------
 
-**接口**
+**接口**（interface）
+- 通过声明一个接口。表明提供一个所需要的，与实现无关的行为。
+- 接口只描述外部可见的操作，不描述内部结构
+- 接口没有实现。接口没有属性。接口只有操作
+- 接口等价于一个没有属性、没有方法，只有抽象操作的抽象类。
+- 接口不能访问其它类
+
+
+![caption: UML-interface的表示](/a/computer/software_engineering/uml_interface.gif)
+
+
+![caption: UML-interface的举例](/a/computer/software_engineering/uml_interface2.gif)
+
+
+![caption: UML-interface的使用（简化版）](/a/computer/software_engineering/uml_interface2.gif)
+
+
+---------------------
+
+**协作**：（collaboration）用虚线椭圆表示
+- 一组类、接口等的集合，它们共同工作，完成行为
+
+
+![caption: UML-协作](/a/computer/software_engineering/uml_collaboration1.gif)
 
 
 
+![caption: UML-协作2](/a/computer/software_engineering/uml_collaboration2.gif)
+
+
+---------------------
+
+**用况**（use case）：一组动作序列的描述
+
+![caption: UML-用况](/a/computer/software_engineering/uml_use_case.gif)
+
+
+--------------------
+
+**主动类**（active class）：并发行为，用来启动控制
+
+
+![caption: UML-主动类](/a/computer/software_engineering/uml_active_class.gif)
+
+
+---------------------
+
+**构件**（component）
+
+
+![caption: UML-构件](/a/computer/software_engineering/uml_component.gif)
+
+
+**制品**（artifact）
+
+![caption: UML-制品](/a/computer/software_engineering/uml_artifact.gif)
+
+
+**节点**（node）
+
+![caption: UML-节点](/a/computer/software_engineering/uml_node.gif)
+
+
+### 包、关系
+
+**包** 是模型元素的一个分组
+- 有可见性，`+`（其它包可见）,`-`（其它包不可见）,`#`（仅子孙包可见），与前面类似
+- 包可以嵌套
+
+包之间的关系有2种：
+1. 访问依赖
+2. 引入依赖（import）
+
+
+![caption: UML-包](/a/computer/software_engineering/uml_package.gif)
+
+
+------------------------
+
+关系
+- **关联**（association）
+    - 无箭头的实线
+- **泛化**（generalization）
+    - 空心三角箭头的实线
+    - 表示 `is-a-kind-of` 关系
+- **实现**（realization，细化）
+    - 空心三角箭头的虚线
+    - 常见于接口与实现之间，用况和实现之间
+- **依赖**（dependency）
+    - 箭头虚线
+    - 描述一个事物使用另一个事物的信息和服务
+
+
+### UML 模型表达工具
+
+6个对“系统静态部分”建模的图形工具：
+1. 类图
+2. 构件图
+3. 组合结构图
+4. 对象图：一组对象之间的关系
+5. 部署图：节点上生存的制品和配置
+6. 制品图：一组制品以及依赖关系
+
+7种“系统动态部分”建模图形工具：
+1. 用况图：需求模型
+2. 状态图：对象行为比较复杂时，用它描述对象的状态和状态转移
+3. 活动图：注重活动到活动的控制流（并发），或者描述对象之间的协作，或者描述用户的业务流程
+4. 顺序图：注重消息的时间次序
+5. 通信图：注重收发消息。可以表示一组对象之间的交互情况。
+6. 交互概观图：描述系统宏观行为，是活动图+顺序图
+7. 定时图：展现实际时间，而不是仅时序
+
+
+
+![caption: UML-类图](/a/computer/software_engineering/uml_class2.gif)
+
+
+![caption: UML-用况图](/a/computer/software_engineering/uml_use_case2.gif)
+
+
+**用况图**，包括：
+- 主题、用况、参与者、依赖、泛化、关联
 
 
 ## 参考资料
