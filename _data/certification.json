@@ -2,7 +2,6 @@
   "professional": [
     {
       "title": "【全国大学生数学建模竞赛】上海赛区一等奖",
-      "org": "",
       "cat": "计算机",
       "date": "2007",
       "image": "",
@@ -20,7 +19,7 @@
     {
       "title": "工信部数据分析师（高级）",
       "cat": "计算机",
-      "org": "",
+      "org": "工信部",
       "date": "2017-08",
       "image": "/pictures_for_blog/certification/水证/工信部高级数据分析师.jpg",
       "license": "160050940300397",
@@ -100,7 +99,6 @@
     },
     {
       "title": "CDA数据分析师（中级）",
-      "org": "",
       "cat": "计算机",
       "date": "2017-12",
       "image": "/pictures_for_blog/certification/水证/CDA二级中文.jpg",
@@ -108,7 +106,6 @@
     },
     {
       "title": "计算机二级",
-      "org": "",
       "cat": "计算机",
       "date": "2014-12",
       "image": "",
@@ -117,7 +114,6 @@
     },
     {
       "title": "职称计算机",
-      "org": "",
       "cat": "计算机",
       "date": "2015-08",
       "image": "",
@@ -126,7 +122,6 @@
     },
     {
       "title": "职称外语",
-      "org": "",
       "date": "2015-08",
       "image": "",
       "license": "203003th",
@@ -134,7 +129,6 @@
     },
     {
       "title": "CET-6",
-      "org": "",
       "date": "2014-08",
       "image": "",
       "license": "",
@@ -142,7 +136,6 @@
     },
     {
       "title": "CAD培训证书",
-      "org": "",
       "cat": "计算机",
       "date": "2008",
       "image": "",
@@ -151,7 +144,7 @@
     },
     {
       "title": "【红十字协会】急救证",
-      "org": "",
+      "org": "红十字协会",
       "cat": "健康",
       "date": "2020-12",
       "image": "/a/certificate/health/急救证.jpg",
@@ -159,7 +152,7 @@
     },
     {
       "title": "【美国心脏协会】急救证",
-      "org": "",
+      "org": "美国心脏协会",
       "cat": "健康",
       "date": "2024-09",
       "image": "/a/certificate/health/aha_first_aid.jpg",
@@ -175,7 +168,6 @@
     },
     {
       "title": "蚂蚁安全",
-      "org": "",
       "cat": "计算机",
       "date": "2023-06",
       "image": "/pictures_for_blog/certification/cs/蚂蚁安全.jpg",
@@ -183,7 +175,6 @@
     },
     {
       "title": "机动车驾驶证",
-      "org": "",
       "cat": "其它",
       "date": "2015-08",
       "image": "/pictures_for_blog/certification/水证/驾驶证.jpeg",
@@ -192,7 +183,6 @@
     },
     {
       "title": "gitcode_bwm",
-      "org": "",
       "cat": "计算机",
       "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_bwm.jpg",
@@ -200,7 +190,6 @@
     },
     {
       "title": "gitcode_sko",
-      "org": "",
       "cat": "计算机",
       "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_sko.jpg",
