@@ -7,7 +7,6 @@
       "date": "2007-08",
       "ts": 20070801,
       "image": "",
-      "license": "",
       "link": []
     },
     {
@@ -27,7 +26,6 @@
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/水证/中级经济师.jpg",
-      "license": "160050940300397",
       "link": []
     },
     {
@@ -43,6 +41,7 @@
     {
       "title": "证券从业-交易",
       "org": "证券业协会",
+      "cat": "金融",
       "date": "2015-08",
       "ts": 20150801,
       "image": "/pictures_for_blog/certification/从业证/证券交易.jpg",
@@ -106,17 +105,16 @@
       "date": "2015-08",
       "ts": 20150801,
       "image": "",
-      "license": "",
       "link": []
     },
     {
       "title": "计算机二级",
       "org": "",
       "cat": "计算机",
-      "date": "2015-08",
+      "date": "2014-12",
       "ts": 20150801,
       "image": "",
-      "license": "",
+      "license": "6541110108001269",
       "link": []
     },
     {
@@ -126,8 +124,8 @@
       "date": "2015-08",
       "ts": 20150801,
       "image": "",
-      "license": "",
-      "link": []
+      "license": "201412th",
+      "link": ["http://www.bjrbj.gov.cn/kwscore/login/notsign.htm"]
     },
 
     {
@@ -195,7 +193,7 @@
       "cat": "其它",
       "date": "2015-08",
       "ts": 20150801,
-      "image": "",
+      "image": "/pictures_for_blog/certification/水证/驾驶证.jpeg",
       "license": "",
       "link": []
     },
