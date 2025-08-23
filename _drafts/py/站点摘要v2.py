@@ -5,7 +5,7 @@ data_source_list=[
     'https://www.guofei.site/reading.json',
     'https://www.guofei.site/me.html',
     "https://www.guofei.site/api/book_list.json",
-    "./p/show/certification.md", # 临时，以后改为json形式
+    "https://www.guofei.site/api/certification.json",
     "https://www.guofei.site/api/cnt_github_repo.json",
 ]
 
