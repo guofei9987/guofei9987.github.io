@@ -56,6 +56,17 @@ permalink: /links.html
 </section>
 
 
+<section class="friend-links">
+  {% for l in site.data.links %}
+    <figure>
+      <a href="{{ l.url }}" target="_blank" rel="noopener">
+        <img src="{{ l.logo }}" alt="">
+      </a>
+      <figcaption>{{ l.title }}：{{ l.intro }}</figcaption>
+    </figure>
+  {% endfor %}
+</section>
+
 
 <h2>友链申请</h2>
 

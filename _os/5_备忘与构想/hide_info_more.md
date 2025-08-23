@@ -141,7 +141,7 @@ pip install HideInfo
 
 ```bash
 openssl enc -aes-256-cbc -pbkdf2 -salt \
-  -in input.txt \
+  -in input_file.zip \
   -out >(base64 > output.b64.txt) \
   -pass pass:"YourPassword"
 ```
@@ -150,6 +150,14 @@ openssl enc -aes-256-cbc -pbkdf2 -salt \
 ```bash
 base64 -d output.b64.txt | \
 openssl enc -d -aes-256-cbc -pbkdf2 -salt \
-  -out recovered.txt \
+  -out file.zip \
+  -pass pass:"YourPassword"
+```
+
+MacBook下的解密不太一样
+```bash
+base64 -D -i output.b64.txt | \
+openssl enc -d -aes-256-cbc -pbkdf2 -salt \
+  -out output_file.zip \
   -pass pass:"YourPassword"
 ```
