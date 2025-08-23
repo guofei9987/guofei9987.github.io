@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /api/certification.json
+---
+{{ site.data.certification | jsonify }}
