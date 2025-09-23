@@ -306,7 +306,7 @@ dl dd:last-of-type {
 
 #content img {
   padding: 4px;
-  background-color: #fff;
+  background-color: transparent;
   border: 0px solid #ddd;
   display: inline-block;
   /* width: 100%; */
