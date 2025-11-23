@@ -1,0 +1,16 @@
+---
+layout: null
+permalink: /api/posts.json
+---
+
+[
+{% for p in site.posts %}
+{
+  "date": "{{ p.date | date: '%Y-%m-%d' }}",
+  "title": {{ p.title | jsonify }},
+  "url": {{ p.url | jsonify }},
+  "categories": {{ p.categories | jsonify }},
+  "tags": {{ p.tags | jsonify }}
+}{% if forloop.last == false %},{% endif %}
+{% endfor %}
+]

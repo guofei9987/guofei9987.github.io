@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 【pandas】合并数据表
-categories:
-tags: 0x12_特征工程
+categories: pandas
+tags:
 keywords:
 description:
 order: 107
