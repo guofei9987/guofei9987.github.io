@@ -25,7 +25,7 @@ order: 9999
 | [/api/book_list.json](https://www.guofei.site/api/book_list.json) | 阅读书单，含评分与简评 | `title`, `author`, `publisher`, `finish_date`, `rating`, `comment`, `note` |
 | [/api/cnt_github_repo.json](https://www.guofei.site/api/cnt_github_repo.json) | GitHub 仓库统计信息 | `repo`, `stars`, `forks`, `language`, … |
 | [/api/certification.json](https://www.guofei.site/api/certification.json) | 职业与专业证书 | `category`, `title`, `organization`, `link`, `image` |
-| [/api/posts.json](https://www.guofei.site/api/posts.json) | 职业与专业证书 | `category`, `title`, `organization`, `link`, `image` |
+| [/api/posts.json](https://www.guofei.site/api/posts.json) | 全部技术文章 | `data`, `title`, `url`, `categories`, `tags` |
 | [/api/achievement.json](https://www.guofei.site/api/achievement.json) | 其它统计数据，如文章数、读书数、知乎赞同数、GitHub 的 Star 数等 | 各项计数值 |
 
 
