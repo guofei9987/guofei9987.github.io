@@ -1,10 +1,11 @@
 ---
 layout: post
-title: 【学习中】软件工程
-categories: 学习中
-tags: 
+title: 软件工程
+categories: 
+tags: 0x10_计算机基础
 keywords:
 description:
+order: 104
 ---
 
 
