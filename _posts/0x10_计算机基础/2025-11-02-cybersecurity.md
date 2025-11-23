@@ -65,7 +65,7 @@ order: 103
 芯片安全
 
 
-![caption: 芯片制造中的安全](/a/computer/cybersecurity/chip.gif)
+![caption: 芯片制造中的安全](/a/computer/cybersecurity/chip.svg)
 
 
 
@@ -507,7 +507,7 @@ Cookie
 
 物联网（Internet of Things，IOT）
 
-![caption: IOT](/a/computer/cybersecurity/iot.gif)
+![caption: IOT](/a/computer/cybersecurity/iot.svg)
 
 
 
