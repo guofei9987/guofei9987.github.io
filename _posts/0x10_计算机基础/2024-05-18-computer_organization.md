@@ -1047,7 +1047,7 @@ CPU 用 OP（寄存器中的溢出标志，Overflow Flag）来检测溢出情况
 
 **超标量流水线**，把流水线上一些步骤，设定为多个模块并行。
 
-![caption: 超标量流水线](/pictures_for_blog/computer/superscalar.gif)
+![caption: 超标量流水线](/a/computer/computer_organization/superscalar.svg)
 
 **多核CPU**，每个核里有一个超标量流水线
 
