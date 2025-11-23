@@ -304,7 +304,7 @@ dl dd:last-of-type {
   border: 0px solid #ddd;
   display: inline-block;
   /* width: 100%; */
-  max-width: 100%;
+  max-width: 90%;
   height: auto
 }
 
