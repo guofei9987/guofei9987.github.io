@@ -164,7 +164,7 @@ IO 设备（现代往往把 输入设备 和 输出设备  划在一起，例如
 - 手机、平板电脑等
 
 
-![caption: CPU的演变](/pictures_for_blog/computer/computer2.png)
+![caption: CPU的演变](/a/computer/computer_organization/computer2.svg)
 
 
 这种演变得益于芯片技术的进步（摩尔定律）
@@ -627,12 +627,12 @@ MOS晶体管有两种
 
 
 
-![caption: mos晶体管的结构](/pictures_for_blog/computer/mos2.gif)
+![caption: mos晶体管的结构](/a/computer/computer_organization/mos2.svg)
 
 
 加上电压后，形成导体（通路）
 
-![caption: mos晶体管加上电压](/pictures_for_blog/computer/mos3.gif)
+![caption: mos晶体管加上电压](/a/computer/computer_organization/mos3.svg)
 
 
 
