@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【pandas】语法速查
+title: 【特征工程】语法速查
 categories:
 tags: 0x12_特征工程
 keywords:
@@ -281,205 +281,114 @@ df.groupby('col2'). \
 ```
 
 
-## 多表合并
-### 0. 数据准备
-
-生成接下来要用到的几个表：  
-
-```py
-import pandas as pd
-df1=pd.DataFrame({'A':['A0','A1','A2','A3'],
-               'B':['B0','B1','B2','B3'],
-               'C':['C0','C1','C2','C3'],
-               'D':['D0','D1','D2','D3']},
-               index=[0,1,2,3])
-
-df2=pd.DataFrame({'A':['A4','A5','A6','A7'],
-               'B':['B4','B5','B6','B7'],
-               'C':['C4','C5','C6','C7'],
-               'D':['D4','D5','D6','D7']},
-               index=[4,5,6,7])
-
-df3=pd.DataFrame({'A':['A8','A9','A10','A11'],
-               'B':['B8','B9','B10','B11'],
-               'C':['C8','C9','C10','C11'],
-               'D':['D8','D9','D10','D11']},
-               index=[8,9,10,11])
-df4=pd.DataFrame({'B':['A8','A9','A10','A11'],
-               'D':['B8','B9','B10','B11'],
-               'F':['C8','C9','C10','C11']},
-               index=[2,3,6,7])
-```
-
-### 1. pd.concat:以index或columns为合并条件
-
-特点：匹配columns，匹配不到的的填入nan
-```python
-result=pd.concat([df1,df2,df3])
-```
-
-例子：  
-```py
-result=pd.concat([df1,df2,df3])
-```
-
-效果如下：  
-
-![concat.jpg](/pictures_for_blog/postimg2/concat.jpg)
+[**多表合并**](https://www.guofei.site/2017/07/04/pandasconcat.html)
 
 
-**1.1 axis：纵向合并还是横向合并**
-```py
-result = pd.concat([df1, df4], axis=1)
-# axis='index'（默认）是纵向合并，（等价：axis=0）
-# axis='columns' 是横向合并，（等价：axis=1）
-```
-效果如下：  
 
-![concat3.jpg](/pictures_for_blog/postimg2/concat3.jpg)
+## DuckDB
 
-**1.2 join**
-join='outer'(默认),把所有未匹配到的也列出来，（上面这个案例）  
-join='inner'，只列出左右两列都有的
-
-```py
-result = pd.concat([df1, df4], axis=1, join='inner')
-```
-效果如下：  
-
-![concat4.jpg](/pictures_for_blog/postimg2/concat4.jpg)
+原因：
+- 2017年记了 [极为详细的pandas使用笔记](https://www.guofei.site/pandas.html)  
+- 回头看来，pandas 太杂乱，各种语法也太反直觉，心智负担极重。因此这篇只保留最常用的。
+- 因此推荐使用更现代的工具：`DuckDB`（用SQL操作数据） 和 `polars`（基于 Rust，语法不乱） 都是比较好的替代品
 
 
-**1.3 keys分组键**
-
-要在相接的时候在加上一个层次的key来识别数据源自于哪张表，可以增加key参数  
-
-```py
-result = pd.concat([df1,df2,df3], keys=['x', 'y', 'z'])
-#result=pd.concat({'x':df1,'y':df2,'z':df3})
-#也可以用dict来做
-```
-
-效果如下：  
-
-![concat2.jpg](/pictures_for_blog/postimg2/concat2.jpg)
-
-
-**1.4 ignore_index**
-
-如果两个表的index没什么实际含义，用ignore_index=True，使两个表对齐整理出一个新的index  
-
-```py
-result=pd.concat([df1,df4],ignore_index=True)
-```
-
-效果如下：  
-
-![concat5.jpg](/pictures_for_blog/postimg2/concat5.jpg)
-
-### 2. merge：以指定列为合并条件
-除了简单合并外，有时需要匹配合并（类似SQL中的join命令）  
-数据准备  
-```py
-import pandas as pd
-left = pd.DataFrame({'key1': ['K0', 'K0', 'K1', 'K2'],
-                    'key2': ['K0', 'K1', 'K0', 'K1'],
-                    'A': ['A0', 'A1', 'A2', 'A3'],
-                    'B': ['B0', 'B1', 'B2', 'B3']})
-
-
-right = pd.DataFrame({'key1': ['K0', 'K1', 'K1', 'K2'],
-                     'key2': ['K0', 'K0', 'K0', 'K0'],
-                     'C': ['C0', 'C1', 'C2', 'C3'],
-                     'D': ['D0', 'D1', 'D2', 'D3']})
-```
-
-**3.1 连接**
-```pu
-result = pd.merge(left, right, on=['key1', 'key2'])
-```
-![merge1.jpg](/pictures_for_blog/postimg2/merge1.jpg)
-
-**3.2 how**
-
-how='inner'(默认)  
-how='left'  
-how='right'  
-how='outer'
-
-
-```py
-result = pd.merge(left, right, how='left', on=['key1', 'key2'])
-
-```
-
-![merge2.jpg](/pictures_for_blog/postimg2/merge2.jpg)
-
-
-```py
-result = pd.merge(left, right, how='right', on=['key1', 'key2'])
-```
-![merge3.jpg](/pictures_for_blog/postimg2/merge3.jpg)
-
-
-```py
-result = pd.merge(left, right, how='outer', on=['key1', 'key2'])
-```
-![merge4.jpg](/pictures_for_blog/postimg2/merge4.jpg)
-
-**on**
-
-有的时候，在左右表中，待匹配的列名不相同，分别指定左右表的列名就行了。    
-- on
-- left_on/right_on
-- left_index/right_index: 用index作为左连接键/右链接键
-
+与 pandas 的互相转换
 
 ```python
 import pandas as pd
-left = pd.DataFrame({'group': ['a', 'a', 'a', 'b','b', 'b', 'c', 'c','c'],'ounces': [4, 3, 12, 6, 7.5, 8, 3, 5, 6]})
-right = pd.DataFrame({'label':['a','b','c'],'value':['alpha','beta','charlie']})
-inner_joined = pd.merge(left, right, how='inner', left_on='group', right_on='label')
-```                  
+import duckdb
+
+df = pd.DataFrame({
+    'col1': [1, 2, 3, 4, 5, 6]
+    , 'col2': ['one', 'two', 'three'] * 2
+    , 'col3': [1, 2] * 3})
+
+df.to_csv("data.csv", index=False)
+df.to_json("data.json", orient="records")
 
 
 
-
-**suffix**
-
-两个表的列名相同，但是意义不同。合并的时候想自动让他们重命名，然后保留下来。  
-
-```
-result = pd.merge(left, right, on='k', suffixes=['_l', '_r'])
-```
-
-![merge5.jpg](/pictures_for_blog/postimg2/merge5.jpg)
-
-
-### 3. 加减乘除
-
-```py
-df1 + df2  
-#+-*/
-#//求商  %求余
-```
-不是合并。对应项相加减乘除。遇到index和column无法匹配的，填入NaN    
-
-用函数功能更多
-```py
-df1.add(df2,fill_value=0)
-#不再填入NaN，而是填入0
+duckdb.sql("SELECT col1, col2, col3 FROM df WHERE col2 in ('one', 'three')"). \
+    to_df()  # 转换为 pandas.DataFrame
 ```
 
-add,sub,div,mul  
+
+从硬盘读写
+```python
+# 可以读入很多文件格式，例如 csv, parquet, json, excel 等等
+df1 = duckdb.read_csv("data.csv")
+df2 = duckdb.read_json("data.json")
+
+# 或者用 SQL 读入数据
+df3 = duckdb.sql("SELECT col1, col2, col3 FROM 'data.csv'")
 
 
-## 后记
+# 写入
+duckdb.write_csv("data.csv", df1)
+duckdb.write_json("data.json", df1)
 
-2017年记了 [极为详细的pandas使用笔记](https://www.guofei.site/pandas.html)  
-回头看来，pandas 太杂乱，也太反直觉。因此这篇只保留最常用的。
+# 用 SQL 写入
+duckdb.sql("COPY df1 TO 'output.csv' (HEADER, DELIMITER ',');")
+duckdb.sql("COPY df1 TO 'output.json' (FORMAT JSON);")
+```
 
-另外，`DuckDB` 和 `polars` 都是比较好的替代品
+
+**注册并使用UDF**
+
+```python
+con = duckdb.connect(':memory:')
 
 
+def myfunc(x):
+    return x ** 2 + 1
+
+
+def my_add(x, y):
+    return x + y
+
+
+con.create_function(name='myfunc', function=myfunc, parameters=[sqltypes.DOUBLE], return_type=sqltypes.DOUBLE)
+con.create_function(name='my_add', function=my_add, 
+                    parameters=[sqltypes.DOUBLE, sqltypes.DOUBLE],
+                    return_type=sqltypes.DOUBLE)
+
+con.sql("""
+        SELECT col1, myfunc(col1) AS col1_new, my_add(col1, 10) AS col1_added
+        FROM df
+        """)
+```
+
+
+暂时没有 UDAF 的功能，可以用 UDF 来代替 UDAF：
+
+```python
+
+def my_square_sum(arr):
+    return sum(v * v for v in arr)
+
+
+con.create_function(name='my_square_sum', function=my_square_sum, return_type=sqltypes.DOUBLE)
+
+con.sql("""
+        SELECT col2, SUM(col3) AS sum_col3, my_square_sum(LIST(col1)) AS square_sum_col1
+        FROM df
+        GROUP BY col2
+        """)
+```
+
+
+**各种 JOIN、UNION**：直接写 SQL 即可。
+
+
+
+
+
+还可以以数据库的形式使用
+
+```python
+con = duckdb.connect(database=':memory:')
+con = duckdb.connect('mydb.duckdb')
+con.close()
+```
 
