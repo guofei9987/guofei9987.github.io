@@ -381,6 +381,10 @@ con.sql("""
 **各种 JOIN、UNION**：直接写 SQL 即可。
 
 
+各种 SQL
+```python
+con.sql('SHOW TABLES')
+```
 
 
 
