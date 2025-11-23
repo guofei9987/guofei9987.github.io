@@ -1316,4 +1316,4 @@ IO控制方式
 
 
 
-一些图表参见：[计算机结构.pptx](/pictures_for_blog/computer/计算机结构.pptx)
+一些图表参见：[计算机结构.pptx](/a/computer/computer_organization/computer_organization.pptx)
