@@ -46,15 +46,3 @@ ga:
 
 # 主题设置，自动激活某个标签
 active: tags
-
-
-# 这些不放到侧边栏，而是作为一个合集管理
-no_category:
-  - 建站日志
-  - 趣文
-  - 刷题
-  - TensorFlow
-  - Matlab
-  - C
-  - Java
-  - old_ann
