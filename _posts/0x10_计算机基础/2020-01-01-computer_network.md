@@ -519,7 +519,7 @@ Internet传输层服务模型
     - HTTP 1.1版本默认
 
 
-![caption: HTTP非持久性链接](/a/computer/network/http1.gif)
+![caption: HTTP非持久性链接](/a/computer/network/http1.svg)
 
 缺点：
 - 响应时间
@@ -548,7 +548,7 @@ HTTP消息分为两种：
 
 
 
-![caption: HTTP的request](/a/computer/network/http_request1.gif)
+![caption: HTTP的request](/a/computer/network/http_request1.svg)
 
 
 
@@ -577,7 +577,7 @@ HTTP消息分为两种：
 
 
 
-![caption: HTTP的response](/a/computer/network/http_response.gif)
+![caption: HTTP的response](/a/computer/network/http_response.svg)
 
 其中常见的 **响应状态码**：
 - `200 OK`
@@ -860,7 +860,7 @@ DNS协议：
 - 消息头部
 
 
-![caption: DNS消息格式](/a/computer/network/dns4.gif)
+![caption: DNS消息格式](/a/computer/network/dns4.svg)
 
 
 
@@ -980,7 +980,7 @@ chunk
 
 ### Socket编程
 
-![caption: 端上的网络开发](/a/computer/network/socket1.gif)
+![caption: 端上的网络开发](/a/computer/network/socket1.svg)
 
 应用编程接口API（Application Programming Interface）
 - 传输层、网络层、数据链路层、物理层是由操作系统提供的
@@ -1061,7 +1061,7 @@ Socket API（WinSock）
 
 
 
-![caption: Socket API（TCP）调用流程](/a/computer/network/socket2.gif)
+![caption: Socket API（TCP）调用流程](/a/computer/network/socket2.svg)
 
 
 ### Socket编程-客户端软件设计
@@ -1188,7 +1188,7 @@ UDP 客户端软件流程
 - 发送端 **多路复用**。从多个Socket接收数据，为每块数据封装上头部信息，生成 Segment，交给网络层
 
 
-![caption: TCP/UDP的1个segment](/a/computer/network/segment.gif)
+![caption: TCP/UDP的1个segment](/a/computer/network/segment.svg)
 
 
 
@@ -1242,7 +1242,7 @@ UDP 客户端软件流程
     - 应用特定的错误恢复机制
 
 
-![caption: UDP的1个Segment](/a/computer/network/udp_segment.gif)
+![caption: UDP的1个Segment](/a/computer/network/udp_segment.svg)
 
 
 checksum 算法（见于 [擦除码-checksum](https://www.guofei.site/2024/01/20/reed_solomon.html#checksum%20%E5%AE%9E%E7%8E%B0)）
@@ -1255,7 +1255,7 @@ checksum 算法（见于 [擦除码-checksum](https://www.guofei.site/2024/01/20
 - 信道的不可靠特性决定了 **可靠数据传输协议**（**Rdt**，reliable data transfer protocol）的复杂性
 
 
-![caption: Rdt基本形态](/a/computer/network/rdt.gif)
+![caption: Rdt基本形态](/a/computer/network/rdt.svg)
 
 Rdt 的设计思路
 - **渐进设计**
@@ -1265,7 +1265,7 @@ Rdt 的设计思路
 
 
 
-![caption: Rdt的渐进设计](/a/computer/network/rdt_version.gif)
+![caption: Rdt的渐进设计](/a/computer/network/rdt_version.svg)
 
 
 
@@ -1274,7 +1274,7 @@ Rdt 的设计思路
 - 底层可靠：不错、不丢
 - 因此，发送方和接收方的 FSM 独立
 
-![caption: Rdt 1.0 的 FSM](/a/computer/network/rdt1.0.gif)
+![caption: Rdt 1.0 的 FSM](/a/computer/network/rdt1.0.svg)
 
 
 **Rdt2.0：只可能产生位错误的信道**
