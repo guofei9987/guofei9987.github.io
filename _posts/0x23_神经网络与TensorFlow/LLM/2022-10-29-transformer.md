@@ -41,7 +41,7 @@ word2vec 的问题
 
 
 
-## 编码
+## 网络结构
 
 ### tokenize
 
@@ -160,7 +160,6 @@ $\mathrm{Attention}(Q,K,V) = \mathrm{softmax}(\dfrac{QK^T}{\sqrt{d_k}})V$
 
 
 
-## 架构
 ### Multi-head 机制
 
 ![bert5](/pictures_for_blog/nn/bert/bert5.jpg)
@@ -214,7 +213,9 @@ BN的缺点：BN在NLP任务中，效果往往不好，因为：
 
 
 
-## GPT
+
+## ChatGPT
+
 
 Bert vs GPT
 
@@ -231,7 +232,6 @@ Bert vs GPT
 |  下游使用方式   |  通常在 [CLS] 向量等表征上接一个分类/标注头进行微调   | 常用“提示词/指令 + 解码生成”，也可微调做特定生成任务
 |  输出形式   |   输出每个 token 的上下文化向量表示，再用于判别或填空  | 输出一段可继续生成的文本序列
 | 典型应用举例 | 情感分类、意图识别、命名实体识别、搜索/匹配 | 聊天机器人、内容创作、代码助手、长文总结
-
 
 
 
@@ -271,6 +271,27 @@ ChatGPT
 阶段三：PPO（Proximal Policy Optimization）
 - 通过 RM，利用强化学习 PPO 算法对模型进一步训练
 - 重复阶段二和阶段三，从而使得模型不断增强
+
+
+
+![ChatGPT](/a/nn/llm/chatgpt.svg)
+
+
+## 其它GPT模型
+
+有哪些
+- 参考 OpenAI 论文复现的开源模型 OPT（Open Pre-trained Transformer Language Models）
+- Meta 开源的 LLaMA
+
+
+LLaMA 做了哪些改进
+- 层归一化，使用了 RMSNorm $\bar a_i = \dfrac{a_i}{RMS(a)}$，其中 $RMS(a) = \sqrt{1/n \sum\limits_{i=1}^n a_i^2}$
+- SwiGLU 激活函数
+- 稀疏注意力机制的组合
+![:caption 五种基于位置的稀疏注意力基本类型](/a/nn/llm/attention.svg)
+- Multi Query Attention，多头共享 K、V 组合，各自保留自己的 Q. 如果采用此机制，在 SFT 阶段只需要 5% 数据即可达到原来的效果。
+
+
 
 
 
