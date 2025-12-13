@@ -26,6 +26,8 @@ order: 250
 
 -------------------------
 
+### Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
+
 *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models* （2022）
 
 ![CoT](/a/nn/papers/cot.svg)
@@ -98,6 +100,7 @@ order: 250
 --------------------
 
 
+### Faithfulness and Plausibility in Chain-of-Thought Reasoning
 
 *Faithfulness and Plausibility in Chain-of-Thought Reasoning*（2024）
 
@@ -176,6 +179,8 @@ order: 250
 
 ## 多智能体协同
 
+### Generative Agents: Interactive Simulacra of Human Behavior
+
 *Generative Agents: Interactive Simulacra of Human Behavior*（2023）
 - 论文链接： https://arxiv.org/pdf/2304.03442.pdf
 - 代码仓库：https://github.com/joonspk-research/generative_agents
@@ -251,3 +256,38 @@ order: 250
 **六、结论**
 - 核心贡献：提出生成智能体概念、设计记忆-反思-规划架构、验证其在个体与群体行为模拟中的可信度
 - 未来价值：为交互应用（设计工具、社交系统、沉浸式环境）提供人类行为模拟基础
+
+
+--------------------
+
+
+### AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation
+
+*AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation*（2023）
+- https://arxiv.org/abs/2308.08155
+
+
+提出了 autogen 框架：https://github.com/microsoft/autogen
+- 支持多 agent
+- 可灵活定义 agent 行为
+- 支持自然语言、Code
+
+3个原因
+1. LLM 之间、与人，可以通过对话来交流
+2. LLM 的能力强大，尤其是正确的 prompt 和配置下
+3. 当复杂任务分解为简单的子任务时，LLM 可以解决它。多智能体可以分解任务。
+
+达成目标需要解决的2个问题：
+1. 如何让 multi-agent collaboration 设计地 capable, reusable, customizable, and effective
+2. 设计简洁、统一的接口，适配各类智能体
+
+对话编程
+
+一些场景（都有明显提升）
+- 数学问题求解
+- 检索增强聊天。RAG
+- Decision Making in Text World Environments
+- Multi-Agent Coding
+- Dynamic Group Chat
+- Conversational Chess
+
