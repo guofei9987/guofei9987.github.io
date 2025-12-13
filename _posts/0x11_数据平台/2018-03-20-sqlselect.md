@@ -80,8 +80,9 @@ FROM table_name
 WHERE ...
 ```
 
-## union
-两个表并到一起，并且删掉重复内容
+## 集合类运算
+
+**UNION**：两个表并到一起，并且删掉重复内容
 ```
 SELECT field1,field2,...,from tablename1
 UNION
@@ -91,11 +92,11 @@ SELECT  field1,field2,...,from tablenamen
 ...
 ```
 
-- 把 UNION 换成 **UNION ALL**，把两个表并到一起，不删除重复内容  
+- **UNION ALL**，把两个表并到一起，不删除重复内容  
 - **EXCEPT** 差集，也就是在table1中，但不在table2中的结果。  
-- **EXCEPT ALL** 表示不删除重复行  
-- 有的数据库还可以用 **MINUS** 和 **MINUS ALL**
-- INTERSECT 交集，表示同时出现在table1和table2中的结果  
+- **EXCEPT ALL** 不删除重复行  
+    - 有的数据库还可以用 **MINUS** 和 **MINUS ALL**
+- **INTERSECT** 交集，表示同时出现在table1和table2中的结果  
 - **INTERSECT ALL** 表示不删除重复行。  
 
 注：差集和交集也可以用in/join来实现  
@@ -406,7 +407,7 @@ over(order by col3 rows between 2 preceding and 2 following)：窗口范围为�
 
 
 ### function部分
-#### 1. 排名函数
+#### 1.排名函数
 
 **ROW_NUMBER()**: 会对所有数值输出不同的序号，序号唯一连续；  
 **RANK()**: 相同的值排名相同，并且排名数字靠前，（例如，排名可能是这样的：1,1,3,3,5,6,7）  
@@ -428,7 +429,7 @@ https://jingyan.baidu.com/article/9989c74604a644f648ecfef3.html
 SELECT * from app.app_temp_test where row_number(id)<=1;
 ```
 
-#### 2. 描述统计函数
+#### 2.描述统计函数
 
 根据有无 order/partition 分为4种，细心体会：
 
