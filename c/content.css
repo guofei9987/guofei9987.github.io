@@ -257,38 +257,48 @@ img.me {
   margin-top: -30px;
 }
 
-/* 定义型列表 */
-/* 定义列表容器 */
+/* 定义 */
 dl {
   margin: 20px 0;
   padding: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
 }
 
-/* 定义项（标题） */
+/* 定义（标题） */
 dt {
   font-size: 16px;
   font-weight: bold;
-  background-color: #f5f5f5;
+  background-color: #eeeeee;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 /* 定义描述 */
 dd {
+  margin: 6px 0 12px 0;
+  padding: 0 10px 12px 22px;
   font-size: 14px;
-  margin: 0;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  color: #666;
+  color: #333;
+  line-height: 1.7;
+  border-bottom: 1px dashed #e6e6e6;
 }
 
 /* 移除最后一个 dd 的下边框 */
 dl dd:last-of-type {
   border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+dt::before {
+  content: "Def.";
+  margin-right: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #777;
+  letter-spacing: 0.02em;
 }
 
 

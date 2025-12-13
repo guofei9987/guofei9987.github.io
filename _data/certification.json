@@ -337,7 +337,8 @@
       "date": "2025-06",
       "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
       "course_url": "https://www.icourse163.org/course/ZGDZDXBJ-1206419805",
-      "link": ["http://www.icourse163.org/verify/V242132000042#/verifyResult"]
+      "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V242132000042"],
+      "verify":"http://www.icourse163.org/verify/V242132000042#/verifyResult"
     }
   ]
   ,"others": [
