@@ -38,7 +38,6 @@ jobs:
           pip install requests
       - name: Run Python
         run: |
-          python _drafts/py/get_data.py
           python _drafts/py/get_github_data.py
           python _drafts/py/get_reading_data.py
       - name: Setup Pages
