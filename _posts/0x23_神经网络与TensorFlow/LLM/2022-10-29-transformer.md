@@ -1,12 +1,13 @@
 ---
 layout: post
-title: 【pytorch】BERT
-categories: torch
-tags: 
+title: 【Transformer】Bert和GPT
+categories:
+tags: 0x23_深度学习
 keywords:
 description:
-order: 274
+order: 250
 ---
+
 
 ## 为什么
 
@@ -225,19 +226,17 @@ Attention 计算不同（待补充）
 
 cross-entropy
 
-## 预训练
+## Bert：预训练
 
-### Mask Language Model 策略(MLM)
 
+**MLM**（Mask Language Model 策略）
 -	15% mask，其中：
     -	10% 随机替换
     -	10%不替换
     -	80%替换为 `[mask]`
 
 
-### 训练任务
-
-训练时，两个任务同时进行：
+**训练任务** 训练时，两个任务同时进行：
 -	预测被MLM掩盖的字
 -	预测两句话是否有顺序关系（Next Sentence Prediction, NSP）
 
@@ -253,12 +252,12 @@ cross-entropy
 
 
 
-## 使用
+### 使用
 End-to-end形式：  
 不是先训练embedding，然后训练分类任务，而是放一起训练。
 
 
-### 案例1:阅读理解
+**案例1:阅读理解**
 
 
 ![bert_usage_1_1](/pictures_for_blog/nn/bert/bert_usage_1_1.jpg)
@@ -267,38 +266,17 @@ End-to-end形式：
 
 ![bert_usage_1_2](/pictures_for_blog/nn/bert/bert_usage_1_2.jpg)
 
-- 分别单独训练两个辅助向量，分别用来辅助预测 start_idx, end_idx
+- 分别单独训练两个辅助向量，分别用来辅助预测 start_idx, end_idx
 - 辅助向量与bert输出做内积
 - 然后做 softmax，看最大值对应哪一个位置。图中案例分别是 start_idx=2, end_idx=3，所以模型输出是 (2, 3)
 
 
-## 实战
 
-https://github.com/guofei9987/pybert
+## 参考资料
 
-
-
-
-
-
-## 相关项目
-
-https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch
-
-https://github.com/huggingface/transformers
+- Attention Is All You Need：http://arxiv.org/abs/1706.03762
+- 一行代码实现 Bert： https://github.com/guofei9987/pybert
+- https://github.com/649453932/Bert-Chinese-Text-Classification-Pytorch
+- https://github.com/huggingface/transformers
 
 
-
-
-
-<ul>
-{% for member in site.data.members %}
-  <li>
-    <a href="https://github.com/{{ member.github }}">
-      {{ member.name }}
-    </a>
-  </li>
-{% endfor %}
-</ul>
-
-https://www.jekyll.com.cn/docs/datafiles/
