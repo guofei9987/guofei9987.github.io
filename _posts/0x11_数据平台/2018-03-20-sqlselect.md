@@ -10,7 +10,7 @@ order: 150
 
 
 
-## select
+## SELECT
 
 ```sql
 SELECT 列名称
@@ -56,7 +56,7 @@ ORDER BY  列名 ASC/DESC;
 
 
 
-## group by
+## GROUP BY
 
 group by 相关的汇总函数
 ```sql
@@ -70,6 +70,19 @@ stddev_pop, stddev_samp 偏差和样本偏差
 covar_pop(col1,col2), vovar_samp 协方差和样本协方差
 corr(col1,col2) 相关系数
 count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
+```
+
+**HAVING** 是 配合 GROUP BY 使用的，后接分组过滤操作。例子：
+
+```sql
+-- 只取出分组内的个数大于2的那些的分组
+HAVING count(*)>2;
+
+-- 平均工资高于 20000 的哪些分组
+HAVING AVG(salary)>20000;
+
+-- 总销售额大于 100 的
+HAVING SUM(amount) > 100;
 ```
 
 
@@ -589,6 +602,39 @@ FROM    (
 ;
 ```
 
+**生成JSON**
+```sql
+-- 原始数据
+CREATE TABLE tmp_example_json3 AS
+SELECT name, sex, age FROM 
+(
+    VALUES
+    ('王二狗','男',23),
+    ('李狗嗨','男',29),
+    ('王三狗','女',26),
+    ('李三刀','女',31)
+) AS t(name, sex, age);
+
+
+
+-- 生成 JSON
+SELECT  TO_JSON(MAP("name", name,"sex", sex,"age", age))
+FROM tmp_example_json3;
+
+
+-- 另外，MAP 结构是这样取数的
+SELECT  MAP("name", name,"sex", sex,"age", age)['name']
+FROM tmp_example_json3;
+
+-- 或者生成列表嵌套的 JSON
+SELECT
+  sex
+  ,TO_JSON(COLLECT_LIST()(MAP('name', name, 'sex', sex, 'age', age))) AS json_arr
+FROM tmp_example_json3
+GROUP BY sex;
+```
+
+
 ## with语句
 
 ```sql
@@ -655,6 +701,111 @@ HIVE：
 - 用 `LEFT SEMI JOIN` 代替 `IN`
 - 用 `LEFT SEMI JOIN` 代替 `INTERSECT`
 - 用 `ANTI JOIN` 代替 `EXCEPT`
+- 用 `GROUP BY` 代替 `DISTINCT`
+- JOIN 时，大表放左边，小表放右边（现代已经不太影响性能了）
+
+
+关于 Presto 的
+- 合理设置分区，以及查询时必须带上分区。跨分区查询往往很慢
+- 使用 ORC 格式，它是一种文件格式
+    - 它按列存储。例如执行 `SELECT * FROM t WHERE age > 30;` 时，会查看每个 Stripe 已经计算好的 `min(age), max(age)`，直接跳过不符合的 Stripe，从而极大提高效率
+    - 做了数据压缩，因为列的数据结构相似，因此压缩率很高。这减少了节点之间数据传输的IO带宽压力
+- 预先排序
+    - 排序后的 ORC 性能更高，更可能跳过不必要的数据处理
+- 使用近似函数，例如 approx_distinct() 函数比Count(distinct x)有大概2.3%的误差，性能却快很多
+- 用regexp_like代替多个like语句，Presto 没有对 多个 like 做优化
+
+
+### 拉链表
+
+
+**介绍**
+1. **全量表**：每天的所有的最新状态的数据，
+2. **增量表**：每天的新增数据，增量数据是上次导出之后的新数据。
+3. **流水表**： 对于表的每一个修改都会记录，可以用于反映实际记录的变更。例如，存放每天的交易形成的历史。
+4. **拉链表**：维护历史状态，以及最新状态数据的一种表，拉链表根据拉链粒度的不同，实际上相当于快照，只不过做了优化，去除了一部分不变的记录而已,通过拉链表可以很方便的还原出拉链时点的客户记录。
+
+
+拉链表适用于以下情况
+1. 每天一小部分数据有变化,用全量表会浪费大量的存储空间
+2. 希望能较为方便的查询历史快照（流水表和增量表不满足需求）
+
+
+这里介绍一种 HIVE 常见的拉链表构建方案
+
+**结构** 
+- 会有这些字段：`ds, dt, end_date, start_date`
+- 其中，分区字段：`ds, dt, end_date`
+
+分区示例(今天是2018年11月1日)
+```
+ds=ACTIVE/dt=8012-12-31/end_date=8012-12-31
+ds=EXPIRED/dt=2018-10-29/end_date=2018-10-29
+ds=EXPIRED/dt=2018-10-30/end_date=2018-10-30
+ds=EXPIRED/dt=2018-10-31/end_date=2018-10-31
+ds=HISTORY/dt=8012-12-31/end_date=8012-12-31
+ds=INCREMENT/dt=0-2018-10-29/end_date=0-2018-10-29
+ds=INCREMENT/dt=0-2018-10-30/end_date=0-2018-10-30
+ds=INCREMENT/dt=0-2018-10-31/end_date=0-2018-10-31
+ds=INCREMENT/dt=0-2018-11-01/end_date=0-2018-11-01
+```
+
+其中
+1. HISTORY 分区存放的是历史数据转结，非必须。
+2. INCREMENT 为实时导入的数据，非必须
+3. ds非必须，但为了查询语句易读，往往加上这个字段
+4. dt非必须，一般也不用到查询语句中，但这个dt可以用来表示产生此分区的日期，增强可读性
+
+
+**查询**
+- 查询昨日线上数据
+```
+ds='ACTIVE'
+```
+- 查询某一天的数据(快照)
+```
+end_data>'2018-11-11' and start_date<='2018-11-11'
+```
+
+**构建**
+
+<div style="width:170px; height:auto; float:left; display:inline">
+1号的数据
+<table>
+<thead><tr class="tableizer-firstrow"><th colspan="3">2018-01-01</th></tr></thead><tbody>
+ <tr><td>key</td><td>col1</td><td>col2</td></tr>
+ <tr><td>1</td><td>A</td><td>A</td></tr>
+ <tr><td>2</td><td>B</td><td>B</td></tr>
+ <tr><td>3</td><td>C</td><td>C</td></tr>
+</tbody></table>
+</div>
+
+<div style="width:170px; height:auto; display:inline">
+2号的数据
+<table >
+<thead><tr class="tableizer-firstrow"><th colspan="3">2018-01-02</th></tr></thead><tbody>
+ <tr><td>key</td><td>col1</td><td>col2</td></tr>
+ <tr><td>1</td><td>A</td><td>AA</td></tr>
+ <tr><td>2</td><td>B</td><td>B</td></tr>
+ <tr><td>3</td><td>C</td><td>C</td></tr>
+ <tr><td>4</td><td>D</td><td>D</td></tr>
+</tbody></table>
+</div>
+
+
+<div style="width:auto; height:auto;">
+
+做成拉链表：
+<table class="tableizer-table">
+<thead><tr class="tableizer-firstrow"><th>key</th><th>col1</th><th>col2</th><th>start_date</th><th>end_date</th><th>ds</th><th>dt</th></tr></thead><tbody>
+ <tr><td>1</td><td>A</td><td>A</td><td>2018-01-01</td><td>2018-01-02</td><td>EXPIRED</td><td>2018-01-02</td></tr>
+ <tr><td>1</td><td>A</td><td>AA</td><td>2018-01-02</td><td>8012-12-31</td><td>ACTIVE</td><td>8012-12-31</td></tr>
+ <tr><td>2</td><td>B</td><td>B</td><td>2018-01-01</td><td>8012-12-31</td><td>ACTIVE</td><td>8012-12-31</td></tr>
+ <tr><td>3</td><td>C</td><td>C</td><td>2018-01-01</td><td>8012-12-31</td><td>ACTIVE</td><td>8012-12-31</td></tr>
+ <tr><td>4</td><td>D</td><td>D</td><td>2018-01-02</td><td>8012-12-31</td><td>ACTIVE</td><td>8012-12-31</td></tr>
+</tbody></table>
+</div>
+
 
 
 ## 参考文献
@@ -665,3 +816,6 @@ https://www.cnblogs.com/liuxuewen/archive/2012/03/12/2392644.html
 [SQL字符串函数](https://www.cnblogs.com/vofill/p/6806962.html)  
 [Hive字符串操作](https://www.cnblogs.com/iiwen/p/5611761.html)  
 [Hive日期格式转换用法](http://blog.csdn.net/lichangzai/article/details/19406215)
+http://lxw1234.com/archives/2015/04/20.htm  
+https://www.jianshu.com/p/799252156379
+
