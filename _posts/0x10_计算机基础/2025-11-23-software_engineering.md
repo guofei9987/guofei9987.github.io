@@ -75,7 +75,8 @@ order: 104
 4. 喷泉模型
 
 
-![caption: 瀑布模型](/a/computer/software_engineering/model_waterfall.gif)  
+![caption: 瀑布模型](/a/computer/software_engineering/model_waterfall.svg)  
+
 
 **瀑布模型**：
 - 要点
@@ -95,7 +96,20 @@ order: 104
     - 直到项目结束之前，都不能演示系统的能力，增加了项目的风险
 
 
-![caption: 增量模型](/a/computer/software_engineering/model_incremental.gif)  
+```mermaid
+graph TB
+
+1 --> 2
+1 --> 3 --> 6 --> 10
+1 --> 4 --> 7 --> 11
+2 --> 5 --> 9
+4 --> 8 --> 12
+8 --> 13
+3 --> 7
+```
+
+
+![caption: 增量模型](/a/computer/software_engineering/model_incremental.svg)  
 
 **增量模型**
 - 在第一个版本需求确定的情况下
@@ -112,7 +126,7 @@ order: 104
     - 管理成本、复杂性可能超出组织能力
 
 
-![caption: 演化模型](/a/computer/software_engineering/model_evolutionary.gif)  
+![caption: 演化模型](/a/computer/software_engineering/model_evolutionary.svg)  
 
 
 **演化模型**
@@ -264,7 +278,7 @@ order: 104
 ![caption: DFD图](/a/computer/software_engineering/structured_analysis_model1.gif)
 
 
-![caption: 数据字典](/a/computer/software_engineering/structured_analysis_model2.gif)
+![caption: 数据字典](/a/computer/software_engineering/structured_analysis_model2.svg)
 
 ![caption: 判定表盒判定树](/a/computer/software_engineering/structured_analysis_model3.gif)
 
@@ -338,12 +352,12 @@ order: 104
 - 详细设计
 
 
-![caption: 结构化设计](/a/computer/software_engineering/design1.gif)
+![caption: 结构化设计](/a/computer/software_engineering/design1.svg)
 
 
 
 
-![caption: MSD](/a/computer/software_engineering/msd.gif)
+![caption: MSD](/a/computer/software_engineering/msd.svg)
 
 
 总体设计的3个阶段：
@@ -656,7 +670,7 @@ PS：现代编程语言不推荐继承，原因：
 
 
 
-![caption: UML-类](/a/computer/software_engineering/uml_class.gif)
+![caption: UML-类](/a/computer/software_engineering/uml_class.svg)
 
 
 
@@ -694,10 +708,10 @@ PS：现代编程语言不推荐继承，原因：
 ![caption: UML-interface的表示](/a/computer/software_engineering/uml_interface.gif)
 
 
-![caption: UML-interface的举例](/a/computer/software_engineering/uml_interface2.gif)
+![caption: UML-interface的举例](/a/computer/software_engineering/uml_interface2.svg)
 
 
-![caption: UML-interface的使用（简化版）](/a/computer/software_engineering/uml_interface2.gif)
+![caption: UML-interface的使用（简化版）](/a/computer/software_engineering/uml_interface3.svg)
 
 
 ---------------------
@@ -706,18 +720,14 @@ PS：现代编程语言不推荐继承，原因：
 - 一组类、接口等的集合，它们共同工作，完成行为
 
 
-![caption: UML-协作](/a/computer/software_engineering/uml_collaboration1.gif)
-
-
-
-![caption: UML-协作2](/a/computer/software_engineering/uml_collaboration2.gif)
+![caption: UML-协作](/a/computer/software_engineering/uml_collaboration.svg)
 
 
 ---------------------
 
 **用况**（use case）：一组动作序列的描述
 
-![caption: UML-用况](/a/computer/software_engineering/uml_use_case.gif)
+![caption: UML-用况](/a/computer/software_engineering/uml_use_case.svg)
 
 
 --------------------
@@ -725,7 +735,7 @@ PS：现代编程语言不推荐继承，原因：
 **主动类**（active class）：并发行为，用来启动控制
 
 
-![caption: UML-主动类](/a/computer/software_engineering/uml_active_class.gif)
+![caption: UML-主动类](/a/computer/software_engineering/uml_active_class.svg)
 
 
 ---------------------
@@ -733,17 +743,17 @@ PS：现代编程语言不推荐继承，原因：
 **构件**（component）
 
 
-![caption: UML-构件](/a/computer/software_engineering/uml_component.gif)
+![caption: UML-构件](/a/computer/software_engineering/uml_component.svg)
 
 
 **制品**（artifact）
 
-![caption: UML-制品](/a/computer/software_engineering/uml_artifact.gif)
+![caption: UML-制品](/a/computer/software_engineering/uml_artifact.svg)
 
 
 **节点**（node）
 
-![caption: UML-节点](/a/computer/software_engineering/uml_node.gif)
+![caption: UML-节点](/a/computer/software_engineering/uml_node.svg)
 
 
 ### 包、关系
@@ -802,6 +812,8 @@ PS：现代编程语言不推荐继承，原因：
 
 ![caption: UML-用况图](/a/computer/software_engineering/uml_use_case2.gif)
 
+![caption: UML-用况图](/a/computer/software_engineering/uml_use_case3.gif)
+
 
 **用况图**，包括：
 - 主题、用况、参与者、依赖、泛化、关联
@@ -833,7 +845,7 @@ PS：现代编程语言不推荐继承，原因：
 ![caption: UML-状态机图](/a/computer/software_engineering/uml_state_machine_diagram.gif)
 
 
-![caption: UML-状态](/a/computer/software_engineering/uml_state.gif)
+![caption: UML-状态](/a/computer/software_engineering/uml_state.svg)
 
 
 ![caption: UML-状态转移](/a/computer/software_engineering/uml_state1.gif)
@@ -857,7 +869,7 @@ UML中，可模型化的4种事件
 4. 发送事件和接受事件
 
 
-![caption: UML-信号](/a/computer/software_engineering/uml_signal.gif)
+![caption: UML-信号](/a/computer/software_engineering/uml_signal.svg)
 
 
 
