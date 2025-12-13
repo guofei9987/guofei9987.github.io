@@ -246,9 +246,10 @@ blockquote {
 /* .katex {
 background-color: lightcyan;
 } */
-.katex span.base{
+/* 暂时不要，会让 not 语句不现实 */
+/* .katex span.base{
 background-color: lightcyan;
-}
+} */
 
 /* me.html上的自己就头像，默认没有上下对齐 */
 img.me {
