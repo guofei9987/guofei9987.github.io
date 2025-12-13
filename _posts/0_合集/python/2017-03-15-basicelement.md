@@ -404,7 +404,7 @@ memoryview(bytes(string, encoding='utf-8'))
 ```
 
 hash:在hash()对对象使用时，所得的结果不仅和对象的内容有关，还和对象的id()，也就是内存地址有关。
-```
+```python
 class Test:
     def __init__(self, i):
         self.i = i
@@ -414,9 +414,155 @@ for i in range(10):
 ```
 
 查看对象的内存
-```
+```python
 v = memoryview(bytearray("abcefg", 'utf-8'))
 ```
+
+
+```python
+# 用字符串的方式导入包，不过不推荐使用
+__import__('numpy')
+```
+
+
+```python
+# 这是一个dict，内容是已经加载的包
+sys.modules
+
+# 这是一个list，内容是命名空间中所有变量
+dir()
+```
+
+
+
+
+
+
+
+
+## with语句
+with语句做了什么？
+1. 计算表达式的值，返回一个上下文管理对象
+2. 加载上下文管理对象的 `__exit__()` 方法以备后用
+3. 调用上下文管理器对象的 `__enter__()` 方法
+4. 如果with语句中设置了目标对象，把 `__enter__()` 方法的返回值赋值给目标对象
+5. 执行 `with` 中的代码块
+6. 如果正常结束，调用 `__exit__()` 方法，忽略返回值。
+7. 如果发生异常，调用 `__exit__()` 方法，把异常类型、值、traceback信息传递给 `__exit__()`。如果 `__exit__()` 返回 True，异常被挂起，程序继续执行；如果返回False，抛出异常。
+
+with语句好处是无论何种方式跳出代码块，`__exit__()` 总是被执行
+
+
+你可以定义自己的上下文管理器：
+```python
+class MyContextManager(object):
+    def __enter__(self):
+        print('enter')
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print('leaving', exc_type, exc_val, exc_tb)
+        if exc_type is None:
+            return False
+        if exc_type is ZeroDivisionError:
+            print('ZeroDivisionError')
+            return True
+        print('other error')
+        return True
+
+with MyContextManager():
+    1/0
+```
+
+## else
+for循环后面可以跟else，当循环自然终结时，会执行else；如果被break打断，不执行else
+
+```python
+for i in range(4):
+    print(i)
+    if i>5:break
+else:
+    print('no more then 5')
+```
+
+
+try 后面跟else，当try语句没发生异常时，执行else，全语句： `try-except-else-finnaly`
+
+## 可变对象和不可变对象
+
+
+```python
+class STUDENT:
+    def __init__(self, name, course=[]):
+        self.name = name
+        self.course = course
+
+    def add_course(self, course_name):
+        self.course.append(course_name)
+
+
+Lucy = STUDENT('Lucy')
+Lily = STUDENT('Lily')
+
+Lucy.add_course('math')
+Lily.add_course('PE')
+
+print(Lucy.course)
+print(Lily.course)
+```
+
+很惊讶的发现，虽然 `Lucy` 和 `Lily` 是不同的对象，但course却指向同一个地址。这是因为默认参数仅仅评估一次。
+
+## 配置文件
+常见有XML，ini
+
+`ConfigParser` 是一个常用的解析配置文件的包
+
+`getboolean('section1', 'option1')` 可以解析 yes/no, true/false, on/off
+
+## 调试
+
+
+`traceback` 来调试报错信息，`logging` 来记录日志
+
+logger分为五个等级
+1. DEBUG，
+2. INFO，正常的信息
+3. WARNING
+4. ERROR
+5. CRITICAL
+
+
+```python
+import logging
+
+logging.Logger.setLevel()
+logging.Logger.addHandler()
+logging.Logger.removeHandler()
+logging.Logger.addFilter()
+
+logging.Logger.debug()
+logging.Logger.info()
+logging.Logger.warning()
+logging.Logger.error()
+```
+
+一个简单案例
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='log.txt',
+    filemode='w',
+)
+
+k = 0
+for i in range(5):
+    k += i
+    logging.info('[INFO]:calling i={i}'.format(i=i))
+```
+
+
 
 ## 类型标注
 
