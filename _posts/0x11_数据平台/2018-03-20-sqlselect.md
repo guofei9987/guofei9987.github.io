@@ -78,7 +78,7 @@ corr(col1,col2) 相关系数
 count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
 ```
 
-**HAVING** 是 配合 GROUP BY 使用的，后接分组过滤操作。例子：
+**HAVING** 是 配合 GROUP BY 使用的，后接分组过滤条件，组勇士过滤掉不满足条件的分组。例子：
 
 ```sql
 -- 只取出分组内的个数大于2的那些的分组

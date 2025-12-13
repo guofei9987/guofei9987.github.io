@@ -165,13 +165,6 @@
       "link": []
     },
     {
-      "title": "蚂蚁安全",
-      "cat": "计算机",
-      "date": "2023-06",
-      "image": "/pictures_for_blog/certification/cs/蚂蚁安全.jpg",
-      "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
-    },
-    {
       "title": "机动车驾驶证",
       "cat": "其它",
       "date": "2015-08",
@@ -343,7 +336,17 @@
       "cat": "其它",
       "date": "2025-06",
       "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
+      "course_url": "https://www.icourse163.org/course/ZGDZDXBJ-1206419805",
       "link": ["http://www.icourse163.org/verify/V242132000042#/verifyResult"]
+    }
+  ]
+  ,"others": [
+    {
+      "title": "蚂蚁安全",
+      "cat": "计算机",
+      "date": "2023-06",
+      "image": "/pictures_for_blog/certification/cs/蚂蚁安全.jpg",
+      "link": ["https://mdn.alipayobjects.com/portal_grmz7t/uri/file/as/246864-antgroup-001-2023-061"]
     }
   ]
 }
