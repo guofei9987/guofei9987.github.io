@@ -8,7 +8,6 @@ description:
 order: 452
 ---
 
-*吴恩达的课程笔记*  
 
 ## hpyperparameters
 ### 试什么
