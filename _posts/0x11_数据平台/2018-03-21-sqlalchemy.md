@@ -8,6 +8,15 @@ description:
 order: 180
 ---
 
+
+SQL 系列文章
+- [🔥【SQL】SELECT专题](https://www.guofei.site/2018/03/20/sqlselect.html)，主要内容是 SELECT 语句
+- [【SQL】通用语法](https://www.guofei.site/2015/02/03/SQL.html)，主要内容是 CREATE、ALTER、INSERT 等通用的 SQL 语法
+- [各种数据库方言](https://www.guofei.site/2015/01/30/mySQL.html)，各种数据库的相关命令，如 HIVE、MySQL、SQL Server
+- [【python】sqlAlchemy](https://www.guofei.site/2018/03/21/sqlalchemy.html)
+
+
+
 ## 方式1：query方式
 ```py
 from sqlalchemy import create_engine
