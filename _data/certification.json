@@ -188,6 +188,38 @@
   ],
   "mooc": [
     {
+    "title": "数据库系统（上）：模型与语言",
+    "platform": "中国大学MOOC",
+    "org": "哈尔滨工业大学",
+    "cat": "计算机",
+    "date": "2025",
+    "image": "/a/certificate/mooc/数据库系统上证书.jpg",
+    "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V244448000005"],
+    "course_url":"https://www.icourse163.org/course/HIT-1001516002",
+    "备注": "课程质量不错"
+  }
+  ,{
+    "title": "数据库系统（中）：建模与设计",
+    "platform": "中国大学MOOC",
+    "org": "哈尔滨工业大学",
+    "cat": "计算机",
+    "date": "2025",
+    "image": "/a/certificate/mooc/数据库系统中证书.jpg",
+    "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V244446000003"],
+    "course_url":"https://www.icourse163.org/course/HIT-1001554030",
+    "备注": "课程质量不错"
+  }
+  ,{
+      "title": "软件工程",
+      "platform": "中国大学MOOC",
+      "org": "北京大学",
+      "cat": "计算机",
+      "date": "2025",
+      "image": "/a/certificate/mooc/软件工程证书.jpg",
+      "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V244166000005"],
+      "course_url":"https://www.icourse163.org/course/PKU-1003177002"
+    },
+    {
       "title": "计算机组成",
       "platform": "Coursera",
       "org": "北京大学",
@@ -195,8 +227,8 @@
       "date": "2017-05",
       "image": "/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73"]
-    },
-    {
+    }
+    ,{
       "title": "操作系统原理",
       "platform": "Coursera",
       "org": "北京大学",
@@ -204,17 +236,17 @@
       "date": "2024-11",
       "image": "/pictures_for_blog/certification/coursera/操作系统.jpg",
       "link": ["https://www.coursera.org/account/accomplishments/certificate/58UICSCEFQRH"]
-    },
-    {
+    }
+    ,{
       "title": "信息安全",
       "platform": "中国大学MOOC",
       "org": "复旦大学",
       "cat": "计算机",
       "date": "2025-12",
-      "image": "/a/certificate/mooc/信息安全证书.png",
+      "image": "/a/certificate/mooc/信息安全证书.jpg",
       "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V244003000008"],
-      "score": "❤❤❤❤❤",
-      "course_url":"https://www.icourse163.org/course/FUDAN-1206357811"
+      "course_url":"https://www.icourse163.org/course/FUDAN-1206357811",
+      "备注": "课程质量极高"
     },
     {
       "title": "Vital Signs: Understanding What the Body Is Telling Us",
