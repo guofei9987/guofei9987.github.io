@@ -128,36 +128,35 @@ on joincondition;
 三重内连接+别名
 ```sql
 SELECT a.id, a.name, b.salary, c.department
-from table_name1 a
-inner join table_name2 b
-on a.id=b.id
-inner join table_name3 c
-on a.id=c.id;
+FROM table_name1 a
+INNER JOIN table_name2 b
+ON a.id=b.id
+INNER JOIN table_name3 c
+ON a.id=c.id;
 ```
 
 以上可以用where的形式实现(更简单)
 ```sql
 SELECT a.id, a.name, b.salary, c.department
-from table_name1 a, table_name2 b, table_name3 c
-where a.id=b.id and a.id=c.id;
+FROM table_name1 a, table_name2 b, table_name3 c
+WHERE a.id=b.id AND a.id=c.id;
 ```
 
 ## 子查询
-单行子查询
+
+
 ```sql
-SELECT enamel,sal,job
-FROM t_employee
--- 多行多列
+SELECT * FROM t_employee
 WHERE 
+-- 支持多行多列
 (sal,job) IN (SELECT sal,job FROM t_employee)
 -- NOT IN
 AND (sal,job) NOT IN (SELECT sal,job FROM t_manager)
+-- 等号
+AND (dept_id,dept_name) = (SELECT dept_id,dept_name FROM t_engineer)
+-- 可以是枚举值
+AND job IN ("算法工程师", "会计师");
 ;
-
-SELECT enamel,sal,job
-FROM t_employee
-WHERE 
-(sal,job) = (SELECT sal,job FROM t_employee);
 ```
 
 
@@ -644,45 +643,19 @@ WHERE rand() < 0.2;
 
 ## 性能优化
 
-**1** 避免使用 `select *`，而是使用 `select col1, col2`
-
-**2** where 条件中尽量避免函数，比起 `where col1 + 5 > 90`，更推荐 `where col1 > 90 - 5`
-
-**3** 避免类型隐式转换，如果 `col1` 是string类型，那么推荐 `where col1 = '1'`，而不是 `col1 = 1`
-
-
-
-**4** 避免用 `or`, `!=`, `<>`，而是用 `union` (未测试)  
-原因：Mysql 使用 or 之类可能会使索引失效
-
-```sql
--- 不推荐
-select col1 from table1 where col2 == 1 or col2 == 2
--- 推荐
-select col1 from table1 where col2 ==1
-union
-select col1 from table1 where col2 ==2
+- 避免使用 `select *`，而是使用 `select col1, col2`
+- where 条件中尽量避免函数，比起 `where col1 + 5 > 90`，更推荐 `where col1 > 90 - 5`
+- 避免类型隐式转换，如果 `col1` 是string类型，那么推荐 `where col1 = '1'`，而不是 `col1 = 1`
+- 如果确定知道只有1条记录，那么使用 `limit`  
+    - 原因：使用 `limit 1` 之后，找到一个就不会再继续找了
+- 尽量使用 `union all` 而不是 `union`，因为 `union` 还会尝试合并和排序
 
 
--- 不推荐
-select col1 from table1 where col2 <> 10
--- 推荐
-select col1 from table1 where col2 < 10
-union select col1 from table1 where col2 > 10
+HIVE：
+- 用 `LEFT SEMI JOIN` 代替 `IN`
+- 用 `LEFT SEMI JOIN` 代替 `INTERSECT`
+- 用 `ANTI JOIN` 代替 `EXCEPT`
 
-```
-
-**5** 如果确定知道只有1条记录，那么使用 `limit`  
-原因：使用 `limit 1` 之后，找到一个就不会再继续找了
-
-```sql
--- 不推荐
-select col1 from table1 where name == 'Tom'
--- 推荐
-select col1 from table1 where name == 'Tom' limit 1;
-```
-
-**6** 尽量使用 `union all` 而不是 `union`，因为 `union` 还会尝试合并和排序
 
 ## 参考文献
 
