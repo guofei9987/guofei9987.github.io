@@ -96,9 +96,8 @@ order: 104
     - 直到项目结束之前，都不能演示系统的能力，增加了项目的风险
 
 
-```mermaid
+<div class="mermaid">
 graph TB
-
 1 --> 2
 1 --> 3 --> 6 --> 10
 1 --> 4 --> 7 --> 11
@@ -106,7 +105,7 @@ graph TB
 4 --> 8 --> 12
 8 --> 13
 3 --> 7
-```
+</div>
 
 
 ![caption: 增量模型](/a/computer/software_engineering/model_incremental.svg)  
