@@ -40,7 +40,6 @@ plt.plot(output[:,0],output[:,1],'.')
 plt.show()
 ```
 
-![下载 (1)](https://i.imgur.com/4pp4ga8.png)
-
+![fractal](/a/math/fractal/fractal3.png)
 
 你可以试试改变一下各个初始值，看看图形有没变化  

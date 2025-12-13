@@ -63,9 +63,8 @@ ksdensity(x)
 ```
 这里插一句，在做可视化时，很多情况下，ksdensity（概率密度估计图）比hist（分布直方图）、histfit（加入正态拟合的分布直方图）更加简洁明了，效果比较如下：
 
-![1343162-77c25ad180f2ac87](http://i.imgur.com/TO24UlI.png)
 
-<center>*(hist\histfit\ksdensity)*</center >
+![caption: hist\histfit\ksdensity](/a/math/stats/stats1.png)
 
 
 最后是描述性统计量：
@@ -79,10 +78,7 @@ fprintf('偏度是%3f\n',skewness(x));
 
 **程序输出与结论分析：**
 
-![1343162-a1c7915733d0246f](http://i.imgur.com/ARLqpc3.png)
-
-<center>*穷人+富人*</center >
-
+![caption: 穷人+富人](/a/math/stats/stats2.png)
 
 ```
 均值是232.538583

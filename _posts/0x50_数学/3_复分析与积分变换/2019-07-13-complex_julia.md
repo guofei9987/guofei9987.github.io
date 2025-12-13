@@ -20,7 +20,8 @@ order: 92502
 也就是，有下面这个图。  
 
 
-![abc](https://i.imgur.com/Uj9Dtjh.jpg)
+![complex1](/a/math/complex/complex1.jpeg)
+
 
 进一步的，$p=\phi^{-1} \circ f \circ \phi $  
 再进一步，$p^{n \circ } = \phi^{-1} \circ f^{n\circ} \circ \phi $  
