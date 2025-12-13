@@ -1313,8 +1313,5 @@ IO控制方式
 - [Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
 - [Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
 
-[![caption: Computer Organization](/pictures_for_blog/certification/coursera/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90.jpg)](https://www.coursera.org/account/accomplishments/certificate/F987E2DF2V73)
-
-
 
 一些图表参见：[计算机结构.pptx](/a/computer/computer_organization/computer_organization.pptx)
