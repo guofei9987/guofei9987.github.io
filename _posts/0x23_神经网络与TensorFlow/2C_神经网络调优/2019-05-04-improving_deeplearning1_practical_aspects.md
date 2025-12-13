@@ -1,13 +1,12 @@
 ---
 layout: post
-title: Practical aspects of DNN
+title: 【DNN】训练
 categories:
 tags: 0x23_深度学习
 keywords:
 description:
 order: 450
 ---
-*吴恩达的课程笔记*  
 
 ## train/dev/test
 
@@ -144,7 +143,25 @@ $\dfrac{x-u}{\sigma^2}$
 **Why** ？
 （我觉得更好的解释是，如果不做标准化，且数据分布差异大，那么实际上相当于初始化的权重偏差特别大，需要迭代相当多次才行，而这是浪费）
 
-## Vanishing / Exploding gradients
+## 梯度消失/梯度爆炸
+
+Vanishing / Exploding gradients
+
+根源都在自反向传播时的连续相乘。
+- 当平均“乘子”小于1，可能发生梯度消失
+- 当平均“乘子”大于1，可能发生梯度爆炸
+- 梯度消失：越靠近输入的层，梯度越小（接近0），导致这些层的参数及户不更新，尤其是使用 sigmoid 作为激活函数时
+- 梯度爆炸：loss震荡/发散，很快出现 NaN/Inf
+
+解决方法：
+1. 梯度裁剪
+2. 降低学习率，以及更稳定的优化其设置 （AdamW等）
+3. 合理初始化参数（Xavier/He）
+4. 归一化（BatchNorm/LayerNorm）
+5. 正则化/约束等
+
+
+
 
 ## Weight Initialization
 $Z=W_{1\times n}X+b$，上面的经验中，不能让Z太大，这就要求W要随着n变小。  
@@ -246,3 +263,8 @@ $1-\mu$是摩擦力，$0\leq\mu\leq1$
 有这种现象：随着训练进行，训练集上的误差继续降低，验证集上的误差反而开始上升。这也是一种正则化方法，一种高效的方法。
 
 在某些情况下，early stopping 几乎等价于L2正则化。
+
+
+## 参考资料
+
+*吴恩达的课程笔记*  
