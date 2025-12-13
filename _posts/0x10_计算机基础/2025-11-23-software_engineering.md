@@ -705,7 +705,7 @@ PS：现代编程语言不推荐继承，原因：
 - 接口不能访问其它类
 
 
-![caption: UML-interface的表示](/a/computer/software_engineering/uml_interface.gif)
+![caption: UML-interface的表示](/a/computer/software_engineering/uml_interface.svg)
 
 
 ![caption: UML-interface的举例](/a/computer/software_engineering/uml_interface2.svg)
@@ -767,7 +767,7 @@ PS：现代编程语言不推荐继承，原因：
 2. 引入依赖（import）
 
 
-![caption: UML-包](/a/computer/software_engineering/uml_package.gif)
+![caption: UML-包](/a/computer/software_engineering/uml_package.svg)
 
 
 ------------------------
