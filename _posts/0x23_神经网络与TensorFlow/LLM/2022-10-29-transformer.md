@@ -252,6 +252,10 @@ cross-entropy
 
 
 
+辅助训练任务：NSP（Next Sentence Prediction）、SOP（Sentence Order Prediction）
+
+
+
 ### 使用
 End-to-end形式：  
 不是先训练embedding，然后训练分类任务，而是放一起训练。
