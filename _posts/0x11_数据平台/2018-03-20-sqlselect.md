@@ -14,10 +14,10 @@ order: 150
 
 ```sql
 SELECT 列名称
-from 表名
-where 条件1
-group by 列名 having 条件2
-order by  列名 asc/desc;
+FROM 表名
+WHERE 条件1
+GROUP BY 列名 HAVING 条件2
+ORDER BY  列名 ASC/DESC;
 ```
 
 ## 执行顺序
@@ -600,17 +600,48 @@ SELECT  * FROM    tmp_table_01 UNION ALL SELECT  * FROM    tmp_table_02;
 
 ## 查询案例
 
-### 找出重复的记录
+找出重复的记录
 ```sql
 SELECT id,COUNT(id)
 FROM table1
 WHERE dt = '2018-02-16'
-GROUP BY id HAVING COUNT(id) > 2;
+GROUP BY id HAVING COUNT(id) > 1;
 ```
+
+每个班级选取前 5 个学生
+
+```sql
+select * from
+(
+select *
+,row_number() over(partition by class order by grade_math,grade_english) as rownum
+from table
+) as temp
+where temp.rownum <= 5;
+```
+注意，如果col1，col2仍有重复的话，可能每次返回的结果都不一样（一个小坑）
+
+
+抽样
+```sql
+-- 20% 抽样
+SELECT * FROM tablename
+WHERE rand() < 0.2;
+
+-- 每个类别随机抽 5 个
+-- 类似前面，不过 ORDER BY 后面接 rand()
+
+
+-- 随机抽样，但要求每次运行结果都一样
+-- 思路：先做 md5，然后 md5_val % 10 = 1
+
+
+```
+
 
 ## 性能优化
 
-**1** 避免使用 `select *`，而是使用 `select col1, col2` （未测试）
+**1** 避免使用 `select *`，而是使用 `select col1, col2`
 
 **2** where 条件中尽量避免函数，比起 `where col1 + 5 > 90`，更推荐 `where col1 > 90 - 5`
 
