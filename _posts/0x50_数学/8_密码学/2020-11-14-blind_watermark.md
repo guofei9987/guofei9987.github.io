@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【信息隐藏技术】隐写术、暗水印知识体系
+title: 🔥【隐写术】与暗水印知识体系
 categories:
 tags: 0x58_密码学
 keywords:

@@ -184,22 +184,6 @@
       "date": "2024-08",
       "image": "/pictures_for_blog/certification/open/gitcode_sko.jpg",
       "link": []
-    },
-    {
-      "title": "食品浪费防治",
-      "org": "联合国气候变化组织",
-      "cat": "其它",
-      "date": "2025",
-      "image": "/a/certificate/uncc_food_waste_prevention.gif",
-      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unccelearn.org/"]
-    },
-    {
-      "title": "开放教育资源开发",
-      "org": "联合国教科文组织",
-      "cat": "其它",
-      "date": "2025",
-      "image": "/a/certificate/unesco_oer.jpg",
-      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unesco.org/"]
     }
   ],
   "mooc": [
@@ -339,6 +323,22 @@
       "course_url": "https://www.icourse163.org/course/ZGDZDXBJ-1206419805",
       "link": ["https://www.icourse163.org/cert/Authority.htm?certNo=V242132000042"],
       "verify":"http://www.icourse163.org/verify/V242132000042#/verifyResult"
+    },
+    {
+      "title": "食品浪费防治",
+      "org": "联合国气候变化组织",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/uncc_food_waste_prevention.gif",
+      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unccelearn.org/"]
+    },
+    {
+      "title": "开放教育资源开发",
+      "org": "联合国教科文组织",
+      "cat": "其它",
+      "date": "2025",
+      "image": "/a/certificate/unesco_oer.jpg",
+      "link": ["https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2", "https://unesco.org/"]
     }
   ]
   ,"others": [

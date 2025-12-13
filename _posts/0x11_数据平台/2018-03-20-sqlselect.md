@@ -635,9 +635,12 @@ FROM tmp_example_json3;
 -- 或者生成列表嵌套的 JSON
 SELECT
   sex
-  ,TO_JSON(COLLECT_LIST()(MAP('name', name, 'sex', sex, 'age', age))) AS json_arr
+  ,TO_JSON(COLLECT_LIST((MAP('name', name, 'sex', sex, 'age', age)))) AS json_arr
 FROM tmp_example_json3
 GROUP BY sex;
+
+-- 或者直接生成列表式 JSON
+SELECT TO_JSON(ARRAY('a', 'b', 'c'));
 ```
 
 
