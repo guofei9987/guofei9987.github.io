@@ -73,9 +73,11 @@ count(DISTINCT col1) - 合适的函数，都可以接受DISTINCT
 ```
 
 
-给出名字
+别名
 ```
-SELECT 列名 as 显示列名 where...
+SELECT 列名 as 别名 
+FROM table_name
+WHERE ...
 ```
 
 ## union
@@ -234,10 +236,10 @@ end
 
 -- 例子：
 select
-    case 　　job_level
+    case    job_level
         when    '1'     then    'rich'
-        when　  '2'     then    'middle'
-        when　  '3'     then    'poor'
+        when    '2'     then    'middle'
+        when    '3'     then    'poor'
         else       'not sure'
     end
 from table_employee
