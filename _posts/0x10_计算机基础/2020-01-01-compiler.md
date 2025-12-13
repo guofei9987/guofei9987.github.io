@@ -5,6 +5,7 @@ categories: 学习中
 tags: 
 keywords:
 description:
+permalink: /:title:output_ext
 order: 103
 ---
 
