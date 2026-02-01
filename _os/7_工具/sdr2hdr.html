@@ -6,264 +6,52 @@ tag: tools
 order: 711
 ---
 
-<style>
-  #content .sdr2hdr-app,
-  #content .sdr2hdr-app * {
-    box-sizing: border-box;
-  }
-
-  #content .sdr2hdr-app {
-    --sdr2hdr-bg: #f6f7f9;
-    --sdr2hdr-panel: #ffffff;
-    --sdr2hdr-text: #222831;
-    --sdr2hdr-muted: #6b7280;
-    --sdr2hdr-border: #d8dde6;
-    --sdr2hdr-primary: #1f7a5f;
-    --sdr2hdr-primary-hover: #17664f;
-    --sdr2hdr-link: #1d6fb8;
-    --sdr2hdr-link-hover: #15568f;
-    --sdr2hdr-shadow: 0 8px 24px rgba(20, 25, 35, 0.08);
-
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    color: var(--sdr2hdr-text);
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background: var(--sdr2hdr-bg);
-    border-radius: 8px;
-  }
-
-  #content .sdr2hdr-app h1,
-  #content .sdr2hdr-app h2 {
-    margin: 0;
-    padding: 0;
-    color: var(--sdr2hdr-text);
-    font-family: Arial, sans-serif;
-    font-weight: 700;
-    line-height: 1.25;
-    background: transparent;
-  }
-
-  #content .sdr2hdr-app h1 {
-    font-size: 30px;
-  }
-
-  #content .sdr2hdr-app h2 {
-    font-size: 22px;
-  }
-
-  #content .sdr2hdr-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-
-  #content .sdr2hdr-status {
-    min-height: 26px;
-    padding: 4px 10px;
-    color: var(--sdr2hdr-muted);
-    font-size: 14px;
-    border: 1px solid var(--sdr2hdr-border);
-    border-radius: 999px;
-    background: var(--sdr2hdr-panel);
-  }
-
-  #content .sdr2hdr-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-    margin: 20px 0 0;
-  }
-
-  #content .sdr2hdr-panel {
-    min-width: 0;
-    padding: 20px;
-    background: var(--sdr2hdr-panel);
-    border: 1px solid var(--sdr2hdr-border);
-    border-radius: 8px;
-    box-shadow: var(--sdr2hdr-shadow);
-  }
-
-  #content .sdr2hdr-controls {
-    margin: 0;
-  }
-
-  #content .sdr2hdr-control-group {
-    margin: 15px 0;
-  }
-
-  #content .sdr2hdr-control-group:first-child {
-    margin-top: 0;
-  }
-
-  #content .sdr2hdr-label {
-    display: block;
-    margin: 0 0 6px;
-    color: var(--sdr2hdr-text);
-    font-size: 15px;
-    font-weight: 700;
-  }
-
-  #content .sdr2hdr-file-input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    color: var(--sdr2hdr-text);
-    font: inherit;
-    border: 1px solid var(--sdr2hdr-border);
-    border-radius: 6px;
-    background: #fff;
-  }
-
-  #content .sdr2hdr-radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-    margin: 10px 0 0;
-  }
-
-  #content .sdr2hdr-radio-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    color: var(--sdr2hdr-text);
-    font-size: 15px;
-    font-weight: 400;
-  }
-
-  #content .sdr2hdr-radio-label input {
-    margin: 0;
-  }
-
-  #content .sdr2hdr-image-box {
-    min-height: 180px;
-    margin-top: 12px;
-  }
-
-  #content .sdr2hdr-upload-trigger {
-    cursor: pointer;
-  }
-
-  #content .sdr2hdr-upload-trigger:hover {
-    border-color: var(--sdr2hdr-primary);
-    transition: border-color 0.2s ease;
-  }
-
-  #content .sdr2hdr-upload-hint {
-    color: var(--sdr2hdr-muted);
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  #content .sdr2hdr-output-controls {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--sdr2hdr-border);
-  }
-
-  #content .sdr2hdr-image-box img {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    margin: 10px 0 0;
-    border-radius: 6px;
-  }
-
-  #content .sdr2hdr-placeholder,
-  #content .sdr2hdr-loading {
-    margin-top: 10px;
-    color: var(--sdr2hdr-muted);
-    font-size: 15px;
-    font-style: italic;
-  }
-
-  #content .sdr2hdr-download {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 18px;
-    color: #fff;
-    font-size: 14px;
-    text-decoration: none;
-    border-radius: 6px;
-    background: var(--sdr2hdr-link);
-  }
-
-  #content .sdr2hdr-download:hover {
-    color: #fff;
-    text-decoration: none;
-    background: var(--sdr2hdr-link-hover);
-  }
-
-  #content .sdr2hdr-hidden {
-    display: none;
-  }
-
-  @media (max-width: 760px) {
-    #content .sdr2hdr-app {
-      padding: 14px;
-    }
-
-    #content .sdr2hdr-container {
-      grid-template-columns: 1fr;
-    }
-
-    #content .sdr2hdr-app h1 {
-      font-size: 24px;
-    }
-  }
-</style>
-
-<div class="sdr2hdr-app" id="sdr2hdrApp">
-  <div class="sdr2hdr-header">
+<div class="text-tools-app" id="text-tools-app">
+  <div class="text-tools-header">
     <h1>高亮图像转换器</h1>
-    <div class="sdr2hdr-status" id="sdr2hdrStatus">正在初始化 WASM...</div>
+    <div class="text-tools-status" id="text-tools-status">正在初始化 WASM...</div>
   </div>
 
-  <input class="sdr2hdr-hidden" type="file" id="sdr2hdrImageInput" accept=".png,.jpg,.jpeg">
+  <input class="text-tools-hidden" type="file" id="text-tools-image-input" accept=".png,.jpg,.jpeg">
 
-  <div class="sdr2hdr-panel sdr2hdr-controls">
-    <div class="sdr2hdr-control-group">
-      <span class="sdr2hdr-label">HDR 类型:</span>
-      <div class="sdr2hdr-radio-group" role="radiogroup" aria-label="HDR 类型">
-        <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrIccType" value="1" checked> Type 1</label>
-        <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrIccType" value="2"> Type 2</label>
+  <div class="text-tools-panel text-tools-controls">
+    <div class="text-tools-control-group">
+      <span class="text-tools-label">HDR 类型:</span>
+      <div class="text-tools-radio-group" role="radiogroup" aria-label="HDR 类型">
+        <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="1" checked> Type 1</label>
+        <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="2"> Type 2</label>
       </div>
     </div>
   </div>
 
-  <div class="sdr2hdr-container">
-    <div class="sdr2hdr-panel sdr2hdr-upload-trigger" id="sdr2hdrUploadTrigger">
-      <h2>原始图像 <span class="sdr2hdr-upload-hint">(点击上传 PNG/JPG 文件)</span></h2>
-      <div class="sdr2hdr-image-box" id="sdr2hdrOriginalImageContainer">
-        <div class="sdr2hdr-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>
+  <div class="text-tools-container">
+    <div class="text-tools-panel text-tools-upload-trigger" id="text-tools-upload-trigger">
+      <h2>原始图像 <span class="text-tools-upload-hint">(点击上传 PNG/JPG 文件)</span></h2>
+      <div class="text-tools-image-box" id="text-tools-original-image-container">
+        <div class="text-tools-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>
       </div>
     </div>
 
-    <div class="sdr2hdr-panel">
+    <div class="text-tools-panel">
       <h2>转换后的高亮图像</h2>
-      <div class="sdr2hdr-image-box" id="sdr2hdrConvertedImageContainer">
-        <div class="sdr2hdr-placeholder">等待转换...</div>
+      <div class="text-tools-image-box" id="text-tools-converted-image-container">
+        <div class="text-tools-placeholder">等待转换...</div>
       </div>
-      <div class="sdr2hdr-output-controls">
-        <div class="sdr2hdr-control-group">
-          <span class="sdr2hdr-label">输出格式:</span>
-          <div class="sdr2hdr-radio-group" role="radiogroup" aria-label="输出格式">
-            <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
-            <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
+      <div class="text-tools-output-controls">
+        <div class="text-tools-control-group">
+          <span class="text-tools-label">输出格式:</span>
+          <div class="text-tools-radio-group" role="radiogroup" aria-label="输出格式">
+            <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
+            <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
           </div>
         </div>
-        <a class="sdr2hdr-download sdr2hdr-hidden" id="sdr2hdrDownloadLink">下载 HDR 图像</a>
+        <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="text-tools-download-link">下载 HDR 图像</a>
       </div>
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/text_tool.css"/>
 
 
 
@@ -304,20 +92,20 @@ order: 711
   let wasmReady = false;
   let currentDownloadUrl = null;
 
-  const imageInput = document.getElementById('sdr2hdrImageInput');
-  const uploadTrigger = document.getElementById('sdr2hdrUploadTrigger');
-  const originalImageContainer = document.getElementById('sdr2hdrOriginalImageContainer');
-  const convertedImageContainer = document.getElementById('sdr2hdrConvertedImageContainer');
-  const downloadLink = document.getElementById('sdr2hdrDownloadLink');
-  const status = document.getElementById('sdr2hdrStatus');
+  const imageInput = document.getElementById('text-tools-image-input');
+  const uploadTrigger = document.getElementById('text-tools-upload-trigger');
+  const originalImageContainer = document.getElementById('text-tools-original-image-container');
+  const convertedImageContainer = document.getElementById('text-tools-converted-image-container');
+  const downloadLink = document.getElementById('text-tools-download-link');
+  const status = document.getElementById('text-tools-status');
 
   function setStatus(text) {
     status.textContent = text;
   }
 
   function resetOutput() {
-    convertedImageContainer.innerHTML = '<div class="sdr2hdr-placeholder">等待转换...</div>';
-    downloadLink.classList.add('sdr2hdr-hidden');
+    convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">等待转换...</div>';
+    downloadLink.classList.add('text-tools-hidden');
     downloadLink.removeAttribute('href');
     if (currentDownloadUrl) {
       URL.revokeObjectURL(currentDownloadUrl);
@@ -336,14 +124,14 @@ order: 711
     } catch (error) {
       console.error('Failed to initialize WASM:', error);
       setStatus('WASM 初始化失败');
-      convertedImageContainer.innerHTML = '<div class="sdr2hdr-placeholder">WASM 初始化失败，请刷新后重试。</div>';
+      convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">WASM 初始化失败，请刷新后重试。</div>';
     }
   }
 
   async function convertCurrentImage() {
     const file = imageInput.files[0];
     if (!file) {
-      originalImageContainer.innerHTML = '<div class="sdr2hdr-placeholder">请上传图像</div>';
+      originalImageContainer.innerHTML = '<div class="text-tools-placeholder">请上传图像</div>';
       resetOutput();
       return;
     }
@@ -355,12 +143,12 @@ order: 711
     reader.readAsDataURL(file);
 
     if (!wasmReady) {
-      convertedImageContainer.innerHTML = '<div class="sdr2hdr-loading">初始化 WASM...</div>';
+      convertedImageContainer.innerHTML = '<div class="text-tools-loading">初始化 WASM...</div>';
       return;
     }
 
-    convertedImageContainer.innerHTML = '<div class="sdr2hdr-loading">转换中...</div>';
-    downloadLink.classList.add('sdr2hdr-hidden');
+    convertedImageContainer.innerHTML = '<div class="text-tools-loading">转换中...</div>';
+    downloadLink.classList.add('text-tools-hidden');
 
     const iccType = Number.parseInt(document.querySelector('input[name="sdr2hdrIccType"]:checked').value, 10);
     const outputFormat = document.querySelector('input[name="sdr2hdrOutputFormat"]:checked').value;
@@ -384,11 +172,11 @@ order: 711
 
       downloadLink.href = currentDownloadUrl;
       downloadLink.download = `hdr_image.${outputFormat}`;
-      downloadLink.classList.remove('sdr2hdr-hidden');
+      downloadLink.classList.remove('text-tools-hidden');
       downloadLink.textContent = `下载 HDR 图像 (.${outputFormat.toUpperCase()})`;
       setStatus('转换完成');
     } catch (error) {
-      convertedImageContainer.innerHTML = `<div class="sdr2hdr-placeholder">转换失败: ${error}</div>`;
+      convertedImageContainer.innerHTML = `<div class="text-tools-placeholder">转换失败: ${error}</div>`;
       setStatus('转换失败');
       console.error('Conversion error:', error);
     }
@@ -408,7 +196,7 @@ order: 711
       if (!validTypes.includes(file.type) && !validExtensions.some(ext => fileExtension === ext)) {
         alert('请选择 PNG 或 JPG/JPEG 格式的图像文件');
         imageInput.value = '';
-        originalImageContainer.innerHTML = '<div class="sdr2hdr-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>';
+        originalImageContainer.innerHTML = '<div class="text-tools-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>';
         resetOutput();
         return;
       }
