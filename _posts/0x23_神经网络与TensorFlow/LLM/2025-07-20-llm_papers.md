@@ -291,3 +291,17 @@ order: 250
 - Dynamic Group Chat
 - Conversational Chess
 
+
+
+## 模型
+
+
+*DeepSeek-V3 Technical Report* https://arxiv.org/abs/2412.19437
+
+DeepSeek 的创新点
+- **MLA**（Multi-Head Latent Attention）：对 KV Cache 做压缩，以提高性能，同时不特别影响效果
+    - 低秩KV联合压缩的注意力机制
+- **MoE**
+    - V3 用了 61个专家，这些专家有有共享的（各类任务都能用）、专用的 
+- 混合精度框架
+
