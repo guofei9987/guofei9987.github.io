@@ -15,38 +15,22 @@ order: 301
 **step0:下载必须的资源**
 
 ```python
-import requests
-from pathlib import Path
-
-
-def download_file(url: str, filename: str, timeout: int = 30):
-    path = Path(filename)
-
-    if path.exists():
-        return
-
-    with requests.get(url, stream=True, timeout=timeout) as r:
-        r.raise_for_status()
-        path.write_bytes(r.content)
-
-    print(f"[Downloaded] {filename}")
-
+import pooch
 
 # 下载字体（画图用）
-download_file(
+pooch.retrieve(
     url='https://www.guofei.site/datasets/润植家刻本简体.ttf',
-    filename='润植家刻本简体.ttf')
+    fname='润植家刻本简体.ttf', path='.')
 
 # 下载分析用的语料
-download_file(
+pooch.retrieve(
     url='https://www.guofei.site/datasets/nlp/《三国演义》.txt',
-    filename='《三国演义》.txt')
+    fname='《三国演义》.txt', path='.')
 
 # 下载常用停用词
-download_file(
+pooch.retrieve(
     url="https://raw.githubusercontent.com/goto456/stopwords/master/hit_stopwords.txt",
-    filename="hit_stopwords.txt"
-)
+    fname="hit_stopwords.txt", path='.')
 ```
 
 
@@ -614,7 +598,7 @@ model = word2vec.Word2Vec(
 
 
 **MTEB** (Massive Text Embedding Benchmark) 
-- [https://huggingface.co/spaces/mteb/leaderboard]https://huggingface.co/spaces/mteb/leaderboard
+- [https://huggingface.co/spaces/mteb/leaderboard](https://huggingface.co/spaces/mteb/leaderboard)
 - 是一个全面的 benchmark，它涵盖了分类、聚类、检索、排序等8大类任务和58个数据集。
     - **检索**(Retrieval)：从一个庞大的文档库中，根据用户输入的查询（Query），找出最相关的文档列表。
     - **语义文本相似度**(Semantic Textual Similarity, STS)：判断一对句子的语义相似程度，并给出一个连续的分数（例如1到5分）。

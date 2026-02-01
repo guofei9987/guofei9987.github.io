@@ -5,7 +5,7 @@ categories:
 tags: 0x25_CV
 keywords:
 description:
-order: 270
+order: 271
 ---
 
 [tensorflow 示例](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/tutorials/deepdream) 上的讲解，比看过的几本书都要清晰（看的几本书都是从这里抄的，而且抄来抄去反而不太好看了）。  
