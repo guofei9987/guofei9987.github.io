@@ -20,12 +20,12 @@
     "cat": "tool"
   },
   {
-    "name": "文本去重工具",
-    "url": "/os/text_cmp.html",
+    "name": "Text diff",
+    "url": "/os/text_diff.html",
     "cat": "tool"
   },
   {
-    "name": "文本比较工具",
+    "name": "Text distinct",
     "url": "/os/text_distinct.html",
     "cat": "tool"
   },
