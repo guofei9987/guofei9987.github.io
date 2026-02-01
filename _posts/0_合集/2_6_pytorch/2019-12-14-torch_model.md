@@ -297,6 +297,11 @@ y_hat = y_scaler.inverse_transform(y_hat_scaled)
 ```
 
 
+测评指标怎么看？
+1. R2 不多说，越接近1越好，例如 0.81 说明模型能解释 81% 的方差
+2. MAE 和 RMSE 都是带单位的。MAE 是平均的预测误差
+3. RMSE 由于加了平方，它如果与 MAE 的差距很大，说明有个别样例的误差很大。
+
 ## DDP
 
 如果有多个 GPU，可以并行训练，其原理很简单，各 GPU 上独立计算梯度，然后做 All-Reduce 求平均，再各自更新参数
@@ -405,10 +410,11 @@ class MyNet(nn.Module):
     def __init__(self):
         super().__init__()
         self.fc1 = nn.Linear(10, 20)
+        self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(20, 3)
 
     def forward(self, x):
-        x = F.relu(self.fc1(x))
+        x = self.relu(self.fc1(x))
         return self.fc2(x)  # logits
 
 
