@@ -448,6 +448,8 @@ VectorizerMixin
 
 
 ### 预训练 Word2Vec
+
+fasttext 是 Facebook 开源的 word vectors 模型
 - https://fasttext.cc/docs/en/crawl-vectors.html
 - 可以用 fastText 加载模型，也可以用 gensim 加载（这里用 gensim）
 - 提供 bin/text 两种格式，区别：
