@@ -23,7 +23,7 @@ order: 301
 ### step1 读入数据
 ```py
 import pandas as pd
-df = pd.read_csv('http://www.guofei.site/datasets_for_ml/SMSSpamCollection/SMSSpamCollection.csv', sep='\t', header=None, names=['label', 'documents'])
+df = pd.read_csv('http://www.guofei.site/datasets/nlp/SMSSpamCollection.csv', sep='\t', header=None, names=['label', 'documents'])
 y = ((df.label == 'spam') * 1).values
 documents_raw = df.documents.values
 ```
@@ -56,7 +56,7 @@ documents_train, documents_test, y_train, y_test = train_test_split(documents, y
 ```py
 import pandas as pd
 
-df = pd.read_csv('外卖评价语料.csv')
+df = pd.read_csv('https://guofei.site/datasets/nlp/food_sentiment_cn.csv')
 y = df.label
 documents_raw = df.documents.values
 ```
@@ -209,6 +209,12 @@ count_vectorizer.transform(['Is this the third document?'])
 # 结果： [[1, 0, 1, 0, 1, 1, 1]]
 ```
 
+词袋的特点
+1. 非常稀疏。大多数为0
+2. 未对常用词减少权重（因此引入 TF-IDF）
+
+
+
 ### 代码实现
 
 [sklearn.feature_extraction.text.CountVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html)
@@ -325,6 +331,16 @@ tf_idf.fit(documents)
 
 X = tf_idf.transform(documents)
 ```
+
+说明和评价
+- 什么时候适合使用外部语料做 IDF（例如使用 wikipedia）
+    - 语料太小、idf 噪声很大、统计不稳定
+    - 想做到“跨领域一致”。做到不同的语料有可比性。
+    - 提高泛化。尤其是语料很偏的情况下
+- 什么时候不应该
+    - 领域词偏斜。例如 `myocardial` 不算稀有词，但是在医疗领域是一个典型特征，如果用通用 IDF，它的权重可能会被压低
+    - 专业领域。法律、生物、金融，它们的词频分布与通用语料完全不同，因此最好用领域内的语料做 IDF
+- 现代（2025）已经很少用 TF-IDF 了，在现代视角下，它更接近“规则”
 
 
 ## 其它的特征提取方法

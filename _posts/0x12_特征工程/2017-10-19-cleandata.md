@@ -474,7 +474,7 @@ Features            real, positive
 ### 网络资源
 UCI，有很多经典数据：  
 http://archive.ics.uci.edu/ml/  
-（PS）UCI有时候会崩，太不靠谱了，git上自己做了个库[datasets_for_ml](https://github.com/guofei9987/datasets_for_ml)  
+（PS）UCI有时候会崩，太不靠谱了，git上自己做了个库[datasets](https://github.com/guofei9987/datasets)  
 
 
 应用举例：  
@@ -491,11 +491,11 @@ https://www.quandl.com/search
 
 ### MNIST
 1. [lecun官网](http://yann.lecun.com/exdb/mnist/)
-2. 我给转成了csv格式，放到了[github上](https://github.com/guofei9987/datasets_for_ml/blob/master/MNIST_data_csv.7z),用代码读也方便  
+2. 我给转成了csv格式，放到了[github上](https://www.guofei.site/datasets/cv/MNIST_data_csv.zip),用代码读也方便  
 ```py
 # step1:下载
 import requests
-url = 'https://github.com/guofei9987/datasets_for_ml/blob/master/MNIST_data_csv.zip?raw=true'
+url = 'https://www.guofei.site/datasets/cv/MNIST_data_csv.zip'
 r = requests.get(url)
 with open('MNIST_data_csv.zip', 'wb') as f:
     f.write(r.content)
