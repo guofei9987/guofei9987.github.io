@@ -33,6 +33,7 @@ order: 263
 import torch
 from torchvision import transforms, datasets
 
+# Compose 已弃用，改为 RandomResizedCrop
 my_transform = transforms.Compose([
     transforms.RandomSizedCrop(224),
     transforms.RandomHorizontalFlip(),

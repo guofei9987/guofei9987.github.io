@@ -23,6 +23,7 @@ nvidia-smi
 ## GPU
 ```python
 import torch
+from torch import nn
 
 torch.cuda.is_available() # 返回 True/False 表示GPU是否可用
 torch.cuda.device_count() # 可用的GPU数量
@@ -36,12 +37,15 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model.to(device) # 模型
 mytensor = my_tensor.to(device) # tensor
 
-model = nn.DataParallel(model)
 ```
 
-### 并行资源
+### 并行
 
 ```python
+# torch 默认不会做多显卡计算，用这个
+model = nn.DataParallel(model)
+# 目前替换：nn.parallel.DistributedDataParallel
+
 # 设定这个之后，CPU占用会极大提高
 torch.set_num_threads(num_physical_cores/num_workers)
 
@@ -49,9 +53,7 @@ torch.set_num_threads(num_physical_cores/num_workers)
 DataLoader(..., num_workers=args.nThreads)
 ```
 
-### 多显卡计算
 
-torch默认不会做多显卡，必须借助`nn.DataParallel`
 
 
 

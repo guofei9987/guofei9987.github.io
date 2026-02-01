@@ -196,6 +196,25 @@ eigenvalues, eigenvectors = x.eig(eigenvectors=False) # 默认不计算特征向
 x1.diag() # 对角线
 ```
 
+linalg
+```python
+from torch import linalg
+
+linalg.svd(x)
+# 这个只返回特征值
+linalg.svdvals(x)
+
+linalg.eig(x)
+linalg.eigvals(x)
+
+
+# linalg 还有很多方法，例如：
+linalg.norm
+linalg.qr
+```
+
+
+
 矩阵变换
 ```py
 x.flip(dim) # 按照 dim 确定的维度翻转
@@ -370,10 +389,18 @@ torch.nn.LogSoftmax()  # 对 softmax 取对数，对应的损失函数是 NLLLos
 - tanh:$g(x)=\dfrac{e^z-e^{-z}}{e^z+e^{-z}},g'(z)=1-(g(z))^2$  
 - ReLU/Leaky RelU： 分段函数，注意0点的情况 does not matter
 
+```python
+
+
+```
+
+
+
 ### 卷积相关
 
 ```py
-torch.nn.Conv2d(in_channels=1  # 灰度图
+# nn.Conv1d, nn.Conv2d, nn.Conv3d, nn.Linear
+nn.Conv2d(in_channels=1
                 , out_channels=16, kernel_size=(5, 5), stride=(1, 1)
                 , padding=2)  # 如果像保持输出的 size 和原来一样，需要 padding = (kernel_size-1)/2 if stride=1
 nn.MaxPool2d(kernel_size=2)
