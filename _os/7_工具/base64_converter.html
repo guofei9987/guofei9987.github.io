@@ -1,0 +1,200 @@
+---
+layout: open_source
+title: Base64转换器
+categories: 开源
+tag: tools
+order: 731
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/text_tool.css"/>
+
+<div class="text-tools-app" id="base64ConverterApp">
+  <div class="text-tools-header">
+    <h1>Base64转换器</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-controls">
+    <div class="text-tools-control-group">
+      <span class="text-tools-label">URL Safe:</span>
+      <div class="text-tools-radio-group" role="radiogroup" aria-label="URL Safe">
+        <label class="text-tools-radio-label"><input type="radio" name="urlSafe" value="false" checked> 标准Base64</label>
+        <label class="text-tools-radio-label"><input type="radio" name="urlSafe" value="true"> URL Safe</label>
+      </div>
+    </div>
+    <button class="text-tools-btn text-tools-btn-primary" id="clearBtn">清除</button>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>原始文本 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="originalBytes">0 字节</span></h2>
+      <textarea class="text-tools-textarea" id="originalText" placeholder="粘贴原始文本...&#10;&#10;示例:&#10;Hello World!
+你好，世界！"></textarea>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>Base64编码 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="encodedBytes">0 字节</span></h2>
+      <textarea class="text-tools-textarea" id="encodedText" placeholder="粘贴Base64编码文本...&#10;&#10;示例:&#10;SGVsbG8gV29ybGQh&#10;5L2g5aW977yM5LiW55WM77yB"></textarea>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现。</li>
+  <li>自动检测输入内容并实时转换（300ms延迟，避免频繁计算）。</li>
+  <li>所有处理均在本地浏览器完成，数据不会上传到服务器，保证隐私安全。</li>
+  <li>URL Safe选项会将+/替换为-_(标准Base64)或使用-_(URL Safe Base64)。</li>
+  <li>页面刷新后数据清空，无缓存保存。</li>
+</ol>
+
+<script>
+(function() {
+  'use strict';
+
+  const originalTextarea = document.getElementById('originalText');
+  const encodedTextarea = document.getElementById('encodedText');
+  const clearBtn = document.getElementById('clearBtn');
+  const status = document.getElementById('status');
+  const originalBytes = document.getElementById('originalBytes');
+  const encodedBytes = document.getElementById('encodedBytes');
+
+  let debounceTimer = null;
+  let isConverting = false;
+
+  function debounce(func, wait) {
+    return function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(func, wait);
+    };
+  }
+
+  function updateStatus(text) {
+    status.textContent = text;
+  }
+
+  function updateByteCounts(original, encoded) {
+    originalBytes.textContent = (original || '').length + ' 字节';
+    encodedBytes.textContent = (encoded || '').length + ' 字节';
+  }
+
+  function isUrlSafe() {
+    return document.querySelector('input[name="urlSafe"]:checked').value === 'true';
+  }
+
+  function encodeToBase64(text) {
+    try {
+      const bytes = new TextEncoder().encode(text);
+      let base64 = btoa(String.fromCharCode(...bytes));
+
+      if (isUrlSafe()) {
+        base64 = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      }
+
+      return base64;
+    } catch (error) {
+      console.error('Encode error:', error);
+      return null;
+    }
+  }
+
+  function decodeFromBase64(base64) {
+    try {
+      let normalized = base64.trim();
+
+      if (isUrlSafe()) {
+        normalized = normalized.replace(/-/g, '+').replace(/_/g, '/');
+        while (normalized.length % 4) {
+          normalized += '=';
+        }
+      }
+
+      const bytes = Uint8Array.from(atob(normalized), c => c.charCodeAt(0));
+      return new TextDecoder().decode(bytes);
+    } catch (error) {
+      console.error('Decode error:', error);
+      return null;
+    }
+  }
+
+  function convertFromOriginal() {
+    if (isConverting) return;
+
+    const text = originalTextarea.value;
+    if (!text) {
+      encodedTextarea.value = '';
+      updateByteCounts('', '');
+      updateStatus('等待输入...');
+      return;
+    }
+
+    isConverting = true;
+    updateStatus('编码中...');
+
+    const base64 = encodeToBase64(text);
+    if (base64 !== null) {
+      encodedTextarea.value = base64;
+      updateByteCounts(text, base64);
+      updateStatus('编码完成');
+    } else {
+      updateStatus('编码失败');
+    }
+
+    isConverting = false;
+  }
+
+  function convertFromEncoded() {
+    if (isConverting) return;
+
+    const base64 = encodedTextarea.value.trim();
+    if (!base64) {
+      originalTextarea.value = '';
+      updateByteCounts('', '');
+      updateStatus('等待输入...');
+      return;
+    }
+
+    isConverting = true;
+    updateStatus('解码中...');
+
+    const text = decodeFromBase64(base64);
+    if (text !== null) {
+      originalTextarea.value = text;
+      updateByteCounts(text, base64);
+      updateStatus('解码完成');
+    } else {
+      updateStatus('解码失败（可能不是有效的Base64）');
+    }
+
+    isConverting = false;
+  }
+
+  const debouncedConvertFromOriginal = debounce(convertFromOriginal, 300);
+  const debouncedConvertFromEncoded = debounce(convertFromEncoded, 300);
+
+  originalTextarea.addEventListener('input', debouncedConvertFromOriginal);
+  encodedTextarea.addEventListener('input', debouncedConvertFromEncoded);
+
+  document.querySelectorAll('input[name="urlSafe"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      if (originalTextarea.value || encodedTextarea.value) {
+        if (originalTextarea.value) {
+          convertFromOriginal();
+        } else {
+          convertFromEncoded();
+        }
+      }
+    });
+  });
+
+  clearBtn.addEventListener('click', function() {
+    originalTextarea.value = '';
+    encodedTextarea.value = '';
+    updateByteCounts('', '');
+    updateStatus('已清除');
+  });
+
+  updateByteCounts('', '');
+})();
+</script>

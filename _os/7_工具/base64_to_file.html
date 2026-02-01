@@ -1,0 +1,277 @@
+---
+layout: open_source
+title: Base64转文件
+categories: 开源
+tag: tools
+order: 732
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/text_tool.css"/>
+
+<div class="text-tools-app" id="base64ToFileApp">
+  <div class="text-tools-header">
+    <h1>Base64转文件</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-controls">
+    <div class="text-tools-control-group">
+      <span class="text-tools-label">文件格式:</span>
+      <input type="text" id="fileFormat" value="txt" placeholder="txt" style="padding: 6px 10px; border: 1px solid var(--tools-border); border-radius: 6px; width: 80px;">
+    </div>
+    <button class="text-tools-btn text-tools-btn-primary" id="clearBtn">清除</button>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>Base64编码 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="base64Size">0 字节</span></h2>
+      <textarea class="text-tools-textarea" id="base64Text" placeholder="粘贴Base64编码...&#10;&#10;示例:&#10;SGVsbG8gV29ybGQh"></textarea>
+      <div style="margin-top: 12px; display: flex; gap: 12px; align-items: center;">
+        <button class="text-tools-btn text-tools-btn-primary" id="downloadFileBtn" disabled>下载文件</button>
+        <span class="text-tools-success" id="downloadSuccess" style="display: none;">可下载</span>
+      </div>
+    </div>
+
+    <div class="text-tools-panel text-tools-upload-trigger" id="fileUploadTrigger">
+      <h2>文件上传 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="fileName">未选择文件</span></h2>
+      <div style="min-height: 280px; margin-top: 12px; padding: 20px; border: 2px dashed var(--tools-border); border-radius: 8px; background: var(--tools-bg); text-align: center;" id="uploadArea">
+        <div style="color: var(--tools-muted); font-size: 16px; margin-bottom: 20px;">拖拽文件到此处或点击上传</div>
+        <button class="text-tools-btn text-tools-btn-primary" id="uploadBtn">选择文件</button>
+        <div style="margin-top: 15px; font-size: 13px; color: var(--tools-muted);">支持任意文件格式</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="downloadLinkContainer"></div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现。</li>
+  <li>自动转换：输入Base64自动生成文件，上传文件自动生成Base64。</li>
+  <li>所有处理均在本地浏览器完成，数据不会上传到服务器，保证隐私安全。</li>
+  <li>请在"文件格式"中填写正确的文件扩展名（如: txt, jpg, png, pdf等）。</li>
+  <li>页面刷新后数据清空，无缓存保存。</li>
+</ol>
+
+<script>
+(function() {
+  'use strict';
+
+  const base64Textarea = document.getElementById('base64Text');
+  const fileFormatInput = document.getElementById('fileFormat');
+  const clearBtn = document.getElementById('clearBtn');
+  const downloadFileBtn = document.getElementById('downloadFileBtn');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const status = document.getElementById('status');
+  const base64Size = document.getElementById('base64Size');
+  const fileName = document.getElementById('fileName');
+  const uploadArea = document.getElementById('uploadArea');
+  const downloadSuccess = document.getElementById('downloadSuccess');
+  const downloadLinkContainer = document.getElementById('downloadLinkContainer');
+
+  let currentFileData = null;
+  let currentFileBlob = null;
+  let currentFileName = '';
+  let debounceTimer = null;
+  let isConverting = false;
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.style.display = 'none';
+  document.body.appendChild(fileInput);
+
+  function debounce(func, wait) {
+    return function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(func, wait);
+    };
+  }
+
+  function updateStatus(text) {
+    status.textContent = text;
+  }
+
+  function updateBase64Size() {
+    base64Size.textContent = (base64Textarea.value || '').length + ' 字节';
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const arrayBuffer = event.target.result;
+        const bytes = new Uint8Array(arrayBuffer);
+        let binary = '';
+        for (let i = 0; i < bytes.byteLength; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+        const base64 = btoa(binary);
+        resolve(base64);
+      };
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  function base64ToFile(base64, filename) {
+    try {
+      const binary = atob(base64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      const blob = new Blob([bytes]);
+      return { blob, filename };
+    } catch (error) {
+      console.error('Base64 to file error:', error);
+      return null;
+    }
+  }
+
+  function convertFromBase64() {
+    if (isConverting) return;
+
+    const base64 = base64Textarea.value.trim();
+    if (!base64) {
+      downloadFileBtn.disabled = true;
+      downloadSuccess.style.display = 'none';
+      updateStatus('等待输入...');
+      return;
+    }
+
+    isConverting = true;
+    updateStatus('解码中...');
+
+    try {
+      const fileData = base64ToFile(base64, 'file.' + (fileFormatInput.value || 'txt'));
+      if (fileData) {
+        currentFileData = fileData;
+        currentFileBlob = fileData.blob;
+        downloadFileBtn.disabled = false;
+        downloadSuccess.style.display = 'inline';
+        downloadSuccess.textContent = '可下载';
+        updateStatus('解码完成，可下载文件');
+      } else {
+        downloadFileBtn.disabled = true;
+        downloadSuccess.style.display = 'none';
+        updateStatus('解码失败（无效的Base64）');
+      }
+    } catch (error) {
+      downloadFileBtn.disabled = true;
+      downloadSuccess.style.display = 'none';
+      updateStatus('解码失败');
+      console.error('Decode error:', error);
+    }
+
+    isConverting = false;
+  }
+
+  function showFileInfo(name, size) {
+    fileName.textContent = name + ' (' + (size / 1024).toFixed(2) + ' KB)';
+  }
+
+  function convertFromFile(file) {
+    if (isConverting) return;
+
+    isConverting = true;
+    currentFileName = file.name;
+    showFileInfo(file.name, file.size);
+    updateStatus('编码中...');
+
+    fileToBase64(file).then(base64 => {
+      base64Textarea.value = base64;
+      updateBase64Size();
+
+      const extension = file.name.split('.').pop().toLowerCase();
+      if (extension) {
+        fileFormatInput.value = extension;
+      }
+
+      updateStatus('编码完成');
+    }).catch(error => {
+      updateStatus('编码失败');
+      console.error('Encode error:', error);
+    }).finally(() => {
+      isConverting = false;
+    });
+  }
+
+  const debouncedConvertFromBase64 = debounce(convertFromBase64, 300);
+
+  base64Textarea.addEventListener('input', () => {
+    updateBase64Size();
+    debouncedConvertFromBase64();
+  });
+
+  fileFormatInput.addEventListener('input', () => {
+    if (base64Textarea.value.trim()) {
+      convertFromBase64();
+    }
+  });
+
+  downloadFileBtn.addEventListener('click', function() {
+    if (currentFileData) {
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(currentFileData.blob);
+      link.href = url;
+      link.download = currentFileData.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      updateStatus('文件已下载');
+    }
+  });
+
+  uploadBtn.addEventListener('click', () => {
+    fileInput.click();
+  });
+
+  uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.style.borderColor = 'var(--tools-primary)';
+    uploadArea.style.background = '#e0f2ed';
+  });
+
+  uploadArea.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    uploadArea.style.borderColor = 'var(--tools-border)';
+    uploadArea.style.background = 'var(--tools-bg)';
+  });
+
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.style.borderColor = 'var(--tools-border)';
+    uploadArea.style.background = 'var(--tools-bg)';
+
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      convertFromFile(files[0]);
+    }
+  });
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      convertFromFile(file);
+    }
+  });
+
+  clearBtn.addEventListener('click', function() {
+    base64Textarea.value = '';
+    fileName.textContent = '未选择文件';
+    downloadFileBtn.disabled = true;
+    downloadSuccess.style.display = 'none';
+    downloadLinkContainer.innerHTML = '';
+    currentFileData = null;
+    currentFileBlob = null;
+    updateBase64Size();
+    updateStatus('已清除');
+  });
+
+  updateBase64Size();
+  updateStatus('等待输入...');
+})();
+</script>

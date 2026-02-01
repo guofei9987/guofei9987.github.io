@@ -30,6 +30,21 @@
     "cat": "tool"
   },
   {
+    "name": "Base64转换器",
+    "url": "/os/base64_converter.html",
+    "cat": "tool"
+  },
+  {
+    "name": "Base64转文件",
+    "url": "/os/base64_to_file.html",
+    "cat": "tool"
+  },
+  {
+    "name": "JSON格式化工具",
+    "url": "/os/json_formatter.html",
+    "cat": "tool"
+  },
+  {
     "name": "scikit-opt",
     "icon": "/p/icon/scikit-opt.svg",
     "url": "https://github.com/guofei9987/scikit-opt",

@@ -1,0 +1,219 @@
+---
+layout: open_source
+title: JSON格式化工具
+categories: 开源
+tag: tools
+order: 733
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/text_tool.css"/>
+
+<div class="text-tools-app" id="jsonFormatterApp">
+  <div class="text-tools-header">
+    <h1>JSON格式化工具</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-controls">
+    <div class="text-tools-control-group">
+      <span class="text-tools-label">缩进:</span>
+      <div class="text-tools-radio-group" role="radiogroup" aria-label="缩进">
+        <label class="text-tools-radio-label"><input type="radio" name="indent" value="2" checked> 2空格</label>
+        <label class="text-tools-radio-label"><input type="radio" name="indent" value="4"> 4空格</label>
+        <label class="text-tools-radio-label"><input type="radio" name="indent" value="tab"> Tab</label>
+      </div>
+    </div>
+    <button class="text-tools-btn text-tools-btn-primary" id="clearBtn">清除</button>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>原始JSON <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="originalInfo">0 字符</span></h2>
+      <textarea class="text-tools-textarea" id="originalText" placeholder="粘贴JSON文本...&#10;&#10;示例:&#10;{&quot;name&quot;:&quot;张三&quot;,&quot;age&quot;:25,&quot;city&quot;:&quot;北京&quot;}&#10;&#10;或&#10;&#10;[&#10;  {&quot;id&quot;:1,&quot;value&quot;:&quot;a&quot;},&#10;  {&quot;id&quot;:2,&quot;value&quot;:&quot;b&quot;}&#10;]"></textarea>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>格式化JSON <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="formattedInfo">0 字符</span></h2>
+      <textarea class="text-tools-textarea" id="formattedText" readonly></textarea>
+      <div style="margin-top: 12px; display: flex; gap: 12px; align-items: center;">
+        <button class="text-tools-btn text-tools-btn-success" id="copyBtn">复制结果</button>
+        <span class="text-tools-success" id="copySuccess" style="display: none;">已复制到剪贴板</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现。</li>
+  <li>自动格式化JSON并显示语法错误位置。</li>
+  <li>所有处理均在本地浏览器完成，数据不会上传到服务器，保证隐私安全。</li>
+  <li>支持JSON对象、数组、字符串、数字、布尔值和null。</li>
+  <li>页面刷新后数据清空，无缓存保存。</li>
+</ol>
+
+<script>
+(function() {
+  'use strict';
+
+  const originalTextarea = document.getElementById('originalText');
+  const formattedTextarea = document.getElementById('formattedText');
+  const clearBtn = document.getElementById('clearBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const copySuccess = document.getElementById('copySuccess');
+  const status = document.getElementById('status');
+  const originalInfo = document.getElementById('originalInfo');
+  const formattedInfo = document.getElementById('formattedInfo');
+
+  let debounceTimer = null;
+  let lastError = null;
+
+  function debounce(func, wait) {
+    return function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(func, wait);
+    };
+  }
+
+  function updateStatus(text, isError = false) {
+    status.textContent = text;
+    if (isError) {
+      status.style.color = 'var(--tools-danger)';
+    } else {
+      status.style.color = 'var(--tools-muted)';
+    }
+  }
+
+  function updateCharCounts(original, formatted) {
+    originalInfo.textContent = (original || '').length + ' 字符';
+    formattedInfo.textContent = (formatted || '').length + ' 字符';
+  }
+
+  function getIndent() {
+    const value = document.querySelector('input[name="indent"]:checked').value;
+    if (value === 'tab') {
+      return '\t';
+    }
+    return ' '.repeat(parseInt(value, 10));
+  }
+
+  function formatJSON(jsonString) {
+    try {
+      const parsed = JSON.parse(jsonString);
+      const formatted = JSON.stringify(parsed, null, getIndent());
+      return { success: true, formatted };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  }
+
+  function validateJSON(jsonString) {
+    try {
+      JSON.parse(jsonString);
+      return { valid: true };
+    } catch (error) {
+      const match = error.message.match(/position (\d+)/);
+      const position = match ? parseInt(match[1], 10) : null;
+      return { valid: false, error: error.message, position };
+    }
+  }
+
+  function highlightError(text, position) {
+    if (position === null || position >= text.length) {
+      return text;
+    }
+    const before = text.substring(0, position);
+    const after = text.substring(position);
+    return before + '【错误位置】' + after;
+  }
+
+  function performFormat() {
+    const jsonText = originalTextarea.value.trim();
+
+    if (!jsonText) {
+      formattedTextarea.value = '';
+      updateCharCounts('', '');
+      updateStatus('等待输入...');
+      lastError = null;
+      return;
+    }
+
+    updateStatus('格式化中...');
+
+    const result = formatJSON(jsonText);
+
+    if (result.success) {
+      formattedTextarea.value = result.formatted;
+      updateCharCounts(jsonText, result.formatted);
+      updateStatus('格式化完成');
+      lastError = null;
+    } else {
+      const validation = validateJSON(jsonText);
+      if (!validation.valid && validation.position !== null) {
+        const highlighted = highlightError(jsonText, validation.position);
+        formattedTextarea.value = 'JSON语法错误:\n\n' + validation.error + '\n\n' +
+                                 '错误位置（大约）:\n' + highlighted;
+        updateCharCounts(jsonText, '');
+        updateStatus('JSON语法错误（位置: ' + validation.position + '）', true);
+        lastError = validation.error;
+      } else {
+        formattedTextarea.value = 'JSON解析错误:\n\n' + result.error;
+        updateCharCounts(jsonText, '');
+        updateStatus('JSON解析错误', true);
+        lastError = result.error;
+      }
+    }
+  }
+
+  function showExample() {
+    const example = `{\n  "name": "张三",\n  "age": 25,\n  "email": "zhangsan@example.com",\n  "isActive": true,\n  "hobbies": ["reading", "coding", "travel"],\n  "address": {\n    "city": "北京",\n    "zipcode": "100000"\n  }\n}`;
+
+    setTimeout(() => {
+      if (!originalTextarea.value) {
+        originalTextarea.placeholder = `粘贴JSON文本...
+
+示例:
+${example}`;
+      }
+    }, 1000);
+  }
+
+  const debouncedFormat = debounce(performFormat, 300);
+
+  originalTextarea.addEventListener('input', debouncedFormat);
+
+  document.querySelectorAll('input[name="indent"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      if (originalTextarea.value.trim()) {
+        performFormat();
+      }
+    });
+  });
+
+  clearBtn.addEventListener('click', function() {
+    originalTextarea.value = '';
+    formattedTextarea.value = '';
+    updateCharCounts('', '');
+    updateStatus('已清除');
+    lastError = null;
+  });
+
+  copyBtn.addEventListener('click', function() {
+    if (formattedTextarea.value && !lastError) {
+      navigator.clipboard.writeText(formattedTextarea.value).then(function() {
+        copySuccess.style.display = 'inline';
+        setTimeout(function() {
+          copySuccess.style.display = 'none';
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Copy failed:', err);
+        updateStatus('复制失败', true);
+      });
+    }
+  });
+
+  updateCharCounts('', '');
+  showExample();
+})();
+</script>
