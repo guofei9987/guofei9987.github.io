@@ -1,4 +1,9 @@
-[
+[  
+  {
+    "name": "高亮图片生成器",
+    "url": "/os/sdr2hdr.html",
+    "cat": "tool"
+  },
   {
     "name": "清爽搜索框",
     "url": "/os/tool_search.html",
