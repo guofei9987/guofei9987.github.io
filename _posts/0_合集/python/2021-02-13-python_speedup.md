@@ -877,9 +877,8 @@ print(f"Total time: {end_time - start_time:.2f} seconds")
 更现代的方式
 ```python
 async def main():
-    results = []
-
     async with asyncio.TaskGroup() as tg:
+        # work(i) 不会执行，但是 tg.create_task(work(i)) 会开始执行
         tasks = [tg.create_task(work(i)) for i in range(10)]
 
     results = [task.result() for task in tasks]
@@ -922,14 +921,13 @@ asyncio.run(main())
 
 
 
-
-用了 async 的包，封装给用户使用
+如果你开发的模块用了 async，需要把它封装给用户使用
 ```python
 # 用户可以自己选择使用 async
 async def fetch_async():
     ...
 
-# 或者按照普通函数的方式调用（这样用户就不能再封装一次 asyncio 了）
+# 让用户按照可以普通函数的方式调用（这样用户就不能再封装一次 asyncio 了）
 def fetch():
     return asyncio.run(fetch_async())
 ```
