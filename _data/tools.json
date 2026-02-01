@@ -1,0 +1,49 @@
+[
+  {
+    "name": "scikit-opt",
+    "icon": "/p/icon/scikit-opt.svg",
+    "description": "Heuristic Algorithms in Python",
+    "category": "algorithm",
+    "links": [
+      {"text": "GitHub", "url": "https://github.com/guofei9987/scikit-opt"},
+      {"text": "Documentation", "url": "https://www.guofei.site/os/sko_en.html"},
+      {"text": "中文文档", "url": "https://www.guofei.site/os/sko_zh.html"}
+    ],
+    "is_web_app": false
+  },
+  {
+    "name": "blind_watermark",
+    "icon": "/p/icon/blind_watermark.svg",
+    "description": "Blind Watermark for Images",
+    "category": "watermark",
+    "links": [
+      {"text": "GitHub", "url": "https://github.com/guofei9987/blind_watermark"},
+      {"text": "Documentation", "url": "https://www.guofei.site/os/bw_en.html"},
+      {"text": "中文文档", "url": "https://www.guofei.site/os/bw_zh.html"}
+    ],
+    "is_web_app": false
+  },
+  {
+    "name": "hidden_watermark & text_blind_watermark",
+    "icon": "/p/icon/hidden_watermark.svg",
+    "description": "Watermark tools for images and text",
+    "category": "watermark",
+    "links": [
+      {"text": "GitHub (hidden)", "url": "https://github.com/guofei9987/hidden_watermark"},
+      {"text": "GitHub (text)", "url": "https://github.com/guofei9987/text_blind_watermark"},
+      {"text": "文档", "url": "https://www.guofei.site/os/text_wm.html"}
+    ],
+    "is_web_app": false
+  },
+  {
+    "name": "HideInfo",
+    "icon": "/p/icon/HideInfo.svg",
+    "description": "Hide information in images",
+    "category": "watermark",
+    "links": [
+      {"text": "GitHub", "url": "https://github.com/guofei9987/HideInfo"},
+      {"text": "文档", "url": "https://www.guofei.site/os/hide_info.html"}
+    ],
+    "is_web_app": false
+  }
+]
