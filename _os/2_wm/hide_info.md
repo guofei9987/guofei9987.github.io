@@ -17,7 +17,7 @@ repo_name: HideInfo
 
 
 [![PyPI](https://img.shields.io/pypi/v/HideInfo)](https://pypi.org/project/HideInfo/)
-[![License](https://img.shields.io/pypi/l/HideInfo.svg)](https://github.com/guofei9987/HideInfo/blob/master/LICENSE)
+[![License](https://img.shields.io/pypi/l/HideInfo.svg)](https://github.com/guofei9987/HideInfo/blob/main/LICENSE)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-green.svg)
 [![stars](https://img.shields.io/github/stars/guofei9987/HideInfo.svg?style=social)](https://github.com/guofei9987/HideInfo/)

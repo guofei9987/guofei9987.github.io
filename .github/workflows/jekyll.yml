@@ -2,9 +2,9 @@
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
-  # Runs on pushes targeting the master branch
+  # Runs on pushes targeting the main branch
   push:
-    branches: ["master"]
+    branches: ["main"]
   schedule:
     - cron: '0 23 * * *'
   # Allows you to run this workflow manually from the Actions tab

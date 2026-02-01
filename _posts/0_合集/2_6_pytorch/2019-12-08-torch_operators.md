@@ -89,8 +89,8 @@ AdaGrad 算法的一次迭代时这样的：
 
 用语言描述就是：梯度越小的分量（从图上看越平缓）下降越快，反之下降越慢。
 
-![](https://github.com/guofei9987/pictures_for_blog/blob/master/optimization/AdaGrad.jpeg?raw=true)
-（图片来源于[别人写的文章](https://www.sohu.com/a/197074244_206784)）  
+![](/a/opt/AdaGrad.jpeg)
+
 
 这个图里的划线部分是传统的 mini-batch ，如果用 AdaGrad 可以小勺一些震荡。
 
@@ -132,9 +132,9 @@ $\theta_{t+1}=\theta_t-\dfrac{\alpha}{\sqrt {\hat v_t}+\epsilon} \hat m_t$
 我们往往觉得这是一个局部最优点，但实际上有可能是鞍点。下面是鞍点的图示：  
 
 
-![鞍点](/pictures_for_blog/optimization/saddle1.jpg)
+![鞍点](/a/opt/saddle1.jpg)
 
-![鞍点](/pictures_for_blog/optimization/saddle2.gif)
+![鞍点](/a/opt/saddle2.gif)
 
 
 **判断鞍点的一个充分条件是：函数在一阶导数为零处（驻点）的 Hessian matrix 为不定矩阵。**
