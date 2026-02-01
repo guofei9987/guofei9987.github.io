@@ -25,15 +25,14 @@ name: 开源
 
   <div class="card-grid cols-4" id="open-source-grid">
     {% for tool in site.data.tools %}
-    <article class="card-item tool-item" data-cat="tool">
+    <article class="card-item" data-cat="{{ tool.cat }}">
       <div class="card-body">
-        <div class="card-title">        
-        {% if tool.icon %}<img src="{{ tool.icon }}" alt="{{ tool.name }}">{% endif %}
+        <div class="card-title">
+        <a href="{{ tool.url }}">
+          {% if tool.icon %}<img src="{{ tool.icon }}" alt="{{ tool.name }}">{% else %} {{ tool.name }} {% endif %}
+        </a>
         </div>
-        <div class="card-subtitle">{{ tool.description }}</div>
-        <div class="card-meta">
-          {% if tool.is_web_app %}网页应用{% endif %}
-        </div>
+        {% if tool.description %}}<div class="card-subtitle">{{ tool.description }}</div>{% endif %}
         <div class="card-links">
           {% for link in tool.links %}
           <a href="{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
