@@ -41,8 +41,6 @@
 .card-links a{ color:#8aa8c9; text-decoration:none; margin-right:10px; opacity:.95; }
 .card-links a::after{ content:" ↗"; opacity:.7; }
 .card-links a:hover{ color:var(--card-link); text-decoration:underline; opacity:1; }
-.figcaption{ font-size:.92rem; color:#333; }
-.figcaption .meta{ color:var(--card-muted); }
 
 .card-wrap{ max-width: 1800px; margin: 0 auto; }
 .card-topbar{ display:flex; gap:10px; align-items:center; justify-content:space-between; margin:.5rem 0 1rem; }
