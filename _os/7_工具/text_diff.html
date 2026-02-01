@@ -65,6 +65,7 @@ order: 721
 
 <script src="/a/app/text_cmp/difflib.js"></script>
 <script src="/a/app/text_cmp/diffview.js"></script>
+<script src="/a/app/text_cmp/text_tools_common.js"></script>
 <script>
 (function() {
   'use strict';
@@ -79,14 +80,7 @@ order: 721
   const addCount = document.getElementById('addCount');
   const deleteCount = document.getElementById('deleteCount');
 
-  let debounceTimer = null;
-
-  function debounce(func, wait) {
-    return function() {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(func, wait);
-    };
-  }
+  const debounce = TextToolsUtils.createDebounce();
 
   function updateStats(baseLines, newLines, opcodes) {
     let diffTotal = 0;
@@ -172,12 +166,14 @@ order: 721
   baseTextarea.addEventListener('input', debouncedDiff);
   newTextarea.addEventListener('input', debouncedDiff);
 
-  clearBtn.addEventListener('click', function() {
-    baseTextarea.value = '';
-    newTextarea.value = '';
-    diffOutput.innerHTML = '';
-    statsPanel.style.display = 'none';
-    status.textContent = '已清除';
-  });
+  TextToolsUtils.setupClearButton(
+    clearBtn,
+    [baseTextarea, newTextarea],
+    status,
+    [() => {
+      diffOutput.innerHTML = '';
+      statsPanel.style.display = 'none';
+    }]
+  );
 })();
 </script>

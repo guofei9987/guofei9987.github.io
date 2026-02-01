@@ -67,6 +67,7 @@ order: 723
 
 <script src="/a/app/text_cmp/difflib.js"></script>
 <script src="/a/app/text_cmp/diffview.js"></script>
+<script src="/a/app/text_cmp/text_tools_common.js"></script>
 <script>
 (function() {
   'use strict';
@@ -85,14 +86,7 @@ order: 723
   const distinctCount = document.getElementById('distinctCount');
   const removedCount = document.getElementById('removedCount');
 
-  let debounceTimer = null;
-
-  function debounce(func, wait) {
-    return function() {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(func, wait);
-    };
-  }
+  const debounce = TextToolsUtils.createDebounce();
 
   function updateStats(original, distinct) {
     const removed = original.length - distinct.length;
@@ -166,27 +160,17 @@ order: 723
 
   baseTextarea.addEventListener('input', debouncedDistinct);
 
-  clearBtn.addEventListener('click', function() {
-    baseTextarea.value = '';
-    newTextarea.value = '';
-    diffOutput.innerHTML = '';
-    statsPanel.style.display = 'none';
-    status.textContent = '已清除';
-  });
+  TextToolsUtils.setupClearButton(
+    clearBtn,
+    [baseTextarea, newTextarea],
+    status,
+    [() => {
+      diffOutput.innerHTML = '';
+      statsPanel.style.display = 'none';
+    }]
+  );
 
-  copyBtn.addEventListener('click', function() {
-    if (newTextarea.value) {
-      navigator.clipboard.writeText(newTextarea.value).then(function() {
-        copySuccess.style.display = 'inline';
-        setTimeout(function() {
-          copySuccess.style.display = 'none';
-        }, 2000);
-      }).catch(function(err) {
-        console.error('Copy failed:', err);
-        status.textContent = '复制失败';
-      });
-    }
-  });
+  TextToolsUtils.setupCopyButton(copyBtn, () => newTextarea.value, copySuccess);
 
   showExample();
 })();

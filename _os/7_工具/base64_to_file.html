@@ -55,6 +55,7 @@ order: 732
   <li>页面刷新后数据清空，无缓存保存。</li>
 </ol>
 
+<script src="/a/app/text_cmp/text_tools_common.js"></script>
 <script>
 (function() {
   'use strict';
@@ -74,24 +75,13 @@ order: 732
   let currentFileData = null;
   let currentFileBlob = null;
   let currentFileName = '';
-  let debounceTimer = null;
+  const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.style.display = 'none';
   document.body.appendChild(fileInput);
-
-  function debounce(func, wait) {
-    return function() {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(func, wait);
-    };
-  }
-
-  function updateStatus(text) {
-    status.textContent = text;
-  }
 
   function updateBase64Size() {
     base64Size.textContent = (base64Textarea.value || '').length + ' 字节';
@@ -259,17 +249,20 @@ order: 732
     }
   });
 
-  clearBtn.addEventListener('click', function() {
-    base64Textarea.value = '';
-    fileName.textContent = '未选择文件';
-    downloadFileBtn.disabled = true;
-    downloadSuccess.style.display = 'none';
-    downloadLinkContainer.innerHTML = '';
-    currentFileData = null;
-    currentFileBlob = null;
-    updateBase64Size();
-    updateStatus('已清除');
-  });
+  TextToolsUtils.setupClearButton(
+    clearBtn,
+    [base64Textarea],
+    status,
+    [() => {
+      fileName.textContent = '未选择文件';
+      downloadFileBtn.disabled = true;
+      downloadSuccess.style.display = 'none';
+      downloadLinkContainer.innerHTML = '';
+      currentFileData = null;
+      currentFileBlob = null;
+      updateBase64Size();
+    }]
+  );
 
   updateBase64Size();
   updateStatus('等待输入...');

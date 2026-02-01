@@ -49,6 +49,7 @@ order: 731
   <li>页面刷新后数据清空，无缓存保存。</li>
 </ol>
 
+<script src="/a/app/text_cmp/text_tools_common.js"></script>
 <script>
 (function() {
   'use strict';
@@ -60,23 +61,12 @@ order: 731
   const originalBytes = document.getElementById('originalBytes');
   const encodedBytes = document.getElementById('encodedBytes');
 
-  let debounceTimer = null;
+  const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
-  function debounce(func, wait) {
-    return function() {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(func, wait);
-    };
-  }
-
-  function updateStatus(text) {
-    status.textContent = text;
-  }
-
   function updateByteCounts(original, encoded) {
-    originalBytes.textContent = (original || '').length + ' 字节';
-    encodedBytes.textContent = (encoded || '').length + ' 字节';
+    TextToolsUtils.updateCounts(originalBytes, original, '字节');
+    TextToolsUtils.updateCounts(encodedBytes, encoded, '字节');
   }
 
   function isUrlSafe() {
@@ -188,12 +178,12 @@ order: 731
     });
   });
 
-  clearBtn.addEventListener('click', function() {
-    originalTextarea.value = '';
-    encodedTextarea.value = '';
-    updateByteCounts('', '');
-    updateStatus('已清除');
-  });
+  TextToolsUtils.setupClearButton(
+    clearBtn,
+    [originalTextarea, encodedTextarea],
+    status,
+    [() => updateByteCounts('', '')]
+  );
 
   updateByteCounts('', '');
 })();
