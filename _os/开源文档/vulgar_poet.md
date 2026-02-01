@@ -8,7 +8,6 @@ repo_name: vulgar_language_generator
 ---
 
 ## demo
-**如果点击按钮没反应，刷新一次就好了（网站框架的锅，从目录点进来就有这问题，以后有时间再修复）**
 
 
 <script src="https://www.guofei.site/vulgar_language_generator/vulgar_poet/vulgar_poet.js"></script>

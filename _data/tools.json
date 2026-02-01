@@ -1,4 +1,9 @@
 [
+    {
+    "name": "github star 数量统计",
+    "url": "/os/github_star_counter.html",
+    "cat": "tool"
+  },
   {
     "name": "scikit-opt",
     "icon": "/p/icon/scikit-opt.svg",
