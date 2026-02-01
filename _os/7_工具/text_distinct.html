@@ -1,0 +1,193 @@
+---
+layout: open_source
+title: 文本去重工具
+categories: 开源
+tag: tools
+order: 723
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/diffview.css"/>
+<link rel="stylesheet" type="text/css" href="/a/app/text_cmp/text_tool.css"/>
+
+<div class="text-tools-app" id="textDistinctApp">
+  <div class="text-tools-header">
+    <h1>文本去重工具</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>原始文本 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="originalLines">0 行</span></h2>
+      <textarea class="text-tools-textarea" id="baseText" placeholder="粘贴包含重复行的文本..."></textarea>
+      <div style="margin-top: 12px;">
+        <button class="text-tools-btn text-tools-btn-primary" id="clearBtn">清除</button>
+      </div>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>去重结果 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="distinctLines">0 行</span></h2>
+      <textarea class="text-tools-textarea" id="newText" readonly></textarea>
+      <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px;">
+        <button class="text-tools-btn text-tools-btn-success" id="copyBtn">复制结果</button>
+        <span class="text-tools-success" id="copySuccess" style="display: none;">已复制到剪贴板</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-tools-stats" id="statsPanel" style="display: none;">
+    <div class="text-tools-stat-item">
+      <span class="text-tools-stat-label">原始行数：</span>
+      <span class="text-tools-stat-value" id="originalCount">0</span>
+    </div>
+    <div class="text-tools-stat-item">
+      <span class="text-tools-stat-label">去重后行数：</span>
+      <span class="text-tools-stat-value" id="distinctCount">0</span>
+    </div>
+    <div class="text-tools-stat-item">
+      <span class="text-tools-stat-label">删除重复行：</span>
+      <span class="text-tools-stat-value delete" id="removedCount">0</span>
+    </div>
+  </div>
+
+  <div class="text-tools-diff-container">
+    <div class="text-tools-diff-title">差异视图（红色背景表示被删除的重复行）</div>
+    <div class="text-tools-diff-content">
+      <div id="diffoutput"></div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现。</li>
+  <li>所有处理均在本地浏览器完成，文本不会上传到服务器，保证隐私安全。</li>
+  <li>页面刷新后数据清空，无缓存保存。</li>
+</ol>
+
+<script src="/a/app/text_cmp/difflib.js"></script>
+<script src="/a/app/text_cmp/diffview.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const baseTextarea = document.getElementById('baseText');
+  const newTextarea = document.getElementById('newText');
+  const clearBtn = document.getElementById('clearBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const copySuccess = document.getElementById('copySuccess');
+  const diffOutput = document.getElementById('diffoutput');
+  const status = document.getElementById('status');
+  const statsPanel = document.getElementById('statsPanel');
+  const originalLines = document.getElementById('originalLines');
+  const distinctLines = document.getElementById('distinctLines');
+  const originalCount = document.getElementById('originalCount');
+  const distinctCount = document.getElementById('distinctCount');
+  const removedCount = document.getElementById('removedCount');
+
+  let debounceTimer = null;
+
+  function debounce(func, wait) {
+    return function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(func, wait);
+    };
+  }
+
+  function updateStats(original, distinct) {
+    const removed = original.length - distinct.length;
+
+    originalLines.textContent = original.length + ' 行';
+    distinctLines.textContent = distinct.length + ' 行';
+    originalCount.textContent = original.length;
+    distinctCount.textContent = distinct.length;
+    removedCount.textContent = removed;
+    statsPanel.style.display = 'flex';
+  }
+
+  function performDistinct() {
+    const inputText = baseTextarea.value;
+
+    if (!inputText) {
+      newTextarea.value = '';
+      diffOutput.innerHTML = '';
+      statsPanel.style.display = 'none';
+      status.textContent = '等待输入...';
+      return;
+    }
+
+    status.textContent = '正在处理...';
+
+    try {
+      const originalLines = inputText.split('\n');
+      const seen = new Set();
+      const distinctLines = [];
+
+      for (let i = 0; i < originalLines.length; i++) {
+        const line = originalLines[i];
+        if (!seen.has(line)) {
+          distinctLines.push(line);
+          seen.add(line);
+        }
+      }
+
+      const result = distinctLines.join('\n');
+      newTextarea.value = result;
+
+      updateStats(originalLines, distinctLines);
+
+      const baseLines = difflib.stringAsLines(inputText);
+      const newLines = difflib.stringAsLines(result);
+      const sm = new difflib.SequenceMatcher(baseLines, newLines);
+      const opcodes = sm.get_opcodes();
+
+      diffOutput.innerHTML = '';
+
+      const diffView = diffview.buildView({
+        baseTextLines: baseLines,
+        newTextLines: newLines,
+        opcodes: opcodes,
+        baseTextName: '原始文本（重复行标记为红色）',
+        newTextName: '去重结果',
+        contextSize: null,
+        viewType: 0
+      });
+
+      diffOutput.appendChild(diffView);
+      status.textContent = '处理完成';
+    } catch (error) {
+      console.error('Distinct error:', error);
+      diffOutput.innerHTML = '<div style="color: var(--tools-danger); padding: 20px;">处理出错：' + error.message + '</div>';
+      status.textContent = '处理出错';
+    }
+  }
+
+  const debouncedDistinct = debounce(performDistinct, 300);
+
+  baseTextarea.addEventListener('input', debouncedDistinct);
+
+  clearBtn.addEventListener('click', function() {
+    baseTextarea.value = '';
+    newTextarea.value = '';
+    diffOutput.innerHTML = '';
+    statsPanel.style.display = 'none';
+    status.textContent = '已清除';
+  });
+
+  copyBtn.addEventListener('click', function() {
+    if (newTextarea.value) {
+      navigator.clipboard.writeText(newTextarea.value).then(function() {
+        copySuccess.style.display = 'inline';
+        setTimeout(function() {
+          copySuccess.style.display = 'none';
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Copy failed:', err);
+        status.textContent = '复制失败';
+      });
+    }
+  });
+
+  showExample();
+})();
+</script>
