@@ -78,6 +78,10 @@ order: 732
   const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.style.display = 'none';

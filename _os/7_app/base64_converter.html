@@ -64,6 +64,10 @@ order: 731
   const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
   function updateByteCounts(original, encoded) {
     TextToolsUtils.updateCounts(originalBytes, original, '字节');
     TextToolsUtils.updateCounts(encodedBytes, encoded, '字节');

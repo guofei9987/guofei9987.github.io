@@ -70,6 +70,10 @@ order: 733
   const debounce = TextToolsUtils.createDebounce();
   let lastError = null;
 
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
   function updateCharCounts(original, formatted) {
     originalInfo.textContent = (original || '').length + ' 字符';
     formattedInfo.textContent = (formatted || '').length + ' 字符';
