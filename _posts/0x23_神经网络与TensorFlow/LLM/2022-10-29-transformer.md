@@ -288,7 +288,7 @@ LLaMA 做了哪些改进
 - 层归一化，使用了 RMSNorm $\bar a_i = \dfrac{a_i}{RMS(a)}$，其中 $RMS(a) = \sqrt{1/n \sum\limits_{i=1}^n a_i^2}$
 - SwiGLU 激活函数
 - 稀疏注意力机制的组合
-![:caption 五种基于位置的稀疏注意力基本类型](/a/nn/llm/attention.svg)
+![:caption: 五种基于位置的稀疏注意力基本类型](/a/nn/llm/attention.svg)
 - Multi Query Attention，多头共享 K、V 组合，各自保留自己的 Q. 如果采用此机制，在 SFT 阶段只需要 5% 数据即可达到原来的效果。
 
 

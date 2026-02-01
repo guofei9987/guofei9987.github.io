@@ -635,7 +635,7 @@ embed_model = SentenceTransformer("./bge-small-zh-v1.5")
 embedding = embed_model.encode(sentence)
 ```
 
-
+**query 改写**
 
 
 
