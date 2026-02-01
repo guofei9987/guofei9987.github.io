@@ -8,7 +8,108 @@ description:
 order: 301
 ---
 
+## 0. 整体文本预览和词云
 
+
+
+**step0:下载必须的资源**
+
+```python
+import requests
+from pathlib import Path
+
+
+def download_file(url: str, filename: str, timeout: int = 30):
+    path = Path(filename)
+
+    if path.exists():
+        return
+
+    with requests.get(url, stream=True, timeout=timeout) as r:
+        r.raise_for_status()
+        path.write_bytes(r.content)
+
+    print(f"[Downloaded] {filename}")
+
+
+# 下载字体（画图用）
+download_file(
+    url='https://www.guofei.site/datasets/润植家刻本简体.ttf',
+    filename='润植家刻本简体.ttf')
+
+download_file(
+    url='https://www.guofei.site/datasets/nlp/《三国演义》.txt',
+    filename='《三国演义》.txt')
+
+# 下载常用停用词
+download_file(
+    url="https://raw.githubusercontent.com/goto456/stopwords/master/hit_stopwords.txt",
+    filename="hit_stopwords.txt"
+)
+```
+
+
+**step1:用 jieba 分词**
+
+```python
+import jieba.posseg as pseg
+
+content = open('《三国演义》.txt', 'rb').read()
+
+print("总字符数", len(content))
+
+words = pseg.cut(content)  # <generator>
+```
+
+
+**step2:做一个简单的词频统计**
+
+```python
+import collections
+
+word_dict = collections.defaultdict(int)
+
+stopwords = set(line.strip() for line in open('hit_stopwords.txt', 'r', encoding='utf-8').readlines() if line.strip())
+stopwords = stopwords | {'不要', '还要', '不可', '于是'}  # 自定义停用词
+
+for word, flag in words:
+    if flag == 'x':  # 剔除虚词
+        continue
+    if word in stopwords:  # 剔除禁止列表中的词
+        continue
+    if len(word) == 1:  # 剔除长度为1的词
+        continue
+    word_dict[word] += 1
+
+# 按照词频从大到小排序
+dict1 = sorted(word_dict.items(), key=lambda d: d[1], reverse=True)
+```
+
+**step3:用wordcloud画图**
+
+[https://github.com/amueller/word_cloud](https://github.com/amueller/word_cloud) 这个包，是用来画词云的
+
+```python
+from wordcloud import WordCloud
+
+wc = WordCloud(font_path='润植家刻本简体.ttf')  # ,max_font_size=40) # 使用前面下载好的字体
+wordcloud = wc.fit_words(dict(dict1))
+
+
+# 图片可以保存到本地：
+wc.to_file('word_cloud.png')
+
+# 也可以在屏幕上显示出来：
+import matplotlib.pyplot as plt
+plt.figure()
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
+
+![word_cloud](/a/nn/nlp/word_cloud.png)
+
+## 1. 文本数据的初步清洗
 
 一些约定：（为了变量名前后统一，并且开箱即用，约定一些固定的符号）
 - `y`: target 标签, 0/1 或者在多分类模型中是 0/1/2，一维的，直接传到模型里面
@@ -16,10 +117,6 @@ order: 301
 - `documents`: 初步清洗后的语料 `list<str>`
 - `X`: 特征提取后的向量
 
-
-
-
-## 1. 文本数据的初步清洗
 ### step1 读入数据
 ```py
 import pandas as pd
@@ -285,19 +382,22 @@ text.CountVectorizer(max_df=0.99, min_df=2,
 
 ## TF-IDF
 TF-IDF(Text Frequency-Inverse Document Frequency)   
-有时候我们想要调整某些特定单词的权重，提高有用单词的权重，降低常用或无意义单词的权重。  
+
+为什么？有些常见词，比如“有的”，在所有文章中出现概率都比较高。在 TF 中，它的值较大，但这意义不大，我们希望按比例缩小这个特征
 
 
-$f_{ij}=$frequency of term (feature) i in doc j  
-$TF_{ij}=\dfrac{f_{ij}}{\sum_k f_{kj}}$  
 
-
-$n_i=$number of docs that mention term i  
-$N=$total number of docs  
-$IDF_{i}=\log\dfrac{N}{n_i}$，某个单词越频繁出现，这个数字越小  
-
-
-$TF-IDF_{ij}=TF_{ij}\times IDF_i$  
+1. (Term Frequency) $$TF_{ij}=\dfrac{f_{ij}}{\sum\limits_k f_{kj}}$$
+    - $f_{ij}=$ frequency of term (feature) i in doc j
+    - i: 第i个Term
+    - j: 第j个文本文件
+    - 分子是出第i个词在第j个文本文件中出现的次数。  
+    - 分母是第j个文本文件中，所有词的个数
+2. IDF(Inverse Document Ferquency) $$IDF_i=\log\dfrac{\lvert D\rvert}{\lvert\{ j:t_i \in d_j\}\rvert}$$
+    - 分母: total number of docs
+    - 分子: number of docs that mention term i
+    - 某个单词越频繁出现，这个数字越小  
+3. $TF-IDF_{ij}=TF_{ij}\times IDF_i$  
 
 
 ```py
