@@ -110,6 +110,60 @@ plt.show()
 ![matplotlib.png](/pictures_for_blog/data_visualization/matplotlib.png)  
 
 
+我找了一个字体，可以方便下载使用
+```py
+import pooch
+
+# 下载字体（画图用）
+pooch.retrieve(
+    url='https://www.guofei.site/datasets/fonts/SourceHanSansSC-Regular.otf',
+    fname='SourceHanSansSC-Regular.otf', path='.')
+
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import os
+
+font_file = 'SourceHanSansSC-Regular.otf'
+
+# 设置中文字符串
+chinese_texts = [
+    "你好，世界！",
+    "测试中文显示",
+    "1234567890",
+    "ABCDEFGHIJ",
+    "特殊符号：@#$%^&*()",
+]
+
+# 加载字体
+font_prop = fm.FontProperties(fname=font_file)
+print(f"字体名称: {font_prop.get_name()}")
+print(f"字体家族: {font_prop.get_family()}")
+
+# 创建测试图表
+print("\n创建测试图表...")
+
+# 创建一个图形
+fig, ax = plt.subplots(1, 1, figsize=(10, 8))
+
+# 设置标题
+ax.set_title('字体测试', fontproperties=font_prop, fontsize=16, pad=20)
+
+# 绘制文本
+y_positions = range(len(chinese_texts), 0, -1)
+for i, (text, y) in enumerate(zip(chinese_texts, y_positions)):
+    ax.text(0.5, y, text, fontproperties=font_prop, fontsize=14, ha='center', va='center')
+
+# 设置图表样式
+ax.set_xlim(0, 1)
+ax.set_ylim(0, len(chinese_texts) + 1)
+ax.set_xticks([])
+ax.set_yticks([])
+ax.grid(True, alpha=0.3)
+
+# 保存图表
+plt.savefig("font_test.png", dpi=300, bbox_inches='tight')
+print("测试图表已保存为 font_test.png")
+```
 
 
 ## 案例

@@ -19,8 +19,8 @@ import pooch
 
 # 下载字体（画图用）
 pooch.retrieve(
-    url='https://www.guofei.site/datasets/润植家刻本简体.ttf',
-    fname='润植家刻本简体.ttf', path='.')
+    url='https://www.guofei.site/datasets/fonts/SourceHanSansSC-Regular.otf',
+    fname='SourceHanSansSC-Regular.otf', path='.')
 
 # 下载分析用的语料
 pooch.retrieve(
@@ -77,7 +77,7 @@ dict1 = sorted(word_dict.items(), key=lambda d: d[1], reverse=True)
 ```python
 from wordcloud import WordCloud
 
-wc = WordCloud(font_path='润植家刻本简体.ttf')  # ,max_font_size=40) # 使用前面下载好的字体
+wc = WordCloud(font_path='SourceHanSansSC-Regular.otf')  # ,max_font_size=40) # 使用前面下载好的字体
 wordcloud = wc.fit_words(dict(dict1))
 
 

@@ -751,7 +751,197 @@ cProfile.run('sum_array4(150)')
 numba性能的一些技巧
 - JIT 对循环的提升非常强。尽量把循环写在 numba里
 
-## 参考文献
+
+## asyncio
+
+async 是什么
+- 基于协程，它不是多线程、不是多进程
+- 适合IO密集型任务，不适合 CPU密集型任务
+
+如何用
+- 所调用的库/函数，本身应当也是 async 的，例如 `aiohttp`（请求网络资源），`aiofiles`（读文件）
+- 如果所调用的库/函数，本身不是 async 的，需要把它包装成 async，使用 `asyncio.to_thread` （下面有例子）
+
+
+
+await：暂停当前函数，把控制权交还给事件循环
+
+
+```python
+import asyncio
+
+# 定义异步函数
+async def foo():
+    return 1
+
+
+# 调用它不会执行，而是返回一个 协程 对象
+foo()
+
+
+# 这样才会执行
+asyncio.run(foo())
+```
+
+
+```python
+from time import perf_counter
+import asyncio
+
+
+async def work1():
+    print("work1 start")
+    await asyncio.sleep(1)  # 暂停当前协程，等待其返回结果
+    print("work1 end")
+    return "work1 result"
+
+
+async def work2():
+    print("work2 start")
+    await asyncio.sleep(1)
+    print("work2 end")
+    return "work2 result"
+
+
+# 函数中用到 await，因此函数本身也是 async 的
+async def main():
+    tasks = [asyncio.create_task(coro)
+             for coro in [work1(), work2()]]
+
+    res1 = await tasks[0]
+    res2 = await tasks[1]
+    print(f"res1: {res1}")
+    print(f"res2: {res2}")
+
+
+start_time = perf_counter()
+asyncio.run(main())
+end_time = perf_counter()
+print(f"Total time: {end_time - start_time:.2f} seconds")
+```
+
+
+完整示例（最基础、最常用）
+```python
+import asyncio
+
+async def work(i):
+    await asyncio.sleep(1)
+    print(f"task {i} done")
+    return i
+
+async def main():
+    coros = [work(i) for i in range(10)] # 同上，这一步不会执行
+    results = await asyncio.gather(*coros)
+    print("results:", results)
+
+asyncio.run(main())
+```
+
+
+其它：
+- `sem = asyncio.Semaphore(2)` 限制最大并发
+- `asyncio.Lock` 用于保证同步
+- `asyncio.Queue` 用于任务间传递数据
+
+
+
+普通函数打包为协程
+```python
+import asyncio
+import time
+from time import perf_counter
+
+
+def work(i):
+    time.sleep(1)
+    print(f"task {i} start")
+    return i
+
+
+async def main():
+    coros = [asyncio.to_thread(work, i) for i in range(10)]
+    results = await asyncio.gather(*coros)
+    print("results:", results)
+
+
+start_time = perf_counter()
+asyncio.run(main())
+end_time = perf_counter()
+print(f"Total time: {end_time - start_time:.2f} seconds")
+```
+
+
+
+
+更现代的方式
+```python
+async def main():
+    results = []
+
+    async with asyncio.TaskGroup() as tg:
+        tasks = [tg.create_task(work(i)) for i in range(10)]
+
+    results = [task.result() for task in tasks]
+    print(results)
+```
+
+边完成边处理
+```python
+async def work(i):
+    await asyncio.sleep(i % 3+1)
+    print(f"task {i} done")
+    return i
+
+async def main():
+    tasks = [asyncio.create_task(work(i)) for i in range(10)]
+
+    for completed in asyncio.as_completed(tasks):
+        result = await completed
+        print("got result:", result)
+        # 这里返回的顺序不再是列表顺序，而是按照完成的先后顺序
+```
+
+
+`async for`: 流式处理
+```python
+import asyncio
+
+async def async_generator():
+    for i in range(5):
+        await asyncio.sleep(1)
+        yield i
+
+async def main():
+    async for x in async_generator():
+        print(x)
+
+asyncio.run(main())
+```
+
+
+
+
+
+用了 async 的包，封装给用户使用
+```python
+# 用户可以自己选择使用 async
+async def fetch_async():
+    ...
+
+# 或者按照普通函数的方式调用（这样用户就不能再封装一次 asyncio 了）
+def fetch():
+    return asyncio.run(fetch_async())
+```
+
+
+
+
+
+
+
+
+## 参考资料
 
 numba从入门到精通系列：
 - https://zhuanlan.zhihu.com/p/68742702
