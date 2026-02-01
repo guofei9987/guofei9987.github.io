@@ -16,15 +16,17 @@ name: 开源
 <div class="card-wrap">
   <div class="card-topbar">
     <div class="card-filter" id="open-source-filter">
-      <span class="card-chip active" data-cat="all">全部 <span class="num">0</span></span>
-      <span class="card-chip" data-cat="tool">工具 <span class="num">0</span></span>
-      <span class="card-chip" data-cat="project">项目 <span class="num">0</span></span>
+      <span class="card-chip active" data-cat="all">📋 全部 <span class="num">0</span></span>
+      <span class="card-chip" data-cat="tool">🛠️ 工具 <span class="num">0</span></span>
+      <span class="card-chip" data-cat="project">📦 项目 <span class="num">0</span></span>
     </div>
     <div class="card-count" id="open-source-count">共 0 个 | 当前筛选 0 个</div>
   </div>
 
   <div class="card-grid cols-4" id="open-source-grid">
     {% for tool in site.data.tools %}
+    {% if tool.links %}
+    <!-- 项目卡片: 保留内部链接 -->
     <article class="card-item" data-cat="{{ tool.cat }}">
       <div class="card-body">
         <div class="card-title">
@@ -32,7 +34,7 @@ name: 开源
           {% if tool.icon %}<img src="{{ tool.icon }}" alt="{{ tool.name }}">{% else %} {{ tool.name }} {% endif %}
         </a>
         </div>
-        {% if tool.description %}}<div class="card-subtitle">{{ tool.description }}</div>{% endif %}
+        {% if tool.description %}<div class="card-subtitle">{{ tool.description }}</div>{% endif %}
         <div class="card-links">
           {% for link in tool.links %}
           <a href="{{ link.url }}" title="{{ link.text }}">{{ link.text }}</a>
@@ -40,6 +42,17 @@ name: 开源
         </div>
       </div>
     </article>
+    {% else %}
+    <!-- 工具卡片: 整体可点击 -->
+    <a href="{{ tool.url }}" class="card-item" data-cat="{{ tool.cat }}" style="text-decoration:none; color:inherit;">
+      <div class="card-body">
+        <div class="card-title">
+          {% if tool.icon %}<img src="{{ tool.icon }}" alt="{{ tool.name }}">{% else %} {{ tool.name }} {% endif %}
+        </div>
+        {% if tool.description %}<div class="card-subtitle">{{ tool.description }}</div>{% endif %}
+      </div>
+    </a>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

@@ -1,98 +1,98 @@
-[  
+[
   {
-    "name": "高亮图片生成器",
+    "name": "🎨 高亮图片生成器",
     "url": "/os/sdr2hdr.html",
     "cat": "tool"
   },
   {
-    "name": "清爽搜索框",
+    "name": "🔎 清爽搜索框",
     "url": "/os/tool_search.html",
     "cat": "tool"
   },
   {
-    "name": "文本隐水印",
+    "name": "📝 文本隐水印",
     "url": "/os/text_wm.html",
     "cat": "tool"
   },
   {
-    "name": "github star 数量统计",
+    "name": "⭐ github star 数量统计",
     "url": "/os/github_star_counter.html",
     "cat": "tool"
   },
   {
-    "name": "Text diff",
+    "name": "📊 Text diff",
     "url": "/os/text_diff.html",
     "cat": "tool"
   },
   {
-    "name": "Text distinct",
+    "name": "📋 Text distinct",
     "url": "/os/text_distinct.html",
     "cat": "tool"
   },
   {
-    "name": "Base64 string converter",
+    "name": "🔄 Base64 string converter",
     "url": "/os/base64_converter.html",
     "cat": "tool"
   },
   {
-    "name": "Base64 file converter",
+    "name": "🔌 Base64 file converter",
     "url": "/os/base64_to_file.html",
     "cat": "tool"
   },
   {
-    "name": "JSON formatter",
+    "name": "📄 JSON formatter",
     "url": "/os/json_formatter.html",
     "cat": "tool"
   },
   {
-    "name": "QR Code Maker",
+    "name": "📱 QR Code Maker",
     "url": "/os/qr_maker.html",
     "cat": "tool"
   },
   {
-    "name": "scikit-opt",
+    "name": "🤖 scikit-opt",
     "icon": "/p/icon/scikit-opt.svg",
     "url": "https://github.com/guofei9987/scikit-opt",
     "links": [
-      {"text": "Documentation", "url": "https://www.guofei.site/os/sko_en.html"},
-      {"text": "中文文档", "url": "https://www.guofei.site/os/sko_zh.html"}
+      {"text": "📖 Documentation", "url": "https://www.guofei.site/os/sko_en.html"},
+      {"text": "📚 中文文档", "url": "https://www.guofei.site/os/sko_zh.html"}
     ],
     "cat": "project"
   },
   {
-    "name": "blind_watermark",
+    "name": "🖼️ blind_watermark",
     "icon": "/p/icon/blind_watermark.svg",
     "url": "https://github.com/guofei9987/blind_watermark",
     "links": [
-      {"text": "Documentation", "url": "https://www.guofei.site/os/bw_en.html"},
-      {"text": "中文文档", "url": "https://www.guofei.site/os/bw_zh.html"}
+      {"text": "📖 Documentation", "url": "https://www.guofei.site/os/bw_en.html"},
+      {"text": "📚 中文文档", "url": "https://www.guofei.site/os/bw_zh.html"}
     ],
     "cat": "project"
   },
   {
-    "name": "hidden_watermark",
+    "name": "🔍 hidden_watermark",
     "icon": "/p/icon/hidden_watermark.svg",
     "url": "https://github.com/guofei9987/hidden_watermark",
     "links": [
-      {"text": "文档", "url": "https://www.guofei.site/os/text_wm.html"}
+      {"text": "📄 文档", "url": "https://www.guofei.site/os/text_wm.html"}
     ],
     "cat": "project"
   },
   {
-    "name": "text_blind_watermark",
+    "name": "📄 text_blind_watermark",
     "icon": "/p/icon/text_blind_watermark.svg",
     "url": "https://github.com/guofei9987/text_blind_watermark",
     "links": [
-      {"text": "文档", "url": "https://www.guofei.site/os/text_wm.html"}
+      {"text": "📄 文档", "url": "https://www.guofei.site/os/text_wm.html"}
     ],
     "cat": "project"
   },
   {
-    "name": "HideInfo",
+    "name": "🔐 HideInfo",
     "icon": "/p/icon/HideInfo.svg",
     "url": "https://github.com/guofei9987/HideInfo",
     "links": [
-      {"text": "文档", "url": "https://www.guofei.site/os/hide_info.html"}
+      {"text": "📄 文档", "url": "https://www.guofei.site/os/hide_info.html"}
     ],
     "cat": "project"
   }
