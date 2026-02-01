@@ -224,8 +224,12 @@ tf.train.RMSPropOptimizer # alpha go所使用的优化器
 ### torch中的优化器
 ```python
 optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
-optimizer = torch.optim.Adam(my_model.parameters(),weight_decay =0.0001) # weight_decay 是 L2 penalty
+optimizer = torch.optim.Adam(my_model.parameters(),weight_decay =1e-3) # weight_decay 是 L2 penalty
 ```
+
+适用性
+- SGD 对尺度很敏感，因此必须做标准化
+
 
 ### 1. SGD类
 #### 1.1 BGD

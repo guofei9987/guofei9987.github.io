@@ -10,14 +10,18 @@ order: 264
 
 
 
+
 ## 案例：分类模型
 
 step1:编数据
 ```python
 from sklearn import datasets
+from sklearn.preprocessing import StandardScaler
+from sklearn import model_selection, datasets
+
 
 X, y = datasets. \
-    make_classification(n_samples=1000,
+    make_classification(n_samples=100_000,
                         n_features=10,
                         n_informative=5,
                         n_redundant=2,  # 用 n_informative 线性组合出这么多个特征
@@ -29,6 +33,12 @@ X, y = datasets. \
 from sklearn import model_selection
 
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size=0.2)
+
+# NN基本上都要做标准化。图像类是归一化到 0~1，文本类是 embedding
+# 只在训练集上 fit，避免数据穿越
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 ```
 
 step2:构建神经网络
@@ -42,52 +52,75 @@ import torch.nn.functional as F
 class MyNet(nn.Module):
     def __init__(self):
         super(MyNet, self).__init__()
-        self.fc1 = nn.Linear(10, 10)
-        self.fc2 = nn.Linear(10, 3)
+        self.fc1 = nn.Linear(10, 20)
+        self.fc2 = nn.Linear(20, 3)
 
     def forward(self, x):
         x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
+        x = self.fc2(x)
         return x
 
 
 my_net = MyNet()
-
-# print(my_net) # 打印网络的基本情况
-# my_net.state_dict() 看详细情况
-# net.parameters() # <generator of Parameter>，用法类似 tonsor，例如：
-# [params.size() for params in net.parameters()]
 ```
 
 step3: 定义参数和损失函数
 ```python
-epochs = 50
-criterion = nn.CrossEntropyLoss()
-# 这个criterion是这样的：预测值是倒数第二层的输出，真实值label而不是OneHot
-# 对于回归类的问题，可以用 criterion = nn.MSELoss()
+epochs = 101
 
-optimizer = torch.optim.SGD(my_net.parameters(), lr=0.001, momentum=0.9)
+# batch_size 大训练更快，但更容易泛化变差
+batch_size = 1024
+
+print_every = 5
+
+criterion = nn.CrossEntropyLoss()
+# 用的是是最后一层输出 logits（未 softmax）
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
+
+optimizer = torch.optim.Adam(my_net.parameters(), lr=1e-3)
 ```
 
 step4：训练
 ```python
-X_test_tensor = torch.tensor(X_test, dtype=torch.float)
-y_test_tensor = torch.tensor(y_test, dtype=torch.long)
+from torch.utils.data import TensorDataset, DataLoader
+from sklearn import metrics
+import numpy as np
+
+my_net.to(device)
+
+# dataset / dataloader
+X_train_tensor = torch.tensor(X_train, dtype=torch.float32)
+y_train_tensor = torch.tensor(y_train, dtype=torch.long)
+train_loader = DataLoader(
+    TensorDataset(X_train_tensor, y_train_tensor),
+    batch_size=batch_size,
+    shuffle=True
+)
+
+X_test_tensor  = torch.tensor(X_test, dtype=torch.float32, device=device)
+y_test_tensor  = torch.tensor(y_test, dtype=torch.long, device=device)
+
 
 for epoch in range(epochs):
-    for i in range(1000):
-        # 送入训练数据
-        X_train_tensor = torch.tensor(X_train, dtype=torch.float)
-        y_train_tensor = torch.tensor(y_train, dtype=torch.long)
+    my_net.train()
+    running_loss = 0.0
+    n = 0
 
+    for xb, yb in train_loader:
+        # 训练数据放入 device
+        xb = xb.to(device)
+        yb = yb.to(device)
+        
         # 每次迭代都要清空梯度
         optimizer.zero_grad()
 
         # 前向传播
-        y_hat = my_net(X_train_tensor)
+        logits = my_net(xb)
 
         # 计算损失
-        loss = criterion(y_hat, y_train_tensor)
+        loss = criterion(logits, yb)
 
         # 反向传播
         loss.backward()
@@ -95,11 +128,25 @@ for epoch in range(epochs):
         # 更新权重参数值
         optimizer.step()
 
-    if epoch % 2 == 0:
-        print("epoch = {}, loss on train {:.5f}, loss on test {:.5f}"
-              .format(epoch
-                      , loss.item()
-                      , criterion(my_net(X_test_tensor), y_test_tensor).item()))
+        running_loss += loss.item() * xb.size(0)
+        n += xb.size(0)
+
+    train_loss = running_loss / n
+
+    if epoch % print_every == 0:
+        my_net.eval()
+        with torch.no_grad():
+            test_logits = my_net(X_test_tensor)
+            test_loss = criterion(test_logits, y_test_tensor).item()
+            y_pred = test_logits.argmax(dim=1).cpu().numpy()
+
+        y_true = y_test_tensor.cpu().numpy()
+        precision = metrics.precision_score(y_true, y_pred, average="macro", zero_division=0)
+        recall = metrics.recall_score(y_true, y_pred, average="macro", zero_division=0)
+
+        print(f"epoch={epoch:3d} train_loss={train_loss:.5f} "
+              f"test_loss={test_loss:.5f} precision={precision:.4f} recall={recall:.4f}")
+
 ```
 
 step5:模型的保存和读取
@@ -119,28 +166,8 @@ print('confusion_matrix = \n', metrics.confusion_matrix(y_predicted, y_test))
 ```
 
 
-### 注解
-
-如何使用GPU？
-
-```python
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-# 1. 模型放入 GPU
-model.to(device) # 模型
-
-# 2. 数据也都放入 GPU
-mytensor = my_tensor.to(device) # tensor
-
-model = nn.DataParallel(model)
-```
-
 
 ## 案例：回归模型
-
-比上面的案例额外多了
-- 数据标准化
-- 用 DataLoader 划分 batch
 
 ```python
 # 编数据
@@ -149,6 +176,9 @@ from sklearn import datasets
 from sklearn import model_selection
 from sklearn import preprocessing
 import numpy as np
+import torch
+from torch import nn
+from torch.utils.data import TensorDataset, DataLoader
 
 X, y, coef = \
     datasets.make_regression(n_samples=1000,
@@ -157,40 +187,21 @@ X, y, coef = \
                              n_targets=1,  # 多少个 target
                              bias=1,  # 就是 intercept
                              coef=True,  # 为True时，会返回真实的coef值
-                             noise=0.001,  # 噪声的标准差
+                             noise=1,  # 噪声的标准差
                              )
 
-X_train, X_test, y_train, y_test = model_selection.train_test_split(X.astype(np.float32),
-                                                                    y.reshape(-1, 1).astype(np.float32), test_size=0.2)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    X.astype(np.float32), y.reshape(-1, 1).astype(np.float32), test_size=0.2)
 
-# 必须标准化
-X_Scaler, y_Scaler = preprocessing.StandardScaler(), preprocessing.StandardScaler()
-X_train = X_Scaler.fit_transform(X_train).astype(np.float32)
-X_test = X_Scaler.transform(X_test).astype(np.float32)
-y_train = y_Scaler.fit_transform(y_train)
-y_test = y_Scaler.transform(y_test)
-
-
-# %%
-
-import torch.nn as nn
-import torch
-from torch.utils.data import TensorDataset
-from torch.utils.data import DataLoader
-
-# 使用 DataLoader 做 batch
-X_train, X_test, y_train, y_test = map(torch.tensor, (X_train, X_test, y_train, y_test))
-
-batch_size = 20
-dataset_train = TensorDataset(X_train, y_train)
-dataset_test = TensorDataset(X_test, y_test)
-
-dataloader_train = DataLoader(dataset_train, batch_size=batch_size, shuffle=True)
-dataloader_test = DataLoader(dataset_test, batch_size=batch_size * 2)
+# 要标准化
+X_scaler, y_scaler = preprocessing.StandardScaler(), preprocessing.StandardScaler()
+X_train = X_scaler.fit_transform(X_train).astype(np.float32)
+X_test = X_scaler.transform(X_test).astype(np.float32)
+y_train = y_scaler.fit_transform(y_train).astype(np.float32)
+y_test = y_scaler.transform(y_test).astype(np.float32)
 
 
-# %%
-
+# %% 建模型
 class MyModel(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(MyModel, self).__init__()
@@ -203,53 +214,92 @@ class MyModel(nn.Module):
 
 my_model = MyModel(input_dim=5, output_dim=1)
 
-# 定义参数和损失函数
-epochs = 400
+# %% 超参数和损失函数
+epochs = 401
 learning_rate = 0.01
+batch_size = 512
+
 criterion = nn.MSELoss()
 optimizer = torch.optim.SGD(my_model.parameters(), lr=learning_rate)
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
+
+# %% 构建数据
+
+# 使用 DataLoader 做 batch
+X_train_t = torch.tensor(X_train, dtype=torch.float32)
+y_train_t = torch.tensor(y_train, dtype=torch.float32)
+X_test_t = torch.tensor(X_test, dtype=torch.float32, device=device)
+y_test_t = torch.tensor(y_test, dtype=torch.float32, device=device)
+
+dataloader_train = DataLoader(
+    TensorDataset(X_train_t, y_train_t),
+    batch_size=batch_size,
+    shuffle=True,
+    num_workers=0,
+    pin_memory=torch.cuda.is_available()
+)
+
+# %% 定义测评指标
+import numpy as np
+from sklearn import metrics
+
+
+def eval_1(model, X, y, y_scaler):
+    model.eval()
+    with torch.no_grad():
+        X = X.to(device)
+        y_hat_np = model(X).cpu().numpy()
+    y_np = y.cpu().numpy()
+
+    # 返回到原来的尺度
+    y_hat_np = y_scaler.inverse_transform(y_hat_np)
+    y_np = y_scaler.inverse_transform(y_np)
+
+    # 计算 MAE、MSE、R2
+    mae = metrics.mean_absolute_error(y_np, y_hat_np)
+    rmse = np.sqrt(metrics.mean_squared_error(y_np, y_hat_np))
+    r2 = metrics.r2_score(y_np, y_hat_np)
+    return mae, rmse, r2
+
+
 # %% 训练
 
+my_model = my_model.to(device)
+
 for epoch in range(epochs):
-    for X_train_batch, y_train_batch in dataloader_train:
+    my_model.train()
+    for xb, yb in dataloader_train:
+        xb = xb.to(device, non_blocking=True)  # 允许异步拷贝，从而节省时间
+        yb = yb.to(device, non_blocking=True)
+
         optimizer.zero_grad()
-        outputs = my_model(X_train_batch)
-        loss = criterion(outputs, y_train_batch)
+        pred = my_model(xb)
+        loss = criterion(pred, yb)
         loss.backward()
         optimizer.step()
 
     if epoch % 50 == 0:
-        with torch.no_grad():
-            loss_train = criterion(my_model(X_train), y_train).item()
-            loss_test = criterion(my_model(X_test), y_test).item()
-            print("epoch {}, loss_train = {:.5f}, loss_test = {:.5f}".format(epoch, loss_train, loss_test))
+        mae_tr, rmse_tr, r2_tr = eval_1(model=my_model, X=X_train_t, y=y_train_t, y_scaler=y_scaler)
+        mae_te, rmse_te, r2_te = eval_1(model=my_model, X=X_test_t, y=y_test_t, y_scaler=y_scaler)
 
-# %% 预测
-y_hat = my_model(X_test).data.numpy()
+        print(f"epoch {epoch:3d} | "
+              f"train MAE={mae_tr:.4f} RMSE={rmse_tr:.4f} R2={r2_tr:.4f} | "
+              f"test  MAE={mae_te:.4f} RMSE={rmse_te:.4f} R2={r2_te:.4f}")
+
+# %% 预测（输出回到原 y 尺度）
+my_model.eval()
+with torch.no_grad():
+    y_hat_scaled = my_model(X_test_t.to(device)).cpu().numpy()
+
+y_hat = y_scaler.inverse_transform(y_hat_scaled)
 ```
 
 
 
 
 ## 一些研究
-
-
-
-不计算梯度 `with torch.no_grad():`
-```python
-x = torch.randn(3, requires_grad=True)
-y = x * x
-print(y.requires_grad) # True
-with torch.no_grad():
-    print(y.requires_grad) # True
-    y2 = x * x
-    print(y2.requires_grad) # False
-
-print(y.requires_grad) # True
-print(y2.requires_grad) # False
-```
-或者使用 `y = x.detach()` 生成的是数据共享内存，但指定不微分的新 Tensor
 
 
 
@@ -262,27 +312,8 @@ for f in net.parameters():
 ```
 
 
-### 常用网络节点
 
-```
-nn.Conv2d(3, 6, 5)
-nn.MaxPool2d(2, 2)
-Linear(16 * 5 * 5, 120)
-```
-
-常用激活函数
-
-```
-F.relu()
-```
-
-优化器
-```python
-optimizer=optim.Adam(net.parameters(),weight_decay =0.0001) # weight_decay 是 L2 penalty
-```
-
-
-## 从raw建立神经网络
+### 从raw建立神经网络
 
 ```python
 import numpy as np
