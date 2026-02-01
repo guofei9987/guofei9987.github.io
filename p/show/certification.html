@@ -23,10 +23,10 @@ permalink: /certification.html
     <tbody>
       <tr>
         <td style="padding:.6rem; vertical-align:top;">
-          <img src="/a/certificate/学术/SPG审稿人.jpg" alt="SPG 审稿人证书" style="max-width:100%; height:auto; border-radius:8px;">
+          <img src="/a/cert/学术/SPG审稿人.jpg" alt="SPG 审稿人证书" style="max-width:100%; height:auto; border-radius:8px;">
         </td>
         <td style="padding:.6rem; vertical-align:top;">
-          <img src="/a/certificate/学术/万里学院硕导.jpg" alt="浙江万里学院硕导聘书" style="max-width:100%; height:auto; border-radius:8px;">
+          <img src="/a/cert/学术/万里学院硕导.jpg" alt="浙江万里学院硕导聘书" style="max-width:100%; height:auto; border-radius:8px;">
         </td>
       </tr>
     </tbody>
@@ -194,7 +194,7 @@ permalink: /certification.html
     {% assign pro_sorted = site.data.certification.professional %}
     <div class="cert-grid cols-4" id="pro-grid">
       {% for it in pro_sorted %}
-        {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
+        {% assign img = it.image | default: "/a/cert/placeholder.svg" %}
         <article class="cert-card pro-item" data-cat="{{ it.cat | default: '其它' }}">
           <div class="cert-thumb">
             <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">
@@ -236,7 +236,7 @@ permalink: /certification.html
     {% assign mooc_sorted = site.data.certification.mooc%}
     <div class="cert-grid cols-4" id="mooc-grid">
       {% for it in mooc_sorted %}
-        {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
+        {% assign img = it.image | default: "/a/cert/placeholder.svg" %}
         <article class="cert-card mooc-item" data-cat="{{ it.cat | default: '其它' }}" data-platform="{{ it.platform | default: it.org }}">
           <div class="cert-thumb">
             <img loading="lazy" src="{{ img }}" alt="{{ it.title | escape }}" data-full="{{ img }}">

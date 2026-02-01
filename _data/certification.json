@@ -29,7 +29,7 @@
       "org": "中国科教电影电视协会",
       "cat": "其它",
       "date": "2025",
-      "image": "/a/certificate/中国科教电影电视协会个人会员证书.jpg",
+      "image": "/a/cert/中国科教电影电视协会个人会员证书.jpg",
       "link": [
         "https://www.csfva.org.cn/"
       ]
@@ -155,7 +155,7 @@
       "org": "红十字协会",
       "cat": "健康",
       "date": "2020-12",
-      "image": "/a/certificate/health/急救证.jpg",
+      "image": "/a/cert/health/急救证.jpg",
       "link": []
     },
     {
@@ -163,7 +163,7 @@
       "org": "美国心脏协会",
       "cat": "健康",
       "date": "2024-09",
-      "image": "/a/certificate/health/aha_first_aid.jpg",
+      "image": "/a/cert/health/aha_first_aid.jpg",
       "link": []
     },
     {
@@ -203,7 +203,7 @@
       "org": "哈尔滨工业大学",
       "cat": "计算机",
       "date": "2025",
-      "image": "/a/certificate/mooc/数据库系统上证书.jpg",
+      "image": "/a/cert/mooc/数据库系统上证书.jpg",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V244448000005"
       ],
@@ -216,7 +216,7 @@
       "org": "哈尔滨工业大学",
       "cat": "计算机",
       "date": "2025",
-      "image": "/a/certificate/mooc/数据库系统中证书.jpg",
+      "image": "/a/cert/mooc/数据库系统中证书.jpg",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V244446000003"
       ],
@@ -229,7 +229,7 @@
       "org": "北京大学",
       "cat": "计算机",
       "date": "2025",
-      "image": "/a/certificate/mooc/软件工程证书.jpg",
+      "image": "/a/cert/mooc/软件工程证书.jpg",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V244166000005"
       ],
@@ -263,7 +263,7 @@
       "org": "复旦大学",
       "cat": "计算机",
       "date": "2025-12",
-      "image": "/a/certificate/mooc/信息安全证书.jpg",
+      "image": "/a/cert/mooc/信息安全证书.jpg",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V244003000008"
       ],
@@ -276,7 +276,7 @@
       "org": "福州大学",
       "cat": "计算机",
       "date": "2025",
-      "image": "",
+      "image": "/a/cert/mooc/网络空间安全概论证书.jpg",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V246203000002"
       ],
@@ -421,7 +421,7 @@
       "org": "中国地质大学",
       "cat": "其它",
       "date": "2025-06",
-      "image": "/a/certificate/宝石鉴定与欣赏证书.jpg",
+      "image": "/a/cert/宝石鉴定与欣赏证书.jpg",
       "course_url": "https://www.icourse163.org/course/ZGDZDXBJ-1206419805",
       "link": [
         "https://www.icourse163.org/cert/Authority.htm?certNo=V242132000042"
@@ -433,7 +433,7 @@
       "org": "联合国气候变化组织",
       "cat": "其它",
       "date": "2025",
-      "image": "/a/certificate/uncc_food_waste_prevention.gif",
+      "image": "/a/cert/uncc_food_waste_prevention.gif",
       "link": [
         "https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2",
         "https://unccelearn.org/"
@@ -444,7 +444,7 @@
       "org": "联合国教科文组织",
       "cat": "其它",
       "date": "2025",
-      "image": "/a/certificate/unesco_oer.jpg",
+      "image": "/a/cert/unesco_oer.jpg",
       "link": [
         "https://openlearning.unesco.org/certificates/59e7b3d5bb1f4433b907733608fe4ca2",
         "https://unesco.org/"
