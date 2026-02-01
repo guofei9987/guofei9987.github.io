@@ -1,5 +1,10 @@
 [
-    {
+  {
+    "name": "文本隐水印",
+    "url": "/os/text_wm.html",
+    "cat": "tool"
+  },
+  {
     "name": "github star 数量统计",
     "url": "/os/github_star_counter.html",
     "cat": "tool"
