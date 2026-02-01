@@ -1,5 +1,10 @@
 [
   {
+    "name": "清爽搜索框",
+    "url": "/os/tool_search.html",
+    "cat": "tool"
+  },
+  {
     "name": "文本隐水印",
     "url": "/os/text_wm.html",
     "cat": "tool"
