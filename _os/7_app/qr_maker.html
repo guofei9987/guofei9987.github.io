@@ -1,0 +1,176 @@
+---
+layout: open_source
+title: QR Code Maker
+categories: 开源
+tag: tools
+order: 734
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+
+<div class="text-tools-app" id="qrMakerApp">
+  <div class="text-tools-header">
+    <h1>QR Code Maker</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-controls">
+    <div class="text-tools-control-group">
+      <label for="qrText" class="text-tools-label">二维码内容:</label>
+      <input type="text" id="qrText" value="https://www.guofei.site/" style="flex: 1;">
+    </div>
+
+    <div class="text-tools-control-group">
+      <label for="width" class="text-tools-label">PNG 宽度:</label>
+      <input type="number" id="width" value="256" min="1" style="width: 80px;">
+
+      <label for="height" class="text-tools-label" style="margin-left: 16px;">高度:</label>
+      <input type="number" id="height" value="256" min="1" style="width: 80px;">
+    </div>
+
+    <button class="text-tools-btn text-tools-btn-primary" id="generateBtn">生成二维码</button>
+  </div>
+
+  <div id="qrResults" style="display: none;">
+    <div class="text-tools-container">
+      <div class="text-tools-panel">
+        <h2>二维码 SVG</h2>
+        <div id="qr_svg"></div>
+      </div>
+    </div>
+
+    <div class="text-tools-container">
+      <div class="text-tools-panel">
+        <h2>二维码 PNG <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="pngSize">0 × 0</span></h2>
+        <img id="qr_png" alt="二维码 PNG" style="border: 1px solid var(--tools-border); max-width: 100%; height: auto;"/>
+      </div>
+    </div>
+
+    <div class="text-tools-container" style="overflow-x: auto;">
+      <div class="text-tools-panel" style="min-width: fit-content;">
+        <h2>二维码字符图</h2>
+        <pre id="qr_text" style="line-height:1em; font-family:'Menlo'; background: var(--tools-bg); padding: 16px; border-radius: 6px; overflow-x: auto; white-space: pre; display: inline-block; min-width: 100%;"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现</li>
+  <li>支持生成 SVG 格式、PNG 格式和字符图格式的二维码。</li>
+  <li>所有处理均在本地浏览器完成，数据不会上传到服务器，保证隐私安全。</li>
+  <li>网页保存下来可以离线使用。</li>
+  <li>开源不易，请我喝杯咖啡 ☕</li>
+  <img src="/public/donate/WeChatQR.jpg" width="150" height="150" alt="微信赞助"><br>
+  <li>欢迎阅读 <a href="https://www.guofei.site/">我的博客</a></li>
+</ol>
+
+<script src="/pictures_for_blog/app/qr_maker/qrcode.js"></script>
+<script src="/a/app/tools.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const qrTextInput = document.getElementById('qrText');
+  const widthInput = document.getElementById('width');
+  const heightInput = document.getElementById('height');
+  const generateBtn = document.getElementById('generateBtn');
+  const status = document.getElementById('status');
+  const qrResults = document.getElementById('qrResults');
+  const pngSize = document.getElementById('pngSize');
+
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
+  function generateQrCodes() {
+    const content = qrTextInput.value.trim();
+    const width = parseInt(widthInput.value);
+    const height = parseInt(heightInput.value);
+
+    if (!content) {
+      updateStatus('请输入二维码内容', true);
+      return;
+    }
+
+    if (!width || !height || width < 1 || height < 1) {
+      updateStatus('请输入有效的宽度和高度', true);
+      return;
+    }
+
+    updateStatus('生成中...');
+
+    try {
+      const qrcode = new QRCode({content: content, join: true});
+
+      // 生成 SVG
+      generateQrSVG(qrcode);
+
+      // 生成字符图
+      generateQrText(qrcode);
+
+      // 生成 PNG
+      generateQrPng(qrcode, width, height);
+
+      // 显示结果
+      qrResults.style.display = 'block';
+      updateStatus('生成完成');
+    } catch (error) {
+      console.error('QR Code generation error:', error);
+      updateStatus('生成失败: ' + error.message, true);
+    }
+  }
+
+  function generateQrSVG(qrcode) {
+    document.getElementById("qr_svg").innerHTML = qrcode.svg();
+  }
+
+  function generateQrText(qrcode) {
+    const modules = qrcode.qrcode.modules;
+    let ascii = '';
+    const length = modules.length;
+    for (let y = 0; y < length; y++) {
+      for (let x = 0; x < length; x++) {
+        const module = modules[x][y];
+        ascii += (module ? '██' : '  ');
+      }
+      ascii += '\r\n';
+    }
+    document.getElementById("qr_text").textContent = ascii;
+  }
+
+  function generateQrPng(qrcode, width, height) {
+    const svgData = qrcode.svg();
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = width;
+    canvas.height = height;
+
+    const img = new Image();
+    img.onload = () => {
+      context.drawImage(img, 0, 0, width, height);
+      const pngData = canvas.toDataURL('image/png');
+      document.getElementById("qr_png").src = pngData;
+      pngSize.textContent = width + ' × ' + height;
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+  }
+
+  generateBtn.addEventListener('click', generateQrCodes);
+
+  // 回车键触发生成
+  qrTextInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      generateQrCodes();
+    }
+  });
+
+  // 页面加载时自动生成一次
+  window.addEventListener('load', function() {
+    setTimeout(generateQrCodes, 500);
+  });
+})();
+</script>
