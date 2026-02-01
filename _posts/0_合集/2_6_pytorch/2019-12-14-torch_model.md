@@ -11,7 +11,7 @@ order: 264
 
 
 
-## 案例：分类模型
+## 最小实践：分类模型
 
 step1:编数据
 ```python
@@ -167,7 +167,7 @@ print('confusion_matrix = \n', metrics.confusion_matrix(y_predicted, y_test))
 
 
 
-## 案例：回归模型
+## 最小实践：回归模型
 
 ```python
 # 编数据
@@ -295,6 +295,329 @@ with torch.no_grad():
 
 y_hat = y_scaler.inverse_transform(y_hat_scaled)
 ```
+
+
+## DDP
+
+如果有多个 GPU，可以并行训练，其原理很简单，各 GPU 上独立计算梯度，然后做 All-Reduce 求平均，再各自更新参数
+
+
+```
+from torch.nn.parallel import DistributedDataParallel as DDP
+```
+
+
+
+
+这里分3步：
+1. 生成数据并保存
+2. 并行训练
+3. 推理
+
+
+step1: 编造数据，并保存。以及把标准化的模型一起保存
+```python
+# make_data.py
+import os
+import numpy as np
+from sklearn import datasets, model_selection
+from sklearn.preprocessing import StandardScaler
+import joblib
+
+
+def main(seed=42, out_dir="data"):
+    os.makedirs(out_dir, exist_ok=True)
+
+    X, y = datasets.make_classification(
+        n_samples=100_000,
+        n_features=10,
+        n_informative=5,
+        n_redundant=2,
+        n_classes=3,
+        n_clusters_per_class=1,
+        flip_y=0.05,
+        random_state=seed
+    )
+
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(
+        X, y, test_size=0.2, random_state=seed, stratify=y
+    )
+
+    # 只在训练集上 fit，避免数据穿越
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    np.savez_compressed(
+        os.path.join(out_dir, "cls_data.npz"),
+        X_train=X_train.astype(np.float32),
+        y_train=y_train.astype(np.int64),
+        X_test=X_test.astype(np.float32),
+        y_test=y_test.astype(np.int64),
+    )
+    joblib.dump(scaler, os.path.join(out_dir, "scaler.joblib"))
+
+    print(f"Saved: {out_dir}/cls_data.npz, {out_dir}/scaler.joblib")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+
+step2: 训练
+
+```python
+# 4个 GPU 并行训练，执行以下脚本：
+# torchrun --standalone --nproc_per_node=4 train_ddp.py
+# train_ddp.py
+import os
+import numpy as np
+from dataclasses import dataclass
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.distributed as dist
+
+from torch.utils.data import TensorDataset, DataLoader
+from torch.utils.data.distributed import DistributedSampler
+from torch.nn.parallel import DistributedDataParallel as DDP
+
+from sklearn import metrics
+
+
+@dataclass
+class Config:
+    data_path: str = "data/cls_data.npz"
+    ckpt_dir: str = "ckpt"
+    ckpt_name: str = "model.pt"
+
+    epochs: int = 101
+    batch_size: int = 1024
+    lr: float = 1e-3
+    print_every: int = 5
+    num_workers: int = 2
+    seed: int = 42
+
+
+class MyNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(10, 20)
+        self.fc2 = nn.Linear(20, 3)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return self.fc2(x)  # logits
+
+
+def is_main() -> bool:
+    return dist.get_rank() == 0
+
+
+def ddp_setup():
+    """
+    torchrun 会注入环境变量：RANK, WORLD_SIZE, LOCAL_RANK
+    RANK 是全局 rank，每个进程有唯一的编号，范围 [0, WORLD_SIZE-1]
+    LOCAL_RANK 是本机 rank，范围 [0, nproc_per_node-1]
+    """
+    if not torch.cuda.is_available():
+        raise RuntimeError("未检测到 CUDA/GPU")
+
+    if "RANK" not in os.environ or "WORLD_SIZE" not in os.environ:
+        raise RuntimeError("启动方式：torchrun --standalone --nproc_per_node=4 train_ddp.py ")
+
+    dist.init_process_group(backend="nccl")
+
+    if not (dist.is_available() and dist.is_initialized()):
+        raise RuntimeError("初始化失败")
+
+    local_rank = int(os.environ["LOCAL_RANK"])
+    # 设置默认的 CUDA，不然的话，其它代码如果未指定GPU号则会都集中在 CUDA:0 上
+    torch.cuda.set_device(local_rank)
+
+    # 一些相关配置：
+    # dist.get_world_size()
+    return local_rank
+
+
+def ddp_cleanup():
+    dist.destroy_process_group()
+
+
+def set_seed(seed: int):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+
+
+@torch.no_grad()
+def evaluate(model, device, X_test, y_test, criterion):
+    model.eval()
+    logits = model(X_test)
+    loss = criterion(logits, y_test).item()
+    y_pred = logits.argmax(dim=1).cpu().numpy()
+    y_true = y_test.cpu().numpy()
+    precision = metrics.precision_score(y_true, y_pred, average="macro", zero_division=0)
+    recall = metrics.recall_score(y_true, y_pred, average="macro", zero_division=0)
+    return loss, precision, recall
+
+
+def main():
+    cfg = Config()
+    os.makedirs(cfg.ckpt_dir, exist_ok=True)
+
+    local_rank = ddp_setup()
+    set_seed(cfg.seed + dist.get_rank())
+
+    device = torch.device("cuda", local_rank)
+    print("启动设备：", device)
+
+    # load data
+    d = np.load(cfg.data_path)
+    X_train = torch.from_numpy(d["X_train"])
+    y_train = torch.from_numpy(d["y_train"])
+    # 评估只在主进程做
+    X_test = torch.from_numpy(d["X_test"]).to(device) if is_main() else None
+    y_test = torch.from_numpy(d["y_test"]).to(device) if is_main() else None
+
+    train_ds = TensorDataset(X_train, y_train)
+
+    # DDP sampler
+    sampler = DistributedSampler(train_ds, shuffle=True)
+
+    train_loader = DataLoader(
+        train_ds,
+        batch_size=cfg.batch_size,
+        sampler=sampler,
+        num_workers=cfg.num_workers,
+        pin_memory=True,  # 锁定内存页，提高 CPU -> GPU 的搬运效率
+        drop_last=False
+    )
+
+    # model / loss / optim
+    model = MyNet().to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.lr)
+
+    # wrap DDP
+    model = DDP(model, device_ids=[device.index])
+
+    for epoch in range(cfg.epochs):
+        sampler.set_epoch(epoch)
+
+        model.train()
+        running_loss = 0.0
+        n = 0
+
+        for xb, yb in train_loader:
+            xb = xb.to(device, non_blocking=True)
+            yb = yb.to(device, non_blocking=True)
+
+            optimizer.zero_grad(set_to_none=True)
+            logits = model(xb)
+            loss = criterion(logits, yb)
+
+            # 这一步 DDP 会对所有 GPU 上的梯度做 reduce
+            # 发生阻塞，DDP 做了优化，“边算边通信”
+            loss.backward()
+            optimizer.step()  # 每个进程用相同的梯度更新自己的模型副本
+
+            running_loss += loss.item() * xb.size(0)
+            n += xb.size(0)
+
+        train_loss_local = running_loss / max(n, 1)
+
+        # 汇总各进程的 train loss（加权平均）
+        t = torch.tensor([running_loss, n], dtype=torch.float64, device=device)
+        # 对所有进程的 t 求和，并广播回各自进程的 t
+        dist.all_reduce(t, op=dist.ReduceOp.SUM)
+        train_loss = (t[0] / t[1]).item()
+
+        if (epoch % cfg.print_every == 0) and is_main():
+            # 注意：DDP 下 model 是 wrapper，真实模型是 model.module
+            eval_model = model.module
+            test_loss, precision, recall = evaluate(eval_model, device, X_test, y_test, criterion)
+
+            print(
+                f"epoch={epoch:3d} "
+                f"train_loss={train_loss:.5f} "
+                f"test_loss={test_loss:.5f} "
+                f"precision={precision:.4f} recall={recall:.4f}"
+            )
+
+    # save checkpoint（只在主进程保存）
+    if is_main():
+        raw_model = model.module
+        ckpt_path = os.path.join(cfg.ckpt_dir, cfg.ckpt_name)
+        torch.save(
+            {
+                "model_state_dict": raw_model.state_dict(),
+                "config": cfg.__dict__,
+            },
+            ckpt_path
+        )
+        print(f"Saved checkpoint to: {ckpt_path}")
+
+    ddp_cleanup()
+
+
+if __name__ == "__main__":
+    main()
+```
+
+
+原理说明：
+1. 会在 CPU 上启动4个进程，每个进程绑定一个 GPU
+2. 每个 GPU 上计算梯度，然后 reduce，然后用相同的梯度更新各自的模型副本
+
+
+加载模型，并做推理
+
+```python
+# infer.py
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from sklearn import metrics
+
+
+class MyNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(10, 20)
+        self.fc2 = nn.Linear(20, 3)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return self.fc2(x)
+
+
+def main(data_path="data/cls_data.npz", ckpt_path="ckpt/model.pt"):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    d = np.load(data_path)
+    X_test = torch.from_numpy(d["X_test"]).to(device)
+    y_test = d["y_test"]  # numpy
+
+    model = MyNet().to(device)
+    ckpt = torch.load(ckpt_path, map_location=device)
+    model.load_state_dict(ckpt["model_state_dict"])
+    model.eval()
+
+    with torch.no_grad():
+        logits = model(X_test)
+        y_pred = logits.argmax(dim=1).cpu().numpy()
+
+    print("confusion_matrix=\n", metrics.confusion_matrix(y_test, y_pred))
+
+
+if __name__ == "__main__":
+    main()
+```
+
 
 
 
