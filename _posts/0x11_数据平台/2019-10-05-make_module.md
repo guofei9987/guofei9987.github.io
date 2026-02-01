@@ -554,14 +554,16 @@ write_to = "blind_watermark/_version.py"        # 构建时把推导出的版本
 
 
 
-安装必要的包
-```sh
-pip install build twine
-```
+
+
 
 本地构建并测试
 ```sh
+# 安装必要的包
 python -m pip install --upgrade build twine
+
+
+rm -rf dist build *.egg-info
 python -m build
 # 这样就生成了构建的包，sdist 和 wheel
 
