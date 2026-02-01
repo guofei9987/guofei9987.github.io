@@ -37,6 +37,7 @@ download_file(
     url='https://www.guofei.site/datasets/润植家刻本简体.ttf',
     filename='润植家刻本简体.ttf')
 
+# 下载分析用的语料
 download_file(
     url='https://www.guofei.site/datasets/nlp/《三国演义》.txt',
     filename='《三国演义》.txt')
@@ -443,13 +444,208 @@ X = tf_idf.transform(documents)
 - 现代（2025）已经很少用 TF-IDF 了，在现代视角下，它更接近“规则”
 
 
-## 其它的特征提取方法
-
+**其它的特征提取方法**
 
 ```py
 text.HashingVectorizer  # 占用内存更少，索引速度更快
 VectorizerMixin
 ```
+
+## Word2Vec
+
+原理、Tensorflow实现、Torch 实现分别见于：
+- https://www.guofei.site/2017/12/17/word2vec.html
+- https://www.guofei.site/2022/12/24/word2vec.html
+
+这里仅展示调用一个最方便的包：[https://github.com/piskvorky/gensim](https://github.com/piskvorky/gensim)
+- 它实现了 TF-IDF、LDA、LSA、Word2Vec 等多种算法
+- `pip install gensim`
+
+
+
+
+```python
+# 数据准备（前面已下载）
+content = open('《三国演义》.txt', 'r', encoding='utf-8').read()
+documents_raw = [sentence.strip() for sentence in content.split('\n')]
+
+# 分词、清洗、保存
+import jieba
+documents = [jieba.lcut(document, cut_all=False) for document in documents_raw]  # 分词
+documents = [' '.join(document) for document in documents]
+
+with open("《三国演义》_processed.txt", 'w', encoding='utf-8') as f:
+    f.write('\n'.join(documents))
+```
+
+
+训练 Word2Vec 模型
+```python
+
+from gensim.models import word2vec
+
+# 可以给入一个目录，会自动读入目录下的所有文本文件，并且每行当做一句话来处理
+sentences = word2vec.PathLineSentences('./corpus_seg/')
+
+# 设置模型参数并训练
+model = word2vec.Word2Vec(
+    # 传入 sentences，代表指定一个目录，把目录下的所有文本文件当做语料来训练模型：
+    # sentences = word2vec.PathLineSentences('./corpus_seg/')
+    corpus_file='《三国演义》_processed.txt'
+    , vector_size=100
+)
+
+
+
+
+# 使用模型：
+# 词对应的向量
+model.wv['曹操']
+
+# 两个词的相似度
+model.wv.similarity('曹操', '刘备')
+
+# a + b - c:
+print(model.wv.most_similar(positive=['曹操', '魏王'], negative=['玄德']))
+
+
+
+
+
+# 模型的保存和加载
+# 保存：
+model.save('./word2Vec.model')
+# 加载：
+model2 = word2vec.Word2Vec.load('./word2Vec.model')
+print(model2.wv.most_similar(positive=['曹操', '魏王'], negative=['玄德']))
+```
+
+
+
+
+
+详细解释训练参数（其实大多数不用改）
+```python
+model = word2vec.Word2Vec(
+    sentences  # 列表格式的语料
+    , vector_size=100  # 词向量维度
+    , window=5  # 上下文大小（左右各 window）
+    , sg=0  # 使用 CBOW 模型（默认），如果设置为 1 则使用 Skip-gram 模型
+    , min_count=5  # 低于该频次的词被丢弃
+    , max_vocab_size=None  # 限制词表大小（按频率裁剪）
+    , sample=1e-3  # 高频词的下采样率。越小 → “的、了”更容易被丢弃
+    , epochs=5  # 训练轮数
+    , negative=5  # 负采样的数量（每个正样本对应多少个负样本）
+    , hs=0  # 是否使用 是否使用 Hierarchical Softmax
+    , alpha=0.025  # 初始学习率
+    , min_alpha=0.0001  # 最小学习率
+    , workers=3  # 训练线程数，建议设置为 CPU 核心数 - 1
+)
+```
+
+
+
+### 使用
+```python
+import gensim
+
+sentences = [['first', 'sentence'], ['second', 'sentence']]
+model = gensim.models.Word2Vec(sentences=sentences, min_count=5)
+model.wv.word_vec('first')
+```
+
+
+#### 用法详解
+```python
+gensim.models.Word2Vec(
+    sentences=None,
+    size=100,
+    alpha=0.025,
+    window=5,
+    min_count=5,
+    workers=3,
+    min_alpha=0.0001,
+    sg=0,
+    hs=0,
+    negative=5,
+    iter=5,
+    sorted_vocab=1,
+    compute_loss=False,
+)
+```
+- `sentences` 列表格式的语料，或者 `LineSentence` 格式的语料。可以不在这里给出
+- `size=100` 隐藏层的单元数，推荐值为几十到几百。这也是参数的个数、向量的维度
+- `window=5`：Maximum distance between the current and predicted word within a sentence.
+- `min_count=5`出现次数少于这个数的单词会被丢弃
+- `workers=3` :并行线程数量，可以 `workers=multiprocessing.cpu_count()` 用掉所有线程
+- `sg=0`：0代表skip-gram，1代表CBOW
+- `hs=0`：0代表使用负抽样，1代表使用 hierarchical softmax
+- `negative=5` ： 负抽样的倍数，通常是 5～20
+- `alpha`/`min_alpha` ： 初始和最终学习率
+- `iter` ： 迭代次数
+- `sorted_vocab` : 1表示按词频降序，0表示否
+- `compute_loss` ： True/False 存储并记录 loss，`gensim.models.word2vec.Word2Vec.get_latest_training_loss`。 但想要取得每一步的loss就比较麻烦。
+
+
+
+
+
+
+可以不一开始就指定语料
+```python
+model = gensim.models.Word2Vec(size=200, window=8, min_count=10, iter=10, workers=multiprocessing.cpu_count())
+
+model.build_vocab(x)
+model.train(x, total_examples=model.corpus_count, epochs=model.iter)
+```
+
+
+#### 从文件中读训练数据
+- step1：读入数据。要求list每个元素是一句话。不多说。
+- step2:先分词、过滤停词，分词结果用空格分割，然后存到文件。（详见 [另一篇博客](https://www.guofei.site/2018/09/24/nlp_feature.html#%E4%B8%AD%E6%96%87%E6%B8%85%E6%B4%97)）
+- step3:读入文件
+```python
+line_sentence = gensim.models.word2vec.LineSentence(source='中文语料已空格切分.txt')
+```
+- step4:word2vec
+```python
+model = gensim.models.Word2Vec(line_sentence)
+```
+- step5:检查结果
+```python
+most_similars_precalc = {word : model.wv.most_similar(word) for word in model.wv.index2word}
+```
+
+结果就不贴了，还行。因为数据量很小，所以可以把 `iter` 调高。
+
+### 结果分析
+```python
+model.wv.index2word # vocabulary
+model.wv.most_similar(word, topn=10) # 返回一个词的相近词
+```
+
+所以就有了下面这些操作：
+- 看一些词的相近词
+```python
+most_similars_precalc = {word : model.wv.most_similar(word) for word in model.wv.index2word[300:1000]}
+```
+- 上面没有剔除关系分低的词，下面剔一下
+```python
+# 剔除关系分小于 0.4 的词
+tmp={key: [(i,j) for i,j in value if j>0.4] for key, value in most_similars_precalc.items()}
+# 空的（没有关系分大于0.4）的词也剔除
+{key:value for key, value in tmp.items() if len(value)>0}
+```
+
+
+另外，还有一些操作
+```
+model.evaluate_word_pairs(*)
+```
+
+
+
+
 
 
 ## 参考资料
