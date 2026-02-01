@@ -30,17 +30,17 @@
     "cat": "tool"
   },
   {
-    "name": "Base64转换器",
+    "name": "Base64 string converter",
     "url": "/os/base64_converter.html",
     "cat": "tool"
   },
   {
-    "name": "Base64转文件",
+    "name": "Base64 file converter",
     "url": "/os/base64_to_file.html",
     "cat": "tool"
   },
   {
-    "name": "JSON格式化工具",
+    "name": "JSON formatter",
     "url": "/os/json_formatter.html",
     "cat": "tool"
   },
