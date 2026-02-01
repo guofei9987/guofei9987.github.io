@@ -626,7 +626,15 @@ model = word2vec.Word2Vec(
     - **摘要**(Summarization)：这个任务比较特殊，它不是让模型生成摘要，而是评估一个机器生成的摘要与人工撰写的参考摘要之间的语义相似度。
 
 
-选型
+举例（参考 https://www.guofei.site/2026/01/17/agent.html ）：
+```python
+from sentence_transformers import SentenceTransformer
+
+embed_model = SentenceTransformer("./bge-small-zh-v1.5")
+
+embedding = embed_model.encode(sentence)
+```
+
 
 
 
