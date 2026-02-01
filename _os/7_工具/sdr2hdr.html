@@ -146,6 +146,27 @@ order: 711
     margin-top: 12px;
   }
 
+  #content .sdr2hdr-upload-trigger {
+    cursor: pointer;
+  }
+
+  #content .sdr2hdr-upload-trigger:hover {
+    border-color: var(--sdr2hdr-primary);
+    transition: border-color 0.2s ease;
+  }
+
+  #content .sdr2hdr-upload-hint {
+    color: var(--sdr2hdr-muted);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  #content .sdr2hdr-output-controls {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--sdr2hdr-border);
+  }
+
   #content .sdr2hdr-image-box img {
     display: block;
     width: auto;
@@ -201,16 +222,13 @@ order: 711
 
 <div class="sdr2hdr-app" id="sdr2hdrApp">
   <div class="sdr2hdr-header">
-    <h1>SDR to HDR 图像转换器</h1>
+    <h1>高亮图像转换器</h1>
     <div class="sdr2hdr-status" id="sdr2hdrStatus">正在初始化 WASM...</div>
   </div>
 
-  <div class="sdr2hdr-panel sdr2hdr-controls">
-    <div class="sdr2hdr-control-group">
-      <label class="sdr2hdr-label" for="sdr2hdrImageInput">上传图像:</label>
-      <input class="sdr2hdr-file-input" type="file" id="sdr2hdrImageInput" accept="image/*">
-    </div>
+  <input class="sdr2hdr-hidden" type="file" id="sdr2hdrImageInput" accept=".png,.jpg,.jpeg">
 
+  <div class="sdr2hdr-panel sdr2hdr-controls">
     <div class="sdr2hdr-control-group">
       <span class="sdr2hdr-label">HDR 类型:</span>
       <div class="sdr2hdr-radio-group" role="radiogroup" aria-label="HDR 类型">
@@ -218,33 +236,66 @@ order: 711
         <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrIccType" value="2"> Type 2</label>
       </div>
     </div>
-
-    <div class="sdr2hdr-control-group">
-      <span class="sdr2hdr-label">输出格式:</span>
-      <div class="sdr2hdr-radio-group" role="radiogroup" aria-label="输出格式">
-        <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
-        <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
-      </div>
-    </div>
   </div>
 
   <div class="sdr2hdr-container">
-    <div class="sdr2hdr-panel">
-      <h2>原始图像</h2>
+    <div class="sdr2hdr-panel sdr2hdr-upload-trigger" id="sdr2hdrUploadTrigger">
+      <h2>原始图像 <span class="sdr2hdr-upload-hint">(点击上传 PNG/JPG 文件)</span></h2>
       <div class="sdr2hdr-image-box" id="sdr2hdrOriginalImageContainer">
-        <div class="sdr2hdr-placeholder">请上传图像</div>
+        <div class="sdr2hdr-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>
       </div>
     </div>
 
     <div class="sdr2hdr-panel">
-      <h2>转换后的 HDR 图像</h2>
+      <h2>转换后的高亮图像</h2>
       <div class="sdr2hdr-image-box" id="sdr2hdrConvertedImageContainer">
         <div class="sdr2hdr-placeholder">等待转换...</div>
       </div>
-      <a class="sdr2hdr-download sdr2hdr-hidden" id="sdr2hdrDownloadLink">下载 HDR 图像</a>
+      <div class="sdr2hdr-output-controls">
+        <div class="sdr2hdr-control-group">
+          <span class="sdr2hdr-label">输出格式:</span>
+          <div class="sdr2hdr-radio-group" role="radiogroup" aria-label="输出格式">
+            <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
+            <label class="sdr2hdr-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
+          </div>
+        </div>
+        <a class="sdr2hdr-download sdr2hdr-hidden" id="sdr2hdrDownloadLink">下载 HDR 图像</a>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+<div><b>说明：</b></div>
+<ol>
+    <li>
+        本工具为纯前端实现，基于 Rust + WebAssembly 编译运行。
+        所有处理均在本地浏览器完成，不会上传图片数据，保证隐私安全。
+    </li>
+    <li>
+        原理：将 SDR（Standard Dynamic Range）图像转换为 HDR 显示效果，
+        通过算法扩展亮度范围与对比度，在支持 HDR 的设备上可获得更好的视觉体验。
+    </li>
+    <li>
+        开源地址：
+        <a href="https://github.com/guofei9987/sdr2hdr" target="_blank">
+            https://github.com/guofei9987/sdr2hdr
+        </a>
+    </li>
+    <li>
+        技术实现：核心算法使用 Rust 编写，并编译为 WASM 在浏览器中运行，
+        在保证性能的同时控制体积；无需后端服务。
+    </li>
+    <li>
+        注意事项：
+        <ul>
+            <li>效果依赖设备及系统是否支持 HDR（如部分手机、Mac、HDR 显示器）</li>
+            <li>不同浏览器对 HDR 的支持存在差异</li>
+            <li>建议上传亮度范围较大的图片（如高亮/高对比度场景），更易观察效果差异</li>
+        </ul>
+    </li>
+</ol>
 
 <script type="module">
   import init, { convert_to_hdr } from '/a/app/sdr2hdr/pkg/wasm_sdr2hdr.js';
@@ -253,6 +304,7 @@ order: 711
   let currentDownloadUrl = null;
 
   const imageInput = document.getElementById('sdr2hdrImageInput');
+  const uploadTrigger = document.getElementById('sdr2hdrUploadTrigger');
   const originalImageContainer = document.getElementById('sdr2hdrOriginalImageContainer');
   const convertedImageContainer = document.getElementById('sdr2hdrConvertedImageContainer');
   const downloadLink = document.getElementById('sdr2hdrDownloadLink');
@@ -341,7 +393,28 @@ order: 711
     }
   }
 
-  imageInput.addEventListener('change', convertCurrentImage);
+  uploadTrigger.addEventListener('click', () => {
+    imageInput.click();
+  });
+
+  imageInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const validTypes = ['image/png', 'image/jpeg'];
+      const validExtensions = ['.png', '.jpg', '.jpeg'];
+      const fileExtension = '.' + file.name.toLowerCase().split('.').pop();
+
+      if (!validTypes.includes(file.type) && !validExtensions.some(ext => fileExtension === ext)) {
+        alert('请选择 PNG 或 JPG/JPEG 格式的图像文件');
+        imageInput.value = '';
+        originalImageContainer.innerHTML = '<div class="sdr2hdr-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>';
+        resetOutput();
+        return;
+      }
+
+      convertCurrentImage();
+    }
+  });
 
   document.querySelectorAll('input[name="sdr2hdrIccType"], input[name="sdr2hdrOutputFormat"]').forEach((radio) => {
     radio.addEventListener('change', () => {
