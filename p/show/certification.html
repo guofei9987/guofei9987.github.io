@@ -121,9 +121,11 @@ permalink: /certification.html
 .cert-grid{ display:grid; gap:14px; }
 .cert-grid.cols-2{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 .cert-grid.cols-3{ grid-template-columns: repeat(3, minmax(0,1fr)); }
-@media (max-width: 900px){ .cert-grid.cols-3{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 700px){ .cert-grid.cols-2{ grid-template-columns: 1fr; } }
-@media (max-width: 640px){ .cert-grid, .cert-grid.cols-2, .cert-grid.cols-3{ grid-template-columns: 1fr; } }
+.cert-grid.cols-4{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+@media (max-width: 1200px){ .cert-grid.cols-4{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (max-width: 900px){ .cert-grid.cols-3, .cert-grid.cols-4{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 700px){ .cert-grid, .cert-grid.cols-2, .cert-grid.cols-3, .cert-grid.cols-4{ grid-template-columns: 1fr; } }
+@media (max-width: 640px){ .cert-grid, .cert-grid.cols-2, .cert-grid.cols-3, .cert-grid.cols-4{ grid-template-columns: 1fr; } }
 
 .cert-card{
   border:1px solid var(--bd); border-radius:12px; background:#fff; box-shadow:var(--shadow);
@@ -188,7 +190,7 @@ permalink: /certification.html
     </div>
 
     {% assign pro_sorted = site.data.certification.professional %}
-    <div class="cert-grid cols-2" id="pro-grid">
+    <div class="cert-grid cols-4" id="pro-grid">
       {% for it in pro_sorted %}
         {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
         <article class="cert-card pro-item" data-cat="{{ it.cat | default: '其它' }}">
@@ -230,7 +232,7 @@ permalink: /certification.html
     </div>
 
     {% assign mooc_sorted = site.data.certification.mooc%}
-    <div class="cert-grid cols-2" id="mooc-grid">
+    <div class="cert-grid cols-4" id="mooc-grid">
       {% for it in mooc_sorted %}
         {% assign img = it.image | default: "/a/certificate/placeholder.svg" %}
         <article class="cert-card mooc-item" data-cat="{{ it.cat | default: '其它' }}" data-platform="{{ it.platform | default: it.org }}">
