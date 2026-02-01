@@ -64,7 +64,7 @@ viewBox="0 0 920 110">
 
 
 <svg x="460" y="0" width="230" height="110" viewBox="0 0 230 110" fill="url(#golden)">
-<a class="patch" href="https://www.guofei.site/BookList.html" target="_blank">
+<a class="patch" href="https://www.guofei.site/books.html" target="_blank">
 <use href="#lw2" width="230" height="110" x="0" y="0"/>
 <text x="50%" y="30" class="text text1">读书 </text>
 <text x="50%" y="75" class="text text2">{{ site.data.book_list.size }}本</text>

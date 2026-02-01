@@ -31,7 +31,7 @@ permalink: /reading.html
 <!-- ✅ 随机文章模块结束 -->
 
 
-读书 <span class="bold-black-text">{{ site.data.book_list.size }}本</span>（<a href="/BookList.html">书单</a>），笔记共 <span class="bold-black-text">{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字</span>
+读书 <span class="bold-black-text">{{ site.data.book_list.size }}本</span>（<a href="/books.html">书单</a>），笔记共 <span class="bold-black-text">{{ site.data.cnt_reading_words.cnt_reading_words_precision }}字</span>
 
 
 <div id="all_books"></div>

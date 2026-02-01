@@ -1,7 +1,7 @@
 ---
 layout: reading
 title: 读完的书单
-permalink: /BookList.html
+permalink: /books.html
 ---
 
 <link rel="stylesheet" href="/c/card.css">
