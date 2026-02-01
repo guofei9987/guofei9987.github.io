@@ -45,6 +45,11 @@
     "cat": "tool"
   },
   {
+    "name": "QR Code Maker",
+    "url": "/os/qr_maker.html",
+    "cat": "tool"
+  },
+  {
     "name": "scikit-opt",
     "icon": "/p/icon/scikit-opt.svg",
     "url": "https://github.com/guofei9987/scikit-opt",
