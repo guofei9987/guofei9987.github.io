@@ -463,6 +463,60 @@ VectorizerMixin
 - 不支持 GPU，不过这个算法本身性能也不错
 
 
+### 预训练 Word2Vec
+- https://fasttext.cc/docs/en/crawl-vectors.html
+- 可以用 fastText 加载模型，也可以用 gensim 加载（这里用 gensim）
+- 提供 bin/text 两种格式，区别：
+    - text 只包含了 词向量。bin 更大，还有模型训练相关的更多文件
+    - 因此 bin 提供继续训练的能力。还支持不在词表中的词，生成向量，OOV 能力。
+
+
+```python
+from gensim.models import KeyedVectors
+model = KeyedVectors.load_word2vec_format(
+    "cc.en.300.vec", # 下载并解压缩
+    binary=False,    
+    limit=30000      # 数据量太大，内存爆炸，前 3万个词已经能覆盖绝大多数了
+)
+
+model.most_similar(positive=['king', 'Queen'], negative=['man'])
+
+# 注意，KeyedVectors 生成的对象，相当于 Word2Vec 对象的 model.wv
+```
+
+
+减少模型体积并保存
+
+```python
+print("原始形状:", model.vectors.shape)
+
+# 减少 vocabulary 大小
+words = model.index_to_key[:20000]
+vectors = model.vectors[:20000]
+
+# 减少维度
+from sklearn.decomposition import PCA
+
+target_dim = 100
+
+pca = PCA(n_components=target_dim)
+vectors_reduced = pca.fit_transform(vectors)
+
+model.fill_norms()
+
+small_model = KeyedVectors(vector_size=target_dim)
+small_model.add_vectors(words, vectors_reduced)
+small_model.fill_norms()
+
+print("缩小后的形状:", small_model.vectors.shape)
+
+model.save("cc.en.100.top20k.kv")
+```
+
+
+
+
+### 训练 Word2Vec
 
 ```python
 # 数据准备（前面已下载）
@@ -555,6 +609,24 @@ model = word2vec.Word2Vec(
 )
 ```
 
+
+## 句向量
+
+
+**MTEB** (Massive Text Embedding Benchmark) 
+- [https://huggingface.co/spaces/mteb/leaderboard]https://huggingface.co/spaces/mteb/leaderboard
+- 是一个全面的 benchmark，它涵盖了分类、聚类、检索、排序等8大类任务和58个数据集。
+    - **检索**(Retrieval)：从一个庞大的文档库中，根据用户输入的查询（Query），找出最相关的文档列表。
+    - **语义文本相似度**(Semantic Textual Similarity, STS)：判断一对句子的语义相似程度，并给出一个连续的分数（例如1到5分）。
+    - **重排序**(Reranking)：对一个已经初步检索出的文档列表进行二次优化排序，使得最相关的文档排在最前面。
+    - **分类**(Classification)：将单个文本（如电影评论、新闻文章）划分到预定义的类别中（如“正面/负面”、“体育/科技”）。
+    - **聚类**(Clustering)：在没有任何预设标签的情况下，将一组文本自动地分成若干个有意义的群组，使得同一组内的文本语义相似，不同组间的文本语义差异大。
+    - **对分类**(Pair Classification)：判断一对文本（句子或段落）是否具有某种特定关系，通常是二分类问题，如“是否是重复问题”、“是否是转述关系”。
+    - **双语挖掘**(Bitext Mining)：从两种不同语言的大量句子中，找出互为翻译的句子对。对于机器翻译至关重要。
+    - **摘要**(Summarization)：这个任务比较特殊，它不是让模型生成摘要，而是评估一个机器生成的摘要与人工撰写的参考摘要之间的语义相似度。
+
+
+选型
 
 
 
