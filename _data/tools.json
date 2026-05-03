@@ -5,6 +5,16 @@
     "cat": "tool"
   },
   {
+    "name": "🧩 化物为图",
+    "url": "/os/hide_as_img.html",
+    "cat": "tool"
+  },
+  {
+    "name": "🌓 幻影坦克",
+    "url": "/os/mirage_tank.html",
+    "cat": "tool"
+  },
+  {
     "name": "🔎 清爽搜索框",
     "url": "/os/tool_search.html",
     "cat": "tool"

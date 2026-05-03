@@ -1,0 +1,404 @@
+---
+layout: open_source
+title: 幻影坦克
+categories: 开源
+tag: tools
+order: 713
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+
+<style>
+  #content .hide-info-image-stage {
+    min-height: 280px;
+    margin-top: 12px;
+    padding: 22px;
+    border: 2px dashed var(--tools-border);
+    border-radius: 8px;
+    background: var(--tools-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #content .hide-info-image-stage img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 430px;
+    margin: 0;
+    border-radius: 6px;
+  }
+
+  #content .hide-info-stage-white {
+    background: #fff;
+  }
+
+  #content .hide-info-stage-black {
+    background: #050505;
+  }
+
+  #content .hide-info-stage-checker {
+    background-color: #f7f7f7;
+    background-image:
+      linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+      linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+      linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+    background-size: 20px 20px;
+  }
+
+  #content .hide-info-preview-stage {
+    min-height: 340px;
+    padding: 36px;
+    border-style: solid;
+  }
+
+  #content .hide-info-grayscale {
+    filter: grayscale(1);
+  }
+
+  #content .hide-info-param-row {
+    display: grid;
+    grid-template-columns: minmax(140px, 1fr) 92px;
+    gap: 14px;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  #content .hide-info-range {
+    width: 100%;
+    accent-color: var(--tools-primary);
+  }
+
+  #content .hide-info-number {
+    width: 92px;
+    padding: 7px 10px;
+    color: var(--tools-text);
+    border: 1px solid var(--tools-border);
+    border-radius: 6px;
+    background: var(--tools-panel);
+    font-size: 14px;
+  }
+
+  #content .hide-info-number:focus {
+    outline: none;
+    border-color: var(--tools-primary);
+  }
+
+  #content .hide-info-muted {
+    margin-top: 10px;
+    color: var(--tools-muted);
+    font-size: 14px;
+  }
+
+  #content .hide-info-output-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--tools-border);
+  }
+
+  @media (max-width: 760px) {
+    #content .hide-info-param-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="text-tools-app" id="mirageTankApp">
+  <div class="text-tools-header">
+    <h1>幻影坦克</h1>
+    <div class="text-tools-status" id="status">正在初始化 WASM...</div>
+  </div>
+
+  <input class="text-tools-hidden" type="file" id="colorInput" accept="image/*">
+  <input class="text-tools-hidden" type="file" id="hiddenInput" accept="image/*">
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel text-tools-upload-trigger" id="colorPanel" role="button" tabindex="0">
+      <h2>彩图 <span class="text-tools-upload-hint">白色背景下显示的图片</span></h2>
+      <div class="hide-info-image-stage hide-info-stage-white" id="colorStage">
+        <div class="text-tools-placeholder">点击上传彩图</div>
+      </div>
+      <div class="hide-info-muted" id="colorMeta">未选择图片</div>
+    </div>
+
+    <div class="text-tools-panel text-tools-upload-trigger" id="hiddenPanel" role="button" tabindex="0">
+      <h2>灰度图 <span class="text-tools-upload-hint">黑色背景下显示的里图</span></h2>
+      <div class="hide-info-image-stage hide-info-stage-black" id="hiddenStage">
+        <div class="text-tools-placeholder">点击上传里图</div>
+      </div>
+      <div class="hide-info-muted" id="hiddenMeta">未选择图片</div>
+    </div>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>里图强度</h2>
+      <div class="hide-info-param-row">
+        <input class="hide-info-range" type="range" id="bRange" min="0" max="1" step="0.01" value="0.50" aria-label="参数 b">
+        <input class="hide-info-number" type="number" id="bNumber" min="0" max="1" step="0.01" value="0.50" aria-label="参数 b 数值">
+      </div>
+      <div class="hide-info-muted">范围 0.00 到 1.00，默认 0.50；调整后会自动重新生成。</div>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>输出图像</h2>
+      <div class="hide-info-image-stage hide-info-stage-checker" id="outputStage">
+        <div class="text-tools-placeholder">等待两张输入图片</div>
+      </div>
+      <div class="hide-info-output-actions">
+        <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadLink">保存 PNG</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>白色背景预览</h2>
+      <div class="hide-info-image-stage hide-info-preview-stage hide-info-stage-white" id="whitePreview">
+        <div class="text-tools-placeholder">等待输出图像</div>
+      </div>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>黑色背景预览</h2>
+      <div class="hide-info-image-stage hide-info-preview-stage hide-info-stage-black" id="blackPreview">
+        <div class="text-tools-placeholder">等待输出图像</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。</li>
+  <li>本工具完全开源 <a href="https://github.com/guofei9987/hide_info" target="_blank">https://github.com/guofei9987/hide_info</a>，并使用 MIT 协议</li>
+  <li>本工具仅用于学习数字图像处理技术，禁止用于任何商业或非法用途。原理请参考<a href="https://www.guofei.site/os/hide_info_more.html" target="_blank">我的推导笔记</a></li>
+</ol>
+
+<script src="/a/app/tools.js"></script>
+<script type="module">
+  import init, { mirage_tank_from_bytes } from '/a/app/hide_info/pkg/wasm_hide_info.js';
+
+  let wasmReady = false;
+  let colorBytes = null;
+  let hiddenBytes = null;
+  let colorUrl = null;
+  let hiddenUrl = null;
+  let outputUrl = null;
+  let renderVersion = 0;
+
+  const status = document.getElementById('status');
+  const colorInput = document.getElementById('colorInput');
+  const hiddenInput = document.getElementById('hiddenInput');
+  const colorPanel = document.getElementById('colorPanel');
+  const hiddenPanel = document.getElementById('hiddenPanel');
+  const colorStage = document.getElementById('colorStage');
+  const hiddenStage = document.getElementById('hiddenStage');
+  const outputStage = document.getElementById('outputStage');
+  const whitePreview = document.getElementById('whitePreview');
+  const blackPreview = document.getElementById('blackPreview');
+  const colorMeta = document.getElementById('colorMeta');
+  const hiddenMeta = document.getElementById('hiddenMeta');
+  const bRange = document.getElementById('bRange');
+  const bNumber = document.getElementById('bNumber');
+  const downloadLink = document.getElementById('downloadLink');
+  const debounce = TextToolsUtils.createDebounce();
+
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+  }
+
+  function clampB(value) {
+    const number = Number.parseFloat(value);
+    if (!Number.isFinite(number)) return 0.5;
+    return Math.min(1, Math.max(0, number));
+  }
+
+  function setPlaceholder(container, text) {
+    container.innerHTML = '';
+    const placeholder = document.createElement('div');
+    placeholder.className = 'text-tools-placeholder';
+    placeholder.textContent = text;
+    container.appendChild(placeholder);
+  }
+
+  function setLoading(container, text) {
+    container.innerHTML = '';
+    const loading = document.createElement('div');
+    loading.className = 'text-tools-loading';
+    loading.textContent = text;
+    container.appendChild(loading);
+  }
+
+  function showImage(container, url, alt, className) {
+    container.innerHTML = '';
+    const img = new Image();
+    img.src = url;
+    img.alt = alt;
+    if (className) img.className = className;
+    container.appendChild(img);
+  }
+
+  function hideDownload() {
+    downloadLink.classList.add('text-tools-hidden');
+    downloadLink.removeAttribute('href');
+  }
+
+  function revokeUrl(url) {
+    if (url) URL.revokeObjectURL(url);
+  }
+
+  function isImageFile(file) {
+    return file.type.startsWith('image/') || /\.(png|jpe?g|webp|bmp|gif)$/i.test(file.name);
+  }
+
+  async function readImage(file, kind) {
+    if (!file) return;
+    if (!isImageFile(file)) {
+      updateStatus('请选择图片文件', true);
+      return;
+    }
+
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const url = URL.createObjectURL(file);
+
+    if (kind === 'color') {
+      revokeUrl(colorUrl);
+      colorUrl = url;
+      colorBytes = bytes;
+      showImage(colorStage, colorUrl, '白色背景下显示的彩图');
+      colorMeta.textContent = file.name + '（' + formatBytes(file.size) + '）';
+    } else {
+      revokeUrl(hiddenUrl);
+      hiddenUrl = url;
+      hiddenBytes = bytes;
+      showImage(hiddenStage, hiddenUrl, '黑色背景下显示的里图', 'hide-info-grayscale');
+      hiddenMeta.textContent = file.name + '（' + formatBytes(file.size) + '）';
+    }
+
+    debouncedRender();
+  }
+
+  function setOutputPlaceholders(text) {
+    setPlaceholder(outputStage, text);
+    setPlaceholder(whitePreview, text);
+    setPlaceholder(blackPreview, text);
+    hideDownload();
+  }
+
+  function renderMirageTank() {
+    const version = ++renderVersion;
+
+    if (!wasmReady) {
+      setOutputPlaceholders('等待 WASM 初始化');
+      updateStatus('正在初始化 WASM...');
+      return;
+    }
+
+    if (!colorBytes || !hiddenBytes) {
+      setOutputPlaceholders('等待两张输入图片');
+      updateStatus('等待上传图片...');
+      return;
+    }
+
+    setLoading(outputStage, '生成中...');
+    setLoading(whitePreview, '生成中...');
+    setLoading(blackPreview, '生成中...');
+    hideDownload();
+    updateStatus('正在生成...');
+
+    window.setTimeout(() => {
+      try {
+        const b = clampB(bNumber.value);
+        const pngBytes = mirage_tank_from_bytes(colorBytes, hiddenBytes, b, undefined);
+        if (version !== renderVersion) return;
+
+        const blob = new Blob([pngBytes], { type: 'image/png' });
+        const nextOutputUrl = URL.createObjectURL(blob);
+        revokeUrl(outputUrl);
+        outputUrl = nextOutputUrl;
+
+        showImage(outputStage, outputUrl, '幻影坦克输出图像');
+        showImage(whitePreview, outputUrl, '白色背景预览');
+        showImage(blackPreview, outputUrl, '黑色背景预览');
+
+        downloadLink.href = outputUrl;
+        downloadLink.download = 'mirage_tank.png';
+        downloadLink.textContent = '保存 PNG（' + formatBytes(blob.size) + '）';
+        downloadLink.classList.remove('text-tools-hidden');
+        updateStatus('生成完成，b=' + b.toFixed(2));
+      } catch (error) {
+        console.error('Mirage tank error:', error);
+        setOutputPlaceholders('生成失败：请确认两张输入都是可读取的图片');
+        updateStatus('生成失败', true);
+      }
+    }, 0);
+  }
+
+  const debouncedRender = debounce(renderMirageTank, 300);
+
+  function syncFromRange() {
+    const value = clampB(bRange.value);
+    bNumber.value = value.toFixed(2);
+    debouncedRender();
+  }
+
+  function syncFromNumber() {
+    if (bNumber.value === '') return;
+    const value = clampB(bNumber.value);
+    bRange.value = value.toFixed(2);
+    debouncedRender();
+  }
+
+  function normalizeNumberInput() {
+    const value = clampB(bNumber.value);
+    bNumber.value = value.toFixed(2);
+    bRange.value = value.toFixed(2);
+  }
+
+  function bindUploadPanel(panel, input) {
+    panel.addEventListener('click', () => input.click());
+    panel.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        input.click();
+      }
+    });
+  }
+
+  bindUploadPanel(colorPanel, colorInput);
+  bindUploadPanel(hiddenPanel, hiddenInput);
+
+  colorInput.addEventListener('change', () => readImage(colorInput.files[0], 'color'));
+  hiddenInput.addEventListener('change', () => readImage(hiddenInput.files[0], 'hidden'));
+  bRange.addEventListener('input', syncFromRange);
+  bNumber.addEventListener('input', syncFromNumber);
+  bNumber.addEventListener('change', normalizeNumberInput);
+
+  window.addEventListener('beforeunload', () => {
+    revokeUrl(colorUrl);
+    revokeUrl(hiddenUrl);
+    revokeUrl(outputUrl);
+  });
+
+  init().then(() => {
+    wasmReady = true;
+    updateStatus('WASM 已就绪');
+    renderMirageTank();
+  }).catch((error) => {
+    console.error('WASM init error:', error);
+    updateStatus('WASM 初始化失败', true);
+  });
+</script>

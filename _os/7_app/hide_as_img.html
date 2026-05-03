@@ -1,0 +1,421 @@
+---
+layout: open_source
+title: 化物为图
+categories: 开源
+tag: tools
+order: 712
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+
+<style>
+  #content .hide-info-drop-area {
+    min-height: 280px;
+    margin-top: 12px;
+    padding: 22px;
+    border: 2px dashed var(--tools-border);
+    border-radius: 8px;
+    background: var(--tools-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  #content .hide-info-drop-area img {
+    display: block;
+    width: auto;
+    min-width: min(100%, 260px);
+    max-width: 100%;
+    max-height: 420px;
+    margin: 0;
+    border-radius: 6px;
+    object-fit: contain;
+    image-rendering: pixelated;
+  }
+
+  #content .hide-info-meta {
+    width: 100%;
+    color: var(--tools-text);
+    text-align: left;
+    word-break: break-word;
+  }
+
+  #content .hide-info-meta-title {
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  #content .hide-info-meta-line {
+    color: var(--tools-muted);
+    font-size: 14px;
+  }
+
+  #content .hide-info-inline-control {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    margin-top: 4px;
+    color: var(--tools-muted);
+    font-size: 14px;
+  }
+
+  #content .hide-info-text-input {
+    width: 160px;
+    padding: 7px 10px;
+    color: var(--tools-text);
+    border: 1px solid var(--tools-border);
+    border-radius: 6px;
+    background: var(--tools-panel);
+    font-size: 14px;
+  }
+
+  #content .hide-info-text-input:focus {
+    outline: none;
+    border-color: var(--tools-primary);
+  }
+
+  #content .hide-info-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--tools-border);
+  }
+</style>
+
+<div class="text-tools-app" id="hideAsImgApp">
+  <div class="text-tools-header">
+    <h1>化物为图</h1>
+    <div class="text-tools-status" id="status">正在初始化 WASM...</div>
+  </div>
+
+  <input class="text-tools-hidden" type="file" id="payloadInput">
+  <input class="text-tools-hidden" type="file" id="imageInput" accept=".png,image/png">
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel text-tools-upload-trigger" id="payloadPanel" role="button" tabindex="0">
+      <h2>文件 <span class="text-tools-upload-hint">(点击上传任意文件)</span></h2>
+      <div class="hide-info-drop-area" id="payloadArea">
+        <div class="text-tools-placeholder">点击上传文件<br>自动生成 PNG 图片</div>
+      </div>
+      <div class="hide-info-actions">
+        <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadFileLink">下载解出的文件</a>
+      </div>
+    </div>
+
+    <div class="text-tools-panel text-tools-upload-trigger" id="imagePanel" role="button" tabindex="0">
+      <h2>图片 <span class="text-tools-upload-hint">(点击上传 PNG 还原文件)</span></h2>
+      <div class="hide-info-inline-control">
+        <label for="decodedExtension">解出文件扩展名</label>
+        <input class="hide-info-text-input" type="text" id="decodedExtension" placeholder="自动识别">
+      </div>
+      <div class="hide-info-drop-area" id="imageArea">
+        <div class="text-tools-placeholder">等待生成图片<br>或点击上传 PNG 图片</div>
+      </div>
+      <div class="hide-info-actions">
+        <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadImageLink">下载 PNG 图片</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具的功能：把任何文件转换为 PNG 图片，可用于很多场景：</li>
+  <ol>
+    <li>隐蔽文件，以便传播</li>
+    <li>在只能传图的平台传输任意文件</li>
+    <li>请你开发更多场景</li>
+  </ol>
+  <li>本工具完全开源 <a href="https://github.com/guofei9987/hide_info" target="_blank">https://github.com/guofei9987/hide_info</a>，并使用 MIT 协议</li>
+  <li>本工具不提供加密、纠错、压缩等功能。如有需要，自行在加密你的文件，比如打个带密码的压缩包</li>
+  <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。</li>
+</ol>
+
+<script src="/a/app/tools.js"></script>
+<script type="module">
+  import init, { HideAsImg } from '/a/app/hide_info/pkg/wasm_hide_info.js';
+
+  const LARGE_FILE_BYTES = 200 * 1024 * 1024;
+
+  let wasmReady = false;
+  let hideAsImg = null;
+  let pendingAction = null;
+  let imageUrl = null;
+  let decodedUrl = null;
+  let decodedBlob = null;
+  let lastImageName = '';
+
+  const status = document.getElementById('status');
+  const payloadInput = document.getElementById('payloadInput');
+  const imageInput = document.getElementById('imageInput');
+  const payloadPanel = document.getElementById('payloadPanel');
+  const imagePanel = document.getElementById('imagePanel');
+  const payloadArea = document.getElementById('payloadArea');
+  const imageArea = document.getElementById('imageArea');
+  const downloadFileLink = document.getElementById('downloadFileLink');
+  const downloadImageLink = document.getElementById('downloadImageLink');
+  const decodedExtension = document.getElementById('decodedExtension');
+
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+  }
+
+  function setPlaceholder(container, text) {
+    container.innerHTML = '';
+    const placeholder = document.createElement('div');
+    placeholder.className = 'text-tools-placeholder';
+    placeholder.innerHTML = text;
+    container.appendChild(placeholder);
+  }
+
+  function setLoading(container, text) {
+    container.innerHTML = '';
+    const loading = document.createElement('div');
+    loading.className = 'text-tools-loading';
+    loading.textContent = text;
+    container.appendChild(loading);
+  }
+
+  function showFileSummary(container, title, file, note) {
+    container.innerHTML = '';
+    const meta = document.createElement('div');
+    meta.className = 'hide-info-meta';
+
+    const titleEl = document.createElement('div');
+    titleEl.className = 'hide-info-meta-title';
+    titleEl.textContent = title;
+    meta.appendChild(titleEl);
+
+    const nameEl = document.createElement('div');
+    nameEl.textContent = file.name || '未命名文件';
+    meta.appendChild(nameEl);
+
+    const sizeEl = document.createElement('div');
+    sizeEl.className = 'hide-info-meta-line';
+    sizeEl.textContent = formatBytes(file.size);
+    meta.appendChild(sizeEl);
+
+    if (note) {
+      const noteEl = document.createElement('div');
+      noteEl.className = 'hide-info-meta-line';
+      noteEl.textContent = note;
+      meta.appendChild(noteEl);
+    }
+
+    container.appendChild(meta);
+  }
+
+  function showImage(container, url, alt) {
+    container.innerHTML = '';
+    const img = new Image();
+    img.src = url;
+    img.alt = alt;
+    container.appendChild(img);
+  }
+
+  function hideLink(link) {
+    link.classList.add('text-tools-hidden');
+    link.removeAttribute('href');
+  }
+
+  function revokeImageUrl() {
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
+      imageUrl = null;
+    }
+  }
+
+  function revokeDecodedUrl() {
+    if (decodedUrl) {
+      URL.revokeObjectURL(decodedUrl);
+      decodedUrl = null;
+    }
+  }
+
+  function normalizeExtension(value) {
+    return (value || '')
+      .trim()
+      .replace(/^\.+/, '')
+      .replace(/[\\/]/g, '')
+      .replace(/\s+/g, '');
+  }
+
+  function removeLastExtension(name) {
+    const cleanName = (name || '').trim();
+    const index = cleanName.lastIndexOf('.');
+    if (index > 0) return cleanName.slice(0, index);
+    return cleanName;
+  }
+
+  function buildDecodedFileName(imageName) {
+    const defaultName = removeLastExtension(imageName) || 'decoded_file';
+    const extension = normalizeExtension(decodedExtension.value);
+    if (!extension) return defaultName;
+
+    const baseName = removeLastExtension(defaultName) || defaultName || 'decoded_file';
+    return baseName + '.' + extension;
+  }
+
+  function updateDecodedDownloadName() {
+    if (decodedBlob) {
+      downloadFileLink.download = buildDecodedFileName(lastImageName);
+      downloadFileLink.textContent = '下载文件（' + formatBytes(decodedBlob.size) + '）';
+    }
+  }
+
+  function warnIfLarge(file) {
+    if (file.size <= LARGE_FILE_BYTES) return true;
+    return window.confirm('文件很大，浏览器可能卡顿。是否继续？');
+  }
+
+  async function encodeFile(file) {
+    if (!file) return;
+    pendingAction = { type: 'encode', file: file };
+    hideLink(downloadFileLink);
+    decodedBlob = null;
+    revokeDecodedUrl();
+    showFileSummary(payloadArea, '已选择文件', file, '正在生成 PNG 图片...');
+
+    if (!wasmReady) {
+      setLoading(imageArea, '等待 WASM 初始化...');
+      updateStatus('正在初始化 WASM...');
+      return;
+    }
+
+    setLoading(imageArea, '生成中...');
+    hideLink(downloadImageLink);
+    updateStatus('正在生成图片...');
+
+    try {
+      const sourceBytes = new Uint8Array(await file.arrayBuffer());
+      const pngBytes = hideAsImg.encode(sourceBytes);
+      const blob = new Blob([pngBytes], { type: 'image/png' });
+      revokeImageUrl();
+      imageUrl = URL.createObjectURL(blob);
+
+      showImage(imageArea, imageUrl, '生成的 PNG 图片');
+      downloadImageLink.href = imageUrl;
+      downloadImageLink.download = (file.name || 'payload') + '.png';
+      downloadImageLink.textContent = '下载 PNG 图片（' + formatBytes(blob.size) + '）';
+      downloadImageLink.classList.remove('text-tools-hidden');
+      updateStatus('图片已生成');
+    } catch (error) {
+      console.error('Encode error:', error);
+      setPlaceholder(imageArea, '生成失败：' + (error && error.message ? error.message : error));
+      updateStatus('生成失败', true);
+    }
+  }
+
+  async function decodeImage(file) {
+    if (!file) return;
+    pendingAction = { type: 'decode', file: file };
+    hideLink(downloadImageLink);
+    revokeImageUrl();
+    lastImageName = file.name || '';
+
+    if (!wasmReady) {
+      setLoading(payloadArea, '等待 WASM 初始化...');
+      updateStatus('正在初始化 WASM...');
+      return;
+    }
+
+    revokeImageUrl();
+    imageUrl = URL.createObjectURL(file);
+    showImage(imageArea, imageUrl, '待还原的 PNG 图片');
+    setLoading(payloadArea, '还原中...');
+    hideLink(downloadFileLink);
+    updateStatus('正在还原文件...');
+
+    try {
+      const imageBytes = new Uint8Array(await file.arrayBuffer());
+      const decodedBytes = hideAsImg.decode(imageBytes);
+      decodedBlob = new Blob([decodedBytes]);
+      revokeDecodedUrl();
+      decodedUrl = URL.createObjectURL(decodedBlob);
+
+      const decodedFile = new File([decodedBlob], buildDecodedFileName(lastImageName));
+      showFileSummary(payloadArea, '已还原文件', decodedFile, '可下载到本地');
+      downloadFileLink.href = decodedUrl;
+      updateDecodedDownloadName();
+      downloadFileLink.classList.remove('text-tools-hidden');
+      updateStatus('文件已还原');
+    } catch (error) {
+      console.error('Decode error:', error);
+      decodedBlob = null;
+      setPlaceholder(payloadArea, '还原失败：请确认上传的是本工具生成的 PNG 图片');
+      updateStatus('还原失败', true);
+    }
+  }
+
+  async function initWasm() {
+    try {
+      await init();
+      hideAsImg = new HideAsImg();
+      wasmReady = true;
+      updateStatus('WASM 已就绪');
+
+      if (pendingAction) {
+        if (pendingAction.type === 'encode') {
+          encodeFile(pendingAction.file);
+        } else {
+          decodeImage(pendingAction.file);
+        }
+      }
+    } catch (error) {
+      console.error('WASM init error:', error);
+      updateStatus('WASM 初始化失败', true);
+    }
+  }
+
+  function bindUploadPanel(panel, input) {
+    panel.addEventListener('click', (event) => {
+      if (event.target.closest('a, input, button, label')) return;
+      input.click();
+    });
+
+    panel.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        input.click();
+      }
+    });
+  }
+
+  bindUploadPanel(payloadPanel, payloadInput);
+  bindUploadPanel(imagePanel, imageInput);
+
+  payloadInput.addEventListener('change', () => {
+    const file = payloadInput.files[0];
+    if (!file) return;
+    if (!warnIfLarge(file)) {
+      payloadInput.value = '';
+      setPlaceholder(payloadArea, '点击上传文件<br>自动生成 PNG 图片');
+      return;
+    }
+    encodeFile(file);
+  });
+
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
+    if (!file) return;
+    decodeImage(file);
+  });
+
+  decodedExtension.addEventListener('input', updateDecodedDownloadName);
+
+  window.addEventListener('beforeunload', () => {
+    revokeImageUrl();
+    revokeDecodedUrl();
+  });
+
+  initWasm();
+</script>
