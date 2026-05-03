@@ -638,6 +638,15 @@ for(let key in data){
 
 - Node.js：让 JavaScript 能在浏览器外运行的环境
 - npm：给 Node / JavaScript 项目安装和管理“别人写好的包”的工具
+    - [https://www.npmjs.com/](https://www.npmjs.com/)
+- jsDelivr： 一个免费开源的 CDN 聚合平台，它包含 npm 包、Github 仓库、WordPress 插件
+    - [https://www.jsdelivr.com](https://www.jsdelivr.com) 是官网、文档、介绍页
+    - cdn.jsdelivr.net 是真正的 CDN 网络
+        - npm包： https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js
+        - github 的文件：https://cdn.jsdelivr.net/gh/guofei9987/scikit-opt@master/README.md
+
+
+
 
 
 ```shell
@@ -653,5 +662,11 @@ npm install qrcode
 
 
 
-## 
+
+
+
+
+
+
+
 
