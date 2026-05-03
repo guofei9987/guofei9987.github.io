@@ -1,5 +1,10 @@
 [
   {
+    "name": "🎨 二维码传文件",
+    "url": "/os/screen_drop.html",
+    "cat": "tool"
+  },
+  {
     "name": "🎨 高亮图片生成器",
     "url": "/os/sdr2hdr.html",
     "cat": "tool"
