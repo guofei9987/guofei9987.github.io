@@ -66,7 +66,7 @@ order: 713
 <div class="text-tools-app" id="mirageTankApp">
   <div class="text-tools-header">
     <h1>幻影坦克</h1>
-    <div class="text-tools-status" id="status">正在初始化 WASM...</div>
+    <div class="text-tools-status" id="status">正在准备工具...</div>
   </div>
 
   <input class="text-tools-hidden" type="file" id="colorInput" accept="image/*">
@@ -259,8 +259,8 @@ order: 713
     const version = ++renderVersion;
 
     if (!wasmReady) {
-      setOutputPlaceholders('等待 WASM 初始化');
-      updateStatus('正在初始化 WASM...');
+      setOutputPlaceholders('正在准备工具');
+      updateStatus('正在准备工具...');
       return;
     }
 
@@ -352,10 +352,10 @@ order: 713
 
   init().then(() => {
     wasmReady = true;
-    updateStatus('WASM 已就绪');
+    updateStatus('工具已就绪');
     renderMirageTank();
   }).catch((error) => {
     console.error('WASM init error:', error);
-    updateStatus('WASM 初始化失败', true);
+    updateStatus('初始化失败，请刷新后重试', true);
   });
 </script>

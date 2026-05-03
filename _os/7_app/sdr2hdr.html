@@ -9,7 +9,7 @@ order: 711
 <div class="text-tools-app" id="text-tools-app">
   <div class="text-tools-header">
     <h1>高亮图像转换器</h1>
-    <div class="text-tools-status" id="text-tools-status">正在初始化 WASM...</div>
+    <div class="text-tools-status" id="text-tools-status">正在准备工具...</div>
   </div>
 
   <input class="text-tools-hidden" type="file" id="text-tools-image-input" accept=".png,.jpg,.jpeg">
@@ -107,14 +107,14 @@ order: 711
     try {
       await init();
       wasmReady = true;
-      setStatus('WASM 已就绪');
+      setStatus('工具已就绪');
       if (imageInput.files[0]) {
         convertCurrentImage();
       }
     } catch (error) {
       console.error('Failed to initialize WASM:', error);
-      setStatus('WASM 初始化失败');
-      convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">WASM 初始化失败，请刷新后重试。</div>';
+      setStatus('初始化失败，请刷新后重试');
+      convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">初始化失败，请刷新后重试。</div>';
     }
   }
 
@@ -133,7 +133,7 @@ order: 711
     reader.readAsDataURL(file);
 
     if (!wasmReady) {
-      convertedImageContainer.innerHTML = '<div class="text-tools-loading">初始化 WASM...</div>';
+      convertedImageContainer.innerHTML = '<div class="text-tools-loading">正在准备工具...</div>';
       return;
     }
 

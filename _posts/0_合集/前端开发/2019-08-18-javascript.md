@@ -611,7 +611,7 @@ xhr.send(postData);
 ## Json
 把JSON当做文本导入，然后用 `JSON.parse()` 转成 JavaScript 对象
 
-```JavaScript
+```javascript
 var text = '{"employees":[{"firstName":"Bill","lastName":"Gates" },{"firstName":"Steve","lastName":"Jobs" },{"firstName":"Elon","lastName":"Musk" }]}';
 
 obj = JSON.parse(text);
@@ -634,5 +634,24 @@ for(let key in data){
 }
 ```
 
+## node.js 和 npm
 
+- Node.js：让 JavaScript 能在浏览器外运行的环境
+- npm：给 Node / JavaScript 项目安装和管理“别人写好的包”的工具
+
+
+```shell
+# 执行一个 js 脚本
+node app.js
+
+# 安装一个包，以及它的所有上游依赖
+npm install qrcode
+```
+
+
+
+
+
+
+## 
 

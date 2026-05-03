@@ -11,7 +11,7 @@ order: 712
 <div class="text-tools-app" id="hideAsImgApp">
   <div class="text-tools-header">
     <h1>化物为图</h1>
-    <div class="text-tools-status" id="status">正在初始化 WASM...</div>
+    <div class="text-tools-status" id="status">正在准备工具...</div>
   </div>
 
   <input class="text-tools-hidden" type="file" id="payloadInput">
@@ -213,8 +213,8 @@ order: 712
     showFileSummary(payloadArea, '已选择文件', file, '正在生成 PNG 图片...');
 
     if (!wasmReady) {
-      setLoading(imageArea, '等待 WASM 初始化...');
-      updateStatus('正在初始化 WASM...');
+      setLoading(imageArea, '正在准备工具...');
+      updateStatus('正在准备工具...');
       return;
     }
 
@@ -250,8 +250,8 @@ order: 712
     lastImageName = file.name || '';
 
     if (!wasmReady) {
-      setLoading(payloadArea, '等待 WASM 初始化...');
-      updateStatus('正在初始化 WASM...');
+      setLoading(payloadArea, '正在准备工具...');
+      updateStatus('正在准备工具...');
       return;
     }
 
@@ -288,7 +288,7 @@ order: 712
       await init();
       hideAsImg = new HideAsImg();
       wasmReady = true;
-      updateStatus('WASM 已就绪');
+      updateStatus('工具已就绪');
 
       if (pendingAction) {
         if (pendingAction.type === 'encode') {
@@ -299,7 +299,7 @@ order: 712
       }
     } catch (error) {
       console.error('WASM init error:', error);
-      updateStatus('WASM 初始化失败', true);
+      updateStatus('初始化失败，请刷新后重试', true);
     }
   }
 
