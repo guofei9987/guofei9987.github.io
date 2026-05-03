@@ -15,10 +15,6 @@ order: 732
   </div>
 
   <div class="text-tools-controls">
-    <div class="text-tools-control-group">
-      <span class="text-tools-label">文件格式:</span>
-      <input type="text" id="fileFormat" value="txt" placeholder="txt" style="padding: 6px 10px; border: 1px solid var(--tools-border); border-radius: 6px; width: 80px;">
-    </div>
     <button class="text-tools-btn text-tools-btn-primary" id="clearBtn">清除</button>
   </div>
 
@@ -28,6 +24,10 @@ order: 732
       <textarea class="text-tools-textarea" id="base64Text" placeholder="粘贴Base64编码...&#10;&#10;示例:&#10;SGVsbG8gV29ybGQh"></textarea>
       <div style="margin-top: 12px; display: flex; gap: 12px; align-items: center;">
         <button class="text-tools-btn text-tools-btn-primary" id="downloadFileBtn" disabled>下载文件</button>
+        <div class="text-tools-control-group" style="margin: 0;">
+          <span class="text-tools-label">文件格式:</span>
+          <input type="text" id="fileFormat" value="txt" placeholder="txt" style="padding: 6px 10px; border: 1px solid var(--tools-border); border-radius: 6px; width: 80px;">
+        </div>
         <span class="text-tools-success" id="downloadSuccess" style="display: none;">可下载</span>
       </div>
     </div>
@@ -259,6 +259,7 @@ order: 732
       currentFileData = null;
       currentFileBlob = null;
       updateBase64Size();
+      fileInput.value = '';  // 清空文件输入，允许重新上传相同文件
     }]
   );
 

@@ -293,7 +293,14 @@ order: 713
   (async () => {
     await init();
     wasmHelper.init(() => {
-      renderMirageTank();
+      // WASM准备好后，检查是否有输入图片
+      if (colorBytes || hiddenBytes) {
+        renderMirageTank();
+      } else {
+        // 没有图片，同步更新输出区域状态
+        setOutputPlaceholders('等待两张输入图片');
+        wasmHelper.updateStatus('等待上传图片...');
+      }
     });
   })();
 </script>

@@ -14,16 +14,6 @@ order: 711
 
   <input class="text-tools-hidden" type="file" id="text-tools-image-input" accept=".png,.jpg,.jpeg">
 
-  <div class="text-tools-panel text-tools-controls">
-    <div class="text-tools-control-group">
-      <span class="text-tools-label">HDR 类型:</span>
-      <div class="text-tools-radio-group" role="radiogroup" aria-label="HDR 类型">
-        <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="1" checked> Type 1</label>
-        <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="2"> Type 2</label>
-      </div>
-    </div>
-  </div>
-
   <div class="text-tools-container">
     <div class="text-tools-panel text-tools-upload-trigger" id="text-tools-upload-trigger">
       <h2>原始图像 <span class="text-tools-upload-hint">(点击上传 PNG/JPG 文件)</span></h2>
@@ -38,11 +28,20 @@ order: 711
         <div class="text-tools-placeholder">等待转换...</div>
       </div>
       <div class="text-tools-output-controls">
-        <div class="text-tools-control-group">
-          <span class="text-tools-label">输出格式:</span>
-          <div class="text-tools-radio-group" role="radiogroup" aria-label="输出格式">
-            <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
-            <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="text-tools-control-group" style="margin: 0; display: flex; align-items: center; gap: 12px;">
+            <span class="text-tools-label" style="margin: 0;">输出格式:</span>
+            <div class="text-tools-radio-group" role="radiogroup" aria-label="输出格式" style="margin: 0;">
+              <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="png" checked> PNG</label>
+              <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrOutputFormat" value="jpg"> JPG</label>
+            </div>
+          </div>
+          <div class="text-tools-control-group" style="margin: 0; display: flex; align-items: center; gap: 12px;">
+            <span class="text-tools-label" style="margin: 0;">HDR 类型:</span>
+            <div class="text-tools-radio-group" role="radiogroup" aria-label="HDR 类型" style="margin: 0;">
+              <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="1" checked> Type 1</label>
+              <label class="text-tools-radio-label"><input type="radio" name="sdr2hdrIccType" value="2"> Type 2</label>
+            </div>
           </div>
         </div>
         <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="text-tools-download-link">下载 HDR 图像</a>
