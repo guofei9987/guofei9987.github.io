@@ -9,6 +9,6 @@ order: 709
 独立网页工具：[https://www.guofei.site/ScreenDrop/sender.html](https://www.guofei.site/ScreenDrop/sender.html)
 
 <iframe
-    src="/screendrop/sender.html"
+    src="/ScreenDrop/sender.html"
     style="width:100%;height:900px;border:none;">
 </iframe>
