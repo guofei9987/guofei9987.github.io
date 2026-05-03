@@ -76,11 +76,9 @@ order: 711
     </li>
 </ol>
 
+<script src="/a/app/tools.js"></script>
 <script type="module">
   import init, { convert_to_hdr } from '/a/app/sdr2hdr/pkg/wasm_sdr2hdr.js';
-
-  let wasmReady = false;
-  let currentDownloadUrl = null;
 
   const imageInput = document.getElementById('text-tools-image-input');
   const uploadTrigger = document.getElementById('text-tools-upload-trigger');
@@ -89,56 +87,35 @@ order: 711
   const downloadLink = document.getElementById('text-tools-download-link');
   const status = document.getElementById('text-tools-status');
 
-  function setStatus(text) {
-    status.textContent = text;
-  }
+  const wasmHelper = new WASMHelper(status);
+  const imageHelper = new ImageHelper();
 
   function resetOutput() {
-    convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">等待转换...</div>';
-    downloadLink.classList.add('text-tools-hidden');
-    downloadLink.removeAttribute('href');
-    if (currentDownloadUrl) {
-      URL.revokeObjectURL(currentDownloadUrl);
-      currentDownloadUrl = null;
-    }
-  }
-
-  async function initWasm() {
-    try {
-      await init();
-      wasmReady = true;
-      setStatus('工具已就绪');
-      if (imageInput.files[0]) {
-        convertCurrentImage();
-      }
-    } catch (error) {
-      console.error('Failed to initialize WASM:', error);
-      setStatus('初始化失败，请刷新后重试');
-      convertedImageContainer.innerHTML = '<div class="text-tools-placeholder">初始化失败，请刷新后重试。</div>';
-    }
+    imageHelper.showPlaceholder(convertedImageContainer, '等待转换...');
+    imageHelper.disableDownloadLink(downloadLink);
   }
 
   async function convertCurrentImage() {
     const file = imageInput.files[0];
     if (!file) {
-      originalImageContainer.innerHTML = '<div class="text-tools-placeholder">请上传图像</div>';
+      imageHelper.showPlaceholder(originalImageContainer, '请上传图像');
       resetOutput();
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      originalImageContainer.innerHTML = `<img src="${event.target.result}" alt="Original Image">`;
-    };
-    reader.readAsDataURL(file);
+    const fileReader = TextToolsUtils.createFileReader();
+    fileReader.readAsDataURL(file).then((result) => {
+      originalImageContainer.innerHTML = `<img src="${result}" alt="Original Image">`;
+    });
 
-    if (!wasmReady) {
-      convertedImageContainer.innerHTML = '<div class="text-tools-loading">正在准备工具...</div>';
+    if (!wasmHelper.isReady()) {
+      imageHelper.showLoading(convertedImageContainer, '正在准备工具...');
+      wasmHelper.queueAction(() => convertCurrentImage());
       return;
     }
 
-    convertedImageContainer.innerHTML = '<div class="text-tools-loading">转换中...</div>';
-    downloadLink.classList.add('text-tools-hidden');
+    imageHelper.showLoading(convertedImageContainer, '转换中...');
+    imageHelper.disableDownloadLink(downloadLink);
 
     const iccType = Number.parseInt(document.querySelector('input[name="sdr2hdrIccType"]:checked').value, 10);
     const outputFormat = document.querySelector('input[name="sdr2hdrOutputFormat"]:checked').value;
@@ -149,49 +126,48 @@ order: 711
       const mimeType = outputFormat === 'png' ? 'image/png' : 'image/jpeg';
       const blob = new Blob([hdrData], { type: mimeType });
 
-      if (currentDownloadUrl) {
-        URL.revokeObjectURL(currentDownloadUrl);
-      }
-      currentDownloadUrl = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(blob);
+      imageHelper.addObjectURL(url);
 
       const img = new Image();
       img.onload = () => {
-        convertedImageContainer.innerHTML = `<img src="${currentDownloadUrl}" alt="Converted HDR Image">`;
+        convertedImageContainer.innerHTML = `<img src="${url}" alt="Converted HDR Image">`;
       };
-      img.src = currentDownloadUrl;
+      img.src = url;
 
-      downloadLink.href = currentDownloadUrl;
-      downloadLink.download = `hdr_image.${outputFormat}`;
-      downloadLink.classList.remove('text-tools-hidden');
+      imageHelper.enableDownloadLink(downloadLink, url, `hdr_image.${outputFormat}`, blob.size);
       downloadLink.textContent = `下载 HDR 图像 (.${outputFormat.toUpperCase()})`;
-      setStatus('转换完成');
     } catch (error) {
-      convertedImageContainer.innerHTML = `<div class="text-tools-placeholder">转换失败: ${error}</div>`;
-      setStatus('转换失败');
+      imageHelper.showPlaceholder(convertedImageContainer, `转换失败: ${error}`);
+      wasmHelper.updateStatus('转换失败', true);
       console.error('Conversion error:', error);
     }
+  }
+
+  function validateAndConvert(file) {
+    const validTypes = ['image/png', 'image/jpeg'];
+    const validExtensions = ['.png', '.jpg', '.jpeg'];
+    const fileExtension = '.' + file.name.toLowerCase().split('.').pop();
+
+    if (!validTypes.includes(file.type) && !validExtensions.some(ext => fileExtension === ext)) {
+      alert('请选择 PNG 或 JPG/JPEG 格式的图像文件');
+      imageInput.value = '';
+      imageHelper.showPlaceholder(originalImageContainer, '点击上传图像<br>支持 PNG、JPG 格式');
+      resetOutput();
+      return;
+    }
+
+    convertCurrentImage();
   }
 
   uploadTrigger.addEventListener('click', () => {
     imageInput.click();
   });
 
-  imageInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
     if (file) {
-      const validTypes = ['image/png', 'image/jpeg'];
-      const validExtensions = ['.png', '.jpg', '.jpeg'];
-      const fileExtension = '.' + file.name.toLowerCase().split('.').pop();
-
-      if (!validTypes.includes(file.type) && !validExtensions.some(ext => fileExtension === ext)) {
-        alert('请选择 PNG 或 JPG/JPEG 格式的图像文件');
-        imageInput.value = '';
-        originalImageContainer.innerHTML = '<div class="text-tools-placeholder">点击上传图像<br>支持 PNG、JPG 格式</div>';
-        resetOutput();
-        return;
-      }
-
-      convertCurrentImage();
+      validateAndConvert(file);
     }
   });
 
@@ -203,5 +179,13 @@ order: 711
     });
   });
 
-  initWasm();
+  // 异步初始化WASM
+  (async () => {
+    await init();
+    wasmHelper.init(() => {
+      if (imageInput.files[0]) {
+        convertCurrentImage();
+      }
+    });
+  })();
 </script>

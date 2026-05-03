@@ -67,14 +67,6 @@ order: 712
 
   const LARGE_FILE_BYTES = 200 * 1024 * 1024;
 
-  let wasmReady = false;
-  let hideAsImg = null;
-  let pendingAction = null;
-  let imageUrl = null;
-  let decodedUrl = null;
-  let decodedBlob = null;
-  let lastImageName = '';
-
   const status = document.getElementById('status');
   const payloadInput = document.getElementById('payloadInput');
   const imageInput = document.getElementById('imageInput');
@@ -86,87 +78,12 @@ order: 712
   const downloadImageLink = document.getElementById('downloadImageLink');
   const decodedExtension = document.getElementById('decodedExtension');
 
-  function updateStatus(text, isError = false) {
-    TextToolsUtils.updateStatus(status, text, isError);
-  }
+  let hideAsImg = null;
+  let lastImageName = '';
+  let decodedBlob = null;
 
-  function formatBytes(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
-    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
-  }
-
-  function setPlaceholder(container, text) {
-    container.innerHTML = '';
-    const placeholder = document.createElement('div');
-    placeholder.className = 'text-tools-placeholder';
-    placeholder.innerHTML = text;
-    container.appendChild(placeholder);
-  }
-
-  function setLoading(container, text) {
-    container.innerHTML = '';
-    const loading = document.createElement('div');
-    loading.className = 'text-tools-loading';
-    loading.textContent = text;
-    container.appendChild(loading);
-  }
-
-  function showFileSummary(container, title, file, note) {
-    container.innerHTML = '';
-    const meta = document.createElement('div');
-    meta.className = 'text-tools-meta';
-
-    const titleEl = document.createElement('div');
-    titleEl.className = 'text-tools-meta-title';
-    titleEl.textContent = title;
-    meta.appendChild(titleEl);
-
-    const nameEl = document.createElement('div');
-    nameEl.textContent = file.name || '未命名文件';
-    meta.appendChild(nameEl);
-
-    const sizeEl = document.createElement('div');
-    sizeEl.className = 'text-tools-meta-detail';
-    sizeEl.textContent = formatBytes(file.size);
-    meta.appendChild(sizeEl);
-
-    if (note) {
-      const noteEl = document.createElement('div');
-      noteEl.className = 'text-tools-meta-detail';
-      noteEl.textContent = note;
-      meta.appendChild(noteEl);
-    }
-
-    container.appendChild(meta);
-  }
-
-  function showImage(container, url, alt) {
-    container.innerHTML = '';
-    const img = new Image();
-    img.src = url;
-    img.alt = alt;
-    container.appendChild(img);
-  }
-
-  function hideLink(link) {
-    link.classList.add('text-tools-hidden');
-    link.removeAttribute('href');
-  }
-
-  function revokeImageUrl() {
-    if (imageUrl) {
-      URL.revokeObjectURL(imageUrl);
-      imageUrl = null;
-    }
-  }
-
-  function revokeDecodedUrl() {
-    if (decodedUrl) {
-      URL.revokeObjectURL(decodedUrl);
-      decodedUrl = null;
-    }
-  }
+  const wasmHelper = new WASMHelper(status);
+  const imageHelper = new ImageHelper();
 
   function normalizeExtension(value) {
     return (value || '')
@@ -192,13 +109,6 @@ order: 712
     return baseName + '.' + extension;
   }
 
-  function updateDecodedDownloadName() {
-    if (decodedBlob) {
-      downloadFileLink.download = buildDecodedFileName(lastImageName);
-      downloadFileLink.textContent = '下载文件（' + formatBytes(decodedBlob.size) + '）';
-    }
-  }
-
   function warnIfLarge(file) {
     if (file.size <= LARGE_FILE_BYTES) return true;
     return window.confirm('文件很大，浏览器可能卡顿。是否继续？');
@@ -206,103 +116,82 @@ order: 712
 
   async function encodeFile(file) {
     if (!file) return;
-    pendingAction = { type: 'encode', file: file };
-    hideLink(downloadFileLink);
+    imageHelper.disableDownloadLink(downloadFileLink);
     decodedBlob = null;
-    revokeDecodedUrl();
-    showFileSummary(payloadArea, '已选择文件', file, '正在生成 PNG 图片...');
+    imageHelper.showFileSummary(payloadArea, '已选择文件', file, '正在生成 PNG 图片...');
 
-    if (!wasmReady) {
-      setLoading(imageArea, '正在准备工具...');
-      updateStatus('正在准备工具...');
+    if (!wasmHelper.isReady()) {
+      imageHelper.showLoading(imageArea, '正在准备工具...');
+      wasmHelper.queueAction(() => encodeFile(file));
       return;
     }
 
-    setLoading(imageArea, '生成中...');
-    hideLink(downloadImageLink);
-    updateStatus('正在生成图片...');
+    imageHelper.showLoading(imageArea, '生成中...');
+    imageHelper.disableDownloadLink(downloadImageLink);
 
     try {
       const sourceBytes = new Uint8Array(await file.arrayBuffer());
       const pngBytes = hideAsImg.encode(sourceBytes);
       const blob = new Blob([pngBytes], { type: 'image/png' });
-      revokeImageUrl();
-      imageUrl = URL.createObjectURL(blob);
+      const url = URL.createObjectURL(blob);
+      imageHelper.addObjectURL(url);
 
-      showImage(imageArea, imageUrl, '生成的 PNG 图片');
-      downloadImageLink.href = imageUrl;
-      downloadImageLink.download = (file.name || 'payload') + '.png';
-      downloadImageLink.textContent = '下载 PNG 图片（' + formatBytes(blob.size) + '）';
-      downloadImageLink.classList.remove('text-tools-hidden');
-      updateStatus('图片已生成');
+      imageHelper.showImage(imageArea, url, { alt: '生成的 PNG 图片' });
+      imageHelper.enableDownloadLink(downloadImageLink, url, (file.name || 'payload') + '.png', blob.size);
+      wasmHelper.updateStatus('图片已生成');
     } catch (error) {
       console.error('Encode error:', error);
-      setPlaceholder(imageArea, '生成失败：' + (error && error.message ? error.message : error));
-      updateStatus('生成失败', true);
+      imageHelper.showPlaceholder(imageArea, '生成失败：' + (error && error.message ? error.message : error));
+      wasmHelper.updateStatus('生成失败', true);
     }
   }
 
   async function decodeImage(file) {
     if (!file) return;
-    pendingAction = { type: 'decode', file: file };
-    hideLink(downloadImageLink);
-    revokeImageUrl();
+    imageHelper.disableDownloadLink(downloadImageLink);
     lastImageName = file.name || '';
 
-    if (!wasmReady) {
-      setLoading(payloadArea, '正在准备工具...');
-      updateStatus('正在准备工具...');
+    if (!wasmHelper.isReady()) {
+      imageHelper.showLoading(payloadArea, '正在准备工具...');
+      wasmHelper.queueAction(() => decodeImage(file));
       return;
     }
 
-    revokeImageUrl();
-    imageUrl = URL.createObjectURL(file);
-    showImage(imageArea, imageUrl, '待还原的 PNG 图片');
-    setLoading(payloadArea, '还原中...');
-    hideLink(downloadFileLink);
-    updateStatus('正在还原文件...');
+    const url = URL.createObjectURL(file);
+    imageHelper.addObjectURL(url);
+    imageHelper.showImage(imageArea, url, { alt: '待还原的 PNG 图片' });
+    imageHelper.showLoading(payloadArea, '还原中...');
+    imageHelper.disableDownloadLink(downloadFileLink);
 
     try {
       const imageBytes = new Uint8Array(await file.arrayBuffer());
       const decodedBytes = hideAsImg.decode(imageBytes);
       decodedBlob = new Blob([decodedBytes]);
-      revokeDecodedUrl();
-      decodedUrl = URL.createObjectURL(decodedBlob);
+      const decodedUrl = URL.createObjectURL(decodedBlob);
+      imageHelper.addObjectURL(decodedUrl);
 
       const decodedFile = new File([decodedBlob], buildDecodedFileName(lastImageName));
-      showFileSummary(payloadArea, '已还原文件', decodedFile, '可下载到本地');
-      downloadFileLink.href = decodedUrl;
-      updateDecodedDownloadName();
-      downloadFileLink.classList.remove('text-tools-hidden');
-      updateStatus('文件已还原');
+      imageHelper.showFileSummary(payloadArea, '已还原文件', decodedFile, '可下载到本地');
+      imageHelper.enableDownloadLink(downloadFileLink, decodedUrl, buildDecodedFileName(lastImageName), decodedBlob.size);
+      wasmHelper.updateStatus('文件已还原');
     } catch (error) {
       console.error('Decode error:', error);
       decodedBlob = null;
-      setPlaceholder(payloadArea, '还原失败：请确认上传的是本工具生成的 PNG 图片');
-      updateStatus('还原失败', true);
+      imageHelper.showPlaceholder(payloadArea, '还原失败：请确认上传的是本工具生成的 PNG 图片');
+      imageHelper.updateStatus('还原失败', true);
     }
   }
 
-  async function initWasm() {
-    try {
-      await init();
-      hideAsImg = new HideAsImg();
-      wasmReady = true;
-      updateStatus('工具已就绪');
+  // 异步初始化WASM
+  (async () => {
+    await init();
+    hideAsImg = new HideAsImg();
+    wasmHelper.init(() => {
+      // WASM初始化完成后的回调，已在类中处理队列
+    });
+  })();
 
-      if (pendingAction) {
-        if (pendingAction.type === 'encode') {
-          encodeFile(pendingAction.file);
-        } else {
-          decodeImage(pendingAction.file);
-        }
-      }
-    } catch (error) {
-      console.error('WASM init error:', error);
-      updateStatus('初始化失败，请刷新后重试', true);
-    }
-  }
-
+  // 上传处理
   function bindUploadPanel(panel, input) {
     panel.addEventListener('click', (event) => {
       if (event.target.closest('a, input, button, label')) return;
@@ -325,7 +214,7 @@ order: 712
     if (!file) return;
     if (!warnIfLarge(file)) {
       payloadInput.value = '';
-      setPlaceholder(payloadArea, '点击上传文件');
+      imageHelper.showPlaceholder(payloadArea, '点击上传文件');
       return;
     }
     encodeFile(file);
@@ -337,12 +226,10 @@ order: 712
     decodeImage(file);
   });
 
-  decodedExtension.addEventListener('input', updateDecodedDownloadName);
-
-  window.addEventListener('beforeunload', () => {
-    revokeImageUrl();
-    revokeDecodedUrl();
+  decodedExtension.addEventListener('input', () => {
+    if (decodedBlob) {
+      downloadFileLink.download = buildDecodedFileName(lastImageName);
+      downloadFileLink.textContent = '下载文件（' + TextToolsUtils.formatBytes(decodedBlob.size) + '）';
+    }
   });
-
-  initWasm();
 </script>

@@ -142,12 +142,8 @@ order: 713
 <script type="module">
   import init, { mirage_tank_from_bytes } from '/a/app/hide_info/pkg/wasm_hide_info.js';
 
-  let wasmReady = false;
   let colorBytes = null;
   let hiddenBytes = null;
-  let colorUrl = null;
-  let hiddenUrl = null;
-  let outputUrl = null;
   let renderVersion = 0;
 
   const status = document.getElementById('status');
@@ -167,54 +163,13 @@ order: 713
   const downloadLink = document.getElementById('downloadLink');
   const debounce = TextToolsUtils.createDebounce();
 
-  function updateStatus(text, isError = false) {
-    TextToolsUtils.updateStatus(status, text, isError);
-  }
-
-  function formatBytes(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
-    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
-  }
+  const wasmHelper = new WASMHelper(status);
+  const imageHelper = new ImageHelper();
 
   function clampB(value) {
     const number = Number.parseFloat(value);
     if (!Number.isFinite(number)) return 0.5;
     return Math.min(1, Math.max(0, number));
-  }
-
-  function setPlaceholder(container, text) {
-    container.innerHTML = '';
-    const placeholder = document.createElement('div');
-    placeholder.className = 'text-tools-placeholder';
-    placeholder.textContent = text;
-    container.appendChild(placeholder);
-  }
-
-  function setLoading(container, text) {
-    container.innerHTML = '';
-    const loading = document.createElement('div');
-    loading.className = 'text-tools-loading';
-    loading.textContent = text;
-    container.appendChild(loading);
-  }
-
-  function showImage(container, url, alt, className) {
-    container.innerHTML = '';
-    const img = new Image();
-    img.src = url;
-    img.alt = alt;
-    if (className) img.className = className;
-    container.appendChild(img);
-  }
-
-  function hideDownload() {
-    downloadLink.classList.add('text-tools-hidden');
-    downloadLink.removeAttribute('href');
-  }
-
-  function revokeUrl(url) {
-    if (url) URL.revokeObjectURL(url);
   }
 
   function isImageFile(file) {
@@ -224,57 +179,52 @@ order: 713
   async function readImage(file, kind) {
     if (!file) return;
     if (!isImageFile(file)) {
-      updateStatus('请选择图片文件', true);
+      wasmHelper.updateStatus('请选择图片文件', true);
       return;
     }
 
     const bytes = new Uint8Array(await file.arrayBuffer());
     const url = URL.createObjectURL(file);
+    imageHelper.addObjectURL(url);
 
     if (kind === 'color') {
-      revokeUrl(colorUrl);
-      colorUrl = url;
+      imageHelper.showImage(colorStage, url, { alt: '白色背景下显示的彩图' });
+      colorMeta.textContent = file.name + '（' + TextToolsUtils.formatBytes(file.size) + '）';
       colorBytes = bytes;
-      showImage(colorStage, colorUrl, '白色背景下显示的彩图');
-      colorMeta.textContent = file.name + '（' + formatBytes(file.size) + '）';
     } else {
-      revokeUrl(hiddenUrl);
-      hiddenUrl = url;
+      imageHelper.showImage(hiddenStage, url, { alt: '黑色背景下显示的里图', className: 'hide-info-grayscale' });
+      hiddenMeta.textContent = file.name + '（' + TextToolsUtils.formatBytes(file.size) + '）';
       hiddenBytes = bytes;
-      showImage(hiddenStage, hiddenUrl, '黑色背景下显示的里图', 'hide-info-grayscale');
-      hiddenMeta.textContent = file.name + '（' + formatBytes(file.size) + '）';
     }
 
     debouncedRender();
   }
 
   function setOutputPlaceholders(text) {
-    setPlaceholder(outputStage, text);
-    setPlaceholder(whitePreview, text);
-    setPlaceholder(blackPreview, text);
-    hideDownload();
+    imageHelper.showPlaceholder(outputStage, text);
+    imageHelper.showPlaceholder(whitePreview, text);
+    imageHelper.showPlaceholder(blackPreview, text);
+    imageHelper.disableDownloadLink(downloadLink);
   }
 
   function renderMirageTank() {
     const version = ++renderVersion;
 
-    if (!wasmReady) {
+    if (!wasmHelper.isReady()) {
       setOutputPlaceholders('正在准备工具');
-      updateStatus('正在准备工具...');
       return;
     }
 
     if (!colorBytes || !hiddenBytes) {
       setOutputPlaceholders('等待两张输入图片');
-      updateStatus('等待上传图片...');
+      wasmHelper.updateStatus('等待上传图片...');
       return;
     }
 
-    setLoading(outputStage, '生成中...');
-    setLoading(whitePreview, '生成中...');
-    setLoading(blackPreview, '生成中...');
-    hideDownload();
-    updateStatus('正在生成...');
+    imageHelper.showLoading(outputStage, '生成中...');
+    imageHelper.showLoading(whitePreview, '生成中...');
+    imageHelper.showLoading(blackPreview, '生成中...');
+    imageHelper.disableDownloadLink(downloadLink);
 
     window.setTimeout(() => {
       try {
@@ -283,23 +233,18 @@ order: 713
         if (version !== renderVersion) return;
 
         const blob = new Blob([pngBytes], { type: 'image/png' });
-        const nextOutputUrl = URL.createObjectURL(blob);
-        revokeUrl(outputUrl);
-        outputUrl = nextOutputUrl;
+        const url = URL.createObjectURL(blob);
+        imageHelper.addObjectURL(url);
 
-        showImage(outputStage, outputUrl, '幻影坦克输出图像');
-        showImage(whitePreview, outputUrl, '白色背景预览');
-        showImage(blackPreview, outputUrl, '黑色背景预览');
-
-        downloadLink.href = outputUrl;
-        downloadLink.download = 'mirage_tank.png';
-        downloadLink.textContent = '保存 PNG（' + formatBytes(blob.size) + '）';
-        downloadLink.classList.remove('text-tools-hidden');
-        updateStatus('生成完成，b=' + b.toFixed(2));
+        imageHelper.showImage(outputStage, url, { alt: '幻影坦克输出图像' });
+        imageHelper.showImage(whitePreview, url, { alt: '白色背景预览' });
+        imageHelper.showImage(blackPreview, url, { alt: '黑色背景预览' });
+        imageHelper.enableDownloadLink(downloadLink, url, 'mirage_tank.png', blob.size);
+        wasmHelper.updateStatus('生成完成，b=' + b.toFixed(2));
       } catch (error) {
         console.error('Mirage tank error:', error);
         setOutputPlaceholders('生成失败：请确认两张输入都是可读取的图片');
-        updateStatus('生成失败', true);
+        wasmHelper.updateStatus('生成失败', true);
       }
     }, 0);
   }
@@ -344,18 +289,11 @@ order: 713
   bNumber.addEventListener('input', syncFromNumber);
   bNumber.addEventListener('change', normalizeNumberInput);
 
-  window.addEventListener('beforeunload', () => {
-    revokeUrl(colorUrl);
-    revokeUrl(hiddenUrl);
-    revokeUrl(outputUrl);
-  });
-
-  init().then(() => {
-    wasmReady = true;
-    updateStatus('工具已就绪');
-    renderMirageTank();
-  }).catch((error) => {
-    console.error('WASM init error:', error);
-    updateStatus('初始化失败，请刷新后重试', true);
-  });
+  // 异步初始化WASM
+  (async () => {
+    await init();
+    wasmHelper.init(() => {
+      renderMirageTank();
+    });
+  })();
 </script>

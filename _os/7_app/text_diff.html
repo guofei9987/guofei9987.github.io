@@ -80,6 +80,10 @@ order: 721
 
   const debounce = TextToolsUtils.createDebounce();
 
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
   function updateStats(baseLines, newLines, opcodes) {
     let diffTotal = 0;
     let adds = 0;
@@ -118,18 +122,18 @@ order: 721
     if (!baseText && !newText) {
       diffOutput.innerHTML = '';
       statsPanel.style.display = 'none';
-      status.textContent = '等待输入...';
+      updateStatus('等待输入...');
       return;
     }
 
     if (!baseText || !newText) {
       diffOutput.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--tools-muted);">请在两个文本框中都输入内容以进行比较</div>';
       statsPanel.style.display = 'none';
-      status.textContent = '需要两个文本';
+      updateStatus('需要两个文本');
       return;
     }
 
-    status.textContent = '正在比较...';
+    updateStatus('正在比较...');
 
     try {
       const baseLines = difflib.stringAsLines(baseText);
@@ -151,11 +155,11 @@ order: 721
 
       diffOutput.appendChild(diffView);
       updateStats(baseLines, newLines, opcodes);
-      status.textContent = '比较完成';
+      updateStatus('比较完成');
     } catch (error) {
       console.error('Diff error:', error);
       diffOutput.innerHTML = '<div style="color: var(--tools-danger); padding: 20px;">比较出错：' + error.message + '</div>';
-      status.textContent = '比较出错';
+      updateStatus('比较出错', true);
     }
   }
 

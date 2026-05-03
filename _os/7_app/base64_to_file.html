@@ -76,10 +76,6 @@ order: 732
   const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
-  function updateStatus(text, isError = false) {
-    TextToolsUtils.updateStatus(status, text, isError);
-  }
-
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.style.display = 'none';
@@ -129,12 +125,12 @@ order: 732
     if (!base64) {
       downloadFileBtn.disabled = true;
       downloadSuccess.style.display = 'none';
-      updateStatus('等待输入...');
+      TextToolsUtils.updateStatus(status, '等待输入...');
       return;
     }
 
     isConverting = true;
-    updateStatus('解码中...');
+    TextToolsUtils.updateStatus(status, '解码中...');
 
     try {
       const fileData = base64ToFile(base64, 'file.' + (fileFormatInput.value || 'txt'));
@@ -144,16 +140,16 @@ order: 732
         downloadFileBtn.disabled = false;
         downloadSuccess.style.display = 'inline';
         downloadSuccess.textContent = '可下载';
-        updateStatus('解码完成，可下载文件');
+        TextToolsUtils.updateStatus(status, '解码完成，可下载文件');
       } else {
         downloadFileBtn.disabled = true;
         downloadSuccess.style.display = 'none';
-        updateStatus('解码失败（无效的Base64）');
+        TextToolsUtils.updateStatus(status, '解码失败（无效的Base64）');
       }
     } catch (error) {
       downloadFileBtn.disabled = true;
       downloadSuccess.style.display = 'none';
-      updateStatus('解码失败');
+      TextToolsUtils.updateStatus(status, '解码失败');
       console.error('Decode error:', error);
     }
 
@@ -161,7 +157,7 @@ order: 732
   }
 
   function showFileInfo(name, size) {
-    fileName.textContent = name + ' (' + (size / 1024).toFixed(2) + ' KB)';
+    fileName.textContent = name + ' (' + TextToolsUtils.formatBytes(size) + ')';
   }
 
   function convertFromFile(file) {
@@ -170,7 +166,7 @@ order: 732
     isConverting = true;
     currentFileName = file.name;
     showFileInfo(file.name, file.size);
-    updateStatus('编码中...');
+    TextToolsUtils.updateStatus(status, '编码中...');
 
     fileToBase64(file).then(base64 => {
       base64Textarea.value = base64;
@@ -181,9 +177,9 @@ order: 732
         fileFormatInput.value = extension;
       }
 
-      updateStatus('编码完成');
+      TextToolsUtils.updateStatus(status, '编码完成');
     }).catch(error => {
-      updateStatus('编码失败');
+      TextToolsUtils.updateStatus(status, '编码失败');
       console.error('Encode error:', error);
     }).finally(() => {
       isConverting = false;
@@ -212,8 +208,8 @@ order: 732
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      updateStatus('文件已下载');
+      TextToolsUtils.revokeObjectURL(url);
+      TextToolsUtils.updateStatus(status, '文件已下载');
     }
   });
 
@@ -267,6 +263,6 @@ order: 732
   );
 
   updateBase64Size();
-  updateStatus('等待输入...');
+  TextToolsUtils.updateStatus(status, '等待输入...');
 })();
 </script>

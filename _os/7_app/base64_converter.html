@@ -62,10 +62,6 @@ order: 731
   const debounce = TextToolsUtils.createDebounce();
   let isConverting = false;
 
-  function updateStatus(text, isError = false) {
-    TextToolsUtils.updateStatus(status, text, isError);
-  }
-
   function updateByteCounts(original, encoded) {
     TextToolsUtils.updateCounts(originalBytes, original, '字节');
     TextToolsUtils.updateCounts(encodedBytes, encoded, '字节');
@@ -117,20 +113,20 @@ order: 731
     if (!text) {
       encodedTextarea.value = '';
       updateByteCounts('', '');
-      updateStatus('等待输入...');
+      TextToolsUtils.updateStatus(status, '等待输入...');
       return;
     }
 
     isConverting = true;
-    updateStatus('编码中...');
+    TextToolsUtils.updateStatus(status, '编码中...');
 
     const base64 = encodeToBase64(text);
     if (base64 !== null) {
       encodedTextarea.value = base64;
       updateByteCounts(text, base64);
-      updateStatus('编码完成');
+      TextToolsUtils.updateStatus(status, '编码完成');
     } else {
-      updateStatus('编码失败');
+      TextToolsUtils.updateStatus(status, '编码失败');
     }
 
     isConverting = false;
@@ -143,20 +139,20 @@ order: 731
     if (!base64) {
       originalTextarea.value = '';
       updateByteCounts('', '');
-      updateStatus('等待输入...');
+      TextToolsUtils.updateStatus(status, '等待输入...');
       return;
     }
 
     isConverting = true;
-    updateStatus('解码中...');
+    TextToolsUtils.updateStatus(status, '解码中...');
 
     const text = decodeFromBase64(base64);
     if (text !== null) {
       originalTextarea.value = text;
       updateByteCounts(text, base64);
-      updateStatus('解码完成');
+      TextToolsUtils.updateStatus(status, '解码完成');
     } else {
-      updateStatus('解码失败（可能不是有效的Base64）');
+      TextToolsUtils.updateStatus(status, '解码失败（可能不是有效的Base64）');
     }
 
     isConverting = false;
