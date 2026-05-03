@@ -1,0 +1,761 @@
+---
+layout: app
+title: 颜色拾取器
+categories: 开源
+tag: tools
+order: 721
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+
+<style>
+.text-tools-btn-copy {
+  transition: transform 0.1s ease;
+  background-color: var(--tools-bg) !important;
+  color: var(--tools-text) !important;
+  border: 1px solid var(--tools-border) !important;
+  min-width: 60px;
+  white-space: nowrap;
+}
+
+.text-tools-btn-copy:active {
+  transform: scale(0.95);
+}
+</style>
+
+<div class="text-tools-app" id="colorPickerApp">
+  <div class="text-tools-header">
+    <h1>颜色拾取器</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div id="eyedropper-warning" class="text-tools-warning" style="display: none;">
+    您的浏览器不支持吸管取色功能
+  </div>
+
+  <div style="margin-bottom: 20px; display: flex; gap: 15px; align-items: flex-start;">
+    <div id="colorPreview" style="flex: 1; height: 100px; border: 2px solid var(--tools-border); border-radius: 8px; transition: background-color 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+    <button id="eyedropperBtn" class="text-tools-btn" style="width: 100px; height: 100px; background: white; border: 3px solid #ff0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;" title="使用吸管取色">
+      <img src="/p/logo/eyedropper.svg" alt="吸管" style="width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(0.2);">
+    </button>
+  </div>
+
+  <div class="text-tools-controls">
+    <div class="text-tools-control-group">
+      <span class="text-tools-label" style="color: var(--tools-primary); font-weight: 600;">选择颜色：</span>
+      <input type="color" id="colorPicker" value="#00ffff" style="width: 60px; height: 36px; border: none; border-radius: 4px; cursor: pointer;">
+    </div>
+  </div>
+
+  <div class="text-tools-panel">
+    <h2 style="color: var(--tools-primary);">手动输入 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;">支持多种格式</span></h2>
+    <input type="text" id="manualInput" class="text-tools-input" placeholder="输入颜色代码或颜色名称（如: #ff0000, rgb(255,0,0), red）">
+    <div id="errorMessage" class="text-tools-error" style="display: none; margin-top: 8px;"></div>
+  </div>
+
+  <div class="text-tools-panel">
+    <h2 style="color: var(--tools-primary);">颜色结果</h2>
+    <div id="colorResults" style="display: grid; gap: 12px;">
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HEX:</span>
+        <span class="text-tools-value" id="hexValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">#FF0000</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="#FF0000" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">RGB:</span>
+        <span class="text-tools-value" id="rgbValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">rgb(255, 0, 0)</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="rgb(255, 0, 0)" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HSL:</span>
+        <span class="text-tools-value" id="hslValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">hsl(0, 100%, 50%)</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="hsl(0, 100%, 50%)" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HWB:</span>
+        <span class="text-tools-value" id="hwbValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">hwb(0, 0%, 0%)</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="hwb(0, 0%, 0%)" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">LCH:</span>
+        <span class="text-tools-value" id="lchValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">lch(53.23, 104.58, 39.97)</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="lch(53.23, 104.58, 39.97)" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">CMYK:</span>
+        <span class="text-tools-value" id="cmykValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">cmyk(0%, 100%, 100%, 0%)</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="cmyk(0%, 100%, 100%, 0%)" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">英文:</span>
+        <span class="text-tools-value" id="nameValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">red</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="red" style="justify-self: end;">复制</button>
+      </div>
+      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
+        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">中文:</span>
+        <span class="text-tools-value" id="chineseNameValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">红色</span>
+        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="红色" style="justify-self: end;">复制</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明：</b>
+<ol>
+  <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。</li>
+  <li>支持多种颜色格式：HEX、RGB、HSL、HWB、LCH、CMYK，以及中英文颜色名称。</li>
+  <li>吸管取色功能需要现代浏览器支持 EyeDropper API（Chrome 95+、Edge 95+、Opera 82+）。</li>
+  <li>点击"复制"按钮可将对应格式的颜色代码复制到剪贴板。</li>
+</ol>
+
+<script src="/a/app/tools.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const colorPicker = document.getElementById('colorPicker');
+  const eyedropperBtn = document.getElementById('eyedropperBtn');
+  const eyedropperWarning = document.getElementById('eyedropper-warning');
+  const manualInput = document.getElementById('manualInput');
+  const errorMessage = document.getElementById('errorMessage');
+  const colorPreview = document.getElementById('colorPreview');
+  const status = document.getElementById('status');
+  const copyButtons = document.querySelectorAll('.text-tools-btn-copy');
+
+  // CSS颜色名称映射（中英文）
+  const colorNames = {
+    aliceblue: { en: 'aliceblue', cn: '爱丽丝蓝' },
+    antiquewhite: { en: 'antiquewhite', cn: '古董白' },
+    aqua: { en: 'aqua', cn: '青色' },
+    aquamarine: { en: 'aquamarine', cn: '碧绿色' },
+    azure: { en: 'azure', cn: '天蓝色' },
+    beige: { en: 'beige', cn: '米色' },
+    bisque: { en: 'bisque', cn: '橘黄色' },
+    black: { en: 'black', cn: '黑色' },
+    blanchedalmond: { en: 'blanchedalmond', cn: '白杏色' },
+    blue: { en: 'blue', cn: '蓝色' },
+    blueviolet: { en: 'blueviolet', cn: '蓝紫色' },
+    brown: { en: 'brown', cn: '棕色' },
+    burlywood: { en: 'burlywood', cn: '原木色' },
+    cadetblue: { en: 'cadetblue', cn: '军蓝色' },
+    chartreuse: { en: 'chartreuse', cn: '黄绿色' },
+    chocolate: { en: 'chocolate', cn: '巧克力色' },
+    coral: { en: 'coral', cn: '珊瑚色' },
+    cornflowerblue: { en: 'cornflowerblue', cn: '菊蓝色' },
+    cornsilk: { en: 'cornsilk', cn: '米黄色' },
+    crimson: { en: 'crimson', cn: '深红色' },
+    cyan: { en: 'cyan', cn: '青色' },
+    darkblue: { en: 'darkblue', cn: '深蓝色' },
+    darkcyan: { en: 'darkcyan', cn: '深青色' },
+    darkgoldenrod: { en: 'darkgoldenrod', cn: '深金菊色' },
+    darkgray: { en: 'darkgray', cn: '深灰色' },
+    darkgreen: { en: 'darkgreen', cn: '深绿色' },
+    darkgrey: { en: 'darkgrey', cn: '深灰色' },
+    darkkhaki: { en: 'darkkhaki', cn: '深卡其色' },
+    darkmagenta: { en: 'darkmagenta', cn: '深洋红色' },
+    darkolivegreen: { en: 'darkolivegreen', cn: '深橄榄绿' },
+    darkorange: { en: 'darkorange', cn: '深橙色' },
+    darkorchid: { en: 'darkorchid', cn: '深紫色' },
+    darkred: { en: 'darkred', cn: '深红色' },
+    darksalmon: { en: 'darksalmon', cn: '深鲑色' },
+    darkseagreen: { en: 'darkseagreen', cn: '深海绿色' },
+    darkslateblue: { en: 'darkslateblue', cn: '深石板蓝' },
+    darkslategray: { en: 'darkslategray', cn: '深石板灰' },
+    darkslategrey: { en: 'darkslategrey', cn: '深石板灰' },
+    darkturquoise: { en: 'darkturquoise', cn: '深绿松石色' },
+    darkviolet: { en: 'darkviolet', cn: '深紫罗兰色' },
+    deeppink: { en: 'deeppink', cn: '深粉色' },
+    deepskyblue: { en: 'deepskyblue', cn: '深天蓝色' },
+    dimgray: { en: 'dimgray', cn: '昏灰色' },
+    dimgrey: { en: 'dimgrey', cn: '昏灰色' },
+    dodgerblue: { en: 'dodgerblue', cn: '道奇蓝' },
+    firebrick: { en: 'firebrick', cn: '火砖色' },
+    floralwhite: { en: 'floralwhite', cn: '花白色' },
+    forestgreen: { en: 'forestgreen', cn: '森林绿' },
+    fuchsia: { en: 'fuchsia', cn: '紫红色' },
+    gainsboro: { en: 'gainsboro', cn: '淡灰色' },
+    ghostwhite: { en: 'ghostwhite', cn: '幽灵白' },
+    gold: { en: 'gold', cn: '金色' },
+    goldenrod: { en: 'goldenrod', cn: '金菊色' },
+    gray: { en: 'gray', cn: '灰色' },
+    green: { en: 'green', cn: '绿色' },
+    greenyellow: { en: 'greenyellow', cn: '黄绿色' },
+    grey: { en: 'grey', cn: '灰色' },
+    honeydew: { en: 'honeydew', cn: '蜜色' },
+    hotpink: { en: 'hotpink', cn: '热粉色' },
+    indianred: { en: 'indianred', cn: '印度红' },
+    indigo: { en: 'indigo', cn: '靛蓝色' },
+    ivory: { en: 'ivory', cn: '象牙色' },
+    khaki: { en: 'khaki', cn: '卡其色' },
+    lavender: { en: 'lavender', cn: '淡紫色' },
+    lavenderblush: { en: 'lavenderblush', cn: '淡紫红' },
+    lawngreen: { en: 'lawngreen', cn: '草绿色' },
+    lemonchiffon: { en: 'lemonchiffon', cn: '柠檬黄' },
+    lightblue: { en: 'lightblue', cn: '淡蓝色' },
+    lightcoral: { en: 'lightcoral', cn: '淡珊瑚色' },
+    lightcyan: { en: 'lightcyan', cn: '淡青色' },
+    lightgoldenrodyellow: { en: 'lightgoldenrodyellow', cn: '淡金菊黄' },
+    lightgray: { en: 'lightgray', cn: '淡灰色' },
+    lightgreen: { en: 'lightgreen', cn: '淡绿色' },
+    lightgrey: { en: 'lightgrey', cn: '淡灰色' },
+    lightpink: { en: 'lightpink', cn: '淡粉色' },
+    lightsalmon: { en: 'lightsalmon', cn: '淡鲑色' },
+    lightseagreen: { en: 'lightseagreen', cn: '浅海绿色' },
+    lightskyblue: { en: 'lightskyblue', cn: '淡天蓝色' },
+    lightslategray: { en: 'lightslategray', cn: '亮石板灰' },
+    lightslategrey: { en: 'lightslategrey', cn: '亮石板灰' },
+    lightsteelblue: { en: 'lightsteelblue', cn: '亮钢蓝' },
+    lightyellow: { en: 'lightyellow', cn: '淡黃色' },
+    lime: { en: 'lime', cn: '酸橙绿' },
+    limegreen: { en: 'limegreen', cn: '酸橙绿' },
+    linen: { en: 'linen', cn: '亚麻色' },
+    magenta: { en: 'magenta', cn: '洋红色' },
+    maroon: { en: 'maroon', cn: '栗色' },
+    mediumaquamarine: { en: 'mediumaquamarine', cn: '中碧绿色' },
+    mediumblue: { en: 'mediumblue', cn: '中蓝色' },
+    mediumorchid: { en: 'mediumorchid', cn: '中紫色' },
+    mediumpurple: { en: 'mediumpurple', cn: '中紫色' },
+    mediumseagreen: { en: 'mediumseagreen', cn: '中海绿色' },
+    mediumslateblue: { en: 'mediumslateblue', cn: '中石板蓝' },
+    mediumspringgreen: { en: 'mediumspringgreen', cn: '中春绿色' },
+    mediumturquoise: { en: 'mediumturquoise', cn: '中绿松石色' },
+    mediumvioletred: { en: 'mediumvioletred', cn: '中紫罗兰红' },
+    midnightblue: { en: 'midnightblue', cn: '午夜蓝' },
+    mintcream: { en: 'mintcream', cn: '薄荷奶油色' },
+    mistyrose: { en: 'mistyrose', cn: '浅玫瑰色' },
+    moccasin: { en: 'moccasin', cn: '鹿皮色' },
+    navajowhite: { en: 'navajowhite', cn: '纳瓦白' },
+    navy: { en: 'navy', cn: '海军蓝' },
+    oldlace: { en: 'oldlace', cn: '老花色' },
+    olive: { en: 'olive', cn: '橄榄色' },
+    olivedrab: { en: 'olivedrab', cn: '橄榄绿' },
+    orange: { en: 'orange', cn: '橙色' },
+    orangered: { en: 'orangered', cn: '橙红色' },
+    orchid: { en: 'orchid', cn: '兰紫色' },
+    palegoldenrod: { en: 'palegoldenrod', cn: '灰金菊色' },
+    palegreen: { en: 'palegreen', cn: '苍绿色' },
+    paleturquoise: { en: 'paleturquoise', cn: '苍绿色' },
+    palevioletred: { en: 'palevioletred', cn: '苍紫罗兰色' },
+    papayawhip: { en: 'papayawhip', cn: '番木瓜色' },
+    peachpuff: { en: 'peachpuff', cn: '桃色' },
+    peru: { en: 'peru', cn: '秘鲁色' },
+    pink: { en: 'pink', cn: '粉色' },
+    plum: { en: 'plum', cn: '紫红色' },
+    powderblue: { en: 'powderblue', cn: '粉蓝色' },
+    purple: { en: 'purple', cn: '紫色' },
+    red: { en: 'red', cn: '红色' },
+    rosybrown: { en: 'rosybrown', cn: '玫瑰棕色' },
+    royalblue: { en: 'royalblue', cn: '品蓝' },
+    saddlebrown: { en: 'saddlebrown', cn: '马鞍棕色' },
+    salmon: { en: 'salmon', cn: '鲑色' },
+    sandybrown: { en: 'sandybrown', cn: '沙棕色' },
+    seagreen: { en: 'seagreen', cn: '海绿色' },
+    seashell: { en: 'seashell', cn: '海贝色' },
+    sienna: { en: 'sienna', cn: '赭色' },
+    silver: { en: 'silver', cn: '银色' },
+    skyblue: { en: 'skyblue', cn: '天蓝色' },
+    slateblue: { en: 'slateblue', cn: '石板蓝' },
+    slategray: { en: 'slategray', cn: '石板灰' },
+    slategrey: { en: 'slategrey', cn: '石板灰' },
+    snow: { en: 'snow', cn: '雪白色' },
+    springgreen: { en: 'springgreen', cn: '春绿色' },
+    steelblue: { en: 'steelblue', cn: '钢蓝色' },
+    tan: { en: 'tan', cn: '黄褐色' },
+    teal: { en: 'teal', cn: '蓝绿色' },
+    thistle: { en: 'thistle', cn: '蓟色' },
+    tomato: { en: 'tomato', cn: '番茄色' },
+    turquoise: { en: 'turquoise', cn: '绿松石色' },
+    violet: { en: 'violet', cn: '紫罗兰色' },
+    wheat: { en: 'wheat', cn: '小麦色' },
+    white: { en: 'white', cn: '白色' },
+    whitesmoke: { en: 'whitesmoke', cn: '烟白色' },
+    yellow: { en: 'yellow', cn: '黄色' },
+    yellowgreen: { en: 'yellowgreen', cn: '黄绿色' }
+  };
+
+  // 中文到英文颜色名的反向映射
+  const chineseToEnglishColorName = Object.entries(colorNames).reduce((acc, [en, names]) => {
+    acc[names.cn] = en;
+    return acc;
+  }, {});
+
+  let currentColor = '#00ffff';
+
+  // 初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    updateColorDisplay(currentColor);
+    TextToolsUtils.updateStatus(status, '准备就绪');
+
+    // 检查EyeDropper API支持
+    if (!window.EyeDropper) {
+      eyedropperBtn.disabled = true;
+      eyedropperWarning.style.display = 'block';
+      TextToolsUtils.updateStatus(status, '吸管功能不可用', true);
+    }
+
+    // 绑定事件
+    colorPicker.addEventListener('input', handleColorPickerChange);
+    eyedropperBtn.addEventListener('click', handleEyedropper);
+    manualInput.addEventListener('input', handleManualInput);
+
+    // 绑定复制按钮事件
+    copyButtons.forEach(btn => {
+      btn.addEventListener('click', handleCopyClick);
+    });
+  });
+
+  // 颜色选择器变化
+  function handleColorPickerChange(event) {
+    currentColor = event.target.value;
+    updateColorDisplay(currentColor);
+    manualInput.value = '';
+    hideError();
+    TextToolsUtils.updateStatus(status, '颜色已更新');
+  }
+
+  // EyeDropper取色
+  async function handleEyedropper() {
+    if (!window.EyeDropper) return;
+
+    try {
+      const eyeDropper = new EyeDropper();
+      TextToolsUtils.updateStatus(status, '吸管已激活，请点击屏幕取色...');
+      const result = await eyeDropper.open();
+      currentColor = result.sRGBHex;
+      colorPicker.value = currentColor;
+      updateColorDisplay(currentColor);
+      manualInput.value = '';
+      hideError();
+      TextToolsUtils.updateStatus(status, '取色成功');
+    } catch (error) {
+      TextToolsUtils.updateStatus(status, '取色已取消');
+    }
+  }
+
+  // 手动输入处理
+  function handleManualInput(event) {
+    const input = event.target.value.trim();
+
+    if (!input) {
+      hideError();
+      return;
+    }
+
+    try {
+      // 尝试解析颜色
+      const color = parseColor(input);
+      if (color) {
+        currentColor = color;
+        colorPicker.value = color;
+        updateColorDisplay(color);
+        hideError();
+        TextToolsUtils.updateStatus(status, '颜色已解析');
+      } else {
+        showError('输入内容无法识别');
+        TextToolsUtils.updateStatus(status, '解析失败', true);
+      }
+    } catch (error) {
+      showError('输入内容无法识别');
+      TextToolsUtils.updateStatus(status, '解析失败', true);
+    }
+  }
+
+  // 解析颜色
+  function parseColor(input) {
+    input = input.trim().toLowerCase();
+
+    // 检查是否是中文颜色名
+    if (chineseToEnglishColorName[input]) {
+      input = chineseToEnglishColorName[input];
+    }
+
+    // HWB 格式: hwb(h, w%, b%)
+    const hwbMatch = input.match(/hwb\(\s*([\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*\)/);
+    if (hwbMatch) {
+      const h = parseFloat(hwbMatch[1]);
+      const w = parseFloat(hwbMatch[2]) / 100;
+      const b = parseFloat(hwbMatch[3]) / 100;
+
+      // HWB 转 RGB
+      const rgb = hwbToRgb(h, w, b);
+      return rgbToHex(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    }
+
+    // LCH 格式: lch(l, c, h)
+    const lchMatch = input.match(/lch\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)/);
+    if (lchMatch) {
+      const l = parseFloat(lchMatch[1]);
+      const c = parseFloat(lchMatch[2]);
+      const h = parseFloat(lchMatch[3]);
+
+      // LCH 转 RGB (简化转换)
+      const rgb = lchToRgb(l, c, h);
+      return rgbToHex(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    }
+
+    // CMYK 格式: cmyk(c%, m%, y%, k%)
+    const cmykMatch = input.match(/cmyk\(\s*([\d.]+)%\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*\)/);
+    if (cmykMatch) {
+      const c = parseFloat(cmykMatch[1]) / 100;
+      const m = parseFloat(cmykMatch[2]) / 100;
+      const y = parseFloat(cmykMatch[3]) / 100;
+      const k = parseFloat(cmykMatch[4]) / 100;
+
+      // CMYK 转 RGB
+      const rgb = cmykToRgb(c, m, y, k);
+      return rgbToHex(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    }
+
+    // 创建临时元素来解析颜色（支持 hex, rgb, hsl, 颜色名）
+    const temp = document.createElement('div');
+    temp.style.color = input;
+    document.body.appendChild(temp);
+
+    const computedColor = window.getComputedStyle(temp).color;
+    document.body.removeChild(temp);
+
+    // 如果解析成功，返回hex格式
+    if (computedColor && (computedColor !== 'rgb(0, 0, 0)' || input === 'black')) {
+      return rgbToHex(computedColor);
+    }
+
+    return null;
+  }
+
+  // HWB 转 RGB
+  function hwbToRgb(h, w, b) {
+    h = h / 360;
+    let r, g, bVal;
+
+    if (w + b >= 1) {
+      const gray = w / (w + b) * 255;
+      return { r: Math.round(gray), g: Math.round(gray), b: Math.round(gray) };
+    }
+
+    const rgb = hslToRgb((h * 360), 100, 50);
+    r = rgb.r / 255;
+    g = rgb.g / 255;
+    bVal = rgb.b / 255;
+
+    r = r * (1 - w - b) + w;
+    g = g * (1 - w - b) + w;
+    bVal = bVal * (1 - w - b) + w;
+
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(bVal * 255)
+    };
+  }
+
+  // LCH 转 RGB (简化转换)
+  function lchToRgb(l, c, h) {
+    // 简化的 LCH 到 RGB 转换
+    const hRad = h * Math.PI / 180;
+    const a = c * Math.cos(hRad);
+    const bVal = c * Math.sin(hRad);
+
+    // Lab 到 XYZ
+    const fy = (l + 16) / 116;
+    const fx = a / 500 + fy;
+    const fz = fy - bVal / 200;
+
+    const x = Math.pow(fx, 3) > 0.008856 ? Math.pow(fx, 3) : (fx - 16/116) / 7.787;
+    const y = Math.pow(fy, 3) > 0.008856 ? Math.pow(fy, 3) : (fy - 16/116) / 7.787;
+    const z = Math.pow(fz, 3) > 0.008856 ? Math.pow(fz, 3) : (fz - 16/116) / 7.787;
+
+    const xn = x * 0.95047;
+    const yn = y * 1.00000;
+    const zn = z * 1.08883;
+
+    // XYZ 到 RGB
+    let r = xn * 3.2404542 + yn * -1.5371385 + zn * -0.4985314;
+    let g = xn * -0.9692660 + yn * 1.8760108 + zn * 0.0415560;
+    let b = xn * 0.0556434 + yn * -0.2040259 + zn * 1.0572252;
+
+    r = r > 0.0031308 ? 1.055 * Math.pow(r, 1/2.4) - 0.055 : 12.92 * r;
+    g = g > 0.0031308 ? 1.055 * Math.pow(g, 1/2.4) - 0.055 : 12.92 * g;
+    b = b > 0.0031308 ? 1.055 * Math.pow(b, 1/2.4) - 0.055 : 12.92 * b;
+
+    return {
+      r: Math.max(0, Math.min(255, Math.round(r * 255))),
+      g: Math.max(0, Math.min(255, Math.round(g * 255))),
+      b: Math.max(0, Math.min(255, Math.round(b * 255)))
+    };
+  }
+
+  // CMYK 转 RGB
+  function cmykToRgb(c, m, y, k) {
+    const r = 255 * (1 - c) * (1 - k);
+    const g = 255 * (1 - m) * (1 - k);
+    const b = 255 * (1 - y) * (1 - k);
+
+    return {
+      r: Math.round(r),
+      g: Math.round(g),
+      b: Math.round(b)
+    };
+  }
+
+  // HSL 转 RGB (用于 HWB 转换)
+  function hslToRgb(h, s, l) {
+    h = h / 360;
+    s = s / 100;
+    l = l / 100;
+
+    let r, g, b;
+
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const hue2rgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1/6) return p + (q - p) * 6 * t;
+        if (t < 1/2) return q;
+        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+        return p;
+      };
+
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = hue2rgb(p, q, h + 1/3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1/3);
+    }
+
+    return {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255)
+    };
+  }
+
+  // RGB转HEX
+  function rgbToHex(rgb) {
+    const result = rgb.match(/\d+/g);
+    if (!result || result.length < 3) return null;
+
+    const r = parseInt(result[0]);
+    const g = parseInt(result[1]);
+    const b = parseInt(result[2]);
+
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+  }
+
+  // 更新颜色显示
+  function updateColorDisplay(hexColor) {
+    // 更新预览
+    colorPreview.style.backgroundColor = hexColor;
+
+    // 更新吸管按钮边框颜色
+    eyedropperBtn.style.borderColor = hexColor;
+
+    // 更新各种格式的值
+    const rgb = hexToRgb(hexColor);
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    const hwb = rgbToHwb(rgb.r, rgb.g, rgb.b);
+    const lch = rgbToLch(rgb.r, rgb.g, rgb.b);
+    const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+    const nameInfo = getColorName(rgb.r, rgb.g, rgb.b);
+
+    // 更新DOM
+    document.getElementById('hexValue').textContent = hexColor.toUpperCase();
+    document.getElementById('rgbValue').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+    document.getElementById('hslValue').textContent = `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`;
+    document.getElementById('hwbValue').textContent = `hwb(${Math.round(hwb.h)}, ${Math.round(hwb.w)}%, ${Math.round(hwb.b)}%)`;
+    document.getElementById('lchValue').textContent = `lch(${lch.l.toFixed(2)}, ${lch.c.toFixed(2)}, ${lch.h.toFixed(2)})`;
+    document.getElementById('cmykValue').textContent = `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`;
+    document.getElementById('nameValue').textContent = nameInfo.en;
+    document.getElementById('chineseNameValue').textContent = nameInfo.cn;
+
+    // 更新复制按钮数据
+    document.querySelector('[data-clipboard="#FF0000"]').setAttribute('data-clipboard', hexColor.toUpperCase());
+    document.querySelector('[data-clipboard="rgb(255, 0, 0)"]').setAttribute('data-clipboard', `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    document.querySelector('[data-clipboard="hsl(0, 100%, 50%)"]').setAttribute('data-clipboard', `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`);
+    document.querySelector('[data-clipboard="hwb(0, 0%, 0%)"]').setAttribute('data-clipboard', `hwb(${Math.round(hwb.h)}, ${Math.round(hwb.w)}%, ${Math.round(hwb.b)}%)`);
+    document.querySelector('[data-clipboard="lch(53.23, 104.58, 39.97)"]').setAttribute('data-clipboard', `lch(${lch.l.toFixed(2)}, ${lch.c.toFixed(2)}, ${lch.h.toFixed(2)})`);
+    document.querySelector('[data-clipboard="cmyk(0%, 100%, 100%, 0%)"]').setAttribute('data-clipboard', `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`);
+    document.querySelector('[data-clipboard="red"]').setAttribute('data-clipboard', nameInfo.en);
+    document.querySelector('[data-clipboard="红色"]').setAttribute('data-clipboard', nameInfo.cn);
+  }
+
+  // HEX转RGB
+  function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  // RGB转HSL
+  function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max === min) {
+      h = s = 0;
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+
+    return {
+      h: h * 360,
+      s: s * 100,
+      l: l * 100
+    };
+  }
+
+  // RGB转HWB
+  function rgbToHwb(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    const w = min;
+    const bVal = 1 - max;
+
+    let h = 0;
+    if (max !== min) {
+      const range = max - min;
+      if (max === r) h = (g - b) / range + (g < b ? 6 : 0);
+      else if (max === g) h = (b - r) / range + 2;
+      else h = (r - g) / range + 4;
+      h *= 60;
+    }
+
+    return {
+      h: h,
+      w: w * 100,
+      b: bVal * 100
+    };
+  }
+
+  // RGB转LCH
+  function rgbToLch(r, g, b) {
+    // 简化的LCH转换
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    // sRGB到XYZ
+    r = r > 0.04045 ? Math.pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+    g = g > 0.04045 ? Math.pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+    b = b > 0.04045 ? Math.pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
+
+    let x = r * 0.4124564 + g * 0.3575761 + b * 0.1804375;
+    let y = r * 0.2126729 + g * 0.7151522 + b * 0.0721750;
+    let z = r * 0.0193339 + g * 0.1191920 + b * 0.9503041;
+
+    // XYZ到Lab
+    x = x / 0.95047;
+    y = y / 1.00000;
+    z = z / 1.08883;
+
+    x = x > 0.008856 ? Math.pow(x, 1/3) : 7.787 * x + 16/116;
+    y = y > 0.008856 ? Math.pow(y, 1/3) : 7.787 * y + 16/116;
+    z = z > 0.008856 ? Math.pow(z, 1/3) : 7.787 * z + 16/116;
+
+    const l = 116 * y - 16;
+    const a = 500 * (x - y);
+    const bVal = 200 * (y - z);
+
+    // Lab到LCH
+    const c = Math.sqrt(a * a + bVal * bVal);
+    let h = Math.atan2(bVal, a) * 180 / Math.PI;
+    if (h < 0) h += 360;
+
+    return { l: l, c: c, h: h };
+  }
+
+  // RGB转CMYK
+  function rgbToCmyk(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+
+    const k = 1 - Math.max(r, g, b);
+    const c = (1 - r - k) / (1 - k) || 0;
+    const m = (1 - g - k) / (1 - k) || 0;
+    const y = (1 - b - k) / (1 - k) || 0;
+
+    return {
+      c: Math.round(c * 100),
+      m: Math.round(m * 100),
+      y: Math.round(y * 100),
+      k: Math.round(k * 100)
+    };
+  }
+
+  // 获取颜色名称
+  function getColorName(r, g, b) {
+    // 查找最接近的颜色
+    let minDistance = Infinity;
+    let closestColor = { en: '', cn: '' };
+
+    for (const [name, translations] of Object.entries(colorNames)) {
+      const temp = document.createElement('div');
+      temp.style.color = name;
+      document.body.appendChild(temp);
+      const computedColor = window.getComputedStyle(temp).color;
+      document.body.removeChild(temp);
+
+      const match = computedColor.match(/\d+/g);
+      if (match) {
+        const tr = parseInt(match[0]);
+        const tg = parseInt(match[1]);
+        const tb = parseInt(match[2]);
+
+        const distance = Math.sqrt(
+          Math.pow(r - tr, 2) +
+          Math.pow(g - tg, 2) +
+          Math.pow(b - tb, 2)
+        );
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestColor = translations;
+        }
+      }
+    }
+
+    return closestColor;
+  }
+
+  // 复制功能
+  function handleCopyClick(event) {
+    const button = event.target;
+    const text = button.getAttribute('data-clipboard');
+    navigator.clipboard.writeText(text);
+    TextToolsUtils.updateStatus(status, '已复制到剪贴板');
+  }
+
+  // 显示错误
+  function showError(message) {
+    errorMessage.textContent = message;
+    errorMessage.style.display = 'block';
+  }
+
+  // 隐藏错误
+  function hideError() {
+    errorMessage.style.display = 'none';
+  }
+})();
+</script>
