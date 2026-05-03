@@ -33,23 +33,19 @@ order: 721
     您的浏览器不支持吸管取色功能
   </div>
 
-  <div style="margin-bottom: 20px; display: flex; gap: 15px; align-items: flex-start;">
-    <div id="colorPreview" style="flex: 1; height: 100px; border: 2px solid var(--tools-border); border-radius: 8px; transition: background-color 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-    <button id="eyedropperBtn" class="text-tools-btn" style="width: 100px; height: 100px; background: white; border: 3px solid #ff0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;" title="使用吸管取色">
-      <img src="/p/logo/eyedropper.svg" alt="吸管" style="width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(0.2);">
-    </button>
-  </div>
-
-  <div class="text-tools-controls">
-    <div class="text-tools-control-group">
-      <span class="text-tools-label" style="color: var(--tools-primary); font-weight: 600;">选择颜色：</span>
-      <input type="color" id="colorPicker" value="#00ffff" style="width: 60px; height: 36px; border: none; border-radius: 4px; cursor: pointer;">
+  <div class="text-tools-panel" style="padding: 20px; background: var(--tools-bg); border-radius: 8px;">
+    <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 20px;">
+      <div id="colorPreview" style="flex: 1; height: 100px; border: 2px solid var(--tools-border); border-radius: 8px; transition: background-color 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
+      <button id="eyedropperBtn" class="text-tools-btn" style="width: 100px; height: 100px; background: white; border: 3px solid #ff0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;" title="使用吸管取色">
+        <img src="/p/logo/eyedropper.svg" alt="吸管" style="width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(0.2);">
+      </button>
     </div>
-  </div>
 
-  <div class="text-tools-panel">
-    <h2 style="color: var(--tools-primary);">手动输入 <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;">支持多种格式</span></h2>
-    <input type="text" id="manualInput" class="text-tools-input" placeholder="输入颜色代码或颜色名称（如: #ff0000, rgb(255,0,0), red）">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <input type="text" id="manualInput" class="text-tools-input" placeholder="颜色代码、颜色名称" style="flex: 1;">
+      <input type="color" id="colorPicker" value="#00ffff" style="width: 60px; height: 36px; border: none; border-radius: 4px; cursor: pointer;">
+      <img src="/p/logo/palette.svg" alt="调色板" style="width: 36px; height: 36px;">
+    </div>
     <div id="errorMessage" class="text-tools-error" style="display: none; margin-top: 8px;"></div>
   </div>
 
@@ -570,16 +566,17 @@ order: 721
     document.getElementById('nameValue').textContent = nameInfo.en;
     document.getElementById('chineseNameValue').textContent = nameInfo.cn;
 
-    // 更新复制按钮数据
-    document.querySelector('[data-clipboard="#FF0000"]').setAttribute('data-clipboard', hexColor.toUpperCase());
-    document.querySelector('[data-clipboard="rgb(255, 0, 0)"]').setAttribute('data-clipboard', `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
-    document.querySelector('[data-clipboard="hsl(0, 100%, 50%)"]').setAttribute('data-clipboard', `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`);
-    document.querySelector('[data-clipboard="hwb(0, 0%, 0%)"]').setAttribute('data-clipboard', `hwb(${Math.round(hwb.h)}, ${Math.round(hwb.w)}%, ${Math.round(hwb.b)}%)`);
-    document.querySelector('[data-clipboard="lch(53.23, 104.58, 39.97)"]').setAttribute('data-clipboard', `lch(${lch.l.toFixed(2)}, ${lch.c.toFixed(2)}, ${lch.h.toFixed(2)})`);
-    document.querySelector('[data-clipboard="cmyk(0%, 100%, 100%, 0%)"]').setAttribute('data-clipboard', `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`);
-    document.querySelector('[data-clipboard="red"]').setAttribute('data-clipboard', nameInfo.en);
-    document.querySelector('[data-clipboard="红色"]').setAttribute('data-clipboard', nameInfo.cn);
-  }
+    // 更新 copy 按钮
+    const copyButtons = document.querySelectorAll('.text-tools-btn-copy');
+    copyButtons[0].setAttribute('data-clipboard', hexColor.toUpperCase());
+    copyButtons[1].setAttribute('data-clipboard', `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+    copyButtons[2].setAttribute('data-clipboard', `hsl(${Math.round(hsl.h)}, ${Math.round(hsl.s)}%, ${Math.round(hsl.l)}%)`);
+    copyButtons[3].setAttribute('data-clipboard', `hwb(${Math.round(hwb.h)}, ${Math.round(hwb.w)}%, ${Math.round(hwb.b)}%)`);
+    copyButtons[4].setAttribute('data-clipboard', `lch(${lch.l.toFixed(2)}, ${lch.c.toFixed(2)}, ${lch.h.toFixed(2)})`);
+    copyButtons[5].setAttribute('data-clipboard', `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`);
+    copyButtons[6].setAttribute('data-clipboard', nameInfo.en);
+    copyButtons[7].setAttribute('data-clipboard', nameInfo.cn);
+}
 
   // HEX转RGB
   function hexToRgb(hex) {
