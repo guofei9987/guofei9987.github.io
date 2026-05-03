@@ -8,82 +8,6 @@ order: 712
 
 <link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
 
-<style>
-  #content .hide-info-drop-area {
-    min-height: 280px;
-    margin-top: 12px;
-    padding: 22px;
-    border: 2px dashed var(--tools-border);
-    border-radius: 8px;
-    background: var(--tools-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  #content .hide-info-drop-area img {
-    display: block;
-    width: auto;
-    min-width: min(100%, 260px);
-    max-width: 100%;
-    max-height: 420px;
-    margin: 0;
-    border-radius: 6px;
-    object-fit: contain;
-    image-rendering: pixelated;
-  }
-
-  #content .hide-info-meta {
-    width: 100%;
-    color: var(--tools-text);
-    text-align: left;
-    word-break: break-word;
-  }
-
-  #content .hide-info-meta-title {
-    margin-bottom: 8px;
-    font-weight: 700;
-  }
-
-  #content .hide-info-meta-line {
-    color: var(--tools-muted);
-    font-size: 14px;
-  }
-
-  #content .hide-info-inline-control {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px 10px;
-    margin-top: 4px;
-    color: var(--tools-muted);
-    font-size: 14px;
-  }
-
-  #content .hide-info-text-input {
-    width: 160px;
-    padding: 7px 10px;
-    color: var(--tools-text);
-    border: 1px solid var(--tools-border);
-    border-radius: 6px;
-    background: var(--tools-panel);
-    font-size: 14px;
-  }
-
-  #content .hide-info-text-input:focus {
-    outline: none;
-    border-color: var(--tools-primary);
-  }
-
-  #content .hide-info-actions {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--tools-border);
-  }
-</style>
-
 <div class="text-tools-app" id="hideAsImgApp">
   <div class="text-tools-header">
     <h1>化物为图</h1>
@@ -96,10 +20,10 @@ order: 712
   <div class="text-tools-container">
     <div class="text-tools-panel text-tools-upload-trigger" id="payloadPanel" role="button" tabindex="0">
       <h2>文件 <span class="text-tools-upload-hint">(点击上传任意文件)</span></h2>
-      <div class="hide-info-drop-area" id="payloadArea">
+      <div class="text-tools-image-stage" id="payloadArea">
         <div class="text-tools-placeholder">点击上传文件<br>自动生成 PNG 图片</div>
       </div>
-      <div class="hide-info-actions">
+      <div class="text-tools-actions">
         <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadFileLink">下载解出的文件</a>
       </div>
     </div>
@@ -108,12 +32,12 @@ order: 712
       <h2>图片 <span class="text-tools-upload-hint">(点击上传 PNG 还原文件)</span></h2>
       <div class="hide-info-inline-control">
         <label for="decodedExtension">解出文件扩展名</label>
-        <input class="hide-info-text-input" type="text" id="decodedExtension" placeholder="自动识别">
+        <input class="text-tools-input text-tools-input-medium" type="text" id="decodedExtension" placeholder="自动识别">
       </div>
-      <div class="hide-info-drop-area" id="imageArea">
+      <div class="text-tools-image-stage" id="imageArea">
         <div class="text-tools-placeholder">等待生成图片<br>或点击上传 PNG 图片</div>
       </div>
-      <div class="hide-info-actions">
+      <div class="text-tools-actions">
         <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadImageLink">下载 PNG 图片</a>
       </div>
     </div>
@@ -191,10 +115,10 @@ order: 712
   function showFileSummary(container, title, file, note) {
     container.innerHTML = '';
     const meta = document.createElement('div');
-    meta.className = 'hide-info-meta';
+    meta.className = 'text-tools-meta';
 
     const titleEl = document.createElement('div');
-    titleEl.className = 'hide-info-meta-title';
+    titleEl.className = 'text-tools-meta-title';
     titleEl.textContent = title;
     meta.appendChild(titleEl);
 
@@ -203,13 +127,13 @@ order: 712
     meta.appendChild(nameEl);
 
     const sizeEl = document.createElement('div');
-    sizeEl.className = 'hide-info-meta-line';
+    sizeEl.className = 'text-tools-meta-detail';
     sizeEl.textContent = formatBytes(file.size);
     meta.appendChild(sizeEl);
 
     if (note) {
       const noteEl = document.createElement('div');
-      noteEl.className = 'hide-info-meta-line';
+      noteEl.className = 'text-tools-meta-detail';
       noteEl.textContent = note;
       meta.appendChild(noteEl);
     }

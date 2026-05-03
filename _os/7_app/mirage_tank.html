@@ -9,29 +9,6 @@ order: 713
 <link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
 
 <style>
-  #content .hide-info-image-stage {
-    min-height: 280px;
-    margin-top: 12px;
-    padding: 22px;
-    border: 2px dashed var(--tools-border);
-    border-radius: 8px;
-    background: var(--tools-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  #content .hide-info-image-stage img {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    max-height: 430px;
-    margin: 0;
-    border-radius: 6px;
-  }
-
   #content .hide-info-stage-white {
     background: #fff;
   }
@@ -51,15 +28,8 @@ order: 713
     background-size: 20px 20px;
   }
 
-  #content .hide-info-preview-stage {
-    min-height: 340px;
-    padding: 36px;
-    border-style: solid;
-  }
+  /* 预览区域使用 text-tools-image-stage-large 变体 */
 
-  #content .hide-info-grayscale {
-    filter: grayscale(1);
-  }
 
   #content .hide-info-param-row {
     display: grid;
@@ -72,21 +42,6 @@ order: 713
   #content .hide-info-range {
     width: 100%;
     accent-color: var(--tools-primary);
-  }
-
-  #content .hide-info-number {
-    width: 92px;
-    padding: 7px 10px;
-    color: var(--tools-text);
-    border: 1px solid var(--tools-border);
-    border-radius: 6px;
-    background: var(--tools-panel);
-    font-size: 14px;
-  }
-
-  #content .hide-info-number:focus {
-    outline: none;
-    border-color: var(--tools-primary);
   }
 
   #content .hide-info-muted {
@@ -140,17 +95,17 @@ order: 713
       <h2>里图强度</h2>
       <div class="hide-info-param-row">
         <input class="hide-info-range" type="range" id="bRange" min="0" max="1" step="0.01" value="0.50" aria-label="参数 b">
-        <input class="hide-info-number" type="number" id="bNumber" min="0" max="1" step="0.01" value="0.50" aria-label="参数 b 数值">
+        <input class="text-tools-input text-tools-input-small" type="number" id="bNumber" min="0" max="1" step="0.01" value="0.50" aria-label="参数 b 数值">
       </div>
       <div class="hide-info-muted">范围 0.00 到 1.00，默认 0.50；调整后会自动重新生成。</div>
     </div>
 
     <div class="text-tools-panel">
       <h2>输出图像</h2>
-      <div class="hide-info-image-stage hide-info-stage-checker" id="outputStage">
+      <div class="text-tools-image-stage hide-info-stage-checker" id="outputStage">
         <div class="text-tools-placeholder">等待两张输入图片</div>
       </div>
-      <div class="hide-info-output-actions">
+      <div class="text-tools-actions">
         <a class="text-tools-btn text-tools-btn-primary text-tools-hidden" id="downloadLink">保存 PNG</a>
       </div>
     </div>
@@ -159,14 +114,14 @@ order: 713
   <div class="text-tools-container">
     <div class="text-tools-panel">
       <h2>白色背景预览</h2>
-      <div class="hide-info-image-stage hide-info-preview-stage hide-info-stage-white" id="whitePreview">
+      <div class="text-tools-image-stage text-tools-image-stage-large hide-info-stage-white" id="whitePreview">
         <div class="text-tools-placeholder">等待输出图像</div>
       </div>
     </div>
 
     <div class="text-tools-panel">
       <h2>黑色背景预览</h2>
-      <div class="hide-info-image-stage hide-info-preview-stage hide-info-stage-black" id="blackPreview">
+      <div class="text-tools-image-stage text-tools-image-stage-large hide-info-stage-black" id="blackPreview">
         <div class="text-tools-placeholder">等待输出图像</div>
       </div>
     </div>
