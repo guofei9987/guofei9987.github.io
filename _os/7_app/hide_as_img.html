@@ -129,9 +129,11 @@ order: 712
     <li>在只能传图的平台传输任意文件</li>
     <li>请你开发更多场景</li>
   </ol>
-  <li>本工具完全开源 <a href="https://github.com/guofei9987/hide_info" target="_blank">https://github.com/guofei9987/hide_info</a>，并使用 MIT 协议</li>
-  <li>本工具不提供加密、纠错、压缩等功能。如有需要，自行在加密你的文件，比如打个带密码的压缩包</li>
-  <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。</li>
+  <li>
+    本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。
+    源码：<a href="https://github.com/guofei9987/hide_info" target="_blank">https://github.com/guofei9987/hide_info</a>
+  </li>
+  <li>本工具不提供加密、纠错、压缩等功能。如有需要，先自行处理，比如打个带密码的压缩包</li>
 </ol>
 
 <script src="/a/app/tools.js"></script>
@@ -398,7 +400,7 @@ order: 712
     if (!file) return;
     if (!warnIfLarge(file)) {
       payloadInput.value = '';
-      setPlaceholder(payloadArea, '点击上传文件<br>自动生成 PNG 图片');
+      setPlaceholder(payloadArea, '点击上传文件');
       return;
     }
     encodeFile(file);

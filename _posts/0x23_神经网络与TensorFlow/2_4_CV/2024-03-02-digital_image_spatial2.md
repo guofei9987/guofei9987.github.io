@@ -204,4 +204,129 @@ HDR 有若干色域标准
 | Dolby Vision metadata | 动态 HDR 映射提示 | 动态 HDR 元数据 | 更智能的播放说明 |
 
 
+下面的代码，可以看 ICC 的一些信息：
+```py
+import io
+from PIL import ImageCms
+
+with open("icc1.icc", "rb") as f:
+    icc_bytes = f.read()
+
+profile = ImageCms.ImageCmsProfile(io.BytesIO(icc_bytes))
+
+# %%
+
+print("=== Basic Info ===")
+print("Name:", ImageCms.getProfileName(profile))
+print("Description:", ImageCms.getProfileDescription(profile))
+print("Manufacturer:", ImageCms.getProfileManufacturer(profile))
+print("Model:", ImageCms.getProfileModel(profile))
+print("Copyright:", ImageCms.getProfileCopyright(profile))
+print("Info:", ImageCms.getProfileInfo(profile))
+
+print("manufacturer:", profile.profile.manufacturer)
+
+# %%
+p = profile.profile
+
+print("\n=== lcms fields (dir) ===")
+for attr in dir(p):
+    if not attr.startswith("_"):
+        try:
+            v = getattr(p, attr)
+            print(attr, "=", v)
+        except Exception as e:
+            print(attr, "= <error>", e)
+
+# %%Header 全解析
+
+raw = profile.tobytes()
+
+import struct
+
+print("\n=== Header ===")
+
+size = struct.unpack(">I", raw[0:4])[0]
+cmm = raw[4:8].decode(errors="ignore")
+version = raw[8:12]
+device_class = raw[12:16].decode(errors="ignore")
+color_space = raw[16:20].decode(errors="ignore")
+pcs = raw[20:24].decode(errors="ignore")
+signature = raw[36:40].decode(errors="ignore")
+
+print("size:", size)
+print("cmm:", cmm)
+print("version:", version)
+print("device_class:", device_class)
+print("color_space:", color_space)
+print("pcs:", pcs)
+print("signature:", signature)
+
+# %%Tag Table
+
+print("\n=== Tags ===")
+
+tag_count = struct.unpack(">I", raw[128:132])[0]
+print("tag_count:", tag_count)
+
+offset = 132
+tags = {}
+
+for _ in range(tag_count):
+    sig = raw[offset:offset + 4].decode(errors="ignore")
+    off = struct.unpack(">I", raw[offset + 4:offset + 8])[0]
+    size = struct.unpack(">I", raw[offset + 8:offset + 12])[0]
+
+    tags[sig] = raw[off:off + size]
+
+    print(f"{sig:6} offset={off:<6} size={size}")
+
+    offset += 12
+
+# %% 几个重要的 tags
+# desc
+if "desc" in tags:
+    tag = tags["desc"]
+    length = struct.unpack(">I", tag[8:12])[0]
+    text = tag[12:12 + length - 1]
+    print("\n[desc]:", text.decode(errors="ignore"))
+
+
+# 白点（wtpt）
+def parse_xyz(tag):
+    X = struct.unpack(">i", tag[8:12])[0] / 65536
+    Y = struct.unpack(">i", tag[12:16])[0] / 65536
+    Z = struct.unpack(">i", tag[16:20])[0] / 65536
+    return X, Y, Z
+
+
+if "wtpt" in tags:
+    print("\n[wtpt]:", parse_xyz(tags["wtpt"]))
+
+# RGB primaries（色域）
+
+for k in ["rXYZ", "gXYZ", "bXYZ"]:
+    if k in tags:
+        print(f"[{k}]:", parse_xyz(tags[k]))
+
+
+# TRC（判断 PQ）
+def parse_trc(tag):
+    count = struct.unpack(">I", tag[8:12])[0]
+    return count
+
+
+for k in ["rTRC", "gTRC", "bTRC"]:
+    if k in tags:
+        print(f"[{k}] count:", parse_trc(tags[k]))
+
+# %%判断是不是“真 HDR ICC”
+print("\n=== HDR signals ===")
+print("has A2B0:", "A2B0" in tags)
+print("has B2A0:", "B2A0" in tags)
+```
+
+
+
+
 ---------

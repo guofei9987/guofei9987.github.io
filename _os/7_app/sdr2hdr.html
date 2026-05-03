@@ -57,23 +57,16 @@ order: 711
 
 <div><b>说明：</b></div>
 <ol>
-    <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。</li>
+    <li>
+      本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。
+      源码：<a href="https://github.com/guofei9987/sdr2hdr" target="_blank">https://github.com/guofei9987/sdr2hdr</a>
+    </li>
     <li>
         原理：将 SDR（Standard Dynamic Range）图像转换为 HDR 显示效果，
         通过算法扩展亮度范围与对比度，在支持 HDR 的设备上可获得更好的视觉体验。
     </li>
     <li>
-        开源地址：
-        <a href="https://github.com/guofei9987/sdr2hdr" target="_blank">
-            https://github.com/guofei9987/sdr2hdr
-        </a>
-    </li>
-    <li>
-        技术实现：核心算法使用 Rust 编写，并编译为 WASM 在浏览器中运行，
-        在保证性能的同时控制体积；无需后端服务。
-    </li>
-    <li>
-        注意事项：
+        说明事项：
         <ul>
             <li>效果依赖设备及系统是否支持 HDR（如部分手机、Mac、HDR 显示器）</li>
             <li>不同浏览器对 HDR 的支持存在差异</li>
