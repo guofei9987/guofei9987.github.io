@@ -1,5 +1,5 @@
 ---
-layout: open_source
+layout: app
 title: 焦虑放大器
 categories: 开源
 tag: tools
