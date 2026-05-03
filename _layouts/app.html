@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <meta name="author" content="{{ site.author.name }}">
+  <link rel="shortcut icon" href="{{ site.favicon }}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="stylesheet" href="/c/banner.css">
+  <link rel="stylesheet" href="/c/sidebar.css">
+  <link rel="stylesheet" href="/c/content.css">
+</head>
+
+<body class="sidebar-hidden">
+  {% include banner.html %}
+  {% include sidebar.html%}
+
+  <div class="main-content">
+    <div class="banner-placeholder"></div>
+    <div id="sidebar_type" class="open_source"></div>
+
+    <div class="main-content-content">
+      <div>
+        <div id="content">
+          {{ content }}
+        </div>
+        <hr>
+        {% include donate.html %}
+      </div>
+    </div>
+
+<p class="logo edit">
+  <a href="{{ site.repurl }}{{ page.path }}">📝 Edit</a>
+</p>
+
+    
+  </div>
+
+  {% include footer.html %}
+</body>
+
+</html>
