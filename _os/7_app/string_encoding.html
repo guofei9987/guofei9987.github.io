@@ -1,0 +1,461 @@
+---
+layout: app
+title: String Encoding Converter
+categories: 开源
+tag: tools
+order: 732
+---
+
+<link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+
+<style>
+  .pill-radio-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .pill-radio-label {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .pill-radio-label input[type="radio"] {
+    display: none;
+  }
+
+  .pill-radio-label span {
+    background-color: #f5f5f5;
+    color: var(--tools-text);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    border: 1px solid #ddd;
+  }
+
+  .pill-radio-label input[type="radio"]:checked + span {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+  }
+
+  .pill-radio-label:hover span {
+    background-color: #e8e8e8;
+  }
+
+  .pill-radio-label input[type="radio"]:checked:hover + span {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a3f9e 100%);
+  }
+
+  .output-container {
+    position: relative;
+  }
+
+  #copyBtn {
+    background-color: var(--tools-primary);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  #copyBtn:hover {
+    background-color: var(--tools-primary-hover);
+  }
+
+  #copyBtn.copied {
+    background-color: var(--tools-success) !important;
+  }
+</style>
+
+<div class="text-tools-app" id="stringEncodingApp">
+  <div class="text-tools-header">
+    <h1>String Encoding Converter</h1>
+    <div class="text-tools-status" id="status">准备就绪</div>
+  </div>
+
+  <div class="text-tools-container">
+    <div class="text-tools-panel">
+      <h2>输入文本</h2>
+      <div class="pill-radio-group" role="radiogroup" aria-label="Source Encoding">
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="utf-8" checked>
+          <span>UTF-8</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="base64">
+          <span>Base64</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="unicode-escape">
+          <span>Unicode Escape</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="url-encoded">
+          <span>URL Encoded</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="hex">
+          <span>Hex</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="byte-array">
+          <span>Byte Array</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="sourceEncoding" value="binary">
+          <span>Binary</span>
+        </label>
+      </div>
+      <textarea class="text-tools-textarea" id="inputText" placeholder="输入要转换的文本..." style="margin-top: 10px;"></textarea>
+    </div>
+
+    <div class="text-tools-panel">
+      <h2>输出文本</h2>
+      <div class="pill-radio-group" role="radiogroup" aria-label="Target Encoding">
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="utf-8" checked>
+          <span>UTF-8</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="base64">
+          <span>Base64</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="base64-url-safe">
+          <span>Base64 URL Safe</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="unicode-escape">
+          <span>Unicode Escape</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="url-encoded">
+          <span>URL Encoded</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="hex">
+          <span>Hex</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="byte-array">
+          <span>Byte Array</span>
+        </label>
+        <label class="pill-radio-label">
+          <input type="radio" name="targetEncoding" value="binary">
+          <span>Binary</span>
+        </label>
+      </div>
+      <div class="output-container">
+        <textarea class="text-tools-textarea" id="outputText" placeholder="转换结果将显示在这里..." readonly style="margin-top: 10px;"></textarea>
+        <button class="text-tools-btn" id="copyBtn" style="margin-top: 10px;">复制</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<b>说明:</b>
+<ol>
+  <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。</li>
+  <li>支持多种字符编码格式之间的相互转换，输入后实时转换。</li>
+  <li>Hex格式支持空格分隔，如：48 65 6c 6c 6f，输出时不带空格。</li>
+  <li>Binary格式每8位包含一个空格，如：01001000 01100101。</li>
+  <li>Unicode转义格式类似：你好。</li>
+  <li>Byte Array格式为逗号分隔的十进制数，如：72,101,108,108,111。</li>
+</ol>
+
+<script src="/a/app/tools.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const inputTextarea = document.getElementById('inputText');
+  const outputTextarea = document.getElementById('outputText');
+  const clearBtn = document.getElementById('clearBtn');
+  const copyBtn = document.getElementById('copyBtn');
+  const status = document.getElementById('status');
+
+  function updateStatus(text, isError = false) {
+    TextToolsUtils.updateStatus(status, text, isError);
+  }
+
+  function bytesToUtf8(bytes) {
+    try {
+      return new TextDecoder().decode(new Uint8Array(bytes));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function utf8ToBytes(text) {
+    try {
+      return Array.from(new TextEncoder().encode(text));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function parseHex(input) {
+    try {
+      const clean = input.replace(/\s+/g, '');
+      if (!/^[0-9a-fA-F]*$/.test(clean)) return null;
+      if (clean.length % 2 !== 0) return null;
+      const bytes = [];
+      for (let i = 0; i < clean.length; i += 2) {
+        bytes.push(parseInt(clean.substr(i, 2), 16));
+      }
+      return bytes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function parseByteArray(input) {
+    try {
+      const nums = input.split(',').map(s => s.trim());
+      const bytes = [];
+      for (const num of nums) {
+        if (num === '') continue;
+        const n = parseInt(num, 10);
+        if (isNaN(n) || n < 0 || n > 255) return null;
+        bytes.push(n);
+      }
+      return bytes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function parseBinary(input) {
+    try {
+      const parts = input.trim().split(/\s+/);
+      const bytes = [];
+      for (const part of parts) {
+        if (!/^[01]{8}$/.test(part)) return null;
+        bytes.push(parseInt(part, 2));
+      }
+      return bytes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function parseUnicodeEscape(input) {
+    try {
+      const regex = /\\u([0-9a-fA-F]{4})/g;
+      let match;
+      let result = '';
+      let lastIndex = 0;
+
+      while ((match = regex.exec(input)) !== null) {
+        const codePoint = parseInt(match[1], 16);
+        result += input.substring(lastIndex, match.index);
+        result += String.fromCharCode(codePoint);
+        lastIndex = regex.lastIndex;
+      }
+      result += input.substring(lastIndex);
+      return result;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function toHex(bytes) {
+    return bytes.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function toByteArray(bytes) {
+    return bytes.join(',');
+  }
+
+  function toBinary(bytes) {
+    return bytes.map(b => b.toString(2).padStart(8, '0')).join(' ');
+  }
+
+  function toUnicodeEscape(text) {
+    let result = '';
+    for (let i = 0; i < text.length; i++) {
+      const code = text.charCodeAt(i);
+      if (code > 127) {
+        result += '\\u' + code.toString(16).toUpperCase().padStart(4, '0');
+      } else {
+        result += text[i];
+      }
+    }
+    return result;
+  }
+
+  function encodeBase64(bytes) {
+    try {
+      const binary = bytes.map(b => String.fromCharCode(b)).join('');
+      return btoa(binary);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function decodeBase64(base64) {
+    try {
+      const binary = atob(base64);
+      const bytes = [];
+      for (let i = 0; i < binary.length; i++) {
+        bytes.push(binary.charCodeAt(i));
+      }
+      return bytes;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function encodeBase64UrlSafe(bytes) {
+    const base64 = encodeBase64(bytes);
+    if (!base64) return null;
+    return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decodeBase64UrlSafe(base64UrlSafe) {
+    try {
+      let base64 = base64UrlSafe.replace(/-/g, '+').replace(/_/g, '/');
+      while (base64.length % 4) {
+        base64 += '=';
+      }
+      return decodeBase64(base64);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function decodeFromEncoding(input, encoding) {
+    switch (encoding) {
+      case 'utf-8':
+        return utf8ToBytes(input);
+      case 'base64':
+        return decodeBase64(input);
+      case 'base64-url-safe':
+        return decodeBase64UrlSafe(input);
+      case 'unicode-escape':
+        const parsedText = parseUnicodeEscape(input);
+        if (parsedText === null) return null;
+        return utf8ToBytes(parsedText);
+      case 'url-encoded':
+        try {
+          const decoded = decodeURIComponent(input);
+          return utf8ToBytes(decoded);
+        } catch (e) {
+          return null;
+        }
+      case 'hex':
+        return parseHex(input);
+      case 'byte-array':
+        return parseByteArray(input);
+      case 'binary':
+        return parseBinary(input);
+      default:
+        return null;
+    }
+  }
+
+  function encodeToTarget(bytes, encoding) {
+    switch (encoding) {
+      case 'utf-8':
+        return bytesToUtf8(bytes);
+      case 'base64':
+        return encodeBase64(bytes);
+      case 'base64-url-safe':
+        return encodeBase64UrlSafe(bytes);
+      case 'unicode-escape':
+        const text = bytesToUtf8(bytes);
+        if (!text) return null;
+        return toUnicodeEscape(text);
+      case 'url-encoded':
+        const urlText = bytesToUtf8(bytes);
+        if (!urlText) return null;
+        try {
+          return encodeURIComponent(urlText);
+        } catch (e) {
+          return null;
+        }
+      case 'hex':
+        return toHex(bytes);
+      case 'byte-array':
+        return toByteArray(bytes);
+      case 'binary':
+        return toBinary(bytes);
+      default:
+        return null;
+    }
+  }
+
+  function performConversion() {
+    const input = inputTextarea.value;
+    if (!input) {
+      outputTextarea.value = '';
+      updateStatus('等待输入...');
+      return;
+    }
+
+    const sourceEncoding = document.querySelector('input[name="sourceEncoding"]:checked').value;
+    const targetEncoding = document.querySelector('input[name="targetEncoding"]:checked').value;
+
+    updateStatus('转换中...');
+
+    const bytes = decodeFromEncoding(input, sourceEncoding);
+    if (bytes === null) {
+      outputTextarea.value = '[输入的格式有误]';
+      updateStatus('输入的格式有误', true);
+      return;
+    }
+
+    let output;
+    if (sourceEncoding !== 'utf-8' || targetEncoding !== 'utf-8') {
+      output = encodeToTarget(bytes, targetEncoding);
+      if (output === null) {
+        outputTextarea.value = '[转换失败]';
+        updateStatus('转换失败', true);
+        return;
+      }
+    } else if (sourceEncoding === 'utf-8' && targetEncoding === 'utf-8') {
+      output = input;
+    }
+
+    outputTextarea.value = output;
+    updateStatus('转换完成');
+  }
+
+  inputTextarea.addEventListener('input', performConversion);
+
+  document.querySelectorAll('input[name="sourceEncoding"]').forEach((radio) => {
+    radio.addEventListener('change', performConversion);
+  });
+
+  document.querySelectorAll('input[name="targetEncoding"]').forEach((radio) => {
+    radio.addEventListener('change', performConversion);
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const text = outputTextarea.value;
+    if (text) {
+      navigator.clipboard.writeText(text).then(() => {
+        copyBtn.textContent = '已复制';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = '复制';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }).catch(err => {
+        console.error('Copy failed:', err);
+      });
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    inputTextarea.value = '';
+    outputTextarea.value = '';
+    updateStatus('已清除');
+  });
+
+  updateStatus('等待输入...');
+})();
+</script>

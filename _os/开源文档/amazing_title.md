@@ -3,7 +3,7 @@ layout: open_source
 title: 震惊体标题生成器
 categories: 开源
 tag: tools
-order: 720
+order: 821
 repo_name: vulgar_language_generator
 ---
 
