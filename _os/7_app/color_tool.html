@@ -21,6 +21,41 @@ order: 721
 .text-tools-btn-copy:active {
   transform: scale(0.95);
 }
+
+.color-card {
+  background: white;
+  border: 1px solid var(--tools-border);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.color-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.color-card-swatch {
+  width: 100%;
+  height: 60px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border: 1px solid var(--tools-border);
+}
+
+.color-card-name {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--tools-text);
+}
+
+.color-card-chinese {
+  font-size: 11px;
+  color: var(--tools-muted);
+}
 </style>
 
 <div class="text-tools-app" id="colorPickerApp">
@@ -39,13 +74,18 @@ order: 721
       <button id="eyedropperBtn" class="text-tools-btn" style="width: 100px; height: 100px; background: white; border: 3px solid #ff0000; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;" title="使用吸管取色">
         <img src="/p/logo/eyedropper.svg" alt="吸管" style="width: 100%; height: 100%; object-fit: contain; filter: brightness(0) invert(0.2);">
       </button>
+      <div style="position: relative; width: 100px; height: 100px; flex: 0 0 100px;">
+        <button id="paletteBtn" class="text-tools-btn" type="button" style="width: 100px; height: 100px; background: white; border: 3px solid #00ffff; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 10px;" title="选择颜色">
+          <img src="/p/logo/palette.svg" alt="调色板" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+        </button>
+        <input type="color" id="colorPicker" value="#00ffff" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; border: none; padding: 0; appearance: none; -webkit-appearance: none;">
+      </div>
     </div>
 
     <div style="display: flex; gap: 12px; align-items: center;">
-      <input type="text" id="manualInput" class="text-tools-input" placeholder="颜色代码、颜色名称" style="flex: 1;">
-      <input type="color" id="colorPicker" value="#00ffff" style="width: 60px; height: 36px; border: none; border-radius: 4px; cursor: pointer;">
-      <img src="/p/logo/palette.svg" alt="调色板" style="width: 36px; height: 36px;">
+      <input type="text" id="manualInput" class="text-tools-input" placeholder="填入颜色代码、颜色名称、英文名称，可以搜索颜色" style="flex: 1;">
     </div>
+
     <div id="errorMessage" class="text-tools-error" style="display: none; margin-top: 8px;"></div>
   </div>
 
@@ -96,6 +136,11 @@ order: 721
   </div>
 </div>
 
+<div class="text-tools-panel" id="colorWallPanel" style="margin-top: 20px;">
+  <h2 style="color: var(--tools-primary); margin-bottom: 15px;">颜色卡片墙</h2>
+  <div id="colorWall" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; max-height: 400px; overflow-y: auto;"></div>
+</div>
+
 <br>
 <b>说明：</b>
 <ol>
@@ -112,6 +157,7 @@ order: 721
 
   const colorPicker = document.getElementById('colorPicker');
   const eyedropperBtn = document.getElementById('eyedropperBtn');
+  const paletteBtn = document.getElementById('paletteBtn');
   const eyedropperWarning = document.getElementById('eyedropper-warning');
   const manualInput = document.getElementById('manualInput');
   const errorMessage = document.getElementById('errorMessage');
@@ -294,12 +340,64 @@ order: 721
     colorPicker.addEventListener('input', handleColorPickerChange);
     eyedropperBtn.addEventListener('click', handleEyedropper);
     manualInput.addEventListener('input', handleManualInput);
+    paletteBtn.addEventListener('click', () => colorPicker.click());
 
     // 绑定复制按钮事件
     copyButtons.forEach(btn => {
       btn.addEventListener('click', handleCopyClick);
     });
+
+    // 生成颜色卡片墙
+    generateColorWall();
   });
+
+  // 生成颜色卡片墙
+  function generateColorWall() {
+    const colorWall = document.getElementById('colorWall');
+    if (!colorWall) return;
+
+    colorWall.innerHTML = '';
+
+    for (const [enName, translations] of Object.entries(colorNames)) {
+      const card = document.createElement('div');
+      card.className = 'color-card';
+      card.style.cursor = 'pointer';
+
+      // 创建颜色方块
+      const colorBox = document.createElement('div');
+      colorBox.className = 'color-card-swatch';
+      colorBox.style.backgroundColor = enName;
+
+      // 创建英文名
+      const nameEn = document.createElement('div');
+      nameEn.className = 'color-card-name';
+      nameEn.textContent = enName;
+
+      // 创建中文名
+      const nameCn = document.createElement('div');
+      nameCn.className = 'color-card-chinese';
+      nameCn.textContent = translations.cn;
+
+      card.appendChild(colorBox);
+      card.appendChild(nameEn);
+      card.appendChild(nameCn);
+
+      // 点击卡片选择颜色
+      card.addEventListener('click', () => {
+        const color = parseColor(enName);
+        if (color) {
+          currentColor = color;
+          colorPicker.value = color;
+          updateColorDisplay(color);
+          manualInput.value = '';
+          hideError();
+          TextToolsUtils.updateStatus(status, `已选择颜色: ${enName}`);
+        }
+      });
+
+      colorWall.appendChild(card);
+    }
+  }
 
   // 颜色选择器变化
   function handleColorPickerChange(event) {
@@ -545,8 +643,9 @@ order: 721
     // 更新预览
     colorPreview.style.backgroundColor = hexColor;
 
-    // 更新吸管按钮边框颜色
+    // 更新吸管按钮和调色板按钮的边框颜色
     eyedropperBtn.style.borderColor = hexColor;
+    paletteBtn.style.borderColor = hexColor;
 
     // 更新各种格式的值
     const rgb = hexToRgb(hexColor);

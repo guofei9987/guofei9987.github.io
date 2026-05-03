@@ -40,8 +40,13 @@
     "cat": "tool"
   },
   {
-    "name": "🔄 Base64 string converter",
-    "url": "/os/base64_converter.html",
+    "name": "🎨 颜色拾取器",
+    "url": "/os/color_tool.html",
+    "cat": "tool"
+  },
+  {
+    "name": "🔤 String Encoding Converter",
+    "url": "/os/string_encoding.html",
     "cat": "tool"
   },
   {
