@@ -562,9 +562,8 @@ Cookie
 
 
 
-## 参考资料2
+## 参考资料
 
-相关文章
 - [【密码学】知识体系](https://www.guofei.site/cipher.html)
 - [【隐写术】知识体系](https://www.guofei.site/2020/11/14/blind_watermark.html)
 - 【国家精品课程】[网络空间安全](https://www.icourse163.org/course/FZU-1002765004)
