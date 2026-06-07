@@ -26,7 +26,7 @@ order: 102
 - 主存：货架。货架上的格子上面放着食材和任务单
 - CPU：厨师。取出货架上的任务单、食材。厨师的动作非常快
 
-![caption: 用餐馆类比CPU的运行](/pictures_for_blog/computer/computer_analogy.jpg)
+![caption: 用餐馆类比CPU的运行](/a/computer/computer_organization/computer_analogy.svg)
 
 执行一条命令的过程如下
 1. 取址 fetch
@@ -50,11 +50,18 @@ order: 102
 
 ### 计算机结构的简化模型
 
-![caption: 存储器](/pictures_for_blog/computer/memory.jpg)
 
-上图为存储器
 
-存储器要点：
+![caption: 存储器+CPU](/a/computer/computer_organization/computer.svg)
+
+
+CPU又可以拆分为控制器、运算器：
+
+
+![caption: 存储器+CPU](/a/computer/computer_organization/computer3.svg)
+
+
+**存储器**：
 - 控制总线用来接收来自CPU的读写新号，或者向CPU反馈读写完成的信号
 - 每个地址对应一个存储单元，对应一个字节（8位二进制）
 - 地址总线决定了能管理多少个存储单元。
@@ -64,11 +71,7 @@ order: 102
 
 
 
-
-![caption: 控制器（CPU）](/pictures_for_blog/computer/cpu.jpg)  
-
-
-控制器要点：
+**控制器**：
 - 指令寄存器，IR，Instruction Register
     - 存放 “正在执行 或者 即将执行的指令”
 - 程序计数器，PC，Program Counter
@@ -83,12 +86,7 @@ order: 102
     - 产生控制信号，在时序脉冲的同步下控制各个部件的动作
 
 
-
-![caption: 运算器](/pictures_for_blog/computer/cpu2.jpg)
-
-上图为运算器
-
-运算器要点
+**运算器** 要点
 - 运算器用于算术运算和逻辑运算
     - 常见的算术运算：加减乘除
     - 常见的逻辑运算：与、或、非
@@ -108,7 +106,6 @@ order: 102
 计算机执行指令过程的举例：https://www.coursera.org/learn/jisuanji-zucheng/lecture/8Xyeu/105-ji-suan-ji-zhi-xing-zhi-ling-de-guo-cheng
 
 
-![caption: 存储器+CPU](/pictures_for_blog/computer/computer.jpg)
 
 
 
@@ -145,7 +142,8 @@ IO 设备（现代往往把 输入设备 和 输出设备  划在一起，例如
 - 现代计算机，把各种输入输出设备都统一用 **南桥芯片** 来管理。不过图形计算比较复杂，还是用独立的显卡来处理。
 
 
-![caption: 存储器+CPU+IO](/pictures_for_blog/computer/io.jpg)
+![caption: 存储器+CPU+IO](/a/computer/computer_organization/io.svg)
+
 
 ### 南北桥结构的演变
 
@@ -165,7 +163,9 @@ IO 设备（现代往往把 输入设备 和 输出设备  划在一起，例如
 - 手机、平板电脑等
 
 
-![caption: CPU的演变](/a/computer/computer_organization/computer2.svg)
+
+![caption: CPU的演变](/a/computer/computer_organization/computer4.svg)
+
 
 
 这种演变得益于芯片技术的进步（摩尔定律）
