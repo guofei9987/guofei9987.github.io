@@ -40,7 +40,7 @@ order: 101
     - 线段树
     - 前缀树
     - 堆
-    - [Python实现树](https://www.guofei.site/2021/01/03/tree_algorithm.html)
+    - [Python实现树](https://www.guofei.site/2021/01/03/tree_algorithm.html)，[最小生成树](https://www.guofei.site/2017/09/12/minimumspanningtree.html)
 8. [图](https://www.guofei.site/2017/05/18/graph.html)
     - 各种基础概念（有向/无向，有权/无权，等等）
     - 各种表示方法（指针，list-set，邻接矩阵）
