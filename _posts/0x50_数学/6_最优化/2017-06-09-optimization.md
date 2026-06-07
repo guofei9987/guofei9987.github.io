@@ -12,7 +12,7 @@ order: 7001
 ## 数学描述
 最优化的一般形式：
 
-$$minf(x)$$  
+$$\min f(x)$$  
 $$s.t. \left \{ \begin{array}{ccc}
 h_i(x)=0\\
 g_j(x) \leq 0
@@ -78,8 +78,8 @@ $$G(x)=\nabla^2 f(x) =\left [ \begin{array}{ccc}
 - 最大值函数
 - 幂函数
 - 对数函数
-- 指数和的对数$f(x)=\log(exp(x_1)+exp(x_2)+...+exp(x_n))$
-- 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^1/n$
+- 指数和的对数$f(x)=\log(\exp(x_1) + \exp(x_2) + ... + \exp(x_n))$
+- 几何平均$f(x)=(\prod\limits_{i=1}^n x_i)^{1/n}$
 - 范数
 
 
