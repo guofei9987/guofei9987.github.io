@@ -77,8 +77,8 @@ cardList.bindFilter({
 <table>
 <tr>
   <th>Project</th>
-  <th>Star {{ site.data.data_github.star_cnt }}</th>
-  <th>Fork {{ site.data.data_github.fork_cnt }}</th>
+  <th><img class="icon" src="/p/logo/star.svg">{{ site.data.data_github.star_cnt }}</th>
+  <th><img class="icon" src="/p/logo/fork.svg">{{ site.data.data_github.fork_cnt }}</th>
   <th>description</th>
 </tr>
 
