@@ -1245,7 +1245,7 @@ B+树的优势
 trie 非常适合用来做敏感词过滤
 
 
-![Trie](/a/computer/algo/trie.png)
+![Trie](/a/computer/algo/trie.svg)
 
 
 参考我的其他文章：
