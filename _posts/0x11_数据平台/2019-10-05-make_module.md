@@ -749,6 +749,47 @@ importlib.reload(scipy)
 
 ## python 环境
 
+### uv
+
+是什么？
+- 近年出现的，包管理+环境管理工具
+- 用 Rust 编写，可替代 pip/venv 的部分功能
+
+安装 
+```sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+创建虚拟环境
+```sh
+uv init myproj
+cd myproj
+uv add requests
+uv run python main.py
+```
+
+
+安装包
+```shell
+uv pip install scikit-opt
+uv pip install -r requirements.txt
+```
+
+运行
+```shell
+# 不用激活环境，即可运行
+uv run python script.py
+```
+
+添加依赖
+```shell
+uv add scikit-opt
+# 会修改 pyproject.toml，以及安装依赖
+```
+
+
+### conda
+
 ```bash
 
 # 创建环境
