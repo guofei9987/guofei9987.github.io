@@ -823,6 +823,51 @@ for multiplier in create_multipliers():
 
 
 
+## 获取汉字的首字符
+
+```python
+def get_first_letter(char):
+    try:
+        code = char.encode("GBK")
+    except UnicodeEncodeError:
+        return ""
+
+    if not (b"\xb0\xa1" <= code <= b"\xd7\xf9"):
+        return ""
+
+    ranges = [
+        (b"\xb0\xc4", "a"),
+        (b"\xb2\xc0", "b"),
+        (b"\xb4\xed", "c"),
+        (b"\xb6\xe9", "d"),
+        (b"\xb7\xa1", "e"),
+        (b"\xb8\xc0", "f"),
+        (b"\xb9\xfd", "g"),
+        (b"\xbb\xf6", "h"),
+        (b"\xbf\xa5", "j"),
+        (b"\xc0\xab", "k"),
+        (b"\xc2\xe7", "l"),
+        (b"\xc4\xc2", "m"),
+        (b"\xc5\xb5", "n"),
+        (b"\xc5\xbd", "o"),
+        (b"\xc6\xd9", "p"),
+        (b"\xc8\xba", "q"),
+        (b"\xc8\xf5", "r"),
+        (b"\xcb\xf9", "s"),
+        (b"\xcd\xd9", "t"),
+        (b"\xce\xf3", "w"),
+        (b"\xd1\x88", "x"),
+        (b"\xd4\xd0", "y"),
+        (b"\xd7\xf9", "z"),
+    ]
+
+    for boundary, initial in ranges:
+        if code < boundary:
+            return initial
+    return ""
+```
+
+
 
 ## 参考资料
 
