@@ -574,7 +574,11 @@ HTTP消息分为两种：
     - GET、POST、HEAD
     - PUT：把消息体中的文件传到URL字段所指定的路径。用于上传文件。
     - DELETE：删除URL字段路径对应的文件
-
+- HTTP/2
+    - 不是纯文本，而是二进制。机器处理效率高。
+    - 多路复用，一个 TCP 里可以同时跑多个 stream（网络文件，如 index.html, style.css）
+    - 头压缩
+    - 可明文、可加密，一般配合 HTTPS（HTTP over TLS）
 
 
 ![caption: HTTP的response](/a/computer/network/http_response.svg)
@@ -1149,6 +1153,68 @@ UDP 客户端软件流程
 
 
 -------------------
+
+
+
+
+
+### 常见端口号和错误码
+
+约定：
+
+|          范围 | 名称                        | 含义              |
+| ----------: | ------------------------- | --------------- |
+|      0–1023 | Well-known ports          | 系统/标准服务常用端口     |
+|  1024–49151 | Registered ports          | 应用程序注册端口，例如 MongoDB、Redis<br> 做安全排查时，需要排查常见的数据库端口（下面不列出来）        |
+| 49152–65535 | Dynamic / Ephemeral ports | 客户端临时端口，或程序随机使用 |
+
+
+
+
+常用端口速查：
+
+|    端口 | 协议      | 常见用途                                    |
+| ----: | ------- | --------------------------------------- |
+|    20 | TCP     | FTP 数据连接，主动模式                           |
+|    21 | TCP     | FTP 控制连接                                |
+|    22 | TCP     | SSH、SFTP、SCP                            |
+|    23 | TCP     | Telnet，明文远程登录，基本应禁用                     |
+|    25 | TCP     | SMTP 邮件发送，服务器间投递                        |
+|    53 | TCP/UDP | DNS 查询；UDP常见，TCP用于大响应/区域传送等             |
+|    67 | UDP     | DHCP Server                             |
+|    68 | UDP     | DHCP Client                             |
+|    69 | UDP     | TFTP，简单文件传输                             |
+|    **80** | TCP     | HTTP                                    |
+|   110 | TCP     | POP3 收邮件                                |
+|   123 | UDP     | NTP 时间同步                                |
+|   135 | TCP/UDP | Windows RPC Endpoint Mapper             |
+|   137 | UDP     | NetBIOS Name Service                    |
+|   138 | UDP     | NetBIOS Datagram Service                |
+|   139 | TCP     | 老式 Windows 文件共享 |
+|   143 | TCP     | IMAP 收邮件                                |
+|   161 | UDP     | SNMP 查询                                 |
+|   162 | UDP     | SNMP Trap                               |
+|   389 | TCP/UDP | LDAP                                    |
+|   **443** | TCP     | HTTPS                                   |
+|   445 | TCP     | SMB/CIFS，Windows 文件共享                   |
+|   465 | TCP     | SMTPS，SMTP over SSL/TLS                 |
+|   500 | UDP     | IKE，IPsec VPN                           |
+|   514 | UDP/TCP | Syslog                                  |
+|   587 | TCP     | SMTP Submission，客户端提交邮件                 |
+|   631 | TCP/UDP | IPP，网络打印                                |
+|   636 | TCP     | LDAPS                            +       |
+|   993 | TCP     | IMAPS                                   |
+|   995 | TCP     | POP3S                                   |
+|  1883 | TCP     | MQTT 明文（物联网协议），安全的做法是用 8883   |
+|  2049 | TCP/UDP | NFS（网络文件系统）      |
+|  3389 | TCP/UDP | RDP，Windows 远程桌面                        |
+|  5900 | TCP     | VNC （远程桌面协议） |
+|  8080 | TCP     | HTTP 备用端口、代理、Web 管理后台                   |
+|  8443 | TCP     | HTTPS 备用端口、Web 管理后台                     |
+
+
+
+
 
 
 ## 传输层
