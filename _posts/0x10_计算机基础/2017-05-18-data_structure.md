@@ -6,7 +6,7 @@ tags: 0x10_计算机基础
 keywords:
 description: "Algorithmic Foundations"
 permalink: /:title:output_ext
-order: "CS01-AL"
+order: 101
 ---
 
 

@@ -6,7 +6,7 @@ tags: 0x10_计算机基础
 keywords:
 description: "Architecture and Organization"
 permalink: /:title:output_ext
-order: "CS02-AR"
+order: 102
 ---
 
 ## 冯诺依曼结构
