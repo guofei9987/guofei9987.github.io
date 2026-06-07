@@ -20,7 +20,7 @@ order: 500
     - 数组。Array, 动态数组,
     - 链表。单链表, 双向链表, 循环链表, 跳跃表
     - stack/queue, 循环队列
-2. [哈希](https://www.guofei.site/2017/09/18/hash.html)
+2. [哈希](#哈希)
     - HashTable, HashSet, HashMap
 4. [递归](https://www.guofei.site/2017/08/24/recursion.html)
 5. [查找](https://www.guofei.site/2018/07/06/search.html)
