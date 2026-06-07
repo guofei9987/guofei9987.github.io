@@ -23,7 +23,7 @@ order: 101
 2. [哈希](#哈希)
     - HashTable, HashSet, HashMap
 4. [递归](https://www.guofei.site/2017/08/24/recursion.html)
-5. [查找](https://www.guofei.site/2018/07/06/search.html)
+5. [查找](#查找)
     - 二分法
     - 并查集
     - bitSet
@@ -32,7 +32,7 @@ order: 101
     - 简单排序：冒泡、选择、插入、希尔排序
     - 分置排序：快速排序、归并排序
     - 其他：堆排序、基数排序
-7. [树](https://www.guofei.site/2021/01/02/tree.html)
+7. [树](#树)
     - 二叉树
     - 哈夫曼树与编码
     - 平衡树：AVL树、红黑树
@@ -316,15 +316,15 @@ def reverseList(self, head):
 
 主要内容：
 
-- Stack
+- Stack：一种 last-in-first-out (LIFO) 算法
 - Queue：一种 first-in-first-out (FIFO) 算法
 - 优先队列、优先堆：Last-in-first-out Data Structure（先进先出表）
 - 多级反馈队列
 
 
 栈和队列实际上是（前面介绍的）线性表的应用
-- 我们知道，list天然地适合做 Stack，即尾部入，尾部出
-- 我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可。  
+- list 天然地适合做 Stack，尾部入，尾部出 性能都是 O(1)
+- list 删除头部的元素是极为低效的，因此不能直接做 Queue. 解决方法是很简单，只要增加一个指向头部的指针即可。但需要定期 compaction
 
 
 **栈**：用 list 实现栈
@@ -333,9 +333,29 @@ class Stack(list):
     def push(self, term):
         self.append(term)
 
-    def take(self):
+    def pop(self):
         return self.pop()
 ```
+
+
+**队列**：用 deque 实现
+```python
+from collections import deque
+
+class Queue(object):
+    def __init__(self):
+        self.q = deque()
+
+    def enqueue(self, term):
+        self.q.append(term)
+
+    def dequeue(self):
+        return self.q.popleft()
+```
+
+
+
+
 
 **队列**：C实现：
 - 链表
@@ -343,146 +363,83 @@ class Stack(list):
 - 循环array可以构造一个 queue：https://github.com/guofei9987/c-algorithm/tree/master/DynamicArray
 
 
-队列的其它实现
-- Queue：借用 deque（底层是循环 array），是效率最高的了
+队列实现
+- Queue：借用 deque（底层是C实现的双端队列，多个数组片段组成的链表），是效率最高的了
 - Queue1：用 list 实现队列
-- Queue2：用 list 实现队列，并且每次take都清除多余
-- Queue3：用链表
-- Queue4：用 list 实现队列，并且当多余信息过多时清除多余
-- Queue5: 用两个 stack 可以模拟一个 queue，效率仅比 deque 慢一点点
+- Queue2：用链表
+- Queue3: 用两个 stack 可以模拟一个 queue，效率仅比 deque 慢一点点
 
 
 ```py
-# 缺点：内存会一直增加
-class Queue1(list):
+# 实现1: 用 list 实现队列(head_idx 指向头部)
+class Queue1(object):
     def __init__(self):
-        super(Queue1, self).__init__()
-        self.head_idx = -1
+        self._data = list()
+        self._head_idx = 0
 
-    def push(self, term):
-        self.append(term)
+    def enqueue(self, term):
+        self._data.append(term)
 
-    def take(self):
-        self.head_idx += 1
-        return self[self.head_idx]
+    def dequeue(self):
+        if self._head_idx >= len(self._data):
+            return None
+
+        term = self._data[self._head_idx]
+
+        self._data[self._head_idx] = None
+        self._head_idx += 1
+        return term
+
+    def compact(self):
+        # 定期压缩，否则内存会一直增加
+        self._data = self._data[self._head_idx:]
+        self._head_idx = 0
 
 
-# 缺点：虽然内存控制住了，但是 take 操作耗时加倍
-class Queue2(object):
-    def __init__(self):
-        self.q = list()
-
-    def push(self, term):
-        self.q.append(term)
-
-    def take(self):
-        self.q = self.q[1:]
-
-
-# 用链表做，效率和 2 一样
+# 实现2:用链表
 class Node(object):
     def __init__(self, val):
         self.val = val
         self.next = None
 
 
-class Queue3(object):
+class Queue2(object):
     def __init__(self):
         self.head = Node(None)
         self.tail = self.head
 
-    def push(self, term):
+    def enqueue(self, term):
         node_new = Node(term)
         self.tail.next = node_new
         self.tail = node_new
 
-    def take(self):
-        res = self.head.next
-        self.head.next = res.next
-        return res
+    def dequeue(self):
+        if self.head is self.tail:
+            raise None
+
+        node_to_dequeue = self.head.next
+        self.head.next = node_to_dequeue.next
+
+        if node_to_dequeue is self.tail:
+            self.tail = self.head
+
+        return node_to_dequeue.val
 
 
-# 当已经出列的元素多余100个时，重整list，这应该是比较均衡的方案了
-class Queue4(object):
-    def __init__(self):
-        self.q = list()
-        self.head_idx = -1
-
-    def push(self, term):
-        self.q.append(term)
-
-    def take(self):
-        # 这里还可以根据列表大小和实际功能，做动态更改，而不是固定100
-        if self.head_idx == 100:
-            self.q = self.q[101:]
-            self.head_idx = -1
-        self.head_idx += 1
-        return self.q[self.head_idx]
-
-
-from collections import deque
-
-# 双 stack 可以实现一个 queue
-class Queue5:
+# 实现3: 双 stack 可以实现一个 queue
+class Queue3:
     def __init__(self):
         self.stack1 = list()
         self.stack2 = list()
 
-    def push(self, val):
+    def enqueue(self, val):
         self.stack1.append(val)
 
-    def take(self):
+    def dequeue(self):
         if not self.stack2:
             self.stack2 = self.stack1[::-1]
             self.stack1 = list()
         return self.stack2.pop()
-
-
-# 使用 deque （循环array），最快的方案
-class Queue(object):
-    def __init__(self):
-        self.q = deque()
-
-    def push(self, term):
-        self.q.append(term)
-
-    def take(self):
-        return self.q.popleft()
-```
-
-性能测试：
-```py
-import datetime
-
-Classes = [Queue1, Queue2, Queue3, Queue4, Queue5, Queue]
-
-
-def test_time(q_class):
-    num = 100
-    start_time = datetime.datetime.now()
-    for i in range(num):
-        queue = q_class()
-
-        for i in range(10000):
-            queue.push(i)
-
-        for i in range(10000):
-            queue.take()
-
-    print(datetime.datetime.now() - start_time)
-
-
-for q_class in Classes:
-    test_time(q_class)
-```
-
-```
-0:00:00.327828
-0:00:11.765587
-0:00:00.814363
-0:00:00.459293
-0:00:00.262654
-0:00:00.238956
 ```
 
 
