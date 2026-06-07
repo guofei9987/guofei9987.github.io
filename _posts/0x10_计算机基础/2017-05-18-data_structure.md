@@ -213,7 +213,7 @@ if __name__ == "__main__":
 
 
 
-
+**侵入式链表**：C语言使用，性能更高，但与业务耦合。
 
 #### Two Pointer Technique
 [Two Pointer Technique](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
