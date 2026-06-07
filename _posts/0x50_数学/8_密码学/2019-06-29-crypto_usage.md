@@ -355,91 +355,120 @@ text_hash = hash.digest()
 
 
 
-## 混沌加密法
-混沌加密法有两个关键技术点：
-1. 混沌迭代式 $x_n=ux_{n-1}(1-x_{n-1}),(u \in (3.5699456,4],x_0 \in (0,1))$，呈现 **混沌性**：
-    - 一方面如果你不知道参数，你无法根据迭代结果求出参数；
-    - 另一方面，如果你知道参数，那么每次迭代的序列都是一样的。
-2. $a\oplus b \oplus b=a,\forall a,b$,异或求两次还是自身
+## 简单的替换密码、流式加密
+
+很多时候不需要用特别安全的加密算法，而是希望代码简单、依赖少。
+- 这部分都用 xor 加密作为底层原理。把原始数据与一段 stream 做 xor
+- xor 的特点是，$a\oplus b \oplus b=a,\forall a,b$，也就是说，异或求两次还是自身
+- 以下不同的算法，生成 stream 的方式不同
 
 
-迭代加密/解密函数：  
-思路是，混沌迭代式的n到m位，与原序列求异或。
-```py
-def func_chaos(password, input_data):
+--------------------------
+
+方案1，简单重复 key:
+
+```python
+from itertools import cycle, islice
+
+
+def xor_encrypt_repeat_key_stream(data: bytes, key: bytes) -> bytes:
+    key_stream: bytes = bytes(islice(cycle(key), len(data)))
+    return bytes(v ^ k for (v, k) in zip(data, key_stream))
+
+
+text = "这是一段待加密的文本"
+key = b"p@ssw0rd"
+
+# 加密
+text_encrypt = xor_encrypt_repeat_key_stream(text.encode("utf-8"), key=key)
+
+# 解密
+text_decrypt = xor_encrypt_repeat_key_stream(text_encrypt, key=key)
+
+print(text_encrypt)
+print(text_decrypt.decode("utf-8"))
+```
+
+--------------------
+
+方案2
+
+上面的算法周期性循环使用 key，因此极为容易被破解。作为改进，把 PlainText 也加入到 key中。参考 [Autokey Cipher](https://www.guofei.site/cipher.html)
+
+（代码暂时不写）
+
+
+
+
+
+
+
+-------------------
+
+### 随机数加密法
+
+使用 random，会更安全一些。（尽管仍不是密码学安全的）
+
+
+```python
+import random
+
+
+def xor_encrypt_random_stream(data: bytes, key: bytes) -> bytes:
+    rng = random.Random(key)
+    key_stream = bytes(rng.getrandbits(8) for _ in range(len(data)))
+    return bytes(v ^ k for (v, k) in zip(data, key_stream))
+```
+
+（测试方法与上同）
+
+
+
+### 混沌加密法
+
+
+混沌加密法的关键技术点： 混沌迭代式 $x_n=ux_{n-1}(1-x_{n-1}),(u \in (3.5699456,4],x_0 \in (0,1))$，呈现 **混沌性**：
+- 一方面如果你不知道参数，你无法根据迭代结果求出参数；
+- 另一方面，如果你知道参数，那么每次迭代的序列都是一样的。
+
+
+
+算法：
+- 计算混沌迭代式的 n 到 n + length
+- 与原序列求异或
+
+
+```python
+def chaos_stream(password, length: int):
+    output_stream = bytearray()
     u, x, n = password
-    output_data = []
-    for i in range(n):
+    for _ in range(n):
         x = u * x * (1 - x)
-    for i in input_data:
+    for i in range(length):
         x = u * x * (1 - x)
-        output_data.append(i ^ (int(x * 127))) # 加密字符串时，是ascii码，所以是127。加密图像用255
-    return output_data
+        output_stream.append(int(x * 256) & 0xff)
+    return output_stream
+
+
+def xor_encrypt_chaos(data: bytes, key) -> bytes:
+    key_stream = chaos_stream(key, len(data))
+    return bytes(v ^ k for (v, k) in zip(data, key_stream))
+
+
+text = "这是一段待加密的文本"
+key = (3.7, 0.2, 10)
+
+# 加密
+text_encrypt = xor_encrypt_chaos(text.encode("utf-8"), key=key)
+
+# 解密
+text_decrypt = xor_encrypt_chaos(text_encrypt, key=key)
+
+print(text_encrypt)
+print(text_decrypt.decode("utf-8"))
 ```
 
-数据准备
-```py
-input_data = 'http://www.guofei.site'
-password = (3.7, 0.2, 10)
-```
 
-加密
-```py
-clear_data = [ord(i) for i in input_data]
-cypher_data = func_chaos(password, clear_data)
-
-cypher_text = [chr(i) for i in cypher_data]
-print('加密后：')
-print(cypher_data)
-print(''.join(cypher_text))
-```
-
-解密，和加密完全一样
-```py
-predict_data = func_chaos(password, cypher_data)
-predict_text = [chr(i) for i in predict_data]
-print('加密后：')
-print(predict_data)
-print(''.join(predict_text))
-```
-
-## 随机数加密法
-### 文本加密
-除了用混沌生成器之外，你还可以用随机数生成器
-
-
-```py
-input_data = 'http://www.guofei.site/m/m.md' # 如果你加密对象是一个url，你就能存入大量信息
-password = 0
-np.random.seed(password)
-cypher_data = [ord(i) ^ np.random.randint(127) for i in input_data]
-''.join([chr(i) for i in cypher_data])
-```
-
-解密
-```py
-password = 0
-cypher_str = 'D[\x010yTl\x10~$;\x15Q8 =1"I(\x12BxCw<\x0bt)'
-np.random.seed(password)
-clear_data = [chr(ord(i) ^ np.random.randint(127)) for i in cypher_str]
-url=''.join(clear_data)
-requests.get(url).content.decode('utf-8')
-```
-
-### 加密图像
-- 加密
-```py
-input_data = plt.imread('test.jpg')
-np.random.seed(0)
-cypher_data = input_data ^ np.random.randint(0, 255, size=input_data.shape)
-plt.imshow(cypher_data)
-```
-- 解密
-```py
-np.random.seed(0)
-clear_data = cypher_data ^ np.random.randint(0, 255, size=cypher_data.shape)
-plt.imshow(clear_data)
-```
 
 ## 隐写类算法
 ### 图像盲水印
