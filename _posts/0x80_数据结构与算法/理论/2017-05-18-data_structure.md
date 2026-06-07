@@ -1,17 +1,20 @@
 ---
 layout: post
-title: 【数据结构0】知识体系
+title: 🔥 数据结构
 categories:
-tags: 0x80_数据结构与算法
+tags: 0x10_计算机基础
 keywords:
 description:
+permalink: /:title:output_ext
 order: 500
 ---
 
 
-## 知识目录
 
-### 基本数据结构
+
+## 目录
+
+数据结构写了很多篇，点击查看：
 
 1. [线性结构](https://www.guofei.site/2018/06/30/linear_list.html)
     - 数组。Array, 动态数组,
@@ -50,7 +53,7 @@ order: 500
 - [最小生成树](https://www.guofei.site/2017/09/12/minimumspanningtree.html)
 
 
-### 基本算法
+## 基本算法
 
 
 - DFS/BFS
