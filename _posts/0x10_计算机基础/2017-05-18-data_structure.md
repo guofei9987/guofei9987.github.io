@@ -4,9 +4,9 @@ title: 🔥 数据结构
 categories:
 tags: 0x10_计算机基础
 keywords:
-description:
+description: "Algorithmic Foundations"
 permalink: /:title:output_ext
-order: 500
+order: "CS01-AL"
 ---
 
 

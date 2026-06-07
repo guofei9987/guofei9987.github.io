@@ -4,9 +4,9 @@ title: 【学习中】计算机网络
 categories: 学习中
 tags: 
 keywords:
-description:
+description: "Networking and Communication"
 permalink: /:title:output_ext
-order: 103
+order: "CS04-NC"
 ---
 
 ## 概述

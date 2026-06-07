@@ -4,9 +4,9 @@ title: 🔥 计算机组成原理
 categories:
 tags: 0x10_计算机基础
 keywords:
-description:
+description: "Architecture and Organization"
 permalink: /:title:output_ext
-order: 101
+order: "CS02-AR"
 ---
 
 ## 冯诺依曼结构

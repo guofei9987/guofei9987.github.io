@@ -4,9 +4,9 @@ title: 软件工程
 categories: 
 tags: 0x10_计算机基础
 keywords:
-description:
+description: "Software Engineering"
 permalink: /:title:output_ext
-order: 104
+order: "CS08-SE"
 ---
 
 
