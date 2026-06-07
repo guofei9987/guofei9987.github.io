@@ -31,7 +31,7 @@ pd.set_option('display.max_colwidth',100) # 有时候一个单元格里面的内
 
 - 按列创建
 ```python
-df = pd.DataFrame({'col1': [1] * 9, 'col2': ['one', 'tow', 'three'] * 3}, index=range(9))
+df = pd.DataFrame({'col1': [1] * 9, 'col2': ['one', 'two', 'three'] * 3}, index=range(9))
 ```
 - 从数据集创建
 ```py
@@ -59,6 +59,10 @@ df.to_dict(orient='records')
 # {'col1': 1, 'col2': 'tow'}]
 
 # orient 可以是："dict", "list", "series", "split", "tight", "records", "index"
+
+
+df.values.tolist()
+# [[1, 2], [3, 4], [5, 6]]
 ```
 
 **Excel**
