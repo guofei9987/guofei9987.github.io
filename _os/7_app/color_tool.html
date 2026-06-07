@@ -56,6 +56,43 @@ order: 721
   font-size: 11px;
   color: var(--tools-muted);
 }
+
+.color-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 8px;
+}
+
+.color-result-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  gap: 10px;
+  align-items: center;
+  padding: 6px;
+  background: var(--tools-bg);
+  border-radius: 6px;
+}
+
+.color-result-label {
+  font-weight: 600;
+  color: var(--tools-primary);
+}
+
+.color-result-value {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--tools-text);
+  background: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--tools-border);
+}
+
+.color-result-btn {
+  justify-self: end;
+  font-size: 13px;
+  padding: 5px 8px;
+}
 </style>
 
 <div class="text-tools-app" id="colorPickerApp">
@@ -91,54 +128,55 @@ order: 721
 
   <div class="text-tools-panel">
     <h2 style="color: var(--tools-primary);">颜色结果</h2>
-    <div id="colorResults" style="display: grid; gap: 12px;">
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HEX:</span>
-        <span class="text-tools-value" id="hexValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">#FF0000</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="#FF0000" style="justify-self: end;">复制</button>
+    <div id="colorResults" class="color-results-grid">
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">HEX:</span>
+        <span class="color-result-value text-tools-value" id="hexValue">#FF0000</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="#FF0000">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">RGB:</span>
-        <span class="text-tools-value" id="rgbValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">rgb(255, 0, 0)</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="rgb(255, 0, 0)" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">RGB:</span>
+        <span class="color-result-value text-tools-value" id="rgbValue">rgb(255, 0, 0)</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="rgb(255, 0, 0)">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HSL:</span>
-        <span class="text-tools-value" id="hslValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">hsl(0, 100%, 50%)</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="hsl(0, 100%, 50%)" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">HSL:</span>
+        <span class="color-result-value text-tools-value" id="hslValue">hsl(0, 100%, 50%)</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="hsl(0, 100%, 50%)">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">HWB:</span>
-        <span class="text-tools-value" id="hwbValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">hwb(0, 0%, 0%)</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="hwb(0, 0%, 0%)" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">HWB:</span>
+        <span class="color-result-value text-tools-value" id="hwbValue">hwb(0, 0%, 0%)</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="hwb(0, 0%, 0%)">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">LCH:</span>
-        <span class="text-tools-value" id="lchValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">lch(53.23, 104.58, 39.97)</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="lch(53.23, 104.58, 39.97)" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">LCH:</span>
+        <span class="color-result-value text-tools-value" id="lchValue">lch(53.23, 104.58, 39.97)</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="lch(53.23, 104.58, 39.97)">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">CMYK:</span>
-        <span class="text-tools-value" id="cmykValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">cmyk(0%, 100%, 100%, 0%)</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="cmyk(0%, 100%, 100%, 0%)" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">CMYK:</span>
+        <span class="color-result-value text-tools-value" id="cmykValue">cmyk(0%, 100%, 100%, 0%)</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="cmyk(0%, 100%, 100%, 0%)">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">英文:</span>
-        <span class="text-tools-value" id="nameValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">red</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="red" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">英文:</span>
+        <span class="color-result-value text-tools-value" id="nameValue">red</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="red">复制</button>
       </div>
-      <div class="text-tools-result-row" style="display: grid; grid-template-columns: 60px 1fr 60px; gap: 12px; align-items: center; padding: 8px; background: var(--tools-bg); border-radius: 6px;">
-        <span class="text-tools-label" style="font-weight: 600; color: var(--tools-primary);">中文:</span>
-        <span class="text-tools-value" id="chineseNameValue" style="font-family: monospace; font-size: 14px; color: var(--tools-text); background: white; padding: 6px 10px; border-radius: 4px; border: 1px solid var(--tools-border);">红色</span>
-        <button class="text-tools-btn text-tools-btn-copy" data-clipboard="红色" style="justify-self: end;">复制</button>
+      <div class="color-result-row text-tools-result-row">
+        <span class="color-result-label text-tools-label">中文:</span>
+        <span class="color-result-value text-tools-value" id="chineseNameValue">红色</span>
+        <button class="text-tools-btn text-tools-btn-copy color-result-btn" data-clipboard="红色">复制</button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="text-tools-panel" id="colorWallPanel" style="margin-top: 20px;">
+  <div class="text-tools-panel" id="colorWallPanel">
   <h2 style="color: var(--tools-primary); margin-bottom: 15px;">颜色卡片墙</h2>
   <div id="colorWall" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 15px; max-height: 400px; overflow-y: auto;"></div>
+  </div>
+
 </div>
 
 <br>

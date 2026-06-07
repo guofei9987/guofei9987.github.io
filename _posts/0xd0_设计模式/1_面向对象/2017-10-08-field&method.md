@@ -250,7 +250,59 @@ foo.__dict__  # 包括b，不包括a
 
 
 
+## 元类
 
+一个类，实际上也是一个对象，于是你可以：
+1. 将它赋值给一个变量
+2. 拷贝它
+3. 为它增加属性
+4. 将它作为函数参数进行传递
+
+
+```python
+class Dog(object):
+    pass
+
+
+# 将它赋值给一个变量
+d = Dog
+# 为它增加属性
+Dog.name = "Dog"
+# 将它作为函数参数进行传递
+print(Dog)
+```
+
+
+因为类也是对象，因此你可以 **动态地创建类**
+
+```python
+def choose_class(name):
+    if name == 'foo':
+        class Foo(object):
+            pass
+
+        return Foo
+        # 返回的是类，不是类的实例
+
+    else:
+        class Bar(object):
+            pass
+
+        return Bar
+
+
+MyClass = choose_class('foo')
+```
+
+不过这不够动态，因为你还是要定义类，这样更动态
+```python
+Test = type('Test', (object,), {'num': 0,'hello':hello})
+# 参考前面的相同语句
+```
+
+--------------
+
+什么是 **元类**？元类就是类的类 `type`
 
 
 

@@ -71,59 +71,68 @@ a.bar()
 ```
 
 ### 引用父类方法
-子类继承父类时，会覆写父类的方法，有时候还想调用父类的方法（例如，使用 `__init__` 方法时，想让父类的 `__init__` 方法先运行一次），有两种方法解决：
+子类继承父类时，会覆写父类的方法，有时候还想调用父类的方法（例如，使用 `__init__` 方法时，想让父类的 `__init__` 方法先运行一次），有两种方法：
 
 
-
-- 引用指定的父类方法
-```py
+父类
+```python
 import random
-import scipy.stats as stats
+
+
+# 父类
 class Fish:
-    def __init__(self):
-        self.position = stats.randint(1, 10).rvs(size=(2,))
+    def __init__(self, name='Fish'):
+        self.name = name
+        self.position = random.randint(-100, 100)
+
     def move(self):
-        self.position[0] -= 1
-        print('move to {position}'.format(position=self.position))
+        self.position += random.randint(-5, 5)
+        print(f'{self.name} move to {self.position}')
+
+
+# 方法1：指定父类 Fish
 class Shark(Fish):
     def __init__(self):
-        Fish.__init__(self) # 未绑定的父类方法
-        self.ishungry = False
+        Fish.__init__(self, 'Shark')
+        self.hungry = False
+
+
 shark = Shark()
 shark.move()
 shark.move()
 shark.move()
-```
-- 使用super函数
-```py
-import random
-import scipy.stats as stats
-class Fish(object):
-    def __init__(self,name='fish'):
-        self.name=name
-        self.position = stats.randint(1, 10).rvs(size=(2,))
-    def move(self):
-        self.position[0] -= 1
-        print('move to {position}'.format(position=self.position))
-class Shark(Fish):
+
+
+# 方法2：使用 super，好处是不用一一去找父类的名称，改继承关系很方便
+class Shark2(Fish):
     def __init__(self):
-        super().__init__(name='shark')  # super方法，好处是不用一一去找父类的名称，改继承关系很方便
-        # Python2 是这么做的：super(B, self).__init__(x)
-        self.ishungry = False
-shark = Shark()
-shark.move()
-shark.move()
-shark.move()
+        super().__init__(name='shark')
+        self.hungry = False
+
+
+shark2 = Shark2()
+shark2.move()
+shark2.move()
+shark2.move()
 ```
+
+
+两个方法的区别
+- 使用 `Fish.__init__`，被多次继承的公共父类会被执行多次。
+- 使用 `super()`，公共父类仅被执行一次
+
+
 
 ### `__new__` 方法
 ```python
 class A:
     def __new__(cls, *args, **kwargs):
+        print("call __new__:")
         print(cls, args, kwargs)
 
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, x):
+        self.x = x
+        print("call __init__:")
         print(self)
 
 
@@ -137,40 +146,54 @@ a = A(1)
 - `__new__` 和 `__init__` 的入参必须一模一样，否则报错
 
 
+一般这样写：
+```python
+class A:
+    def __new__(cls, *args, **kwargs):
+        print("call __new__:")
+        print(cls, args, kwargs)
+        return super().__new__(cls)
+
+    def __init__(self, x):
+        self.x = x
+        print("call __init__:")
+        print(self)
+
+a = A(10)
+```
+
+
 ## 多态
 
 Pyhon不支持多态并且也用不到多态，或者说Python天然有多态性。多态的概念是应用于Java和C#这一类强类型语言中，而Python崇尚“鸭子类型”。  
 
 ```py
-class F1:
-    pass
-
-class S1(F1):
-
-    def show(self):
-        print('S1.show')
-
-class S2(F1):
-
-    def show(self):
-        print('S2.show')
+from abc import ABC, abstractmethod
 
 
+class Payment(ABC):
+    @abstractmethod
+    def pay(self, money):
+        pass
 
-def Func(obj):
-    """Func函数需要接收一个F1类型或者F1子类的类型"""
-    obj.show()
-    #print()
 
-s1_obj = S1()
-Func(s1_obj) # 在Func函数中传入S1类的对象 s1_obj，执行 S1 的show方法，结果：S1.show
+class WeChatPay(Payment):
+    def pay(self, money):
+        print(f"微信支付 {money} 元")
 
-s2_obj = S2()
-Func(s2_obj) # 在Func函数中传入Ss类的对象 ss_obj，执行 Ss 的show方法，结果：S2.show
+
+class BankCard(Payment):
+    def pay(self, money):
+        print(f"银行卡支付 {money} 元")
+
+
+def checkout(pay_obj, money):
+    pay_obj.pay(money)
+
+
+checkout(WeChatPay(), 100)
+checkout(BankCard(), 200)
 ```
-由于在Java或C#中定义函数参数时，必须指定参数的类型  
-为了让Func函数既可以执行S1对象的show方法，又可以执行S2对象的show方法，所以，定义了一个S1和S2类的父类  
-而实际传入的参数是：S1对象和S2对象  
 
 
 ## issubclass和isinstance
@@ -202,7 +225,7 @@ class Test:
         print(self)
         print(self.__class__)
 
-t=Test()
+t = Test()
 
 print(t)
 t.prt()
