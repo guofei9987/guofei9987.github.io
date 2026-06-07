@@ -33,5 +33,5 @@ order: 9999
 
 ```bash
 # 下载书单
-curl https://www.guofei.site/api/book_list.json -o book_list.json
+curl https://www.guofei.site/api/book_list.json -O
 ```
