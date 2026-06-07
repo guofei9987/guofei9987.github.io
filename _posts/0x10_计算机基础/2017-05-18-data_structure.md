@@ -19,14 +19,15 @@ order: 101
 1. [线性结构](#线性结构)
     - 数组。Array, 动态数组,
     - 链表。单链表, 双向链表, 循环链表, 跳跃表
-    - stack/queue, 循环队列
+    - Stack/Queue, Deque, 循环队列, 
 2. [哈希](#哈希)
     - HashTable, HashSet, HashMap
 4. [递归](https://www.guofei.site/2017/08/24/recursion.html)
 5. [查找](https://www.guofei.site/2018/07/06/search.html)
     - 二分法
     - 并查集
-    - 布隆过滤器
+    - bitSet
+    - 概率结构。布隆过滤器，Count-Min Sketch，HyperLogLog
 6. [排序](https://www.guofei.site/2018/11/20/sort.html)
     - 简单排序：冒泡、选择、插入、希尔排序
     - 分置排序：快速排序、归并排序
@@ -78,17 +79,21 @@ order: 101
 ## 复杂度
 
 一些定义：
-### 定义1  
+
+**定义1**  
 $O(g)$代表一组函数，  
 $f\in O(g) \Leftrightarrow$  
 $ \exists n_0 ,c $使得$\forall n \geq n_0 , f(n) \leq cg(n)$
-### 定义2
+
+------------
+
+**定义2**  
 $\Omega (g)$的定义恰恰相反    
 $ \exists n_0 ,c $使得$\forall n \geq n_0 , f(n) \geq cg(n)$   
-### 定义3
+
+
+**定义3**  
 $\Theta(g)=O(g) \cap \Omega(g)$
-
-
 
 **递归中复杂度主定理**  
 如果递归计算量是这样的：  
@@ -322,10 +327,7 @@ def reverseList(self, head):
 - 我们又知道 list 删除头部的元素是极为低效的，解决方法是很简单，只要增加一个指向头部的指针即可。  
 
 
-
-#### 栈
-
-用 list 实现栈
+**栈**：用 list 实现栈
 ```py
 class Stack(list):
     def push(self, term):
@@ -335,9 +337,7 @@ class Stack(list):
         return self.pop()
 ```
 
-#### 队列：C
-
-用C实现：
+**队列**：C实现：
 - 链表
 - 两个 stack 可以构造一个 queue：https://leetcode.cn/problems/implement-stack-using-queues/
 - 循环array可以构造一个 queue：https://github.com/guofei9987/c-algorithm/tree/master/DynamicArray
@@ -610,3 +610,303 @@ d_0=h(K)\\
 d_i=(d_{i-1}+R)\mod m
 \end{array}\right.$$
     - 其中，R是一个伪随机数   
+
+
+
+## 递归
+
+[递归](https://www.guofei.site/2017/08/24/recursion.html)
+
+
+## 查找
+
+
+
+### 二分法
+
+
+**我总结的一般写法**
+```py
+class Solution:
+    def search(self, nums, target):
+        # step1:定义初始搜索范围
+        left,right=0,len(nums)-1
+        if left==right:return None # step1.1 增加鲁棒性，也就是一开始即达到结束条件。需不需要视 step4是否容易写而定
+        # step2：定义结束时的搜索范围，一般为left==right，但某些问题未必
+        while left<right:
+            mid=(left+right)//2
+            if nums[mid]<target: # step2.5：必须把所有的if考虑到，否则有可能死循环
+                left=mid+1
+            elif nums[mid]>target:
+                right=mid-1
+            elif nums[mid]==target: # step3：搜索时遇到解，便直接返回。如果是复杂形式，注意index out of range
+                return mid
+        # step4:搜索结束后的小区域的情况判断。这里小区域范围为1，且必为解，因此无需多做处理。
+        # 一般情况下，应当处理这个小区域
+        mid=left # 为了可读性（代码表示的统一性）。注意决不能直接使用之前的mid，因为那个赋值是否运行是不一定的
+        # if nums[left]==target: # 一般情况下，与while循环中的return出口条件一致
+        #     return mid
+        # else:return -1
+        return -1
+```
+
+注：
+1. 某些题目中，可能搜索不到，让输出四舍五入解。最后一步的left可能越过“有理数解”，所以需要检查left-1
+2. 理论上right也可能越过，（不过如果要求输出舍弃小数，其实不用检查的）
+
+
+
+**LeetCode上的写法-第一种**
+
+```py
+def binarySearch(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    if len(nums) == 0:
+        return -1
+
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    # End Condition: left > right
+    return -1
+```
+
+- Initial Condition: `left = 0, right = length-1`
+- Termination: `left > right`
+- Searching Left: `right = mid-1`
+- Searching Right: `left = mid+1`
+
+
+**LeetCode上的写法-第二种**
+- Initial Condition: `left = 0, right = length`
+- Termination: `left == right`
+- Searching Left: `right = mid`
+- Searching Right: `left = mid+1`
+
+
+
+**LeetCode上的写法-第三种**
+
+- Initial Condition: `left = 0, right = length-1`
+- Termination: `left + 1 == right`
+- Searching Left: `right = mid`
+- Searching Right: `left = mid`
+
+
+### 并查集
+
+是什么？
+- 若干个集合，不断发生合并，要查询“两个元素是否在同一个集合中”
+- 思路：
+    - 每个集合建立一个树，用根节点来代表这个集合
+    - 那么集合的合并相当于树的合并
+    - 查询“两个元素是否在同一个集合中”相当于查询“两个节点是否有共同的根节点”
+
+
+```py
+class UnionFind:
+    def __init__(self, n: int):
+        self.n = n  # 元素的个数
+        self.cnt = n  # 类的个数
+        self.parent = list(range(n))
+        self.depth = [1] * n  # 树的深度，根结点那里有效，其余都是1
+
+    def find(self, x: int) -> int:
+        if x != self.parent[x]:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x: int, y: int) -> bool:
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x == root_y:
+            # x,y 原本就是1类
+            return False
+        if self.depth[root_x] > self.depth[root_y]:
+            root_x, root_y = root_y, root_x
+        self.parent[root_x] = root_y
+        self.depth[root_y] += self.depth[root_x]
+        self.cnt -= 1
+        return True
+
+    def is_connected(self, x: int, y: int) -> bool:
+        return self.find(x) == self.find(y)
+```
+
+1. 并查集的解释 https://zhuanlan.zhihu.com/p/93647900/
+2. 对查询做了优化，做find的时候，自动把节点连接到根结点，
+3. 元素是 list(range(n)) 的int类型
+
+
+
+简化版并查集
+```python
+class UnionFind:
+    def __init__(self, n: int):
+        self.parent = list(range(n))
+
+    def find(self, idx: int) -> int:
+        if idx != self.parent[idx]:
+            self.parent[idx] = self.find(self.parent[idx])
+        return self.parent[idx]
+
+    def union(self, idx1: int, idx2: int):
+        self.parent[self.find(idx1)] = self.find(idx2)
+
+    def is_connected(self, idx1: int, idx2: int) -> bool:
+        return self.find(idx1) == self.find(idx2)
+```
+
+parent 是什么？
+1. parent[idx] 是 idx 的上一级，
+2. 如果被 find 过， parent[idx] 是根节点。否则的话是父节点，因此不能直接 `len(set(parent))` 来判断有几个类
+3. `i == parent[i]` 用来判断 i 是否是根结点。（进而计算有几个类）
+
+
+### 布隆过滤器
+
+**布隆过滤器（Bloom Filter）** 是一种用极少空间判断“某个元素是否可能存在”的数据结构。
+- 如果它返回“存在”，不一定存在
+- 如果它返回“不存在”，一定不存在
+
+典型使用场景：你有十亿个黑名单 URL，你需要快速过滤这些 URL
+- 先用布隆过滤器，过滤掉非黑的 URL
+- 然后访问昂贵资源
+
+算法
+- 组件
+    - 一个长度为 m 的 bit 树组，初始化为 0
+    - k 个 Hash 函数，这些 Hash 函数的值域为 `[0, m-1]`
+- 插入 `key1`
+    - 遍历计算 `hash_1(key1), hash_2(key1), ..., hash_k(key1)`, 假设其值为 `v1, v2, ...`
+    - 分别令 `bits[v1] = 1`, `bits[v2] = 1`, ...
+- 不支持删除
+- 查询 `key2`
+    - 计算 hash 值
+    - 如果其对应的 `bits[v]` 都是1，则“可能存在”，否则“不然不存在”
+
+
+Python 实现
+
+```python
+import hashlib
+
+
+class BloomFilter:
+    def __init__(self, size=1000, hash_count=3):
+        """
+        size: bit 数组长度
+        hash_count: 哈希函数数量
+        """
+        self.size = size
+        self.hash_count = hash_count
+        self.bit_array = [0] * size
+
+    def _hashes(self, item: bytes):
+        """
+        为同一个 item 生成 hash_count 个哈希位置
+        """
+
+        for i in range(self.hash_count):
+            data = item + str(i).encode("utf-8")
+            digest = hashlib.md5(data).hexdigest()
+            index = int(digest, 16) % self.size
+            yield index
+
+    def add(self, item):
+        """
+        插入元素
+        """
+        for index in self._hashes(item):
+            self.bit_array[index] = 1
+
+    def __contains__(self, item: bytes):
+        """
+        判断元素是否可能存在
+        """
+        return all(self.bit_array[index] == 1 for index in self._hashes(item))
+
+
+if __name__ == "__main__":
+    bf = BloomFilter(size=100, hash_count=3)
+
+    data = ["apple", "banana", "orange"]
+
+    for x in data:
+        bf.add(x.encode("utf-8"))
+
+    test_items = ["apple", "banana", "grape", "watermelon"]
+
+    for x in test_items:
+        if x.encode("utf-8") in bf:
+            print(f"{x}: 可能存在")
+        else:
+            print(f"{x}: 一定不存在")
+```
+
+
+### Count-Min Sketch
+
+问题：有海量的元素，给定某个元素 a，如何知道其大概出现了多少次？
+
+思路：（类似 布隆过滤器）
+- 构建阶段。维护一个 m 长度的 `list[int]`，每次做 k 个 Hash，这 k 个数对应 `list[int]` 的 index 所在的值 +1
+- 查询阶段。k 个 Hash 对应的所有 int 中，最小的
+
+评价：可能高估（Hash 冲突），但不可能低估
+
+
+
+### HyperLogLog
+
+问题：给定一批元素，估算其不同元素的数量。使用 HaseSet 成本过大。
+
+
+思路：
+- 对元素做均匀 Hash，得到随机二进制串。其开头连续 0 的个数为 r，对应的概率为 $2^{-r}$
+- 因此想到，遍历，并计算最大的连续 0 个数 r，元素个数就接近 $2^r$
+- 然而，只用一个数据，随机波动太大，考虑分桶
+    - 前n位决定属于哪个桶
+    - 从 n+1 位开始计算前n个0
+
+```
+101 | 000101...
+ ↑       ↑
+桶 5    前导零 3
+```
+
+误差约为 1.04/sqrt(m)
+
+
+
+
+### bitSet
+
+用一串二进制表示有限整数集合
+- 占用空间小，每个元素只有1个字节
+- 集合运算十分高效，因为都是位运算
+    - 并集：`A | B`
+    - 交集：`A & B`
+    - 对称差：按位异或
+    - 差集：`A & (~B)`
+
+
+### Reservoir Sampling
+
+有长度未知、无法全部放入内存的数据流，希望：均匀随机抽取 k 个元素
+
+算法：
+1. 把前k个元素放入结果 `reservoir = [x₁, x₂, ..., xₖ]`
+2. 取第i个元素，随机生成 `j = randint(0,i)`
+3. 如果 `j < k` 则 `reservoir[j] = x_i`
