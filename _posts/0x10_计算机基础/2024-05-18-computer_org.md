@@ -642,6 +642,10 @@ MOS晶体管有两种
 
 ### 门电路
 
+![caption: 门电路](/a/computer/computer_organization/gate_all.svg)
+
+
+
 #### 非门
 
 
