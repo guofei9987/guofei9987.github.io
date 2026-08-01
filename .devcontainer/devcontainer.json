@@ -1,0 +1,13 @@
+{
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "guofei9987/b": {
+          "permissions": {
+            "contents": "write"
+          }
+        }
+      }
+    }
+  }
+}

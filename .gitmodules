@@ -1,6 +1,7 @@
 [submodule "a"]
-	path = a
-	url = git@github.com:guofei9987/a.git
+    path = a
+    url = https://github.com/guofei9987/a.git
+
 [submodule "b"]
-	path = b
-	url = git@github.com:guofei9987/b.git
+    path = b
+    url = https://github.com/guofei9987/b.git
