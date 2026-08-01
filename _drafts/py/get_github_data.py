@@ -16,7 +16,7 @@ data_github['followers'] = json.loads(r)['followers']
 total_star, total_fork = 0, 0
 
 github_id = 'guofei9987'
-url = 'https://api.github.com/users/{github_id}/repos?page={page_id}'
+url = 'https://api.github.com/users/{github_id}/repos?page={page_id}&per_page=100'
 repo_list = []
 page_id = 1
 while True:
