@@ -1314,8 +1314,8 @@ IO控制方式
 
 ## 参考资料
 
+- 写本文时，画了一些图：[计算机结构.pptx](/a/computer/computer_organization/computer_organization.pptx)
 - [Coursera课程：北京大学，陆俊林《计算机组成》](https://www.coursera.org/learn/jisuanji-zucheng/)
+    - [《操作系统原理》课件PPT](https://github.com/codes-books/os-pku)
 - [Mos管的工作原理](https://www.bilibili.com/video/BV1344y167qm/)
 
-
-一些图表参见：[计算机结构.pptx](/a/computer/computer_organization/computer_organization.pptx)
