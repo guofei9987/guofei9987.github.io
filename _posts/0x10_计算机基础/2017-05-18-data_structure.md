@@ -54,7 +54,7 @@ order: 101
 - [最小生成树](https://www.guofei.site/2017/09/12/minimumspanningtree.html)
 
 
-**基本算法**
+**其它基本算法**
 
 - DFS/BFS
   - 递归
@@ -76,9 +76,10 @@ order: 101
     - Dijkstra 算法，不含负数权重 $O(n^2)$
     - 双向 Dijkstra 算法，减少后一半的搜索空间，因此比 Dijkstra 快一些
 
-## 复杂度
 
-一些定义：
+--------------------------
+
+**复杂度** 的一些定义：
 
 **定义1**  
 $O(g)$代表一组函数，  
@@ -890,7 +891,10 @@ if __name__ == "__main__":
 - 红黑树
 - 线段树
 
-### 树的相关定义
+
+------------------------
+
+**树的相关定义**
 
 **【定义】树**：一个连通且无回路的无向图称为树。一个无回路的无向图称为森林。
 
@@ -1251,3 +1255,627 @@ trie 非常适合用来做敏感词过滤
 参考我的其他文章：
 - [前缀树](https://www.guofei.site/2022/04/16/lc-trie.html)
 - [AC自动机](https://www.guofei.site/2023/02/04/ac.html)
+
+
+
+
+## 图
+
+
+为什么？
+- 如果我们的工作可以诠释成graph，那么我们至少接近解决方案了。如果能诠释成tree，那么已经拥有一个解决方案了
+- 例如，XML文档或目录结构都是tree  
+- 例如，机器学习中的决策树也是tree，而神经网络一般是graph
+
+
+
+
+-----------------------------
+
+**图的基本定义**
+
+
+**【定义】图 Graph**：一个图是一个三元组，$(V,E,\phi)$，其中 V是节点(verticle)的集合，E是边(edge)的集合，函数 $\phi$ 是从边集合到节点的无序偶（有序偶）上的函数。
+- $\phi$ 把边 $e_i$ 映射到无序偶 $(v_j, v_k)$，这条边叫做 **无向边**
+- $\phi$ 把边 $e_i$ 映射到有序偶 $<v_j, v_k>$，这条边叫做 **有向边**
+- 一个图所有的边都是无向边，叫做 **无向图**
+- 一个图所有的边都是有向边，叫做 **有向图**
+- **加权图**：每条边有某种权值
+
+
+
+其它定义
+- 节点的 **度**(degree)：节点v所在边的个数，
+- 节点的 **邻居** (neighbor)：相同边连接的节点
+- 从 i 到 j 的 **路径**（path）是指从 i 到达 j 的边的序列。
+- 图的 **直径（diameter）** 是指连接任意两个节点的所有最短路径中最长路径的长度。
+- 测地路径（geodesic path）是指两个节点之间的最短路径。
+- $v_i,v_j$ 之间可以有多条边，它们叫做 **平行边**
+  - 如果一个图含有平行边，这个图叫做 **多重图**
+
+一些特殊的图：
+- **完全图（complete）**。任意两点之间都存在边
+    - **定理**： 一个完全图有n个节点，那么有 $n(n-1)/2$ 条边
+- **连通图（connected）**。任意两点之间都存在路径。
+- 如果可以回到一个给定节点，则该图是 **有环图**（cyclic）。相对地，如果至少有一个节点无法回到，则该图就是 **无环图**（acyclic）
+- 无向的无环图叫做 **森林**（Forest）
+- 连通的森林叫做 **树**
+    - Forest可以由一个或多个tree构成
+
+
+
+**定理**
+- 一个图中，节点的度之和，等于边数的两倍。证明：一个边必然对应两个节点，造成两个度
+- 一个图中，度数为奇数的节点必然是偶数个。证明：用上面这条。
+
+
+对于有向（directed）图：
+- i 的入度（in-degree）是指向 i 的边的数量
+- 出度（out-degree）是远离 i 的边的数量。
+- **【定理】** 入度之和等于出度之和
+
+
+----------------------------------------
+
+**关于补图和子图：**
+
+**【定义】子图**： $H=(W,F)$是$G=(V,E)$的子图，如果$W \subseteq V,F \subseteq E$
+
+
+**【定义】补图**： 一个图G，有G所有节点和所有能使G称为完全图的添加边所组成的图，叫做 G 的补图
+
+**【定义】相对补图**： $G_1=(V_1,E_1)$ 是 $G=(V, E)$ 的子图，如果 有 $G_2=(V_2, E_2)$，其中 $E_2=E-E_1$，$V_2$ 是与 $E_2$ 有关的节点，那么叫做 $G_2$ 是 $G_1$ 相对 $G$ 的补图
+
+
+-------------------
+
+**关于图的同构**
+
+**同构** 的定义：给定两个简单图 $G = (V, E), G_1 = (V_1, E_1)$，如果满足以下条件，称为这两个图同构
+1. 存在一一映射 $g:V\to V_1$   
+2. 边 $(v_i, v_j) \in E$ 当且仅当 $(g(v_i), g(v_j))\in E_1$  （对于有向图有对应的形式）
+
+**定理**： 容易证明，同构具有反身性、对称性、传递性
+
+
+**定理**：两个简单图同构，当且仅当它们的补图也同构。
+
+
+**定理** 两个图同构的必要条件（不是充分条件）
+1. 结点数量相同
+2. 边数相同
+3. 度数相同的结点数目相同
+
+**【定义】自补** ：如果一个图同构于它的补图，那么称这个图是自补的
+
+
+---------------------------
+
+**关于连通图：**
+
+
+- **路径** 是这样的子图，边是连续连接节点构成的  
+- 路径终点上添加一条指向起点的边，构成一条`环路`(cycle)  
+- `路径的长度`：路径上各边权重的和。如果是无权图，每个边的权重视为1.
+
+**【定理】** 一个图有 n 个节点，如果 $v_i, v_j$ 之间有路径，那么存在一个路径，其长度不多于 n-1
+
+
+连通
+- **【定义】连通** 无向图中，如果两个节点 $v_i, v_j$ 之间有路径，称它们是连通的。
+- **【定义】连通子图**
+- **【定义】连通图** 如果一个图只有一个连通子图，称为连通图
+- **【定义】连通分量** 最大连通子图的个数
+    - **【定理】** 如果一个图含有n个顶点和k条边，那么至少它有n-k个连通分量。（证明：对k做归纳法）
+
+
+**【定义】点割集** 无向图 $G = (V, E)$ 是连通图，若一个点集 $V_1$，使得图 G 删除 $V_1$ 所有节点后，所得的子图是不连通的，而删掉任意 $V_1$ 的真子集后，所得子图仍然是连通图。称 $V_1$ 是点割集。如果 $V_1$ 中只有一个元素，称这个点是 **割点**
+    - 点割集可以有多个，定义数量最少的那个点割集，其数量为 **点连通度** $k(G)$.  它其实是把一个连通图变成不连通图，至少要删掉多少个点
+
+**【定义】边割集** 定义类似上面的点割集。类似也有定义 **边连通度**
+
+**【定理】** 一个无向图 G 中的节点 v 是割点的充分必要条件是存在两个节点 $u, w$ 使得 $u, w$ 的每一条路都通过 v
+
+
+割边
+:    这样的边：如果删除，连通分量的个数将增加1
+
+TH：一条边是割边当且仅当它不属于任何一个环
+
+
+**【定义】有向图的连通情况**
+- 对于所有节点对，至少某一个方向可达，称为 **单侧连通**
+- 对于所有节点对，都双向可达，称为 **强连通**
+
+**【定理】** 一个有向图是强连通的，当且仅当 G 中有一个这样的回路，它至少包含每个节点一次。
+
+
+
+### 图的表示
+
+
+
+- list表示法
+    1. list-set 表示
+    2. list 表示
+    3. list-dict 表示：用于加权图
+    4. dict-dict 表示：用于加权图
+- 邻接矩阵表示
+- 点边矩阵表示
+- 链表表示
+
+
+
+
+
+**1. list-set表示**
+
+
+```py
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
+N = [
+    {v2, v3, v4, v5, v6}, # v1
+    {v3, v5},             # v2
+    {v4},                 # v3
+    {v5},                 # v4
+    {v6},                 # v5
+    {v3, v7, v8},         # v6
+    {v6, v8},             # v7
+    {v6, v7},             # v8
+]
+```
+
+set与dict都是用hash方法实现的，因此访问时间是 $\Theta(1)$,最坏时间是 $\Theta(n)$  
+
+用法：  
+```py
+v2 in N[v1]  # Neighborhood membership
+len(N[f])  # Degree
+```
+
+
+**2. list表示**
+
+```py
+a, b, c, d, e, f, g, h = range(8)
+N = [
+    [b, c, d, e, f],  # a
+    [c, e],           # b
+    [d],              # c
+    [e],              # d
+    [f],              # e
+    [c, g, h],        # f
+    [f, h],           # g
+    [f, g],           # h
+]
+```
+
+**3. list-dict表示**：用于加权图
+```py
+a,b,c,d,e,f,g,h=range(8)
+N=[
+    {b:2,c:1,d:3,e:9,f:4}, #a
+    {c:4,e:3},       #b
+    {d:8},       #c
+    {e:8},           #d
+    {f:7},      #e
+    {c:2,g:2,h:2},  #f
+    {f:1,h:6},    #g
+    {f:9,g:8},   #h
+]
+```
+一些用法：
+```py
+b in N[a] # Neighborhood membership
+len(N[f]) # Degree
+N[a][b]# Edge weight for (a,b)
+```
+
+
+**4. dict-dict表示**：加权图
+
+```py
+a, b, c, d, e, f, g, h = range(8)
+G = {
+    a: {b: 2, c: 1, d: 3, e: 9, f: 4},
+    b: {c: 4, e: 3},
+    c: {d: 8},
+    d: {e: 8},
+    e: {f: 7},
+    f: {c: 2, g: 2, h: 2},
+    g: {f: 1, h: 6},
+    h: {f: 9, g: 8},
+}
+```
+
+用法  
+```py
+[(G[u][v], u, v) for u in G for v in G[u]]
+```
+
+
+-----------------------
+
+**图的邻接矩阵表示**
+
+```py
+a, b, c, d, e, f, g, h = range(8)
+A = [[0, 1, 1, 1, 1, 0, 1, 1],
+       [1, 0, 1, 0, 1, 0, 1, 1],
+       [0, 0, 0, 1, 1, 1, 1, 0],
+       [1, 0, 0, 0, 1, 0, 0, 0],
+       [0, 1, 1, 0, 0, 0, 1, 1],
+       [1, 0, 1, 0, 0, 0, 0, 0],
+       [1, 1, 0, 0, 0, 1, 0, 1],
+       [1, 0, 1, 0, 1, 1, 1, 0]]
+```
+
+```py
+A[a][b] # Neighborhood membership
+sum(A[f]) # Degree
+```
+
+
+性质
+- 对于无向图来说，邻接矩阵是对称矩阵。
+
+路径数量问题（结论对有向图、无向图都一样）
+- 矩阵幂 $F = A^2$ 中的某个元素 $f_{ij}$ 指的是节点 i 到节点 j 的长度为 2 的路径的数量。（证明：用矩阵积的定义）
+- 矩阵幂 $G = N^i$ 中的某个元素 $g_{ij}$ 指的是节点 i 到节点 j 的长度为 i 的路径的数量
+
+
+为了考察节点之间的 **可达性**，注意到这个事实：  
+- **定理** 如果图 G 中有 n 个节点，那么如果 i，j 之间有通路，那么肯定有一条通路，其长度 $l\leq n$  
+- 这个定理保证了，我们在考察节点可达性时，最多考虑 n 次幂即可。
+
+定义可达矩阵 B，其中 $b_{ij} = 1$ 表示两个节点可达，$b_{ij} = 0$ 表示两个节点不可达。
+- 就有这个结论 $B = bool(A + A^2 + ... + A^n)$
+- 上面的运算复杂度太高，其实我们只关心节点可达性，就定义一个相应的布尔幂即可（布尔幂就不多写了）
+
+
+
+
+
+**邻接矩阵：加权图**
+
+```py
+inf = float('inf')
+a, b, c, d, e, f, g, h = range(8)
+N = [[0, 111, 88, 96, 116, 102, 71, 176],
+     [inf, 0, 32, 19, inf, inf, 64, 210],
+     [110, 35, 0, 144, 108, 106, 35, 126],
+     [inf, inf, inf, 0, 15, 38, 119, inf],
+     [inf, inf, 58, 105, 0, inf, 19, inf],
+     [148, inf, 143, inf, 44, 0, 154, 163],
+     [49, 174, 68, 48, 258, 76, 0, inf],
+     [99, 143, 85, 159, 2, 44, 74, 0]]
+```
+
+```py
+N[a][b] #<inf # Neighborhood membership
+sum([1 for i in N[e] if i<inf])-1 # Degree
+```
+取Degree的时间复杂度是$\Theta(n)$  
+
+
+----------------------------------
+
+**图的点边矩阵表示**
+
+对于无向图来说，点边矩阵是这样的
+
+<table>
+<thead>
+  <tr>
+    <th></th>
+    <th>e1</th><th>e2</th><th>e3</th><th>e4</th><th>e5</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>v1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td>
+  </tr>
+  <tr>
+    <td>v2</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td>
+  </tr>
+  <tr>
+    <td>v3</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td>
+  </tr>
+  <tr>
+    <td>v4</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td>
+  </tr>
+</tbody>
+</table>
+
+
+例如，v2e5 和 v4e5 位置都是 1 ，这表示 v2v4 之间有一条标，这条边是 e5
+
+一些性质
+- 每一列只有 2 个 1
+- 每一行的和是节点的度
+- 如果某一行全0，这个节点是孤立节点
+- 对于2个平行边来说，对应的两个列相同
+
+
+对于有向图来说，点边矩阵是这样的
+
+<table><thead><tr><th></th><th>e1</th><th>e2</th><th>e3</th><th>e4</th><th>e5</th></tr></thead><tbody><tr><td>v1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>v2</td><td>-1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>v3</td><td>0</td><td>-1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>v4</td><td>0</td><td>0</td><td>-1</td><td>-1</td><td>-1</td></tr></tbody></table>
+
+例如， v1e1 位置为 1，v2e1 位置是 -1，这表示 v1到v2 有一条有向边，这条边是 e1
+
+有类似的性质。
+
+
+**节点合并** 图上的两个节点i, j 合并，对应的点边矩阵做如下操作，ij 这两行相加取模2 （这个结论对有向图、无向图都成立）
+
+
+**定理** 一个连通图 G 有 r 个节点，那么对应的点边矩阵的秩是 r-1
+- 点边矩阵每一行都有2个1，加到最后一列
+
+
+
+
+### 图的遍历
+
+图的深度优先搜索：用stack，
+
+图的广度有显示搜索：用 queue
+
+### 生成树
+
+代码见于另一个博客
+
+
+
+### 最短距离-Dijkstra
+
+Dijkstra 算法是一种贪心算法。用来计算某个点到其它所有点的距离（不是路径）
+
+算法步骤：
+1. `D[k]=A[F,k]`，是一个 N 维度数组，代表 F 到 k 的最短距离
+2. `S={F,}` 代表已经找到最短路径的定点的集合
+3. 从`V-S` 中找到一个顶点x，使得 $D(x)$ 最小，然后把x放入 S 中
+4. 重新计算最优距离 `D(I)=min(D(I),D(x)+A(x,I))`
+5. 回到3，直到 `V-S` 为空
+
+用 numpy 的版本
+
+```python
+import numpy as np
+
+
+def build_graph_matrix(path_cost, num_vertex):
+    graph_matrix = np.ones((num_vertex, num_vertex)) * np.inf
+    # 返回图对应的矩阵
+    for i in range(num_vertex):
+        graph_matrix[i][i] = 0  # 对角线设为0
+
+    for start_point, end_point, distance in path_cost:
+        graph_matrix[start_point][end_point] = distance
+    return graph_matrix
+
+
+def shortest_path(vertex1, graph_matrix):
+    num_vertex = graph_matrix.shape[0]  # 顶点数量
+    distances = graph_matrix[vertex1].copy()  # 用来记录 vertex1 到每个顶点的最短路径
+    shortest_vertex = 0  # 记录最短距离的顶点
+    goal = np.zeros(num_vertex)  # 用来记录该顶点是否被选取
+    goal[vertex1] = 1
+
+    for i in range(num_vertex):
+        shortest_distance = np.inf
+        for j in range(num_vertex):
+            if goal[j] == 0 and shortest_distance > distances[j]:
+                shortest_distance = distances[j]
+                shortest_vertex = j
+        goal[shortest_vertex] = 1
+        # 更新 vertex1 到各顶点的最短距离:
+        for j in range(num_vertex):
+            if goal[j] == 0 and \
+                    distances[shortest_vertex] + graph_matrix[shortest_vertex][j] \
+                    < distances[j]:
+                distances[j] = distances[shortest_vertex] \
+                               + graph_matrix[shortest_vertex][j]
+
+    return distances
+
+
+# %%
+path_cost = [[0, 1, 29],
+             [1, 2, 30],
+             [1, 3, 35],
+             [2, 4, 28],
+             [2, 5, 87],
+             [3, 4, 42],
+             [3, 5, 75],
+             [4, 5, 97]
+             ]
+
+num_vertex = 6  # 顶点数量
+
+graph_matrix = build_graph_matrix(path_cost, num_vertex)
+distances = shortest_path(0, graph_matrix)  # 搜索最短路径
+print('-----------------------------------')
+print('顶点1到各顶点最短距离的最终结果')
+print('-----------------------------------')
+for j in range(num_vertex):
+    print('顶点 0到顶点%2d的最短距离=%3d' % (j, distances[j]))
+print('-----------------------------------')
+```
+
+
+
+不用 numpy 的版本
+```Python
+INFINITE = 99999  # 无穷大
+
+
+def build_graph_matrix(path_cost, num_vertex):
+    # 返回图对应的矩阵
+    graph_matrix = [[INFINITE] * num_vertex for _ in range(num_vertex)]
+    for i in range(num_vertex):
+        graph_matrix[i][i] = 0  # 对角线设为0
+
+    for start_point, end_point, distance in path_cost:
+        graph_matrix[start_point][end_point] = distance
+    return graph_matrix
+
+
+def shortest_path(vertex1, graph_matrix):
+    num_vertex = len(graph_matrix)  # 顶点数量
+    distances = graph_matrix[vertex1].copy()  # 用来记录 vertex1 到每个顶点的最短路径
+    shortest_vertex = 0  # 记录最短距离的顶点
+    goal = [0] * num_vertex  # 用来记录该顶点是否被选取，
+
+    goal[vertex1] = 1
+
+    for i in range(num_vertex):
+        shortest_distance = INFINITE
+        for j in range(num_vertex):
+            if goal[j] == 0 and shortest_distance > distances[j]:
+                shortest_distance = distances[j]
+                shortest_vertex = j
+
+        goal[shortest_vertex] = 1
+        # 更新 vertex1 到各顶点的最短距离
+        for j in range(num_vertex):
+            if goal[j] == 0 and \
+                    distances[shortest_vertex] + graph_matrix[shortest_vertex][j] \
+                    < distances[j]:
+                distances[j] = distances[shortest_vertex] \
+                               + graph_matrix[shortest_vertex][j]
+
+    return distances
+
+
+# %%
+path_cost = [[0, 1, 29],
+             [1, 2, 30],
+             [1, 3, 35],
+             [2, 4, 28],
+             [2, 5, 87],
+             [3, 4, 42],
+             [3, 5, 75],
+             [4, 5, 97]
+             ]
+
+num_vertex = 6  # 顶点数量
+
+graph_matrix = build_graph_matrix(path_cost, num_vertex)
+distances = shortest_path(0, graph_matrix)  # 搜索最短路径
+print('-----------------------------------')
+print('顶点1到各顶点最短距离的最终结果')
+print('-----------------------------------')
+for j in range(num_vertex):
+    print('顶点 0到顶点%2d的最短距离=%3d' % (j, distances[j]))
+print('-----------------------------------')
+
+```
+
+输出结果
+```python
+顶点 1到顶点 1的最短距离=  0
+顶点 1到顶点 2的最短距离= 29
+顶点 1到顶点 3的最短距离= 59
+顶点 1到顶点 4的最短距离= 64
+顶点 1到顶点 5的最短距离= 87
+顶点 1到顶点 6的最短距离=139
+```
+
+### 最短距离-Floyd 算法
+
+如果想找到所有点之间，两两点之间的最短距离， Floyd 算法更为有效。Floyd 算法和 Dijstra 算法的底层逻辑一样。
+1. `D[i,j]=M[i,j]` ，其中 `D[i,j]` 代表i到j的最短距离，M是图对应的距离矩阵
+2. 遍历k，求出 `D[i,j] = min(D[i,j], D[i,k]+D[k,j])`
+3. 重复第 2 步n次，n是顶点个数。
+
+
+
+
+```python
+SIZE = 7
+NUMBER = 6
+INFINITE = 99999  # 无穷大
+
+Graph_Matrix = [[0] * SIZE for row in range(SIZE)]  # 图的数组
+distance = [[0] * SIZE for row in range(SIZE)]  # 路径长度数组
+
+
+# 建立图
+def BuildGraph_Matrix(Path_Cost):
+    for i in range(1, SIZE):
+        for j in range(1, SIZE):
+            if i == j:
+                Graph_Matrix[i][j] = 0  # 对角线设为0
+            else:
+                Graph_Matrix[i][j] = INFINITE
+    # 存入图的边
+    i = 0
+    while i < SIZE:
+        Start_Point = Path_Cost[i][0]
+        End_Point = Path_Cost[i][1]
+        Graph_Matrix[Start_Point][End_Point] = Path_Cost[i][2]
+        i += 1
+
+
+# 打印出图
+
+def shortestPath(vertex_total):
+    # 初始化图的长度数组
+    for i in range(1, vertex_total + 1):
+        for j in range(i, vertex_total + 1):
+            distance[i][j] = Graph_Matrix[i][j]
+            distance[j][i] = Graph_Matrix[i][j]
+
+    # 使用Floyd算法找出所有顶点两两之间的最短距离
+    for k in range(1, vertex_total + 1):
+        for i in range(1, vertex_total + 1):
+            for j in range(1, vertex_total + 1):
+                if distance[i][k] + distance[k][j] < distance[i][j]:
+                    distance[i][j] = distance[i][k] + distance[k][j]
+
+
+Path_Cost = [[1, 2, 20], [2, 3, 30], [2, 4, 25], \
+             [3, 5, 28], [4, 5, 32], [4, 6, 95], [5, 6, 67]]
+BuildGraph_Matrix(Path_Cost)
+print('===============================================')
+print('      所有顶点两两之间的最短距离: ')
+print('===============================================')
+shortestPath(NUMBER)  # 计算所有顶点间的最短路径
+# 求得两两顶点间的最短路径长度数组后，将其打印出来
+print('      顶点1  顶点2  顶点3  顶点4  顶点5  顶点6')
+for i in range(1, NUMBER + 1):
+    print('顶点%d' % i, end='')
+    for j in range(1, NUMBER + 1):
+        print('%6d ' % distance[i][j], end='')
+    print()
+print('===============================================')
+print()
+```
+
+
+
+输出
+```
+-----------------------------------
+顶点1到各顶点最短距离的最终结果
+-----------------------------------
+顶点 0到顶点 0的最短距离=  0
+顶点 0到顶点 1的最短距离= 29
+顶点 0到顶点 2的最短距离= 59
+顶点 0到顶点 3的最短距离= 64
+顶点 0到顶点 4的最短距离= 87
+顶点 0到顶点 5的最短距离=139
+-----------------------------------
+```
+
+
+
+###= AOV 网络与拓扑排序
+
+把一个网状的任务依赖顺序，变成一个线性的排序
+
+
+
+
+
