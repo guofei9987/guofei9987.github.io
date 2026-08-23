@@ -130,10 +130,15 @@ $\Theta(n^{log_{b} a})$
 
 
 ### 单链表
-有两种：带头结点单链表（用一个空节点作为头部结点），不带头结点单链表（用第一个数据节点作为头部结点）  
-不带头结点单链表对第一个元素增、删时，与其它元素的增删操作不一致，所以一般使用带头结点  
 
-带头节点的单链表
+
+有两种：
+- 带头结点单链表（用一个空节点作为头部结点）
+    - 代码更简洁，因此这里统一使用这一种
+- 不带头结点单链表（用第一个数据节点作为头部结点）  
+
+
+
 ```py
 class Node(object):
     def __init__(self, val=None, next=None):
@@ -215,6 +220,134 @@ if __name__ == "__main__":
 
 
 **侵入式链表**：C语言使用，性能更高，但与业务耦合。
+
+**静态链表**：用 list 来存储数据，以及 next index，用 C 或 Rust 这类语言写业务代码，这种实现是更为推荐的。
+
+```python
+class MyLinkedList:
+    def __init__(self):
+        self.data = ['□']
+        self.next_index = [-1]
+        self.head = 0  # dummy
+        self.tail = 0
+        self.size = 0
+
+    def get(self, index):
+        """获取逻辑索引 index 处的值，O(n)"""
+        assert 0 <= index < self.size
+
+        curr = self.next_index[self.head]
+        for _ in range(index):
+            curr = self.next_index[curr]
+        return self.data[curr]
+
+    def add_at_tail(self, val):
+        """尾部插入，O(1)"""
+        idx = len(self.data)
+        self.data.append(val)
+        self.next_index.append(-1)
+
+        self.next_index[self.tail] = idx
+        self.tail = idx
+        self.size += 1
+
+    def add_at_index(self, index, val):
+        """在逻辑索引 index 处插入，O(n)"""
+        assert 0 <= index <= self.size
+
+        if index == self.size:
+            self.add_at_tail(val)
+            return
+
+        prev = self.head
+        for _ in range(index):
+            prev = self.next_index[prev]
+
+        idx = len(self.data)
+        self.data.append(val)
+        self.next_index.append(self.next_index[prev])
+        self.next_index[prev] = idx
+        self.size += 1
+
+    def delete_at_index(self, index):
+        """删除逻辑索引 index 处的节点，O(n)"""
+        assert 0 <= index < self.size
+
+        prev = self.head
+        for _ in range(index):
+            prev = self.next_index[prev]
+
+        curr = self.next_index[prev]
+        self.next_index[prev] = self.next_index[curr]
+
+        if curr == self.tail:
+            self.tail = prev
+
+        self.size -= 1
+
+    def from_list(self, lst):
+        """从 list 重建链表，O(n)"""
+        self.data = ['□'] + lst.copy()
+        self.next_index = list(range(1, len(self.data))) + [-1]
+        self.head = 0
+        self.tail = len(self.data) - 1
+        self.size = len(lst)
+
+    def to_list(self):
+        """转为普通 Python list，O(n)"""
+        res = []
+        curr = self.next_index[self.head]
+
+        while curr != -1:
+            res.append(self.data[curr])
+            curr = self.next_index[curr]
+
+        return res
+
+    def compact(self):
+        """整理链表：重新排列节点，并清除已删除的节点，O(n)"""
+        new_data = [self.data[self.head]]
+        curr = self.next_index[self.head]
+
+        while curr != -1:
+            new_data.append(self.data[curr])
+            curr = self.next_index[curr]
+
+        self.data = new_data
+        self.next_index = list(range(1, len(new_data))) + [-1]
+
+        self.head = 0
+        self.tail = len(new_data) - 1
+        self.size = len(new_data) - 1
+
+    def __repr__(self):
+        return ' -> '.join(['□'] + [str(i) for i in self.to_list()])
+
+
+if __name__ == "__main__":
+    ll = MyLinkedList()
+    ll.from_list([1, 1, 2, 3, 4, 5])
+
+    assert ll.to_list() == [1, 1, 2, 3, 4, 5]
+    assert ll.get(2) == 2
+
+    ll.add_at_index(2, 10)
+    assert ll.to_list() == [1, 1, 10, 2, 3, 4, 5]
+
+    ll.delete_at_index(3)
+    assert ll.to_list() == [1, 1, 10, 3, 4, 5]
+
+    ll.add_at_tail(6)
+    assert ll.to_list() == [1, 1, 10, 3, 4, 5, 6]
+
+    print(ll)
+    print(ll.data)
+    print(ll.next_index)
+```
+
+
+
+
 
 #### Two Pointer Technique
 [Two Pointer Technique](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
@@ -305,7 +438,7 @@ def reverseList(self, head):
 ### 矩阵
 
 压缩存储：
-- 上/下三角矩阵，用线性表存一半，k和(i,j)的互相计算
+- 对称矩阵，上/下三角矩阵：用线性表存一半，线性表的下标 k 和 (i,j) 可以互相计算
 - 稀疏矩阵：`[[i,j,val],[...],...]` 可以使用链表来存
     - 转置非常方便
 

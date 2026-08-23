@@ -303,10 +303,9 @@ class Travel:
 ```
 
 
-迭代法实现
-- 迭代法（ldr）
+**迭代法实现**
+- LDR
 ```python
-# LDR：
 def ldr(root: Optional[TreeNode]) -> List[int]:
     stack = []
     ans = []
@@ -319,8 +318,9 @@ def ldr(root: Optional[TreeNode]) -> List[int]:
         ans.append(node.val)
         node = node.right
     return ans
-
-# DLR：
+```
+- DLR
+```python
 def dlr(root):
     stack, res = [root], list()
     while stack:
@@ -331,8 +331,10 @@ def dlr(root):
         if pointer.left:
             stack.append(pointer.left)  # 压入左子节点
     return res
-
-# TODO: 迭代法 LRD
+```
+- LRD
+```python
+TODO
 ```
 
 
