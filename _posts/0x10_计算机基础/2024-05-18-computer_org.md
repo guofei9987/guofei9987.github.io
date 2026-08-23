@@ -207,6 +207,27 @@ JMP L
 
 ![caption: 计算机指令](/a/computer/computer_organization/instruction.svg)
 
+---------------------------------
+
+**CPU 指令集架构**
+- CISC（复杂指令集）：包括 x86, x86_64
+- RISC（精简指令集）：包括 ARM, MIPS, RISC-V, Power ISA
+
+
+`uname -m` 查询架构， `python -c "import platform; print(platform.machine())"` 查询环境，以下是同义词
+- x86_64: `AMD64`
+- ARM64: aarch64
+
+
+常见的架构对应的机器
+- ARM64
+    - iPhone, iPad, MacBook M系列
+    - 大多数安卓设备
+- x86_64
+    - 大多数 Windows 笔记本和台式机、大多数 Linux 服务器
+
+M系列的 Mac，如果通过 Rosetta 执行 python，则可能也返回 `x86_64`
+
 
 ### x86 体系结构
 
