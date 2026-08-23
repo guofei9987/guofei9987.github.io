@@ -41,10 +41,12 @@ order: 101
     - 前缀树
     - 堆
     - [Python实现树](https://www.guofei.site/2021/01/03/tree_algorithm.html)，[最小生成树](https://www.guofei.site/2017/09/12/minimumspanningtree.html)
-8. [图](https://www.guofei.site/2017/05/18/graph.html)
+8. [图](#图)
     - 各种基础概念（有向/无向，有权/无权，等等）
     - 各种表示方法（指针，list-set，邻接矩阵）
+    - 最小生成树。Kruskal, Prim
     - 最短距离算法。Dijkstra, Floyd
+    - [图](https://www.guofei.site/2017/05/18/graph.html)
     - [图论](https://www.guofei.site/2021/10/23/graph2.html)
 9. [动态规划](https://www.guofei.site/2021/01/09/greedy.html)
 
@@ -1835,9 +1837,17 @@ sum(w < inf for j, w in enumerate(A[v5]) if j != v5)  # v5 的出度（Out-degre
 注：步骤2～3，是靠维护一个 **二叉堆**（heap）实现的
 
 
-代码见于另一个博客：https://www.guofei.site/2017/09/12/minimumspanningtree.html#Python%E5%AE%9E%E7%8E%B0%EF%BC%9AKruskal%E7%AE%97%E6%B3%95%E6%94%B9%E8%BF%9B%E7%89%88
+| 比较维度 | Kruskal | Prim |
+|---------|------|---------|
+| 贪心策略 | 在不构成环的边中，选去全局最小边 | 在跨越当前树边界的边中，选取最小边 |
+| 初始状态| 每个顶点各自构成一棵树 | 一棵仅有起点的树 |
+| 构造过程 | 多个连通分量逐渐合并 | 从一个顶点逐步扩展 |
+| 防止环的方式 | 并查集，判断是否在同一个集合中 | 维护一个 visited，只访问那些还没访问的顶点 |
+| 核心数据结构| heap | 全局排序+并查集
+| 性能 | $O(E \log E)$ | $O(E \log V)$ |
+| 通常适合 | 稀疏图 | 稠密图 |
 
-TODO: 将其整理合并到此处
+
 
 这里的 `UnionFind` 见于前面的 [并查集](https://www.guofei.site/data_structure.html#%E5%B9%B6%E6%9F%A5%E9%9B%86:~:text=Right%3A%20left%20%3D%20mid-,%E5%B9%B6%E6%9F%A5%E9%9B%86,-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F)
 
@@ -1993,14 +2003,29 @@ plot_mst(vertex_positions, graph_edge_weights, mst_prim, save_path='mst_prim.svg
 ![mst_kruskal](/a/algorithm/mst_kruskal.svg)
 
 
+### 最短距离
+
+
+| 对比维度 | Dijkstra | Floyd–Warshall |
+|---|---|---|
+| 解决的问题 | 单源最短路径 <br> SSSP <br> Single-Source Shortest Paths | 所有顶点对最短路径 <br> APSP <br> All-Pairs Shortest Paths |
+| 核心思想 | 贪心（Greedy） | 动态规划（Dynamic Programming） |
+| 时间复杂度 | $O((V+E)\log V)$ | $O(V^3)$ |
+| 支持负权边 | 不支持 | 支持，但不能有负权环 |
+
+
+
+
+
+
+
+
 ### 最短距离-Dijkstra
 
-Dijkstra 算法是一种贪心算法。用来计算某个点到其它所有点的距离（不是路径）
-
-算法步骤：
-1. `D[k]=A[F,k]`，是一个 N 维度数组，代表 F 到 k 的最短距离
-2. `S={F,}` 代表已经找到最短路径的定点的集合
-3. 从`V-S` 中找到一个顶点x，使得 $D(x)$ 最小，然后把x放入 S 中
+**Dijkstra** 算法步骤：
+1. 初始化 `D[k]=A[F,k]`，是一个 N 维度数组，代表 F 到 k 的最短距离
+2. 初始化 `S={F,}` 代表已经找到最短路径的顶点的集合
+3. 从`V-S` 中找到一个顶点x，使得 `D[x]` 最小，然后把x放入 S 中
 4. 重新计算最优距离 `D(I)=min(D(I),D(x)+A(x,I))`
 5. 回到3，直到 `V-S` 为空
 
