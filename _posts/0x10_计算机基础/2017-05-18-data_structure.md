@@ -799,6 +799,7 @@ def binarySearch(nums, target):
 
 是什么？
 - 若干个集合，不断发生合并，要查询“两个元素是否在同一个集合中”
+    - 例如：无向图，快速判断任意两个节点之间是否连通。如果这个无向图不断新生成连接，仍能快速判断。
 - 思路：
     - 每个集合建立一个树，用根节点来代表这个集合
     - 那么集合的合并相当于树的合并
@@ -808,61 +809,81 @@ def binarySearch(nums, target):
 ```py
 class UnionFind:
     def __init__(self, n: int):
-        self.n = n  # 元素的个数
-        self.cnt = n  # 类的个数
+        self.component_count = n  # 集合的个数
         self.parent = list(range(n))
-        self.depth = [1] * n  # 树的深度，根结点那里有效，其余都是1
+        self.size = [1] * n  # 每个集合大小，仅根结点处有效
 
     def find(self, x: int) -> int:
-        if x != self.parent[x]:
+        if self.parent[x] != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
 
     def union(self, x: int, y: int) -> bool:
+        """两个元素（连同所在的集合）连接到同一个集合"""
         root_x = self.find(x)
         root_y = self.find(y)
+
         if root_x == root_y:
-            # x,y 原本就是1类
+            # x,y 原本就是同一集合
             return False
-        if self.depth[root_x] > self.depth[root_y]:
+
+        # 按集合大小合并：小集合的根挂到大集合的根上
+        if self.size[root_x] < self.size[root_y]:
             root_x, root_y = root_y, root_x
-        self.parent[root_x] = root_y
-        self.depth[root_y] += self.depth[root_x]
-        self.cnt -= 1
+
+        self.parent[root_y] = root_x
+        self.size[root_x] += self.size[root_y]
+        self.component_count -= 1
         return True
 
     def is_connected(self, x: int, y: int) -> bool:
+        """两个元素是否在同一个集合中"""
         return self.find(x) == self.find(y)
+
+    def component_size(self, x: int) -> int:
+        """返回元素 x 所在集合的元素数量"""
+        return self.size[self.find(x)]
 ```
 
-1. 并查集的解释 https://zhuanlan.zhihu.com/p/93647900/
-2. 对查询做了优化，做find的时候，自动把节点连接到根结点，
-3. 元素是 list(range(n)) 的int类型
 
-
-
-简化版并查集
+测试代码：
 ```python
-class UnionFind:
-    def __init__(self, n: int):
-        self.parent = list(range(n))
+uf = UnionFind(6)  # 初始有 6 个集合：{0}, {1}, {2}, {3}, {4}, {5}
 
-    def find(self, idx: int) -> int:
-        if idx != self.parent[idx]:
-            self.parent[idx] = self.find(self.parent[idx])
-        return self.parent[idx]
+assert uf.component_count == 6
 
-    def union(self, idx1: int, idx2: int):
-        self.parent[self.find(idx1)] = self.find(idx2)
+assert uf.union(0, 1) is True
+assert uf.union(1, 2) is True
+assert uf.union(3, 4) is True
 
-    def is_connected(self, idx1: int, idx2: int) -> bool:
-        return self.find(idx1) == self.find(idx2)
+assert uf.is_connected(0, 2) is True
+assert uf.is_connected(0, 3) is False
+assert uf.component_count == 3  # {0,1,2}, {3,4}, {5}
+
+assert uf.union(0, 2) is False  # 重复合并
+assert uf.component_count == 3
+
+assert uf.union(2, 4) is True
+assert uf.component_count == 2  # {0,1,2,3,4}, {5}
+assert uf.component_size(0) == 5
+assert uf.component_size(2) == 5
+assert uf.component_size(4) == 5
+assert uf.component_size(5) == 1
+
+assert uf.union(0, 5) is True
+assert uf.component_count == 1
+assert uf.component_size(0) == 6
+
+print("所有测试通过！")
 ```
 
-parent 是什么？
-1. parent[idx] 是 idx 的上一级，
-2. 如果被 find 过， parent[idx] 是根节点。否则的话是父节点，因此不能直接 `len(set(parent))` 来判断有几个类
-3. `i == parent[i]` 用来判断 i 是否是根结点。（进而计算有几个类）
+
+1. 对查询做了优化，做find的时候，自动把节点连接到根结点，
+2. 元素是 list(range(n)) 的int类型
+3. parent 是什么？
+    - parent[idx] 是 idx 的上一级，
+    - 如果被 find 过， parent[idx] 是根节点。否则的话是父节点，因此不能直接 `len(set(parent))` 来判断有几个类
+    - `i == parent[i]` 用来判断 i 是否是根结点。（进而计算有几个类）
 
 
 ### 布隆过滤器
@@ -1050,6 +1071,7 @@ $G=(V,E), T=(V,E_1), E_1 \subseteq E$ 且 $T$ 是树
 **【定理】** 连通图至少有一个生成树。
 
 **【定义】最小生成树** T是G的生成树，如果G是加权图，$w(T)=\sum\limits_{e\in E_1} w(e)$，那么，使得$w(T)$最小的T，叫做最小生成树  
+- 应用：如何用最少的光纤连接所有机房？
 
 
 -------------------
@@ -1567,24 +1589,23 @@ TH：一条边是割边当且仅当它不属于任何一个环
 ### 图的表示
 
 
-
-- list表示法
-    1. list-set 表示
-    2. list 表示
-    3. list-dict 表示：用于加权图
-    4. dict-dict 表示：用于加权图
-- 邻接矩阵表示
-- 点边矩阵表示
+图的表示方法
+- 邻接表：使用 list、set、dict 等数据结构组合实现
+    1. 无权图：`list-set`, `list-list`
+    2. 有权图：`list-dict`, `dict-dict`
+- 边列表，是一个list，每个元素为 `[(weight, source, target), ...]` 三元组表示。
+    - 对于无权图，则省略为二元祖 `[(source, target), ...]`
+- 邻接矩阵
 - 链表表示
+- 点边矩阵表示
 
 
+---------------------------
 
-
-
-**1. list-set表示**
-
+**邻接表**（无权图）
 
 ```py
+# list-set 表示，访问时间为 O(1)
 v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
 N = [
     {v2, v3, v4, v5, v6}, # v1
@@ -1596,73 +1617,66 @@ N = [
     {v6, v8},             # v7
     {v6, v7},             # v8
 ]
-```
 
-set与dict都是用hash方法实现的，因此访问时间是 $\Theta(1)$,最坏时间是 $\Theta(n)$  
-
-用法：  
-```py
+# 用法
 v2 in N[v1]  # Neighborhood membership
 len(N[f])  # Degree
-```
 
 
-**2. list表示**
 
-```py
-a, b, c, d, e, f, g, h = range(8)
-N = [
-    [b, c, d, e, f],  # a
-    [c, e],           # b
-    [d],              # c
-    [e],              # d
-    [f],              # e
-    [c, g, h],        # f
-    [f, h],           # g
-    [f, g],           # h
+# list-list 表示
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
+G = [
+    [v2, v3, v4, v5, v6],  # v1
+    [v3, v5],              # v2
+    [v4],                  # v3
+    [v5],                  # v4
+    [v6],                  # v5
+    [v3, v7, v8],          # v6
+    [v6, v8],              # v7
+    [v6, v7],              # v8
 ]
 ```
 
-**3. list-dict表示**：用于加权图
+
+**邻接表**（有权图）
+
 ```py
-a,b,c,d,e,f,g,h=range(8)
-N=[
-    {b:2,c:1,d:3,e:9,f:4}, #a
-    {c:4,e:3},       #b
-    {d:8},       #c
-    {e:8},           #d
-    {f:7},      #e
-    {c:2,g:2,h:2},  #f
-    {f:1,h:6},    #g
-    {f:9,g:8},   #h
+# list-dict 表示
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
+G = [
+    {v2: 2, v3: 1, v4: 3, v5: 9, v6: 4},  # v1
+    {v3: 4, v5: 3},                      # v2
+    {v4: 8},                             # v3
+    {v5: 8},                             # v4
+    {v6: 7},                             # v5
+    {v3: 2, v7: 2, v8: 2},               # v6
+    {v6: 1, v8: 6},                      # v7
+    {v6: 9, v7: 8},                      # v8
 ]
-```
-一些用法：
-```py
-b in N[a] # Neighborhood membership
-len(N[f]) # Degree
-N[a][b]# Edge weight for (a,b)
-```
+
+# 用法
+v2 in G[v1]   # 判断边 v1 → v2 是否存在
+len(G[v6])    # v6 的出度（Out-degree）
+G[v1][v2]     # 边 v1 → v2 的权重（Edge Weight）
 
 
-**4. dict-dict表示**：加权图
 
-```py
-a, b, c, d, e, f, g, h = range(8)
+
+# dict-dict 表示
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
 G = {
-    a: {b: 2, c: 1, d: 3, e: 9, f: 4},
-    b: {c: 4, e: 3},
-    c: {d: 8},
-    d: {e: 8},
-    e: {f: 7},
-    f: {c: 2, g: 2, h: 2},
-    g: {f: 1, h: 6},
-    h: {f: 9, g: 8},
+    v1: {v2: 2, v3: 1, v4: 3, v5: 9, v6: 4},
+    v2: {v3: 4, v5: 3},
+    v3: {v4: 8},
+    v4: {v5: 8},
+    v5: {v6: 7},
+    v6: {v3: 2, v7: 2, v8: 2},
+    v7: {v6: 1, v8: 6},
+    v8: {v6: 9, v7: 8},
 }
-```
 
-用法  
-```py
+# dict-dict 表示 转换为 “边列表” 表示
 [(G[u][v], u, v) for u in G for v in G[u]]
 ```
 
@@ -1672,25 +1686,28 @@ G = {
 **图的邻接矩阵表示**
 
 ```py
-a, b, c, d, e, f, g, h = range(8)
-A = [[0, 1, 1, 1, 1, 0, 1, 1],
-       [1, 0, 1, 0, 1, 0, 1, 1],
-       [0, 0, 0, 1, 1, 1, 1, 0],
-       [1, 0, 0, 0, 1, 0, 0, 0],
-       [0, 1, 1, 0, 0, 0, 1, 1],
-       [1, 0, 1, 0, 0, 0, 0, 0],
-       [1, 1, 0, 0, 0, 1, 0, 1],
-       [1, 0, 1, 0, 1, 1, 1, 0]]
-```
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
+A = [
+    [0, 1, 1, 1, 1, 0, 1, 1],
+    [1, 0, 1, 0, 1, 0, 1, 1],
+    [0, 0, 0, 1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1, 0, 0, 0],
+    [0, 1, 1, 0, 0, 0, 1, 1],
+    [1, 0, 1, 0, 0, 0, 0, 0],
+    [1, 1, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 1, 1, 0],
+]
 
-```py
-A[a][b] # Neighborhood membership
-sum(A[f]) # Degree
+# 用法
+A[v1][v2]  # 判断边 v1 → v2 是否存在
+sum(A[v6]) # v6 的出度（Out-degree）
 ```
 
 
 性质
 - 对于无向图来说，邻接矩阵是对称矩阵。
+- 判断节点相邻 `O(1)`
+- 计算顶点的度 `O(n)`
 
 路径数量问题（结论对有向图、无向图都一样）
 - 矩阵幂 $F = A^2$ 中的某个元素 $f_{ij}$ 指的是节点 i 到节点 j 的长度为 2 的路径的数量。（证明：用矩阵积的定义）
@@ -1713,22 +1730,24 @@ sum(A[f]) # Degree
 
 ```py
 inf = float('inf')
-a, b, c, d, e, f, g, h = range(8)
-N = [[0, 111, 88, 96, 116, 102, 71, 176],
-     [inf, 0, 32, 19, inf, inf, 64, 210],
-     [110, 35, 0, 144, 108, 106, 35, 126],
-     [inf, inf, inf, 0, 15, 38, 119, inf],
-     [inf, inf, 58, 105, 0, inf, 19, inf],
-     [148, inf, 143, inf, 44, 0, 154, 163],
-     [49, 174, 68, 48, 258, 76, 0, inf],
-     [99, 143, 85, 159, 2, 44, 74, 0]]
-```
+v1, v2, v3, v4, v5, v6, v7, v8 = range(8)
 
-```py
-N[a][b] #<inf # Neighborhood membership
-sum([1 for i in N[e] if i<inf])-1 # Degree
+A = [
+    [0,   111, 88,  96,  116, 102, 71,  176],
+    [inf, 0,   32,  19,  inf, inf, 64,  210],
+    [110, 35,  0,   144, 108, 106, 35,  126],
+    [inf, inf, inf, 0,   15,  38,  119, inf],
+    [inf, inf, 58,  105, 0,   inf, 19,  inf],
+    [148, inf, 143, inf, 44,  0,   154, 163],
+    [49,  174, 68,  48,  258, 76,  0,   inf],
+    [99,  143, 85,  159, 2,   44,  74,  0],
+]
+
+# 用法
+A[v1][v2] < inf  # 判断边 v1 → v2 是否存在
+A[v1][v2]        # 边 v1 → v2 的权重（Edge Weight）
+sum(w < inf for j, w in enumerate(A[v5]) if j != v5)  # v5 的出度（Out-degree）
 ```
-取Degree的时间复杂度是$\Theta(n)$  
 
 
 ----------------------------------
@@ -1737,28 +1756,12 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 对于无向图来说，点边矩阵是这样的
 
-<table>
-<thead>
-  <tr>
-    <th></th>
-    <th>e1</th><th>e2</th><th>e3</th><th>e4</th><th>e5</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>v1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td>
-  </tr>
-  <tr>
-    <td>v2</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td>
-  </tr>
-  <tr>
-    <td>v3</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td>
-  </tr>
-  <tr>
-    <td>v4</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td>
-  </tr>
-</tbody>
-</table>
+|    | e1 | e2 | e3 | e4 | e5 |
+|----|----|----|----|----|----|
+| v1 | 1  | 0  | 0  | 1  | 0  |
+| v2 | 1  | 1  | 0  | 0  | 1  |
+| v3 | 0  | 1  | 1  | 0  | 0  |
+| v4 | 0  | 0  | 1  | 1  | 1  |
 
 
 例如，v2e5 和 v4e5 位置都是 1 ，这表示 v2v4 之间有一条标，这条边是 e5
@@ -1772,7 +1775,12 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 对于有向图来说，点边矩阵是这样的
 
-<table><thead><tr><th></th><th>e1</th><th>e2</th><th>e3</th><th>e4</th><th>e5</th></tr></thead><tbody><tr><td>v1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>v2</td><td>-1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><td>v3</td><td>0</td><td>-1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>v4</td><td>0</td><td>0</td><td>-1</td><td>-1</td><td>-1</td></tr></tbody></table>
+|    | e1 | e2 | e3 | e4 | e5 |
+|----|----|----|----|----|----|
+| v1 | 1  | 0  | 0  | 1  | 0  |
+| v2 | -1 | 1  | 0  | 0  | 1  |
+| v3 | 0  | -1 | 1  | 0  | 0  |
+| v4 | 0  | 0  | -1 | -1 | -1 |
 
 例如， v1e1 位置为 1，v2e1 位置是 -1，这表示 v1到v2 有一条有向边，这条边是 e1
 
@@ -1794,7 +1802,7 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 图的广度优先搜索：用 queue
 
-### 生成树
+### 最小生成树
 
 
 
@@ -1822,7 +1830,7 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 TODO: 将其整理合并到此处
 
-
+这里的 `U`
 
 
 
