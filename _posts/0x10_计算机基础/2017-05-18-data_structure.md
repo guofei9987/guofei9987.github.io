@@ -1619,7 +1619,7 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 图的深度优先搜索：用stack，
 
-图的广度有显示搜索：用 queue
+图的广度优先搜索：用 queue
 
 ### 生成树
 
@@ -1638,81 +1638,14 @@ Dijkstra 算法是一种贪心算法。用来计算某个点到其它所有点�
 4. 重新计算最优距离 `D(I)=min(D(I),D(x)+A(x,I))`
 5. 回到3，直到 `V-S` 为空
 
-用 numpy 的版本
 
 ```python
-import numpy as np
-
-
-def build_graph_matrix(path_cost, num_vertex):
-    graph_matrix = np.ones((num_vertex, num_vertex)) * np.inf
-    # 返回图对应的矩阵
-    for i in range(num_vertex):
-        graph_matrix[i][i] = 0  # 对角线设为0
-
-    for start_point, end_point, distance in path_cost:
-        graph_matrix[start_point][end_point] = distance
-    return graph_matrix
-
-
-def shortest_path(vertex1, graph_matrix):
-    num_vertex = graph_matrix.shape[0]  # 顶点数量
-    distances = graph_matrix[vertex1].copy()  # 用来记录 vertex1 到每个顶点的最短路径
-    shortest_vertex = 0  # 记录最短距离的顶点
-    goal = np.zeros(num_vertex)  # 用来记录该顶点是否被选取
-    goal[vertex1] = 1
-
-    for i in range(num_vertex):
-        shortest_distance = np.inf
-        for j in range(num_vertex):
-            if goal[j] == 0 and shortest_distance > distances[j]:
-                shortest_distance = distances[j]
-                shortest_vertex = j
-        goal[shortest_vertex] = 1
-        # 更新 vertex1 到各顶点的最短距离:
-        for j in range(num_vertex):
-            if goal[j] == 0 and \
-                    distances[shortest_vertex] + graph_matrix[shortest_vertex][j] \
-                    < distances[j]:
-                distances[j] = distances[shortest_vertex] \
-                               + graph_matrix[shortest_vertex][j]
-
-    return distances
-
-
-# %%
-path_cost = [[0, 1, 29],
-             [1, 2, 30],
-             [1, 3, 35],
-             [2, 4, 28],
-             [2, 5, 87],
-             [3, 4, 42],
-             [3, 5, 75],
-             [4, 5, 97]
-             ]
-
-num_vertex = 6  # 顶点数量
-
-graph_matrix = build_graph_matrix(path_cost, num_vertex)
-distances = shortest_path(0, graph_matrix)  # 搜索最短路径
-print('-----------------------------------')
-print('顶点1到各顶点最短距离的最终结果')
-print('-----------------------------------')
-for j in range(num_vertex):
-    print('顶点 0到顶点%2d的最短距离=%3d' % (j, distances[j]))
-print('-----------------------------------')
-```
-
-
-
-不用 numpy 的版本
-```Python
-INFINITE = 99999  # 无穷大
+INF = float('inf')
 
 
 def build_graph_matrix(path_cost, num_vertex):
     # 返回图对应的矩阵
-    graph_matrix = [[INFINITE] * num_vertex for _ in range(num_vertex)]
+    graph_matrix = [[INF] * num_vertex for _ in range(num_vertex)]
     for i in range(num_vertex):
         graph_matrix[i][i] = 0  # 对角线设为0
 
@@ -1730,7 +1663,7 @@ def shortest_path(vertex1, graph_matrix):
     goal[vertex1] = 1
 
     for i in range(num_vertex):
-        shortest_distance = INFINITE
+        shortest_distance = INF
         for j in range(num_vertex):
             if goal[j] == 0 and shortest_distance > distances[j]:
                 shortest_distance = distances[j]
@@ -1769,7 +1702,6 @@ print('-----------------------------------')
 for j in range(num_vertex):
     print('顶点 0到顶点%2d的最短距离=%3d' % (j, distances[j]))
 print('-----------------------------------')
-
 ```
 
 输出结果
