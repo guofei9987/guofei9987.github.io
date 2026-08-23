@@ -915,7 +915,7 @@ print("所有测试通过！")
 - 不支持删除
 - 查询 `key2`
     - 计算 hash 值
-    - 如果其对应的 `bits[v]` 都是1，则“可能存在”，否则“不然不存在”
+    - 如果其对应的 `bits[v]` 都是1，则“可能存在”，否则“必然不存在”
 
 
 Python 实现
@@ -2074,11 +2074,13 @@ plot_graph(vertex_positions, graph_edge_weights, mst_prim,
            start=0, title="Prim MST", save_path="mst_prim.svg")
 ```
 
->Kruskal MST 总权重: 2.387558
->Prim MST 总权重:    2.387558
+>Kruskal MST 总权重: 2.387558  
+Prim MST 总权重:    2.387558
 
-|![mst_kruskal](/a/algorithm/graph/mst_kruskal.svg)| ![mst_prim](/a/algorithm/graph/mst_prim.svg)
+| Kruskal | Prim |
 |--|--|
+| ![mst_kruskal](/a/algorithm/graph/mst_kruskal.svg) | ![mst_prim](/a/algorithm/graph/mst_prim.svg) |
+
 
 
 ### 最短距离
@@ -2263,202 +2265,34 @@ plot_graph(vertex_positions, graph_edge_weights, floyd_edges,
 
 输出：
 
->Dijkstra 0 -> 7 路径: [0, 5, 7]
-Dijkstra 0 -> 0 最短距离: 0.000000
-Dijkstra 0 -> 1 最短距离: 0.414812
-Dijkstra 0 -> 2 最短距离: 1.061790
-Dijkstra 0 -> 3 最短距离: 0.260229
-Dijkstra 0 -> 4 最短距离: 0.657682
-Dijkstra 0 -> 5 最短距离: 0.638588
-Dijkstra 0 -> 6 最短距离: 1.000328
-Dijkstra 0 -> 7 最短距离: 1.071647
-Floyd 0 -> 7 最短距离: 1.071647
-Floyd 0 -> 7 路径: [0, 5, 7]
+>Dijkstra 0 -> 7 路径: [0, 5, 7]  
+Dijkstra 0 -> 0 最短距离: 0.000000  
+Dijkstra 0 -> 1 最短距离: 0.414812  
+Dijkstra 0 -> 2 最短距离: 1.061790  
+Dijkstra 0 -> 3 最短距离: 0.260229  
+Dijkstra 0 -> 4 最短距离: 0.657682  
+Dijkstra 0 -> 5 最短距离: 0.638588  
+Dijkstra 0 -> 6 最短距离: 1.000328  
+Dijkstra 0 -> 7 最短距离: 1.071647  
+Floyd 0 -> 7 最短距离: 1.071647  
+Floyd 0 -> 7 路径: [0, 5, 7]  
 
 
-|![mst_kruskal](/a/algorithm/graph/dijkstra_path.svg)| ![mst_prim](/a/algorithm/graph/dijkstra_spt.svg) | ![mst_kruskal](/a/algorithm/graph/floyd_path.svg) |
+| Dijkstra | Dijkstra 0 到所有顶点的最小距离 | Floyd |
 |--|--|--|
+|![dijkstra_path](/a/algorithm/graph/dijkstra_path.svg) | ![dijkstra_spt](/a/algorithm/graph/dijkstra_spt.svg) | ![floyd_path](/a/algorithm/graph/floyd_path.svg) |
 
 
 
 
-### 最短距离-Dijkstra
-
-**Dijkstra** 算法步骤：
-1. 初始化 `D[k]=A[F,k]`，是一个 N 维度数组，代表 F 到 k 的最短距离
-2. 初始化 `S={F,}` 代表已经找到最短路径的顶点的集合
-3. 从`V-S` 中找到一个顶点x，使得 `D[x]` 最小，然后把x放入 S 中
-4. 重新计算最优距离 `D(I)=min(D(I),D(x)+A(x,I))`
-5. 回到3，直到 `V-S` 为空
+### 其它经典问题
 
 
-```python
-INF = float('inf')
-
-
-def build_graph_matrix(path_cost, num_vertex):
-    # 返回图对应的矩阵
-    graph_matrix = [[INF] * num_vertex for _ in range(num_vertex)]
-    for i in range(num_vertex):
-        graph_matrix[i][i] = 0  # 对角线设为0
-
-    for start_point, end_point, distance in path_cost:
-        graph_matrix[start_point][end_point] = distance
-    return graph_matrix
-
-
-def shortest_path(vertex1, graph_matrix):
-    num_vertex = len(graph_matrix)  # 顶点数量
-    distances = graph_matrix[vertex1].copy()  # 用来记录 vertex1 到每个顶点的最短路径
-    shortest_vertex = 0  # 记录最短距离的顶点
-    goal = [0] * num_vertex  # 用来记录该顶点是否被选取，
-
-    goal[vertex1] = 1
-
-    for i in range(num_vertex):
-        shortest_distance = INF
-        for j in range(num_vertex):
-            if goal[j] == 0 and shortest_distance > distances[j]:
-                shortest_distance = distances[j]
-                shortest_vertex = j
-
-        goal[shortest_vertex] = 1
-        # 更新 vertex1 到各顶点的最短距离
-        for j in range(num_vertex):
-            if goal[j] == 0 and \
-                    distances[shortest_vertex] + graph_matrix[shortest_vertex][j] \
-                    < distances[j]:
-                distances[j] = distances[shortest_vertex] \
-                               + graph_matrix[shortest_vertex][j]
-
-    return distances
-
-
-# %%
-path_cost = [[0, 1, 29],
-             [1, 2, 30],
-             [1, 3, 35],
-             [2, 4, 28],
-             [2, 5, 87],
-             [3, 4, 42],
-             [3, 5, 75],
-             [4, 5, 97]
-             ]
-
-num_vertex = 6  # 顶点数量
-
-graph_matrix = build_graph_matrix(path_cost, num_vertex)
-distances = shortest_path(0, graph_matrix)  # 搜索最短路径
-print('-----------------------------------')
-print('顶点1到各顶点最短距离的最终结果')
-print('-----------------------------------')
-for j in range(num_vertex):
-    print('顶点 0到顶点%2d的最短距离=%3d' % (j, distances[j]))
-print('-----------------------------------')
-```
-
-输出结果
-```python
-顶点 1到顶点 1的最短距离=  0
-顶点 1到顶点 2的最短距离= 29
-顶点 1到顶点 3的最短距离= 59
-顶点 1到顶点 4的最短距离= 64
-顶点 1到顶点 5的最短距离= 87
-顶点 1到顶点 6的最短距离=139
-```
-
-### 最短距离-Floyd 算法
-
-如果想找到所有点之间，两两点之间的最短距离， Floyd 算法更为有效。Floyd 算法和 Dijstra 算法的底层逻辑一样。
-1. `D[i,j]=M[i,j]` ，其中 `D[i,j]` 代表i到j的最短距离，M是图对应的距离矩阵
-2. 遍历k，求出 `D[i,j] = min(D[i,j], D[i,k]+D[k,j])`
-3. 重复第 2 步n次，n是顶点个数。
+TSP 旅行商问题：https://www.guofei.site/2016/10/05/ga.html
 
 
 
-
-```python
-SIZE = 7
-NUMBER = 6
-INFINITE = 99999  # 无穷大
-
-Graph_Matrix = [[0] * SIZE for row in range(SIZE)]  # 图的数组
-distance = [[0] * SIZE for row in range(SIZE)]  # 路径长度数组
-
-
-# 建立图
-def BuildGraph_Matrix(Path_Cost):
-    for i in range(1, SIZE):
-        for j in range(1, SIZE):
-            if i == j:
-                Graph_Matrix[i][j] = 0  # 对角线设为0
-            else:
-                Graph_Matrix[i][j] = INFINITE
-    # 存入图的边
-    i = 0
-    while i < SIZE:
-        Start_Point = Path_Cost[i][0]
-        End_Point = Path_Cost[i][1]
-        Graph_Matrix[Start_Point][End_Point] = Path_Cost[i][2]
-        i += 1
-
-
-# 打印出图
-
-def shortestPath(vertex_total):
-    # 初始化图的长度数组
-    for i in range(1, vertex_total + 1):
-        for j in range(i, vertex_total + 1):
-            distance[i][j] = Graph_Matrix[i][j]
-            distance[j][i] = Graph_Matrix[i][j]
-
-    # 使用Floyd算法找出所有顶点两两之间的最短距离
-    for k in range(1, vertex_total + 1):
-        for i in range(1, vertex_total + 1):
-            for j in range(1, vertex_total + 1):
-                if distance[i][k] + distance[k][j] < distance[i][j]:
-                    distance[i][j] = distance[i][k] + distance[k][j]
-
-
-Path_Cost = [[1, 2, 20], [2, 3, 30], [2, 4, 25], \
-             [3, 5, 28], [4, 5, 32], [4, 6, 95], [5, 6, 67]]
-BuildGraph_Matrix(Path_Cost)
-print('===============================================')
-print('      所有顶点两两之间的最短距离: ')
-print('===============================================')
-shortestPath(NUMBER)  # 计算所有顶点间的最短路径
-# 求得两两顶点间的最短路径长度数组后，将其打印出来
-print('      顶点1  顶点2  顶点3  顶点4  顶点5  顶点6')
-for i in range(1, NUMBER + 1):
-    print('顶点%d' % i, end='')
-    for j in range(1, NUMBER + 1):
-        print('%6d ' % distance[i][j], end='')
-    print()
-print('===============================================')
-print()
-```
-
-
-
-输出
-```
------------------------------------
-顶点1到各顶点最短距离的最终结果
------------------------------------
-顶点 0到顶点 0的最短距离=  0
-顶点 0到顶点 1的最短距离= 29
-顶点 0到顶点 2的最短距离= 59
-顶点 0到顶点 3的最短距离= 64
-顶点 0到顶点 4的最短距离= 87
-顶点 0到顶点 5的最短距离=139
------------------------------------
-```
-
-
-
-###= AOV 网络与拓扑排序
-
-把一个网状的任务依赖顺序，变成一个线性的排序
+AOV 网络与拓扑排序：把一个网状的任务依赖顺序，变成一个线性的排序
 
 
 
