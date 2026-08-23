@@ -350,9 +350,12 @@ if __name__ == "__main__":
 
 
 
+------------------
 
-#### Two Pointer Technique
-[Two Pointer Technique](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
+一些经典算法
+
+
+[**Two Pointer Technique**](https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/)  
 1. Two pointers starts at different position: one starts at the beginning while another starts at the end;
 2. Two pointers are moved at different speed: one is faster while another one might be slower.
 
@@ -386,7 +389,11 @@ class Solution(object):
                 return True
 ```
 
-#### reverse 链表
+-------------------
+
+**reverse 链表**
+
+
 ```py
 def reverseList(self, head):
     if head is None:
@@ -1796,6 +1803,124 @@ sum(w < inf for j, w in enumerate(A[v5]) if j != v5)  # v5 的出度（Out-degre
 - 点边矩阵每一行都有2个1，加到最后一列
 
 
+随机生成一个联通图（Python），之后几个章节的算法也会用到这些函数
+
+```python
+from random import Random
+from math import dist
+
+
+def generate_connected_graph(n, m, seed=42):
+    """随机生成 n 个顶点、m 条边的无向无权连通图。
+    图的数据结构为 list[tuple[int, int]]。
+    """
+    if not (n >= 1 and n - 1 <= m <= n * (n - 1) // 2):
+        raise ValueError("顶点数或边数不合法")
+
+    rng = Random(seed)
+
+    # 1. 生成随机生成树，保证连通
+    vertices = list(range(n))
+    rng.shuffle(vertices)
+    graph_edge_pairs = set()
+    for i in range(1, n):
+        u, v = vertices[i], rng.choice(vertices[:i])
+        graph_edge_pairs.add((min(u, v), max(u, v)))
+
+    # 2. 随机补充边
+    remaining_edges = [
+        (u, v)
+        for u in range(n)
+        for v in range(u + 1, n)
+        if (u, v) not in graph_edge_pairs
+    ]
+    graph_edge_pairs.update(rng.sample(remaining_edges, m - n + 1))
+
+    return sorted(graph_edge_pairs)
+
+
+def generate_weighted_graph(n, graph_edge_pairs, seed=42):
+    """输入：无向无权图。
+    输出：顶点坐标、无向有权图。
+    过程：随机生成顶点二维坐标，以欧氏距离作为边的权重。
+    """
+    rng = Random(seed)
+
+    vertex_positions = [
+        (rng.random(), rng.random()) for _ in range(n)
+    ]
+    graph_edge_weights = {
+        (u, v): dist(vertex_positions[u], vertex_positions[v])
+        for u, v in graph_edge_pairs
+    }
+
+    return vertex_positions, graph_edge_weights
+```
+
+画图：
+
+```python
+# %% 画图
+import matplotlib.pyplot as plt
+
+
+def plot_graph(vertex_positions, graph_edge_weights, highlight_edges=(),
+               *, distances=None, start=None, target=None,
+               title="", save_path=None):
+    """画原始图（灰色）、高亮边（红色），可标记起点终点和最短距离。"""
+    fig, ax = plt.subplots(figsize=(7, 6))
+
+    # 画 graph
+    for u, v in graph_edge_weights:
+        ax.plot(*zip(vertex_positions[u], vertex_positions[v]),
+                color="gray", alpha=0.3, lw=1.5, zorder=1)
+
+    # 画高亮部分的边
+    for u, v, _ in highlight_edges:
+        ax.plot(*zip(vertex_positions[u], vertex_positions[v]),
+                color="tab:red", lw=3, zorder=2)
+
+    #
+    for u, (x, y) in enumerate(vertex_positions):
+        color = "tab:green" if u == start else (
+            "tab:orange" if u == target else "black")
+        ax.scatter(x, y, color=color, s=55, zorder=3)
+        label = str(u)
+        if distances is not None:
+            label += f"\n{distances[u]:.2f}"
+        ax.text(x + 0.015, y + 0.015, label, fontsize=9)
+
+    ax.set_title(title)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    fig.tight_layout()
+    if save_path:
+        fig.savefig(save_path, format="svg" if save_path.endswith(".svg") else None,
+                    bbox_inches="tight")
+    plt.show()
+    plt.close(fig)
+```
+
+随机生成一个 graph，并 plot
+
+```python
+# 随机生成一个无向无权联通图
+graph_edge_pairs = generate_connected_graph(n=8, m=15, seed=42)
+print("graph_edge_pairs:", graph_edge_pairs)
+
+# 随机生成顶点二维坐标，以欧氏距离作为边的权重
+vertex_positions, graph_edge_weights = generate_weighted_graph(n=8, graph_edge_pairs=graph_edge_pairs, seed=42)
+
+# 画图
+plot_graph(vertex_positions, graph_edge_weights)
+```
+
+
+结果：
+>[(0, 1), (0, 3), (0, 5), (1, 2), (1, 3), (1, 4), (2, 5), (2, 7), (3, 4), (3, 5), (3, 6), (4, 5), (5, 6), (5, 7), (6, 7)]
+
+
+![一个联通图](/a/algorithm/graph/graph_edge_pairs.svg)
 
 
 ### 图的遍历
@@ -1922,85 +2047,38 @@ def prim(graph_adjacency, start=0):
     return mst
 
 
-# %% 生成数据：无向有权图
-
-from random import Random
-from math import dist, isclose
+# %% 执行算法
+from math import isclose
 
 n = 8
+graph_edge_pairs = generate_connected_graph(n=n, m=15, seed=42)
+print("graph_edge_pairs:", graph_edge_pairs)
 
-# 原始图的边关系，每条无向边只出现一次
-edge_pairs = [
-    (0, 1), (0, 2), (0, 3), (0, 4), (0, 5),
-    (1, 2), (1, 4),
-    (2, 3), (2, 5),
-    (3, 4), (4, 5),
-    (5, 6), (5, 7), (6, 7)
-]
+vertex_positions, graph_edge_weights = generate_weighted_graph(n=8, graph_edge_pairs=graph_edge_pairs, seed=42)
 
-# 生成顶点坐标
-rng = Random(42)
-vertex_positions = [
-    (rng.random(), rng.random()) for _ in range(n)
-]
-
-# 生成统一的原始图：边权字典
-graph_edge_weights = {
-    (u, v): dist(vertex_positions[u], vertex_positions[v])
-    for u, v in edge_pairs
-}
-
-# 各自转换图表示方法，再调用算法
 graph_edges = to_edges_list(graph_edge_weights)
 graph_adjacency = to_adjacency_list(n, graph_edge_weights)
 
 mst_kruskal = kruskal(n, graph_edges)
-mst_prim = prim(graph_adjacency)
-
-# 测试
+mst_prim = prim(graph_adjacency, start=0)
+weight_k = sum(w for _, _, w in mst_kruskal)
+weight_p = sum(w for _, _, w in mst_prim)
 assert len(mst_kruskal) == len(mst_prim) == n - 1
-
-weight_k = sum(w for u, v, w in mst_kruskal)
-weight_p = sum(w for u, v, w in mst_prim)
 assert isclose(weight_k, weight_p)
+print(f"Kruskal MST 总权重: {weight_k:.6f}")
+print(f"Prim MST 总权重:    {weight_p:.6f}")
 
-print(f"Kruskal: {weight_k:.6f}")
-print(f"Prim:    {weight_p:.6f}")
-
-
-# %% 绘图
-import matplotlib.pyplot as plt
-
-
-def plot_mst(vertex_positions, graph_edge_weights, mst, save_path='mst.svg'):
-    """绘制原始图和最小生成树，并保存为 SVG"""
-    fig, ax = plt.subplots()
-
-    # 原始图
-    for u, v in graph_edge_weights:
-        ax.plot(*zip(vertex_positions[u], vertex_positions[v]), 'k-', alpha=0.2)
-
-    # 最小生成树
-    for u, v, _ in mst:
-        ax.plot(*zip(vertex_positions[u], vertex_positions[v]), 'r-', lw=3)
-
-    # 顶点及编号
-    for u, (x, y) in enumerate(vertex_positions):
-        ax.plot(x, y, 'ko')
-        ax.text(x + 0.01, y + 0.01, str(u))
-
-    ax.set_aspect('equal')
-    fig.savefig(save_path, format='svg', bbox_inches='tight')
-    plt.show()
-
-
-plot_mst(vertex_positions, graph_edge_weights, mst_kruskal, save_path='mst_kruskal.svg')
-plot_mst(vertex_positions, graph_edge_weights, mst_prim, save_path='mst_prim.svg')
+plot_graph(vertex_positions, graph_edge_weights, mst_kruskal,
+           title="Kruskal MST", save_path="mst_kruskal.svg")
+plot_graph(vertex_positions, graph_edge_weights, mst_prim,
+           start=0, title="Prim MST", save_path="mst_prim.svg")
 ```
 
+>Kruskal MST 总权重: 2.387558
+>Prim MST 总权重:    2.387558
 
-
-![mst_kruskal](/a/algorithm/mst_kruskal.svg)
+|![mst_kruskal](/a/algorithm/graph/mst_kruskal.svg)| ![mst_prim](/a/algorithm/graph/mst_prim.svg)
+|--|--|
 
 
 ### 最短距离
@@ -2008,7 +2086,7 @@ plot_mst(vertex_positions, graph_edge_weights, mst_prim, save_path='mst_prim.svg
 
 | 对比维度 | Dijkstra | Floyd–Warshall |
 |---|---|---|
-| 解决的问题 | 单源最短路径 <br> SSSP <br> Single-Source Shortest Paths | 所有顶点对最短路径 <br> APSP <br> All-Pairs Shortest Paths |
+| 解决的问题 | 某个顶点到其它所有顶点的最短距离 <br> SSSP <br> Single-Source Shortest Paths | 所有顶点对最短路径 <br> APSP <br> All-Pairs Shortest Paths |
 | 核心思想 | 贪心（Greedy） | 动态规划（Dynamic Programming） |
 | 时间复杂度 | $O((V+E)\log V)$ | $O(V^3)$ |
 | 支持负权边 | 不支持 | 支持，但不能有负权环 |
@@ -2016,6 +2094,190 @@ plot_mst(vertex_positions, graph_edge_weights, mst_prim, save_path='mst_prim.svg
 
 
 
+**Dijkstra** 算法步骤：
+1. 初始化 `D[k]=A[F,k]`，是一个 N 维度数组，代表 F 到 k 的最短距离
+2. 初始化 `S={F,}` 代表已经找到最短路径的顶点的集合
+3. 从`V-S` 中找到一个顶点x，使得 `D[x]` 最小，然后把x放入 S 中
+4. 重新计算最优距离 `D(I)=min(D(I),D(x)+A(x,I))`
+5. 回到3，直到 `V-S` 为空
+
+
+```python
+from math import inf
+
+
+def dijkstra(graph_adjacency, start=0):
+    """单源最短路径：返回距离列表、前驱列表 parent[v]=(u, w)。"""
+    n = len(graph_adjacency)
+    if not 0 <= start < n:
+        raise ValueError("起点不合法")
+    if any(w < 0 for neighbors in graph_adjacency for _, w in neighbors):
+        raise ValueError("Dijkstra 不支持负权边")
+
+    distances = [inf] * n
+    parent = [None] * n
+    distances[start] = 0.0
+    heap = [(0.0, start)]
+
+    while heap:
+        d, u = heappop(heap)
+        if d > distances[u]:  # 跳过过时的候选距离
+            continue
+        for v, w in graph_adjacency[u]:
+            new_d = d + w
+            if new_d < distances[v]:
+                distances[v] = new_d
+                parent[v] = (u, w)
+                heappush(heap, (new_d, v))
+    return distances, parent
+
+
+def shortest_path_edges(parent, start, target):
+    """从前驱列表还原起点到目标点的最短路径边。"""
+    edges = []
+    v = target
+    while v != start:
+        if parent[v] is None:
+            raise ValueError(f"顶点 {target} 不可达")
+        u, w = parent[v]
+        edges.append((u, v, w))
+        v = u
+    return edges[::-1]
+
+
+def shortest_path_tree_edges(parent):
+    """从前驱列表提取最短路径树的所有边。"""
+    return [(u, v, w) for v, p in enumerate(parent)
+            if p is not None for u, w in [p]]
+
+
+# %% Floyd–Warshall
+def floyd_warshall(graph_adjacency):
+    """所有顶点对最短路径：返回距离矩阵与下一跳矩阵。时间 O(V^3)。
+
+    next_hop[u][v] 表示从 u 前往 v 的某条最短路径上的第一个顶点。
+    不可达时为 None。
+    """
+    n = len(graph_adjacency)
+    distances = [[inf] * n for _ in range(n)]
+    next_hop = [[None] * n for _ in range(n)]
+
+    for u in range(n):
+        distances[u][u] = 0.0
+        next_hop[u][u] = u
+        for v, w in graph_adjacency[u]:
+            if w < distances[u][v]:
+                distances[u][v] = w
+                next_hop[u][v] = v
+
+    for k in range(n):
+        for i in range(n):
+            if distances[i][k] == inf:
+                continue
+            for j in range(n):
+                new_distance = distances[i][k] + distances[k][j]
+                if new_distance < distances[i][j]:
+                    distances[i][j] = new_distance
+                    next_hop[i][j] = next_hop[i][k]
+
+    if any(distances[i][i] < 0 for i in range(n)):
+        raise ValueError("图中存在负权环，最短路径未定义")
+
+    return distances, next_hop
+
+
+def floyd_path_vertices(next_hop, start, target):
+    """通过下一跳矩阵还原 start 到 target 的最短路径顶点序列。"""
+    n = len(next_hop)
+    if not (0 <= start < n and 0 <= target < n):
+        raise ValueError("顶点编号不合法")
+    if next_hop[start][target] is None:
+        raise ValueError(f"从 {start} 到 {target} 不可达")
+
+    path = [start]
+    u = start
+    while u != target:
+        u = next_hop[u][target]
+        path.append(u)
+    return path
+
+
+def path_vertices_to_edges(path, graph_edge_weights):
+    """将顶点路径转换为绘图统一格式 (u, v, w)；适用于无向图。"""
+    edges = []
+    for u, v in zip(path, path[1:]):
+        w = graph_edge_weights.get((u, v), graph_edge_weights.get((v, u)))
+        if w is None:
+            raise ValueError(f"路径包含原始图中不存在的边 ({u}, {v})")
+        edges.append((u, v, w))
+    return edges
+
+#%%
+from math import isclose
+
+n = 8
+graph_edge_pairs = generate_connected_graph(n=n, m=15, seed=42)
+print("graph_edge_pairs:", graph_edge_pairs)
+
+vertex_positions, graph_edge_weights = generate_weighted_graph(n=8, graph_edge_pairs=graph_edge_pairs, seed=42)
+
+graph_edges = to_edges_list(graph_edge_weights)
+graph_adjacency = to_adjacency_list(n, graph_edge_weights)
+
+distances, parent = dijkstra(graph_adjacency, start=0)
+spt_edges = shortest_path_tree_edges(parent)
+path_edges = shortest_path_edges(parent, 0, 7)
+assert len(spt_edges) == n - 1
+assert isclose(sum(w for _, _, w in path_edges), distances[7])
+print(f"Dijkstra 0 -> 7 最短距离: {distances[7]:.6f}")
+print("Dijkstra 0 -> 7 路径:", [0] + [v for _, v, _ in path_edges])
+
+# Floyd–Warshall：所有点对最短距离 + 0 -> 7 最短路径
+all_distances, next_hop = floyd_warshall(graph_adjacency)
+floyd_vertices = floyd_path_vertices(next_hop, 0, 7)
+floyd_edges = path_vertices_to_edges(floyd_vertices, graph_edge_weights)
+
+# 对所有起点与 Dijkstra 逐个交叉校验
+for source in range(n):
+    dijkstra_distances, _ = dijkstra(graph_adjacency, start=source)
+    assert all(isclose(a, b) for a, b in
+               zip(all_distances[source], dijkstra_distances))
+
+assert isclose(all_distances[0][7], distances[7])
+assert isclose(sum(w for _, _, w in floyd_edges), all_distances[0][7])
+print(f"Floyd 0 -> 7 最短距离: {all_distances[0][7]:.6f}")
+print("Floyd 0 -> 7 路径:", floyd_vertices)
+
+plot_graph(vertex_positions, graph_edge_weights, spt_edges,
+           distances=distances, start=0,
+           title="Dijkstra shortest-path tree: 0 to all", save_path="dijkstra_spt.svg")
+plot_graph(vertex_positions, graph_edge_weights, path_edges,
+           distances=distances, start=0, target=7,
+           title="Dijkstra shortest path: 0 to 7", save_path="dijkstra_path.svg")
+plot_graph(vertex_positions, graph_edge_weights, floyd_edges,
+           distances=all_distances[0], start=0, target=7,
+           title="Floyd–Warshall shortest path: 0 to 7",
+           save_path="floyd_path.svg")
+```
+
+
+输出：
+
+>Dijkstra 0 -> 7 路径: [0, 5, 7]
+Dijkstra 0 -> 0 最短距离: 0.000000
+Dijkstra 0 -> 1 最短距离: 0.414812
+Dijkstra 0 -> 2 最短距离: 1.061790
+Dijkstra 0 -> 3 最短距离: 0.260229
+Dijkstra 0 -> 4 最短距离: 0.657682
+Dijkstra 0 -> 5 最短距离: 0.638588
+Dijkstra 0 -> 6 最短距离: 1.000328
+Dijkstra 0 -> 7 最短距离: 1.071647
+Floyd 0 -> 7 最短距离: 1.071647
+Floyd 0 -> 7 路径: [0, 5, 7]
+
+
+|![mst_kruskal](/a/algorithm/graph/dijkstra_path.svg)| ![mst_prim](/a/algorithm/graph/dijkstra_spt.svg) | ![mst_kruskal](/a/algorithm/graph/floyd_path.svg) |
+|--|--|--|
 
 
 
