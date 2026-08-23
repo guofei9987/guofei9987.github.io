@@ -1,0 +1,48 @@
+---
+layout: post_pure
+title: Steam
+permalink: /steam.html
+---
+
+<link rel="stylesheet" href="/c/card.css">
+
+<div class="card-wrap">
+  <div class="card-topbar">
+    <div class="card-count" id="steam-count">加载中...</div>
+  </div>
+
+  <div class="card-grid cols-4" id="steam-grid"></div>
+</div>
+
+<script>
+fetch('/get_data/steam_data.json')
+  .then(r => r.json())
+  .then(games => {
+    const totalMinutes = games.reduce((s, x) => s + x.playtime_forever, 0);
+
+    document.querySelector('#steam-count').textContent =
+      `共 ${games.length} 个游戏 | 总时长 ${Math.floor(totalMinutes / 60)} 小时`;
+
+    document.querySelector('#steam-grid').innerHTML = games.map(x => `
+      <a href="https://store.steampowered.com/app/${x.appid}/"
+         class="card-item"
+         target="_blank"
+         rel="noopener noreferrer"
+         style="text-decoration:none; color:inherit;">
+        <div class="card-body">
+          <div class="card-title">
+            <img src="${x.img_icon_url}" alt="${x.name}">
+            ${x.name}
+          </div>
+          <div class="card-subtitle">
+            游戏时长：${x.playtime_forever_str}
+          </div>
+          ${x.total_achievements > 0 ? `
+          <div class="card-meta">
+            成就：${x.achieved_str}
+          </div>` : ''}
+        </div>
+      </a>
+    `).join('');
+  });
+</script>
