@@ -1594,7 +1594,7 @@ TH：一条边是割边当且仅当它不属于任何一个环
     1. 无权图：`list-set`, `list-list`
     2. 有权图：`list-dict`, `dict-dict`
 - 边列表，是一个list，每个元素为 `[(weight, source, target), ...]` 三元组表示。
-    - 对于无权图，则省略为二元祖 `[(source, target), ...]`
+    - 对于无权图，则省略为二元组 `[(source, target), ...]`
 - 邻接矩阵
 - 链表表示
 - 点边矩阵表示
@@ -1812,7 +1812,7 @@ sum(w < inf for j, w in enumerate(A[v5]) if j != v5)  # v5 的出度（Out-degre
 
 
 
-**Kruskal算法** 可以得到最小生成树：
+**Kruskal算法** 可以得到最小生成树。其思路是，每个顶点各自构成一棵树，每次选取全局最小边（并且不构成回路的），并合并树。
 1. 选取最小的边 $e_i$ ，边数 i:=1
 2. i=n-1 结束，否则转到3
 3. 设已经选择的边是 $e_1, e_2, ..., e_i$，那么选取这样的 $e_{i+1}$:
@@ -1825,13 +1825,172 @@ sum(w < inf for j, w in enumerate(A[v5]) if j != v5)  # v5 的出度（Out-degre
 注：第三步的前两条，是用 **并查集** 算法来实现的
 
 
+**Prim算法** 也可以得到最小生成树。其思路是，从一个顶点开始，每次选取与其相邻的最近顶点（并且是尚未被选取的顶点），逐步扩展。
+1. 任意选择起点 $s$，初始化 $S=\{s\}$
+2. 找到所有跨越 $S$ 与 $V\setminus S$ 的边
+3. 选择其中权重最小的一条边 $(u,v)$
+4. 把 $v$ 加入 $S$，并将 $(u,v)$ 加入生成树
+5. 重复3~4步骤，直到所有顶点都加入生成树。
+
+注：步骤2～3，是靠维护一个 **二叉堆**（heap）实现的
+
 
 代码见于另一个博客：https://www.guofei.site/2017/09/12/minimumspanningtree.html#Python%E5%AE%9E%E7%8E%B0%EF%BC%9AKruskal%E7%AE%97%E6%B3%95%E6%94%B9%E8%BF%9B%E7%89%88
 
 TODO: 将其整理合并到此处
 
-这里的 `U`
+这里的 `UnionFind` 见于前面的 [并查集](https://www.guofei.site/data_structure.html#%E5%B9%B6%E6%9F%A5%E9%9B%86:~:text=Right%3A%20left%20%3D%20mid-,%E5%B9%B6%E6%9F%A5%E9%9B%86,-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F)
 
+
+
+```python
+# %% Kruskal 算法
+
+#  转换为 Kruskal 适合的数据结构
+def to_edges_list(graph_edge_weights):
+    """边权字典 -> 边列表 (w, u, v)"""
+    return [
+        (w, u, v) for (u, v), w in graph_edge_weights.items()
+    ]
+
+
+def kruskal(n, graph_edges):
+    """Kruskal：依次选择权重最小且不成环的边"""
+    sorted_edges = sorted(graph_edges)
+
+    uf = UnionFind(n)
+    mst = []
+
+    for w, u, v in sorted_edges:
+        if uf.union(u, v):
+            mst.append((u, v, w))
+            if uf.component_count == 1:
+                break
+
+    if len(mst) != n - 1:
+        raise ValueError("图不连通")
+    return mst
+
+
+# %% Prim 算法
+
+from heapq import heapify, heappop, heappush
+
+# 转化为 Prim 算法所需要的数据结构
+def to_adjacency_list(n, graph_edge_weights):
+    """边权字典 -> 双向邻接表"""
+    graph_adjacency = [[] for _ in range(n)]
+    for (u, v), w in graph_edge_weights.items():
+        graph_adjacency[u].append((v, w))
+        graph_adjacency[v].append((u, w))
+    return graph_adjacency
+
+
+def prim(graph_adjacency, start=0):
+    """Prim：每次选取连接已访问与未访问顶点的最小边"""
+    visited = {start}
+    heap = [(w, start, v) for v, w in graph_adjacency[start]]
+    heapify(heap)
+    mst = []
+
+    while heap and len(mst) < len(graph_adjacency) - 1:
+        w, u, v = heappop(heap)
+        # v 已经在当前树中，只 pop，并进入下一轮迭代
+        if v in visited:
+            continue
+
+        visited.add(v)
+        mst.append((u, v, w))
+
+        # 把新加入的顶点，其相邻的、未访问的顶点加入堆，作为下一次迭代的候选
+        for nxt, weight in graph_adjacency[v]:
+            if nxt not in visited:
+                heappush(heap, (weight, v, nxt))
+
+    if len(mst) != len(graph_adjacency) - 1:
+        raise ValueError("图不连通")
+    return mst
+
+
+# %% 生成数据：无向有权图
+
+from random import Random
+from math import dist, isclose
+
+n = 8
+
+# 原始图的边关系，每条无向边只出现一次
+edge_pairs = [
+    (0, 1), (0, 2), (0, 3), (0, 4), (0, 5),
+    (1, 2), (1, 4),
+    (2, 3), (2, 5),
+    (3, 4), (4, 5),
+    (5, 6), (5, 7), (6, 7)
+]
+
+# 生成顶点坐标
+rng = Random(42)
+vertex_positions = [
+    (rng.random(), rng.random()) for _ in range(n)
+]
+
+# 生成统一的原始图：边权字典
+graph_edge_weights = {
+    (u, v): dist(vertex_positions[u], vertex_positions[v])
+    for u, v in edge_pairs
+}
+
+# 各自转换图表示方法，再调用算法
+graph_edges = to_edges_list(graph_edge_weights)
+graph_adjacency = to_adjacency_list(n, graph_edge_weights)
+
+mst_kruskal = kruskal(n, graph_edges)
+mst_prim = prim(graph_adjacency)
+
+# 测试
+assert len(mst_kruskal) == len(mst_prim) == n - 1
+
+weight_k = sum(w for u, v, w in mst_kruskal)
+weight_p = sum(w for u, v, w in mst_prim)
+assert isclose(weight_k, weight_p)
+
+print(f"Kruskal: {weight_k:.6f}")
+print(f"Prim:    {weight_p:.6f}")
+
+
+# %% 绘图
+import matplotlib.pyplot as plt
+
+
+def plot_mst(vertex_positions, graph_edge_weights, mst, save_path='mst.svg'):
+    """绘制原始图和最小生成树，并保存为 SVG"""
+    fig, ax = plt.subplots()
+
+    # 原始图
+    for u, v in graph_edge_weights:
+        ax.plot(*zip(vertex_positions[u], vertex_positions[v]), 'k-', alpha=0.2)
+
+    # 最小生成树
+    for u, v, _ in mst:
+        ax.plot(*zip(vertex_positions[u], vertex_positions[v]), 'r-', lw=3)
+
+    # 顶点及编号
+    for u, (x, y) in enumerate(vertex_positions):
+        ax.plot(x, y, 'ko')
+        ax.text(x + 0.01, y + 0.01, str(u))
+
+    ax.set_aspect('equal')
+    fig.savefig(save_path, format='svg', bbox_inches='tight')
+    plt.show()
+
+
+plot_mst(vertex_positions, graph_edge_weights, mst_kruskal, save_path='mst_kruskal.svg')
+plot_mst(vertex_positions, graph_edge_weights, mst_prim, save_path='mst_prim.svg')
+```
+
+
+
+![mst_kruskal](/a/algorithm/mst_kruskal.svg)
 
 
 ### 最短距离-Dijkstra

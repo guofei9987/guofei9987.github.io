@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【最小生成树】Prim和Kruskal
+title: 【丢弃】【最小生成树】Prim和Kruskal
 categories:
 tags: 0x80_数据结构与算法
 keywords:
