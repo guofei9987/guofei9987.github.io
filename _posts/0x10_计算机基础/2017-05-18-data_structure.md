@@ -1164,6 +1164,9 @@ $G=(V,E), T=(V,E_1), E_1 \subseteq E$ 且 $T$ 是树
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val, self.left, self.right = val, left, right
+
+    def __repr__(self):
+        return 'Node val = {}'.format(str(self.val))
 ```
 
 left 和 right 都是指针，指向下一个节点
@@ -1200,7 +1203,7 @@ LDR,DLR,LRD,RDL,DRL,RLD
 ![HuffmanCode](/pictures_for_blog/algorithm/HuffmanCode.png)
 
 
-为什么需要二叉树
+为什么需要 Huffman 树
 - 例子1。你是急救中心的接线员，当你接到一个电话时，你希望快速弄清楚患者的情况。  
     - 算法1：把所有的问题问一遍（ **遍历** ）算法复杂度为$O(n)$  
     - 算法2：要尽可能减少问题，使用 **二叉树**  算法复杂度为$O(\log n)$  
@@ -1211,7 +1214,7 @@ LDR,DLR,LRD,RDL,DRL,RLD
 
 
 
-哈夫曼算法是一种贪心算法
+构建 Huffman 树实际上是这个问题：把“带权重的二叉树”路径之和最小化。哈夫曼算法是一种贪心算法。
 
 
 **huffman算法的Python实现**
@@ -1793,7 +1796,33 @@ sum([1 for i in N[e] if i<inf])-1 # Degree
 
 ### 生成树
 
-代码见于另一个博客
+
+
+最小生成树问题（Minimum Spanning Tree Problem）是贪心算法中的一个著名问题。 
+- 最小生成树问题在 [前面](https://www.guofei.site/data_structure.html#%E6%A0%91:~:text=%E3%80%90%E5%AE%9A%E4%B9%89%E3%80%91-,%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91,-T%E6%98%AFG) 解释过了
+- 有哪些经典算法？Prim算法和Kruskal算法，他们的算法复杂度都是$O(m\ln n)$  
+
+
+
+**Kruskal算法** 可以得到最小生成树：
+1. 选取最小的边 $e_i$ ，边数 i:=1
+2. i=n-1 结束，否则转到3
+3. 设已经选择的边是 $e_1, e_2, ..., e_i$，那么选取这样的 $e_{i+1}$:
+    - $e_{i+1}$ 不同于 $e_1, e_2, ..., e_i$
+    - $(e_1, e_2, ..., e_i, e_{i+1})$ 不会构成回路
+    - $e_{i+1}$ 是满足以上条件的最小的边
+4. i:=i+1 转到2
+
+
+注：第三步的前两条，是用 **并查集** 算法来实现的
+
+
+
+代码见于另一个博客：https://www.guofei.site/2017/09/12/minimumspanningtree.html#Python%E5%AE%9E%E7%8E%B0%EF%BC%9AKruskal%E7%AE%97%E6%B3%95%E6%94%B9%E8%BF%9B%E7%89%88
+
+TODO: 将其整理合并到此处
+
+
 
 
 
