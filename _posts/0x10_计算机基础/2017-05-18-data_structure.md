@@ -20,29 +20,28 @@ order: 101
     - HashTable, HashSet, HashMap
 4. [递归](https://www.guofei.site/2017/08/24/recursion.html)
 5. [查找](#查找)
-    - 二分法
-    - 并查集
+    - [二分法](#二分法)
+    - [并查集](#并查集)
     - bitSet
-    - 概率结构。布隆过滤器，Count-Min Sketch，HyperLogLog
+    - 概率结构。[布隆过滤器](#布隆过滤器)，Count-Min Sketch，HyperLogLog
 6. [排序](https://www.guofei.site/2018/11/20/sort.html)
     - 简单排序：冒泡、选择、插入、希尔排序
     - 分置排序：快速排序、归并排序
     - 其他：堆排序、基数排序
 7. [树](#树)
-    - 二叉树
-    - 哈夫曼树与编码
+    - [二叉树](#二叉树)
+    - [哈夫曼树](#huffman-树)
     - 平衡树：AVL树、红黑树
     - B树与B+树
     - 线段树
     - 前缀树
     - 堆
-    - [Python实现树](https://www.guofei.site/2021/01/03/tree_algorithm.html)，[最小生成树](https://www.guofei.site/2017/09/12/minimumspanningtree.html)
+    - [Python实现树](https://www.guofei.site/2021/01/03/tree_algorithm.html)
 8. [图](#图)
     - 各种基础概念（有向/无向，有权/无权，等等）
     - 各种表示方法（指针，list-set，邻接矩阵）
-    - 最小生成树。Kruskal, Prim
+    - [最小生成树](#最小生成树)。Kruskal, Prim
     - 最短距离算法。Dijkstra, Floyd
-    - [图](https://www.guofei.site/2017/05/18/graph.html)
     - [图论](https://www.guofei.site/2021/10/23/graph2.html)
 9. [动态规划](https://www.guofei.site/2021/01/09/greedy.html)
 
@@ -977,6 +976,26 @@ if __name__ == "__main__":
         else:
             print(f"{x}: 一定不存在")
 ```
+
+
+计算假阴性概率
+
+设位数组有 $m$ 位，插入 $n$\)$ 个不同元素，哈希函数有 $k$ 个。假设哈希结果均匀、独立，假阴性概率为：
+
+$p_{\mathrm{FP}} \approx \left(1-e^{-kn/m}\right)^k $
+
+
+最优的 $k \approx (m/n)\ln 2$，然后取整
+
+因此假阴性概率只与 $m/n$ 有关
+
+| m/n | k(取整) | 假阳性概率 |
+|-----|---|----------|
+| 9.6 | 7 | 1% |
+| 14.4 | 10 | 0.1% |
+| 19.2 | 13 | 0.01% |
+
+
 
 
 ### Count-Min Sketch
