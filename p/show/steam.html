@@ -15,34 +15,37 @@ permalink: /steam.html
 </div>
 
 <script>
-fetch('/get_data/steam_data.json')
-  .then(r => r.json())
-  .then(games => {
-    const totalMinutes = games.reduce((s, x) => s + x.playtime_forever, 0);
+Promise.all([
+  fetch('/get_data/steam_data_total.json').then(r => r.json()),
+  fetch('/get_data/steam_data.json').then(r => r.json())
+])
+.then(([total, games]) => {
 
-    document.querySelector('#steam-count').textContent =
-      `共 ${games.length} 个游戏 | 总时长 ${Math.floor(totalMinutes / 60)} 小时`;
+  // 全部游戏的统计
+  document.querySelector('#steam-count').textContent =
+    `共 ${total.total_games} 个游戏 | 总时长 ${total.total_playtime_str}`;
 
-    document.querySelector('#steam-grid').innerHTML = games.map(x => `
-      <a href="https://store.steampowered.com/app/${x.appid}/"
-         class="card-item"
-         target="_blank"
-         rel="noopener noreferrer"
-         style="text-decoration:none; color:inherit;">
-        <div class="card-body">
-          <div class="card-title">
-            <img src="${x.img_icon_url}" alt="${x.name}">
-            ${x.name}
-          </div>
-          <div class="card-subtitle">
-            游戏时长：${x.playtime_forever_str}
-          </div>
-          ${x.total_achievements > 0 ? `
-          <div class="card-meta">
-            成就：${x.achieved_str}
-          </div>` : ''}
+  // 这里只展示时长 >= 1 小时的游戏
+  document.querySelector('#steam-grid').innerHTML = games.map(x => `
+    <a href="https://store.steampowered.com/app/${x.appid}/"
+       class="card-item"
+       target="_blank"
+       rel="noopener noreferrer"
+       style="text-decoration:none; color:inherit;">
+      <div class="card-body">
+        <div class="card-title">
+          <img src="${x.img_icon_url}" alt="${x.name}">
+          ${x.name}
         </div>
-      </a>
-    `).join('');
-  });
+        <div class="card-subtitle">
+          游戏时长：${x.playtime_forever_str}
+        </div>
+        ${x.total_achievements > 0 ? `
+        <div class="card-meta">
+          成就：${x.achieved_str}
+        </div>` : ''}
+      </div>
+    </a>
+  `).join('');
+});
 </script>
