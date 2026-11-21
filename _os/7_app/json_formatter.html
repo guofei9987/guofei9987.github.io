@@ -7,6 +7,16 @@ order: 733
 ---
 
 <link rel="stylesheet" type="text/css" href="/a/app/tools.css"/>
+<style>
+/* 仅本页面生效，不修改共享的 tools.css */
+#content #jsonFormatterApp .json-output-header {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:15px}
+#content #jsonFormatterApp .json-output-header h2 {margin-bottom:0}
+#content #jsonFormatterApp .json-output-actions {margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+#content #jsonFormatterApp.json-expanded {max-width:none}
+#content #jsonFormatterApp.json-expanded .text-tools-container {grid-template-columns:minmax(0,1fr)}
+#content #jsonFormatterApp.json-expanded .json-input-panel {display:none}
+#content #jsonFormatterApp.json-expanded #formattedText {min-height:70vh}
+</style>
 
 <div class="text-tools-app" id="jsonFormatterApp">
   <div class="text-tools-header">
@@ -27,15 +37,20 @@ order: 733
   </div>
 
   <div class="text-tools-container">
-    <div class="text-tools-panel">
+    <div class="text-tools-panel json-input-panel">
       <h2>原始JSON <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="originalInfo">0 字符</span></h2>
       <textarea class="text-tools-textarea" id="originalText" placeholder="粘贴JSON文本...&#10;&#10;示例:&#10;{&quot;name&quot;:&quot;张三&quot;,&quot;age&quot;:25,&quot;city&quot;:&quot;北京&quot;}&#10;&#10;或&#10;&#10;[&#10;  {&quot;id&quot;:1,&quot;value&quot;:&quot;a&quot;},&#10;  {&quot;id&quot;:2,&quot;value&quot;:&quot;b&quot;}&#10;]"></textarea>
     </div>
 
     <div class="text-tools-panel">
-      <h2>格式化JSON <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="formattedInfo">0 字符</span></h2>
+      <div class="json-output-header">
+        <h2>格式化JSON <span style="font-size: 14px; color: var(--tools-muted); font-weight: normal;" id="formattedInfo">0 字符</span></h2>
+        <button type="button" class="text-tools-btn text-tools-btn-primary" id="expandResultBtn" aria-expanded="false" aria-label="放大格式化结果栏">⛶ 放大</button>
+      </div>
       <textarea class="text-tools-textarea" id="formattedText" readonly></textarea>
-      <div style="margin-top: 12px; display: flex; gap: 12px; align-items: center;">
+      <div class="json-output-actions">
+        <button type="button" class="text-tools-btn text-tools-btn-primary" id="decodeStringBtn" hidden>解析 JSON 字符串</button>
+        <button type="button" class="text-tools-btn text-tools-btn-primary" id="restoreStringBtn" hidden>还原</button>
         <button class="text-tools-btn text-tools-btn-success" id="copyBtn">复制结果</button>
         <span class="text-tools-success" id="copySuccess" style="display: none;">已复制到剪贴板</span>
       </div>
@@ -47,7 +62,7 @@ order: 733
 <b>说明：</b>
 <ol>
   <li>本工具为纯前端实现，所有处理均在本地浏览器完成，不会上传任何数据。可以保存本网页离线使用。</li>
-  <li>功能：自动格式化JSON并显示语法错误位置。</li>
+  <li>功能：自动格式化JSON并显示语法错误位置；可放大结果栏。若外层是合法 JSON 字符串、内部为 JSON 对象或数组，可点击按钮解析内部 JSON（不修改输入）。</li>
 </ol>
 
 <script src="/a/app/tools.js"></script>
@@ -55,17 +70,23 @@ order: 733
 (function() {
   'use strict';
 
+  const app = document.getElementById('jsonFormatterApp');
   const originalTextarea = document.getElementById('originalText');
   const formattedTextarea = document.getElementById('formattedText');
   const clearBtn = document.getElementById('clearBtn');
   const copyBtn = document.getElementById('copyBtn');
   const copySuccess = document.getElementById('copySuccess');
+  const expandResultBtn = document.getElementById('expandResultBtn');
+  const decodeStringBtn = document.getElementById('decodeStringBtn');
+  const restoreStringBtn = document.getElementById('restoreStringBtn');
   const status = document.getElementById('status');
   const originalInfo = document.getElementById('originalInfo');
   const formattedInfo = document.getElementById('formattedInfo');
 
   const debounce = TextToolsUtils.createDebounce();
   let lastError = null;
+  let decodedView = false;
+  let expandedView = false;
 
   function updateStatus(text, isError = false) {
     TextToolsUtils.updateStatus(status, text, isError);
@@ -88,10 +109,34 @@ order: 733
     try {
       const parsed = JSON.parse(jsonString);
       const formatted = JSON.stringify(parsed, null, getIndent());
-      return { success: true, formatted };
+      return { success: true, parsed, formatted };
     } catch (error) {
       return { success: false, error: error.message };
     }
+  }
+
+  // 仅识别外层 JSON 字符串且其内部是合法对象/数组；恰好解码一层。
+  function parseEmbeddedJSON(outerValue, rawText) {
+    if (!rawText.startsWith('"') || !rawText.endsWith('"') || typeof outerValue !== 'string') return null;
+    try {
+      const innerValue = JSON.parse(outerValue);
+      return innerValue !== null && typeof innerValue === 'object' ? innerValue : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function setDecodeControls(canDecode) {
+    decodeStringBtn.hidden = !canDecode || decodedView;
+    restoreStringBtn.hidden = !canDecode || !decodedView;
+  }
+
+  function setExpanded(expanded) {
+    expandedView = expanded;
+    app.classList.toggle('json-expanded', expanded);
+    expandResultBtn.textContent = expanded ? '⤢ 还原' : '⛶ 放大';
+    expandResultBtn.setAttribute('aria-expanded', String(expanded));
+    expandResultBtn.setAttribute('aria-label', expanded ? '还原格式化结果栏' : '放大格式化结果栏');
   }
 
   function validateJSON(jsonString) {
@@ -118,6 +163,8 @@ order: 733
     const jsonText = originalTextarea.value.trim();
 
     if (!jsonText) {
+      decodedView = false;
+      setDecodeControls(false);
       formattedTextarea.value = '';
       updateCharCounts('', '');
       updateStatus('等待输入...');
@@ -130,11 +177,17 @@ order: 733
     const result = formatJSON(jsonText);
 
     if (result.success) {
-      formattedTextarea.value = result.formatted;
-      updateCharCounts(jsonText, result.formatted);
-      updateStatus('格式化完成');
+      const innerJSON = parseEmbeddedJSON(result.parsed, jsonText);
+      if (innerJSON === null) decodedView = false;
+      const formatted = decodedView ? JSON.stringify(innerJSON, null, getIndent()) : result.formatted;
+      formattedTextarea.value = formatted;
+      updateCharCounts(jsonText, formatted);
+      setDecodeControls(innerJSON !== null);
+      updateStatus(decodedView ? '已解析 JSON 字符串并格式化' : '格式化完成');
       lastError = null;
     } else {
+      decodedView = false;
+      setDecodeControls(false);
       const validation = validateJSON(jsonText);
       if (!validation.valid && validation.position !== null) {
         const highlighted = highlightError(jsonText, validation.position);
@@ -167,7 +220,27 @@ ${example}`;
 
   const debouncedFormat = debounce(performFormat, 300);
 
-  originalTextarea.addEventListener('input', debouncedFormat);
+  originalTextarea.addEventListener('input', () => {
+    decodedView = false;
+    setDecodeControls(false);
+    debouncedFormat();
+  });
+
+  decodeStringBtn.addEventListener('click', () => {
+    decodedView = true;
+    performFormat();
+  });
+
+  restoreStringBtn.addEventListener('click', () => {
+    decodedView = false;
+    performFormat();
+  });
+
+  expandResultBtn.addEventListener('click', () => setExpanded(!expandedView));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && expandedView) setExpanded(false);
+  });
 
   document.querySelectorAll('input[name="indent"]').forEach((radio) => {
     radio.addEventListener('change', () => {
@@ -182,6 +255,8 @@ ${example}`;
     [originalTextarea, formattedTextarea],
     status,
     [() => {
+      decodedView = false;
+      setDecodeControls(false);
       updateCharCounts('', '');
       lastError = null;
     }]
@@ -195,6 +270,7 @@ ${example}`;
   }, copySuccess);
 
   updateCharCounts('', '');
+  setDecodeControls(false);
   showExample();
 })();
 </script>
